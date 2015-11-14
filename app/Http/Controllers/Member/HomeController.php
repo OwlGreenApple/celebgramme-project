@@ -18,7 +18,7 @@ class HomeController extends Controller
 	 * @return response
 	 */
 	public function index(){
-		return view('member.profile');
+		return view('member.send-like');
 	}
   
 	public function order(){
@@ -29,6 +29,9 @@ class HomeController extends Controller
 		return view('member.send-like');
 	}
 	
+	public function edit_profile(){
+		return view('member.profile');
+	}
 	
 	
 }

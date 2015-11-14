@@ -33,9 +33,9 @@
         <div class="row">
           <div class="col-sm-3 col-md-2 fl">    
             <ul class="nav nav-sidebar">
-              <li><a href="{{url('')}}">Profile</a></li>
-              <li><a href="{{url('order')}}">Order</a></li>
               <li><a href="{{url('send-like')}}">Send Likes</a></li>
+              <li><a href="{{url('order')}}">Order</a></li>
+              <li><a href="{{url('edit-profile')}}">Profile</a></li>
               <li><a href="{{url('logout')}}">Logout</a></li>
             </ul>
           

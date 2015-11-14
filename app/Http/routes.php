@@ -25,4 +25,5 @@ Route::group(['middleware' => 'auth'], function()
   Route::get('/', 'Member\HomeController@index');
   Route::get('order', 'Member\HomeController@order');
   Route::get('send-like', 'Member\HomeController@send_like');
+  Route::get('edit-profile', 'Member\HomeController@edit_profile');
 });
