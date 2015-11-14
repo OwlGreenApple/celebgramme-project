@@ -2,11 +2,13 @@
 <html>
     <head>
       <title>Celebgramme</title>
+      <meta name="csrf-token" content="{{ csrf_token() }}" />
       <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/images/celebgramme-favicon.png') }}">
       <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
       <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/bootstrap-theme.min.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/main.css') }}" rel="stylesheet">
+      <script type="text/javascript" src="{{ asset('/js/jquery-1.11.3.js') }}"></script>
     </head>
     <body>
     
@@ -34,7 +36,8 @@
           <div class="col-sm-3 col-md-2 fl">    
             <ul class="nav nav-sidebar">
               <li><a href="{{url('send-like')}}">Send Likes</a></li>
-              <li><a href="{{url('order')}}">Order</a></li>
+              <li><a href="{{url('order')}}">Order History</a></li>
+              <li><a href="{{url('order')}}">Buy More</a></li>
               <li><a href="{{url('edit-profile')}}">Profile</a></li>
               <li><a href="{{url('logout')}}">Logout</a></li>
             </ul>
@@ -63,16 +66,13 @@
               </div>
             </div>          
             <div class="col-sm-4">
-              <div class="panel panel-info">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Buy More</h3>
-                </div>
-                <div class="panel-body">
-                  
-                </div>
-              </div>
             </div>          
-            <div class="col-sm-12">
+            <div class="col-sm-12">            
+              <div class="alert alert-danger col-xs-5" id="alert">
+                <strong>Oh snap!</strong> Change a few things up and try submitting again.
+              </div>  
+            </div>          
+            <div class="col-sm-12">            
               @yield('content')
             </div>          
             
