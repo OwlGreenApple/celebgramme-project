@@ -41,4 +41,6 @@ Route::group(['middleware' => 'auth'], function()
   Route::get('checkout-finish', 'Member\CheckoutController@checkout_finish');
   
 });
-  Route::post('payment/vtnotification', ['as' => 'vt.notif', 'uses' => 'Member\PaymentController@veritransNotification']);
+
+
+Route::post('payment/vtnotification', ['as' => 'vt.notif', 'uses' => 'Member\PaymentController@veritransNotification']);
