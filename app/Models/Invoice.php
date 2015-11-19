@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class RequestModel extends Model {
+class Invoice extends Model {
 
-	protected $table = 'requests';
+	protected $table = 'invoices';
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Celebgramme\Http\Controllers\Auth;
 
-use App\User;
+use Celebgramme\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use Celebgramme\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 

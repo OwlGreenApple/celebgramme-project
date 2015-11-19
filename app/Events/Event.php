@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace Celebgramme\Events;
 
 abstract class Event
 {

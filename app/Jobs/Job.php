@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace Celebgramme\Jobs;
 
 use Illuminate\Bus\Queueable;
 

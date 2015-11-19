@@ -1,4 +1,4 @@
-<?php namespace Axiapro\Models;
+<?php namespace Celebgramme\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

@@ -25,5 +25,19 @@ Route::group(['middleware' => 'auth'], function()
   Route::get('/', 'Member\HomeController@index');
   Route::get('order', 'Member\HomeController@order');
   Route::get('send-like', 'Member\HomeController@send_like');
+  
   Route::get('edit-profile', 'Member\HomeController@edit_profile');
+  Route::post('process-like', 'Member\HomeController@process_like');
+  
+  Route::get('buy-more', 'Member\HomeController@buy_more');
+  Route::post('process-veritrans', 'Member\PaymentController@veritransRedirect');
+  /*--------- Payment ---------*/
+  Route::group(['prefix' => 'payment'], function () {
+    /*--------- Veritrans ---------*/
+    Route::post('veritransredirect', ['as' => 'vt.notif', 'uses' => 'PaymentController@veritransRedirect']);
+    Route::post('vtnotification', ['as' => 'vt.notif', 'uses' => 'PaymentController@veritransNotification']);
+    Route::get('finish', ['as' => 'vt.finish', 'uses' => 'PaymentController@veritransFinish']);
+    Route::get('fail', ['as' => 'vt.fail', 'uses' => 'PaymentController@veritransFail']);
+  });
+  
 });

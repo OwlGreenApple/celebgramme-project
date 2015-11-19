@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Celebgramme\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

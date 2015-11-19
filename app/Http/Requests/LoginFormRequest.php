@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Celebgramme\Http\Requests;
 
-use App\Http\Requests\Request;
+use Celebgramme\Http\Requests\Request;
 
 class LoginFormRequest extends Request
 {

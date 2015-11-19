@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Celebgramme\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
+use Celebgramme\Http\Controllers\Controller;
+use Celebgramme\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Requests\LoginFormRequest as loginRequest;
+use Celebgramme\Http\Requests\LoginFormRequest as loginRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Encryption\DecryptException;
 
