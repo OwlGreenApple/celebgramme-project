@@ -8,6 +8,8 @@ use Celebgramme\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 use Celebgramme\Models\RequestModel;
+use Celebgramme\Models\Order;
+use Celebgramme\Models\Invoice;
 use Celebgramme\Veritrans\Veritrans;
 
 use Illuminate\Http\Request;
@@ -27,8 +29,8 @@ class PaymentController extends Controller
 	 * @return Redirect
 	 */
 	public function veritransRedirect(Request $request){
+    $user = Auth::user();
 		// Validation passes
-		// $checkout_data = $request->session()->get('checkout_data');
 		$vt = new Veritrans;
 		// Populate items
 		$items = [];
@@ -73,6 +75,11 @@ class PaymentController extends Controller
 		);
 		try
 		{
+      $checkout_data["order_type"]="VERITRANS";
+      $checkout_data["order_status"]="PENDING";
+      $checkout_data["user_id"]=$user->id;
+      $checkout_data["order_total"]="1000000";
+      $checkout_data["email"]=$user->email;
 			$request->session()->put('checkout_data', $checkout_data);
 			$vtweb_url = $vt->vtweb_charge($transaction_data);
 			return redirect($vtweb_url);
@@ -171,21 +178,22 @@ class PaymentController extends Controller
 			if ($checkout_data['payment_status'] != 'challenge'){
 				VeritransModel::setValue($checkout_data['unique_id'], null);
 			}
-			$checkout_data['order_number'] = $order['order_number'];
+			$checkout_data['order_id'] = $order->id;
+			$checkout_data['order_number'] = $order->no_order;
 			$checkout_data['shortcode'] = str_replace('OAXM', '', $checkout_data['order_number']);
 			// Create invoice if payment_status is success
 			if ($checkout_data['payment_status'] == 'success'){
+        $invoice = Invoice::successPayment($checkout_data);
 			}
       if (($checkout_data['payment_status'] == 'challenge')||($checkout_data['payment_status'] == 'pending')){
       }
 			$request->session()->put('checkout_data', $checkout_data);
       
-			return redirect('checkout/finish');
+			return redirect('checkout-finish');
 		}
 		else{
 			// Do something when no JSON
-			return redirect('checkout/paymentmethod');
-			echo 'no-json-found';
+			return redirect('buy-more');
 		}
 	}
 	/**
@@ -194,24 +202,9 @@ class PaymentController extends Controller
 	 * @return Redirect
 	 */
 	public function veritransFail(Request $request){
-		// Validation
-		if (!$request->session()->has('checkout_data')){
-			return redirect('checkout/login');
-		}
-		else{
-			$checkout_data = $request->session()->get('checkout_data');
-			if (!isset($checkout_data['shipping'])
-			|| !isset($checkout_data['billing'])
-			|| !isset($checkout_data['courier'])){
-				return redirect('checkout/shippinginformation');
-			}
-			if (!isset($checkout_data['payment'])){
-				return redirect('checkout/paymentmethod');
-			}
-		}
 		$checkout_data = $request->session()->get('checkout_data');
 		VeritransModel::setValue($checkout_data['unique_id'], null);
-		return redirect('checkout/paymentmethod');
+		return redirect('buy-more');
 	}
 
   

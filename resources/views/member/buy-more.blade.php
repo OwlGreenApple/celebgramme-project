@@ -8,6 +8,8 @@
 </script>
 <form action="{{url('process-veritrans')}}" method="POST">
   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-  <input class="btn btn-default" type="submit" value="Process" id="button-process">
+  <input class="btn btn-default" type="button" value="Process bank transfer" id="button-process">
+  <input class="btn btn-default" type="submit" value="Process veritrans" id="button-process">
+  <input class="btn btn-default" type="button" value="Process paypal" id="button-process">
 </form>
 @endsection

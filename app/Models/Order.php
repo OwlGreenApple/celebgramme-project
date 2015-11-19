@@ -14,11 +14,13 @@ class Order extends Model {
     $order = new Order;
     $order_number = GeneralHelper::autoGenerateID($order, 'no_order', $str, 3, '0');
     $order->no_order = $order_number;
-    $order->order_type = "";
-    $order->order_status = "";
-    $order->user_id = "";
-    $order->total = "";
+    $order->order_type = $cdata["order_type"];
+    $order->order_status = $cdata["order_status"];
+    $order->user_id = $cdata["user_id"];
+    $order->total = $cdata["order_total"];
     $order->save();
+    
+    return $order;
   }
   
 }

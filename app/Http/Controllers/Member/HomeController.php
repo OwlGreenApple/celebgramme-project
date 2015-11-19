@@ -10,16 +10,20 @@ use Illuminate\Support\Facades\Auth;
 use Celebgramme\Models\RequestModel;
 use Celebgramme\Veritrans\Veritrans;
 
-use View, Input;
+use View, Input, Mail;
 
 class HomeController extends Controller
 {
-	public function __construct(){   
-		Veritrans::$serverKey = env('VERITRANS_SERVERKEY');
-		Veritrans::$isProduction = false;
-	}
-
   
+	public function test(){
+    $emaildata = [
+    ];
+    Mail::queue('emails.test', $emaildata, function ($message) {
+      $message->from('no-reply@axiamarket.com', 'AxiaMarket');
+      $message->to("test@test.yahoo.com");
+      $message->subject('test email');
+    });
+  }
 	/**
 	 * Menampilkan halaman utama
 	 *
@@ -110,86 +114,5 @@ class HomeController extends Controller
 		return view('member.buy-more')->with(array('user'=>$user,));
 	}
   
-  public function process_veritrans(){
-    
-    // Set our server key
-    Veritrans_Config::$serverKey = 'VT-server-k6kGwJc2LcmDHqu8Ji9hgpho';
-
-    // Use sandbox account
-    Veritrans_Config::$isProduction = false;
-
-    // Required
-    $transaction_details = array(
-      'order_id' => rand(),
-      'gross_amount' => 145000, // no decimal allowed for creditcard
-      );
-
-    // Optional
-    $item1_details = array(
-        'id' => 'a1',
-        'price' => 50000,
-        'quantity' => 2,
-        'name' => "Apple"
-        );
-
-    // Optional
-    $item2_details = array(
-        'id' => 'a2',
-        'price' => 45000,
-        'quantity' => 1,
-        'name' => "Orange"
-        );
-
-    // Optional
-    $item_details = array ($item1_details, $item2_details);
-
-    // Optional
-    $billing_address = array(
-        'first_name'    => "Andri",
-        'last_name'     => "Litani",
-        'address'       => "Mangga 20",
-        'city'          => "Jakarta",
-        'postal_code'   => "16602",
-        'phone'         => "081122334455",
-        'country_code'  => 'IDN'
-        );
-
-    // Optional
-    $shipping_address = array(
-        'first_name'    => "Obet",
-        'last_name'     => "Supriadi",
-        'address'       => "Manggis 90",
-        'city'          => "Jakarta",
-        'postal_code'   => "16601",
-        'phone'         => "08113366345",
-        'country_code'  => 'IDN'
-        );
-
-    // Optional
-    $customer_details = array(
-        'first_name'    => "Andri",
-        'last_name'     => "Litani",
-        'email'         => "andri@litani.com",
-        'phone'         => "081122334455",
-        'billing_address'  => $billing_address,
-        'shipping_address' => $shipping_address
-        );
-
-    // Fill transaction details
-    $transaction = array(
-        'payment_type' => 'vtweb',
-        'vtweb' => array(
-            'credit_card_3d_secure' => true,
-            ),
-        'transaction_details' => $transaction_details,
-        'customer_details' => $customer_details,
-        'item_details' => $item_details,
-        );
-
-    $vtweb_url = Veritrans_Vtweb::getRedirectionUrl($transaction);
-
-    // Go to VT-Web page
-    header('Location: ' . $vtweb_url);    
-	}
 	
 }

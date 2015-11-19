@@ -21,6 +21,7 @@ Route::post('auth/register', ['as'=>'auth.register', 'uses'=> 'Auth\RegisterCont
 /*--------- Must Login Routes ---------*/
 Route::group(['middleware' => 'auth'], function()
 {
+  Route::get('test', 'Member\HomeController@test');
   Route::get('home', 'Member\HomeController@index');
   Route::get('/', 'Member\HomeController@index');
   Route::get('order', 'Member\HomeController@order');
@@ -30,7 +31,6 @@ Route::group(['middleware' => 'auth'], function()
   Route::post('process-like', 'Member\HomeController@process_like');
   
   Route::get('buy-more', 'Member\HomeController@buy_more');
-  Route::post('process-veritrans', 'Member\PaymentController@veritransRedirect');
   /*--------- Payment ---------*/
   Route::group(['prefix' => 'payment'], function () {
     /*--------- Veritrans ---------*/
@@ -39,5 +39,6 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('finish', ['as' => 'vt.finish', 'uses' => 'PaymentController@veritransFinish']);
     Route::get('fail', ['as' => 'vt.fail', 'uses' => 'PaymentController@veritransFail']);
   });
+  Route::get('checkout-finish', 'Member\CheckoutController@checkout_finish');
   
 });
