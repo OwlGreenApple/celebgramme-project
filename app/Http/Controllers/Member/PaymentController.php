@@ -29,7 +29,6 @@ class PaymentController extends Controller
 	 * @return Redirect
 	 */
 	public function veritransRedirect(Request $request){
-    $user = Auth::user();
 		// Validation passes
 		$vt = new Veritrans;
 		// Populate items
@@ -75,11 +74,11 @@ class PaymentController extends Controller
 		);
 		try
 		{
-      $checkout_data["order_type"]="VERITRANS";
-      $checkout_data["order_status"]="PENDING";
-      $checkout_data["user_id"]=$user->id;
-      $checkout_data["order_total"]="1000000";
-      $checkout_data["email"]=$user->email;
+      $checkout_data["order_type"] = "VERITRANS";
+      $checkout_data["order_status"] = "PENDING";
+      $checkout_data["user_id"] = $user->id;
+      $checkout_data["order_total"] = "1000000";
+      $checkout_data["email"] = $user->email;
 			$request->session()->put('checkout_data', $checkout_data);
 			$vtweb_url = $vt->vtweb_charge($transaction_data);
 			return redirect($vtweb_url);
