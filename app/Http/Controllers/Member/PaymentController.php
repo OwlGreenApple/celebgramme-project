@@ -154,11 +154,10 @@ class PaymentController extends Controller
 			$checkout_data = $request->session()->get('checkout_data');
 		}
 		// Get checkout data here
-			$status = $json->transaction_status;
 		$checkout_data = $request->session()->get('checkout_data');
-    dd($checkout_data);
 		$json = VeritransModel::getValue($checkout_data['unique_id']);
 		if ($json != ''){
+			$status = $json->transaction_status;
 			if ($status == 'capture'){
 				if ($json->payment_type == 'credit_card'){
 					$fraud = $json->fraud_status;
