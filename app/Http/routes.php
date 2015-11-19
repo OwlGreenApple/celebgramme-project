@@ -34,10 +34,10 @@ Route::group(['middleware' => 'auth'], function()
   /*--------- Payment ---------*/
   Route::group(['prefix' => 'payment'], function () {
     /*--------- Veritrans ---------*/
-    Route::post('veritransredirect', ['as' => 'vt.notif', 'uses' => 'PaymentController@veritransRedirect']);
-    Route::post('vtnotification', ['as' => 'vt.notif', 'uses' => 'PaymentController@veritransNotification']);
-    Route::get('finish', ['as' => 'vt.finish', 'uses' => 'PaymentController@veritransFinish']);
-    Route::get('fail', ['as' => 'vt.fail', 'uses' => 'PaymentController@veritransFail']);
+    Route::post('veritransredirect', ['as' => 'vt.notif', 'uses' => 'Member\PaymentController@veritransRedirect']);
+    Route::post('vtnotification', ['as' => 'vt.notif', 'uses' => 'Member\PaymentController@veritransNotification']);
+    Route::get('finish', ['as' => 'vt.finish', 'uses' => 'Member\PaymentController@veritransFinish']);
+    Route::get('fail', ['as' => 'vt.fail', 'uses' => 'Member\PaymentController@veritransFail']);
   });
   Route::get('checkout-finish', 'Member\CheckoutController@checkout_finish');
   
