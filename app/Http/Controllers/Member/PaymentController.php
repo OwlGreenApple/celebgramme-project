@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Celebgramme\Models\RequestModel;
 use Celebgramme\Models\Order;
 use Celebgramme\Models\Invoice;
+use Celebgramme\Models\Package;
 use Celebgramme\Models\VeritransModel;
 use Celebgramme\Veritrans\Veritrans;
 
@@ -30,6 +31,9 @@ class PaymentController extends Controller
 	 * @return Redirect
 	 */
 	public function veritransRedirect(Request $request){
+    $user = Auth::user();
+    $package = Package::find(Input::get("package"));
+    
 		// Validation passes
 		$vt = new Veritrans;
 		// Populate items
@@ -38,24 +42,23 @@ class PaymentController extends Controller
 		// package
 		array_push($items, [
 			'id' => '#Package',
-			'price' => 1000000,
+			'price' => $package->price,
 			'quantity' => 1,
-			'name' => 'Paket A'
+			'name' => $package->package_name,
 		]);
-		$totalPrice = 1000000;
+		$totalPrice = $package->price;
 		// Populate customer's billing address
 		$billing_address = [
-			'first_name' => "rizky",
-			'last_name' => "r",
-			'phone' => "0317777",
+			'first_name' => $user->fullname,
+			'last_name' => "",
+			'phone' => $user->phone_number,
 		];
 
 		// Populate customer's Info
-    $user = Auth::user();
     $customer_details = array(
-      'first_name' => "rizky",
-      'last_name' => "r",
-      'email' => "test@yahoo.com",
+      'first_name' => $user->fullname,
+      'last_name' => "",
+      'email' => $user->email,
       'billing_address' => $billing_address,
     );
       
@@ -78,8 +81,9 @@ class PaymentController extends Controller
       $checkout_data["order_type"] = "VERITRANS";
       $checkout_data["order_status"] = "PENDING";
       $checkout_data["user_id"] = $user->id;
-      $checkout_data["order_total"] = "1000000";
+      $checkout_data["order_total"] = $totalPrice;
       $checkout_data["email"] = $user->email;
+      $checkout_data["package_id"] = $package->id;
 			$request->session()->put('checkout_data', $checkout_data);
 			$vtweb_url = $vt->vtweb_charge($transaction_data);
 			return redirect($vtweb_url);

@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Celebgramme\Models\Order;
+use Celebgramme\Models\Package;
+use Celebgramme\Models\PackageUser;
 
 use Mail;
 
@@ -20,6 +22,11 @@ class Invoice extends Model {
     $order = Order::find($cdata["order_id"]);
     $order->order_status = "SUCCESS";
     $order->save();
+    
+    $packageUser = new PackageUser;
+    $packageUser->package_id = $cdata["package_id"];
+    $packageUser->user_id = $cdata["user_id"];
+    $packageUser->save();
     
     //send email success payment
     $emaildata = [
