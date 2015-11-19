@@ -101,6 +101,7 @@ class PaymentController extends Controller
 	public function veritransNotification(Request $request){
 		$vt = new Veritrans;
 		$json = $request->all();
+    // dd($json);
 		VeritransModel::setValue($json['order_id'], json_encode($json));
 		// Not Important Code
 		$transaction = $json['transaction_status'];
@@ -153,10 +154,11 @@ class PaymentController extends Controller
 			$checkout_data = $request->session()->get('checkout_data');
 		}
 		// Get checkout data here
+			$status = $json->transaction_status;
 		$checkout_data = $request->session()->get('checkout_data');
+    dd($checkout_data);
 		$json = VeritransModel::getValue($checkout_data['unique_id']);
 		if ($json != ''){
-			$status = $json->transaction_status;
 			if ($status == 'capture'){
 				if ($json->payment_type == 'credit_card'){
 					$fraud = $json->fraud_status;
