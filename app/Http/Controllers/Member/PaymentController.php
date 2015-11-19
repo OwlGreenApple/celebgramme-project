@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Celebgramme\Models\RequestModel;
 use Celebgramme\Models\Order;
 use Celebgramme\Models\Invoice;
+use Celebgramme\Models\VeritransModel;
 use Celebgramme\Veritrans\Veritrans;
 
 use Illuminate\Http\Request;
