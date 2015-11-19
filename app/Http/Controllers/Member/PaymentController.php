@@ -147,7 +147,7 @@ class PaymentController extends Controller
 	public function veritransFinish(Request $request){
 		// Validation
 		if (!$request->session()->has('checkout_data')){
-			return redirect('buy-more');
+			return redirect('a');
 		}
 		else{
 			$checkout_data = $request->session()->get('checkout_data');
@@ -197,7 +197,7 @@ class PaymentController extends Controller
 		}
 		else{
 			// Do something when no JSON
-			return redirect('buy-more');
+			return redirect('b');
 		}
 	}
 	/**
@@ -208,7 +208,7 @@ class PaymentController extends Controller
 	public function veritransFail(Request $request){
 		$checkout_data = $request->session()->get('checkout_data');
 		VeritransModel::setValue($checkout_data['unique_id'], null);
-		return redirect('buy-more');
+		return redirect('c');
 	}
 
   

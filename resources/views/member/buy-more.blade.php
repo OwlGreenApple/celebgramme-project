@@ -28,7 +28,7 @@
         200
       </td>
       <td>
-        <input type="radio" name="package" value="1" id="a1">
+        <input type="radio" name="package" value="1" id="a1" checked>
         <label for="a1">10.000</label>
       </td>
       <td>
