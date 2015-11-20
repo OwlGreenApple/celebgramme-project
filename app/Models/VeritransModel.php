@@ -13,7 +13,7 @@ class VeritransModel extends Model {
 		if (is_null($vm)){
 			$vm = new VeritransModel;
 			$vm->unique_id = $unique_id;
-			if ($json_value == null){
+			if (is_null($json_value)){
 				$vm->delete();
 				return true;
 			}
