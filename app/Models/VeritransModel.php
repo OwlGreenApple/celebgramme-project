@@ -10,7 +10,7 @@ class VeritransModel extends Model {
 	protected function setValue($unique_id, $json_value)
 	{
 		$vm = VeritransModel::where('unique_id', '=', $unique_id)->first();
-		if ($vm == null){
+		if (is_null($vm)){
 			$vm = new VeritransModel;
 			$vm->unique_id = $unique_id;
 			if ($json_value == null){
@@ -25,7 +25,7 @@ class VeritransModel extends Model {
 	protected function getValue($unique_id)
 	{
 		$vm = VeritransModel::where('unique_id', '=', $unique_id)->first();
-		if ($vm != null){
+		if (!is_null($vm)){
       return json_decode($vm->json_value);
     }
     else{
