@@ -16,13 +16,15 @@ class HomeController extends Controller
 {
   
 	public function test(){
-    $emaildata = [
-    ];
-    Mail::queue('emails.test', $emaildata, function ($message) {
-      $message->from('no-reply@axiamarket.com', 'AxiaMarket');
-      $message->to("test@test.yahoo.com");
-      $message->subject('test email');
-    });
+    $result = file_get_contents('http://requestb.in/16uy2ib1');
+    echo $result;    
+    // $emaildata = [
+    // ];
+    // Mail::queue('emails.test', $emaildata, function ($message) {
+      // $message->from('no-reply@axiamarket.com', 'AxiaMarket');
+      // $message->to("test@test.yahoo.com");
+      // $message->subject('test email');
+    // });
   }
 	/**
 	 * Menampilkan halaman utama
@@ -48,6 +50,9 @@ class HomeController extends Controller
     $user = Auth::user();
     
     $point = Input::get("like") / 2;
+    if ($point<1) {
+      $point=1;
+    }
     $s = @file_get_contents("http://api.instagram.com/publicapi/oembed/?url=" . Input::get("photo"));
     if(!$s )
     {

@@ -155,7 +155,6 @@ class PaymentController extends Controller
 		}
 		// Get checkout data here
 		$checkout_data = $request->session()->get('checkout_data');
-    dd($checkout_data);
 		$json = VeritransModel::getValue($checkout_data['unique_id']);
 		if ($json != ''){
 			$status = $json->transaction_status;
