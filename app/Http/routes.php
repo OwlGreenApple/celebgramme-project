@@ -39,6 +39,10 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('fail', ['as' => 'vt.fail', 'uses' => 'Member\PaymentController@veritransFail']);
   });
   Route::get('checkout-finish', 'Member\CheckoutController@checkout_finish');
+
+  // Route::get('payment/paypal', 'Member\PaypalController@store');
+  Route::resource('payment/paypal', 'Member\PaypalController');
+  Route::get('payment/paypal/test', 'Member\PaypalController@test');
   
 });
 

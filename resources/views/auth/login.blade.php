@@ -6,6 +6,7 @@
       <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
       <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/bootstrap-theme.min.css') }}" rel="stylesheet">
+      <link href="{{ asset('/css/sign-in.css') }}" rel="stylesheet">
     </head>
     <body>
       <div class="container">  

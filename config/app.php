@@ -145,6 +145,8 @@ return [
         Celebgramme\Providers\AuthServiceProvider::class,
         Celebgramme\Providers\EventServiceProvider::class,
         Celebgramme\Providers\RouteServiceProvider::class,
+        
+        Anouar\Paypalpayment\PaypalpaymentServiceProvider::class,
 
     ],
 
@@ -196,6 +198,8 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Form'=> Illuminate\Html\FormFacade::class, 
         'HTML'=> Illuminate\Html\HtmlFacade::class,
+        'Paypalpayment'   => Anouar\Paypalpayment\Facades\PaypalPayment::class,
+        
 
     ],
 

@@ -84,15 +84,17 @@ class HomeController extends Controller
     curl_close ($ch);
      
     $s = json_decode($out, true);
+    
+    $req_mode = new RequestModel;
+    $req_mode->url_photo = Input::get("photo");
+    $req_mode->likes = Input::get("like");
+    $req_mode->user_id = $user->id;
+    
     if($s['PriKey'] != 0){
       $arr["message"]= "process berhasil dilakukan";
       $arr["type"]= "success";
       
-      $req_mode = new RequestModel;
-      $req_mode->url_photo = Input::get("photo");
-      $req_mode->likes = Input::get("like");
-      $req_mode->user_id = $user->id;
-      $req_mode->save();
+      $req_mode->status = true;
       
       $user->balance=$user->balance-Input::get("like");
       $user->save();
@@ -100,9 +102,12 @@ class HomeController extends Controller
       $arr["balance"]=$user->balance;
       
     } else {
+      $req_mode->status = false;
+      
       $arr["message"]= "process gagal dilakukan silahkan coba lagi";
       $arr["type"]= "error";
     }
+    $req_mode->save();
     
     return $arr;
     
