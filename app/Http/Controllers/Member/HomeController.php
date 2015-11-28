@@ -8,9 +8,12 @@ use Celebgramme\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 use Celebgramme\Models\RequestModel;
+use Celebgramme\Models\Invoice;
+use Celebgramme\Models\Order;
+use Celebgramme\Models\OrderMeta;
 use Celebgramme\Veritrans\Veritrans;
 
-use View, Input, Mail;
+use View, Input, Mail, Request, App;
 
 class HomeController extends Controller
 {
@@ -38,8 +41,79 @@ class HomeController extends Controller
   
 	public function order(){
     $user = Auth::user();
-		return view('member.order')->with(array('user'=>$user,));
+    $invoice = Invoice::join("orders","orders.id","=","invoices.order_id")
+               ->join("packages","packages.id","=","orders.package_id")
+               ->select("orders.*","packages.package_name","invoices.no_invoice")
+               ->where('orders.user_id','=',$user->id)->get();
+		return view('member.order')
+      ->with(array(
+        'invoice'=>$invoice,
+        'user'=>$user,
+      ));
 	}
+  
+	public function confirm_payment(){
+    $user = Auth::user();
+    $invoice = Invoice::join("orders","orders.id","=","invoices.order_id")
+               ->join("packages","packages.id","=","orders.package_id")
+               ->select("orders.*","packages.package_name","invoices.no_invoice")
+               ->where('orders.user_id','=',$user->id)->get();
+		return view('member.confirm-payment')
+      ->with(array(
+        'invoice'=>$invoice,
+        'user'=>$user,
+      ));
+	}
+  
+  public function process_payment()
+  {
+    $user = Auth::user();
+    $arr["message"]= "Silahkan tunggu konfirmasi admin maksimal 1x24 jam (jam kerja) ";
+    $arr["type"]= "success";
+    
+    // str_replace('OAXM', '', $checkout_data['order_number'])
+    // $extension = Input::file('img1')->getClientOriginalExtension(); // getting image extension
+    $order = Order::where("no_order","=","OCLB".Request::input("no_order"))->first();
+    if (is_null($order)) { 
+      $arr["message"]= "No order tidak ada pada database";
+      $arr["type"]= "error";
+      return $arr;
+    }
+    
+    if ($order->image<>"") {
+      $arr["message"]= "Silahkan tunggu konfirmasi admin, no order anda sudah pernah di konfirmasi";
+      $arr["type"]= "error";
+      return $arr;
+    }
+    
+    if ($order->user_id <> $user->id) {
+      $arr["message"]= "Bukan order yang anda buat, silahkan masukkan no order lain";
+      $arr["type"]= "error";
+      return $arr;
+    }
+    
+    if (!Input::file('photo')->isValid()) {
+      $arr["message"]= "Upload bukti transfer tidak valid";
+      $arr["type"]= "error";
+      return $arr;
+    }
+    
+    if(App::environment() == "local"){
+      $destinationPath = base_path().'/../general/images/order/';
+    } else {
+      $destinationPath = base_path().'/../general/images/order/';
+    }   
+    $filename = $order->no_order.".".Input::file('photo')->getClientOriginalExtension();
+    Input::file('photo')->move($destinationPath, $filename);
+    $order->image = $filename;
+    $order->save();
+    
+    OrderMeta::createMeta("jumlah transfer",Request::input("total"),$order->id);
+    OrderMeta::createMeta("nama pemilik rekening",Request::input("nama"),$order->id);
+    OrderMeta::createMeta("keterangan",Request::input("keterangan"),$order->id);
+    
+    return $arr;
+  }
   
 	public function send_like(){
     $user = Auth::user();

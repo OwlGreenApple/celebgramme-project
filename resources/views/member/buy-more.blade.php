@@ -6,7 +6,7 @@
     $("#alert").hide();
   });
 </script>
-<form action="{{url('payment/veritransredirect')}}" method="POST">
+<form action="{{url('payment/process')}}" method="POST">
 
   <table class="table table-striped">
     <tr>
@@ -20,7 +20,7 @@
         Price(7 day)
       </td>
       <td>
-        Price(30 day)
+        Price(28 day)
       </td>
     </tr>
     <tr>
@@ -110,9 +110,16 @@
     </tr>
   </table>
 
+  <div class="form-group form-group-sm row">
+    <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Metode Pembayaran</label>
+    <div class="col-sm-8 col-md-6">
+      <select class="form-control" name="payment-method">
+        <option value="1">Bank transfer</option>
+        <option value="2">Veritrans</option>
+      </select>
+    </div>
+  </div>  
   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-  <input class="btn btn-default" type="button" value="Process bank transfer" id="button-process">
-  <input class="btn btn-default" type="submit" value="Process veritrans" id="button-process">
-  <input class="btn btn-default" type="button" value="Process paypal" id="button-process">
+  <input class="btn btn-default" type="submit" value="Process" id="button-process">
 </form>
 @endsection

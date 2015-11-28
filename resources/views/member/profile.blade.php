@@ -1,6 +1,11 @@
 @extends('member.index')
 
 @section('content')
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#alert").hide();
+  });
+</script>
 <div class="form-group form-group-sm row">
   <label class="col-sm-1 control-label" for="formGroupInputSmall">Full name</label>
   <div class="col-xs-4">

@@ -30,68 +30,84 @@ class PaymentController extends Controller
 	 *
 	 * @return Redirect
 	 */
-	public function veritransRedirect(Request $request){
+	public function process(Request $request){
     $user = Auth::user();
     $package = Package::find(Input::get("package"));
     
-		// Validation passes
-		$vt = new Veritrans;
-		// Populate items
-		$items = [];
-
-		// package
-		array_push($items, [
-			'id' => '#Package',
-			'price' => $package->price,
-			'quantity' => 1,
-			'name' => $package->package_name,
-		]);
-		$totalPrice = $package->price;
-		// Populate customer's billing address
-		$billing_address = [
-			'first_name' => $user->fullname,
-			'last_name' => "",
-			'phone' => $user->phone_number,
-		];
-
-		// Populate customer's Info
-    $customer_details = array(
-      'first_name' => $user->fullname,
-      'last_name' => "",
-      'email' => $user->email,
-      'billing_address' => $billing_address,
-    );
+    //transfer bank
+    if (Input::get("payment-method") == 1) {
+      $data = array (
+        "order_type" => "transfer_bank",
+        "order_status" => "pending",
+        "user_id" => $user->id,
+        "total" => $package->price,
+      );
       
-		$checkout_data['unique_id'] = uniqid();
-		$transaction_data = array(
-			'payment_type' => 'vtweb', 
-			'vtweb' => array(
-					//'enabled_payments' => [],
-					'credit_card_3d_secure' => true
-			),
-			'transaction_details'=> array(
-				'order_id' => $checkout_data['unique_id'],
-				'gross_amount' => $totalPrice
-			),
-			'item_details' => $items,
-			'customer_details' => $customer_details
-		);
-		try
-		{
-      $checkout_data["order_type"] = "VERITRANS";
-      $checkout_data["order_status"] = "PENDING";
-      $checkout_data["user_id"] = $user->id;
-      $checkout_data["order_total"] = $totalPrice;
-      $checkout_data["email"] = $user->email;
-      $checkout_data["package_id"] = $package->id;
-			$request->session()->put('checkout_data', $checkout_data);
-			$vtweb_url = $vt->vtweb_charge($transaction_data);
-			return redirect($vtweb_url);
-		} 
-		catch (Exception $e) 
-		{   
-			return $e->getMessage;
-		}
+      $order = Order::createOrder($data);
+    }
+    
+    //veritrans
+    if (Input::get("payment-method") == 2) {   
+      
+      // Validation passes
+      $vt = new Veritrans;
+      // Populate items
+      $items = [];
+
+      // package
+      array_push($items, [
+        'id' => '#Package',
+        'price' => $package->price,
+        'quantity' => 1,
+        'name' => $package->package_name,
+      ]);
+      $totalPrice = $package->price;
+      // Populate customer's billing address
+      $billing_address = [
+        'first_name' => $user->fullname,
+        'last_name' => "",
+        'phone' => $user->phone_number,
+      ];
+
+      // Populate customer's Info
+      $customer_details = array(
+        'first_name' => $user->fullname,
+        'last_name' => "",
+        'email' => $user->email,
+        'billing_address' => $billing_address,
+      );
+        
+      $checkout_data['unique_id'] = uniqid();
+      $transaction_data = array(
+        'payment_type' => 'vtweb', 
+        'vtweb' => array(
+            //'enabled_payments' => [],
+            'credit_card_3d_secure' => true
+        ),
+        'transaction_details'=> array(
+          'order_id' => $checkout_data['unique_id'],
+          'gross_amount' => $totalPrice
+        ),
+        'item_details' => $items,
+        'customer_details' => $customer_details
+      );
+      try
+      {
+        $checkout_data["order_type"] = "VERITRANS";
+        $checkout_data["order_status"] = "PENDING";
+        $checkout_data["user_id"] = $user->id;
+        $checkout_data["order_total"] = $totalPrice;
+        $checkout_data["email"] = $user->email;
+        $checkout_data["package_id"] = $package->id;
+        $request->session()->put('checkout_data', $checkout_data);
+        $vtweb_url = $vt->vtweb_charge($transaction_data);
+        return redirect($vtweb_url);
+      } 
+      catch (Exception $e) 
+      {   
+        return $e->getMessage;
+      }
+    }
 	}
 	
 	/**
@@ -179,6 +195,7 @@ class PaymentController extends Controller
 				$checkout_data['payment_status'] = 'pending';
 			}
 			// Proceed checkout_data! Creating Order record..
+      $checkout_data["ext"]="";
 			$order = Order::createOrder($checkout_data);
 			if ($checkout_data['payment_status'] != 'challenge'){
 				VeritransModel::setValue($checkout_data['unique_id'], null);

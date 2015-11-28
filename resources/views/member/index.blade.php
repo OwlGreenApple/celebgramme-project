@@ -49,42 +49,47 @@
               <li><a href="{{url('send-like')}}">Send Likes</a></li>
               <li><a href="{{url('order')}}">Order History</a></li>
               <li><a href="{{url('buy-more')}}">Buy More</a></li>
+              <li><a href="{{url('confirm-payment')}}">Confirm Payment</a></li>
               <li><a href="{{url('edit-profile')}}">Profile</a></li>
               <li><a href="{{url('logout')}}">Logout</a></li>
             </ul>
           
           </div>
           
-          <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-0 fl">
-            <div class="col-sm-4">
-              <div class="panel panel-info">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Daily Balance</h3>
+          <div class="col-sm-8 col-md-8  fl">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="panel panel-info">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Daily Balance</h3>
+                  </div>
+                  <div class="panel-body">
+                    <span id="span-balance">{{$user->balance}}</span> <input type=hidden value="{{$user->balance}}" id="balance">
+                  </div>
                 </div>
-                <div class="panel-body">
-                  <span id="span-balance">{{$user->balance}}</span> <input type=hidden value="{{$user->balance}}" id="balance">
+              </div>          
+              <div class="col-sm-4">
+                <div class="panel panel-info">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Valid until</h3>
+                  </div>
+                  <div class="panel-body">
+                    {{date("j F Y",strtotime($user->valid_until))}}
+                  </div>
                 </div>
-              </div>
+              </div>          
             </div>          
-            <div class="col-sm-4">
-              <div class="panel panel-info">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Valid until</h3>
-                </div>
-                <div class="panel-body">
-                  {{date("j F Y",strtotime($user->valid_until))}}
-                </div>
-              </div>
+            <div class="row">
+              <div class="col-sm-8 col-md-8">            
+                <div class="alert alert-danger col-sm-18 col-md-18" id="alert">
+                  <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                </div>  
+              </div>          
             </div>          
-            <div class="col-sm-4">
-            </div>          
-            <div class="col-sm-12">            
-              <div class="alert alert-danger col-xs-5" id="alert">
-                <strong>Oh snap!</strong> Change a few things up and try submitting again.
-              </div>  
-            </div>          
-            <div class="col-sm-12">            
-              @yield('content')
+            <div class="row">
+              <div class="col-sm-8">            
+                @yield('content')
+              </div>          
             </div>          
             
           </div>

@@ -63,27 +63,27 @@
 
   <form enctype="multipart/form-data" id="form-like">
     <div class="form-group form-group-sm row">
-      <label class="col-sm-1 control-label" for="formGroupInputSmall">Photo URL</label>
-      <div class="col-xs-4">
+      <label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Photo URL</label>
+      <div class="col-sm-8 col-md-6">
         <input type="text" class="form-control" placeholder="" name="photo">
       </div>
     </div>  
     <div class="form-group form-group-sm row">
-      <label class="col-sm-1 control-label" for="formGroupInputSmall">Send Like</label>
-      <div class="col-xs-4">
+      <label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Send Like</label>
+      <div class="col-sm-8 col-md-6">
         <input type="number" class="form-control" placeholder="" name="like" onkeypress="return isNumberKey(event)" id="send-like" value=0>
       </div>
     </div>  
     <div class="form-group form-group-sm row">
-      <label class="col-sm-1 control-label" for="formGroupInputSmall">Now Balance</label>
-      <div class="col-xs-4">
+      <label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Now Balance</label>
+      <div class="col-sm-8 col-md-6">
         <input type="text" class="form-control" placeholder="" disabled id="balance-now">
       </div>
     </div>  
     <div class="form-group form-group-sm row">
-      <div class="col-sm-1">
+      <div class="col-xs-8 col-sm-2">
       </div>
-      <div class="col-xs-4">
+      <div class="col-sm-8 col-md-6">
         <input class="btn btn-default" type="button" value="Process" id="button-process">
       </div>
     </div>  
