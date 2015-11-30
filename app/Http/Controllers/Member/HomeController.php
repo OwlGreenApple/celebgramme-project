@@ -11,9 +11,10 @@ use Celebgramme\Models\RequestModel;
 use Celebgramme\Models\Invoice;
 use Celebgramme\Models\Order;
 use Celebgramme\Models\OrderMeta;
+use Celebgramme\Models\User;
 use Celebgramme\Veritrans\Veritrans;
 
-use View, Input, Mail, Request, App;
+use View, Input, Mail, Request, App, Hash, Validator;
 
 class HomeController extends Controller
 {
@@ -192,6 +193,38 @@ class HomeController extends Controller
     $user = Auth::user();
 		return view('member.profile')->with(array('user'=>$user,));
 	}
+  
+  public function change_profile()
+  {
+    $user = Auth::user();
+    $arr["message"]= "Password berhasil diubah";
+    $arr["type"]= "success";
+    
+    $arr_validate = array (
+      "password"=>Request::input("new_password"),
+    );
+    $valid = Validator::make($arr_validate, [
+			'password' => 'required|min:6',
+		]);    
+    if ($valid->fails()){
+      $arr["message"]= "password harus diisi / password min 6 char";
+      $arr["type"]= "error";
+      return $arr;
+    }
+    
+    if (Hash::check(Request::input("old_password"), $user->password )) {
+        // The passwords match...
+      $user->password = Request::input("new_password");
+      $user->save();
+    } else {
+      $arr["message"]= "Password lama yang anda input salah";
+      $arr["type"]= "error";
+      return $arr;
+    }
+    
+    
+    return $arr;
+  }
 	
 	public function buy_more(){
     $user = Auth::user();

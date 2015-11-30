@@ -50,7 +50,7 @@
               <li><a href="{{url('order')}}">Order History</a></li>
               <li><a href="{{url('buy-more')}}">Buy More</a></li>
               <li><a href="{{url('confirm-payment')}}">Confirm Payment</a></li>
-              <li><a href="{{url('edit-profile')}}">Profile</a></li>
+              <li><a href="{{url('edit-profile')}}">Ganti Password</a></li>
               <li><a href="{{url('logout')}}">Logout</a></li>
             </ul>
           

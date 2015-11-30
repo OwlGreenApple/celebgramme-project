@@ -25,9 +25,11 @@ Route::group(['middleware' => 'auth'], function()
   Route::get('home', 'Member\HomeController@index');
   Route::get('/', 'Member\HomeController@index');
   Route::get('order', 'Member\HomeController@order');
-  Route::get('send-like', 'Member\HomeController@send_like');
   
   Route::get('edit-profile', 'Member\HomeController@edit_profile');
+  Route::post('change-profile', 'Member\HomeController@change_profile');
+  
+  Route::get('send-like', 'Member\HomeController@send_like');
   Route::post('process-like', 'Member\HomeController@process_like');
 
   Route::get('confirm-payment', 'Member\HomeController@confirm_payment');
