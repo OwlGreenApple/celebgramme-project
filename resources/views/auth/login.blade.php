@@ -13,7 +13,7 @@
         {!! Form::open(array('url'=>URL::ROUTE('auth.login'),'method'=>'post','class'=>"form-signin",)) !!}
           {!! csrf_field() !!}
           <h2>Please sign in</h2>
-            <input type="text" class="form-control" id="username" name="username" placeholder="username" value="{{Input::old('username')}}">
+            <input type="email" class="form-control" id="username" name="username" placeholder="username" value="{{Input::old('username')}}">
             <input type="password" class="form-control" id="password" name="password" placeholder="password" value="{{Input::old('password')}}">
           
             <div class="checkbox">

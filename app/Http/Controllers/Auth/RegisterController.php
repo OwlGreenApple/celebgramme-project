@@ -48,14 +48,19 @@ class RegisterController extends Controller
 	 */
 	public function postRegister(Request $request)
 	{
-		// $allRequest = $request->all();
     $validator  = User::validator($request->all());
     if (!$validator->fails()){
       User::create($request->all());
     } else {
       return "data tidak valid";
     }
-    return "asd";
+    
+    if (! $request->session()->has('checkout_data')) {
+      Auth::attempt(['email' => $request->email, 'password' => $request->password], true);
+      return redirect('/home');
+    } else {
+      $checkout_data = $request->session()->get('checkout_data');
+    }
 	}
 	
 }
