@@ -40,7 +40,7 @@ class PaymentController extends Controller
         "order_type" => "transfer_bank",
         "order_status" => "pending",
         "user_id" => $user->id,
-        "total" => $package->price,
+        "order_total" => $package->price,
       );
       
       $order = Order::createOrder($data);

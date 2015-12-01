@@ -15,7 +15,7 @@
     </head>
     <body>
       <div class="container">  
-<form action="{{url('payment/process')}}" method="POST">
+<form action="{{url('process-package')}}" method="POST">
 
   <table class="table table-striped">
     <tr>

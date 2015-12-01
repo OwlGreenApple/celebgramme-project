@@ -11,8 +11,27 @@ use Carbon\Carbon;
 
 use Input, Redirect, App, Hash, Mail, Crypt;
 
+use Celebgramme\Models\VeritransModel;
+use Celebgramme\Models\Package;
+use Celebgramme\Models\Order;
+use Celebgramme\Veritrans\Veritrans;
+
+
 class RegisterController extends Controller
 {
+	/**
+	 * Create a new authentication controller instance.
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		$this->middleware('guest', ['except' => 'getLogout']);
+    
+		Veritrans::$serverKey = env('VERITRANS_SERVERKEY');
+		Veritrans::$isProduction = false;
+	}
+  
 	/**
 	 * Menampilkan Halaman Register
 	 *
@@ -50,16 +69,95 @@ class RegisterController extends Controller
 	{
     $validator  = User::validator($request->all());
     if (!$validator->fails()){
-      User::create($request->all());
+      $user = User::create($request->all());
     } else {
       return "data tidak valid";
     }
     
+    Auth::attempt(['email' => $request->email, 'password' => $request->password], true);
     if (! $request->session()->has('checkout_data')) {
-      Auth::attempt(['email' => $request->email, 'password' => $request->password], true);
       return redirect('/home');
     } else {
+      
       $checkout_data = $request->session()->get('checkout_data');
+      $package = Package::find($checkout_data["package_id"]);
+      
+      if ($checkout_data["payment_method"]== 1) {
+        $data = array (
+          "order_type" => "transfer_bank",
+          "order_status" => "pending",
+          "user_id" => $user->id,
+          "order_total" => $package->price,
+        );
+        
+        $order = Order::createOrder($data);
+        return redirect('/home');
+      }
+      
+      if ($checkout_data["payment_method"]== 2) {
+        
+        // Validation passes
+        $vt = new Veritrans;
+        // Populate items
+        $items = [];
+
+        // package
+        array_push($items, [
+          'id' => '#Package',
+          'price' => $package->price,
+          'quantity' => 1,
+          'name' => $package->package_name,
+        ]);
+        $totalPrice = $package->price;
+        // Populate customer's billing address
+        $billing_address = [
+          'first_name' => $user->fullname,
+          'last_name' => "",
+          'phone' => $user->phone_number,
+        ];
+
+        // Populate customer's Info
+        $customer_details = array(
+          'first_name' => $user->fullname,
+          'last_name' => "",
+          'email' => $user->email,
+          'billing_address' => $billing_address,
+        );
+          
+        $checkout_data['unique_id'] = uniqid();
+        $transaction_data = array(
+          'payment_type' => 'vtweb', 
+          'vtweb' => array(
+              //'enabled_payments' => [],
+              'credit_card_3d_secure' => true
+          ),
+          'transaction_details'=> array(
+            'order_id' => $checkout_data['unique_id'],
+            'gross_amount' => $totalPrice
+          ),
+          'item_details' => $items,
+          'customer_details' => $customer_details
+        );
+        try
+        {
+          $checkout_data["order_type"] = "VERITRANS";
+          $checkout_data["order_status"] = "PENDING";
+          $checkout_data["user_id"] = $user->id;
+          $checkout_data["order_total"] = $totalPrice;
+          $checkout_data["email"] = $user->email;
+          $checkout_data["package_id"] = $package->id;
+          $request->session()->put('checkout_data', $checkout_data);
+          $vtweb_url = $vt->vtweb_charge($transaction_data);
+          return redirect($vtweb_url);
+        } 
+        catch (Exception $e) 
+        {   
+          return $e->getMessage;
+        }
+        
+      }
+      $request->session()->forget('checkout_data');
+      
     }
 	}
 	

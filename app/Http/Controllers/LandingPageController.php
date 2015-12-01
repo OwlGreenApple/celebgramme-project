@@ -5,6 +5,7 @@ namespace Celebgramme\Http\Controllers;
 /*Models*/
 
 use Celebgramme\Http\Controllers\Controller;
+use Illuminate\Http\Request as req;
 use Illuminate\Support\Facades\Auth;
 
 use Celebgramme\Models\RequestModel;
@@ -28,7 +29,7 @@ class LandingPageController extends Controller
 		return view('package')->with(array());
 	}
   
-  public function process_package(Request $request) {
+  public function process_package(req $request) {
     $arr = array (
       "package_id"=>Request::input("package"),
       "payment_method"=>Request::input("payment-method"),
