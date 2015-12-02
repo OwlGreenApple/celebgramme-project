@@ -15,7 +15,7 @@
     </head>
     <body>
       <div class="container">  
-<form action="{{url('process-package')}}" method="POST">
+<form action="{{url('process-package')}}" method="POST" class="form-signin">
 
   <table class="table table-striped">
     <tr>

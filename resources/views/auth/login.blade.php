@@ -9,20 +9,30 @@
       <link href="{{ asset('/css/sign-in.css') }}" rel="stylesheet">
     </head>
     <body>
+      <div class="div-black">
+      </div>
       <div class="container">  
-        {!! Form::open(array('url'=>URL::ROUTE('auth.login'),'method'=>'post','class'=>"form-signin",)) !!}
-          {!! csrf_field() !!}
-          <h2>Please sign in</h2>
-            <input type="email" class="form-control" id="username" name="username" placeholder="username" value="{{Input::old('username')}}">
-            <input type="password" class="form-control" id="password" name="password" placeholder="password" value="{{Input::old('password')}}">
-          
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="remember" id="remember"> <label for="remember">Remember me</label>
-              </label>
-            </div>      
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        {!! Form::close() !!}
+        <div class="container2">  
+          <div class="div-logo">
+            <div class="logo"></div>
+          </div>
+          {!! Form::open(array('url'=>URL::ROUTE('auth.login'),'method'=>'post','class'=>"form-signin",)) !!}
+            {!! csrf_field() !!}
+              <label>Email Address</label>
+              <input type="email" class="form-control" id="username" name="username" placeholder="Enter email" value="{{Input::old('username')}}">
+              <label>Password</label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" value="{{Input::old('password')}}">
+            
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="remember" id="remember"> <label for="remember">Remember me</label>
+                </label>
+              </div>      
+            <button class="btn btn-lg btn-block" type="submit">Sign in</button>
+          {!! Form::close() !!}
+          <a href="{{url('register')}}" class="register-link-landing"> Need an account ? </a>
+        </div>
+
       </div>
     </body>
 </html>
