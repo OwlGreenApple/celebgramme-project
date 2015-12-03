@@ -32,16 +32,21 @@ class CronJobController extends Controller
 		foreach ($users as $user){
 			if ($user->valid_until <> "0000-00-00 00:00:00") {
 
-				$dt = Carbon::createFromFormat('Y-m-d H:i:s', $user->valid_until);
-				$packageUser = PackageUser::join("packages",'packages.id','=','packages_users.package_id')
-								->where("packages_users.user_id","=",$user->id)->orderBy('packages_users.created_at', 'desc')->first();
-				if (!is_null($packageUser)) {
-			    	echo $packageUser->daily_likes."<br>";
-			   	}
-			   	
-				// echo $dt->toDateString()."<br>";  
-				// echo $user->email;
-				// echo "<br>";
+				$now = Carbon::now()->setTime(23, 59, 59);
+				$date_until = Carbon::createFromFormat('Y-m-d H:i:s', $user->valid_until);
+				if ($date_until->lte($now)) {
+					$packageUser = PackageUser::join("packages",'packages.id','=','packages_users.package_id')
+									->where("packages_users.user_id","=",$user->id)->orderBy('packages_users.created_at', 'desc')->first();
+					if (!is_null($packageUser)) {
+				    	$user->balance = $packageUser->daily_likes;
+				   	}
+
+				   	if ($user->pay_with_tweet == 1) {
+				   		$user->balance = 200;
+				   	}
+				   	$user->save();
+				}
+
 			}
 		}
 	}
