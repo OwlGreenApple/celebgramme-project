@@ -74,7 +74,14 @@
                     <h3 class="panel-title">Valid until</h3>
                   </div>
                   <div class="panel-body">
-                    {{date("j F Y",strtotime($user->valid_until))}}
+                    <?php 
+                      if ( $user->valid_until == "0000-00-00 00:00:00" ) {
+                        echo "-";
+                      }
+                      else {
+                        echo date("j F Y",strtotime($user->valid_until));
+                      }
+                    ?>
                   </div>
                 </div>
               </div>          

@@ -199,6 +199,7 @@ return [
         'Form'=> Illuminate\Html\FormFacade::class, 
         'HTML'=> Illuminate\Html\HtmlFacade::class,
         'Paypalpayment'   => Anouar\Paypalpayment\Facades\PaypalPayment::class,
+        'Carbon' => 'Carbon\Carbon',
         
 
     ],

@@ -11,6 +11,7 @@
 |
 */
 
+
 /* register package */
 Route::get('package', 'LandingPageController@package');
 Route::post('process-package', 'LandingPageController@process_package');
@@ -25,6 +26,9 @@ Route::post('auth/register', ['as'=>'auth.register', 'uses'=> 'Auth\RegisterCont
 /*--------- Must Login Routes ---------*/
 Route::group(['middleware' => 'auth'], function()
 {
+  /* Pay with tweet */
+  Route::get('pay-with-tweet', 'Member\HomeController@pay_with_tweet');
+
   Route::get('test', 'Member\HomeController@test');
   Route::get('home', 'Member\HomeController@index');
   Route::get('/', 'Member\HomeController@index');

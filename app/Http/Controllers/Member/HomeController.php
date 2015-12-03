@@ -14,7 +14,7 @@ use Celebgramme\Models\OrderMeta;
 use Celebgramme\Models\User;
 use Celebgramme\Veritrans\Veritrans;
 
-use View, Input, Mail, Request, App, Hash, Validator;
+use View, Input, Mail, Request, App, Hash, Validator, Carbon;
 
 class HomeController extends Controller
 {
@@ -231,5 +231,23 @@ class HomeController extends Controller
 		return view('member.buy-more')->with(array('user'=>$user,));
 	}
   
-	
+  public function pay_with_tweet()
+  {
+    $user = Auth::user();
+    $message = "";
+    if ($user->pay_with_tweet) {
+      $message = "error";
+    } else {
+      $dt = Carbon::now();
+      $user->pay_with_tweet = true;
+      $user->valid_until = $dt->addDays(3)->toDateTimeString();
+      $user->save();
+
+      $message = "success";
+    }
+    return view('member.send-like')->with(array(
+      'user'=>$user,
+      'message'=>$message,
+    )); 
+  }	
 }
