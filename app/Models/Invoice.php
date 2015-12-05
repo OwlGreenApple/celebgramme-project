@@ -42,7 +42,7 @@ class Invoice extends Model {
     if ($package->package_type=="month") {
       $user->valid_until = $dt->addDays(28)->toDateTimeString();
     }
-    $user->pay_with_tweet = 2;
+    $user->status_free_trial = 0;
     $user->save();
 
     //send email success payment

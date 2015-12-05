@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Carbon\Carbon;
 
-use Input, Redirect, App, Hash, Mail, Crypt;
+use Input, Redirect, App, Hash, Mail, Crypt, Carbon;
 
 use Celebgramme\Models\VeritransModel;
 use Celebgramme\Models\Package;
@@ -70,6 +70,11 @@ class RegisterController extends Controller
     $validator  = User::validator($request->all());
     if (!$validator->fails()){
       $user = User::create($request->all());
+      $dt = Carbon::now();
+      $user->status_free_trial = 1;
+      $user->valid_until = $dt->addDays(3)->toDateTimeString();
+      $user->save();
+
     } else {
       return "data tidak valid";
     }

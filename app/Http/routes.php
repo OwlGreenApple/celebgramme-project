@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth'], function()
   /* Pay with tweet */
   Route::get('pay-with-tweet', 'Member\HomeController@pay_with_tweet');
 
+  Route::get('free-trial', 'Member\HomeController@free_trial');
+
   Route::get('test', 'Member\HomeController@test');
   Route::get('home', 'Member\HomeController@index');
   Route::get('/', 'Member\HomeController@index');

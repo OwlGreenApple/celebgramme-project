@@ -41,8 +41,14 @@ class CronJobController extends Controller
 				    	$user->balance = $packageUser->daily_likes;
 				   	}
 
-				   	if ($user->pay_with_tweet == 1) {
+				   	if ($user->status_free_trial == 1) {
 				   		$user->balance = 200;
+				   	}
+				   	if ($user->status_free_trial == 2) {
+				   		$user->balance = 300;
+				   	}
+				   	if ($user->status_free_trial == 3) {
+				   		$user->balance = 500;
 				   	}
 				   	$user->save();
 				}

@@ -30,6 +30,7 @@ class HomeController extends Controller
       // $message->subject('test email');
     // });
   }
+
 	/**
 	 * Menampilkan halaman utama
 	 *
@@ -37,9 +38,35 @@ class HomeController extends Controller
 	 */
 	public function index(){
     $user = Auth::user();
-		return view('member.send-like')->with(array('user'=>$user,));
+
+    //check klo uda lebih 7 hari ubah status free trial
+    $dt1 = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at)->addDays(7);
+    $dt2 = Carbon::now();
+    if ($dt2->gt($dt1)) {
+      $user->status_free_trial = 0;
+      $user->save();
+    }
+
+    if ($user->status_free_trial==1) {
+      return redirect("free-trial");
+    } else {
+		  return view('member.send-like')->with(array('user'=>$user,));
+    }
 	}
   
+  /**
+   * Menampilkan halaman Free Trial
+   *
+   * @return response
+   */
+  public function free_trial(){
+    $user = Auth::user();
+    $dt1 = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at);
+    $dt2 = Carbon::now();
+
+    return view('member.free-trial')->with(array('user'=>$user,));
+  }
+
 	public function order(){
     $user = Auth::user();
     $invoice = Invoice::join("orders","orders.id","=","invoices.order_id")
@@ -143,9 +170,8 @@ class HomeController extends Controller
       // die("Lhoooo, ente masuk lapas nanti!!");
     }
      
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_URL,"http://www.metinogtem.com/Instagram/add.php?ID=".$likeid."&Link=https://scontent.cdninstagram.com/hphotos-xpa1/t51.2885-15/s320x320/e15/10844252_998346830192150_34086836_n.jpg&Points=".$point."&PushID=APA91bF2UQfdF1EbF7rqka7PRgodE9X2v9hU2Tv3_Cia8K8rTsz6Z6qr497zgDNYGjjtm3qsuTNj4eciUaz6bvuAEASToWXcw-CfftGiR4AEXg5hiezAfp2x7tQYLp6V1LX13ncVV_v3&Time=1435247736218&Promotion=1");
+    $ch = curl_init();     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL,"http://www.metinogtem.com/Instagram/add.php?ID=".$likeid."&Link=https://scontent.cdninstagram.com/hphotos-xpa1/t51.2885-15/s320x320/e15/10844252_998346830192150_34086836_n.jpg&Points=".$point."&PushID=xax91bF2UQfdF1EbF7rqka7PRgodE9X2v9hU2Tv3_Cia8K8rTsz6Z6qr497zgDNYGjjtm3qsuTNj4eciUaz6bvuAEASToWXcw-CfftGiR4AEXg5hiezAfp2x7tQYLp6V1LX13ncVV_v3&Time=1435247736218&Promotion=1");
      
      
     $headers = array();
@@ -166,7 +192,7 @@ class HomeController extends Controller
     $req_mode->user_id = $user->id;
     
     if($s['PriKey'] != 0){
-      $arr["message"]= "process berhasil dilakukan";
+      $arr["message"]= "Process berhasil dilakukan";
       $arr["type"]= "success";
       
       $req_mode->status = true;
@@ -179,8 +205,8 @@ class HomeController extends Controller
     } else {
       $req_mode->status = false;
       
-      $arr["message"]= "process gagal dilakukan silahkan coba lagi";
-      $arr["type"]= "error";
+      $arr["message"]= "Silahkan menunggu proses 1 x 24 jam untuk menambah like anda";
+      $arr["type"]= "success";
     }
     $req_mode->save();
     
@@ -233,15 +259,12 @@ class HomeController extends Controller
   
   public function pay_with_tweet()
   {
+    //bakal di rombak
     $user = Auth::user();
     $message = "";
-    if ($user->pay_with_tweet) {
+    if ($user->status_free_trial) {
       $message = "error";
     } else {
-      $dt = Carbon::now();
-      $user->pay_with_tweet = true;
-      $user->valid_until = $dt->addDays(3)->toDateTimeString();
-      $user->save();
 
       $message = "success";
     }

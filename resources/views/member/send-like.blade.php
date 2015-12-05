@@ -97,15 +97,6 @@
         <input type="text" class="form-control" placeholder="" disabled id="balance-now">
       </div>
     </div>  
-    <?php if (!$user->pay_with_tweet) { ?>
-    <div class="form-group form-group-sm row">
-      <div class="col-xs-8 col-sm-2">
-      </div>
-      <div class="col-sm-8 col-md-6">
-        <script async id="button_ac20587f-29be-4c16-bd48-61302b3bc3ac" src="//www.paywithatweet.com/embeds/ac20587f-29be-4c16-bd48-61302b3bc3ac" charset="utf-8"></script>        
-      </div>
-    </div>  
-    <?php } ?>
     <div class="form-group form-group-sm row">
       <div class="col-xs-8 col-sm-2">
       </div>
