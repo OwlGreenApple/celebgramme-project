@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Celebgramme</title>
+      <title>Celebgramme12312</title>
       <meta name="csrf-token" content="{{ csrf_token() }}" />
       <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/images/celebgramme-favicon.png') }}">
       <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
@@ -12,6 +12,39 @@
       <script>
         $(document).ready(function(){
           $("#div-loading").hide();
+
+          $('#link-activation').click(function(e){
+            e.preventDefault();
+            $.ajax({
+                type: 'GET',
+                url: "<?php echo url('resend-activation'); ?>",
+                data: {},
+                dataType: 'text',
+                beforeSend: function()
+                {
+                  $("#div-loading").show();
+                },
+                success: function(result) {
+                    // $('#result').html(data);
+                    $("#div-loading").hide();
+                    var data = jQuery.parseJSON(result);
+                    $("#alert").show();
+                    $("#alert").html(data.message);
+                    if(data.type=='success')
+                    {
+                      $("#alert").addClass('alert-success');
+                      $("#alert").removeClass('alert-danger');
+                    }
+                    else if(data.type=='error')
+                    {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").removeClass('alert-success');
+                    }
+                }
+            })
+          });
+
+
         });
         
       </script>
@@ -89,13 +122,18 @@
             <div class="row">
               <div class="col-sm-8 col-md-8">            
                 <div class="alert alert-danger col-sm-18 col-md-18" id="alert">
-                  <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                  <?php if ($user->type=="not-confirmed") { ?> 
+                  Silahkan konfirmasi email terlebih dahulu. Klik <a href="" id="link-activation">disini</a> untuk kirim email konfirmasi ulang.
+                  <?php } ?>
                 </div>  
               </div>          
             </div>          
             <div class="row">
               <div class="col-sm-8">            
+                <?php if ($user->type=="not-confirmed") { ?>
+                <?php } else { ?>
                 @yield('content')
+                <?php } ?>                
               </div>          
             </div>          
             

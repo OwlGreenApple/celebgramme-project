@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
     <head>
       <title>Celebgramme</title>
@@ -6,7 +6,7 @@
       <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
       <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/bootstrap-theme.min.css') }}" rel="stylesheet">
-      <link href="{{ asset('/css/sign-in.css') }}" rel="stylesheet">
+      <link href="{{ asset('/css/package.css') }}" rel="stylesheet">
       <script type="text/javascript">
         $(document).ready(function() {
           $("#alert").hide();
@@ -14,13 +14,33 @@
       </script>
     </head>
     <body>
-      <div class="container">  
+      <div class="header-package row container">
+        <div class="div-black">
+          <div class="div-logo">
+            <div class="logo"></div>
+          </div>
+          <h1 class="h1-package">Pilih Paket <strong>Instagram Likes</strong></h1>
+        </div>
+      </div>
+
+      <div class="content-package container row">  
+      <div class="description">
+        <div class="image-description fl">
+        </div>
+        <div class="content-description fl">
+          <h3>Produk kami</h3>
+          <p>Bagi likes anda ke siapapun yang anda inginkan sebanyak-banyaknya! Apakah anda tahu? Likes diperlukan untuk meningkatkan engagement, dan memancing orang lain untuk melikes post anda kembali.</p>
+        </div>
+        <div class="fn"></div>
+      </div>
+
+      <h3 class="price-list"> Price List </h3>
 <form action="{{url('process-package')}}" method="POST" class="form-signin">
 
   <table class="table table-striped">
     <tr>
       <td>
-        Daily Likes
+        Likes harian
       </td>
       <td>
         Price(1 day)
@@ -119,18 +139,35 @@
     </tr>
   </table>
 
-  <div class="form-group form-group-sm row">
-    <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Metode Pembayaran</label>
-    <div class="col-sm-8 col-md-6">
+  <div class="div-opsi-pembayaran">
+    <label class="col-xs-8 col-sm-6 control-label" for="formGroupInputSmall">Pilih Opsi Pembayaran Anda</label>
+    <div class="col-sm-8 col-md-2">
       <select class="form-control" name="payment-method">
         <option value="1">Bank transfer</option>
         <option value="2">Veritrans</option>
       </select>
     </div>
   </div>  
+
   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-  <input class="btn btn-default" type="submit" value="Process" id="button-process">
+  <input class="btn-package" type="submit" value="Lanjutkan" id="button-process">
 </form>
+  <p class="keterangan">Jika anda mempunyai pertanyaan seputar Celebgramme, silahkan baca FAQ ( Frequently Asked Question ) disini atau silahkan hubungi kami disini</p>
+      </div>
+
+
+      <div class="footer-package row container">
+        <div class="footer-center container row">
+          <div class="fl copyright">
+            Copyright text 2015 by celebgramme.
+          </div>
+          <div class="fr footer-helper">
+            <a href="http://celebgramme.com/how-it-works">How It Works </a>  | <a href="http://celebgramme.com/faq">FAQ  </a>| <a href="http://celebgramme.com/support">Support  </a>|  <a href="http://celebgramme.com/about-us">About Us </a>| <a href="">Log in</a>
+          </div>
+          <div class="fn">
+          </div>
+        </div>
+
       </div>
     </body>
 </html>

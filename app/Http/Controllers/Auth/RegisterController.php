@@ -7,7 +7,6 @@ use Celebgramme\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Encryption\DecryptException;
-use Carbon\Carbon;
 
 use Input, Redirect, App, Hash, Mail, Crypt, Carbon;
 
@@ -73,6 +72,7 @@ class RegisterController extends Controller
       $dt = Carbon::now();
       $user->status_free_trial = 1;
       $user->valid_until = $dt->addDays(3)->toDateTimeString();
+      $user->type = "not-confirmed";
       $user->save();
 
     } else {
@@ -80,6 +80,32 @@ class RegisterController extends Controller
     }
     
     Auth::attempt(['email' => $request->email, 'password' => $request->password], true);
+    //send email konfirmasi email
+    $register_time = Carbon::now()->toDateTimeString();
+    $request->session()->put('resend_email', $register_time);
+    $verificationcode = Hash::make($user->email.$register_time);
+    $user->verification_code = $verificationcode;
+    $user->save();
+    if (App::environment() == 'local'){
+      $url = 'http://localhost/celebgramme/public/verifyemail';
+    }
+    else if (App::environment() == 'production'){
+      $url = 'http://celebgramme.com/verifyemail/';
+    }
+    $secret_data = [
+      'email' => $user->email,
+      'register_time' => $register_time,
+      'verification_code' => $verificationcode,
+    ];
+    $emaildata = [
+      'url' => $url.Crypt::encrypt(json_encode($secret_data)),
+    ];
+    Mail::queue('emails.confirm-email', $emaildata, function ($message) use ($user) {
+      $message->from('no-reply@celebgramme.com', 'Celebgramme');
+      $message->to($user->email);
+      $message->subject('Email Confirmation');
+    });
+
     if (! $request->session()->has('checkout_data')) {
       return redirect('/home');
     } else {
@@ -166,4 +192,5 @@ class RegisterController extends Controller
     }
 	}
 	
+
 }

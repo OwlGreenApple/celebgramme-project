@@ -43,13 +43,13 @@ label {
   background-color: #323f4a;
 -moz-box-sizing: border-box;
 -webkit-box-sizing: border-box;
-box-sizing: border-box;padding-top:22px;
+box-sizing: border-box; padding-top: 10px; padding-bottom: 20px;
 }
 .logo{
   background-image : url("../images/logo-celebgramme-landing.png");
   background-repeat: no-repeat;
-  background-size: 245px 100%;
-  width:245px; height:35px;
+  background-size: cover;
+  width:308px; height:100%;
   overflow:hidden;
   margin:0 auto;
 

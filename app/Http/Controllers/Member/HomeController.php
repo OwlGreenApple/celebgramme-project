@@ -64,7 +64,32 @@ class HomeController extends Controller
     $dt1 = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at);
     $dt2 = Carbon::now();
 
-    return view('member.free-trial')->with(array('user'=>$user,));
+    if ($dt1->diffInDays($dt2) == 0 ) {
+      $url = "http://www.paywithapost.de/pay?id=936b8163-2248-4fee-8766-430b3654757c";
+    }
+    if ($dt1->diffInDays($dt2) == 1 ) {
+      $url = "http://www.paywithapost.de/pay?id=4d1cd293-87a1-4141-ba95-b0bd319e2539";
+    }
+    if ($dt1->diffInDays($dt2) == 2 ) {
+      $url = "http://www.paywithapost.de/pay?id=b14b3a16-eb04-4957-801a-7da3cbe0a06e";
+    }
+    if ($dt1->diffInDays($dt2) == 3 ) {
+      $url = "http://www.paywithapost.de/pay?id=f350cf20-3759-4ec5-90ff-d55af2b2fccc";
+    }
+    if ($dt1->diffInDays($dt2) == 4 ) {
+      $url = "http://www.paywithapost.de/pay?id=1fd0b365-fc7b-454d-87f6-8c44c806a11e";
+    }
+    if ($dt1->diffInDays($dt2) == 5 ) {
+      $url = "http://www.paywithapost.de/pay?id=572b4892-108e-490b-8505-44ede32f3044";
+    }
+    if ($dt1->diffInDays($dt2) == 6 ) {
+      $url = "http://www.paywithapost.de/pay?id=0154cbe0-9411-44ac-8225-025167d06fe3";
+    }
+
+    return view('member.free-trial')->with(array(
+      'user'=>$user,
+      'url'=>$url,
+    ));
   }
 
 	public function order(){

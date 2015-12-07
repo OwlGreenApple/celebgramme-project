@@ -30,6 +30,8 @@ Route::group(['middleware' => 'auth'], function()
   Route::get('pay-with-tweet', 'Member\HomeController@pay_with_tweet');
 
   Route::get('free-trial', 'Member\HomeController@free_trial');
+  Route::get('resend-activation', 'Member\EmailController@resendEmailActivation');
+  Route::get('verifyemail/{cryptedcode}', 'Member\EmailController@verifyEmail');
 
   Route::get('test', 'Member\HomeController@test');
   Route::get('home', 'Member\HomeController@index');
@@ -66,3 +68,4 @@ Route::group(['middleware' => 'auth'], function()
 Route::post('payment/vtnotification', ['as' => 'vt.notif', 'uses' => 'Member\PaymentController@veritransNotification']);
 
 Route::get('generate-balance', 'CronJobController@generate_balance');
+
