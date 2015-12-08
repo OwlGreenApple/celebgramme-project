@@ -6,6 +6,8 @@ use Celebgramme\Models\Package;
 use Celebgramme\Models\PackageUser;
 use Celebgramme\Models\User;
 
+use Carbon\Carbon;
+
 use Mail;
 
 class Invoice extends Model {
@@ -15,6 +17,12 @@ class Invoice extends Model {
 	protected function successPayment($cdata)
 	{
     $invoice = new Invoice;
+
+    $dt = Carbon::now();
+    $str = 'ICLB'.$dt->format('ymdHi');
+    $invoice_number = GeneralHelper::autoGenerateID($invoice, 'no_invoice', $str, 3, '0');
+
+    $invoice->no_invoice = $invoice_number;
     $invoice->total = $cdata["order_total"];
     $invoice->order_id = $cdata["order_id"];
     $invoice->save();
@@ -46,8 +54,17 @@ class Invoice extends Model {
     $user->save();
 
     //send email success payment
+    $shortcode = str_replace('ICLB', '', $invoice_number);
     $emaildata = [
+        'no_invoice' => $shortcode,
+        'package' => $package,
     ];
+    if ($order->order_type=="transfer_bank") {
+        $emaildata["order_type"] = "Transfer Bank";
+    }
+    if ($order->order_type=="VERITRANS") {
+        $emaildata["order_type"] = "Veritrans";
+    }
     Mail::queue('emails.success-payment', $emaildata, function ($message) use ($cdata) {
       $message->from('no-reply@celebgramme.com', 'Celebgramme');
       $message->to($cdata["email"]);

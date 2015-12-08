@@ -119,9 +119,10 @@ class RegisterController extends Controller
           "order_status" => "pending",
           "user_id" => $user->id,
           "order_total" => $package->price,
+          "package_id" => $package->id,
         );
         
-        $order = Order::createOrder($data);
+        $order = Order::createOrder($data, true);
         return redirect('/home');
       }
       

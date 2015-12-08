@@ -4,8 +4,15 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $("#alert").hide();
+    <?php if (session()->has('message')) { ?> 
+      $("#alert").addClass('alert-success');
+      $("#alert").removeClass('alert-danger');
+      $("#alert").show();
+      $("#alert").html("<?php echo session("message"); ?>");
+    <?php } ?>
   });
 </script>
+<?php if ( isset($message) ) { echo "asdasdas"; }?> 
 <form action="{{url('payment/process')}}" method="POST">
 
   <table class="table table-striped">

@@ -41,9 +41,11 @@ class PaymentController extends Controller
         "order_status" => "pending",
         "user_id" => $user->id,
         "order_total" => $package->price,
+        "package_id" => $package->id,
       );
       
-      $order = Order::createOrder($data);
+      $order = Order::createOrder($data,true);
+      return redirect("buy-more")->with("message","Order telah dibuat, silahkan melakukan pembayaran & konfirmasi order anda");
     }
     
     //veritrans
@@ -195,8 +197,12 @@ class PaymentController extends Controller
 				$checkout_data['payment_status'] = 'pending';
 			}
 			// Proceed checkout_data! Creating Order record..
-      $checkout_data["ext"]="";
-			$order = Order::createOrder($checkout_data);
+      		$checkout_data["ext"]="";
+      		if ($checkout_data['payment_status'] == 'success'){
+				$order = Order::createOrder($checkout_data,false);
+			} else {
+				$order = Order::createOrder($checkout_data,true);
+			}
 			if ($checkout_data['payment_status'] != 'challenge'){
 				VeritransModel::setValue($checkout_data['unique_id'], null);
 			}
@@ -205,10 +211,10 @@ class PaymentController extends Controller
 			$checkout_data['shortcode'] = str_replace('OAXM', '', $checkout_data['order_number']);
 			// Create invoice if payment_status is success
 			if ($checkout_data['payment_status'] == 'success'){
-        $invoice = Invoice::successPayment($checkout_data);
-			}
-      if (($checkout_data['payment_status'] == 'challenge')||($checkout_data['payment_status'] == 'pending')){
-      }
+        		$invoice = Invoice::successPayment($checkout_data);
+	 		}
+	        if (($checkout_data['payment_status'] == 'challenge')||($checkout_data['payment_status'] == 'pending')){
+	        }
 			$request->session()->put('checkout_data', $checkout_data);
       
 			return redirect('checkout-finish');

@@ -27,7 +27,7 @@ Route::post('auth/register', ['as'=>'auth.register', 'uses'=> 'Auth\RegisterCont
 Route::group(['middleware' => 'auth'], function()
 {
   /* Pay with tweet */
-  Route::get('pay-with-tweet', 'Member\HomeController@pay_with_tweet');
+  Route::get('confirm-paywithtweet/{cryptedcode}', 'Member\HomeController@confirm_paywithtweet');
 
   Route::get('free-trial', 'Member\HomeController@free_trial');
   Route::get('resend-activation', 'Member\EmailController@resendEmailActivation');

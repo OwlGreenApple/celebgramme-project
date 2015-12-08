@@ -1,111 +1,75 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
     <head>
       <title>Celebgramme</title>
-      <meta name="csrf-token" content="{{ csrf_token() }}" />
       <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/images/celebgramme-favicon.png') }}">
       <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
       <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/bootstrap-theme.min.css') }}" rel="stylesheet">
-      <link href="{{ asset('/css/main.css') }}" rel="stylesheet">
-      <script type="text/javascript" src="{{ asset('/js/jquery-1.11.3.js') }}"></script>
-      <script>
-        $(document).ready(function(){
-          $("#div-loading").hide();
+      <link href="{{ asset('/css/free-trial.css') }}" rel="stylesheet">
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $("#alert").hide();
         });
-        
       </script>
     </head>
     <body>
-    
-    <div id="div-loading">
-      <div class="loadmain"></div>
-      <div class="background-load"></div>
-    </div>
-    
-      <nav class="navbar navbar-inverse ">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><img src="{{asset('/images/logo-celebgramme.png')}}" style="width:100%;max-width:200px;height:30px;"></a>
+      <div class="header-package row container">
+        <div class="div-black">
+          <div class="div-logo">
+            <div class="logo"></div>
           </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-              <li></li>
-            </ul>
-          </div>
-        </div>
-      </nav>    
-    
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-3 col-md-2 fl">    
-            <ul class="nav nav-sidebar">
-              <li><a href="{{url('send-like')}}">Send Likes</a></li>
-              <li><a href="{{url('order')}}">Order History</a></li>
-              <li><a href="{{url('buy-more')}}">Buy More</a></li>
-              <li><a href="{{url('confirm-payment')}}">Confirm Payment</a></li>
-              <li><a href="{{url('edit-profile')}}">Ganti Password</a></li>
-              <li><a href="{{url('logout')}}">Logout</a></li>
-            </ul>
-          
-          </div>
-          
-          <div class="col-sm-8 col-md-8  fl">
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="panel panel-info">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">Daily Balance</h3>
-                  </div>
-                  <div class="panel-body">
-                    <span id="span-balance">{{$user->balance}}</span> <input type=hidden value="{{$user->balance}}" id="balance">
-                  </div>
-                </div>
-              </div>          
-              <div class="col-sm-4">
-                <div class="panel panel-info">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">Valid until</h3>
-                  </div>
-                  <div class="panel-body">
-                    <?php 
-                      if ( $user->valid_until == "0000-00-00 00:00:00" ) {
-                        echo "-";
-                      }
-                      else {
-                        echo date("j F Y",strtotime($user->valid_until));
-                      }
-                    ?>
-                  </div>
-                </div>
-              </div>          
-            </div>          
-            <div class="row">
-              <div class="col-sm-8 col-md-8">            
-                <div class="alert alert-danger col-sm-18 col-md-18" id="alert">
-                  <strong>Oh snap!</strong> Change a few things up and try submitting again.
-                </div>  
-              </div>          
-            </div>          
-            <div class="row">
-              <div class="col-sm-8">            
-                @yield('content')
-              </div>          
-            </div>          
-            
-          </div>
-          
-          <div class="fn">
-          </div>
-          
         </div>
       </div>
-    
+
+      <div class="content-package container row">  
+        <h3 class="h1-special-offer"> Special Offer </h3>
+        <div class="description1">
+          <div class="image-description fl ">
+          </div>
+          <div class="content-description fl">
+            <h3><strong>Check</strong> This Out!</h3>
+            <p class="p1">"Pengen <strong>sefamous</strong>  selebgram di instagram? Boost your popularity with Celebgramme!"</p>
+            <p class="p2">Jangan sampai lewatkan Special Offer kami hari ini! Karena, penawaran terbatas ini, special hanya untuk anda. Dapatkan langsung <strong>2450 Likes Instagram</strong> selama 7 hari. Beli? <strong>YA!</strong> Tapi, cukup bayar dengan <strong>SHARE!</strong. cukup dengan <strong>SHARE</strong>.</p>
+            <div class="div-icon">
+              <span><i class="icon-v"></i> Day 1 <strong>200</strong> likes</span>
+              <span><i class="icon-v"></i> Day 2 <strong>250</strong>likes</span>
+              <span><i class="icon-v"></i> Day 3 <strong>300</strong> likes</span>
+              <span><i class="icon-v"></i> Day 4 <strong>350</strong> likes</span>
+              <span><i class="icon-v"></i> Day 5 <strong>400</strong> likes</span>
+              <span><i class="icon-v"></i> Day 6 <strong>450</strong> likes</span>
+              <span><i class="icon-v"></i> Day 7 <strong>500</strong> likes</span>
+            </div>
+          </div>
+          <div class="fn"></div>
+        </div>
+        <div class="description2">
+          <div class="content-description fl ">
+            <p class="p1">1 Langkah lagi untuk mendapatkan 2450 Likes Instagram GRATIS!</p>
+            <p class="p2">Share sekarang dan isi offer dari advertiser kami. Setelah selesai, 2450 Likes Instagram akan langsung  ditambahkan secara otomatis ke credit akun anda! Enjoy it! </p>
+          </div>
+          <div class="image-description fl ">
+          </div>
+        </div>
+
+        <a href="test.com"><input type="button" value="Bayar dengan Share" class="button-share"></a>
+
+        <p class="keterangan">Jika anda mempunyai pertanyaan seputar Celebgramme, silahkan baca FAQ ( Frequently Asked Question ) <a =href="http://celebgramme.com/faq">disini</a> atau silahkan hubungi kami <a href="http://celebgramme.com/support">disini</a></p>
+      </div>
+
+
+      <div class="footer-package row container">
+        <div class="footer-center container row">
+          <div class="fl copyright col-md-7 col-sm-4">
+            Copyright text 2015 by celebgramme.
+          </div>
+          <div class="col-md-5 col-sm-5 fl footer-helper ">
+            <a href="http://celebgramme.com/how-it-works">How It Works </a>  | <a href="http://celebgramme.com/faq">FAQ  </a>| <a href="http://celebgramme.com/support">Support  </a>|  <a href="http://celebgramme.com/about-us">About Us </a>| <a href="">Log in</a>
+          </div>
+          <div class="fn">
+          </div>
+        </div>
+
+      </div>
     </body>
 </html>

@@ -14,7 +14,7 @@ use Celebgramme\Models\OrderMeta;
 use Celebgramme\Models\User;
 use Celebgramme\Veritrans\Veritrans;
 
-use View, Input, Mail, Request, App, Hash, Validator, Carbon;
+use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt;
 
 class HomeController extends Controller
 {
@@ -38,6 +38,8 @@ class HomeController extends Controller
 	 */
 	public function index(){
     $user = Auth::user();
+    $dt1 = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at);
+    $dt2 = Carbon::now();
 
     //check klo uda lebih 7 hari ubah status free trial
     $dt1 = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at)->addDays(7);
@@ -47,7 +49,7 @@ class HomeController extends Controller
       $user->save();
     }
 
-    if ($user->status_free_trial==1) {
+    if ( ($user->status_free_trial==1) && ( $user->used_free_trial <= $dt1->diffInDays($dt2) ) ) {
       return redirect("free-trial");
     } else {
 		  return view('member.send-like')->with(array('user'=>$user,));
@@ -107,13 +109,8 @@ class HomeController extends Controller
   
 	public function confirm_payment(){
     $user = Auth::user();
-    $invoice = Invoice::join("orders","orders.id","=","invoices.order_id")
-               ->join("packages","packages.id","=","orders.package_id")
-               ->select("orders.*","packages.package_name","invoices.no_invoice")
-               ->where('orders.user_id','=',$user->id)->get();
 		return view('member.confirm-payment')
       ->with(array(
-        'invoice'=>$invoice,
         'user'=>$user,
       ));
 	}
@@ -164,6 +161,20 @@ class HomeController extends Controller
     OrderMeta::createMeta("jumlah transfer",Request::input("total"),$order->id);
     OrderMeta::createMeta("nama pemilik rekening",Request::input("nama"),$order->id);
     OrderMeta::createMeta("keterangan",Request::input("keterangan"),$order->id);
+
+    //send email success payment
+    $emaildata = [
+      'no_order'=>Request::input("no_order"),
+      'jumlah_transfer'=>Request::input("total"),
+      'nama'=>Request::input("nama"),
+      'keterangan'=>Request::input("keterangan"),
+    ];
+    Mail::queue('emails.confirm-order', $emaildata, function ($message) use ($user) {
+      $message->from('no-reply@celebgramme.com', 'Celebgramme');
+      $message->to($user->email);
+      $message->subject('Order Confirmation');
+    });
+
     
     return $arr;
   }
@@ -282,20 +293,27 @@ class HomeController extends Controller
 		return view('member.buy-more')->with(array('user'=>$user,));
 	}
   
-  public function pay_with_tweet()
+  /*
+  * kembalian dari pay with tweet dengan emkripan data, data akan mengupdate used free trial agar free trial page hari tersebut tidak muncuk lagi
+  */
+  public function confirm_paywithtweet($cryptedcode)
   {
-    //bakal di rombak
     $user = Auth::user();
-    $message = "";
-    if ($user->status_free_trial) {
-      $message = "error";
-    } else {
 
-      $message = "success";
-    }
+    // $secret_data = [
+    //   'day' => 1,
+    // ];
+
+    // return Crypt::encrypt(json_encode($secret_data));
+    //day 1 
+    //eyJpdiI6IjM3d3dGXC9kUllnNCt0NnFZU1pyZWt3PT0iLCJ2YWx1ZSI6IlRSOEwzS0pZNExMYXhuR1I0WTVXNVd1ZUpSTHYzSWFLN2ZjMW82Z212QlU9IiwibWFjIjoiYTI5MWQxZTMzMTZkMWEyZGVlOTE4NDlhZDUxNzk0NjI1NmJlMWI5ZmEwOWJmYzEwZDUzODU3NzMyZDNmYTQ4ZCJ9
+    $decryptedcode = Crypt::decrypt($cryptedcode);
+    $data = json_decode($decryptedcode);
+    $user->used_free_trial = $data->day;
+    $user->save();
+
     return view('member.send-like')->with(array(
       'user'=>$user,
-      'message'=>$message,
     )); 
   }	
 }
