@@ -20,6 +20,16 @@ class HomeController extends Controller
 {
   
 	public function test(){
+    $url = "http://facebook.com";
+    return view('member.temp')->with(array(
+      'url'=>$url,
+    )); 
+
+    $secret_data = [
+      'day' => 7,
+    ];
+
+    return Crypt::encrypt(json_encode($secret_data));
     $result = file_get_contents('http://requestb.in/16uy2ib1');
     echo $result;    
     // $emaildata = [
@@ -307,13 +317,36 @@ class HomeController extends Controller
     // return Crypt::encrypt(json_encode($secret_data));
     //day 1 
     //eyJpdiI6IjM3d3dGXC9kUllnNCt0NnFZU1pyZWt3PT0iLCJ2YWx1ZSI6IlRSOEwzS0pZNExMYXhuR1I0WTVXNVd1ZUpSTHYzSWFLN2ZjMW82Z212QlU9IiwibWFjIjoiYTI5MWQxZTMzMTZkMWEyZGVlOTE4NDlhZDUxNzk0NjI1NmJlMWI5ZmEwOWJmYzEwZDUzODU3NzMyZDNmYTQ4ZCJ9
+    //http://celebgramme.com/celebgramme/confirm-paywithtweet/
+    //day2
+    //eyJpdiI6IlY1SmgrdUdyV0NBRXJVM01oRnRtd1E9PSIsInZhbHVlIjoiSzJ1am1kanJaSStRVWdkZHFLODNRRGpKM3IrRGx3dHN1Z3VudG52K0pXST0iLCJtYWMiOiIzZGEzNDUwZjE0ODU3M2NjY2IyNjczNjRjMWIzOTUzM2IzMzliNDFjM2E0NTM2NGZhNDZjOGFhYWI0ZDAzMWJiIn0=
+    //day3
+    //eyJpdiI6Im03RENrTzBPTjd4NzJwZEZjTGJTYWc9PSIsInZhbHVlIjoiVmRLeHh6OVFFdlBvWFdiUXhONUdcL3dXanpoWTJUck9BME9BUll5c2pENVU9IiwibWFjIjoiMzM2YTFjMzU0MmIxMTRmMDNiODI1NTY1ZTdjYjhmMjY4NGMxNGQ3ZTI5NDg0MGJmZWUwYTZiZDAwNmNhZWNkYiJ9
+    //day4
+    //eyJpdiI6IkJTbSsrUzJvMGZjK0JhZFB2dG00UVE9PSIsInZhbHVlIjoiZUttMWF6YkliaFNFU0w3RDQwM3ROa0loZnBqQTY4bzBLdldYOVE5YkszYz0iLCJtYWMiOiI2OWM2ZDdiMGY3MjQxYTBiMzQxMTlkYzZjODMyZDA5OTY3MDgxODQ4NmEwMWVkZWVhZTNhZmJlMTNkYWI1YTAxIn0=
+    //day5
+    //eyJpdiI6IlA3ZEcxSXltYXl4MUZnQjkxaSs2SEE9PSIsInZhbHVlIjoiWjN3am04SEpCcmNCMERcL1ZjbXZPNk8yRDJkREdHNjJQQnZ1Z1BhWGxMZzA9IiwibWFjIjoiNWRlZWFjNTI5ZGY5MWIwYmI2MDU5ZDI1MmIwODkxMjJlODFiZDcxOThiYjUwNDMzZjQxMjBhNGJhYWQ5MjdkMyJ9
+    //day6
+    //eyJpdiI6IkY1MENtamwya3U3eXp5TUpnYjBxWWc9PSIsInZhbHVlIjoiZ1dSN1EwMjJZUEVEU2JORmI3a2E3cGtvZjdrMjE5NFpUK29XWGJLYjdBVT0iLCJtYWMiOiJiZTFkODg5OWIwOTNlNjJmOWQyODhkYWEwY2ZiMzdmNDUwMzZkYzQ0YWZlYjAyYzExMWU0YzE4ZmIzYTdkMDMxIn0=
+    //day7
+    //eyJpdiI6IkNwM1lWdDFyZng4SVUzR2hsOFczNUE9PSIsInZhbHVlIjoiM0RcL0tYVUN5RW5YbU5WUTc0cHR2U2JnRStNblZxT2VCUjVLSHlPZkhaK2M9IiwibWFjIjoiZDU3MTQwZDEyODg4NzFkMWFiZmRhMTgzODJjMzgzZTQ2N2U5ZmQzMzhmZjMxODE1MDMyN2UwMDcxY2IzYjBmZiJ9
     $decryptedcode = Crypt::decrypt($cryptedcode);
     $data = json_decode($decryptedcode);
     $user->used_free_trial = $data->day;
     $user->save();
 
-    return view('member.send-like')->with(array(
-      'user'=>$user,
+    if ( ($data->day==1) || ($data->day==4) || ($data->day==7) ) {
+      $url = "http://watch.vid-id.me/aff_c?offer_id=22&aff_id=3104&source=celebgramme-free";
+    }
+    if ( ($data->day==2) || ($data->day==5) ) {
+      $url = "http://watch.vid-id.me/aff_c?offer_id=22&aff_id=3104&source=celebgramme-free";
+    }
+    if ( ($data->day==3) || ($data->day==6) ) {
+      $url = "http://play.vid-id.me/aff_c?offer_id=16&aff_id=3104";
+    }
+
+    return view('member.temp')->with(array(
+      'url'=>$url,
     )); 
   }	
 }

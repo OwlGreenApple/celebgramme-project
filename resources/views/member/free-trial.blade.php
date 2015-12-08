@@ -52,7 +52,7 @@
           </div>
         </div>
 
-        <a href="test.com"><input type="button" value="Bayar dengan Share" class="button-share"></a>
+        <a href="{{url($url)}}"><input type="button" value="Bayar dengan Share" class="button-share"></a>
 
         <p class="keterangan">Jika anda mempunyai pertanyaan seputar Celebgramme, silahkan baca FAQ ( Frequently Asked Question ) <a =href="http://celebgramme.com/faq">disini</a> atau silahkan hubungi kami <a href="http://celebgramme.com/support">disini</a></p>
       </div>
