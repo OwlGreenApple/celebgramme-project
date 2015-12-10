@@ -207,6 +207,18 @@ class HomeController extends Controller
   
 	public function process_like(){
     $user = Auth::user();
+
+    $dt1 = Carbon::createFromFormat('Y-m-d H:i:s', $user->valid_until)->addDays(1);
+    $dt2 = Carbon::now();
+    if ($dt2->gt($dt1)) {
+      $arr["message"]= "Masa berlaku paket anda telah habis";
+      $arr["type"]= "error";
+    }
+
+    if ($user->balance<Input::get("like")){
+      $arr["message"]= "Balance anda tidak mencukupi";
+      $arr["type"]= "error";
+    }
     
     $point = Input::get("like") / 2;
     if ($point<1) {
