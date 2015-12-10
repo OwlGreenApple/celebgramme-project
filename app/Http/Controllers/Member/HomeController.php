@@ -20,6 +20,7 @@ class HomeController extends Controller
 {
   
 	public function test(){
+    return redirect("/")->with("cpa","success");
     // $url2 = "http://facebook.com";
     // $url1 = url("/");
     // return view('member.temp')->with(array(
@@ -379,9 +380,6 @@ class HomeController extends Controller
     }
 
     $url1 = url("/");
-    return view('member.temp')->with(array(
-      'url1'=>$url1,
-      'url2'=>$url2,
-    )); 
+    return redirect("/")->with("cpa",$url2);
   }	
 }
