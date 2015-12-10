@@ -356,14 +356,14 @@ class HomeController extends Controller
     //eyJpdiI6IkNwM1lWdDFyZng4SVUzR2hsOFczNUE9PSIsInZhbHVlIjoiM0RcL0tYVUN5RW5YbU5WUTc0cHR2U2JnRStNblZxT2VCUjVLSHlPZkhaK2M9IiwibWFjIjoiZDU3MTQwZDEyODg4NzFkMWFiZmRhMTgzODJjMzgzZTQ2N2U5ZmQzMzhmZjMxODE1MDMyN2UwMDcxY2IzYjBmZiJ9
     $decryptedcode = Crypt::decrypt($cryptedcode);
     $data = json_decode($decryptedcode);
+    if (($data->day==1) && ($user->used_free_trial<$data->day) ) { $user->balance= 200; }
+    if (($data->day==2) && ($user->used_free_trial<$data->day) ) { $user->balance= 250; }
+    if (($data->day==3) && ($user->used_free_trial<$data->day) ) { $user->balance= 300; }
+    if (($data->day==4) && ($user->used_free_trial<$data->day) ) { $user->balance= 350; }
+    if (($data->day==5) && ($user->used_free_trial<$data->day) ) { $user->balance= 400; }
+    if (($data->day==6) && ($user->used_free_trial<$data->day) ) { $user->balance= 450; }
+    if (($data->day==7) && ($user->used_free_trial<$data->day) ) { $user->balance= 500; }
     $user->used_free_trial = $data->day;
-    if ($data->day==1) { $user->balance= 200; }
-    if ($data->day==2) { $user->balance= 250; }
-    if ($data->day==3) { $user->balance= 300; }
-    if ($data->day==4) { $user->balance= 350; }
-    if ($data->day==5) { $user->balance= 400; }
-    if ($data->day==6) { $user->balance= 450; }
-    if ($data->day==7) { $user->balance= 500; }
     $user->save();
 
     if ( ($data->day==1) || ($data->day==4) || ($data->day==7) ) {
