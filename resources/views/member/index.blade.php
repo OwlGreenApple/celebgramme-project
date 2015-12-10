@@ -120,6 +120,7 @@
               </div>          
             </div>          
             <div class="row">
+
               <div class="col-sm-8 col-md-8">            
                 <div class="alert alert-danger col-sm-18 col-md-18" id="alert">
                   <?php if ($user->type=="not-confirmed") { ?> 
@@ -127,6 +128,13 @@
                   <?php } ?>
                 </div>  
               </div>          
+              <?php if ( session('cpa') ) { ?>
+              <div class="col-sm-8 col-md-8">            
+                <div class="alert alert-danger col-sm-18 col-md-18" id="alert">
+                  Bonus like sudah dimasukkan, silahkan isi CPA offer <a href='<?php echo $temp_session; ?>' target='_blank' >disini</a>
+                </div>  
+              </div>          
+              <?php } ?>
             </div>          
             <div class="row">
               <div class="col-sm-8">            
