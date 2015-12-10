@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Celebgramme12312</title>
+      <title>Celebgramme</title>
       <meta name="csrf-token" content="{{ csrf_token() }}" />
       <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/images/celebgramme-favicon.png') }}">
       <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
