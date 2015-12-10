@@ -69,8 +69,8 @@ class RegisterController extends Controller
     $validator  = User::validator($request->all());
     if (!$validator->fails()){
       $user = User::create($request->all());
-      $dt = Carbon::now();
       $user->status_free_trial = 1;
+      $dt = Carbon::now();
       $user->valid_until = $dt->addDays(7)->toDateTimeString();
       $user->type = "not-confirmed";
       $user->save();
@@ -109,6 +109,8 @@ class RegisterController extends Controller
     if (! $request->session()->has('checkout_data')) {
       return redirect('/home');
     } else {
+      $dt = Carbon::now();
+      $user->valid_until = $dt->toDateTimeString();
       $user->status_free_trial = 0;
       $user->save();
 
