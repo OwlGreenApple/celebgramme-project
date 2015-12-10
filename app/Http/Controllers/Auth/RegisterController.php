@@ -109,7 +109,9 @@ class RegisterController extends Controller
     if (! $request->session()->has('checkout_data')) {
       return redirect('/home');
     } else {
-      
+      $user->status_free_trial = 0;
+      $user->save();
+
       $checkout_data = $request->session()->get('checkout_data');
       $package = Package::find($checkout_data["package_id"]);
       
