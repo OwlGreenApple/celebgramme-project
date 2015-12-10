@@ -20,9 +20,11 @@ class HomeController extends Controller
 {
   
 	public function test(){
-    $url = "http://facebook.com";
+    $url2 = "http://facebook.com";
+    $url1 = url("/");
     return view('member.temp')->with(array(
-      'url'=>$url,
+      'url1'=>$url1,
+      'url2'=>$url2,
     )); 
 
     $secret_data = [
@@ -343,19 +345,21 @@ class HomeController extends Controller
 
     if ( ($data->day==1) || ($data->day==4) || ($data->day==7) ) {
       // $url = "http://watch.vid-id.me/aff_c?offer_id=22&aff_id=3104&source=celebgramme-free";
-      $url = "http://adf.ly/1T9TMF";
+      $url2 = "http://adf.ly/1T9TMF";
     }
     if ( ($data->day==2) || ($data->day==5) ) {
       // $url = "http://watch.vid-id.me/aff_c?offer_id=22&aff_id=3104&source=celebgramme-free";
-      $url = "http://adf.ly/1T9TMF";
+      $url2 = "http://adf.ly/1T9TMF";
     }
     if ( ($data->day==3) || ($data->day==6) ) {
       // $url = "http://play.vid-id.me/aff_c?offer_id=16&aff_id=3104";
-      $url = "http://adf.ly/1T9WsE";
+      $url2 = "http://adf.ly/1T9WsE";
     }
 
+    $url1 = url("/");
     return view('member.temp')->with(array(
-      'url'=>$url,
+      'url1'=>$url1,
+      'url2'=>$url2,
     )); 
   }	
 }

@@ -31,7 +31,7 @@ class Order extends Model {
         $user = User::find($cdata["user_id"]);
         $package = Package::find($cdata["package_id"]);
         $shortcode = str_replace('OCLB', '', $order_number);
-        //send email success payment
+        //send email order
         $emaildata = [
             'order' => $order,
             'user' => $user,
