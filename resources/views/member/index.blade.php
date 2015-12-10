@@ -131,7 +131,7 @@
               <?php if ( session('cpa') ) { ?>
               <div class="col-sm-8 col-md-8">            
                 <div class="alert alert-success col-sm-18 col-md-18">
-                  Bonus like sudah dimasukkan, silahkan isi CPA offer <a href='<?php echo $temp_session; ?>' target='_blank' >disini</a>
+                  Bonus like sudah dimasukkan, silahkan isi CPA offer <a href="<?php echo session('cpa') ?>" target="_blank" >disini</a>
                 </div>  
               </div>          
               <?php } ?>
