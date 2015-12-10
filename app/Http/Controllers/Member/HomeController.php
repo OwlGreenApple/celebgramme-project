@@ -64,8 +64,6 @@ class HomeController extends Controller
       $user->save();
     }
 
-    return $user->used_free_trial." - ".$dt1->diffInDays($dt2);
-
     if ( ($user->status_free_trial==1) && ( $user->used_free_trial <= $dt1->diffInDays($dt2) ) ) {
       return redirect("free-trial");
     } else {
