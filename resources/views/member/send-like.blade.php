@@ -67,14 +67,6 @@
     });
 
 
-    <?php if ( session('cpa') ) { 
-      $temp_session = session('cpa');
-    ?>
-      $("#alert").addClass('alert-success');
-      $("#alert").removeClass('alert-danger');
-      $("#alert").show();
-      $("#alert").html("Bonus like sudah dimasukkan, silahkan isi CPA offer <a href='<?php echo $temp_session; ?>' target='_blank' >disini</a>");
-    <?php } ?>
 
   });
 </script>

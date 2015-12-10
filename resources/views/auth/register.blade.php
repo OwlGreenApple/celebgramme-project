@@ -6,6 +6,14 @@
       <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/bootstrap-theme.min.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/sign-in.css') }}" rel="stylesheet">
+      <script type="text/javascript" src="{{ asset('/js/jquery-1.11.3.js') }}"></script>
+      <script>
+        $(document).ready(function(){
+          $('form').submit(function() {
+            $(this).find("button[type='submit']").prop('disabled',true);
+          });      
+        });       
+      </script>
     </head>
     <body>
       <div class="div-black">
