@@ -21,6 +21,13 @@
       }
       if (parseInt($("#balance").val())<parseInt($("#send-like").val()) ) {
         $("#send-like").val(templike);
+        if ($("#balance").val()==0){
+          $("#alert").show();
+          $("#alert").html("Balance anda 0, anda tidak dapat menambah like ");
+          $("#alert").addClass('alert-danger');
+          $("#alert").removeClass('alert-success');
+
+        }
       }
       $("#balance-now").val(parseInt($("#balance").val())-parseInt($("#send-like").val()));
     });    
