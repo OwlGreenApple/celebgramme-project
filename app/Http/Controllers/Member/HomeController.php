@@ -53,8 +53,6 @@ class HomeController extends Controller
 	 */
 	public function index(){
     $user = Auth::user();
-    $dt1 = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at);
-    $dt2 = Carbon::now();
 
     //check klo uda lebih 7 hari ubah status free trial
     $dt1 = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at)->addDays(7);
@@ -64,6 +62,8 @@ class HomeController extends Controller
       $user->save();
     }
 
+    $dt1 = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at);
+    $dt2 = Carbon::now();
     if ( ($user->status_free_trial==1) && ( $user->used_free_trial <= $dt1->diffInDays($dt2) ) ) {
       return redirect("free-trial");
     } else {
@@ -80,8 +80,9 @@ class HomeController extends Controller
     $user = Auth::user();
     $dt1 = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at);
     $dt2 = Carbon::now();
-    return $dt1->diffInDays($dt2);
-    
+
+    return $dt1." - ".$dt2." - ".$dt1->diffInDays($dt2);
+
     if ($dt1->diffInDays($dt2) == 0 ) {
       // $url = "http://www.paywithapost.de/pay?id=936b8163-2248-4fee-8766-430b3654757c";
       $url = "http://adf.ly/1T9X3x";
