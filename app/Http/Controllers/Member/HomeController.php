@@ -344,6 +344,13 @@ class HomeController extends Controller
     $decryptedcode = Crypt::decrypt($cryptedcode);
     $data = json_decode($decryptedcode);
     $user->used_free_trial = $data->day;
+    if ($data->day==1) { $user->balance= 200; }
+    if ($data->day==2) { $user->balance= 250; }
+    if ($data->day==3) { $user->balance= 300; }
+    if ($data->day==4) { $user->balance= 350; }
+    if ($data->day==5) { $user->balance= 400; }
+    if ($data->day==6) { $user->balance= 450; }
+    if ($data->day==7) { $user->balance= 500; }
     $user->save();
 
     if ( ($data->day==1) || ($data->day==4) || ($data->day==7) ) {

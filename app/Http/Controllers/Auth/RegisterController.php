@@ -71,7 +71,7 @@ class RegisterController extends Controller
       $user = User::create($request->all());
       $dt = Carbon::now();
       $user->status_free_trial = 1;
-      $user->valid_until = $dt->addDays(3)->toDateTimeString();
+      $user->valid_until = $dt->addDays(7)->toDateTimeString();
       $user->type = "not-confirmed";
       $user->save();
 
