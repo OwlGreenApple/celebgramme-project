@@ -20,17 +20,20 @@ class HomeController extends Controller
 {
   
 	public function test(){
-    $url2 = "http://facebook.com";
-    $url1 = url("/");
-    return view('member.temp')->with(array(
-      'url1'=>$url1,
-      'url2'=>$url2,
-    )); 
+    // $url2 = "http://facebook.com";
+    // $url1 = url("/");
+    // return view('member.temp')->with(array(
+    //   'url1'=>$url1,
+    //   'url2'=>$url2,
+    // )); 
 
-    $secret_data = [
-      'day' => 7,
-    ];
+    // $secret_data = [
+    //   'day' => 7,
+    // ];
 
+    $decryptedcode = Crypt::decrypt($cryptedcode);
+    $data = json_decode($decryptedcode);
+    dd($data);
     return Crypt::encrypt(json_encode($secret_data));
     $result = file_get_contents('http://requestb.in/16uy2ib1');
     echo $result;    
@@ -60,6 +63,8 @@ class HomeController extends Controller
       $user->status_free_trial = 0;
       $user->save();
     }
+
+    return $user->used_free_trial." - ".$dt1->diffInDays($dt2);
 
     if ( ($user->status_free_trial==1) && ( $user->used_free_trial <= $dt1->diffInDays($dt2) ) ) {
       return redirect("free-trial");
