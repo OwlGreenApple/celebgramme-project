@@ -1,3 +1,7 @@
+<html>
+<head>
+</head>
+<body>
 No Order : {{$no_order}} <br>
 Nama : {{$user->fullname}} <br>
 Status Order : {{$status}} <br>
@@ -8,3 +12,5 @@ Anda telah memesan paket {{$package->package_name}} dengan harga Rp. {{number_fo
 <?php } ?>
 
 <br> Salam hangat, Celebgramme.com
+</body>
+</html>
