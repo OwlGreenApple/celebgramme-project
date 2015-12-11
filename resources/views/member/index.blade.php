@@ -190,10 +190,34 @@
 
 
 
-              </div>          
-            </div>          
+              </div>
+            </div>
             <div class="row">
+              <?php if (Request::path()=="send-like" ) { ?>
+              <div class="col-sm-8 col-md-8">
+                <div class="alert alert-info col-sm-18 col-md-18" id="">
+                  Account jangan diprivate, harus dipublic supaya like bisa bertambah.
+                </div>  
+              </div>          
+              <?php } ?>
+              <?php 
+                $dt1 = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at);
+                $dt2 = Carbon::now();
 
+                if ($dt1->diffInDays($dt2) == 0 ) { $likes=250; }
+                if ($dt1->diffInDays($dt2) == 1 ) { $likes=300; }
+                if ($dt1->diffInDays($dt2) == 2 ) { $likes=350; }
+                if ($dt1->diffInDays($dt2) == 3 ) { $likes=400; }
+                if ($dt1->diffInDays($dt2) == 4 ) { $likes=450; }
+                if ($dt1->diffInDays($dt2) == 5 ) { $likes=500; }
+              if ( ($user->status_free_trial) && (($dt1->diffInDays($dt2) >= 0 )||($dt1->diffInDays($dt2) <= 5 )) ) {
+              ?>
+              <div class="col-sm-8 col-md-8">
+                <div class="alert alert-info col-sm-18 col-md-18" id="">
+                  Silahkan kembali lagi besok. Besok anda mendapat {{$likes}} likes dari total 2450 likes.
+                </div>  
+              </div>
+              <?php } ?>          
               <div class="col-sm-8 col-md-8">            
                 <div class="alert alert-danger col-sm-18 col-md-18" id="alert">
                   <?php if ($user->type=="not-confirmed") { ?> 
@@ -201,6 +225,13 @@
                   <?php } ?>
                 </div>  
               </div>          
+              <?php if ( session('cpa') ) { ?>
+              <div class="col-sm-8 col-md-8">            
+                <div class="alert alert-success col-sm-18 col-md-18">
+                  Bonus like sudah dimasukkan, silahkan isi CPA offer <a href="<?php echo session('cpa') ?>" target="_blank" >disini</a>
+                </div>  
+              </div>          
+              <?php } ?>
             </div>          
             <div class="row">
               <div class="col-sm-8">            

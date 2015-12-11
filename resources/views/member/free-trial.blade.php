@@ -17,13 +17,13 @@
       <div class="header-package row container">
         <div class="div-black">
           <div class="div-logo">
-            <div class="logo"></div>
+            <a href="http://celebgramme.com"><div class="logo"></div></a>
           </div>
         </div>
       </div>
 
       <div class="content-package container row">  
-        <h3 class="h1-special-offer"> Special Offer </h3>
+        <!--<h3 class="h1-special-offer"> Special Offer </h3>-->
         <div class="description1">
           <div class="image-description fl ">
           </div>
@@ -54,7 +54,7 @@
 
         <a href="{{url($url)}}"><input type="button" value="Bayar dengan Share" class="button-share"></a>
 
-        <p class="keterangan">Jika anda mempunyai pertanyaan seputar Celebgramme, silahkan baca FAQ ( Frequently Asked Question ) <a =href="http://celebgramme.com/faq">disini</a> atau silahkan hubungi kami <a href="http://celebgramme.com/support">disini</a></p>
+        <p class="keterangan">Jika anda mempunyai pertanyaan seputar Celebgramme, silahkan baca FAQ ( Frequently Asked Question ) <a href="http://celebgramme.com/faq"> disini </a> atau silahkan hubungi kami <a href="http://celebgramme.com/support">disini</a></p>
       </div>
 
 

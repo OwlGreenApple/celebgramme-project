@@ -17,7 +17,7 @@
       <div class="header-package row container">
         <div class="div-black">
           <div class="div-logo">
-            <div class="logo"></div>
+            <a href="http://celebgramme.com"><div class="logo"></div></a>
           </div>
           <h1 class="h1-package">Pilih Paket <strong>Instagram Likes</strong></h1>
         </div>
@@ -156,7 +156,7 @@
   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
   <input class="btn-package" type="submit" value="Lanjutkan" id="button-process">
 </form>
-  <p class="keterangan">Jika anda mempunyai pertanyaan seputar Celebgramme, silahkan baca FAQ ( Frequently Asked Question ) <a =href="http://celebgramme.com/faq">disini</a> atau silahkan hubungi kami <a href="http://celebgramme.com/support">disini</a></p>
+  <p class="keterangan">Jika anda mempunyai pertanyaan seputar Celebgramme, silahkan baca FAQ ( Frequently Asked Question ) <a href="http://celebgramme.com/faq">disini</a> atau silahkan hubungi kami <a href="http://celebgramme.com/support">disini</a></p>
       </div>
 
 
