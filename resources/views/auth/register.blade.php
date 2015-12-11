@@ -33,10 +33,8 @@
               <input type="password" class="form-control" id="password" name="password_confirmation" placeholder="Enter confirmation password" value="">
               <label>Nama Lengkap</label>
               <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter your fullname" value="">
-              <label>No. Handphone</label>
-              <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Enter your phone number" value="">
 
-              <p class="register-p" > Dengan mengklik "Register", anda menyetujui Kebijakan Privasi dan Persyaratan Layanan 
+              <p class="register-p" > Dengan mengklik "Register", anda menyetujui <a href="http://celebgramme.com/terms-conditions">Kebijakan Privasi dan Persyaratan Layanan </a>
               </p>
             
             <button class="btn btn-lg btn-block" type="submit">Register</button>
