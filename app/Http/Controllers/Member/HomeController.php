@@ -376,7 +376,8 @@ class HomeController extends Controller
     }
     if ( ($data->day==2) || ($data->day==5) ) {
       // $url = "http://play.vid-id.me/aff_c?offer_id=18&aff_id=3104";
-      $url2 = "http://adf.ly/1TDWL9";
+      // $url2 = "http://adf.ly/1TDWL9";
+      $url2 = "http://adf.ly/1T9WsE";
     }
     if ( ($data->day==3) || ($data->day==6) ) {
       // $url = "http://play.vid-id.me/aff_c?offer_id=16&aff_id=3104";
