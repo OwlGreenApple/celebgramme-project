@@ -62,7 +62,6 @@ class HomeController extends Controller
     //check klo uda lebih 7 hari ubah status free trial
     $dt1 = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at)->addDays(7);
     $dt2 = Carbon::now();
-		return $dt1." - ".$dt2;
     if ($dt2->gt($dt1)) {
       $user->status_free_trial = 0;
       $user->save();
