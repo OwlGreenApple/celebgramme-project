@@ -145,7 +145,7 @@
                   </div>
                   <script>
                     function getTimeRemaining(endtime){
-                      var t = Date.parse(endtime) - Date.parse('<?php if ($user->valid_until<>"0000-00-00 00:00:00") { echo $dt2; } else { echo "0000-00-00 00:00:00"; } ?>');
+                      var t = Date.parse(endtime) - Date.parse('<?php if ($user->valid_until<>"0000-00-00 00:00:00") { echo $dt2; } else { echo "0"; } ?>');
                       var seconds = Math.floor( (t/1000) % 60 );
                       var minutes = Math.floor( (t/1000/60) % 60 );
                       var hours = Math.floor( (t/(1000*60*60)) % 24 );
@@ -184,7 +184,7 @@
                     }
 
                     // var deadline = 'December 31 2015 00:00:50 UTC+0700';
-                    var deadline = '<?php if ($user->valid_until<>"0000-00-00 00:00:00") { echo $dt; } else { echo "0000-00-00 00:00:00"; } ?>';
+                    var deadline = '<?php if ($user->valid_until<>"0000-00-00 00:00:00") { echo $dt; } else { echo "0"; } ?>';
                     initializeClock('clockdiv', deadline);
                   </script>
 
