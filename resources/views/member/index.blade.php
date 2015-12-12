@@ -121,6 +121,7 @@
               -->
                   <?php 
                     $dt = Carbon::createFromFormat('Y-m-d H:i:s', $user->valid_until); 
+										$dt2 = Carbon::now();
                   ?>
                   <div id="clockdiv">
                     <div class="fl">
@@ -144,7 +145,7 @@
                   </div>
                   <script>
                     function getTimeRemaining(endtime){
-                      var t = Date.parse(endtime) - Date.parse(new Date());
+                      var t = Date.parse(endtime) - Date.parse('<?php echo $dt2; ?>');
                       var seconds = Math.floor( (t/1000) % 60 );
                       var minutes = Math.floor( (t/1000/60) % 60 );
                       var hours = Math.floor( (t/(1000*60*60)) % 24 );
@@ -210,7 +211,7 @@
                 if ($dt1->diffInDays($dt2) == 3 ) { $likes=400; }
                 if ($dt1->diffInDays($dt2) == 4 ) { $likes=450; }
                 if ($dt1->diffInDays($dt2) == 5 ) { $likes=500; }
-              if ( ($user->status_free_trial) && (($dt1->diffInDays($dt2) >= 0 )||($dt1->diffInDays($dt2) <= 5 )) ) {
+              if ( ($user->status_free_trial) && (($dt1->diffInDays($dt2) >= 0 )&&($dt1->diffInDays($dt2) <= 5 )) ) {
               ?>
               <div class="col-sm-8 col-md-8">
                 <div class="alert alert-info col-sm-18 col-md-18" id="">
@@ -235,7 +236,7 @@
             </div>          
             <div class="row">
               <div class="col-sm-8">            
-                <?php if ($user->type=="not-confirmed") { ?>
+                <?php if (($user->type=="not-confirmed") && (Request::path()<>"confirm-payment" ) ) { ?>
                 <?php } else { ?>
                 @yield('content')
                 <?php } ?>                
