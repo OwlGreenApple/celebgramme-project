@@ -7,11 +7,6 @@
       <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/bootstrap-theme.min.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/free-trial.css') }}" rel="stylesheet">
-      <script type="text/javascript">
-        $(document).ready(function() {
-          $("#alert").hide();
-        });
-      </script>
     </head>
     <body>
       <div class="header-package row container">

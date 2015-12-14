@@ -109,8 +109,7 @@ class RegisterController extends Controller
     if (! $request->session()->has('checkout_data')) {
       return redirect('/home');
     } else {
-      $dt = Carbon::now();
-      $user->valid_until = $dt->toDateTimeString();
+      $user->valid_until = "0000-00-00 00:00:00";
       $user->status_free_trial = 0;
       $user->save();
 
