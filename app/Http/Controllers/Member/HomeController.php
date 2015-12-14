@@ -198,6 +198,11 @@ class HomeController extends Controller
     Mail::queue('emails.confirm-order', $emaildata, function ($message) use ($user) {
       $message->from('no-reply@celebgramme.com', 'Celebgramme');
       $message->to($user->email);
+      $message->bcc(array(
+        "celebgram@gmail.com",
+        "michaelsugih@gmail.com",
+        "it2.axiapro@gmail.com",
+        ));
       $message->subject('Order Confirmation');
     });
 

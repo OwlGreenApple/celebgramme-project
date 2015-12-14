@@ -55,7 +55,7 @@
             
             <button class="btn btn-lg btn-block" type="submit">Register</button>
           {!! Form::close() !!}
-          <a href="{{url('login')}}" class="login-link-landing"> Already have an account ? </a>
+          <a href="{{url('login')}}" class="login-link-landing"> Already have an account? Click here to login </a>
         </div>
 
       </div>
