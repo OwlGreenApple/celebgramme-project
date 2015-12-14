@@ -60,6 +60,14 @@ box-sizing: border-box; padding-top: 10px; padding-bottom: 20px;
   margin:0 auto;
 
 }
+.login-link-landing{
+  position: absolute;
+    top: 575px;
+    left: 218px;
+    color: white;
+    font-size: 17.5px;
+    font-family: "Open Sans";  
+}
 .register-link-landing{
   position: absolute;
     top: 394px;
@@ -68,7 +76,7 @@ box-sizing: border-box; padding-top: 10px; padding-bottom: 20px;
     font-size: 17.5px;
     font-family: "Open Sans";  
 }
-.register-link-landing:hover { 
+.register-link-landing:hover, .login-link-landing:hover { 
     color: #908e8c;
     text-decoration: none;
 }

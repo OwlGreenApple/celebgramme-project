@@ -14,7 +14,7 @@
       <div class="container">  
         <div class="container2">  
           <div class="div-logo">
-            <div class="logo"></div>
+            <a href="http://celebgramme.com"><div class="logo"></div></a>
           </div>
           {!! Form::open(array('url'=>URL::ROUTE('auth.login'),'method'=>'post','class'=>"form-signin",)) !!}
             {!! csrf_field() !!}
