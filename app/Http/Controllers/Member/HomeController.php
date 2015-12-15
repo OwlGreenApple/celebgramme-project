@@ -175,9 +175,9 @@ class HomeController extends Controller
     }
     
     if(App::environment() == "local"){
-      $destinationPath = base_path().'/../general/images/order/';
+      $destinationPath = base_path().'/../htdocs/general/images/confirm-payment/';
     } else {
-      $destinationPath = base_path().'/../general/images/order/';
+      $destinationPath = base_path().'/../public_html/general/images/confirm-payment/';
     }   
     $filename = $order->no_order.".".Input::file('photo')->getClientOriginalExtension();
     Input::file('photo')->move($destinationPath, $filename);
