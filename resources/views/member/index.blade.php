@@ -84,12 +84,23 @@
               <li><a href="{{url('buy-more')}}">Buy More</a></li>
               <li><a href="{{url('confirm-payment')}}">Confirm Payment</a></li>
               <li><a href="{{url('edit-profile')}}">Ganti Password</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+              <li><a href="{{url('auto-manage')}}">Auto Manage</a></li>
+              <li><a href="{{url('buy-package')}}">Buy Package</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
               <li><a href="{{url('logout')}}">Logout</a></li>
             </ul>
           
           </div>
           
           <div class="col-sm-8 col-md-8  fl">
+            <?php if (Request::path()=="auto-manage" ) { ?>
+            @yield('content-auto-manage')
+
+
+            <?php } else { ?>
             <div class="row">
               <div class="col-sm-4">
                 <div class="panel panel-info">
@@ -100,28 +111,12 @@
                     <span id="span-balance">{{$user->balance}}</span> <input type=hidden value="{{$user->balance}}" id="balance">
                   </div>
                 </div>
-              </div>          
+              </div>                        
               <div class="col-sm-8">
-                <!--
-                <div class="panel panel-info">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">Valid until</h3>
-                  </div>
-                  <div class="panel-body">
-                    <?php 
-                      if ( $user->valid_until == "0000-00-00 00:00:00" ) {
-                        echo "-";
-                      }
-                      else {
-                        echo date("j F Y",strtotime($user->valid_until));
-                      }
-                    ?>
-                  </div>
-                </div>
-              -->
                   <?php 
                     $dt = Carbon::createFromFormat('Y-m-d H:i:s', $user->valid_until); 
 										$dt2 = Carbon::now();
+                    if ($dt2->gt($dt)) {$dt="0";$dt2="0"; }
                   ?>
                   <div id="clockdiv">
                     <div class="fl">
@@ -241,8 +236,12 @@
                 @yield('content')
                 <?php } ?>                
               </div>          
-            </div>          
-            
+            </div> 
+
+            <?php }?>
+
+
+
           </div>
           
           <div class="fn">

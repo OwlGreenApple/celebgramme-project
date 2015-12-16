@@ -62,6 +62,10 @@ Route::group(['middleware' => 'auth'], function()
   Route::resource('payment/paypal', 'Member\PaypalController');
   Route::get('payment/paypal/test', 'Member\PaypalController@test');
   
+
+  /*--------- Auto-manage ---------*/
+  Route::get('auto-manage', 'Member\AutoManageController@index');
+  Route::post('process-save-credential', 'Member\AutoManageController@process_save_credential');
 });
 
 

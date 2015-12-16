@@ -41,16 +41,16 @@
     <thead>
       <tr>
         <th>
-          Likes harian
+          Daily Likes 
         </th>
         <th>
-          Price(1 day)
+          Price 1 day
         </th>
         <th>
-          Price(7 day)
+          Price 7 day
         </th>
         <th>
-          Price(28 day)
+          Price 28 day
         </th>
       </tr>
     </thead>
