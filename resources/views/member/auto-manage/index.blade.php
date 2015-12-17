@@ -2,8 +2,32 @@
 
 @section('content-auto-manage')
 <script type="text/javascript">
+
+    function loadaccount(){
+        $.ajax({
+            type: 'GET',
+            url: "<?php echo url('load-account'); ?>",
+            data: {
+            },
+            dataType: 'text',
+            beforeSend: function()
+            {
+              $("#div-loading").show();
+            },
+            success: function(result) {
+                // $('#result').html(data);
+                $("#div-loading").hide();
+                $("#account-all").html(result);
+                console.log(result);
+            }
+        })
+        return false;
+    }
   $(document).ready(function() {
 
+
+    $("#alert").hide();
+    loadaccount();
 
     $('#button-process').click(function(e){
       $.ajax({
@@ -36,6 +60,9 @@
                 $("#alert").addClass('alert-danger');
                 $("#alert").removeClass('alert-success');
               }
+              $("#username").val("");
+              $("#password").val("");
+              loadaccount();
           }
       })
     });
@@ -68,10 +95,29 @@
               </div>  
 </div>                        
 
+<div class="row">
+
+  <div class="col-sm-8 col-md-8">
+    <div class="alert alert-info col-sm-18 col-md-18" id="">
+      Account jangan diprivate, harus dipublic supaya like bisa bertambah.
+    </div>  
+  </div>          
+  <div class="col-sm-8 col-md-8">            
+    <div class="alert alert-danger col-sm-18 col-md-18" id="alert">
+    </div>  
+  </div>          
+  @if (session('error'))
+    <div class="col-sm-8 col-md-8">            
+      <div class="alert alert-danger col-sm-18 col-md-18" >
+        {{ session('error') }}
+      </div>  
+    </div>          
+  @endif
+</div>                        
 
 <div class="row">
   <div class="col-md-8" id="account-all">
-
+<!--
     <div class="col-md-5 border-styling">
       <div class="row"> <img src="#" class=""> </div>
       <div class="row"> <label>nama</label></div>
@@ -83,9 +129,10 @@
         </div>
       </div>
     </div>
-
+-->
   </div>                        
 </div>      
+
 
 
   <!-- Modal -->
@@ -103,13 +150,13 @@
             <div class="form-group form-group-sm row">
               <label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Username</label>
               <div class="col-sm-8 col-md-6">
-                <input type="text" class="form-control" placeholder="Your username" name="username">
+                <input type="text" class="form-control" placeholder="Your username" name="username" id="username">
               </div>
             </div>  
             <div class="form-group form-group-sm row">
               <label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Password</label>
               <div class="col-sm-8 col-md-6">
-                <input type="text" class="form-control" placeholder="Your password" name="password">
+                <input type="password" class="form-control" placeholder="Your password" name="password" id="password">
               </div>
             </div>  
           </form>

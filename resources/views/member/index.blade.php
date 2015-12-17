@@ -96,7 +96,9 @@
           </div>
           
           <div class="col-sm-8 col-md-8  fl">
-            <?php if (Request::path()=="auto-manage" ) { ?>
+            <?php 
+            $str = explode("/", Request::path());
+            if ((Request::path()=="auto-manage" )||($str[0]=="account-setting" )) { ?>
             @yield('content-auto-manage')
 
 

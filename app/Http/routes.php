@@ -65,6 +65,8 @@ Route::group(['middleware' => 'auth'], function()
 
   /*--------- Auto-manage ---------*/
   Route::get('auto-manage', 'Member\AutoManageController@index');
+  Route::get('load-account', 'Member\AutoManageController@load_account');
+  Route::get('account-setting/{id}', 'Member\AutoManageController@account_setting');
   Route::post('process-save-credential', 'Member\AutoManageController@process_save_credential');
 });
 
