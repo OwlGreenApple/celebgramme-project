@@ -8,6 +8,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Carbon\Carbon;
 use Celebgramme\Models\User;
 use Celebgramme\Models\PackageUser;
+use Celebgramme\Models\Setting;
 
 
 class Kernel extends ConsoleKernel
@@ -52,10 +53,49 @@ class Kernel extends ConsoleKernel
 
         
       })->hourly();
-            
-            /* Add another CRON JOB here */
-            // ...
-        // $schedule->command('inspire')
-        //          ->hourly();
+
+      
+
+      $schedule->call(function () {
+
+        //kurangin detik, buat auto manage
+        $now = Carbon::now();
+        $users = User::where("active_auto_manage",">",0);
+        foreach ($users as $user){
+            $settings = Setting::where("type",'=','temp')
+                        ->where('user_id','=',$user->id)
+                        ->where('status','=',"started")
+                        ->where('type','=',"temp")
+                        ->get();
+            foreach($settings as $setting) {
+                $runTime = Carbon::createFromFormat('Y-m-d H:i:s', $setting->running_time);
+                $timevalue = $now->diffInSeconds($runTime);
+                $user->active_auto_manage -= $timevalue;
+                if ($user->active_auto_manage <= 0){
+                    $user->active_auto_manage = 0;
+                    $setting->status = 'stopped';
+                        //post info ke admin
+                        $post = Post::where('setting_id', '=', $setting->id)->first();
+                        if (is_null($post)) {
+                            $post = new Post;
+                            $post->description = "stopped";
+                        } else {
+                            $post->description = $post->description." (stopped) ";
+                        }
+                        $post->save();
+                }
+                else{
+                    $setting->running_time = $dt->toDateTimeString();
+                }
+                $setting->save();
+                $user->save();
+            }
+        }
+
+
+      })->everyFiveMinutes();
+
+
+
     }
 }

@@ -18,17 +18,65 @@
                 // $('#result').html(data);
                 $("#div-loading").hide();
                 $("#account-all").html(result);
-                console.log(result);
             }
         })
         return false;
     }
+
+
+    function call_action(action,id){
+        $.ajax({
+            type: 'GET',
+            url: "<?php echo url('call-action'); ?>",
+            data: {
+              action : action,
+              id : id,
+            },
+            dataType: 'text',
+            beforeSend: function()
+            {
+              $("#div-loading").show();
+            },
+            success: function(result) {
+                // $('#result').html(data);
+                $("#div-loading").hide();
+                var data = jQuery.parseJSON(result);
+                $("#alert").show();
+                $("#alert").html(data.message);
+                if(data.type=='success')
+                {
+                  $("#alert").addClass('alert-success');
+                  $("#alert").removeClass('alert-danger');
+                }
+                else if(data.type=='error')
+                {
+                  $("#alert").addClass('alert-danger');
+                  $("#alert").removeClass('alert-success');
+                }
+            }
+        })
+        return false;
+    }
+
+
   $(document).ready(function() {
 
 
     $("#alert").hide();
     loadaccount();
 
+    $( "body" ).on( "click", ".button-action", function() {
+      action = "";
+      if ($(this).val()=="Start") { action = "start"; }
+      if ($(this).val()=="Stop") { action = "stop"; }
+      call_action(action,$(this).attr("data-id"));
+    });
+    $('#button-start-all').click(function(e){
+      call_action('start','all');
+    });
+    $('#button-stop-all').click(function(e){
+      call_action('stop','all');
+    });
     $('#button-process').click(function(e){
       $.ajax({
           headers: {
@@ -52,8 +100,6 @@
               {
                 $("#alert").addClass('alert-success');
                 $("#alert").removeClass('alert-danger');
-                $("#balance").val(data.balance);
-                $("#span-balance").html(data.balance);
               }
               else if(data.type=='error')
               {
@@ -85,10 +131,10 @@
                       <input type="button" value="Add Account" class="btn btn-primary col-md-8 col-sm-12" data-toggle="modal" data-target="#myModal">
                     </div>                        
                     <div class="col-md-4 col-sm-8">
-                      <input type="button" value="Start All" class="btn btn-info col-md-8 col-sm-12">
+                      <input type="button" value="Start All" class="btn btn-info col-md-8 col-sm-12" id="button-start-all">
                     </div>                        
                     <div class="col-md-4 col-sm-8">
-                      <input type="button" value="Stop All" class="btn btn-warning col-md-8 col-sm-12">
+                      <input type="button" value="Stop All" class="btn btn-warning col-md-8 col-sm-12" id="button-stop-all">
                     </div>                        
                   </div>
                 </div>

@@ -20,6 +20,7 @@ class HomeController extends Controller
 {
   
 	public function test(){
+    return strval(false);
     $url = "http://play.vid-id.me/aff_c?offer_id=16&aff_id=3104";
     return view('member.pay-with-tweet')->with(array(
       'user'=>$user,
