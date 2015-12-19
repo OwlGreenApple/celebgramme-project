@@ -31,6 +31,9 @@ class PaymentController extends Controller
 	 * @return Redirect
 	 */
 	public function process(Request $request){
+		return redirect("buy-more")->with(array("message"=>"Order telah dibuat, silahkan melakukan pembayaran & konfirmasi order anda",
+			"status"=>"asdasd",
+			));
     $user = Auth::user();
     $package = Package::find(Input::get("package"));
     

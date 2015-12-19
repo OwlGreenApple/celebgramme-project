@@ -12,9 +12,10 @@
     <?php } ?>
   });
 </script>
-<?php if ( isset($message) ) { echo "asdasdas"; }?> 
+ 
 <form action="{{url('payment/process')}}" method="POST">
 
+  <!--
   <table class="table table-striped">
     <tr>
       <td>
@@ -116,6 +117,53 @@
       </td>
     </tr>
   </table>
+-->
+
+
+  <div class="form-group form-group-sm row">
+    <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Paket Daily Likes</label>
+    <div class="col-sm-8 col-md-6">
+      <select class="form-control" name="package-daily-likes">
+        <option value="-">Silahkan pilih paket</option>
+        <option value="1">1 Day - 200 likes</option>
+        <option value="4">1 Day - 500 likes</option>
+        <option value="7">1 Day - 1000 likes</option>
+        <option value="10">1 Day - 2000 likes</option>
+        <option value="13">1 Day - 3000 likes</option>
+        <option value="2">7 Days - 200 likes</option>
+        <option value="5">7 Days - 500 likes</option>
+        <option value="8">7 Days - 1000 likes</option>
+        <option value="11">7 Days - 2000 likes</option>
+        <option value="14">7 Days - 3000 likes</option>
+        <option value="3">28 Days - 200 likes</option>
+        <option value="6">28 Days - 500 likes</option>
+        <option value="9">28 Days - 1000 likes</option>
+        <option value="12">28 Days - 2000 likes</option>
+        <option value="15">28 Days - 3000 likes</option>
+      </select>
+    </div>
+  </div>  
+
+  <div class="form-group form-group-sm row">
+    <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Paket Auto Manage</label>
+    <div class="col-sm-8 col-md-6">
+      <select class="form-control" name="package-daily-likes">
+        <option value="-">Silahkan pilih paket</option>
+        <option value="16">Paket 7 Days</option>
+        <option value="17">Paket 28 Days</option>
+        <option value="18">Paket 88 Days</option>
+        <option value="19">Paket 178 Days</option>
+        <option value="20">Paket 358 Days</option>
+      </select>
+    </div>
+  </div>  
+
+  <div class="form-group form-group-sm row">
+    <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Code coupon</label>
+    <div class="col-sm-8 col-md-6">
+      <input type="text" class="form-control" name="coupon-code" placeholder="Masukkan code coupon anda">
+    </div>
+  </div>  
 
   <div class="form-group form-group-sm row">
     <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Metode Pembayaran</label>

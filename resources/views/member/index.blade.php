@@ -80,16 +80,11 @@
           <div class="col-sm-3 col-md-2 fl">    
             <ul class="nav nav-sidebar">
               <li><a href="{{url('send-like')}}">Send Likes</a></li>
-              <li><a href="{{url('order')}}">Order History</a></li>
+              <li><a href="{{url('auto-manage')}}">Auto Manage</a></li>
               <li><a href="{{url('buy-more')}}">Buy More</a></li>
               <li><a href="{{url('confirm-payment')}}">Confirm Payment</a></li>
+              <li><a href="{{url('order')}}">Order History</a></li>
               <li><a href="{{url('edit-profile')}}">Ganti Password</a></li>
-            </ul>
-            <ul class="nav nav-sidebar">
-              <li><a href="{{url('auto-manage')}}">Auto Manage</a></li>
-              <li><a href="{{url('buy-package')}}">Buy Package</a></li>
-            </ul>
-            <ul class="nav nav-sidebar">
               <li><a href="{{url('logout')}}">Logout</a></li>
             </ul>
           
@@ -102,7 +97,8 @@
             @yield('content-auto-manage')
 
 
-            <?php } else { ?>
+            <?php } else { 
+              if (Request::path()<>"buy-more" ) {?>
             <div class="row">
               <div class="col-sm-4">
                 <div class="panel panel-info">
@@ -190,6 +186,8 @@
 
               </div>
             </div>
+            <?php } ?>
+
             <div class="row">
               <?php if (Request::path()=="send-like" ) { ?>
               <div class="col-sm-8 col-md-8">
