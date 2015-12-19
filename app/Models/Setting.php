@@ -15,7 +15,9 @@ class Setting extends Model {
      * @var array
      */
     protected $fillable = ['activity_speed', 'media_source', 'media_age', 'media_type', 
-    'min_likes_media', 'max_likes_media', 'comment_su', 'follow_source', 'follow_su', 'follow_pu', 'unfollow_source', 'unfollow_wdfm', 'comments', 'tags', 'locations',];
+    'min_likes_media', 'max_likes_media', 'comment_su', 'follow_source', 'follow_su', 'follow_pu', 'unfollow_source', 'unfollow_wdfm', 'comments', 'tags', 'locations', 
+    'insta_username', 'insta_password', 'insta_user_id', 'insta_access_token', 'last_user', 'start_time', 'running_time', 'user_id', 'tags_blacklist', 'usernames_blacklist', 
+    'likes_counter', 'unfollows_counter', 'comments_counter', 'follows_counter', 'username', 'status' ];
 	protected function createSetting($arr)
 	{
         $setting = new Setting;
