@@ -14,6 +14,7 @@
 
 /* register package */
 Route::get('package', 'LandingPageController@package');
+Route::get('check-out', 'LandingPageController@check_out');
 Route::post('process-package', 'LandingPageController@process_package');
 
 Route::get('login', 'Auth\LoginController@getLogin');

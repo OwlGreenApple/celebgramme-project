@@ -46,6 +46,9 @@ class Kernel extends ConsoleKernel
                     }
 
                     $user->save();
+                } else 
+                if ($now->lt($date_until)) {
+                    user->balance = 0;
                 }
 
             }

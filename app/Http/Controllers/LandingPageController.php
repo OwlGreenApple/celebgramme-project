@@ -29,6 +29,10 @@ class LandingPageController extends Controller
 		return view('package')->with(array());
 	}
   
+	public function check_out(){
+		return view('check-out')->with(array());
+	}
+
   public function process_package(req $request) {
     $arr = array (
       "package_id"=>Request::input("package"),
