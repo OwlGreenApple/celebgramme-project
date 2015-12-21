@@ -80,9 +80,18 @@ class AutoManageController extends Controller
 
     $setting = Setting::where("insta_username","=",Request::input("username"))->where("type","=","real")->first();
     if (is_null($setting)) {
+      $count_setting = LinkUserSetting::where("user_id","=",$user->id)
+                          ->count();
+      if ( $count_setting>=3 ) {
+        $arr["message"]= "Account maksimal 3";
+        $arr["type"]= "error";
+        return $arr;
+      }
       $setting = Setting::createSetting($data);
     } else {
-      $linkUserSetting = LinkUserSetting::where("user_id","=",$user->id)->first();
+      $linkUserSetting = LinkUserSetting::where("user_id","=",$user->id)
+                          ->where("setting_id","=",$setting->id)
+                          ->first();
       if (is_null($linkUserSetting)) {
         $linkUserSetting = new LinkUserSetting;
         $linkUserSetting->user_id=$user->id;

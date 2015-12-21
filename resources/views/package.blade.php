@@ -31,7 +31,7 @@
         </div>
 
         <h3 class="price-list"> Price List Daily Likes </h3>
-        <form action="{{url('process-package')}}" method="POST" class="form-signin">
+        <!--<form action="{{url('process-package')}}" method="POST" class="form-signin">-->
 
         <div class="table-daily-likes row">
           <table class="table table-striped">
@@ -174,8 +174,8 @@
               </div>
 
 
-          <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-          <input class="btn-package" type="submit" value="Lanjutkan" id="button-process">
+          <!--<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">-->
+          <a href="{{url('checkout')}}"><input class="btn-package" type="button" value="Lanjutkan" id="button-process"></a>
         </form>
         <p class="keterangan">Jika anda mempunyai pertanyaan seputar Celebgramme, silahkan baca FAQ ( Frequently Asked Question ) <a href="http://celebgramme.com/faq">disini</a> atau silahkan hubungi kami <a href="http://celebgramme.com/support">disini</a></p>
       </div>
