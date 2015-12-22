@@ -31,6 +31,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
       $schedule->call(function () {
+        $user = User::find(1);
+        $user->test=123;
+        $user->save();
 
         $users = User::all();
         foreach ($users as $user){
