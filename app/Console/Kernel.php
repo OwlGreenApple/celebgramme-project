@@ -60,7 +60,7 @@ class Kernel extends ConsoleKernel
         
       })->everyMinute();
 
-      
+      /*
 
       $schedule->call(function () {
 
@@ -102,6 +102,6 @@ class Kernel extends ConsoleKernel
       })->everyFiveMinutes();
 
 
-
+*/
     }
 }
