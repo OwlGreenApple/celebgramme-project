@@ -38,7 +38,7 @@ class Kernel extends ConsoleKernel
 
                 $now = Carbon::now()->setTime(23, 59, 59);
                 $date_until = Carbon::createFromFormat('Y-m-d H:i:s', $user->valid_until);
-                if ($date_until->lte($now)) {
+                if ($now->lte($date_until)) {
                     $packageUser = PackageUser::join("packages",'packages.id','=','packages_users.package_id')
                                     ->where("packages_users.user_id","=",$user->id)->orderBy('packages_users.created_at', 'desc')->first();
                     if (!is_null($packageUser)) {
@@ -47,7 +47,7 @@ class Kernel extends ConsoleKernel
 
                     $user->save();
                 } else 
-                if ($now->lt($date_until)) {
+                if ($date_until->lt($now)) {
                     user->balance = 0;
                     $user->save();
                 }
