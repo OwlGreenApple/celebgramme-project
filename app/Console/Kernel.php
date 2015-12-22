@@ -56,7 +56,7 @@ class Kernel extends ConsoleKernel
         }
 
         
-      })->hourly();
+      })->everyFiveMinutes();
 
       
 
