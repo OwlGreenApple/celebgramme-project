@@ -34,7 +34,7 @@ class Kernel extends ConsoleKernel
 
         $users = User::all();
         foreach ($users as $user){
-            if ($user->valid_until <> "0000-00-00 00:00:00") {
+            //if ($user->valid_until <> "0000-00-00 00:00:00") {
 
                 $now = Carbon::now()->setTime(23, 59, 59);
                 $date_until = Carbon::createFromFormat('Y-m-d H:i:s', $user->valid_until);
@@ -52,11 +52,11 @@ class Kernel extends ConsoleKernel
                     $user->save();
                 }
 
-            }
+            // }
         }
 
         
-      })->everyFiveMinutes();
+      })->everyMinute();
 
       
 
