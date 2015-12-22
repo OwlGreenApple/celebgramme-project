@@ -16,7 +16,7 @@
 Route::get('package', 'LandingPageController@package');
 Route::get('checkout', 'LandingPageController@checkout');
 Route::get('calculate-coupon', 'LandingPageController@calculate_coupon');
-// Route::post('process-package', 'LandingPageController@process_package');
+Route::post('process-package', 'LandingPageController@process_package');
 
 Route::get('login', 'Auth\LoginController@getLogin');
 Route::post('auth/login', ['as'=>'auth.login', 'uses'=> 'Auth\LoginController@postLogin']);

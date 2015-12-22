@@ -16,7 +16,7 @@ use Celebgramme\Models\User;
 use Celebgramme\Models\Coupon;
 use Celebgramme\Veritrans\Veritrans;
 
-use View, Input, Mail, Request, App, Hash, Validator;
+use View, Input, Mail, Request, App, Hash, Validator, Carbon;
 
 class LandingPageController extends Controller
 {
@@ -35,7 +35,9 @@ class LandingPageController extends Controller
 	}
 
   	public function calculate_coupon() {
-  		$coupon = Coupon::where("coupon_code","=",Request::input('couponcode'))->first();
+  		$dt = Carbon::now();
+  		$coupon = Coupon::where("coupon_code","=",Request::input('couponcode'))
+  					->where("valid_until",">=",$dt->toDateTimeString())->first();
   		if (!is_null($coupon)) {
   			$arr['show']=number_format($coupon->coupon_value,0,'','.');
   			$arr['real']= $coupon->coupon_value;
@@ -48,7 +50,9 @@ class LandingPageController extends Controller
 
     public function process_package(req $request) {
 	    $arr = array (
-	      "package_id"=>Request::input("package"),
+	      "package_id"=>Request::input("select-daily-like"),
+	      "package_manage_id"=>Request::input("select-auto-manage"),
+	      "coupon_code"=>Request::input("coupon-code"),
 	      "payment_method"=>Request::input("payment-method"),
 	    );
 	    

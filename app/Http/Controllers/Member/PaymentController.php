@@ -31,11 +31,8 @@ class PaymentController extends Controller
 	 * @return Redirect
 	 */
 	public function process(Request $request){
-		return redirect("buy-more")->with(array("message"=>"Order telah dibuat, silahkan melakukan pembayaran & konfirmasi order anda",
-			"status"=>"asdasd",
-			));
     $user = Auth::user();
-    $package = Package::find(Input::get("package"));
+    $package = Package::find(Input::get("package-daily-likes"));
     
     //transfer bank
     if (Input::get("payment-method") == 1) {
@@ -45,6 +42,8 @@ class PaymentController extends Controller
         "user_id" => $user->id,
         "order_total" => $package->price,
         "package_id" => $package->id,
+        "package_manage_id" => Input::get("package-auto-manage"),
+        "coupon_code" => Input::get("coupon-code"),
       );
       
       $order = Order::createOrder($data,true);

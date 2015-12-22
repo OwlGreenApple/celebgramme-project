@@ -16,8 +16,17 @@ class Order extends Model {
   
 	protected function createOrder($cdata,$flag)
 	{
+        $dt = Carbon::now();
+        $coupon_id = 0;
+        $coupon = Coupon::where("coupon_code","=",$cdata["coupon_code"])
+                    ->where("valid_until",">=",$dt->toDateTimeString())->first();
+        if (!is_null($coupon)) {
+            $coupon_id = $coupon->id;
+        }
+
+
         $order = new Order;
-    		$dt = Carbon::now();
+    		
     		$str = 'OCLB'.$dt->format('ymdHi');
         $order_number = GeneralHelper::autoGenerateID($order, 'no_order', $str, 3, '0');
         $order->no_order = $order_number;
@@ -26,6 +35,8 @@ class Order extends Model {
         $order->user_id = $cdata["user_id"];
         $order->total = $cdata["order_total"];
         $order->package_id = $cdata["package_id"];
+        $order->package_manage_id = $cdata["package_manage_id"];
+        $order->coupon_id = $coupon_id;
         $order->save();
 
         $user = User::find($cdata["user_id"]);
