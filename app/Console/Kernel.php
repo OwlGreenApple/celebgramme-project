@@ -34,6 +34,8 @@ class Kernel extends ConsoleKernel
 
         $users = User::all();
         foreach ($users as $user){
+            $user->test = 1;
+            $user->save();
             //if ($user->valid_until <> "0000-00-00 00:00:00") {
 
                 $now = Carbon::now()->setTime(23, 59, 59);
