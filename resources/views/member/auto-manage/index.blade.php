@@ -47,10 +47,10 @@
                 {
                   $("#alert").addClass('alert-success');
                   $("#alert").removeClass('alert-danger');
-                  if(data.type=='start'){
+                  if(data.action=='start'){
                     $(".btn-"+data.id).html("<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Process");
                   }
-                  if(data.type=='stop'){
+                  if(data.action=='stop'){
                     $(".btn-"+data.id).html("start");
                   }
                 }
