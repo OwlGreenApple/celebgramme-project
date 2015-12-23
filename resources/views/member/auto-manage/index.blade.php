@@ -49,9 +49,11 @@
                   $("#alert").removeClass('alert-danger');
                   if(data.action=='start'){
                     $(".btn-"+data.id).html("<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Process");
+                    $(".btn-"+data.id).val("Stop");
                   }
                   if(data.action=='stop'){
-                    $(".btn-"+data.id).html("start");
+                    $(".btn-"+data.id).html("Start");
+                    $(".btn-"+data.id).val("Start");
                   }
                 }
                 else if(data.type=='error')
