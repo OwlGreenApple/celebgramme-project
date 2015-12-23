@@ -147,6 +147,9 @@ class AutoManageController extends Controller
 
   public function call_action(){  
     $user = Auth::user();
+    $arr["action"]= Request::input('action');
+    $arr["id"]= Request::input('id');
+
     if ( ($user->active_auto_manage==0) && ((Request::input('action')=='start')) ) {
       $arr["message"]= "Anda tidak dapat menjalankan program, silahkan upgrade waktu anda";
       $arr["type"]= "error";
