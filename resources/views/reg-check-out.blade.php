@@ -32,7 +32,9 @@
               $(this).find("button[type='submit']").prop('disabled',true);
             }
           });      
-
+          <?php if (session()->has("error")) { ?>
+            alert('email sudah terdaftar');
+          <?php } ?>
         });
       </script>
     </head>

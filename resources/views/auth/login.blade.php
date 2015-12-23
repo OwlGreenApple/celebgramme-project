@@ -30,7 +30,7 @@
               </div>      
             <button class="btn btn-lg btn-block" type="submit">Sign in</button>
           {!! Form::close() !!}
-          <a href="{{url('register')}}" class="register-link-landing"> Need an account ? </a>
+          <a href="{{url('package')}}" class="register-link-landing"> Need an account ? </a>
         </div>
 
       </div>

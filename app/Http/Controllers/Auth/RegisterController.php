@@ -76,7 +76,7 @@ class RegisterController extends Controller
       $user->save();
 
     } else {
-      return "data tidak valid";
+      return redirect("register-checkout")->with("error","email sudah terdaftar");
     }
     
     Auth::attempt(['email' => $request->email, 'password' => $request->password], true);
