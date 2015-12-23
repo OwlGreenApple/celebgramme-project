@@ -34,13 +34,14 @@ class Order extends Model {
         $order->order_status = $cdata["order_status"];
         $order->user_id = $cdata["user_id"];
         $order->total = $cdata["order_total"];
-        $order->package_id = $cdata["package_id"];
+        // $order->package_id = $cdata["package_id"];
+        $order->package_id = 0;
         $order->package_manage_id = $cdata["package_manage_id"];
         $order->coupon_id = $coupon_id;
         $order->save();
 
         $user = User::find($cdata["user_id"]);
-        $package = Package::find($cdata["package_id"]);
+        $package = Package::find($cdata["package_manage_id"]);
         $shortcode = str_replace('OCLB', '', $order_number);
         //send email order
         $emaildata = [

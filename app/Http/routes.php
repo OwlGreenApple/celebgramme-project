@@ -23,6 +23,7 @@ Route::post('auth/login', ['as'=>'auth.login', 'uses'=> 'Auth\LoginController@po
 Route::get('logout', 'Auth\LoginController@getLogout');
 
 Route::get('register', 'Auth\RegisterController@getRegister');
+Route::get('register-checkout', 'LandingPageController@register_checkout');
 Route::post('auth/register', ['as'=>'auth.register', 'uses'=> 'Auth\RegisterController@postRegister']);
 
 /*--------- Must Login Routes ---------*/

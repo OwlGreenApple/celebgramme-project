@@ -11,11 +11,12 @@ use Celebgramme\Models\RequestModel;
 use Celebgramme\Models\Order;
 use Celebgramme\Models\Invoice;
 use Celebgramme\Models\Package;
+use Celebgramme\Models\Coupon;
 use Celebgramme\Models\VeritransModel;
 use Celebgramme\Veritrans\Veritrans;
 
 use Illuminate\Http\Request;
-use View, Input;
+use View, Input, Carbon;
 
 class PaymentController extends Controller
 {
@@ -32,7 +33,26 @@ class PaymentController extends Controller
 	 */
 	public function process(Request $request){
     $user = Auth::user();
-    $package = Package::find(Input::get("package-daily-likes"));
+    //$package = Package::find(Input::get("package-daily-likes"));
+
+    //hitung total
+	$total = 0;
+	// $package = Package::find(Input::get("package-daily-likes"));
+	// if (!is_null($package)) {
+	// 	$total += $package->price;
+	// }
+	$package = Package::find(Input::get("package-auto-manage"));
+	if (!is_null($package)) {
+		$total += $package->price;
+	}
+	$dt = Carbon::now();
+	$coupon = Coupon::where("coupon_code","=",Input::get("coupon-code"))
+				->where("valid_until",">=",$dt->toDateTimeString())->first();
+	if (!is_null($coupon)) {
+		$total -= $coupon->coupon_value;
+		if ($total<0) { $total =0; }
+	}
+
     
     //transfer bank
     if (Input::get("payment-method") == 1) {
@@ -40,8 +60,8 @@ class PaymentController extends Controller
         "order_type" => "transfer_bank",
         "order_status" => "pending",
         "user_id" => $user->id,
-        "order_total" => $package->price,
-        "package_id" => $package->id,
+        "order_total" => $total,
+        "package_id" => Input::get("package-daily-likes"),
         "package_manage_id" => Input::get("package-auto-manage"),
         "coupon_code" => Input::get("coupon-code"),
       );

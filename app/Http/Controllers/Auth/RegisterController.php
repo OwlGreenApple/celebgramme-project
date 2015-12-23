@@ -114,15 +114,15 @@ class RegisterController extends Controller
       $user->save();
 
       $checkout_data = $request->session()->get('checkout_data');
-      $package = Package::find($checkout_data["package_id"]);
+      // $package = Package::find($checkout_data["package_id"]);
       
       if ($checkout_data["payment_method"]== 1) {
         $data = array (
           "order_type" => "transfer_bank",
           "order_status" => "pending",
           "user_id" => $user->id,
-          "order_total" => $package->price,
-          "package_id" => $package->id,
+          "order_total" => $checkout_data["total"],
+          "package_id" => $checkout_data["package_id"],
           "package_manage_id" => $checkout_data["package_manage_id"],
           "coupon_code" => $checkout_data["coupon_code"],
         );

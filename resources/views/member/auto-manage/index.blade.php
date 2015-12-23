@@ -120,6 +120,8 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<?php   if ($user->type<>"not-confirmed") { ?>
 <div class="row">
               <div class="col-md-8">
                 <div class="panel panel-info ">
@@ -140,9 +142,88 @@
                 </div>
               </div>  
 </div>                        
+<?php } ?>
+
+
+<div class="row">
+  <div class="col-sm-8">
+      <div id="clockdiv">
+        <div class="fl">
+          <span class="days"></span>
+          <div class="smalltext">Days</div>
+        </div>
+        <div class="fl">
+          <span class="hours"></span>
+          <div class="smalltext">Hours</div>
+        </div>
+        <div class="fl">
+          <span class="minutes"></span>
+          <div class="smalltext">Minutes</div>
+        </div>
+        <div class="fl">
+          <span class="seconds"></span>
+          <div class="smalltext">Seconds</div>
+        </div>
+        <i class="fn">
+        </i>
+      </div>
+      <script>
+        function getTimeRemaining(endtime){
+          var t = <?php echo $user->active_auto_manage ?>;
+          var seconds = Math.floor( (t) % 60 );
+          var minutes = Math.floor( (t/60) % 60 );
+          var hours = Math.floor( (t/(60*60)) % 24 );
+          var days = Math.floor( t/(60*60*24) );
+          return {
+            'total': t,
+            'days': days,
+            'hours': hours,
+            'minutes': minutes,
+            'seconds': seconds
+          };
+        }
+
+        function initializeClock(id, endtime){
+          var clock = document.getElementById(id);
+          var daysSpan = clock.querySelector('.days');
+          var hoursSpan = clock.querySelector('.hours');
+          var minutesSpan = clock.querySelector('.minutes');
+          var secondsSpan = clock.querySelector('.seconds');
+
+          function updateClock(){
+            var t = getTimeRemaining(endtime);
+
+            daysSpan.innerHTML = t.days;
+            hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+            minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+            secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+            if(t.total<=0){
+              clearInterval(timeinterval);
+            }
+          }
+
+          updateClock();
+          var timeinterval = setInterval(updateClock,1000);
+        }
+
+        var deadline = 'December 31 2015 00:00:50 UTC+0700';
+        initializeClock('clockdiv', deadline);
+      </script>
+  </div>
+</div>
+
+
 
 <div class="row">
 
+  <?php if ($user->type=="not-confirmed") { ?> 
+  <div class="col-sm-8 col-md-8">            
+    <div class="alert alert-danger col-sm-18 col-md-18">
+      Silahkan konfirmasi email terlebih dahulu. Klik <a href="" id="link-activation">disini</a> untuk kirim email konfirmasi ulang.
+    </div>  
+  </div>          
+  <?php } ?>
   <div class="col-sm-8 col-md-8">
     <div class="alert alert-info col-sm-18 col-md-18" id="">
       Account jangan diprivate, harus dipublic supaya like bisa bertambah.
@@ -161,6 +242,7 @@
   @endif
 </div>                        
 
+<?php if ($user->type<>"not-confirmed") { ?>
 <div class="row">
   <div class="col-md-8" id="account-all">
 <!--
@@ -178,7 +260,7 @@
 -->
   </div>                        
 </div>      
-
+<?php }?>
 
 
   <!-- Modal -->

@@ -215,11 +215,15 @@
                 </div>  
               </div>
               <?php } ?>          
+              <?php if ($user->type=="not-confirmed") { ?> 
               <div class="col-sm-8 col-md-8">            
                 <div class="alert alert-danger col-sm-18 col-md-18" id="alert">
-                  <?php if ($user->type=="not-confirmed") { ?> 
                   Silahkan konfirmasi email terlebih dahulu. Klik <a href="" id="link-activation">disini</a> untuk kirim email konfirmasi ulang.
-                  <?php } ?>
+                </div>  
+              </div>          
+              <?php } ?>
+              <div class="col-sm-8 col-md-8">            
+                <div class="alert alert-danger col-sm-18 col-md-18" id="alert" style="display:none;">
                 </div>  
               </div>          
               <?php if ( session('cpa') ) { ?>
@@ -232,7 +236,9 @@
             </div>          
             <div class="row">
               <div class="col-sm-8">            
-                <?php if (($user->type=="not-confirmed") && (Request::path()<>"confirm-payment" ) ) { ?>
+                <?php 
+                if (($user->type=="not-confirmed") && (Request::path()<>"confirm-payment" ) ) { 
+                ?>
                 <?php } else { ?>
                 @yield('content')
                 <?php } ?>                
