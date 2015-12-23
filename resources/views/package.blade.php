@@ -19,7 +19,7 @@
           <div class="div-logo">
             <a href="http://celebgramme.com"><div class="logo"></div></a>
           </div>
-          <h1 class="h1-package">Pilih Paket <strong>Instagram Likes</strong></h1>
+          <h1 class="h1-package">Pilih Paket <strong>Auto Manage</strong></h1>
         </div>
       </div>
 

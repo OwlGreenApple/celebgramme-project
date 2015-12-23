@@ -78,4 +78,5 @@ Route::group(['middleware' => 'auth'], function()
 Route::post('payment/vtnotification', ['as' => 'vt.notif', 'uses' => 'Member\PaymentController@veritransNotification']);
 
 Route::get('generate-balance', 'CronJobController@generate_balance');
+Route::get('auto-manage', 'CronJobController@auto_manage');
 
