@@ -55,9 +55,11 @@
 
 
     $('#button-process').click(function(e){
-      if ( ($("#select-daily-like").find("option:selected").attr("data-real")=="0") && ($("#select-auto-manage").find("option:selected").attr("data-real")=="0") )
+      // if ( ($("#select-daily-like").find("option:selected").attr("data-real")=="0") && ($("#select-auto-manage").find("option:selected").attr("data-real")=="0") )
+      if ($("#select-auto-manage").find("option:selected").attr("data-real")=="0") 
       {
-        alert("Silahkan pilih salah satu paket. paket daily likes atau paket auto manage");
+        alert("Silahkan pilih paket yang anda gunakan");
+        // alert("Silahkan pilih salah satu paket. paket daily likes atau paket auto manage");
         e.preventDefault();
       }
     });
@@ -178,7 +180,7 @@
   </table>
 -->
 
-
+<!--
   <div class="form-group form-group-sm row">
     <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Paket Daily Likes</label>
     <div class="col-sm-8 col-md-6">
@@ -202,7 +204,7 @@
       </select>
     </div>
   </div>  
-
+-->
   <div class="form-group form-group-sm row">
     <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Paket Auto Manage</label>
     <div class="col-sm-8 col-md-6">

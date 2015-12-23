@@ -43,10 +43,10 @@
               </div>
             </div>
           </div>
-
+<!--
           <h3 class="price-list"> Price List Daily Likes </h3>
           <!--<form action="{{url('process-package')}}" method="POST" class="form-signin">-->
-
+<!--
           <div class="table-daily-likes row">
             <table class="table table-striped">
               <thead>
@@ -71,15 +71,12 @@
                     200
                   </td>
                   <td>
-                    <!-- <input type="radio" name="package" value="1" id="a1" checked> -->
                     <label for="a1">10.000</label>
                   </td>
                   <td>
-                    <!-- <input type="radio" name="package" value="2" id="a2"> -->
                     <label for="a2">60.000</label>
                   </td>
                   <td>
-                    <!-- <input type="radio" name="package" value="3" id="a3"> -->
                     <label for="a3">180.000</label>
                   </td>
                 </tr>
@@ -88,15 +85,12 @@
                     500
                   </td>
                   <td>
-                    <!-- <input type="radio" name="package" value="4" id="b1"> -->
                     <label for="b1">15.000</label>
                   </td>
                   <td>
-                    <!-- <input type="radio" name="package" value="5" id="b2"> -->
                     <label for="b2">90.000</label>
                   </td>
                   <td>
-                    <!-- <input type="radio" name="package" value="6" id="b3"> -->
                     <label for="b3">270.000</label>
                   </td>
                 </tr>
@@ -105,15 +99,12 @@
                     1000
                   </td>
                   <td>
-                    <!-- <input type="radio" name="package" value="7" id="c1"> -->
                     <label for="c1">20.000</label>
                   </td>
                   <td>
-                    <!-- <input type="radio" name="package" value="8" id="c2"> -->
                     <label for="c2">120.000</label>
                   </td>
                   <td>
-                    <!-- <input type="radio" name="package" value="9" id="c3"> -->
                     <label for="c3">360.000</label>
                   </td>
                 </tr>
@@ -122,15 +113,12 @@
                     2000
                   </td>
                   <td>
-                    <!-- <input type="radio" name="package" value="10" id="d1"> -->
                     <label for="d1">30.000</label>
                   </td>
                   <td>
-                    <!-- <input type="radio" name="package" value="11" id="d2"> -->
                     <label for="d2">180.000</label>
                   </td>
                   <td>
-                    <!-- <input type="radio" name="package" value="12" id="d3"> -->
                     <label for="d3">540.000</label>
                   </td>
                 </tr>
@@ -139,15 +127,12 @@
                     3000
                   </td>
                   <td>
-                    <!-- <input type="radio" name="package" value="13" id="e1"> -->
                     <label for="e1">40.000</label>
                   </td>
                   <td>
-                    <!-- <input type="radio" name="package" value="14" id="e2"> -->
                     <label for="e2">240.000</label>
                   </td>
                   <td>
-                    <!-- <input type="radio" name="package" value="15" id="e3"> -->
                     <label for="e3">720.000</label>
                   </td>
                 </tr>
@@ -179,7 +164,7 @@
                   <div class="content-description col-md-6 col-xs-6">
                     <h3>Cara Pembayaran</h3>
                     <p> 
-                      1. Silahkan cek harga paket Daily Likes & Auto Manage yang telah tersedia di halaman prices, klik lanjutkan <br>
+                      1. Silahkan cek harga paket <!--Daily Likes & -->Auto Manage yang telah tersedia di halaman prices, klik lanjutkan <br>
                       2. Anda akan masuk ke halaman checkout, pilih paket yang anda inginkan. (jika anda tidak memilih salah satu paket, silahkan biarkan default) <br>
                       3. Masukkan kode kupon potongan harga jika ada <br>
                       4. Pilih opsi pembayaran anda kemudian klik order <br>

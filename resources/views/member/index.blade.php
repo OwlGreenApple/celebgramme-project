@@ -79,7 +79,7 @@
         <div class="row">
           <div class="col-sm-3 col-md-2 fl">    
             <ul class="nav nav-sidebar">
-              <li><a href="{{url('send-like')}}">Send Likes</a></li>
+<!--              <li><a href="{{url('send-like')}}">Send Likes</a></li>-->
               <li><a href="{{url('auto-manage')}}">Auto Manage</a></li>
               <li><a href="{{url('buy-more')}}">Buy More</a></li>
               <li><a href="{{url('confirm-payment')}}">Confirm Payment</a></li>
@@ -92,13 +92,14 @@
           
           <div class="col-sm-8 col-md-8  fl">
             <?php 
-            $str = explode("/", Request::path());
-            if ((Request::path()=="auto-manage" )||($str[0]=="account-setting" )) { ?>
+            $str = explode("/", Request::path());                                   /* karena  */
+            if ((Request::path()=="auto-manage" )||($str[0]=="account-setting" )||(Request::path()=="" )||(Request::path()=="home" )) { ?>
             @yield('content-auto-manage')
 
 
             <?php } else { 
-              if (Request::path()<>"buy-more" ) {?>
+              if (Request::path()<>"buy-more" )  {?>
+              <!--
             <div class="row">
               <div class="col-sm-4">
                 <div class="panel panel-info">
@@ -186,8 +187,8 @@
 
               </div>
             </div>
+-->
             <?php } ?>
-
             <div class="row">
               <?php if (Request::path()=="send-like" ) { ?>
               <div class="col-sm-8 col-md-8">

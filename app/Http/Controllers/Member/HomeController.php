@@ -70,11 +70,13 @@ class HomeController extends Controller
 
     $dt1 = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at);
     $dt2 = Carbon::now();
-    if ( ($user->status_free_trial==1) && ( $user->used_free_trial <= $dt1->diffInDays($dt2) ) ) {
+    /*remark disable daily like
+    if ( ($user->status_free_trial==1) && ( $user->used_free_trial <= $dt1->diffInDays($dt2) ) ) { 
       return redirect("free-trial");
     } else {
-		  return view('member.send-like')->with(array('user'=>$user,));
-    }
+      return view('member.send-like')->with(array('user'=>$user,));
+    }*/
+		return view('member.auto-manage.index')->with(array('user'=>$user,));
 	}
   
   /**

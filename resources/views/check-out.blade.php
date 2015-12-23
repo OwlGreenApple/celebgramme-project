@@ -60,9 +60,11 @@
           });          
 
           $('#button-process').click(function(e){
-            if ( ($("#select-daily-like").find("option:selected").attr("data-real")=="0") && ($("#select-auto-manage").find("option:selected").attr("data-real")=="0") )
+            if ($("#select-auto-manage").find("option:selected").attr("data-real")=="0") 
+            // if ( ($("#select-daily-like").find("option:selected").attr("data-real")=="0") && ($("#select-auto-manage").find("option:selected").attr("data-real")=="0") )
             {
-              alert("Silahkan pilih salah satu paket. paket daily likes atau paket auto manage");
+              alert("Silahkan pilih paket yang akan anda pakai");
+              // alert("Silahkan pilih salah satu paket. paket daily likes atau paket auto manage");
               e.preventDefault();
             }
           });
@@ -87,7 +89,7 @@
 
           <h3 class="price-list"> Invoice Payment </h3>
           <form action="{{url('process-package')}}" method="POST" class="form-signin">
-
+<!--
             <div class="div-opsi-pembayaran">
               <div class="col-sm-2 col-md-2">
               </div>
@@ -123,7 +125,7 @@
               <div class="col-sm-2 col-md-2">
               </div>
             </div>  
-
+-->
             <div class="div-opsi-pembayaran">
               <div class="col-sm-2 col-md-2">
               </div>
