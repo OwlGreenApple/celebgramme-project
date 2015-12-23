@@ -20,7 +20,7 @@ if (isset($datas)) {
   <div class="row"> <p> Status activity : <?php if ($data->status=='stopped') { echo 'Stopped'; } else {echo "Started";}?></p></div>
   <div class="row"> 
     <div class="im-centered">
-    <button data-id="{{$data->id}}" class="btn btn-info button-action" value="<?php if ($data->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?> ">
+    <button data-id="{{$data->id}}" class="btn btn-info button-action" value="<?php if ($data->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
       <?php if ($data->status=='stopped') { echo 'Start'; } else {echo "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Process";}?> 
     </button>
     <a href="{{url('account-setting/'.$data->id)}}"><input type="button" value="Setting" class="btn btn-primary"></a>
