@@ -131,7 +131,7 @@
 
 <?php   if ($user->type<>"not-confirmed") { ?>
 <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-10 col-sm-10">
                 <div class="panel panel-info ">
                   <div class="panel-heading">
                     <h3 class="panel-title">Dashboard</h3>
@@ -154,7 +154,7 @@
 
 
 <div class="row">
-  <div class="col-sm-8">
+  <div class="col-sm-10 col-md-10">
       <div id="clockdiv">
         <div class="fl">
           <span class="days"></span>
@@ -226,23 +226,23 @@
 <div class="row">
 
   <?php if ($user->type=="not-confirmed") { ?> 
-  <div class="col-sm-8 col-md-8">            
+  <div class="col-sm-10 col-md-10">            
     <div class="alert alert-danger col-sm-18 col-md-18">
       Silahkan konfirmasi email terlebih dahulu. Klik <a href="" id="link-activation">disini</a> untuk kirim email konfirmasi ulang.
     </div>  
   </div>          
   <?php } ?>
-  <div class="col-sm-8 col-md-8">
+  <div class="col-sm-10 col-md-10">
     <div class="alert alert-info col-sm-18 col-md-18" id="">
-      Account jangan diprivate, harus dipublic supaya like bisa bertambah.
+      Untuk menggunakan celebgramme harap akun jangan di private
     </div>  
   </div>          
-  <div class="col-sm-8 col-md-8">            
+  <div class="col-sm-10 col-md-10">            
     <div class="alert alert-danger col-sm-18 col-md-18" id="alert">
     </div>  
   </div>          
   @if (session('error'))
-    <div class="col-sm-8 col-md-8">            
+    <div class="col-sm-10 col-md-10">            
       <div class="alert alert-danger col-sm-18 col-md-18" >
         {{ session('error') }}
       </div>  
@@ -252,7 +252,7 @@
 
 <?php if ($user->type<>"not-confirmed") { ?>
 <div class="row">
-  <div class="col-md-8" id="account-all">
+  <div class="col-md-10" id="account-all">
 <!--
     <div class="col-md-5 border-styling">
       <div class="row"> <img src="#" class=""> </div>

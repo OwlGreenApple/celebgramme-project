@@ -37,7 +37,7 @@
               <div class="col-sm-4 col-md-4">
               </div>
               <div class="col-sm-4 col-md-4">
-                <p>**bisa digunakan max.total 3 account</p>
+                <p>**bisa digunakan max.total 3 account Instagram</p>
               </div>
               <div class="col-sm-4 col-md-4">
               </div>
@@ -178,9 +178,11 @@
 
 
             <!--<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">-->
-            <a href="{{url('checkout')}}"><input class="btn-package" type="button" value="Lanjutkan" id="button-process"></a>
+            <a href="{{url('checkout')}}"><input class="btn-package" type="button" value="Order sekarang" id="button-process"></a>
           </form>
-          <p class="keterangan">Jika anda mempunyai pertanyaan seputar Celebgramme, silahkan baca FAQ ( Frequently Asked Question ) <a href="http://celebgramme.com/faq">disini</a> atau silahkan hubungi kami <a href="http://celebgramme.com/support">disini</a></p>
+          <p class="keterangan">
+            <!--Jika anda mempunyai pertanyaan seputar Celebgramme, silahkan baca FAQ ( Frequently Asked Question ) <a href="http://celebgramme.com/faq">disini</a> atau silahkan hubungi kami <a href="http://celebgramme.com/support">disini</a>
+          --></p>
         </div>
         <div class="col-sm-2 col-md-2">
         </div>
@@ -190,7 +192,7 @@
       <div class="footer-package row container">
         <div class="footer-center container row">
           <div class="fl copyright col-md-7 col-sm-4">
-            Celebgramme.com is NOT affiliated with Instagram.com & Facebook.com in anyway
+            Celebgramme.com is NOT affiliated with Instagram.com in anyway
           </div>
           <div class="col-md-5 col-sm-5 fl footer-helper ">
             <a href="http://celebgramme.com/about-us">About Us </a>| 

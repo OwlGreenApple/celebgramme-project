@@ -193,7 +193,7 @@
               <?php if (Request::path()=="send-like" ) { ?>
               <div class="col-sm-8 col-md-8">
                 <div class="alert alert-info col-sm-18 col-md-18" id="">
-                  Account jangan diprivate, harus dipublic supaya like bisa bertambah.
+                  Untuk menggunakan celebgramme harap akun jangan di private
                 </div>  
               </div>          
               <?php } ?>
@@ -211,7 +211,7 @@
               ?> <!--
               <div class="col-sm-8 col-md-8">
                 <div class="alert alert-info col-sm-18 col-md-18" id="">
-                  Silahkan kembali lagi besok. Besok anda mendapat {{$likes}} likes dari total 2450 likes.
+                  Silahkan kembali lagi besok. Besok anda mendapat {{--$likes}} likes dari total 2450 likes.
                 </div>  
               </div>-->
               <?php //} ?>          
