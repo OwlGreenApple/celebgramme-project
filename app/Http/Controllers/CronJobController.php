@@ -51,10 +51,6 @@ class CronJobController extends Controller
 	}
   
 	public function auto_manage(){
-        $user = User::find(1);
-        $user->test=123;
-        $user->save();
-		/*
         //kurangin detik, buat auto manage
         $now = Carbon::now();
         $users = User::where("active_auto_manage",">",0);
@@ -88,7 +84,6 @@ class CronJobController extends Controller
                 $user->save();
             }
         }
-        */
 	}
   
 	
