@@ -63,7 +63,7 @@ class EmailController extends Controller
       try {
         $decryptedcode = Crypt::decrypt($cryptedcode);
         $data = json_decode($decryptedcode);
-        $user = User::where("email","=",$data->email)->first;
+        $user = User::where("email","=",$data->email)->first();
         if (!is_null($user)) {
           // Check customer email and status
           if ($user->type == 'not-confirmed'){
