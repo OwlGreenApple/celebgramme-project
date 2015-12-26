@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth'], function()
 
   Route::get('test', 'Member\HomeController@test');
   Route::get('home', 'Member\HomeController@index');
-  Route::get('/', 'Member\HomeController@index');
+  Route::get('/', 'Member\AutoManageController@index');
   Route::get('order', 'Member\HomeController@order');
   
   Route::get('edit-profile', 'Member\HomeController@edit_profile');

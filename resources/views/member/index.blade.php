@@ -93,7 +93,7 @@
           <div class="col-sm-8 col-md-8  fl">
             <?php 
             $str = explode("/", Request::path());                                   /* karena  */
-            if ((Request::path()=="auto-manage" )||($str[0]=="account-setting" )||(Request::path()=="" )||(Request::path()=="home" )) { ?>
+            if ((Request::path()=="auto-manage" )||($str[0]=="account-setting" )||(Request::path()=="/" )||(Request::path()=="home" )) { ?>
             @yield('content-auto-manage')
 
 
