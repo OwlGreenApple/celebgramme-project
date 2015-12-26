@@ -438,7 +438,7 @@ Celebgramme akan menggunakan username followers/followings untuk memfollow merek
 
 Anda dapat menambahkan sampai dengan 50 usernames.
 "></span>
-            <textarea class="selectize-default" name="data[locations]">{{$settings->username}}</textarea>
+            <textarea class="selectize-default" name="data[username]">{{$settings->username}}</textarea>
           </div>
         </div>
 
