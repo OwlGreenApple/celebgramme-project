@@ -1,1 +1,11 @@
-berikut adalah <a href="{{$url}}"> link  </a> konfirmasi email anda. Silahkan klik untuk mengkonfirmasi email
+Terimakasih anda telah melakukan registrasi di Celebgramme.com <br>
+<br>
+Silahkan klik LINK di bawah ini untuk mengkonfirmasi Registrasi anda <br>
+KLIK LINK ini ---> <STRONG><a href="{{$url}}"> LINK KONFIRMASI EMAIL REGISTRASI </a></STRONG> <--- <br><br>
+
+Anda akan dibawa ke Halaman LOGIN setelah Email anda terkonfirmasi.<br>
+Sampai jumpa di Halaman user dashboard.<br>
+<br>
+Best Regards,<br>
+<br>
+Celebgramme.com

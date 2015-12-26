@@ -58,7 +58,7 @@ class Order extends Model {
         Mail::queue('emails.order', $emaildata, function ($message) use ($user) {
           $message->from('no-reply@celebgramme.com', 'Celebgramme');
           $message->to($user->email);
-          $message->subject('Order');
+          $message->subject('[Celebgramme] Order');
         });
 
         

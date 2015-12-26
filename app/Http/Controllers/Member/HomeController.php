@@ -206,7 +206,7 @@ class HomeController extends Controller
         "michaelsugih@gmail.com",
         "it2.axiapro@gmail.com",
         ));
-      $message->subject('Order Confirmation');
+      $message->subject('[Celebgramme] Order Confirmation');
     });
 
     

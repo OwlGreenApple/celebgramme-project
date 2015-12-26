@@ -73,10 +73,11 @@ class EmailController extends Controller
               $user->type = 'confirmed-email';
               $user->save();
 
-              return redirect('/')->with('message', [
-                'title' => 'Aktivasi Berhasil',
-                'content' => 'Terima kasih telah melakukan konfirmasi email. Akun Anda telah diaktifkan.',
-              ]);
+              Redirect::to("http://celebgramme.com/thank-you-page/");
+              // return redirect('/')->with('message', [
+              //   'title' => 'Aktivasi Berhasil',
+              //   'content' => 'Terima kasih telah melakukan konfirmasi email. Akun Anda telah diaktifkan.',
+              // ]);
           }
           else{
             return redirect(404);

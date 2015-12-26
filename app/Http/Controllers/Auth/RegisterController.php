@@ -79,7 +79,7 @@ class RegisterController extends Controller
       return redirect("register-checkout")->with("error","email sudah terdaftar");
     }
     
-    Auth::attempt(['email' => $request->email, 'password' => $request->password], true);
+    //Auth::attempt(['email' => $request->email, 'password' => $request->password], true);
     //send email konfirmasi email
     $register_time = Carbon::now()->toDateTimeString();
     $request->session()->put('resend_email', $register_time);
@@ -103,11 +103,12 @@ class RegisterController extends Controller
     Mail::queue('emails.confirm-email', $emaildata, function ($message) use ($user) {
       $message->from('no-reply@celebgramme.com', 'Celebgramme');
       $message->to($user->email);
-      $message->subject('Email Confirmation');
+      $message->subject('[Celebgramme] Email Confirmation');
     });
 
     if (! $request->session()->has('checkout_data')) {
-      return redirect('/home');
+      //return redirect('/home');
+      Redirect::to("http://celebgramme.com/email-konfirmasi/");
     } else {
       $user->valid_until = "0000-00-00 00:00:00";
       $user->status_free_trial = 0;

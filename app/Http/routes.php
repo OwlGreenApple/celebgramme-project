@@ -26,6 +26,8 @@ Route::get('register', 'Auth\RegisterController@getRegister');
 Route::get('register-checkout', 'LandingPageController@register_checkout');
 Route::post('auth/register', ['as'=>'auth.register', 'uses'=> 'Auth\RegisterController@postRegister']);
 
+Route::get('verifyemail/{cryptedcode}', 'Member\EmailController@verifyEmail');
+
 /*--------- Must Login Routes ---------*/
 Route::group(['middleware' => 'auth'], function()
 {
@@ -34,7 +36,6 @@ Route::group(['middleware' => 'auth'], function()
 
   Route::get('free-trial', 'Member\HomeController@free_trial');
   Route::get('resend-activation', 'Member\EmailController@resendEmailActivation');
-  Route::get('verifyemail/{cryptedcode}', 'Member\EmailController@verifyEmail');
 
   Route::get('test', 'Member\HomeController@test');
   Route::get('home', 'Member\HomeController@index');

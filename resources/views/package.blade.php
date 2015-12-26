@@ -33,14 +33,8 @@
             <div class="row">
               <img src="{{url('images/package price-01.png')}}" class="img-responsive" width="1109" height="437">
             </div>
-            <div class="row">
-              <div class="col-sm-4 col-md-4">
-              </div>
-              <div class="col-sm-4 col-md-4">
+            <div class="row" style="text-align:center">
                 <p>**bisa digunakan max.total 3 account Instagram</p>
-              </div>
-              <div class="col-sm-4 col-md-4">
-              </div>
             </div>
           </div>
 <!--
