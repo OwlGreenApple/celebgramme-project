@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth'], function()
   Route::get('resend-activation', 'Member\EmailController@resendEmailActivation');
 
   Route::get('test', 'Member\HomeController@test');
-  Route::get('home', 'Member\HomeController@index');
+  Route::get('home', 'Member\AutoManageController@index');
   Route::get('/', 'Member\AutoManageController@index');
   Route::get('order', 'Member\HomeController@order');
   

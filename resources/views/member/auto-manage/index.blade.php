@@ -234,7 +234,7 @@
       </div>  
     </div>          
   <?php } ?>
-  <?php if ($order>=1) { ?> 
+  <?php if (!is_null($order)) { ?> 
     <div class="col-sm-10 col-md-10">            
       <div class="alert alert-danger col-sm-18 col-md-18">
         Anda belum melakukan konfirmasi pembayaran. silahkan klik <a href="{{url('confirm-payment')}}">disini</a> untuk melakukan konfirmasi pembayaran

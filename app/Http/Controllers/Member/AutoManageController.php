@@ -29,7 +29,7 @@ class AutoManageController extends Controller
 	 */
 	public function index(){
     $user = Auth::user();
-    $order = Order::where("order_status","=","pending")->where("user_id","=",$user->id)->where("image",'=','')->count();
+    $order = Order::where("order_status","=","pending")->where("user_id","=",$user->id)->where("image",'=','')->first();
     return view("member.auto-manage.index")->with(array(
       'user'=>$user,
       'order'=>$order,
