@@ -71,6 +71,9 @@
       $("#alert").show();
       $("#alert").html("<?php echo session("message"); ?>");
     <?php } ?>
+
+    $( "#select-auto-manage" ).change();
+
   });
 </script>
  
@@ -248,4 +251,5 @@
   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
   <input class="btn btn-default" type="submit" value="Process" id="button-process">
 </form>
+
 @endsection
