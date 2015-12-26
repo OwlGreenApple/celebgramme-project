@@ -48,12 +48,14 @@
                   $("#alert").addClass('alert-success');
                   $("#alert").removeClass('alert-danger');
                   if(data.action=='start'){
-                    $(".btn-"+data.id).html("<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Process");
+                    $(".btn-"+data.id).html("<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Stop");
                     $(".btn-"+data.id).val("Stop");
+                    $(".btn-"+data.id).parent().parent().parent().find(".status-activity p").html(" Status activity : Started");
                   }
                   if(data.action=='stop'){
-                    $(".btn-"+data.id).html("Start");
+                    $(".btn-"+data.id).html("<span class='glyphicon glyphicon-stop'></span> Start");
                     $(".btn-"+data.id).val("Start");
+                    $(".btn-"+data.id).parent().parent().parent().find(".status-activity p").html(" Status activity : Stopped");
                   }
                 }
                 else if(data.type=='error')

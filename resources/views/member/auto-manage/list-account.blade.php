@@ -17,11 +17,11 @@ if (isset($datas)) {
 <div class="col-md-5 border-styling">
   <div class="row"> <img src="{{url('images/profile-default.png')}}" class=""> </div>
   <div class="row"> <label>{{$data->insta_username}}</label></div>
-  <div class="row"> <p> Status activity : <?php if ($data->status=='stopped') { echo 'Stopped'; } else {echo "Started";}?></p></div>
+  <div class="row status-activity"> <p> Status activity : <?php if ($data->status=='stopped') { echo 'Stopped'; } else {echo "Started";}?></p></div>
   <div class="row"> 
     <div class="im-centered">
     <button data-id="{{$data->id}}" class="btn btn-info button-action btn-{{$data->id}}" value="<?php if ($data->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
-      <?php if ($data->status=='stopped') { echo 'Start'; } else {echo "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Process";}?> 
+      <?php if ($data->status=='stopped') { echo "<span class='glyphicon glyphicon-stop'></span> Start"; } else {echo "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Stop";}?> 
     </button>
     <a href="{{url('account-setting/'.$data->id)}}"><input type="button" value="Setting" class="btn btn-primary"></a>
     </div>

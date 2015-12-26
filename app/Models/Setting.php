@@ -15,7 +15,7 @@ class Setting extends Model {
      * @var array
      */
     protected $fillable = ['activity_speed', 'media_source', 'media_age', 'media_type', 
-    'min_likes_media', 'max_likes_media', 'comment_su', 'follow_source', 'follow_su', 'follow_pu', 'unfollow_source', 'unfollow_wdfm', 'comments', 'tags', 'locations', 
+    'min_likes_media', 'max_likes_media', 'dont_comment_su', 'follow_source', 'dont_follow_su', 'dont_follow_pu', 'unfollow_source', 'unfollow_wdfm', 'comments', 'tags', 'locations', 
     'insta_username', 'insta_password', 'insta_user_id', 'insta_access_token', 'last_user', 'start_time', 'running_time', 'user_id', 'tags_blacklist', 'usernames_blacklist', 
     'likes_counter', 'unfollows_counter', 'comments_counter', 'follows_counter', 'username', 'status' ];
 	protected function createSetting($arr)
@@ -27,18 +27,18 @@ class Setting extends Model {
         //default data
         $setting->comments = "Nice,Pretty Awesome,Pretty Sweet,Aw Cool,Wow nice pictures";
         $setting->tags = "selfie,anime,kuliner,weekend,graduation";
-        $setting->locations = "selfie,anime,kuliner,weekend,graduation";
+        $setting->locations = "";
         $setting->activity_speed = "normal";
         $setting->media_source = "tags";
         $setting->media_age = "1 hour";
         $setting->media_type = "any";
         $setting->min_likes_media = "0";
         $setting->max_likes_media = "0";
-        $setting->comment_su = true;
+        $setting->dont_comment_su = true;
         $setting->follow_source = "media";
-        $setting->follow_su = false;
-        $setting->follow_pu = false;
-        $setting->unfollow_source = "media";
+        $setting->dont_follow_su = false;
+        $setting->dont_follow_pu = false;
+        $setting->unfollow_source = "celebgramme";
         $setting->unfollow_wdfm = true;
         $setting->user_id = true;
         $setting->status = 'stopped';
@@ -57,7 +57,7 @@ class Setting extends Model {
         //default data
         $setting->comments = "Nice,Pretty Awesome,Pretty Sweet,Aw Cool,Wow nice pictures";
         $setting->tags = "selfie,anime,kuliner,weekend,graduation";
-        $setting->locations = "selfie,anime,kuliner,weekend,graduation";
+        $setting->locations = "";
         $setting->activity_speed = "normal";
         $setting->media_source = "tags";
         $setting->media_age = "1 hour";
@@ -68,7 +68,7 @@ class Setting extends Model {
         $setting->follow_source = "media";
         $setting->follow_su = false;
         $setting->follow_pu = false;
-        $setting->unfollow_source = "media";
+        $setting->unfollow_source = "celebgramme";
         $setting->unfollow_wdfm = true;
         $setting->user_id = true;
         $setting->status = 'stopped';

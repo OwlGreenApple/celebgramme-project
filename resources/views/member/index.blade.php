@@ -75,7 +75,7 @@
         </div>
       </nav>    
     
-      <div class="container-fluid">
+      <div class="container-fluid content-mid">
         <div class="row">
           <div class="col-sm-3 col-md-2 fl">    
             <ul class="nav nav-sidebar">

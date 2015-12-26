@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth'], function()
   Route::post('process-payment', 'Member\HomeController@process_payment');
 
   
-  Route::get('buy-more', 'Member\HomeController@buy_more');
+  Route::get('buy-more/{id}', 'Member\HomeController@buy_more');
   /*--------- Payment ---------*/
   Route::group(['prefix' => 'payment'], function () {
     /*--------- Veritrans ---------*/

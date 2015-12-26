@@ -128,9 +128,9 @@ class AutoManageController extends Controller
     }
 
 
-    if (isset($data['comment_su'])) { $data['comment_su'] = 1; } else { $data['comment_su'] = 0; }
-    if (isset($data['follow_su'])) { $data['follow_su'] = 1; } else { $data['follow_su'] = 0; }
-    if (isset($data['follow_pu'])) { $data['follow_pu'] = 1; } else { $data['follow_pu'] = 0; }
+    if (isset($data['dont_comment_su'])) { $data['dont_comment_su'] = 1; } else { $data['dont_comment_su'] = 0; }
+    if (isset($data['dont_follow_su'])) { $data['dont_follow_su'] = 1; } else { $data['dont_follow_su'] = 0; }
+    if (isset($data['dont_follow_pu'])) { $data['dont_follow_pu'] = 1; } else { $data['dont_follow_pu'] = 0; }
     if (isset($data['unfollow_wdfm'])) { $data['unfollow_wdfm'] = 1; } else { $data['unfollow_wdfm'] = 0; }
 
     $setting_temp = Setting::find($data['id']);
