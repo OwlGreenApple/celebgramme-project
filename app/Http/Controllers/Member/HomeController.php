@@ -14,12 +14,13 @@ use Celebgramme\Models\OrderMeta;
 use Celebgramme\Models\User;
 use Celebgramme\Veritrans\Veritrans;
 
-use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt;
+use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, Redirect;
 
 class HomeController extends Controller
 {
   
 	public function test(){
+    return Redirect::to("http://celebgramme.com/email-konfirmasi/");
     return strval(false);
     $url = "http://play.vid-id.me/aff_c?offer_id=16&aff_id=3104";
     return view('member.pay-with-tweet')->with(array(

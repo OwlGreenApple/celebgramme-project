@@ -108,7 +108,7 @@ class RegisterController extends Controller
 
     if (! $request->session()->has('checkout_data')) {
       //return redirect('/home');
-      Redirect::to("http://celebgramme.com/email-konfirmasi/");
+      return Redirect::to("http://celebgramme.com/email-konfirmasi/");
     } else {
       $user->valid_until = "0000-00-00 00:00:00";
       $user->status_free_trial = 0;

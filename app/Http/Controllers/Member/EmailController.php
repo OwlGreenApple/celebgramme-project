@@ -14,7 +14,7 @@ use Celebgramme\Models\OrderMeta;
 use Celebgramme\Models\User;
 use Celebgramme\Veritrans\Veritrans;
 
-use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt;
+use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, Redirect;
 
 class EmailController extends Controller
 {
@@ -73,7 +73,7 @@ class EmailController extends Controller
               $user->type = 'confirmed-email';
               $user->save();
 
-              Redirect::to("http://celebgramme.com/thank-you-page/");
+              return Redirect::to("http://celebgramme.com/thank-you-page/");
               // return redirect('/')->with('message', [
               //   'title' => 'Aktivasi Berhasil',
               //   'content' => 'Terima kasih telah melakukan konfirmasi email. Akun Anda telah diaktifkan.',
