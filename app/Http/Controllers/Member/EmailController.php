@@ -60,24 +60,29 @@ class EmailController extends Controller
  
   public function verifyEmail($cryptedcode)
   {
-    $user = Auth::user();
       try {
         $decryptedcode = Crypt::decrypt($cryptedcode);
         $data = json_decode($decryptedcode);
-        // Check customer email and status
-        if ($user->email == $data->email && $user->type == 'not-confirmed'){
-          // Check Verification Code
-          if ($user->verification_code == $data->verification_code){
-            $reg_date = Carbon::createFromFormat('Y-m-d H:i:s', $data->register_time);
-              // Change customer status to verified, then redirect to Home
-              $user->type = 'confirmed-email';
-              $user->save();
+        $user = User::where("email","=",$data->email)->first;
+        if (!is_null($user)) {
+          // Check customer email and status
+          if ($user->type == 'not-confirmed'){
+            // Check Verification Code
+            if ($user->verification_code == $data->verification_code){
+              $reg_date = Carbon::createFromFormat('Y-m-d H:i:s', $data->register_time);
+                // Change customer status to verified, then redirect to Home
+                $user->type = 'confirmed-email';
+                $user->save();
 
-              return Redirect::to("http://celebgramme.com/thank-you-page/");
-              // return redirect('/')->with('message', [
-              //   'title' => 'Aktivasi Berhasil',
-              //   'content' => 'Terima kasih telah melakukan konfirmasi email. Akun Anda telah diaktifkan.',
-              // ]);
+                return Redirect::to("http://celebgramme.com/thank-you-page/");
+                // return redirect('/')->with('message', [
+                //   'title' => 'Aktivasi Berhasil',
+                //   'content' => 'Terima kasih telah melakukan konfirmasi email. Akun Anda telah diaktifkan.',
+                // ]);
+            }
+            else{
+              return redirect(404);
+            }
           }
           else{
             return redirect(404);
