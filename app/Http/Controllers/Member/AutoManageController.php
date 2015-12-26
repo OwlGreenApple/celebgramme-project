@@ -46,7 +46,7 @@ class AutoManageController extends Controller
       "user_id"=>$user->id,
       );
 
-    $setting = Setting::where("insta_username","=",Request::input("username"))->where("type","=","real")->first();
+    $setting = Setting::where("insta_username","=",Request::input("username"))->where("type","=","temp")->first();
     if (is_null($setting)) {
       $count_setting = LinkUserSetting::where("user_id","=",$user->id)
                           ->count();
