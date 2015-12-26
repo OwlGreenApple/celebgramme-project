@@ -64,10 +64,10 @@ class Setting extends Model {
         $setting->media_type = "any";
         $setting->min_likes_media = "0";
         $setting->max_likes_media = "0";
-        $setting->comment_su = true;
+        $setting->dont_comment_su = true;
         $setting->follow_source = "media";
-        $setting->follow_su = false;
-        $setting->follow_pu = false;
+        $setting->dont_follow_su = false;
+        $setting->dont_follow_pu = false;
         $setting->unfollow_source = "celebgramme";
         $setting->unfollow_wdfm = true;
         $setting->user_id = true;

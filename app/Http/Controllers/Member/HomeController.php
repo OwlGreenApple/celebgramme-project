@@ -334,7 +334,7 @@ class HomeController extends Controller
     return $arr;
   }
 	
-	public function buy_more($id){
+	public function buy_more($id = null){
     $user = Auth::user();
 		return view('member.buy-more')->with(array('user'=>$user,'id'=>$id,));
 	}
