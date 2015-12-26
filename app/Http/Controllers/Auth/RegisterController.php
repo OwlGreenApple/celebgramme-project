@@ -129,7 +129,8 @@ class RegisterController extends Controller
         );
         
         $order = Order::createOrder($data, true);
-        return redirect('/home');
+        // return redirect('/home');
+        return Redirect::to("http://celebgramme.com/email-konfirmasi/");
       }
       
       if ($checkout_data["payment_method"]== 2) {
