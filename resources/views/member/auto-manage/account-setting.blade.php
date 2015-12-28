@@ -130,13 +130,13 @@
 
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-8 col-sm-8">
     <div class="panel panel-info ">
       <div class="panel-heading">
         <h3 class="panel-title">Data Users</h3>
       </div>
       <div class="panel-body">
-<div class="col-md-5 border-styling ">
+<div class="col-md-5 col-sm-5 border-styling ">
   <div class="row"> <img src="{{url('images/profile-default.png')}}" class=""> </div>
   <div class="row"> <label>{{$settings->insta_username}}</label></div>
   <div class="row status-activity"> <p> Status activity : <?php if ($settings->status=='stopped') { echo '<span class="glyphicon glyphicon-stop"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>'; } 
@@ -148,8 +148,8 @@
     </button>
   </div>
 </div>
-<div class="col-md-7 pricing" style="margin-left:-10px;">
-  <div class="col-md-4">
+<div class="col-md-7 col-sm-7 pricing" style="margin-left:-10px;">
+  <div class="col-md-4 col-sm-4">
     <div class="row im-centered"> 
       <p class="header">7</p>
     </div>
@@ -165,7 +165,7 @@
       <a href="{{url('buy-more/1')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
     </div>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-4 col-sm-4">
     <div class="row im-centered"> 
       <p class="header">28 </p>
     </div>
@@ -181,7 +181,7 @@
       <a href="{{url('buy-more/2')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
     </div>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-4 col-sm-4">
     <div class="row im-centered"> 
       <p class="header">88 </p>
     </div>
