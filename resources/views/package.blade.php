@@ -7,11 +7,6 @@
       <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/bootstrap-theme.min.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/package.css') }}" rel="stylesheet">
-      <script type="text/javascript">
-        $(document).ready(function() {
-          $("#alert").hide();
-        });
-      </script>
     </head>
     <body>
       <div class="header-package row container">
@@ -146,7 +141,7 @@
           -->
 
             <div class="row col-sm-12 col-md-12" style="text-align:center;">
-              <a href="{{url('checkout')}}"><img src="{{url('images/order-now.png')}}" width="430" height="100"></a>
+              <a href="{{url('checkout')}}"><img src="{{url('images/order-now.png')}}" width="430" height="135"></a>
             </div>
 
                 <div class="description">
