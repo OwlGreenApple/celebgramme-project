@@ -146,7 +146,7 @@
           -->
 
             <div class="row col-sm-12 col-md-12" style="text-align:center;">
-              <a href="{{url('checkout')}}"><img src="{{url('images/order-now.png')}}" width="215" height="50"></a>
+              <a href="{{url('checkout')}}"><img src="{{url('images/order-now.png')}}" width="430" height="100"></a>
             </div>
 
                 <div class="description">
