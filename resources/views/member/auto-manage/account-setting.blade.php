@@ -27,18 +27,18 @@
                   $("#alert").addClass('alert-success');
                   $("#alert").removeClass('alert-danger');
                   if(data.action=='start'){
-                    $(".btn-"+data.id).html("<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Stop");
+                    $(".btn-"+data.id).html("<span class='glyphicon glyphicon-stop'></span> Stop");
                     $(".btn-"+data.id).val("Stop");
-                    $(".btn-"+data.id).parent().parent().find(".status-activity p").html(" Status activity : Started");
-                    $(".btn-"+data.id).removeClass("btn-danger");
-                    $(".btn-"+data.id).addClass("btn-success");
+                    $(".btn-"+data.id).parent().parent().parent().find(".status-activity p").html(' Status activity : <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> <span style="color:#5cb85c; font-weight:Bold;">Started</span>');
+                    $(".btn-"+data.id).removeClass("btn-success");
+                    $(".btn-"+data.id).addClass("btn-danger");
                   }
                   if(data.action=='stop'){
                     $(".btn-"+data.id).html("<span class='glyphicon glyphicon-stop'></span> Start");
                     $(".btn-"+data.id).val("Start");
-                    $(".btn-"+data.id).parent().parent().find(".status-activity p").html(" Status activity : Stopped");
-                    $(".btn-"+data.id).removeClass("btn-success");
-                    $(".btn-"+data.id).addClass("btn-danger");
+                    $(".btn-"+data.id).parent().parent().parent().find(".status-activity p").html(' Status activity : <span class="glyphicon glyphicon-stop"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>');
+                    $(".btn-"+data.id).removeClass("btn-danger");
+                    $(".btn-"+data.id).addClass("btn-success");
                   }
                 }
                 else if(data.type=='error')
@@ -139,11 +139,12 @@
 <div class="col-md-5 border-styling ">
   <div class="row"> <img src="{{url('images/profile-default.png')}}" class=""> </div>
   <div class="row"> <label>{{$settings->insta_username}}</label></div>
-  <div class="row status-activity"> <p> Status activity : <?php if ($settings->status=='stopped') { echo 'Stopped'; } else {echo "Started";}?></p></div>
+  <div class="row status-activity"> <p> Status activity : <?php if ($settings->status=='stopped') { echo '<span class="glyphicon glyphicon-stop"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>'; } 
+  else {echo '<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> <span style="color:#5cb85c; font-weight:Bold;">Started</span>';}?></p></div>
   <div class="row im-centered"> 
 
-    <button data-id="{{$settings->id}}" class="btn <?php if ($settings->status=='stopped') { echo 'btn-danger'; } else {echo 'btn-success';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
-      <?php if ($settings->status=='stopped') { echo "<span class='glyphicon glyphicon-stop'></span> Start"; } else {echo "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Stop";}?> 
+    <button data-id="{{$settings->id}}" class="btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
+      <?php if ($settings->status=='stopped') { echo "<span class='glyphicon glyphicon-play'></span> Start"; } else {echo "<span class='glyphicon glyphicon-stop'></span> Stop";}?> 
     </button>
   </div>
 </div>

@@ -48,18 +48,18 @@
                   $("#alert").addClass('alert-success');
                   $("#alert").removeClass('alert-danger');
                   if(data.action=='start'){
-                    $(".btn-"+data.id).html("<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Stop");
+                    $(".btn-"+data.id).html("<span class='glyphicon glyphicon-stop'></span> Stop");
                     $(".btn-"+data.id).val("Stop");
-                    $(".btn-"+data.id).parent().parent().parent().find(".status-activity p").html(" Status activity : Started");
-                    $(".btn-"+data.id).removeClass("btn-danger");
-                    $(".btn-"+data.id).addClass("btn-success");
-                  }
-                  if(data.action=='stop'){
-                    $(".btn-"+data.id).html("<span class='glyphicon glyphicon-stop'></span> Start");
-                    $(".btn-"+data.id).val("Start");
-                    $(".btn-"+data.id).parent().parent().parent().find(".status-activity p").html(" Status activity : Stopped");
+                    $(".btn-"+data.id).parent().parent().parent().find(".status-activity p").html(' Status activity : <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> <span style="color:#5cb85c; font-weight:Bold;">Started</span>');
                     $(".btn-"+data.id).removeClass("btn-success");
                     $(".btn-"+data.id).addClass("btn-danger");
+                  }
+                  if(data.action=='stop'){
+                    $(".btn-"+data.id).html("<span class='glyphicon glyphicon-play'></span> Start");
+                    $(".btn-"+data.id).val("Start");
+                    $(".btn-"+data.id).parent().parent().parent().find(".status-activity p").html(' Status activity : <span class="glyphicon glyphicon-stop"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>');
+                    $(".btn-"+data.id).removeClass("btn-danger");
+                    $(".btn-"+data.id).addClass("btn-success");
                   }
                 }
                 else if(data.type=='error')
@@ -79,6 +79,9 @@
     $("#alert").hide();
     loadaccount();
 
+    $( "body" ).on( "click", ".edit-cred", function() {
+      $("#setting_id").val($(this).attr("data-id"));
+    });
     $( "body" ).on( "click", ".button-action", function() {
       action = "";
       if ($(this).val()=="Start") { action = "start"; }
@@ -90,6 +93,48 @@
     });
     $('#button-stop-all').click(function(e){
       call_action('stop','all');
+    });
+    $('#button-edit-password').click(function(e){
+      if ($("#edit_password").val() != $("#edit_confirm_password").val()) {
+        $("#alert").addClass('alert-danger');
+        $("#alert").removeClass('alert-success');
+        $("#alert").show();
+        $("#alert").html("password anda tidak sesuai");
+      } else {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            url: "<?php echo url('process-edit-password'); ?>",
+            data: $("#form-edit-password").serialize(),
+            dataType: 'text',
+            beforeSend: function()
+            {
+              $("#div-loading").show();
+            },
+            success: function(result) {
+                // $('#result').html(data);
+                $("#div-loading").hide();
+                var data = jQuery.parseJSON(result);
+                $("#alert").show();
+                $("#alert").html(data.message);
+                if(data.type=='success')
+                {
+                  $("#alert").addClass('alert-danger');
+                  $("#alert").removeClass('alert-success');
+                }
+                else if(data.type=='error')
+                {
+                  $("#alert").addClass('alert-success');
+                  $("#alert").removeClass('alert-danger');
+                }
+                $("#username").val("");
+                $("#password").val("");
+                loadaccount();
+            }
+        });
+      }
     });
     $('#button-process').click(function(e){
       if ($("#password").val() != $("#confirm_password").val()) {
@@ -165,13 +210,13 @@
                   </div>
                   <div class="panel-body">
                     <div class="col-md-4 col-sm-8">
-                      <input type="button" value="Add Account" class="btn btn-primary col-md-8 col-sm-12" data-toggle="modal" data-target="#myModal">
+                      <input type="button" value="Add Account" class="btn btn-primary col-md-8 col-sm-12" data-toggle="modal" data-target="#myModal" id="btn-add-account">
                     </div>                        
                     <div class="col-md-4 col-sm-8">
-                      <input type="button" value="Start All" class="btn btn-info col-md-8 col-sm-12" id="button-start-all">
+                      <input type="button" value="Start All" class="btn btn-success col-md-8 col-sm-12" id="button-start-all">
                     </div>                        
                     <div class="col-md-4 col-sm-8">
-                      <input type="button" value="Stop All" class="btn btn-warning col-md-8 col-sm-12" id="button-stop-all">
+                      <input type="button" value="Stop All" class="btn btn-danger col-md-8 col-sm-12" id="button-stop-all">
                     </div>                        
                   </div>
                 </div>
@@ -339,6 +384,41 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" id="button-process">Submit</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal-edit-password" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Password</h4>
+        </div>
+        <div class="modal-body">
+          <form enctype="multipart/form-data" id="form-edit-password">
+            <div class="form-group form-group-sm row">
+              <label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Password</label>
+              <div class="col-sm-8 col-md-6">
+                <input type="password" class="form-control" placeholder="Your password" name="edit_password" id="edit_password">
+              </div>
+            </div>  
+            <div class="form-group form-group-sm row">
+              <label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Confirm Password</label>
+              <div class="col-sm-8 col-md-6">
+                <input type="password" class="form-control" placeholder="Confirm your password" name="edit_confirm_password" id="edit_confirm_password">
+              </div>
+            </div>  
+            <input type="hidden" name="setting_id" id="setting_id">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="button-edit-password">Submit</button>
         </div>
       </div>
       

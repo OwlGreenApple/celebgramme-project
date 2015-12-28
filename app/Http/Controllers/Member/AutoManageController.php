@@ -37,6 +37,21 @@ class AutoManageController extends Controller
 	}
 
 
+  public function process_edit_password(){  
+    $user = Auth::user();
+    $arr["message"]= "Ubah password berhasil dilakukan, sistem akan berjalan secara otomatis maksimum 1x24jam";
+    $arr["type"]= "success";
+
+    $setting_temp = Setting::find(Request::input('setting_id'));
+    $setting_temp->insta_password = Request::input('edit_password');
+    $setting_temp->error_cred = false;
+    $setting_temp->save();
+
+    $setting_temp = Setting::post_info_admin($setting_temp->id);
+
+    return $arr;
+  }
+
   public function process_save_credential(){  
     $user = Auth::user();
     $arr["message"]= "Sistem berhasil diupdate, sistem akan berjalan secara otomatis maksimum 1x24jam";
