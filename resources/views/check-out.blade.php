@@ -235,7 +235,7 @@
           <div class="fl copyright col-md-6 col-sm-3">
             Celebgramme.com is NOT affiliated with Instagram.com in anyway
           </div>
-          <div class="col-md-5 col-sm-5 fl footer-helper ">
+          <div class="col-md-6 col-sm-5 fl footer-helper ">
             <a href="http://celebgramme.com/our-products/auto-manage">Our Products </a>| 
             <a href="http://celebgramme.com/auto-manage">How It Works </a>  | 
             <a href="http://celebgramme.com/prices">Prices </a>| 
