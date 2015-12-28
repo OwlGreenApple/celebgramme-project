@@ -51,11 +51,15 @@
                     $(".btn-"+data.id).html("<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Stop");
                     $(".btn-"+data.id).val("Stop");
                     $(".btn-"+data.id).parent().parent().parent().find(".status-activity p").html(" Status activity : Started");
+                    $(".btn-"+data.id).removeClass("btn-danger");
+                    $(".btn-"+data.id).addClass("btn-success");
                   }
                   if(data.action=='stop'){
                     $(".btn-"+data.id).html("<span class='glyphicon glyphicon-stop'></span> Start");
                     $(".btn-"+data.id).val("Start");
                     $(".btn-"+data.id).parent().parent().parent().find(".status-activity p").html(" Status activity : Stopped");
+                    $(".btn-"+data.id).removeClass("btn-success");
+                    $(".btn-"+data.id).addClass("btn-danger");
                   }
                 }
                 else if(data.type=='error')
@@ -88,39 +92,46 @@
       call_action('stop','all');
     });
     $('#button-process').click(function(e){
-      $.ajax({
-          headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          },
-          type: 'POST',
-          url: "<?php echo url('process-save-credential'); ?>",
-          data: $("#form-credential").serialize(),
-          dataType: 'text',
-          beforeSend: function()
-          {
-            $("#div-loading").show();
-          },
-          success: function(result) {
-              // $('#result').html(data);
-              $("#div-loading").hide();
-              var data = jQuery.parseJSON(result);
-              $("#alert").show();
-              $("#alert").html(data.message);
-              if(data.type=='success')
-              {
-                $("#alert").addClass('alert-success');
-                $("#alert").removeClass('alert-danger');
-              }
-              else if(data.type=='error')
-              {
-                $("#alert").addClass('alert-danger');
-                $("#alert").removeClass('alert-success');
-              }
-              $("#username").val("");
-              $("#password").val("");
-              loadaccount();
-          }
-      })
+      if ($("#password").val() != $("#confirm_password").val()) {
+        $("#alert").addClass('alert-danger');
+        $("#alert").removeClass('alert-success');
+        $("#alert").show();
+        $("#alert").html("password anda tidak sesuai");
+      } else {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            url: "<?php echo url('process-save-credential'); ?>",
+            data: $("#form-credential").serialize(),
+            dataType: 'text',
+            beforeSend: function()
+            {
+              $("#div-loading").show();
+            },
+            success: function(result) {
+                // $('#result').html(data);
+                $("#div-loading").hide();
+                var data = jQuery.parseJSON(result);
+                $("#alert").show();
+                $("#alert").html(data.message);
+                if(data.type=='success')
+                {
+                  $("#alert").addClass('alert-danger');
+                  $("#alert").removeClass('alert-success');
+                }
+                else if(data.type=='error')
+                {
+                  $("#alert").addClass('alert-success');
+                  $("#alert").removeClass('alert-danger');
+                }
+                $("#username").val("");
+                $("#password").val("");
+                loadaccount();
+            }
+        });
+      }
     });
 
 
@@ -132,6 +143,20 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 <?php   if ($user->type<>"not-confirmed") { ?>
+<div class="row">
+              <div class="col-md-10 col-sm-10">
+                <div class="panel panel-info ">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Steps</h3>
+                  </div>
+                  <div class="panel-body">
+                    1. Add Account Instagram anda ( MAX 3 accounts ) <br>
+                    2. Click Setting di setiap Account Instagram anda<br>
+                    3. Tetapkan Setting yang anda inginkan, sesudah selesai Click START<br>
+                  </div>
+                </div>
+              </div>
+</div>
 <div class="row">
               <div class="col-md-10 col-sm-10">
                 <div class="panel panel-info ">
@@ -288,7 +313,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Instagram Credential</h4>
+          <h4 class="modal-title">Instagram Login</h4>
         </div>
         <div class="modal-body">
           <form enctype="multipart/form-data" id="form-credential">
@@ -302,6 +327,12 @@
               <label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Password</label>
               <div class="col-sm-8 col-md-6">
                 <input type="password" class="form-control" placeholder="Your password" name="password" id="password">
+              </div>
+            </div>  
+            <div class="form-group form-group-sm row">
+              <label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Confirm Password</label>
+              <div class="col-sm-8 col-md-6">
+                <input type="password" class="form-control" placeholder="Confirm your password" name="confirm_password" id="confirm_password">
               </div>
             </div>  
           </form>

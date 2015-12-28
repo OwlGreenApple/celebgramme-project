@@ -30,11 +30,15 @@
                     $(".btn-"+data.id).html("<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Stop");
                     $(".btn-"+data.id).val("Stop");
                     $(".btn-"+data.id).parent().parent().find(".status-activity p").html(" Status activity : Started");
+                    $(".btn-"+data.id).removeClass("btn-danger");
+                    $(".btn-"+data.id).addClass("btn-success");
                   }
                   if(data.action=='stop'){
                     $(".btn-"+data.id).html("<span class='glyphicon glyphicon-stop'></span> Start");
                     $(".btn-"+data.id).val("Start");
                     $(".btn-"+data.id).parent().parent().find(".status-activity p").html(" Status activity : Stopped");
+                    $(".btn-"+data.id).removeClass("btn-success");
+                    $(".btn-"+data.id).addClass("btn-danger");
                   }
                 }
                 else if(data.type=='error')
@@ -138,7 +142,7 @@
   <div class="row status-activity"> <p> Status activity : <?php if ($settings->status=='stopped') { echo 'Stopped'; } else {echo "Started";}?></p></div>
   <div class="row im-centered"> 
 
-    <button data-id="{{$settings->id}}" class="btn btn-info button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
+    <button data-id="{{$settings->id}}" class="btn <?php if ($settings->status=='stopped') { echo 'btn-danger'; } else {echo 'btn-success';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
       <?php if ($settings->status=='stopped') { echo "<span class='glyphicon glyphicon-stop'></span> Start"; } else {echo "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Stop";}?> 
     </button>
   </div>
@@ -155,7 +159,6 @@
       Rp. 100.000
     </div>
     <div class="row im-centered"> 
-      Rp. 14.825 / day
     </div>
     <div class="row im-centered button-price"> 
       <a href="{{url('buy-more/1')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
@@ -172,7 +175,6 @@
       Rp. 175.000
     </div>
     <div class="row im-centered"> 
-      Rp. 6.250 / day
     </div>
     <div class="row im-centered button-price"> 
       <a href="{{url('buy-more/2')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
@@ -189,7 +191,6 @@
       Rp. 395.000
     </div>
     <div class="row im-centered"> 
-      Rp. 4.448 / day
     </div>
     <div class="row im-centered button-price"> 
       <a href="{{url('buy-more/3')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
@@ -426,7 +427,7 @@ Anda dapat menambahkan sampai dengan 1000 hashtags."></span>
   <div class="col-md-8">
     <div class="panel panel-info ">
       <div class="panel-heading">
-        <h3 class="panel-title">Locations</h3>
+        <h3 class="panel-title">Username</h3>
       </div>
       <div class="panel-body">
 
