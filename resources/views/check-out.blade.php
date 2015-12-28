@@ -232,13 +232,14 @@
 
       <div class="footer-package row container">
         <div class="footer-center container row">
-          <div class="fl copyright col-md-7 col-sm-4">
+          <div class="fl copyright col-md-6 col-sm-3">
             Celebgramme.com is NOT affiliated with Instagram.com in anyway
           </div>
           <div class="col-md-5 col-sm-5 fl footer-helper ">
-            <a href="http://celebgramme.com/about-us">About Us </a>| 
-            <a href="http://celebgramme.com/about-us">Fitur </a>| 
-            <a href="http://celebgramme.com/how-it-works">How It Works </a>  | 
+            <a href="http://celebgramme.com/our-products/auto-manage">Our Products </a>| 
+            <a href="http://celebgramme.com/auto-manage">How It Works </a>  | 
+            <a href="http://celebgramme.com/prices">Prices </a>| 
+            <a href="http://celebgramme.com/blog">Blog </a>| 
             <a href="http://celebgramme.com/faq">FAQ  </a>| 
             <a href="http://celebgramme.com/support">Support  </a>|  
             <a href="{{url('login')}}">Log in</a>

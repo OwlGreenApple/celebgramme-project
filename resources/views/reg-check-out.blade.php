@@ -110,6 +110,17 @@
             </div>  
 
 
+            <div class="div-opsi-pembayaran">
+              <div class="col-sm-2 col-md-2">
+              </div>
+              <div class="col-sm-8 col-md-8">
+                  <p class="col-xs-10 col-sm-10" style="text-align:center; font-size:11px;" > *Dengan mengklik "Register", anda menyetujui <a href="http://celebgramme.com/terms-conditions">Kebijakan Privasi dan Persyaratan Layanan </a></p>
+              </div>  
+              <div class="col-sm-2 col-md-2">
+              </div>
+            </div>  
+
+
             <div class="row checkout-process">
               <button class="btn btn-lg btn-package btn-block" type="submit">Register</button>
             </div>
@@ -125,13 +136,14 @@
 
       <div class="footer-package row container">
         <div class="footer-center container row">
-          <div class="fl copyright col-md-7 col-sm-4">
+          <div class="fl copyright col-md-6 col-sm-3">
             Celebgramme.com is NOT affiliated with Instagram.com in anyway
           </div>
-          <div class="col-md-5 col-sm-5 fl footer-helper ">
-            <a href="http://celebgramme.com/about-us">About Us </a>| 
-            <a href="http://celebgramme.com/about-us">Fitur </a>| 
-            <a href="http://celebgramme.com/how-it-works">How It Works </a>  | 
+          <div class="col-md-6 col-sm-5 fl footer-helper ">
+            <a href="http://celebgramme.com/our-products/auto-manage">Our Products </a>| 
+            <a href="http://celebgramme.com/auto-manage">How It Works </a>  | 
+            <a href="http://celebgramme.com/prices">Prices </a>| 
+            <a href="http://celebgramme.com/blog">Blog </a>| 
             <a href="http://celebgramme.com/faq">FAQ  </a>| 
             <a href="http://celebgramme.com/support">Support  </a>|  
             <a href="{{url('login')}}">Log in</a>
