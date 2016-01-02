@@ -53,7 +53,7 @@ class CronJobController extends Controller
 	public function auto_manage(){
         //kurangin detik, buat auto manage
         $now = Carbon::now();
-        $users = User::where("active_auto_manage",">",0);
+        $users = User::where("active_auto_manage",">",0)->get();
         foreach ($users as $user){
             $settings = Setting::where("type",'=','temp')
                         ->where('user_id','=',$user->id)
@@ -85,6 +85,55 @@ class CronJobController extends Controller
             }
         }
 	}
+
+
+    public function notif_member(){
+        $users = User::where("status_auto_manage","!=","")->get();
+        foreach ($users as $user){
+            if ( ($user->status_auto_manage=="member") && ($user->active_auto_manage<=432000) ) {
+                $user->status_auto_manage="member-5days";
+                $user->save();
+
+                $emaildata = [
+                    'user' => $user,
+                ];
+                Mail::queue('emails.notif-5days', $emaildata, function ($message) use ($user) {
+                  $message->from('no-reply@celebgramme.com', 'Celebgramme');
+                  $message->to($user->email);
+                  $message->subject('[Celebgramme] 5 hari lagi nih, nggak berasa yah');
+                });
+
+            }
+            if ( ($user->status_auto_manage=="member-5days") && ($user->active_auto_manage<=259200) ) {
+                $user->status_auto_manage="member-3days";
+                $user->save();
+
+                $emaildata = [
+                    'user' => $user,
+                ];
+                Mail::queue('emails.notif-3days', $emaildata, function ($message) use ($user) {
+                  $message->from('no-reply@celebgramme.com', 'Celebgramme');
+                  $message->to($user->email);
+                  $message->subject('[Celebgramme] Welcome to celebgramme.com');
+                });
+
+            }
+            if ( ($user->status_auto_manage=="member-3days") && ($user->active_auto_manage==0) ) {
+                $user->status_auto_manage="member-expired";
+                $user->save();
+
+                $emaildata = [
+                    'user' => $user,
+                ];
+                Mail::queue('emails.notif-expired', $emaildata, function ($message) use ($user) {
+                  $message->from('no-reply@celebgramme.com', 'Celebgramme');
+                  $message->to($user->email);
+                  $message->subject('[Celebgramme] Hari ini service Celebgramme.com berakhir');
+                });
+
+            }
+        }
+    }
   
 	
 }
