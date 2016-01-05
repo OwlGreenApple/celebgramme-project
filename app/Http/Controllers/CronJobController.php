@@ -78,7 +78,7 @@ class CronJobController extends Controller
                         $post->save();
                 }
                 else{
-                    $setting->running_time = $dt->toDateTimeString();
+                    $setting->running_time = $now->toDateTimeString();
                 }
                 $setting->save();
                 $user->save();
