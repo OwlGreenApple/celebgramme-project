@@ -352,7 +352,7 @@ Anda dapat menambahkan sampai dengan 100 comments."></span>
         </div>
         <div class="row">
           <div class="col-md-4">
-            <label>Follow source</label> <span class="glyphicon glyphicon-question-sign" title="Anda dapat memilih, antara menentukan sendiri media source anda atau berdasarkan username followers/following."></span>
+            <label>Follow source</label> <span class="glyphicon glyphicon-question-sign" title="Anda dapat memilih, seperti media source diatas atau berdasarkan username followers/following."></span>
             <select class="form-control" name="data[follow_source]">
               <option value="media" <?php if ($settings->follow_source=='media') echo "selected" ?>>Media</option>
               <option value="followers of username" <?php if ($settings->follow_source=='followers of username') echo "selected" ?>>Followers of username</option>
