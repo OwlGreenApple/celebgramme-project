@@ -24,8 +24,8 @@ class HomeController extends Controller
 	public function test(){
 		$linkusersettings = LinkUserSetting::all();
 		foreach ($linkusersettings as $linkusersetting) {
-			$setting = Setting::find($linkusersettings->setting_id);
-			$setting->user_id = $linkusersettings->user_id;
+			$setting = Setting::find($linkusersetting->setting_id);
+			$setting->user_id = $linkusersetting->user_id;
 			$setting->save();
 		}
 		return "b";
