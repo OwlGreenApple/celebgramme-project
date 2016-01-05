@@ -67,7 +67,7 @@ class AutoManageController extends Controller
     if (is_null($setting)) {
       $count_setting = LinkUserSetting::where("user_id","=",$user->id)
                           ->count();
-      if ( $count_setting>=3 ) {
+      if ( $count_setting>=6 ) {
         $arr["message"]= "Account maksimal 3";
         $arr["type"]= "error";
         return $arr;
