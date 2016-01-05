@@ -40,7 +40,7 @@ class Setting extends Model {
         $setting->dont_follow_pu = false;
         $setting->unfollow_source = "celebgramme";
         $setting->unfollow_wdfm = true;
-        $setting->user_id = true;
+        $setting->user_id = $arr['user_id'];
         $setting->status = 'stopped';
         $setting->type = 'temp';
         $setting->save();
@@ -70,7 +70,7 @@ class Setting extends Model {
         $setting->dont_follow_pu = false;
         $setting->unfollow_source = "celebgramme";
         $setting->unfollow_wdfm = true;
-        $setting->user_id = true;
+        $setting->user_id = $arr['user_id'];
         $setting->status = 'stopped';
         $setting->type = 'real';
         $setting->save();
