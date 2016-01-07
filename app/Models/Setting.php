@@ -17,7 +17,7 @@ class Setting extends Model {
     protected $fillable = ['activity_speed', 'media_source', 'media_age', 'media_type', 
     'min_likes_media', 'max_likes_media', 'dont_comment_su', 'follow_source', 'dont_follow_su', 'dont_follow_pu', 'unfollow_source', 'unfollow_wdfm', 'comments', 'tags', 'locations', 
     'insta_username', 'insta_password', 'insta_user_id', 'insta_access_token', 'last_user', 'start_time', 'running_time', 'user_id', 'tags_blacklist', 'usernames_blacklist', 
-    'likes_counter', 'unfollows_counter', 'comments_counter', 'follows_counter', 'username', 'status' ];
+    'likes_counter', 'unfollows_counter', 'comments_counter', 'follows_counter', 'username', 'status', 'activity' ];
 	protected function createSetting($arr)
 	{
         $setting = new Setting;
@@ -28,6 +28,7 @@ class Setting extends Model {
         $setting->comments = "Nice,Pretty Awesome,Pretty Sweet,Aw Cool,Wow nice pictures";
         $setting->tags = "selfie,anime,kuliner,weekend,graduation";
         $setting->locations = "";
+        $setting->activity = "follow";
         $setting->activity_speed = "normal";
         $setting->media_source = "tags";
         $setting->media_age = "1 hour";
@@ -58,6 +59,7 @@ class Setting extends Model {
         $setting->comments = "Nice,Pretty Awesome,Pretty Sweet,Aw Cool,Wow nice pictures";
         $setting->tags = "selfie,anime,kuliner,weekend,graduation";
         $setting->locations = "";
+        $setting->activity = "follow";
         $setting->activity_speed = "normal";
         $setting->media_source = "tags";
         $setting->media_age = "1 hour";

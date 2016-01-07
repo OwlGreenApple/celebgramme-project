@@ -3,6 +3,16 @@
 @section('content-auto-manage')
 <script type="text/javascript">
 
+		function toggleFollow(){
+				$('#followButton').toggleClass('btn-success');
+				$('#unfollowButton').toggleClass('btn-primary');
+				if ( $('#followButton').hasClass( "btn-success" ) ) {
+					$("#activity").val("follow");
+				} else {
+					$("#activity").val("unfollow");
+				}
+		}
+			
     function call_action(action,id){
         $.ajax({
             type: 'GET',
@@ -212,6 +222,16 @@
       </div>
       <div class="panel-body">
 
+				<div class="col-md-4">
+					<label>Activity</label><span class="glyphicon glyphicon-question-sign" title="Untuk mengaktifkan fitur follow/unfollow.Anda tidak dapat melakukan aktivitas follow & unfollow dalam waktu yang sama"></span>
+					<div class="btn-group" role="group" aria-label="...">
+						<button type="button" class="btn <?php if ($settings->activity=="follow") echo 'btn-success' ?>" id="followButton" onclick="toggleFollow();">Follow</button>
+						<button type="button" class="btn <?php if ($settings->activity=="unfollow") echo 'btn-primary' ?>" id="unfollowButton" onclick="toggleFollow();">Unfollow</button>
+						<input type="hidden" value="{{$settings->activity}}" name="data[activity]" id="activity">
+					</div>				
+				</div>				
+				
+
         <div class="col-md-4">
           <label>Activity Speed</label> <span class="glyphicon glyphicon-question-sign" title="Slow - Kecepatan yang aman untuk melakukan sekitar 480 Likes, 144 comments, 336 follows, 240 unfollow per hari ( kecepatan terbaik untuk awal pemakaian )
 
@@ -287,7 +307,7 @@ Atur nilai ke 0 untuk menonaktifkan filter ini
 "></span>
           <input type="number" class="form-control" name="data[max_likes_media]" value="{{$settings->max_likes_media}}">
         </div>
-
+				
       </div>
     </div>
   </div>  
