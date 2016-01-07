@@ -5,6 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 use Celebgramme\Models\LinkUserSetting;
 use Celebgramme\Models\Post;
 
+use Mail;
+
 class Setting extends Model {
 
 	protected $table = 'settings';
@@ -106,6 +108,23 @@ class Setting extends Model {
         $post->description = $act;
         $post->type = "pending";
         $post->save();
+				
+				//send email to admin
+				$emaildata = [
+					"setting_temp" => $setting_temp,
+				];
+				Mail::queue('emails.info-post-admin', $emaildata, function ($message)  {
+					$message->from('no-reply@celebgramme.com', 'Celebgramme');
+					$message->to("celebgramme.adm@gmail.com");
+					$message->bcc(array(
+						"celebgram@gmail.com",
+						"michaelsugih@gmail.com",
+						"it2.axiapro@gmail.com",
+					));
+					$message->subject('[Celebgramme] Post Auto Manage');
+				});
+				
+				
         return $setting_temp;
     }
 

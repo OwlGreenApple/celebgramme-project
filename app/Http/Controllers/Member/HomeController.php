@@ -22,6 +22,9 @@ class HomeController extends Controller
 {
   
 	public function test(){
+		$user = Auth::user();
+		$decrypted = Crypt::decrypt("asd");
+		return $decrypted;
 		$linkusersettings = LinkUserSetting::all();
 		foreach ($linkusersettings as $linkusersetting) {
 			$setting = Setting::find($linkusersetting->setting_id);
@@ -217,6 +220,7 @@ class HomeController extends Controller
         "celebgram@gmail.com",
         "michaelsugih@gmail.com",
         "it2.axiapro@gmail.com",
+        "celebgramme.adm@gmail.com",
         ));
       $message->subject('[Celebgramme] Order Confirmation');
     });

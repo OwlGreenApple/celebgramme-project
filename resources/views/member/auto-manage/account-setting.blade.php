@@ -251,14 +251,11 @@ cobalah untuk menggunakan kecepatan slow untuk awal pemakaian. Kemudian, anda da
 
 Tags - untuk menentukan media sesuai tags yang di pilih
 
-Follower/followings - untuk menentukan media berdasarkan username dari followers atau following
-
-My Feed - untuk menentukan media berdasarkan feed (semua postingan Instagram) anda sendiri"></span>
+Follower/followings - untuk menentukan media berdasarkan username dari followers atau following"></span>
           <select class="form-control" name="data[media_source]">
             <option value="tags" <?php if ($settings->media_source=='tags') echo "selected" ?>>Tags</option>
             <option value="locations" <?php if ($settings->media_source=='locations') echo "selected" ?>>Locations</option>
             <option value="followers of usernames" <?php if ($settings->media_source=='followers of usernames') echo "selected" ?>>Followers of usernames</option>
-            <option value="my feed" <?php if ($settings->media_source=='my feed') echo "selected" ?>>My Feed</option>
           </select>
         </div>
         <div class="col-md-4">
