@@ -85,6 +85,7 @@ Route::group(['middleware' => 'auth'], function()
   Route::post('process-edit-password', 'Member\AutoManageController@process_edit_password');
   Route::post('process-save-setting', 'Member\AutoManageController@process_save_setting');
   Route::get('call-action', 'Member\AutoManageController@call_action');
+  Route::post('delete-setting', 'Member\AutoManageController@delete_setting');
 
 });
 

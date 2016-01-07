@@ -79,6 +79,45 @@
     $("#alert").hide();
     loadaccount();
 
+    $( "body" ).on( "click", ".delete-button", function() {
+			//alert($(this).attr("data-id"));
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            url: "<?php echo url('delete-setting'); ?>",
+            data: {
+							id : $(this).attr("data-id"),
+						},
+            dataType: 'text',
+            beforeSend: function()
+            {
+              $("#div-loading").show();
+            },
+            success: function(result) {
+                // $('#result').html(data);
+                $("#div-loading").hide();
+                var data = jQuery.parseJSON(result);
+                $("#alert").show();
+                $("#alert").html(data.message);
+                if(data.type=='success')
+                {
+                  $("#alert").addClass('alert-danger');
+                  $("#alert").removeClass('alert-success');
+                }
+                else if(data.type=='error')
+                {
+                  $("#alert").addClass('alert-success');
+                  $("#alert").removeClass('alert-danger');
+                }
+                $("#username").val("");
+                $("#password").val("");
+                $("#confirm_password").val("");
+                loadaccount();
+            }
+        });
+    });
     $( "body" ).on( "click", ".edit-cred", function() {
       $("#setting_id").val($(this).attr("data-id"));
     });
@@ -131,6 +170,7 @@
                 }
                 $("#username").val("");
                 $("#password").val("");
+                $("#confirm_password").val("");
                 loadaccount();
             }
         });

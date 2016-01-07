@@ -65,9 +65,13 @@ class AutoManageController extends Controller
 
     $setting = Setting::where("insta_username","=",Request::input("username"))->where("type","=","temp")->first();
     if (is_null($setting)) {
-      $count_setting = LinkUserSetting::where("user_id","=",$user->id)
-                          ->count();
-      if ( $count_setting>=6 ) {
+      $count_setting = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
+												->select("settings.*")
+												->where("link_users_settings.user_id","=",$user->id)
+												->where("type","=","temp")
+												->where("status","!=","deleted")
+                        ->count();
+      if ( $count_setting>=3 ) {
         $arr["message"]= "Account maksimal 3";
         $arr["type"]= "error";
         return $arr;
@@ -103,6 +107,7 @@ class AutoManageController extends Controller
               ->select("settings.*")
               ->where("link_users_settings.user_id","=",$user->id)
               ->where("type","=","temp")
+              ->where("status","!=","deleted")
               ->get();
 
     return view("member.auto-manage.list-account")->with(array(
@@ -223,4 +228,31 @@ class AutoManageController extends Controller
     return $arr;
   }
 
+	public function delete_setting(){  
+		$user = Auth::user();
+    $arr["message"]= "Account berhasil dihapus";
+    $arr["type"]= "success";
+		
+		Request::input("id");
+    $account = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
+              ->select("settings.*")
+              ->where("link_users_settings.user_id","=",$user->id)
+              ->where("type","=","temp")
+              ->where("link_users_settings.setting_id","=",Request::input("id"))
+              ->first();
+		if (is_null($account)) {
+			$arr["message"]= "Account tidak berhasil dihapus";
+			$arr["type"]= "error";
+			return $arr;
+			
+		} else {
+			$setting = Setting::find($account->id);
+			$setting->status = "deleted";
+			$setting->save();
+			
+			$setting_temp = Setting::post_info_admin($setting->id);
+		}
+		
+		return $arr;
+	}
 }

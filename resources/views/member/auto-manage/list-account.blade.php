@@ -15,6 +15,12 @@ if (isset($datas)) {
   foreach ($datas as $data ) {
 ?>
 <div class="col-md-5 border-styling">
+	<div class="row"> 
+		<div class="col-md-10 col-sm-10"></div>
+		<div class="col-md-2 col-sm-2">
+			<span data-id="{{$data->id}}" class="delete-button glyphicon glyphicon-remove" style="left:20px;cursor:pointer;" aria-hidden="true"></span> 
+		</div> 
+	</div>
   <div class="row"> <img src="{{url('images/profile-default.png')}}" class=""> </div>
   <div class="row"> <label>{{$data->insta_username}}</label></div>
   <div class="row status-activity"> <p> Status activity : <?php if ($data->status=='stopped') { echo '<span class="glyphicon glyphicon-stop"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>'; } 
