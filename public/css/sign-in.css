@@ -70,7 +70,7 @@ box-sizing: border-box; padding-top: 10px; padding-bottom: 20px;
 }
 .register-link-landing{
   position: absolute;
-    top: 464px;
+    top: 394px;
     left: 279px;
     color: white;
     font-size: 17.5px;
@@ -82,7 +82,7 @@ box-sizing: border-box; padding-top: 10px; padding-bottom: 20px;
 }
 .forgot-link-landing{
   position: absolute;
-    top: 464px;
+    top: 394px;
     left: 0px;
     color: white;
     font-size: 17.5px;
@@ -91,6 +91,12 @@ box-sizing: border-box; padding-top: 10px; padding-bottom: 20px;
 .forgot-link-landing:hover, .login-link-landing:hover { 
     color: #908e8c;
     text-decoration: none;
+}
+.notif-user{
+  position: absolute;
+	top: -70px;
+	left: 0px;
+	width:100%;
 }
 .form-signin {
   max-width: 380px;

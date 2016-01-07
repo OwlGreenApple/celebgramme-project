@@ -16,16 +16,6 @@
           <div class="div-logo">
             <a href="http://celebgramme.com"><div class="logo"></div></a>
           </div>
-					@if (session('success') )
-						<div class="alert alert-success">
-							<p align="center">{{session('success')}}</p>
-						</div>
-					@endif
-					@if (session('error') )
-						<div class="alert alert-danger">
-							<p align="center">{{session('error')}}</p>
-						</div>
-					@endif
           {!! Form::open(array('url'=>URL::ROUTE('auth.login'),'method'=>'post','class'=>"form-signin",)) !!}
             {!! csrf_field() !!}
               <label>Email Address</label>
@@ -42,6 +32,18 @@
           {!! Form::close() !!}
           <a href="{{url('forgot-password')}}" class="forgot-link-landing"> Forgot password </a>
           <a href="{{url('package')}}" class="register-link-landing"> Need an account ? </a>
+					<div class="notif-user">
+						@if (session('error') )
+							<div class="alert alert-danger">
+								<p align="center">{{session('error')}}</p>
+							</div>
+						@endif
+						@if (session('success') )
+							<div class="alert alert-success">
+								<p align="center">{{session('success')}}</p>
+							</div>
+						@endif
+					</div>
         </div>
 
       </div>
