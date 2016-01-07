@@ -57,7 +57,7 @@ class LoginController extends Controller
 			}
 		} else {
 			return Redirect::to('/login')
-				->withInput(Input::except('password'));
+				->with(array("error"=>"Login anda salah"));
 		}
 	}
 	

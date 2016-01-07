@@ -70,13 +70,25 @@ box-sizing: border-box; padding-top: 10px; padding-bottom: 20px;
 }
 .register-link-landing{
   position: absolute;
-    top: 394px;
+    top: 464px;
     left: 279px;
     color: white;
     font-size: 17.5px;
     font-family: "Open Sans";  
 }
 .register-link-landing:hover, .login-link-landing:hover { 
+    color: #908e8c;
+    text-decoration: none;
+}
+.forgot-link-landing{
+  position: absolute;
+    top: 464px;
+    left: 0px;
+    color: white;
+    font-size: 17.5px;
+    font-family: "Open Sans";  
+}
+.forgot-link-landing:hover, .login-link-landing:hover { 
     color: #908e8c;
     text-decoration: none;
 }

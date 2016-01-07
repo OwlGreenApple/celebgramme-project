@@ -17,7 +17,7 @@ use Celebgramme\Models\Coupon;
 use Celebgramme\Models\Package;
 use Celebgramme\Veritrans\Veritrans;
 
-use View, Input, Mail, Request, App, Hash, Validator, Carbon;
+use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt;
 
 class LandingPageController extends Controller
 {
@@ -83,5 +83,56 @@ class LandingPageController extends Controller
 	    return redirect("register-checkout");
     }
   
-	
+    public function forgot_password() {
+			return view('auth.forgot-password');
+		}
+		
+    public function auth_forgot() {
+			$email = Request::input("username");
+			if (App::environment() == 'local'){
+				$url = 'http://localhost/celebgramme/public/redirect-auth/';
+			}
+			else if (App::environment() == 'production'){
+				$url = 'http://celebgramme.com/celebgramme/redirect-auth/';
+			}
+			$secret_data = [
+				'email' => $email,
+				'register_time' => Carbon::now()->toDateTimeString(),
+			];
+			$emaildata = [
+				'url' => $url.Crypt::encrypt(json_encode($secret_data)),
+			];
+			Mail::queue('emails.forgot-password', $emaildata, function ($message) use ($email) {
+				$message->from('no-reply@celebgramme.com', 'Celebgramme');
+				$message->to($email);
+				$message->subject('[Celebgramme] Email Forgot Passwordd');
+			});
+			return redirect('forgot-password')->with(array('success'=>'1',));
+		}
+		
+    public function redirect_auth(req $request,$cryptedcode)
+		{
+      try {
+        $decryptedcode = Crypt::decrypt($cryptedcode);
+        $data = json_decode($decryptedcode);
+        $user = User::where("email","=",$data->email)->first();
+        if (!is_null($user)) {
+					$request->session()->put('email', $data->email);
+					return view('auth.new-password');
+				} else{
+					return redirect("http://celebgramme.com/error-page/");
+				}
+      } catch (DecryptException $e) {
+        return redirect("http://celebgramme.com/error-page/");
+      }
+		}	
+		
+    public function change_password(req $request)
+		{
+			$email = $request->session()->get('email');
+			$user = User::where("email",'=',$email)->first();
+			$user->password = Request::input("password");
+			$user->save();
+			return redirect('login')->with(array("success"=>"Password berhasil diganti"));
+		}
 }
