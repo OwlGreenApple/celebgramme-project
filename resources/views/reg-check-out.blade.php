@@ -24,6 +24,10 @@
               message += "password min 6 char";
               flag= true;
             }
+            if ($("#password").val().length>25) {
+              message += "password max 25 char";
+              flag= true;
+            }
 
             if (flag){
               e.preventDefault();

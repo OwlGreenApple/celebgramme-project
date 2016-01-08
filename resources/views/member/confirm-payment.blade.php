@@ -81,6 +81,24 @@
   });
 </script>
 
+	<div class="row">
+		<div class="col-sm-4 col-md-4">
+			<p>
+			<strong>TRANSFER Melalui : </strong>
+			</p>
+		</div>  
+		<div class="col-sm-4 col-md-3">
+			<strong>Bank BCA</strong><br>
+			5335-927-122<br>
+			Sugiarto Lasjim<br><br>
+		</div>  
+
+		<div class="col-sm-4 col-md-3">
+			<strong>Bank Mandiri</strong><br>
+			121-00-3592712-2<br>
+			Sugiarto Lasjim<br><br>
+		</div>  
+	</div>  
   <form enctype="multipart/form-data" id="form-confirm">
     <div class="form-group form-group-sm row">
       <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">No. Order</label>
