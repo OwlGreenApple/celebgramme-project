@@ -4,12 +4,25 @@
     src: url("../fonts/OpenSans/OpenSans-Regular.ttf");
 }
 
+html, body {
+	height: 100%;
+}
+html {
+	overflow-y: hidden;
+}
 body {
+  background : url("../images/bg-landing.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;	
+	/*
   padding-bottom: 40px;
   background-image : url("../images/bg-landing.jpg");
   background-size: cover;
   background-size: 1725px 1150px;
   background-repeat: no-repeat right top;
+	*/
 }
 
 .div-black{
@@ -71,7 +84,7 @@ box-sizing: border-box; padding-top: 10px; padding-bottom: 20px;
 .register-link-landing{
   position: absolute;
     top: 394px;
-    left: 279px;
+    left: 270px;
     color: white;
     font-size: 17.5px;
     font-family: "Open Sans";  

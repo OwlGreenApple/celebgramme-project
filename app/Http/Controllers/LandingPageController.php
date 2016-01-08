@@ -89,6 +89,10 @@ class LandingPageController extends Controller
 		
     public function auth_forgot() {
 			$email = Request::input("username");
+			$user = User::where('email','=',$email)->first();
+			if (is_null($user)) {
+				return redirect('forgot-password')->with(array('error'=>'1',));
+			}
 			if (App::environment() == 'local'){
 				$url = 'http://localhost/celebgramme/public/redirect-auth/';
 			}

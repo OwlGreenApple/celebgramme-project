@@ -21,6 +21,11 @@
 							Kami telah mengirim link reset password ke email anda.
 						</div>
 					@endif
+					@if (session('error') )
+						<div class="alert alert-danger">
+							Email belum terdaftar.
+						</div>
+					@endif
           {!! Form::open(array('url'=>URL::ROUTE('auth.forgot'),'method'=>'post','class'=>"form-signin",)) !!}
             {!! csrf_field() !!}
               <label>Email Address</label>
