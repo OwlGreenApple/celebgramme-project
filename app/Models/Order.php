@@ -55,10 +55,10 @@ class Order extends Model {
         } else {
             $emaildata['status'] = "Lunas";
         }
-        Mail::queue('emails.order', $emaildata, function ($message) use ($user) {
+        Mail::queue('emails.order', $emaildata, function ($message) use ($user,$shortcode) {
           $message->from('no-reply@celebgramme.com', 'Celebgramme');
           $message->to($user->email);
-          $message->subject('[Celebgramme] Order');
+          $message->subject('[Celebgramme] Order Nomor '.$shortcode);
         });
 
         
