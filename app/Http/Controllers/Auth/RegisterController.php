@@ -100,6 +100,7 @@ class RegisterController extends Controller
     $emaildata = [
       'url' => $url.Crypt::encrypt(json_encode($secret_data)),
 			'user' => $user,
+			'password' => $request->password,
     ];
     Mail::queue('emails.confirm-email', $emaildata, function ($message) use ($user) {
       $message->from('no-reply@celebgramme.com', 'Celebgramme');

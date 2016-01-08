@@ -15,7 +15,7 @@ body {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;	
+  background-size: auto,cover;	
 	/*
   padding-bottom: 40px;
   background-image : url("../images/bg-landing.jpg");
