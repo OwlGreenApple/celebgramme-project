@@ -204,6 +204,8 @@ class HomeController extends Controller
     
     OrderMeta::createMeta("jumlah transfer",Request::input("total"),$order->id);
     OrderMeta::createMeta("nama pemilik rekening",Request::input("nama"),$order->id);
+    OrderMeta::createMeta("nama bank",Request::input("nama_bank"),$order->id);
+    OrderMeta::createMeta("no rekening",Request::input("no_rekening"),$order->id);
     OrderMeta::createMeta("keterangan",Request::input("keterangan"),$order->id);
 
     //send email success payment

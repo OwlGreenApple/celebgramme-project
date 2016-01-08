@@ -65,7 +65,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><img src="{{asset('/images/logo-celebgramme.png')}}" style="width:100%;max-width:200px;height:30px;"></a>
+            <a class="navbar-brand" href="{{url('auto-manage')}}"><img src="{{asset('/images/logo-celebgramme.png')}}" style="width:100%;max-width:200px;height:30px;"></a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -80,7 +80,7 @@
           <div class="col-sm-3 col-md-2 fl">    
             <ul class="nav nav-sidebar">
 <!--              <li><a href="{{url('send-like')}}">Send Likes</a></li>-->
-              <li><a href="{{url('auto-manage')}}">Auto Manage</a></li>
+              <li><a href="{{url('auto-manage')}}">Home</a></li>
               <li><a href="{{url('buy-more')}}">Buy More</a></li>
               <li><a href="{{url('confirm-payment')}}">Confirm Payment</a></li>
               <li><a href="{{url('order')}}">Order History</a></li>

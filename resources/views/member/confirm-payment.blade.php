@@ -14,14 +14,30 @@
   function cek_form() {
     var flag=true;
     error_message="";
+				if($('#no_order').val()=="") {
+					error_message+="No Order tidak boleh kosong diisi <br>";
+					flag=false;
+				}
+				if($('#nama_bank').val()=="") {
+					error_message+="Nama Bank tidak boleh kosong diisi <br>";
+					flag=false;
+				}
+				if($('#no_rekening').val()=="") {
+					error_message+="No Rekening tidak boleh kosong diisi <br>";
+					flag=false;
+				}
+				if($('#nama').val()=="") {
+					error_message+="Nama Rekening tidak boleh kosong diisi <br>";
+					flag=false;
+				}
 				if($('#photo').val()=="") {
-					error_message+="File tidak boleh kosong diisi";
+					error_message+="File tidak boleh kosong <br>";
 					flag=false;
 				}else{
 				}
 				var ext = $('#photo').val().split('.').pop().toLowerCase();
 				if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
-					error_message+="Extension file hanya boleh gif, png, jpg, jpeg";
+					error_message+="Extension file hanya boleh gif, png, jpg, jpeg <br>";
 					flag=false;
 				}else{
 				}				
@@ -35,6 +51,18 @@
     return flag;
   }  
   $(document).ready(function() {
+		
+		$("body").on('change', '#photo',
+			function(e) {
+				var f=this.files[0];
+				
+				if ((f.size>5000000)||(f.fileSize>5000000)){
+				// if ((f.size>300000)||(f.fileSize>300000)){
+					$(this).val('');
+					alert('Image tidak boleh lebih besar dari 5MB');
+				}
+		});
+		
     $("input:text").focus(function() { $(this).select(); } );
     $("#send-like").focus(function() { $(this).select(); } );
     $("#alert").hide();
@@ -93,7 +121,7 @@
 			Sugiarto Lasjim<br><br>
 		</div>  
 
-		<div class="col-sm-4 col-md-3">
+		<div class="col-sm-4 col-md-4">
 			<strong>Bank Mandiri</strong><br>
 			121-00-3592712-2<br>
 			Sugiarto Lasjim<br><br>
@@ -107,9 +135,21 @@
       </div>
     </div>  
     <div class="form-group form-group-sm row">
+      <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Nama Bank</label>
+      <div class="col-sm-8 col-md-6">
+        <input type="text" class="form-control" placeholder="Nama Bank" name="nama_bank" id="nama_bank">
+      </div>
+    </div>  
+    <div class="form-group form-group-sm row">
+      <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">No Rekening</label>
+      <div class="col-sm-8 col-md-6">
+        <input type="text" class="form-control" placeholder="No Rekening" name="no_rekening" id="no_rekening">
+      </div>
+    </div>  
+    <div class="form-group form-group-sm row">
       <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Nama Pemilik Rekening</label>
       <div class="col-sm-8 col-md-6">
-        <input type="text" class="form-control" placeholder="Nama Pemilik Rekening" name="nama">
+        <input type="text" class="form-control" placeholder="Nama Pemilik Rekening" name="nama" id="nama">
       </div>
     </div>  
     <div class="form-group form-group-sm row">
