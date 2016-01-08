@@ -57,7 +57,7 @@
         </div>
         <div class="content-package container col-sm-8 col-md-8">  
 
-<!--          <h3 class="price-list"> Silahkan register dulu.</h3>-->
+          <h3 class="price-list"> Registrasi Email</h3>
           {!! Form::open(array('url'=>URL::ROUTE('auth.register'),'method'=>'post','class'=>"form-signin",)) !!}
             {!! csrf_field() !!}
 <!--          <form action="{{url('process-package')}}" method="POST" class="form-signin"> -->

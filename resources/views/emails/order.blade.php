@@ -10,11 +10,11 @@ Anda telah memesan paket {{$package->package_name}} = <strong>Rp. {{number_forma
 	Harap SEGERA melakukan pembayaran,<br> 
 	<strong>TRANSFER Melalui :</strong><br>
 	<br>
-	Bank BCA<br>
+	<strong>Bank BCA</strong><br>
 	5335-927-122<br>
 	Sugiarto Lasjim<br>
 	<br>
-	Bank Mandiri<br>
+	<strong>Bank Mandiri</strong><br>
 	121-00-3592712-2<br>
 	Sugiarto Lasjim<br>
 	<br>

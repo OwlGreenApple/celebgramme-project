@@ -208,7 +208,7 @@
                 <div class="col-sm-4 col-md-4">
                   <select class="form-control" name="payment-method">
                     <option value="1">Bank transfer</option>
-                    <option value="2">Veritrans</option>
+                    <!--<option value="2">Veritrans</option>-->
                   </select>
                 </div>
               </div>  
