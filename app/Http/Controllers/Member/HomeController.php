@@ -213,6 +213,8 @@ class HomeController extends Controller
       'no_order'=>Request::input("no_order"),
       'jumlah_transfer'=>Request::input("total"),
       'nama'=>Request::input("nama"),
+      'no_rekening'=>Request::input("no_rekening"),
+      'nama_bank'=>Request::input("nama_bank"),
       'keterangan'=>Request::input("keterangan"),
     ];
     Mail::queue('emails.confirm-order', $emaildata, function ($message) use ($user) {

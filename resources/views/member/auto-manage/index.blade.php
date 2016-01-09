@@ -238,6 +238,7 @@
                     1. Add Account Instagram anda ( MAX 3 accounts ) <br>
                     2. Click Setting di setiap Account Instagram anda<br>
                     3. Tetapkan Setting yang anda inginkan, sesudah selesai Click START<br>
+										<p style="color:#a94442;">4. Dilarang keras menggunakan sistem auto manage / instagram bot yang lain saat anda menjalankan Celebgramme</p>
                   </div>
                 </div>
               </div>
