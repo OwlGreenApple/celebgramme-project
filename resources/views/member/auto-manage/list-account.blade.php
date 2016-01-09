@@ -21,7 +21,18 @@ if (isset($datas)) {
 			<span data-id="{{$data->id}}" class="delete-button glyphicon glyphicon-remove" style="left:20px;cursor:pointer;" aria-hidden="true"></span> 
 		</div> 
 	</div>
-  <div class="row"> <img src="{{url('images/profile-default.png')}}" class=""> </div>
+	<?php 
+	$json_url = "https://api.instagram.com/v1/users/search?q=".$data->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
+	$json = file_get_contents($json_url);
+	$links = json_decode($json);
+	if (count($links->data)>0) {
+		$photo = $links->data[0]->profile_picture;
+	} else {
+		$photo = url('images/profile-default.png');
+	}
+	
+	?>	
+  <div class="row"> <img src="{{$photo}}" class=""> </div>
   <div class="row"> <label>{{$data->insta_username}}</label></div>
   <div class="row status-activity"> <p> Status activity : <?php if ($data->status=='stopped') { echo '<span class="glyphicon glyphicon-stop"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>'; } 
   else {echo '<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> <span style="color:#5cb85c; font-weight:Bold;">Started</span>';}?></p></div>
