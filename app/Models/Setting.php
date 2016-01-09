@@ -32,7 +32,7 @@ class Setting extends Model {
         $setting->locations = "";
         $setting->activity = "follow";
         $setting->activity_speed = "normal";
-        $setting->media_source = "tags";
+        $setting->media_source = "hashtags";
         $setting->media_age = "1 hour";
         $setting->media_type = "any";
         $setting->min_likes_media = "0";
@@ -63,7 +63,7 @@ class Setting extends Model {
         $setting->locations = "";
         $setting->activity = "follow";
         $setting->activity_speed = "normal";
-        $setting->media_source = "tags";
+        $setting->media_source = "hashtags";
         $setting->media_age = "1 hour";
         $setting->media_type = "any";
         $setting->min_likes_media = "0";

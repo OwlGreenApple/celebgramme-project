@@ -203,13 +203,13 @@
                 $("#alert").html(data.message);
                 if(data.type=='success')
                 {
-                  $("#alert").addClass('alert-danger');
-                  $("#alert").removeClass('alert-success');
+                  $("#alert").addClass('alert-success');
+                  $("#alert").removeClass('alert-danger');
                 }
                 else if(data.type=='error')
                 {
-                  $("#alert").addClass('alert-success');
-                  $("#alert").removeClass('alert-danger');
+                  $("#alert").addClass('alert-danger');
+                  $("#alert").removeClass('alert-success');
                 }
                 $("#username").val("");
                 $("#password").val("");
@@ -238,7 +238,8 @@
                     1. Add Account Instagram anda ( MAX 3 accounts ) <br>
                     2. Click Setting di setiap Account Instagram anda<br>
                     3. Tetapkan Setting yang anda inginkan, sesudah selesai Click START<br>
-										<p style="color:#a94442;">4. Dilarang keras menggunakan sistem auto manage / instagram bot yang lain saat anda menjalankan Celebgramme</p>
+										<p style="color:#a94442;">4. Dilarang keras menggunakan sistem auto manage / instagram bot yang lain saat anda menjalankan Celebgramme <br>
+										5. Untuk menggunakan celebgramme harap akun jangan di private</p>
                   </div>
                 </div>
               </div>
@@ -354,7 +355,7 @@
   <?php } ?>
   <div class="col-sm-10 col-md-10">
     <div class="alert alert-info col-sm-18 col-md-18" id="">
-      Untuk menggunakan celebgramme harap akun jangan di private
+      PS : Untuk menggunakan celebgramme harap akun jangan di private
     </div>  
   </div>          
   <div class="col-sm-10 col-md-10">            
@@ -466,4 +467,22 @@
     </div>
   </div>
 
+	
+  <!-- Modal confirm delete-->
+	<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+					<div class="modal-content">
+							<div class="modal-header">
+									...
+							</div>
+							<div class="modal-body">
+									...
+							</div>
+							<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+									<a class="btn btn-danger btn-ok">Delete</a>
+							</div>
+					</div>
+			</div>
+	</div>	
 @endsection

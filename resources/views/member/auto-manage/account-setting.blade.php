@@ -4,13 +4,13 @@
 <script type="text/javascript">
 
 		function toggleFollow(){
-				$('#followButton').toggleClass('btn-success');
-				$('#unfollowButton').toggleClass('btn-primary');
-				if ( $('#followButton').hasClass( "btn-success" ) ) {
-					$("#activity").val("follow");
-				} else {
-					$("#activity").val("unfollow");
-				}
+				// $('#followButton').toggleClass('btn-success');
+				// $('#unfollowButton').toggleClass('btn-primary');
+				// if ( $('#followButton').hasClass( "btn-success" ) ) {
+					// $("#activity").val("follow");
+				// } else {
+					// $("#activity").val("unfollow");
+				// }
 		}
 			
     function call_action(action,id){
@@ -74,6 +74,17 @@
 
     $("#alert").hide();
 
+		$('#followButton').click(function(e){
+			$("#activity").val("follow");
+			$('#followButton').addClass('btn-success');
+			$('#unfollowButton').removeClass('btn-success');
+		});
+		$('#unfollowButton').click(function(e){
+			$("#activity").val("unfollow");
+			$('#followButton').removeClass('btn-success');
+			$('#unfollowButton').addClass('btn-success');
+		});
+		
     $('#button-save').click(function(e){
       $.ajax({
           headers: {
@@ -143,7 +154,7 @@
   <script type="text/javascript" src="{{ asset('/selectize/js/standalone/selectize.js') }}"></script>
 
 <div class="row">
-  <div class="col-sm-8 col-md-8">            
+  <div class="col-sm-12 col-md-12">            
     <div class="alert alert-danger col-sm-18 col-md-18" id="alert">
     </div>  
   </div>          
@@ -152,7 +163,7 @@
 
 
 <div class="row">
-  <div class="col-md-8 col-sm-8">
+  <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
         <h3 class="panel-title">Data Users</h3>
@@ -227,7 +238,7 @@
 
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
         <h3 class="panel-title">Main Settings</h3>
@@ -237,11 +248,11 @@
 				<div class="col-md-4">
 					<label>Activity</label>
 					<span class="glyphicon glyphicon-question-sign hint-button" title="">
-					<div class="hint">Untuk mengaktifkan fitur follow/unfollow. Anda tidak dapat melakukan aktivitas follow & unfollow dalam waktu yang sama</div>
+					<div class="hint">PILIH salah satu Follow / Unfollow. Tidak bisa bersamaan</div>
 					</span>
-					<div class="btn-group" role="group" aria-label="...">
-						<button type="button" class="btn <?php if ($settings->activity=="follow") echo 'btn-success' ?>" id="followButton" onclick="toggleFollow();">Follow</button>
-						<button type="button" class="btn <?php if ($settings->activity=="unfollow") echo 'btn-primary' ?>" id="unfollowButton" onclick="toggleFollow();">Unfollow</button>
+					<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
+						<button type="button" class="btn <?php if ($settings->activity=="follow") echo 'btn-success' ?>" id="followButton" onclick="toggleFollow();" style="color:#fff;">Follow</button>
+						<button type="button" class="btn <?php if ($settings->activity=="unfollow") echo 'btn-primary' ?>" id="unfollowButton" onclick="toggleFollow();" style="color:#fff;">Unfollow</button>
 						<input type="hidden" value="{{$settings->activity}}" name="data[activity]" id="activity">
 					</div>				
 				</div>				
@@ -250,10 +261,10 @@
         <div class="col-md-4">
           <label>Activity Speed</label> 
 					<span class="glyphicon glyphicon-question-sign" title="">
-						<div class="hint">Slow - Kecepatan yang aman untuk melakukan sekitar 480 Likes, 144 comments, 336 follows, 240 unfollow per hari ( kecepatan terbaik untuk awal pemakaian ) <br>
-								Normal - Kecepatan yang tepat untuk melakukan sekitar 720 likes, 192 comments, 480 follows, 360 unfollows per hari. <br>
-								Fast - Kecepatan tertinggi untuk melakukan 960 likes, 240 comments, 624 follows, 480 unfollows per hari. <br>
-								cobalah untuk menggunakan kecepatan slow untuk awal pemakaian. Kemudian, anda dapat mengubahnya ke normal atau fast setelah beberapa hari. 
+						<div class="hint">Slow - Melakukan sekitar 550 Likes, 120 comments, 350 follows/unfollow /hari <br>
+							Normal - Melakukan sekitar 1200 likes, 180 comments, 450 follows/unfollows /hari. <br>
+							Fast - Melakukan 1800 likes, 240 comments, 600 follows/unfollows /hari. <br>
+						<br>
 						</div>
 					</span>
           <select class="form-control" name="data[activity_speed]" title="Slow - Kecepatan yang aman untuk melakukan sekitar 480 Likes, 144 comments, 336 follows, 240 unfollow per hari ( kecepatan terbaik untuk awal pemakaian )">
@@ -265,23 +276,23 @@
         <div class="col-md-4">
           <label>Media Source</label> 
 					<span class="glyphicon glyphicon-question-sign" title="">
-						<div class="hint">Pilih sumber foto dan video untuk aktivitas Anda : <br>
-							Tags - untuk menentukan media sesuai tags yang di pilih <br>
-							Follower/followings - untuk menentukan media berdasarkan username dari followers atau following
+						<div class="hint">Pilih Sumber Media untuk aktivitas Anda : <br>
+							Hashtags - untuk menentukan Media sesuai Hashtags <br>
+							Usernames - untuk menentukan Media berdasarkan username <br>
+							
 						</div>
 					</span>
           <select class="form-control" name="data[media_source]">
-            <option value="tags" <?php if ($settings->media_source=='tags') echo "selected" ?>>Tags</option>
-            <option value="locations" <?php if ($settings->media_source=='locations') echo "selected" ?>>Locations</option>
-            <option value="followers of usernames" <?php if ($settings->media_source=='followers of usernames') echo "selected" ?>>Followers of usernames</option>
+            <option value="hashtags" <?php if ($settings->media_source=='hashtags') echo "selected" ?>>Hashtags</option>
+            <option value="usernames" <?php if ($settings->media_source=='usernames') echo "selected" ?>>Usernames</option>
           </select>
         </div>
         <div class="col-md-4">
           <label>Media Age</label> 
 					<span class="glyphicon glyphicon-question-sign" title="">
 						<div class="hint">
-							Pengaturan ini akan membantu anda untuk memilih Media Age yang akan berinteraksi dengan anda. Dari yang terbaru sampai dengan yang terlama. <br>
-							Contohnya, pilih 1 Day jika anda hanya ingin berinteraksi dengan media yang diposting tidak lebih lama dari 1 hari.						
+							Pilih Umur / Media Age yang akan berinteraksi dengan anda. Dari yang Terbaru s/d Terlama. <br>
+							Contoh: pilih 1 Day untuk berinteraksi dengan Media yang diposting berumur MAX 1 hari.						
 						</div>
 					</span>
           <select class="form-control" name="data[media_age]">
@@ -299,35 +310,13 @@
         <div class="col-md-4">
           <label>Media Type</label> 
 					<span class="glyphicon glyphicon-question-sign" title="">
-						<div class="hint">Pengaturan ini memungkinkan Anda berinteraksi dengan media yang lebih spesifik : foto atau video.  Anda juga dapat memilih salah satu.</div>
+						<div class="hint">Media yang dipakai untuk interaksi, pilih Foto atau Video. Anda juga dapat memilih keduanya.</div>
 					</span>
           <select class="form-control" name="data[media_type]">
             <option value="any" <?php if ($settings->media_type=='any') echo "selected" ?>>Any</option>
             <option value="photos" <?php if ($settings->media_type=='photos') echo "selected" ?>>Photos</option>
             <option value="videos" <?php if ($settings->media_type=='videos') echo "selected" ?>>Videos</option>
           </select>
-        </div>
-        <div class="col-md-4">
-          <label>Min likes filter</label> 
-					<span class="glyphicon glyphicon-question-sign" title="">
-						<div class="hint">Interaksi hanya dilakukan pada media (foto / video )  yang memiliki jumlah likes paling sedikit. <br>
-							Gunakan juga Max. likes filter untuk mengatur rentang kepopuleran media yang anda inginkan <br>
-							Nilai yang disarankan : 0 - 5 <br>
-							Atur nilai ke 0 untuk menonaktifkan filter ini
-						</div>
-					</span>
-          <input type="number" class="form-control" name="data[min_likes_media]" value="{{$settings->min_likes_media}}">
-        </div>
-        <div class="col-md-4">
-          <label>Max likes filter</label> 
-					<span class="glyphicon glyphicon-question-sign" title="">
-						<div class="hint">Interaksi hanya dilakukan pada media (foto / video )  yang memiliki jumlah likes paling banyak. <br>
-							Gunakan juga Minimum likes filter untuk mengatur rentang kepopuleran media yang anda inginkan.<br>
-							Nilai yang disarankan :50 - 100 <br>
-							Atur nilai ke 0 untuk menonaktifkan filter ini
-						</div>
-					</span>
-          <input type="number" class="form-control" name="data[max_likes_media]" value="{{$settings->max_likes_media}}">
         </div>
 				
       </div>
@@ -336,7 +325,93 @@
 </div>                        
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-12 col-sm-12">
+    <div class="panel panel-info ">
+      <div class="panel-heading">
+        <h3 class="panel-title">Media source : Hashtags</h3>
+      </div>
+      <div class="panel-body">
+
+        <div class="row">
+          <div class="col-md-12">
+            <label>Hashtags</label> 
+						<span class="glyphicon glyphicon-question-sign" title="">
+							<div class="hint">
+								Tambahkan MIN 1 Hashtag jika anda menggunakan Hashtags di Media Source. <br>
+								*Catatan: bahwa simbol # (tanda pagar) tidak diperlukan. Rekomendasi : 10 tags atau lebih<br>
+								Anda dapat menambahkan MAX 100 Hashtags.
+							</div>
+						</span>
+            <textarea class="selectize-default" name="data[tags]">{{$settings->tags}}</textarea>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>  
+</div>                    
+
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <div class="panel panel-info ">
+      <div class="panel-heading">
+        <h3 class="panel-title">Media source : Usernames</h3>
+      </div>
+      <div class="panel-body">
+
+        <div class="row">
+          <div class="col-md-12">
+            <label>Usernames</label> 
+						<span class="glyphicon glyphicon-question-sign" title="">
+							<div class="hint">Tambahkan MIN 1 username jika anda menggunakan Followers/Following of Usernames di Media Source. <br>
+								Anda dapat menambahkan MAX 50 usernames.
+							</div>
+						</span>
+            <textarea class="selectize-default" name="data[username]">{{$settings->username}}</textarea>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>  
+</div>                    
+
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <div class="panel panel-info ">
+      <div class="panel-heading">
+        <h3 class="panel-title">Likes</h3>
+      </div>
+      <div class="panel-body">
+
+        <div class="col-md-4">
+          <label>Likes min filter</label> 
+					<span class="glyphicon glyphicon-question-sign" title="">
+						<div class="hint">Likes hanya diberikan pada media (foto/video) yang mempunyai MIN Likes sesuai filter <br>
+							Nilai yang disarankan : 1 - 5 <br>
+							Nilai = 0 untuk menonaktifkan filter ini
+						</div>
+					</span>
+          <input type="number" class="form-control" name="data[min_likes_media]" value="{{$settings->min_likes_media}}">
+        </div>
+        <div class="col-md-4">
+          <label>Likes max filter</label> 
+					<span class="glyphicon glyphicon-question-sign" title="">
+						<div class="hint">Likes hanya diberikan pada media (foto/video) yang mempunyai MAX Likes sesuai filter <br>
+							Nilai yang disarankan :50 - 100 <br>
+							Nilai = 0 untuk menonaktifkan filter ini
+						</div>
+					</span>
+          <input type="number" class="form-control" name="data[max_likes_media]" value="{{$settings->max_likes_media}}">
+        </div>
+
+      </div>
+    </div>
+  </div>  
+</div>            
+
+<div class="row">
+  <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
         <h3 class="panel-title">Comment</h3>
@@ -378,7 +453,7 @@
 </div>                        
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
         <h3 class="panel-title">Follow</h3>
@@ -387,9 +462,9 @@
 
         <div class="row">
           <div class="col-md-4 checkbox">
-            <label><input type="checkbox" name="data[dont_follow_su]" <?php if($settings->dont_follow_su) echo "checked"; ?> >Dont Follow same user</label> 
+            <label><input type="checkbox" name="data[dont_follow_su]" <?php if($settings->dont_follow_su) echo "checked"; ?> >Don't Follow same user</label> 
 						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">Ketika anda memberikan centang ke kotak ini, anda tidak akan follow user yang sama sebanyak 2 kali setelah anda meng-unfollow mereka.</div>
+							<div class="hint">Tidak akan follow user yang sama sebanyak 2 kali setelah anda Unfollow mereka.</div>
 						</span>
           </div>
         </div>
@@ -397,7 +472,7 @@
           <div class="col-md-4 checkbox">
             <label><input type="checkbox" name="data[dont_follow_pu]" <?php if($settings->dont_follow_pu) echo "checked"; ?> >Dont Follow private user</label> 
 						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">Ketika anda memberikan centang ke kotak ini, anda tidak akan memfollow user yang akun nya di private</div>
+							<div class="hint">Tidak Follow user yang akun nya di private</div>
 						</span>
           </div>
         </div>
@@ -405,10 +480,10 @@
           <div class="col-md-4">
             <label>Follow source</label> 
 						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">Anda dapat memilih, seperti media source diatas atau berdasarkan username followers/following.</div>
+							<div class="hint">Pilih sesuai Media Source diatas atau berdasarkan Username Followers/Following.</div>
 						</span>
             <select class="form-control" name="data[follow_source]">
-              <option value="media" <?php if ($settings->follow_source=='media') echo "selected" ?>>Media</option>
+              <option value="media" <?php if ($settings->follow_source=='media') echo "selected" ?>>Media Source</option>
               <option value="followers of username" <?php if ($settings->follow_source=='followers of username') echo "selected" ?>>Followers of username</option>
               <option value="following of username" <?php if ($settings->follow_source=='following of username') echo "selected" ?>>Following of username</option>
             </select>
@@ -422,7 +497,7 @@
 </div>                        
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
         <h3 class="panel-title">Unfollow</h3>
@@ -432,8 +507,9 @@
         <div class="row">
           <div class="col-md-5 checkbox">
             <label><input type="checkbox" name="data[unfollow_wdfm]" <?php if($settings->unfollow_wdfm) echo "checked"; ?> >Unfollow who dont follow me</label> 
-						<span class="glyphicon glyphicon-question-sign" title="Ketika anda memberikan centang ke kotak ini, anda hanya akan mengunfollow user yang tidak memfollow back anda. Mungkin diperlukan lebih banyak waktu untuk menemukan mereka, tergantung pada jumlah user yang anda follow.">
-						<div class="hint"></div>
+						<span class="glyphicon glyphicon-question-sign" title="">
+						<div class="hint">Unfollow users yang tidak Follow back anda. <br>
+						</div>
 						</span>
           </div>
         </div>
@@ -442,9 +518,9 @@
             <label>Unfollow source</label> 
 						<span class="glyphicon glyphicon-question-sign" title="">
 							<div class="hint">
-								User yang mana yang akan anda unfollow? <br>
-								Celebgramme - pilih opsi ini jika anda ingin unfollow user yang anda dapatkan dari service kami <br>
-								All - pilih opsi ini jika anda ingin unfollow semua user yang anda follow
+								User yang mana yang akan di Unfollow? <br>
+								Celebgramme - Unfollow Users yang anda dapatkan dari Celebgramme <br>
+								All - Unfollow Semua Following anda
 							</div>
 						</span>
             <select class="form-control" name="data[unfollow_source]">
@@ -459,59 +535,6 @@
     </div>
   </div>  
 </div>                        
-
-<div class="row">
-  <div class="col-md-8">
-    <div class="panel panel-info ">
-      <div class="panel-heading">
-        <h3 class="panel-title">Tags</h3>
-      </div>
-      <div class="panel-body">
-
-        <div class="row">
-          <div class="col-md-12">
-            <label>Tags</label> 
-						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">
-								Tambahkan setidaknya satu tag untuk mendapatkan media jika anda menggunakan Tags sebagai media source anda. <br>
-								Anda dapat mencari tags atau anda dapat meng-upload list tag anda dengan klik dikolom isian tags. Catatan bagi anda, bahwa simbol # (tanda pagar) tidak diperlukan. Gunakan 10 tags atau lebih, sangat direkomendasikan untuk pengaturan ini. <br>
-								Anda dapat menambahkan sampai dengan 1000 hashtags.
-							</div>
-						</span>
-            <textarea class="selectize-default" name="data[tags]">{{$settings->tags}}</textarea>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>  
-</div>                    
-
-<div class="row">
-  <div class="col-md-8">
-    <div class="panel panel-info ">
-      <div class="panel-heading">
-        <h3 class="panel-title">Username</h3>
-      </div>
-      <div class="panel-body">
-
-        <div class="row">
-          <div class="col-md-12">
-            <label>Username</label> 
-						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">Tambahkan paling tidak satu username jika anda menggunakan followers/following of usernames sebagai media source anda. <br>
-								Celebgramme akan menggunakan username followers/followings untuk memfollow mereka dan memilih 5 postingan terakhir dari setiap akun untuk auto likes dan comments. <br>
-								Anda dapat menambahkan sampai dengan 50 usernames.
-							</div>
-						</span>
-            <textarea class="selectize-default" name="data[username]">{{$settings->username}}</textarea>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>  
-</div>                    
 
 <div class="row">
   <div class="col-md-3">

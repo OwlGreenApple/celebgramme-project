@@ -54,7 +54,7 @@ class AutoManageController extends Controller
 
   public function process_save_credential(){  
     $user = Auth::user();
-    $arr["message"]= "Sistem berhasil diupdate, sistem akan berjalan secara otomatis maksimum 1x24jam";
+    $arr["message"]= "Setting berhasil diterima. Silahkan klik START untuk memulai program";
     $arr["type"]= "success";
 
     $data = array (
