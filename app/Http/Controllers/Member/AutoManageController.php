@@ -183,6 +183,7 @@ class AutoManageController extends Controller
       $links = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
                 ->where("link_users_settings.user_id","=",$user->id)
                 ->where("type","=","temp")
+								->where("status","!=","deleted")
                 ->get();
       foreach ($links as $link) {
         $setting_temp = Setting::find($link->setting_id);
@@ -204,6 +205,7 @@ class AutoManageController extends Controller
                 ->where("link_users_settings.user_id","=",$user->id)
                 ->where("settings.id","=",Request::input('id'))
                 ->where("type","=","temp")
+								->where("status","!=","deleted")
                 ->first();
       if (!is_null($link)){
         $setting_temp = Setting::find($link->setting_id);

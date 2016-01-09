@@ -61,6 +61,7 @@
                     $(".btn-"+data.id).removeClass("btn-danger");
                     $(".btn-"+data.id).addClass("btn-success");
                   }
+									loadaccount();
                 }
                 else if(data.type=='error')
                 {
