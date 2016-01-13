@@ -25,7 +25,7 @@ class SettingMeta extends Model {
 		if (!is_null($setting_meta)) {
 			return $setting_meta->meta_value;
 		} else {
-			return "";
+			return 0;
 		}
 	}
 }
