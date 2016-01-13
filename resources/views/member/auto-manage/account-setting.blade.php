@@ -172,13 +172,16 @@
 <div class="col-md-5 col-sm-5 border-styling ">
   <div class="row"> 
 	<?php 
+	$photo = url('images/profile-default.png');
 	$json_url = "https://api.instagram.com/v1/users/search?q=".$settings->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
-	$json = file_get_contents($json_url);
-	$links = json_decode($json);
-	if (count($links->data)>0) {
-		$photo = $links->data[0]->profile_picture;
-	} else {
-		$photo = url('images/profile-default.png');
+	$json = @file_get_contents($json_url);
+	if($json == TRUE) { 
+		$links = json_decode($json);
+		if (count($links->data)>0) {
+			$photo = $links->data[0]->profile_picture;
+		} else {
+			$photo = url('images/profile-default.png');
+		}
 	}
 	
 	?>	
@@ -283,14 +286,14 @@
 				$followers = 0;
 				$following = 0;
 				$json_url = "https://api.instagram.com/v1/users/search?q=".$settings['insta_username']."&client_id=03eecaad3a204f51945da8ade3e22839";
-				$json = file_get_contents($json_url);
-				$links = @json_decode($json);
+				$json = @file_get_contents($json_url);
 				if($json == TRUE) { 
+					$links = json_decode($json);
 					if (count($links->data)>0) {
 						$id = $links->data[0]->id;
 					} 
 					$json_url ='https://api.instagram.com/v1/users/'.$id.'?client_id=03eecaad3a204f51945da8ade3e22839';
-					$json = file_get_contents($json_url);
+					$json = @file_get_contents($json_url);
 					if($json == TRUE) { 
 						$links = json_decode($json);
 						if (count($links->data)>0) {
