@@ -266,7 +266,7 @@
 					<span class="glyphicon glyphicon-question-sign hint-button" title="">
 					<div class="hint">Jumlah follower saat join</div>
 					</span>
-					<?php echo number_format(SettingMeta::getMeta($settings->id,"followers_join"),0,'','.'); ?>
+					<?php echo number_format(intval (SettingMeta::getMeta($settings->id,"followers_join")),0,'','.'); ?>
 				</div>				
 
 				<div class="col-md-4">
@@ -274,7 +274,7 @@
 					<span class="glyphicon glyphicon-question-sign hint-button" title="">
 					<div class="hint">Jumlah following saat join</div>
 					</span>
-					<?php echo number_format(SettingMeta::getMeta($settings->id,"following_join"),0,'','.'); ?>
+					<?php echo number_format(intval (SettingMeta::getMeta($settings->id,"following_join")),0,'','.'); ?>
 				</div>				
 
 				<div class="col-md-4">
