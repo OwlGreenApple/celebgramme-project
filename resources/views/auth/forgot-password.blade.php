@@ -28,11 +28,13 @@
 					@endif
           {!! Form::open(array('url'=>URL::ROUTE('auth.forgot'),'method'=>'post','class'=>"form-signin",)) !!}
             {!! csrf_field() !!}
-              <label>Email Address</label>
+					<h3>Password RESET</h3>
+					<p style="font-family:'Open Sans'; font-size:12px;">Silahkan isi Email anda untuk RESET PASSWORD</p>
               <input type="email" class="form-control" id="username" name="username" placeholder="Enter email" value="{{Input::old('username')}}">
             
             <button class="btn btn-lg btn-block" type="submit">Submit</button>
           {!! Form::close() !!}
+					<a href="{{url('login')}}" class="login-link-forgot"> Back to login </a>
         </div>
 
       </div>

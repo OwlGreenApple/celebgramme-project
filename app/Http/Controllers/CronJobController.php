@@ -17,6 +17,7 @@ use Celebgramme\Veritrans\Veritrans;
 use Celebgramme\Models\PackageUser;
 use Celebgramme\Models\Package;
 use Celebgramme\Models\Setting;
+use Celebgramme\Models\SettingMeta;
 use Celebgramme\Models\Post;
 
 use View, Input, Mail, Request, App, Hash, Validator, Carbon;
@@ -58,7 +59,6 @@ class CronJobController extends Controller
             $settings = Setting::where("type",'=','temp')
                         ->where('user_id','=',$user->id)
                         ->where('status','=',"started")
-                        ->where('type','=',"temp")
                         ->get();
             foreach($settings as $setting) {
                 $runTime = Carbon::createFromFormat('Y-m-d H:i:s', $setting->running_time);
@@ -136,4 +136,37 @@ class CronJobController extends Controller
     }
   
 	
+	/**
+	 * Generating Data Followers and following now dari users
+	 *
+	 * @return response
+	 */
+	public function generate_data(){
+		$settings = Setting::where("type",'=','temp')
+								->get();
+		foreach ($settings as $setting) {
+			//create meta, jumlah followers & following
+			$json_url = "https://api.instagram.com/v1/users/search?q=".$setting->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
+			$json = file_get_contents($json_url);
+			$links = json_decode($json);
+			$followers_join = 0;
+			$following_join = 0;
+			if (count($links->data)>0) {
+				$id = $links->data[0]->id;
+
+				$json_url ='https://api.instagram.com/v1/users/'.$id.'?client_id=03eecaad3a204f51945da8ade3e22839';
+				$json = @file_get_contents($json_url);
+				if($json == TRUE) { 
+					$links = json_decode($json);
+					if (count($links->data)>0) {
+						$followers_join = $links->data->counts->followed_by;
+						$following_join = $links->data->counts->follows;
+					}
+				}
+			} 
+			SettingMeta::createMeta("followers_join",$followers_join,$setting->id);
+			SettingMeta::createMeta("following_join",$following_join,$setting->id);
+			
+		}
+	}
 }

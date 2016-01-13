@@ -109,7 +109,7 @@ class LandingPageController extends Controller
 			Mail::queue('emails.forgot-password', $emaildata, function ($message) use ($email) {
 				$message->from('no-reply@celebgramme.com', 'Celebgramme');
 				$message->to($email);
-				$message->subject('[Celebgramme] Email Forgot Passwordd');
+				$message->subject('[Celebgramme] Email Forgot & RESET Password');
 			});
 			return redirect('forgot-password')->with(array('success'=>'1',));
 		}

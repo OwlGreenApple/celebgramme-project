@@ -253,6 +253,78 @@
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
+        <h3 class="panel-title">Profile</h3>
+      </div>
+      <div class="panel-body">
+
+				<?php use Celebgramme\Models\SettingMeta; ?>
+				<div class="col-md-4">
+					<label>Followers Join</label>
+					<span class="glyphicon glyphicon-question-sign hint-button" title="">
+					<div class="hint">Jumlah follower saat join</div>
+					</span>
+					<?php echo number_format(SettingMeta::getMeta($settings->id,"followers_join"),0,'','.'); ?>
+				</div>				
+
+				<div class="col-md-4">
+					<label>Following Join</label>
+					<span class="glyphicon glyphicon-question-sign hint-button" title="">
+					<div class="hint">Jumlah following saat join</div>
+					</span>
+					<?php echo number_format(SettingMeta::getMeta($settings->id,"following_join"),0,'','.'); ?>
+				</div>				
+
+				<div class="col-md-4">
+				<label><br></label>
+				<label><br></label>
+				</div>				
+
+				<?php 
+				$followers = 0;
+				$following = 0;
+				$json_url = "https://api.instagram.com/v1/users/search?q=".$settings['insta_username']."&client_id=03eecaad3a204f51945da8ade3e22839";
+				$json = file_get_contents($json_url);
+				$links = @json_decode($json);
+				if($json == TRUE) { 
+					if (count($links->data)>0) {
+						$id = $links->data[0]->id;
+					} 
+					$json_url ='https://api.instagram.com/v1/users/'.$id.'?client_id=03eecaad3a204f51945da8ade3e22839';
+					$json = file_get_contents($json_url);
+					if($json == TRUE) { 
+						$links = json_decode($json);
+						if (count($links->data)>0) {
+							$followers = $links->data->counts->followed_by;
+							$following = $links->data->counts->follows;
+						}
+					}
+				}
+				?>
+				<div class="col-md-4">
+					<label>Followers Now</label>
+					<span class="glyphicon glyphicon-question-sign hint-button" title="">
+					<div class="hint">Jumlah follower saat ini</div>
+					</span>
+					{{$followers}}
+				</div>				
+
+				<div class="col-md-4">
+					<label>Following Now</label>
+					<span class="glyphicon glyphicon-question-sign hint-button" title="">
+					<div class="hint">Jumlah following saat ini</div>
+					</span>
+					{{$following}}
+				</div>				
+
+      </div>
+    </div>
+  </div>  
+</div>                    
+
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <div class="panel panel-info ">
+      <div class="panel-heading">
         <h3 class="panel-title">Main Settings</h3>
       </div>
       <div class="panel-body">

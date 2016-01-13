@@ -96,3 +96,4 @@ Route::get('generate-balance', 'CronJobController@generate_balance');
 Route::get('cron-auto-manage', 'CronJobController@auto_manage');
 Route::get('cron-notif-member', 'CronJobController@notif_member');
 
+Route::get('generate-data', 'CronJobController@generate_data');

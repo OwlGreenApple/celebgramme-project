@@ -5,6 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 use Celebgramme\Models\LinkUserSetting;
 use Celebgramme\Models\Post;
 
+use Celebgramme\Models\SettingMeta;
+
 use Mail;
 
 class Setting extends Model {
@@ -52,6 +54,29 @@ class Setting extends Model {
         $linkUserSetting->user_id=$arr['user_id'];
         $linkUserSetting->setting_id=$setting->id;
         $linkUserSetting->save();
+				
+				//create meta, jumlah followers & following
+				$followers_join = 0;
+				$following_join = 0;
+				$json_url = "https://api.instagram.com/v1/users/search?q=".$arr['insta_username']."&client_id=03eecaad3a204f51945da8ade3e22839";
+				$json = @file_get_contents($json_url);
+				if($json == TRUE) { 
+					$links = json_decode($json);
+					if (count($links->data)>0) {
+						$id = $links->data[0]->id;
+					} 
+					$json_url ='https://api.instagram.com/v1/users/'.$id.'?client_id=03eecaad3a204f51945da8ade3e22839';
+					$json = @file_get_contents($json_url);
+					if($json == TRUE) { 
+						$links = json_decode($json);
+						if (count($links->data)>0) {
+							$followers_join = $links->data->counts->followed_by;
+							$following_join = $links->data->counts->follows;
+						}
+					}
+				}
+				SettingMeta::createMeta("followers_join",$followers_join,$setting->id);
+				SettingMeta::createMeta("following_join",$following_join,$setting->id);
         
         $setting = new Setting;
         $setting->insta_username = $arr['insta_username'];
