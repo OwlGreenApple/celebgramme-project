@@ -262,18 +262,12 @@
 
 				<?php use Celebgramme\Models\SettingMeta; ?>
 				<div class="col-md-4">
-					<label>Followers Join</label>
-					<span class="glyphicon glyphicon-question-sign hint-button" title="">
-					<div class="hint">Jumlah follower saat join</div>
-					</span>
+					<label>Followers Saat Join</label>
 					<?php echo number_format(intval (SettingMeta::getMeta($settings->id,"followers_join")),0,'','.'); ?>
 				</div>				
 
 				<div class="col-md-4">
-					<label>Following Join</label>
-					<span class="glyphicon glyphicon-question-sign hint-button" title="">
-					<div class="hint">Jumlah following saat join</div>
-					</span>
+					<label>Following Saat Join</label>
 					<?php echo number_format(intval (SettingMeta::getMeta($settings->id,"following_join")),0,'','.'); ?>
 				</div>				
 
@@ -304,18 +298,12 @@
 				}
 				?>
 				<div class="col-md-4">
-					<label>Followers Now</label>
-					<span class="glyphicon glyphicon-question-sign hint-button" title="">
-					<div class="hint">Jumlah follower saat ini</div>
-					</span>
+					<label>Followers Hari ini</label>
 					{{number_format($followers,0,'','.')}}
 				</div>				
 
 				<div class="col-md-4">
-					<label>Following Now</label>
-					<span class="glyphicon glyphicon-question-sign hint-button" title="">
-					<div class="hint">Jumlah following saat ini</div>
-					</span>
+					<label>Following Hari ini</label>
 					{{number_format($following,0,'','.')}}
 				</div>				
 
