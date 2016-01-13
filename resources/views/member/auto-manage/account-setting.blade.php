@@ -308,7 +308,7 @@
 					<span class="glyphicon glyphicon-question-sign hint-button" title="">
 					<div class="hint">Jumlah follower saat ini</div>
 					</span>
-					{{$followers}}
+					{{number_format($followers,0,'','.')}}
 				</div>				
 
 				<div class="col-md-4">
@@ -316,7 +316,7 @@
 					<span class="glyphicon glyphicon-question-sign hint-button" title="">
 					<div class="hint">Jumlah following saat ini</div>
 					</span>
-					{{$following}}
+					{{number_format($following,0,'','.')}}
 				</div>				
 
       </div>
