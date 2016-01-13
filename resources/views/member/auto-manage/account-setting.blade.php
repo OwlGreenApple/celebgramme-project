@@ -388,6 +388,31 @@
   </div>  
 </div>                    
 
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <div class="panel panel-info ">
+      <div class="panel-heading">
+        <h3 class="panel-title">Unfollow whitelist</h3>
+      </div>
+      <div class="panel-body">
+
+        <div class="row">
+          <div class="col-md-12">
+            <label>Usernames</label> 
+						<span class="glyphicon glyphicon-question-sign" title="">
+							<div class="hint">Saat anda melakukan UNFOLLOW, usernames di whitelist ini akan diabaikan / tidak akan di "UNFOLLOW"
+							usulan penggunaan : teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW
+							</div>
+						</span>
+            <textarea class="selectize-default" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>  
+</div>                    
+
 <!--<div class="row">
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
@@ -507,7 +532,7 @@
     </div>
   </div>  
 </div>                        
-
+<!--
 <div class="row">
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
@@ -547,7 +572,7 @@
     </div>
   </div>  
 </div>                        
-
+-->
 <div class="row">
   <div class="col-md-3">
     <input type="button" value="Save" class="btn btn-info col-md-8 col-sm-12" id="button-save">    
