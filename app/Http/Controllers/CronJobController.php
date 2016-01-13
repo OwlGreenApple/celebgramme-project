@@ -146,24 +146,26 @@ class CronJobController extends Controller
 								->get();
 		foreach ($settings as $setting) {
 			//create meta, jumlah followers & following
-			$json_url = "https://api.instagram.com/v1/users/search?q=".$setting->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
-			$json = file_get_contents($json_url);
-			$links = json_decode($json);
 			$followers_join = 0;
 			$following_join = 0;
-			if (count($links->data)>0) {
-				$id = $links->data[0]->id;
+			$json_url = "https://api.instagram.com/v1/users/search?q=".$setting->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
+			$json = @file_get_contents($json_url);
+			if($json == TRUE) { 
+				$links = json_decode($json);
+				if (count($links->data)>0) {
+					$id = $links->data[0]->id;
 
-				$json_url ='https://api.instagram.com/v1/users/'.$id.'?client_id=03eecaad3a204f51945da8ade3e22839';
-				$json = @file_get_contents($json_url);
-				if($json == TRUE) { 
-					$links = json_decode($json);
-					if (count($links->data)>0) {
-						$followers_join = $links->data->counts->followed_by;
-						$following_join = $links->data->counts->follows;
+					$json_url ='https://api.instagram.com/v1/users/'.$id.'?client_id=03eecaad3a204f51945da8ade3e22839';
+					$json = @file_get_contents($json_url);
+					if($json == TRUE) { 
+						$links = json_decode($json);
+						if (count($links->data)>0) {
+							$followers_join = $links->data->counts->followed_by;
+							$following_join = $links->data->counts->follows;
+						}
 					}
-				}
-			} 
+				} 
+			}
 			SettingMeta::createMeta("followers_join",$followers_join,$setting->id);
 			SettingMeta::createMeta("following_join",$following_join,$setting->id);
 			
