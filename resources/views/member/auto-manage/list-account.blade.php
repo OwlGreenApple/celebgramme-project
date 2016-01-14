@@ -25,7 +25,7 @@ if (isset($datas)) {
 	$photo = url('images/profile-default.png');
 	$json_url = "https://api.instagram.com/v1/users/search?q=".$data->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
 	$json = @file_get_contents($json_url);
-	if($json === TRUE) { 
+	if($json == TRUE) { 
 		$links = json_decode($json);
 		if (count($links->data)>0) {
 			$photo = $links->data[0]->profile_picture;
