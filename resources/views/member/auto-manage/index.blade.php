@@ -3,6 +3,46 @@
 @section('content-auto-manage')
 <script type="text/javascript">
 
+		function getTimeRemaining(endtime){
+			var t = endtime;
+			var seconds = Math.floor( (t) % 60 );
+			var minutes = Math.floor( (t/60) % 60 );
+			var hours = Math.floor( (t/(60*60)) % 24 );
+			var days = Math.floor( t/(60*60*24) );
+			return {
+				'total': t,
+				'days': days,
+				'hours': hours,
+				'minutes': minutes,
+				'seconds': seconds
+			};
+		}
+
+		function initializeClock(id, endtime){
+			var clock = document.getElementById(id);
+			var daysSpan = clock.querySelector('.days');
+			var hoursSpan = clock.querySelector('.hours');
+			var minutesSpan = clock.querySelector('.minutes');
+			var secondsSpan = clock.querySelector('.seconds');
+
+			function updateClock(){
+				var t = getTimeRemaining(endtime);
+
+				daysSpan.innerHTML = t.days;
+				hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+				minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+				secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+				if(t.total<=0){
+					clearInterval(timeinterval);
+				}
+			}
+
+			updateClock();
+			//var timeinterval = setInterval(updateClock,1000);
+		}
+
+
     function loadaccount(){
         $.ajax({
             type: 'GET',
@@ -18,6 +58,7 @@
                 // $('#result').html(data);
                 $("#div-loading").hide();
                 $("#account-all").html(result);
+								
             }
         })
         return false;
@@ -76,11 +117,16 @@
 
   $(document).ready(function() {
 
+		initializeClock('clockdiv', <?php echo $user->active_auto_manage ?>);
 
     $("#alert").hide();
     loadaccount();
 
     $( "body" ).on( "click", ".delete-button", function() {
+			$("#id-setting").val($(this).attr("data-id"));
+    });
+		
+    $( "body" ).on( "click", "#delete-setting", function() {
 			//alert($(this).attr("data-id"));
         $.ajax({
             headers: {
@@ -89,7 +135,7 @@
             type: 'POST',
             url: "<?php echo url('delete-setting'); ?>",
             data: {
-							id : $(this).attr("data-id"),
+							id : $("#id-setting").val(),
 						},
             dataType: 'text',
             beforeSend: function()
@@ -270,6 +316,7 @@
 
 <div class="row">
   <div class="col-sm-10 col-md-10">
+			<h3>Total Waktu pembelian</h3>
       <div id="clockdiv">
         <div class="fl">
           <span class="days"></span>
@@ -290,50 +337,26 @@
         <i class="fn">
         </i>
       </div>
-      <script>
-        function getTimeRemaining(endtime){
-          var t = <?php echo $user->active_auto_manage ?>;
-          var seconds = Math.floor( (t) % 60 );
-          var minutes = Math.floor( (t/60) % 60 );
-          var hours = Math.floor( (t/(60*60)) % 24 );
-          var days = Math.floor( t/(60*60*24) );
-          return {
-            'total': t,
-            'days': days,
-            'hours': hours,
-            'minutes': minutes,
-            'seconds': seconds
-          };
-        }
-
-        function initializeClock(id, endtime){
-          var clock = document.getElementById(id);
-          var daysSpan = clock.querySelector('.days');
-          var hoursSpan = clock.querySelector('.hours');
-          var minutesSpan = clock.querySelector('.minutes');
-          var secondsSpan = clock.querySelector('.seconds');
-
-          function updateClock(){
-            var t = getTimeRemaining(endtime);
-
-            daysSpan.innerHTML = t.days;
-            hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-            minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-            secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-
-            if(t.total<=0){
-              clearInterval(timeinterval);
-            }
-          }
-
-          updateClock();
-          var timeinterval = setInterval(updateClock,1000);
-        }
-
-        var deadline = 'December 31 2015 00:00:50 UTC+0700';
-        initializeClock('clockdiv', deadline);
-      </script>
   </div>
+</div>
+
+<div class="row">
+	<div class="col-sm-10 col-md-10">
+		<h3>Total Account start = <span id="total-account-start"></span> </h3>
+	</div>
+</div>
+
+<div class="row">
+  <div class="col-sm-10 col-md-10">
+			<h3>Total Waktu per account start : <span id="time-account-start"></span></h3>
+  </div>
+</div>
+
+<div class="row">
+	<div class="col-sm-10 col-md-10">
+		<p>* Total waktu per akun start = Total waktu pembelian / total akun start <br>
+hanya akun yang di start saja yang dikurangi waktunya dari total waktu pembelian</p>
+	</div>
 </div>
 
 
@@ -474,14 +497,15 @@
 			<div class="modal-dialog">
 					<div class="modal-content">
 							<div class="modal-header">
-									...
+									Delete Account
 							</div>
 							<div class="modal-body">
-									...
+									Are you sure want to delete ?
 							</div>
+							<input type="hidden" id="id-setting">
 							<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-									<a class="btn btn-danger btn-ok">Delete</a>
+									<button type="button" class="btn btn-danger btn-ok" id="delete-setting" data-dismiss="modal">Delete</button>
 							</div>
 					</div>
 			</div>

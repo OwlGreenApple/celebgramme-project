@@ -1,15 +1,8 @@
-<html>
-    <head>
-      <title>Celebgramme</title>
-      <meta name="csrf-token" content="{{ csrf_token() }}" />
-      <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/images/celebgramme-favicon.png') }}">
-      <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-      <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
-      <link href="{{ asset('/css/bootstrap-theme.min.css') }}" rel="stylesheet">
-      <link href="{{ asset('/css/main.css') }}" rel="stylesheet">
-    </head>
-    <body>
+<script>
+	$("#total-account-start").html("<?php echo $account_active; ?>");
+	$("#time-account-start").html("<?php echo $view_timeperaccount; ?>");
 
+</script>
 <?php 
 if (isset($datas)) { 
   foreach ($datas as $data ) {
@@ -18,7 +11,7 @@ if (isset($datas)) {
 	<div class="row"> 
 		<div class="col-md-10 col-sm-10"></div>
 		<div class="col-md-2 col-sm-2">
-			<span data-id="{{$data->id}}" class="delete-button glyphicon glyphicon-remove" style="left:20px;cursor:pointer;" aria-hidden="true"></span> 
+			<span data-id="{{$data->id}}" class="delete-button glyphicon glyphicon-remove" style="left:20px;cursor:pointer;" aria-hidden="true" data-toggle="modal" data-target="#confirm-delete" ></span> 
 		</div> 
 	</div>
 	<?php 
@@ -58,4 +51,3 @@ if (isset($datas)) {
   </div>
 </div>
 <?php } } ?>
-</body></html>

@@ -30,6 +30,7 @@ class AutoManageController extends Controller
 	public function index(){
     $user = Auth::user();
     $order = Order::where("order_status","=","pending")->where("user_id","=",$user->id)->where("image",'=','')->first();
+		
     return view("member.auto-manage.index")->with(array(
       'user'=>$user,
       'order'=>$order,
@@ -91,9 +92,17 @@ class AutoManageController extends Controller
         $setting->save();
 
       } else {
-        $arr["message"]= "Account anda sudah terdaftar";
-        $arr["type"]= "error";
-        return $arr;
+				if ( ($setting->status=="stopped") || ($setting->status=="started") ) {
+					$arr["message"]= "Account anda sudah terdaftar";
+					$arr["type"]= "error";
+					return $arr;
+				}
+				
+				if ($setting->status=="deleted") {
+					$setting->status = 'stopped';
+					$setting->user_id = $user->id;
+					$setting->save();
+				}
       }
     }
 
@@ -110,9 +119,29 @@ class AutoManageController extends Controller
               ->where("status","!=","deleted")
               ->get();
 
+		$account_active = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
+              ->select("settings.*")
+              ->where("link_users_settings.user_id","=",$user->id)
+              ->where("type","=","temp")
+              ->where("status","=","started")
+              ->count();
+		if ($account_active==0) {
+			$pembagi = 1;
+		} else {
+			$pembagi = $account_active;
+		}
+		$t = $user->active_auto_manage / $pembagi;
+		$days = floor($t / (60*60*24));
+		$hours = floor(($t / (60*60)) % 24);
+		$minutes = floor(($t / (60)) % 60);
+		$seconds = floor($t  % 60);
+		$view_timeperaccount = $days."D ".$hours."H ".$minutes."M ".$seconds."S ";
+		
     return view("member.auto-manage.list-account")->with(array(
       'user'=>$user,
       'datas'=>$datas,
+      'account_active'=>$account_active,
+      'view_timeperaccount'=>$view_timeperaccount,
       ));
   }
   
@@ -209,6 +238,11 @@ class AutoManageController extends Controller
                 ->first();
       if (!is_null($link)){
         $setting_temp = Setting::find($link->setting_id);
+				if ($setting_temp->error_cred==1) {
+					$arr["message"]= "Anda tidak dapat menjalankan program, silahkan upgrade login credential account anda";
+					$arr["type"]= "error";
+					return $arr;
+				}
         if (Request::input('action')=='start') {
           $setting_temp->status = "started";
           $setting_temp->start_time = $dt->toDateTimeString();
