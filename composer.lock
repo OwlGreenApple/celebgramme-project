@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c755557bcc5ee0a744cfbabfdfd7c469",
-    "content-hash": "d91300572a4eae919b2380c539ce19af",
+    "hash": "25a4a153248db0e68685ece1eec14b0f",
+    "content-hash": "58011cf255211810d4232ec42c1cf49b",
     "packages": [
         {
             "name": "anouar/paypalpayment",
@@ -259,6 +259,47 @@
                 "string"
             ],
             "time": "2015-11-06 14:35:42"
+        },
+        {
+            "name": "genealabs/laravel-caffeine",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GeneaLabs/laravel-caffeine.git",
+                "reference": "7d891aa735adc44c4daaf27ed419c13e7f82ab5a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GeneaLabs/laravel-caffeine/zipball/7d891aa735adc44c4daaf27ed419c13e7f82ab5a",
+                "reference": "7d891aa735adc44c4daaf27ed419c13e7f82ab5a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/routing": "^5.1",
+                "illuminate/support": "~5.1",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "GeneaLabs\\LaravelCaffeine\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mike Bronner",
+                    "email": "hello@genealabs.com"
+                }
+            ],
+            "description": "Keeping Your Laravel Forms Awake",
+            "time": "2015-12-23 19:08:08"
         },
         {
             "name": "guzzlehttp/guzzle",

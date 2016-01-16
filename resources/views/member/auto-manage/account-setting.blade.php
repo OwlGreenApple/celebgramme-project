@@ -61,6 +61,14 @@
         return false;
     }
 
+		$(document).click(function(e) {
+				var target = e.target;
+
+				if (!$(target).is('.glyphicon-question-sign') && !$(target).parents().is('.glyphicon-question-sign')) {
+						$('.glyphicon-question-sign').find(".hint").hide();
+				}
+		});
+		
   $(document).ready(function() {
 
     // $( "body" ).on( "click", ".button-action", function(e) {
@@ -121,7 +129,7 @@
     });
 
 
-		$( "body" ).on( "click", ".glyphicon-question-sign", function() {
+		$( "body" ).on( "click", ".glyphicon-question-sign", function(e) {
 			$(this).find('.hint').slideToggle();
 		});
 		// $( ".glyphicon-question-sign" ).hover(
@@ -366,19 +374,22 @@
           <label>Media Age</label> 
 					<span class="glyphicon glyphicon-question-sign" title="">
 						<div class="hint">
-							Pilih Umur / Media Age yang akan berinteraksi dengan anda. Dari yang Terbaru s/d Terlama. <br>
-							Contoh: pilih 1 Day untuk berinteraksi dengan Media yang diposting berumur MAX 1 hari.						
+							Pilih Umur / Media Age yang akan berinteraksi dengan anda.<br>
+							Latest : Hanya post terbaru (default)<br>
+							Any    : Post kapan saja<br>
+												
 						</div>
 					</span>
           <select class="form-control" name="data[media_age]">
-            <option value="newest" <?php if ($settings->media_age=='newest') echo "selected" ?>>Newest</option>
+            <option value="latest" <?php if ($settings->media_age=='latest') echo "selected" ?>>Latest</option>
+            <!--<option value="newest" <?php if ($settings->media_age=='newest') echo "selected" ?>>Newest</option>
             <option value="1 hour" <?php if ($settings->media_age=='1 hour') echo "selected" ?>>1 Hour</option>
             <option value="12 hours" <?php if ($settings->media_age=='12 hours') echo "selected" ?>>12 Hours</option>
             <option value="1 day" <?php if ($settings->media_age=='1 day') echo "selected" ?>>1 Day</option>
             <option value="3 day" <?php if ($settings->media_age=='3 day') echo "selected" ?>>3 Days</option>
             <option value="1 week" <?php if ($settings->media_age=='1 week') echo "selected" ?>>1 Week</option>
             <option value="2 week" <?php if ($settings->media_age=='2 week') echo "selected" ?>>2 Weeks</option>
-            <option value="1 month" <?php if ($settings->media_age=='1 month') echo "selected" ?>>1 Month</option>
+            <option value="1 month" <?php if ($settings->media_age=='1 month') echo "selected" ?>>1 Month</option>-->
             <option value="any" <?php if ($settings->media_age=='any') echo "selected" ?>>Any</option>
           </select>
         </div>

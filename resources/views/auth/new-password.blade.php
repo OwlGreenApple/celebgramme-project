@@ -14,7 +14,7 @@
             flag= false;
             message = "";
             if ($("#password").val()!=$("#password_confirmation").val()) {
-              message += "password anda tidak sama dengan password confirmation";
+              message += "password anda tidak sama dengan confirmation password";
               flag= true;
             } 
             if ($("#password").val().length<6) {
@@ -44,7 +44,7 @@
             {!! csrf_field() !!}
               <label>Password</label>
               <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" value="{{Input::old('password')}}">
-              <label>Password Confirmation</label>
+              <label>Confirmation Password </label>
               <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Enter confirmation password" value="{{Input::old('password')}}">
             
             <button class="btn btn-lg btn-block" type="submit">Submit</button>

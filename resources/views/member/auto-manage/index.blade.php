@@ -87,7 +87,7 @@
                 if(data.type=='success')
                 {
                   $("#alert").addClass('alert-success');
-                  $("#alert").removeClass('alert-danger');
+                  $("#alert").removeClass('btn-danger');
                   if(data.action=='start'){
                     $(".btn-"+data.id).html("<span class='glyphicon glyphicon-stop'></span> Stop");
                     $(".btn-"+data.id).val("Stop");
@@ -106,7 +106,7 @@
                 }
                 else if(data.type=='error')
                 {
-                  $("#alert").addClass('alert-danger');
+                  $("#alert").addClass('btn-danger');
                   $("#alert").removeClass('alert-success');
                 }
             }
@@ -150,13 +150,13 @@
                 $("#alert").html(data.message);
                 if(data.type=='success')
                 {
-                  $("#alert").addClass('alert-danger');
+                  $("#alert").addClass('btn-danger');
                   $("#alert").removeClass('alert-success');
                 }
                 else if(data.type=='error')
                 {
                   $("#alert").addClass('alert-success');
-                  $("#alert").removeClass('alert-danger');
+                  $("#alert").removeClass('btn-danger');
                 }
                 $("#username").val("");
                 $("#password").val("");
@@ -182,7 +182,7 @@
     });
     $('#button-edit-password').click(function(e){
       if ($("#edit_password").val() != $("#edit_confirm_password").val()) {
-        $("#alert").addClass('alert-danger');
+        $("#alert").addClass('btn-danger');
         $("#alert").removeClass('alert-success');
         $("#alert").show();
         $("#alert").html("password anda tidak sesuai");
@@ -207,13 +207,13 @@
                 $("#alert").html(data.message);
                 if(data.type=='success')
                 {
-                  $("#alert").addClass('alert-danger');
+                  $("#alert").addClass('btn-danger');
                   $("#alert").removeClass('alert-success');
                 }
                 else if(data.type=='error')
                 {
                   $("#alert").addClass('alert-success');
-                  $("#alert").removeClass('alert-danger');
+                  $("#alert").removeClass('btn-danger');
                 }
                 $("#username").val("");
                 $("#password").val("");
@@ -225,7 +225,7 @@
     });
     $('#button-process').click(function(e){
       if ($("#password").val() != $("#confirm_password").val()) {
-        $("#alert").addClass('alert-danger');
+        $("#alert").addClass('btn-danger');
         $("#alert").removeClass('alert-success');
         $("#alert").show();
         $("#alert").html("password anda tidak sesuai");
@@ -251,11 +251,11 @@
                 if(data.type=='success')
                 {
                   $("#alert").addClass('alert-success');
-                  $("#alert").removeClass('alert-danger');
+                  $("#alert").removeClass('btn-danger');
                 }
                 else if(data.type=='error')
                 {
-                  $("#alert").addClass('alert-danger');
+                  $("#alert").addClass('btn-danger');
                   $("#alert").removeClass('alert-success');
                 }
                 $("#username").val("");
@@ -313,6 +313,39 @@
 </div>                        
 <?php } ?>
 
+<div class="row">
+
+  <?php if ($user->type=="not-confirmed") { ?> 
+    <div class="col-sm-10 col-md-10">            
+      <div class="alert alert-danger col-sm-18 col-md-18">
+        Silahkan konfirmasi email terlebih dahulu. Klik <a href="" id="link-activation">disini</a> untuk kirim email konfirmasi ulang.
+      </div>  
+    </div>          
+  <?php } ?>
+  <?php if (!is_null($order)) { ?> 
+    <div class="col-sm-10 col-md-10">            
+      <div class="alert alert-danger col-sm-18 col-md-18">
+        Anda belum melakukan konfirmasi pembayaran. silahkan klik <a href="{{url('confirm-payment')}}">disini</a> untuk melakukan konfirmasi pembayaran
+      </div>  
+    </div>          
+  <?php } ?>
+  <div class="col-sm-10 col-md-10">
+    <div class="alert alert-info col-sm-18 col-md-18" id="">
+      PS : Untuk menggunakan celebgramme harap akun jangan di private
+    </div>  
+  </div>          
+  <div class="col-sm-10 col-md-10">            
+    <div class="alert btn-danger col-sm-18 col-md-18" id="alert">
+    </div>  
+  </div>          
+  @if (session('error'))
+    <div class="col-sm-10 col-md-10">            
+      <div class="alert alert-danger col-sm-18 col-md-18" >
+        {{ session('error') }}
+      </div>  
+    </div>          
+  @endif
+</div>                        
 
 <div class="row">
   <div class="col-sm-10 col-md-10">
@@ -361,39 +394,6 @@ hanya akun yang di start saja yang dikurangi waktunya dari total waktu pembelian
 
 
 
-<div class="row">
-
-  <?php if ($user->type=="not-confirmed") { ?> 
-    <div class="col-sm-10 col-md-10">            
-      <div class="alert alert-danger col-sm-18 col-md-18">
-        Silahkan konfirmasi email terlebih dahulu. Klik <a href="" id="link-activation">disini</a> untuk kirim email konfirmasi ulang.
-      </div>  
-    </div>          
-  <?php } ?>
-  <?php if (!is_null($order)) { ?> 
-    <div class="col-sm-10 col-md-10">            
-      <div class="alert alert-danger col-sm-18 col-md-18">
-        Anda belum melakukan konfirmasi pembayaran. silahkan klik <a href="{{url('confirm-payment')}}">disini</a> untuk melakukan konfirmasi pembayaran
-      </div>  
-    </div>          
-  <?php } ?>
-  <div class="col-sm-10 col-md-10">
-    <div class="alert alert-info col-sm-18 col-md-18" id="">
-      PS : Untuk menggunakan celebgramme harap akun jangan di private
-    </div>  
-  </div>          
-  <div class="col-sm-10 col-md-10">            
-    <div class="alert alert-danger col-sm-18 col-md-18" id="alert">
-    </div>  
-  </div>          
-  @if (session('error'))
-    <div class="col-sm-10 col-md-10">            
-      <div class="alert alert-danger col-sm-18 col-md-18" >
-        {{ session('error') }}
-      </div>  
-    </div>          
-  @endif
-</div>                        
 
 <?php if ($user->type<>"not-confirmed") { ?>
 <div class="row">

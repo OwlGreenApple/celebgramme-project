@@ -16,16 +16,18 @@
           <div class="div-logo">
             <a href="http://celebgramme.com"><div class="logo"></div></a>
           </div>
-					@if (session('success') )
-						<div class="alert alert-success">
-							Kami telah mengirim link reset password ke email anda.
-						</div>
-					@endif
-					@if (session('error') )
-						<div class="alert alert-danger">
-							Email belum terdaftar.
-						</div>
-					@endif
+					<div class="notif-user">
+						@if (session('success') )
+							<div class="alert alert-success">
+								Kami telah mengirim link reset password ke email anda.
+							</div>
+						@endif
+						@if (session('error') )
+							<div class="alert alert-danger">
+								Email belum terdaftar.
+							</div>
+						@endif
+					</div>
           {!! Form::open(array('url'=>URL::ROUTE('auth.forgot'),'method'=>'post','class'=>"form-signin",)) !!}
             {!! csrf_field() !!}
 					<h3>Password RESET</h3>

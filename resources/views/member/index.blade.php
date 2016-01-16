@@ -85,6 +85,7 @@
               <li><a href="{{url('confirm-payment')}}">Confirm Payment</a></li>
               <li><a href="{{url('order')}}">Order History</a></li>
               <li><a href="{{url('edit-profile')}}">Ganti Password</a></li>
+              <li><a href="http://celebgramme.freshdesk.com" target="_blank">Support</a></li>
               <li><a href="{{url('logout')}}">Logout</a></li>
             </ul>
           
@@ -258,7 +259,7 @@
       </div>
 
 
-			<!--Start of Tawk.to Script-->
+			<!--Start of Tawk.to Script
 			<script type="text/javascript">
 			var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 			(function(){
@@ -270,7 +271,7 @@
 			s0.parentNode.insertBefore(s1,s0);
 			})();
 			</script>
-			<!--End of Tawk.to Script-->			
+			End of Tawk.to Script-->			
 
     </body>
 </html>

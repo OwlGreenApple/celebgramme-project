@@ -118,8 +118,8 @@ class Setting extends Model {
         $setting_real = Setting::where("insta_username","=",$setting_temp->insta_username)->where("type","=","real")->first();
         $arr_temp = $setting_temp->toArray();
         $arr_real = $setting_real->toArray();
-        unset($arr_temp['id']);unset($arr_temp['type']);
-        unset($arr_real['id']);unset($arr_real['type']);
+        unset($arr_temp['id']);unset($arr_temp['type']);unset($arr_temp['last_user']);unset($arr_temp['user_id']);
+        unset($arr_real['id']);unset($arr_real['type']);unset($arr_real['last_user']);unset($arr_real['user_id']);
         $diff = array_diff_assoc($arr_temp,$arr_real);
         $act = "description: ";
         foreach ($diff as $key => $value) {

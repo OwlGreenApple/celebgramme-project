@@ -146,6 +146,7 @@ return [
         Celebgramme\Providers\RouteServiceProvider::class,
         
         Anouar\Paypalpayment\PaypalpaymentServiceProvider::class,
+				GeneaLabs\LaravelCaffeine\LaravelCaffeineServiceProvider::class,
 
     ],
 
