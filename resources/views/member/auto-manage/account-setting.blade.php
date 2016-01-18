@@ -67,10 +67,13 @@
 				if (!$(target).is('.glyphicon-question-sign') && !$(target).parents().is('.glyphicon-question-sign')) {
 						$('.glyphicon-question-sign').find(".hint").hide();
 				}
+				if (!$(target).is('.glyphicon-menu-down') && !$(target).parents().is('.glyphicon-menu-down')) {
+						$('.glyphicon-menu-down').find(".hint").hide();
+				}
 		});
 		
   $(document).ready(function() {
-
+		
     // $( "body" ).on( "click", ".button-action", function(e) {
     $('.button-action').click(function(e){
       e.preventDefault();
@@ -129,6 +132,10 @@
     });
 
 
+		$( "body" ).on( "click", ".glyphicon-menu-down", function(e) {
+			$(this).find('.hint').slideToggle();
+		});
+
 		$( "body" ).on( "click", ".glyphicon-question-sign", function(e) {
 			$(this).find('.hint').slideToggle();
 		});
@@ -178,7 +185,6 @@
       </div>
       <div class="panel-body">
 <div class="col-md-5 col-sm-5 border-styling ">
-  <div class="row"> 
 	<?php 
 	$photo = url('images/profile-default.png');
 	$json_url = "https://api.instagram.com/v1/users/search?q=".$settings->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
@@ -193,19 +199,36 @@
 	}
 	
 	?>	
-	<img src="{{$photo}}" class=""> </div>
-  <div class="row"> <label>{{$settings->insta_username}}</label></div>
-  <div class="row status-activity"> <p> Status activity : <?php if ($settings->status=='stopped') { echo '<span class="glyphicon glyphicon-stop"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>'; } 
-  else {echo '<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> <span style="color:#5cb85c; font-weight:Bold;">Started</span>';}?></p></div>
-  <div class="row im-centered"> 
-
-    <button data-id="{{$settings->id}}" class="btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
-      <?php if ($settings->status=='stopped') { echo "<span class='glyphicon glyphicon-play'></span> Start"; } else {echo "<span class='glyphicon glyphicon-stop'></span> Stop";}?> 
-    </button>
-  </div>
+	<div class="col-md-5 col-sm-5">
+		<div class="row"> <img src="{{$photo}}" class="circle-image"> </div>
+		<div class="row"> <label>{{$settings->insta_username}}</label></div>
+	</div>
+	<div class="col-md-7 col-sm-7">
+		<div class="row status-activity"> <p> Status activity : <br><?php if ($settings->status=='stopped') { echo '<span class="glyphicon glyphicon-stop"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>'; } 
+		else {echo '<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> <span style="color:#5cb85c; font-weight:Bold;">Started</span>';}?></p>
+		</div>
+		<div class="row"> 
+			<p>Total waktu per akun:<br>
+				<span style="color:#5abe5a;">{{$view_timeperaccount}}</span>
+			</p>
+		</div>
+		<div class="row">
+			<p>Total waktu berlangganan :<br>
+				<span style="color:#5abe5a;">{{$view_totaltime}}</span>
+			</p>
+		</div>
+		<div class="row "> 
+			<button data-id="{{$settings->id}}" class="btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
+				<?php if ($settings->status=='stopped') { echo "<span class='glyphicon glyphicon-play'></span> Start"; } else {echo "<span class='glyphicon glyphicon-stop'></span> Stop";}?> 
+			</button>
+		</div>
+	</div>
 </div>
-<div class="col-md-7 col-sm-7 pricing" style="margin-left:-10px;">
-  <div class="col-md-4 col-sm-4">
+<div class="col-md-1 col-sm-1 pricing">
+</div>
+<div class="col-md-6 col-sm-6 pricing" style="margin-left:-10px;">
+	<p>Perpanjang waktu berlangganan anda :</p>
+  <div class="col-md-3 col-sm-3 border-price">
     <div class="row im-centered"> 
       <p class="header">7</p>
     </div>
@@ -213,7 +236,7 @@
       <p class="header-description">Days</p>
     </div>
     <div class="row im-centered"> 
-      Rp. 100.000
+      <strong>Rp. 100.000</strong>
     </div>
     <div class="row im-centered"> 
     </div>
@@ -221,7 +244,7 @@
       <a href="{{url('buy-more/1')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
     </div>
   </div>
-  <div class="col-md-4 col-sm-4">
+  <div class="col-md-3 col-sm-3 border-price">
     <div class="row im-centered"> 
       <p class="header">28 </p>
     </div>
@@ -229,7 +252,7 @@
       <p class="header-description">Days</p>
     </div>
     <div class="row im-centered"> 
-      Rp. 175.000
+      <strong>Rp. 175.000</strong>
     </div>
     <div class="row im-centered"> 
     </div>
@@ -237,7 +260,7 @@
       <a href="{{url('buy-more/2')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
     </div>
   </div>
-  <div class="col-md-4 col-sm-4">
+  <div class="col-md-3 col-sm-3 border-price">
     <div class="row im-centered"> 
       <p class="header">88 </p>
     </div>
@@ -245,7 +268,7 @@
       <p class="header-description">Days</p>
     </div>
     <div class="row im-centered"> 
-      Rp. 395.000
+      <strong>Rp. 395.000</strong>
     </div>
     <div class="row im-centered"> 
     </div>
@@ -529,6 +552,7 @@
       </div>
       <div class="panel-body">
 
+<!--
         <div class="row">
           <div class="col-md-4 checkbox">
             <label><input type="checkbox" name="data[dont_comment_su]" <?php if($settings->dont_comment_su) echo "checked"; ?> >Dont Comment same user</label> 
@@ -537,6 +561,7 @@
 						</span>
           </div>
         </div>
+-->
         <div class="row">
           <div class="col-md-12">
             <label>Comments</label> 
@@ -551,6 +576,21 @@
 								Komentar tidak boleh terdiri dari huruf kapital semua. <br>
 								Komentar sebisa mungkin harus berbeda satu sama lain. <br>
 								Anda dapat menambahkan sampai dengan 100 comments.
+							</div>
+						</span><br>
+						<label>Penjelasan fitur spin comment</label>
+						<span class="glyphicon glyphicon-menu-down" title="">
+							<div class="hint">
+								*Gunakan Feature "Spin Comment" contoh : <br>
+																	{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
+																		*contoh diatas akan menghasilkan = 4x3x3x6 = 216 kombinasi comments sekaligus" <br>
+																		*Admin akan menggunakan "Spin Comment" default, utk menghindari Comment yang sama
+							</div>
+						</span><br>
+						<label>Pilih minimal default spin comment</label>
+						<span class="glyphicon glyphicon-menu-down" title="">
+							<div class="hint">
+								{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
 							</div>
 						</span>
             <textarea class="selectize-default" name="data[comments]">{{$settings->comments}}</textarea>

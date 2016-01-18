@@ -33,9 +33,9 @@
 				minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
 				secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
 
-				if(t.total<=0){
-					clearInterval(timeinterval);
-				}
+				// if(t.total<=0){
+					// clearInterval(timeinterval);
+				// }
 			}
 
 			updateClock();
@@ -349,8 +349,8 @@
 
 <div class="row">
   <div class="col-sm-10 col-md-10">
-			<h3>Total Waktu pembelian</h3>
-      <div id="clockdiv">
+			<h3>Total Waktu Berlangganan</h3>
+      <div id="clockdiv" class="fl">
         <div class="fl">
           <span class="days"></span>
           <div class="smalltext">Days</div>
@@ -370,9 +370,20 @@
         <i class="fn">
         </i>
       </div>
+			<div class="fl" style="margin-left:10px;margin-top:10px;">
+				<p> Total waktu per akun :
+					<span class="glyphicon glyphicon-question-sign hint-button" title="">
+					<div class="hint">Total waktu per akun start = Total waktu pembelian / total akun start <br>
+						hanya akun yang di start saja yang dikurangi waktunya dari total waktu pembelian</div>
+					</span>
+				<span style="color:#5abe5a;" id="time-account-start"></span>
+				</p>
+			</div>
+			<div class="fn">
+			</div>
   </div>
 </div>
-
+<!--
 <div class="row">
 	<div class="col-sm-10 col-md-10">
 		<h3>Total Account start = <span id="total-account-start"></span> </h3>
@@ -391,7 +402,7 @@
 hanya akun yang di start saja yang dikurangi waktunya dari total waktu pembelian</p>
 	</div>
 </div>
-
+-->
 
 
 

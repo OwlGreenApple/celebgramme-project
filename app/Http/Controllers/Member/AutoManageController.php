@@ -133,9 +133,13 @@ class AutoManageController extends Controller
 		$t = $user->active_auto_manage / $pembagi;
 		$days = floor($t / (60*60*24));
 		$hours = floor(($t / (60*60)) % 24);
-		$minutes = floor(($t / (60)) % 60);
+		$minutes = floor(($t / (60)) % 60); if ($minutes<10) { $minutes = "0".$minutes; }
 		$seconds = floor($t  % 60);
-		$view_timeperaccount = $days."D ".$hours."H ".$minutes."M ".$seconds."S ";
+		if ($hours == 0 ) {
+			$view_timeperaccount = $days." Days";
+		} else {
+			$view_timeperaccount = $days." Days ".$hours.":".$minutes;
+		}
 		
     return view("member.auto-manage.list-account")->with(array(
       'user'=>$user,
@@ -154,13 +158,50 @@ class AutoManageController extends Controller
               ->where("type","=","temp")
               ->first();
 
-              // dd($user->toArray());
+		/* Buat liat total waktu per akun*/
+		$account_active = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
+              ->select("settings.*")
+              ->where("link_users_settings.user_id","=",$user->id)
+              ->where("type","=","temp")
+              ->where("status","=","started")
+              ->count();
+		if ($account_active==0) {
+			$pembagi = 1;
+		} else {
+			$pembagi = $account_active;
+		}
+		$t = $user->active_auto_manage / $pembagi;
+		$days = floor($t / (60*60*24));
+		$hours = floor(($t / (60*60)) % 24);
+		$minutes = floor(($t / (60)) % 60); if ($minutes<10) { $minutes = "0".$minutes; }
+		$seconds = floor($t  % 60);
+		if ($hours == 0 ) {
+			$view_timeperaccount = $days." Days";
+		} else {
+			$view_timeperaccount = $days." Days ".$hours.":".$minutes;
+		}
+
+		/*Total waktu berlangganan*/
+		$t = $user->active_auto_manage;
+		$days = floor($t / (60*60*24));
+		$hours = floor(($t / (60*60)) % 24);
+		$minutes = floor(($t / (60)) % 60); if ($minutes<10) { $minutes = "0".$minutes; }
+		$seconds = floor($t  % 60);
+		if ($hours == 0 ) {
+			$view_totaltime = $days." Days";
+		} else {
+			$view_totaltime = $days." Days ".$hours.":".$minutes;
+		}
+
+
     if (is_null($link)) {
       return redirect('auto-manage')->with( 'error', 'Not authorize to access page');
     } 
     return view("member.auto-manage.account-setting")->with(array(
       'user'=>$user,
       'settings'=>$link,
+      'view_timeperaccount'=>$view_timeperaccount,
+      'view_totaltime'=>$view_totaltime,
       ));
   }
 
@@ -269,7 +310,6 @@ class AutoManageController extends Controller
     $arr["message"]= "Account berhasil dihapus";
     $arr["type"]= "success";
 		
-		Request::input("id");
     $account = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
               ->select("settings.*")
               ->where("link_users_settings.user_id","=",$user->id)
