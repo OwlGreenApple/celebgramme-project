@@ -19,37 +19,39 @@ if (isset($datas)) {
 		}
 	
 	?>	
-<div class="col-md-5 border-styling">
+<li class="col-md-5 col-xs-5 col-sm-5 border-styling">
 	<div class="row"> 
-		<div class="col-md-10 col-sm-10"></div>
-		<div class="col-md-2 col-sm-2">
-			<span data-id="{{$data->id}}" class="delete-button glyphicon glyphicon-remove" style="left:20px;cursor:pointer;" aria-hidden="true" data-toggle="modal" data-target="#confirm-delete" ></span> 
+		<div class="col-md-10 col-sm-10 col-xs-10"></div>
+		<div class="col-md-2 col-sm-2 col-xs-2">
+			<span data-id="{{$data->id}}" class="delete-button glyphicon glyphicon-remove" style="cursor:pointer;" aria-hidden="true" data-toggle="modal" data-target="#confirm-delete" ></span> 
 		</div> 
 	</div>
-	<div class="col-md-5 col-sm-5">
-		<div class="row"> <img src="{{$photo}}" class="circle-image"> </div>
-		<div class="row"> <label>{{$data->insta_username}}</label></div>
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="row-fluid"> <img src="{{$photo}}" class="circle-image"> </div>
+		<div class="row-fluid"> <label>{{$data->insta_username}}</label></div>
 	</div>
-	<div class="col-md-7 col-sm-7">	
-		<div class="row status-activity"> <p> Status activity : <br><?php if ($data->status=='stopped') { echo '<span class="glyphicon glyphicon-stop"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>'; } 
+	<div class="col-md-12 col-sm-12 col-xs-12">	
+		<div class="row status-activity im-centered"> <p> Status activity : <?php if ($data->status=='stopped') { echo '<span class="glyphicon glyphicon-stop"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>'; } 
 		else {echo '<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> <span style="color:#5cb85c; font-weight:Bold;">Started</span>';}?></p></div>
 		<?php if ($data->error_cred) { ?>
-		<div class="row"> 
+		<div class="row im-centered"> 
 			<p class="text-danger"> *Data login tidak sesuai <br>
 				silahkan <a href="#" data-id="{{$data->id}}" class="edit-cred" data-toggle="modal" data-target="#myModal-edit-password">Edit</a></p>
 		</div>
 		<?php } ?>
 		<?php if ($data->status=='started') { ?>
-		<div class="row"> 
-			<p>Remaining Time :	<span style="color:#5cb85c; font-weight:Bold;">{{$view_timeperaccount}}</span></p>
+		<!--
+		<div class="row im-centered"> 
+			<p>Remaining Time :	<br><span style="color:#5cb85c; font-weight:Bold;">{{$view_timeperaccount}}</span></p>
 		</div>
+		-->
 		<?php } ?>
-		<div class="row"> 
+		<div class="row im-centered"> 
 			<button data-id="{{$data->id}}" class="btn <?php if ($data->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$data->id}}" value="<?php if ($data->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
 				<?php if ($data->status=='stopped') { echo "<span class='glyphicon glyphicon-play'></span> Start"; } else {echo "<span class='glyphicon glyphicon-stop'></span> Stop";}?> 
 			</button>
 			<a href="{{url('account-setting/'.$data->id)}}"><input type="button" value="Setting" class="btn btn-primary"></a>
 		</div>
 	</div>
-</div>
+</li>
 <?php } } ?>

@@ -280,7 +280,7 @@ class AutoManageController extends Controller
       if (!is_null($link)){
         $setting_temp = Setting::find($link->setting_id);
 				if ($setting_temp->error_cred==1) {
-					$arr["message"]= "Anda tidak dapat menjalankan program, silahkan upgrade login credential account anda";
+					$arr["message"]= "Anda tidak dapat menjalankan program, silahkan update login credential account anda";
 					$arr["type"]= "error";
 					return $arr;
 				}

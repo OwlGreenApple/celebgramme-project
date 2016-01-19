@@ -58,6 +58,14 @@
                 // $('#result').html(data);
                 $("#div-loading").hide();
                 $("#account-all").html(result);
+								var max = -1;
+								$(".border-styling").each(function() {
+										var h = $(this).height(); 
+										max = h > max ? h : max;
+								});
+								$(".border-styling").each(function() {
+										$(this).height(max); 
+								});
 								
             }
         })
@@ -115,6 +123,17 @@
     }
 
 
+		$(document).click(function(e) {
+				var target = e.target;
+
+				if (!$(target).is('.glyphicon-question-sign') && !$(target).parents().is('.glyphicon-question-sign')) {
+						$('.glyphicon-question-sign').find(".hint").hide();
+				}
+				if (!$(target).is('.glyphicon-menu-down') && !$(target).parents().is('.glyphicon-menu-down')) {
+						$('.glyphicon-menu-down').find(".hint").hide();
+				}
+		});
+		
   $(document).ready(function() {
 
 		initializeClock('clockdiv', <?php echo $user->active_auto_manage ?>);
@@ -266,6 +285,13 @@
       }
     });
 
+		$( "body" ).on( "click", ".glyphicon-menu-down", function(e) {
+			$(this).find('.hint').slideToggle();
+		});
+
+		$( "body" ).on( "click", ".glyphicon-question-sign", function(e) {
+			$(this).find('.hint').slideToggle();
+		});
 
 
   });
@@ -371,13 +397,13 @@
         </i>
       </div>
 			<div class="fl" style="margin-left:10px;margin-top:10px;">
-				<p> Total waktu per akun :
+				<label> Total waktu per akun : </label>
 					<span class="glyphicon glyphicon-question-sign hint-button" title="">
 					<div class="hint">Total waktu per akun start = Total waktu pembelian / total akun start <br>
 						hanya akun yang di start saja yang dikurangi waktunya dari total waktu pembelian</div>
-					</span>
+					</span><br>
 				<span style="color:#5abe5a;" id="time-account-start"></span>
-				</p>
+				
 			</div>
 			<div class="fn">
 			</div>
@@ -408,7 +434,7 @@ hanya akun yang di start saja yang dikurangi waktunya dari total waktu pembelian
 
 <?php if ($user->type<>"not-confirmed") { ?>
 <div class="row">
-  <div class="col-md-10" id="account-all">
+  <ul class="col-md-10" id="account-all">
 <!--
     <div class="col-md-5 border-styling">
       <div class="row"> <img src="#" class=""> </div>
@@ -422,7 +448,7 @@ hanya akun yang di start saja yang dikurangi waktunya dari total waktu pembelian
       </div>
     </div>
 -->
-  </div>                        
+  </ul>                        
 </div>      
 <?php }?>
 

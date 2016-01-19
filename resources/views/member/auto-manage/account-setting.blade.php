@@ -53,6 +53,9 @@
                 }
                 else if(data.type=='error')
                 {
+									url = "<?php echo url('auto-manage') ?>";
+									str = " <a href='"+url+"'>disini</a>";
+									$("#alert").html($("#alert").html()+str);
                   $("#alert").addClass('alert-danger');
                   $("#alert").removeClass('alert-success');
                 }
@@ -73,6 +76,19 @@
 		});
 		
   $(document).ready(function() {
+		$("#extra-time").hide();
+    $('#button-package').click(function(e){
+			if ($("#extra-time").is(":visible") ){
+				$("#extra-time").hide();
+				$("#normal-time").show();
+				$(this).html("Normal Time Package");
+			} else 
+			if ($("#normal-time").is(":visible") ){
+				$("#extra-time").show();
+				$("#normal-time").hide();
+				$(this).html("Extra Time Package");
+			}
+    });
 		
     // $( "body" ).on( "click", ".button-action", function(e) {
     $('.button-action').click(function(e){
@@ -184,7 +200,7 @@
         <h3 class="panel-title">Data Users</h3>
       </div>
       <div class="panel-body">
-<div class="col-md-5 col-sm-5 border-styling ">
+<div class="col-md-5 col-xs-5 col-sm-5 border-styling ">
 	<?php 
 	$photo = url('images/profile-default.png');
 	$json_url = "https://api.instagram.com/v1/users/search?q=".$settings->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
@@ -199,83 +215,129 @@
 	}
 	
 	?>	
-	<div class="col-md-5 col-sm-5">
+	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="row"> <img src="{{$photo}}" class="circle-image"> </div>
 		<div class="row"> <label>{{$settings->insta_username}}</label></div>
 	</div>
-	<div class="col-md-7 col-sm-7">
-		<div class="row status-activity"> <p> Status activity : <br><?php if ($settings->status=='stopped') { echo '<span class="glyphicon glyphicon-stop"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>'; } 
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="row status-activity"> <p> Status activity : <?php if ($settings->status=='stopped') { echo '<span class="glyphicon glyphicon-stop"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>'; } 
 		else {echo '<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> <span style="color:#5cb85c; font-weight:Bold;">Started</span>';}?></p>
 		</div>
+		<?php if ($settings->status=='started') { ?>
 		<div class="row"> 
-			<p>Total waktu per akun:<br>
+			<p>Total waktu per akun:
 				<span style="color:#5abe5a;">{{$view_timeperaccount}}</span>
 			</p>
 		</div>
+		<?php } ?>
 		<div class="row">
-			<p>Total waktu berlangganan :<br>
+			<p>Total waktu berlangganan :
 				<span style="color:#5abe5a;">{{$view_totaltime}}</span>
 			</p>
 		</div>
-		<div class="row "> 
+		<div class="row im-centered"> 
 			<button data-id="{{$settings->id}}" class="btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
 				<?php if ($settings->status=='stopped') { echo "<span class='glyphicon glyphicon-play'></span> Start"; } else {echo "<span class='glyphicon glyphicon-stop'></span> Stop";}?> 
 			</button>
 		</div>
 	</div>
 </div>
-<div class="col-md-1 col-sm-1 pricing">
+<div class="col-md-1 col-xs-1 col-sm-1">
 </div>
-<div class="col-md-6 col-sm-6 pricing" style="margin-left:-10px;">
-	<p>Perpanjang waktu berlangganan anda :</p>
-  <div class="col-md-3 col-sm-3 border-price">
-    <div class="row im-centered"> 
-      <p class="header">7</p>
-    </div>
-    <div class="row im-centered"> 
-      <p class="header-description">Days</p>
-    </div>
-    <div class="row im-centered"> 
-      <strong>Rp. 100.000</strong>
-    </div>
-    <div class="row im-centered"> 
-    </div>
-    <div class="row im-centered button-price"> 
-      <a href="{{url('buy-more/1')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
-    </div>
-  </div>
-  <div class="col-md-3 col-sm-3 border-price">
-    <div class="row im-centered"> 
-      <p class="header">28 </p>
-    </div>
-    <div class="row im-centered"> 
-      <p class="header-description">Days</p>
-    </div>
-    <div class="row im-centered"> 
-      <strong>Rp. 175.000</strong>
-    </div>
-    <div class="row im-centered"> 
-    </div>
-    <div class="row im-centered button-price"> 
-      <a href="{{url('buy-more/2')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
-    </div>
-  </div>
-  <div class="col-md-3 col-sm-3 border-price">
-    <div class="row im-centered"> 
-      <p class="header">88 </p>
-    </div>
-    <div class="row im-centered"> 
-      <p class="header-description">Days</p>
-    </div>
-    <div class="row im-centered"> 
-      <strong>Rp. 395.000</strong>
-    </div>
-    <div class="row im-centered"> 
-    </div>
-    <div class="row im-centered button-price"> 
-      <a href="{{url('buy-more/3')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
-    </div>
-  </div>
+<div class="col-md-6 col-xs-6 col-sm-6 pricing" style="margin-left:-10px;">
+	<div class="col-md-12 col-xs-12 col-sm-12">
+		<p>Perpanjang waktu berlangganan anda :</p>
+	</div>
+	<div class="col-md-12 col-xs-12 col-sm-12">
+		<div id="normal-time">
+			<div class="col-md-3 col-sm-3 border-price">
+				<div class="row im-centered"> 
+					<p class="header">7</p>
+				</div>
+				<div class="row im-centered"> 
+					<p class="header-description">Days</p>
+				</div>
+				<div class="row im-centered"> 
+					<strong>Rp. 100.000</strong>
+				</div>
+				<div class="row im-centered"> 
+				</div>
+				<div class="row im-centered button-price"> 
+					<a href="{{url('buy-more/1')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-3 border-price">
+				<div class="row im-centered"> 
+					<p class="header">28 </p>
+				</div>
+				<div class="row im-centered"> 
+					<p class="header-description">Days</p>
+				</div>
+				<div class="row im-centered"> 
+					<strong>Rp. 175.000</strong>
+				</div>
+				<div class="row im-centered"> 
+				</div>
+				<div class="row im-centered button-price"> 
+					<a href="{{url('buy-more/2')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-3 border-price">
+				<div class="row im-centered"> 
+					<p class="header">88 </p>
+				</div>
+				<div class="row im-centered"> 
+					<p class="header-description">Days</p>
+				</div>
+				<div class="row im-centered"> 
+					<strong>Rp. 395.000</strong>
+				</div>
+				<div class="row im-centered"> 
+				</div>
+				<div class="row im-centered button-price"> 
+					<a href="{{url('buy-more/3')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
+				</div>
+			</div>
+		</div>
+		<div id="extra-time">
+			<div class="col-md-3 col-sm-3 border-price">
+				<div class="row im-centered"> 
+					<p class="header">178 </p>
+				</div>
+				<div class="row im-centered"> 
+					<p class="header-description">Days</p>
+				</div>
+				<div class="row im-centered"> 
+					<strong>Rp. 695.000</strong>
+				</div>
+				<div class="row im-centered"> 
+				</div>
+				<div class="row im-centered button-price"> 
+					<a href="{{url('buy-more/2')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-3 border-price">
+				<div class="row im-centered"> 
+					<p class="header">358 </p>
+				</div>
+				<div class="row im-centered"> 
+					<p class="header-description">Days</p>
+				</div>
+				<div class="row im-centered"> 
+					<strong>Rp. 1.258.000</strong>
+				</div>
+				<div class="row im-centered"> 
+				</div>
+				<div class="row im-centered button-price"> 
+					<a href="{{url('buy-more/3')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12 col-xs-12 col-sm-12">
+		<a href="#" id="button-package">Extra Time Package</a>
+	</div>
+
 </div>
       </div>
     </div>
@@ -586,13 +648,16 @@
 																		*contoh diatas akan menghasilkan = 4x3x3x6 = 216 kombinasi comments sekaligus" <br>
 																		*Admin akan menggunakan "Spin Comment" default, utk menghindari Comment yang sama
 							</div>
-						</span><br>
+						</span>
+						<!--
+						<br>
 						<label>Pilih minimal default spin comment</label>
 						<span class="glyphicon glyphicon-menu-down" title="">
 							<div class="hint">
 								{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
 							</div>
 						</span>
+						-->
             <textarea class="selectize-default" name="data[comments]">{{$settings->comments}}</textarea>
           </div>
         </div>
