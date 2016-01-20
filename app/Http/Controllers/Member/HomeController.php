@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Celebgramme\Models\RequestModel;
 use Celebgramme\Models\Invoice;
 use Celebgramme\Models\Order;
+use Celebgramme\Models\Package;
 use Celebgramme\Models\OrderMeta;
 use Celebgramme\Models\User;
 use Celebgramme\Veritrans\Veritrans;
@@ -356,7 +357,13 @@ class HomeController extends Controller
 	
 	public function buy_more($id = null){
     $user = Auth::user();
-		return view('member.buy-more')->with(array('user'=>$user,'id'=>$id,));
+		$packages = Package::where("package_group","=","auto-manage")->get();
+		return view('member.buy-more')->with(
+			array(
+				'user'=>$user,
+				'id'=>$id,
+				'packages'=>$packages,
+			));
 	}
   
   /*

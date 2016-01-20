@@ -213,11 +213,17 @@
     <div class="col-sm-8 col-md-6">
       <select class="form-control" name="package-auto-manage" id="select-auto-manage">
         <option data-real="0" value="-">Silahkan pilih paket</option>
+				<!--
         <option data-real="100000" data-price="100.000" value="16" <?php if ($id==1) echo "selected"; ?>>Paket 7 Days</option>
         <option data-real="175000" data-price="175.000" value="17" <?php if ($id==2) echo "selected"; ?>>Paket 28 Days</option>
         <option data-real="395000" data-price="395.000" value="18" <?php if ($id==3) echo "selected"; ?>>Paket 88 Days</option>
         <option data-real="695000" data-price="695.000" value="19">Paket 178 Days</option>
         <option data-real="1285000" data-price="1.285.000" value="20">Paket 358 Days</option>
+				-->
+				<?php foreach($packages as $package) { ?>
+					<option data-real="{{$package->price}}" data-price="{{number_format($package->price,0,'','.')}}" value="{{$package->id}}" <?php if ($id==$package->id) echo "selected"; ?>>
+					Paket {{$package->package_name}}</option>
+				<?php } ?>
       </select>
     </div>
   </div>  

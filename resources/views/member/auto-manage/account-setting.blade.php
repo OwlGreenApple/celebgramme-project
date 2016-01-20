@@ -263,7 +263,7 @@
 				<div class="row im-centered"> 
 				</div>
 				<div class="row im-centered button-price"> 
-					<a href="{{url('buy-more/1')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
+					<a href="{{url('buy-more/16')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-3 border-price">
@@ -279,7 +279,7 @@
 				<div class="row im-centered"> 
 				</div>
 				<div class="row im-centered button-price"> 
-					<a href="{{url('buy-more/2')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
+					<a href="{{url('buy-more/17')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-3 border-price">
@@ -295,7 +295,7 @@
 				<div class="row im-centered"> 
 				</div>
 				<div class="row im-centered button-price"> 
-					<a href="{{url('buy-more/3')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
+					<a href="{{url('buy-more/18')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
 				</div>
 			</div>
 		</div>
@@ -313,7 +313,7 @@
 				<div class="row im-centered"> 
 				</div>
 				<div class="row im-centered button-price"> 
-					<a href="{{url('buy-more/2')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
+					<a href="{{url('buy-more/19')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-3 border-price">
@@ -329,7 +329,7 @@
 				<div class="row im-centered"> 
 				</div>
 				<div class="row im-centered button-price"> 
-					<a href="{{url('buy-more/3')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
+					<a href="{{url('buy-more/20')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
 				</div>
 			</div>
 		</div>

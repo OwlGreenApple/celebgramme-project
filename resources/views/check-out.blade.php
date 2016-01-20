@@ -134,11 +134,16 @@
                 <div class="col-sm-4 col-md-4">
                   <select class="form-control" name="select-auto-manage" id="select-auto-manage">
                     <option data-real="0" value="-">Silahkan pilih paket</option>
+										<!--
                     <option data-real="100000" data-price="100.000" value="16">Paket 7 Days</option>
                     <option data-real="175000" data-price="175.000" value="17">Paket 28 Days</option>
                     <option data-real="395000" data-price="395.000" value="18">Paket 88 Days</option>
                     <option data-real="695000" data-price="695.000" value="19">Paket 178 Days</option>
                     <option data-real="1285000" data-price="1.285.000" value="20">Paket 358 Days</option>
+										-->
+										<?php foreach($packages as $package) { ?>
+											<option data-real="{{$package->price}}" data-price="{{number_format($package->price,0,'','.')}}" value="{{$package->id}}">Paket {{$package->name}}</option>
+										<?php } ?>
                   </select>
                 </div>
                 <div class="col-sm-1 col-md-1">

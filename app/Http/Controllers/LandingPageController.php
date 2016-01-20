@@ -32,7 +32,10 @@ class LandingPageController extends Controller
 	}
   
 	public function checkout(){
-		return view('check-out')->with(array());
+		$packages = Package::where("package_group","=","auto-manage")->get();
+		return view('check-out')->with(array(
+			'packages'=>$packages,		
+		));
 	}
 
   	public function register_checkout() {
