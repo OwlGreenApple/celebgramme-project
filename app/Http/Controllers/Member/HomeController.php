@@ -357,7 +357,7 @@ class HomeController extends Controller
 	
 	public function buy_more($id = null){
     $user = Auth::user();
-		$packages = Package::where("package_group","=","auto-manage")->where("affiliate","=",0)->get();
+		$packages = Package::where("package_group","=","auto-manage")->where("affiliate","=",0)->orderBy('price', 'asc')->get();
 		return view('member.buy-more')->with(
 			array(
 				'user'=>$user,
