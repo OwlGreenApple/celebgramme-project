@@ -32,7 +32,7 @@ class LandingPageController extends Controller
 	}
   
 	public function checkout(){
-		$packages = Package::where("package_group","=","auto-manage")->get();
+		$packages = Package::where("package_group","=","auto-manage")->where("affiliate","=",0)->get();
 		return view('check-out')->with(array(
 			'packages'=>$packages,		
 		));
