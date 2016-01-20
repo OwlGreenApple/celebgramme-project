@@ -274,7 +274,7 @@
 					<p class="header-description">Days</p>
 				</div>
 				<div class="row im-centered"> 
-					<strong>Rp. 175.000</strong>
+					<strong>Rp. 195.000</strong>
 				</div>
 				<div class="row im-centered"> 
 				</div>
@@ -314,6 +314,22 @@
 				</div>
 				<div class="row im-centered button-price"> 
 					<a href="{{url('buy-more/19')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-3 border-price">
+				<div class="row im-centered"> 
+					<p class="header">268 </p>
+				</div>
+				<div class="row im-centered"> 
+					<p class="header-description">Days</p>
+				</div>
+				<div class="row im-centered"> 
+					<strong>Rp. 995.000</strong>
+				</div>
+				<div class="row im-centered"> 
+				</div>
+				<div class="row im-centered button-price"> 
+					<a href="{{url('buy-more/25')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-3 border-price">
