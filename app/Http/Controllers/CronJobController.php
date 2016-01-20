@@ -57,7 +57,7 @@ class CronJobController extends Controller
         $users = User::where("active_auto_manage",">",0)->get();
         foreach ($users as $user){
             $settings = Setting::where("type",'=','temp')
-                        ->where('user_id','=',$user->id)
+                        ->where('last_user','=',$user->id)
                         ->where('status','=',"started")
                         ->get();
             foreach($settings as $setting) {
