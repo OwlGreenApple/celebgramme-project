@@ -58,14 +58,6 @@
                 // $('#result').html(data);
                 $("#div-loading").hide();
                 $("#account-all").html(result);
-								var max = -1;
-								$(".border-styling").each(function() {
-										var h = $(this).height(); 
-										max = h > max ? h : max;
-								});
-								$(".border-styling").each(function() {
-										$(this).height(max); 
-								});
 								
             }
         })
@@ -141,6 +133,15 @@
     $("#alert").hide();
     loadaccount();
 
+		var max = -1;
+		$(".border-styling").each(function() {
+				var h = $(this).height(); 
+				max = h > max ? h : max;
+		});
+		$(".border-styling").each(function() {
+				$(this).height(max); 
+		});
+		
     $( "body" ).on( "click", ".delete-button", function() {
 			$("#id-setting").val($(this).attr("data-id"));
     });
