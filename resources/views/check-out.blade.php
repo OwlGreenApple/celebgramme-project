@@ -142,7 +142,7 @@
                     <option data-real="1285000" data-price="1.285.000" value="20">Paket 358 Days</option>
 										-->
 										<?php foreach($packages as $package) { ?>
-											<option data-real="{{$package->price}}" data-price="{{number_format($package->price,0,'','.')}}" value="{{$package->id}}">Paket {{$package->name}}</option>
+											<option data-real="{{$package->price}}" data-price="{{number_format($package->price,0,'','.')}}" value="{{$package->id}}">Paket {{$package->package_name}}</option>
 										<?php } ?>
                   </select>
                 </div>
