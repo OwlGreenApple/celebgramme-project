@@ -1,6 +1,8 @@
 @extends('member.index')
 
 @section('content-auto-manage')
+<?php use Celebgramme\Models\SettingMeta; ?>
+
 <script type="text/javascript">
 
 		function toggleFollow(){
@@ -65,13 +67,17 @@
     }
 
 		$(document).click(function(e) {
+				e.stopPropagation();
 				var target = e.target;
 
-				if (!$(target).is('.glyphicon-question-sign') && !$(target).parents().is('.glyphicon-question-sign')) {
-						$('.glyphicon-question-sign').find(".hint").hide();
-				}
-				if (!$(target).is('.glyphicon-menu-down') && !$(target).parents().is('.glyphicon-menu-down')) {
-						$('.glyphicon-menu-down').find(".hint").hide();
+				if ( $(target).is(".hint") != true ) {
+//						$('.hint').hide();
+					if (!$(target).is('.glyphicon-question-sign') ) {
+							$('.glyphicon-question-sign').find(".hint").hide();
+					}
+					if (!$(target).is('.glyphicon-menu-down')  ) {
+							$('.glyphicon-menu-down').find(".hint").hide();
+					}
 				}
 		});
 		
@@ -147,12 +153,20 @@
       })
     });
 
+		$('.hint').hide();
 
-		$( "body" ).on( "click", ".glyphicon-menu-down", function(e) {
+		$('.hint').click(function(e){
+			e.preventDefault();
+			e.stopPropagation();
+		});
+		
+		// $( "body" ).on( "click", ".glyphicon-menu-down", function(e) {
+		$('.glyphicon-menu-down').click(function(e){
 			$(this).find('.hint').slideToggle();
 		});
 
-		$( "body" ).on( "click", ".glyphicon-question-sign", function(e) {
+		// $( "body" ).on( "click", ".glyphicon-question-sign", function(e) {
+		$('.glyphicon-question-sign').click(function(e){
 			$(this).find('.hint').slideToggle();
 		});
 		// $( ".glyphicon-question-sign" ).hover(
@@ -165,7 +179,7 @@
 		
     $('.selectize-default').selectize({
       plugins:['remove_button'],
-      delimiter: ',',
+      delimiter: ';',
       persist: false,
       create: function(input) {
         return {
@@ -190,6 +204,17 @@
     </div>  
   </div>          
 </div>                        
+<?php if (SettingMeta::getMeta($settings->id,"auto_unfollow") == "yes" )  { ?>
+<div class="row">
+  <div class="col-sm-10 col-md-10">            
+    <div class="alert alert-info col-sm-18 col-md-18" id="">
+			*Proses auto unfollow akan dijalankan karena jumlah following anda telah mencapai 7250
+    </div>  
+  </div>          
+</div>                        
+<?php } ?>
+
+
 <form enctype="multipart/form-data" id="form-setting">
 
 
@@ -369,7 +394,6 @@
       </div>
       <div class="panel-body">
 
-				<?php use Celebgramme\Models\SettingMeta; ?>
 				<div class="col-md-4">
 					<label>Followers Saat Join</label>
 					<?php echo number_format(intval (SettingMeta::getMeta($settings->id,"followers_join")),0,'','.'); ?>
@@ -386,8 +410,9 @@
 				</div>				
 
 				<?php 
-				$followers = 0;
-				$following = 0;
+				$followers = intval (SettingMeta::getMeta($settings->id,"followers"));
+				$following = intval (SettingMeta::getMeta($settings->id,"following"));
+				/*
 				$json_url = "https://api.instagram.com/v1/users/search?q=".$settings['insta_username']."&client_id=03eecaad3a204f51945da8ade3e22839";
 				$json = @file_get_contents($json_url);
 				if($json == TRUE) { 
@@ -406,6 +431,8 @@
 						}
 					} 
 				}
+				*/
+				
 				?>
 				<div class="col-md-4">
 					<label>Followers Hari ini</label>
@@ -437,7 +464,7 @@
 					</span>
 					<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
 						<button type="button" class="btn <?php if ($settings->activity=="follow") echo 'btn-success' ?>" id="followButton" onclick="toggleFollow();" style="color:#fff;">Follow</button>
-						<button type="button" class="btn <?php if ($settings->activity=="unfollow") echo 'btn-primary' ?>" id="unfollowButton" onclick="toggleFollow();" style="color:#fff;">Unfollow</button>
+						<button type="button" class="btn <?php if ($settings->activity=="unfollow") echo 'btn-success' ?>" id="unfollowButton" onclick="toggleFollow();" style="color:#fff;">Unfollow</button>
 						<input type="hidden" value="{{$settings->activity}}" name="data[activity]" id="activity">
 					</div>				
 				</div>				

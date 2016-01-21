@@ -12,7 +12,13 @@ class SettingMeta extends Model {
   
 	protected function createMeta($name,$value,$id)
 	{
-    $setting_meta = new SettingMeta;
+		$setting_meta = SettingMeta::
+											where("setting_id","=",$id)
+											->where("meta_name","=",$name)
+											->first();
+		if (is_null($setting_meta)) {
+			$setting_meta = new SettingMeta;
+		}
     $setting_meta->meta_name = $name;
     $setting_meta->meta_value = $value;
     $setting_meta->setting_id = $id;
@@ -25,7 +31,7 @@ class SettingMeta extends Model {
 		if (!is_null($setting_meta)) {
 			return $setting_meta->meta_value;
 		} else {
-			return 0;
+			return "0";
 		}
 	}
 }

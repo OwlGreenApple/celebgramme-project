@@ -171,4 +171,50 @@ class CronJobController extends Controller
 			
 		}
 	}
+
+
+	public function auto_follow_unfollow(){
+		$settings = Setting::where("type",'=','temp')
+								->where('status','=',"started")
+								->get();
+		foreach($settings as $setting) {
+				$followers = 0;
+				$following = 0;
+				$json_url = "https://api.instagram.com/v1/users/search?q=".$setting->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
+				$json = @file_get_contents($json_url);
+				if($json == TRUE) { 
+					$links = json_decode($json);
+					if (count($links->data)>0) {
+						$id = $links->data[0]->id;
+						$json_url ='https://api.instagram.com/v1/users/'.$id.'?client_id=03eecaad3a204f51945da8ade3e22839';
+						$json = @file_get_contents($json_url);
+						if($json == TRUE) { 
+							$links = json_decode($json);
+							if (count($links->data)>0) {
+								$followers = $links->data->counts->followed_by;
+								$following = $links->data->counts->follows;
+							}
+						}
+					}
+				}
+				SettingMeta::createMeta("followers",$followers,$setting->id);
+				SettingMeta::createMeta("following",$following,$setting->id);
+				
+				if ($following >=7250 ) {
+					SettingMeta::createMeta("auto_unfollow","yes",$setting->id);
+
+					$setting->activity = "unfollow";
+					$setting->save();
+					$setting_temp = Setting::post_info_admin($setting->id, "[Celebgramme] Post Auto Manage (warning 7250 following IG Account)");
+					
+				}
+				if ( ($following <=500 ) && (SettingMeta::getMeta($setting->id,"auto_unfollow")=="yes" ) ) {
+					SettingMeta::createMeta("auto_unfollow","no",$setting->id);
+
+					$setting->activity = "follow";
+					$setting->save();
+					$setting_temp = Setting::post_info_admin($setting->id, "[Celebgramme] Post Auto Manage (warning 500 following IG Account, from auto unfollow)");
+				}
+		}
+	}
 }

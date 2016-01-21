@@ -29,8 +29,8 @@ class Setting extends Model {
         $setting->insta_password = $arr['insta_password'];
         $setting->last_user = $arr['user_id'];
         //default data
-        $setting->comments = "Nice,Pretty Awesome,Pretty Sweet,Aw Cool,Wow nice pictures,Superb,Amazing,Wonderful,Like it,Wow,{love|adore|really like|I love|enjoy|appreciate} {the way you|how you|the method that you} {took|shot|had taken} {the|the actual|this particular|your|this} {picture|image|photo|photograph|snapshot}";
-        $setting->tags = "selfie,anime,kuliner,weekend,graduation";
+        $setting->comments = "Nice;Pretty Awesome;Pretty Sweet;Aw Cool;Wow nice pictures;Superb;Amazing;Wonderful;Like it;Wow;{love|adore|really like|I love|enjoy|appreciate} {the way you|how you|the method that you} {took|shot|had taken} {the|the actual|this particular|your|this} {picture|image|photo|photograph|snapshot}";
+        $setting->tags = "selfie;anime;kuliner;weekend;graduation";
         $setting->locations = "";
         $setting->activity = "follow";
         $setting->activity_speed = "normal";
@@ -83,8 +83,8 @@ class Setting extends Model {
         $setting->insta_password = $arr['insta_password'];
         $setting->last_user = $arr['user_id'];
         //default data
-        $setting->comments = "Nice,Pretty Awesome,Pretty Sweet,Aw Cool,Wow nice pictures,Superb,Amazing,Wonderful,Like it,Wow,{love|adore|really like|I love|enjoy|appreciate} {the way you|how you|the method that you} {took|shot|had taken} {the|the actual|this particular|your|this} {picture|image|photo|photograph|snapshot}";
-        $setting->tags = "selfie,anime,kuliner,weekend,graduation";
+        $setting->comments = "Nice;Pretty Awesome;Pretty Sweet;Aw Cool;Wow nice pictures;Superb;Amazing;Wonderful;Like it;Wow;{love|adore|really like|I love|enjoy|appreciate} {the way you|how you|the method that you} {took|shot|had taken} {the|the actual|this particular|your|this} {picture|image|photo|photograph|snapshot}";
+        $setting->tags = "selfie;anime;kuliner;weekend;graduation";
         $setting->locations = "";
         $setting->activity = "follow";
         $setting->activity_speed = "normal";
@@ -112,7 +112,7 @@ class Setting extends Model {
 	}
 
     //setting id temp
-    protected function post_info_admin($setting_id) 
+    protected function post_info_admin($setting_id,$type_message="[Celebgramme] Post Auto Manage") 
     {
         $setting_temp = Setting::find($setting_id);
         $setting_real = Setting::where("insta_username","=",$setting_temp->insta_username)->where("type","=","real")->first();
@@ -134,11 +134,13 @@ class Setting extends Model {
         $post->type = "pending";
         $post->save();
 				
+				SettingMeta::createMeta("auto_unfollow","",$setting_temp->id);
+				
 				//send email to admin
 				$emaildata = [
 					"setting_temp" => $setting_temp,
 				];
-				Mail::queue('emails.info-post-admin', $emaildata, function ($message)  {
+				Mail::queue('emails.info-post-admin', $emaildata, function ($message) use ($type_message) {
 					$message->from('no-reply@celebgramme.com', 'Celebgramme');
 					$message->to("celebgramme.adm@gmail.com");
 					$message->bcc(array(
@@ -146,7 +148,7 @@ class Setting extends Model {
 						"michaelsugih@gmail.com",
 						"it2.axiapro@gmail.com",
 					));
-					$message->subject('[Celebgramme] Post Auto Manage');
+					$message->subject($type_message);
 				});
 				
 				

@@ -13,6 +13,7 @@ use Celebgramme\Models\Order;
 use Celebgramme\Models\OrderMeta;
 use Celebgramme\Models\User;
 use Celebgramme\Models\Setting;
+use Celebgramme\Models\SettingMeta;
 use Celebgramme\Models\LinkUserSetting;
 use Celebgramme\Models\Post;
 use Celebgramme\Veritrans\Veritrans;
@@ -219,13 +220,19 @@ class AutoManageController extends Controller
       return $arr;
     }
 
-
+    $setting_temp = Setting::find($data['id']);
+		$following = intval (SettingMeta::getMeta($setting_temp->id,"following"));
+		if ($following>7250 ) {
+      $arr["message"]= "Tidak dapat melakukan activity following";
+      $arr["type"]= "error";
+      return $arr;
+		}
+	
     if (isset($data['dont_comment_su'])) { $data['dont_comment_su'] = 1; } else { $data['dont_comment_su'] = 0; }
     if (isset($data['dont_follow_su'])) { $data['dont_follow_su'] = 1; } else { $data['dont_follow_su'] = 0; }
     if (isset($data['dont_follow_pu'])) { $data['dont_follow_pu'] = 1; } else { $data['dont_follow_pu'] = 0; }
     if (isset($data['unfollow_wdfm'])) { $data['unfollow_wdfm'] = 1; } else { $data['unfollow_wdfm'] = 0; }
 
-    $setting_temp = Setting::find($data['id']);
     $setting_temp->update($data);
 
     
