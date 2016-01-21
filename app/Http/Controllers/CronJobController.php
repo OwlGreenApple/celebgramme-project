@@ -173,6 +173,11 @@ class CronJobController extends Controller
 	}
 
 
+	/**
+	 * Checking following & followers of user
+	 *
+	 * @return response
+	 */
 	public function auto_follow_unfollow(){
 		$settings = Setting::where("type",'=','temp')
 								->where('status','=',"started")
@@ -215,6 +220,25 @@ class CronJobController extends Controller
 					$setting->save();
 					$setting_temp = Setting::post_info_admin($setting->id, "[Celebgramme] Post Auto Manage (warning 500 following IG Account, from auto unfollow)");
 				}
+		}
+	}
+	
+	/**
+	 * replacing delimiter
+	 *
+	 * @return response
+	 */
+	public function replace_delimiter(){
+		$settings = Setting::all();
+		foreach($settings as $setting) {
+			$setting->comments =  str_replace(",", ";", $setting->comments);
+			$setting->tags =  str_replace(",", ";", $setting->tags);
+			$setting->save();
+		}
+		$posts = Post::all();
+		foreach($posts as $post) {
+			$post->description = str_replace(",", ";", $post->description);
+			$post->save();
 		}
 	}
 }
