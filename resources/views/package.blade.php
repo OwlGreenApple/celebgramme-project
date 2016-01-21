@@ -26,7 +26,33 @@
           <h3 class="price-list"> Price List Auto Manage </h3>
           <div class="price-auto-manage col-sm-12 col-md-12">
             <div class="row">
+							<!--
               <img src="{{url('images/package price-01.png')}}" class="img-responsive" width="1109" height="437">
+							-->
+							<div class="col-sm-2 col-md-2" style="padding-right:8px;padding-left:8px;">
+								<img src="{{url('images/price/prices-02.png')}}" class="img-responsive">
+								<a href="{{url('checkout')}}/16"><button class="btn form-control btn-price">Buy Package</button></a>
+							</div>
+							<div class="col-sm-2 col-md-2" style="padding-right:8px;padding-left:8px;">
+								<img src="{{url('images/price/prices-03.png')}}" class="img-responsive">
+								<a href="{{url('checkout')}}/17"><button class="btn btn-price form-control">Buy Package</button></a>
+							</div>
+							<div class="col-sm-2 col-md-2" style="padding-right:8px;padding-left:8px;">
+								<img src="{{url('images/price/prices-04.png')}}" class="img-responsive">
+								<a href="{{url('checkout')}}/18"><button class="btn btn-price-popular form-control">Buy Package</button></a>
+							</div>
+							<div class="col-sm-2 col-md-2" style="padding-right:8px;padding-left:8px;">
+								<img src="{{url('images/price/prices-05.png')}}" class="img-responsive">
+								<a href="{{url('checkout')}}/19"><button class="btn btn-price form-control">Buy Package</button></a>
+							</div>
+							<div class="col-sm-2 col-md-2" style="padding-right:8px;padding-left:8px;">
+								<img src="{{url('images/price/prices-06.png')}}" class="img-responsive">
+								<a href="{{url('checkout')}}/25"><button class="btn btn-price form-control">Buy Package</button></a>
+							</div>
+							<div class="col-sm-2 col-md-2" style="padding-right:8px;padding-left:8px;">
+								<img src="{{url('images/price/prices-07.png')}}" class="img-responsive">
+								<a href="{{url('checkout')}}/20"><button class="btn btn-price form-control">Buy Package</button></a>
+							</div>
             </div>
             <div class="row" style="text-align:center">
                 <p>**bisa digunakan max.total 3 account Instagram</p>

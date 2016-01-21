@@ -15,7 +15,7 @@
 /* register package */
 Route::get('package', 'LandingPageController@package');
 Route::get('prices', 'LandingPageController@package');
-Route::get('checkout', 'LandingPageController@checkout');
+Route::get('checkout/{id}', 'LandingPageController@checkout');
 Route::get('calculate-coupon', 'LandingPageController@calculate_coupon');
 Route::post('process-package', 'LandingPageController@process_package');
 

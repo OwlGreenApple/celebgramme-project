@@ -31,10 +31,11 @@ class LandingPageController extends Controller
 		return view('package')->with(array());
 	}
   
-	public function checkout(){
+	public function checkout($id=""){
 		$packages = Package::where("package_group","=","auto-manage")->where("affiliate","=",0)->orderBy('price', 'asc')->get();
 		return view('check-out')->with(array(
 			'packages'=>$packages,		
+			'id'=>$id,		
 		));
 	}
 
