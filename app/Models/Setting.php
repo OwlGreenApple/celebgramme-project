@@ -77,6 +77,8 @@ class Setting extends Model {
 				}
 				SettingMeta::createMeta("followers_join",$followers_join,$setting->id);
 				SettingMeta::createMeta("following_join",$following_join,$setting->id);
+				SettingMeta::createMeta("followers",$followers_join,$setting->id);
+				SettingMeta::createMeta("following",$following_join,$setting->id);
         
         $setting = new Setting;
         $setting->insta_username = $arr['insta_username'];

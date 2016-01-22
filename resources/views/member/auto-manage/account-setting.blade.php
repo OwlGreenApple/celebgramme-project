@@ -670,38 +670,43 @@
 -->
         <div class="row">
           <div class="col-md-12">
-            <label>Comments</label> 
-						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">
-								Tambahkan setidaknya satu komentar, jika anda mengaktifkan fitur comments <br>
-								untuk setiap posting komentar baru, komentar akan dipilih secara acak dari daftar ini. Celebgramme hanya akan memberikan 1 kali komentar pada setiap posting foto atau video. <br>
-								Kami menyarankan, paling tidak 10 komentar netral yang berbeda seperti : nice!, awesome!, beautiful!, itu keren!, dll <br>
-								Komentar tidak boleh lebih dari 300 karakter. <br>
-								Komentar tidak boleh berisi lebih dari 4 hashtag <br>
-								Komentar tidak boleh berisi lebih dari 1 URL <br>
-								Komentar tidak boleh terdiri dari huruf kapital semua. <br>
-								Komentar sebisa mungkin harus berbeda satu sama lain. <br>
-								Anda dapat menambahkan sampai dengan 100 comments.
-							</div>
-						</span><br>
+						<div class="col-md-4" style="padding-left:0px!important;">
+							<label>Comments</label> 
+							<span class="glyphicon glyphicon-question-sign" title="">
+								<div class="hint">
+									Tambahkan setidaknya satu komentar, jika anda mengaktifkan fitur comments <br>
+									untuk setiap posting komentar baru, komentar akan dipilih secara acak dari daftar ini. Celebgramme hanya akan memberikan 1 kali komentar pada setiap posting foto atau video. <br>
+									Kami menyarankan, paling tidak 10 komentar netral yang berbeda seperti : nice!, awesome!, beautiful!, itu keren!, dll <br>
+									Komentar tidak boleh lebih dari 300 karakter. <br>
+									Komentar tidak boleh berisi lebih dari 4 hashtag <br>
+									Komentar tidak boleh berisi lebih dari 1 URL <br>
+									Komentar tidak boleh terdiri dari huruf kapital semua. <br>
+									Komentar sebisa mungkin harus berbeda satu sama lain. <br>
+									Anda dapat menambahkan sampai dengan 100 comments.
+								</div>
+							</span>
+						</div>
+						<div class="col-md-4">
+							<label>Copy paste contoh spin comment</label>
+							<span class="glyphicon glyphicon-menu-down" title="">
+								<div class="hint">
+									{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} 
+								</div>
+							</span>
+						</div>
+          </div>
+          <div class="col-md-12">
 						<label>Penjelasan fitur spin comment</label>
-						<span class="glyphicon glyphicon-menu-down" title="">
+						<span class="glyphicon glyphicon-question-sign" title="">
 							<div class="hint">
 								*Gunakan Feature "Spin Comment" contoh : <br>
 																	{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
 																		*contoh diatas akan menghasilkan = 4x3x3x6 = 216 kombinasi comments sekaligus" <br>
-																		*Admin akan menggunakan "Spin Comment" default, utk menghindari Comment yang sama
+																		*Spin Comment default akan digunakan, utk menghindari Comment yang sama berulang-ulang
 							</div>
 						</span>
-						<!--
-						<br>
-						<label>Pilih minimal default spin comment</label>
-						<span class="glyphicon glyphicon-menu-down" title="">
-							<div class="hint">
-								{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
-							</div>
-						</span>
-						-->
+          </div>
+          <div class="col-md-12">
             <textarea class="selectize-default" name="data[comments]">{{$settings->comments}}</textarea>
           </div>
         </div>
