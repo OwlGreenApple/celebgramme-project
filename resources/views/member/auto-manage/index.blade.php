@@ -314,7 +314,8 @@
                     3. Tetapkan Setting yang anda inginkan, sesudah selesai Click START<br>
 										<p style="color:#a94442;">4. Dilarang keras menggunakan sistem auto manage / instagram bot yang lain saat anda menjalankan Celebgramme <br>
 										5. Untuk menggunakan Celebgramme akun jangan di private<br>
-										6. System Celebgramme akan otomatis melakukan Unfollow apabila akun anda mendekati batas following Instagram (7500 following)</p>
+										6. System Celebgramme akan otomatis melakukan Unfollow apabila akun anda mendekati batas following Instagram (7500 following)<br>
+										</p>
                   </div>
                 </div>
               </div>
