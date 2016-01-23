@@ -616,6 +616,52 @@
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
+        <h3 class="panel-title">Follow</h3>
+      </div>
+      <div class="panel-body">
+
+        <div class="row">
+          <div class="col-md-4 checkbox">
+            <label><input type="checkbox" name="data[dont_follow_su]" <?php if($settings->dont_follow_su) echo "checked"; ?> >Don't Follow same user</label> 
+						<span class="glyphicon glyphicon-question-sign" title="">
+							<div class="hint">Tidak akan follow user yang sama sebanyak 2 kali setelah anda Unfollow mereka.</div>
+						</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 checkbox">
+            <label><input type="checkbox" name="data[dont_follow_pu]" <?php if($settings->dont_follow_pu) echo "checked"; ?> >Dont Follow private user</label> 
+						<span class="glyphicon glyphicon-question-sign" title="">
+							<div class="hint">Tidak Follow user yang akun nya di private</div>
+						</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <label>Follow source</label> 
+						<span class="glyphicon glyphicon-question-sign" title="">
+							<div class="hint">Khusus untuk Follow Source : Usernames, bisa dipilih berdasarkan mau Follow siapa. Followersnya atau Following nya username tersebut.</div>
+						</span>
+            <select class="form-control" name="data[follow_source]" id="select-follow-source">
+							<?php if ($settings->media_source=='hashtags') { ?>
+								<option value="hashtags" <?php if ($settings->follow_source=='hashtags') echo "selected" ?>>Hashtags</option>
+							<?php } ?>
+							<?php if ($settings->media_source=='usernames') { ?>
+								<option value="followers of username" <?php if ($settings->follow_source=='followers of username') echo "selected" ?>>Followers of username</option>
+								<option value="following of username" <?php if ($settings->follow_source=='following of username') echo "selected" ?>>Following of username</option>
+							<?php } ?>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>                        
+
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <div class="panel panel-info ">
+      <div class="panel-heading">
         <h3 class="panel-title">Unfollow whitelist</h3>
       </div>
       <div class="panel-body">
@@ -742,49 +788,6 @@
   </div>  
 </div>                        
 
-<div class="row">
-  <div class="col-md-12 col-sm-12">
-    <div class="panel panel-info ">
-      <div class="panel-heading">
-        <h3 class="panel-title">Follow</h3>
-      </div>
-      <div class="panel-body">
-
-        <div class="row">
-          <div class="col-md-4 checkbox">
-            <label><input type="checkbox" name="data[dont_follow_su]" <?php if($settings->dont_follow_su) echo "checked"; ?> >Don't Follow same user</label> 
-						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">Tidak akan follow user yang sama sebanyak 2 kali setelah anda Unfollow mereka.</div>
-						</span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 checkbox">
-            <label><input type="checkbox" name="data[dont_follow_pu]" <?php if($settings->dont_follow_pu) echo "checked"; ?> >Dont Follow private user</label> 
-						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">Tidak Follow user yang akun nya di private</div>
-						</span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <label>Follow source</label> 
-						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">Pilih sesuai Media Source diatas atau berdasarkan Username Followers/Following.</div>
-						</span>
-            <select class="form-control" name="data[follow_source]" id="select-follow-source">
-              <option value="hashtags" <?php if ($settings->follow_source=='hashtags') echo "selected" ?>>Hashtags</option>
-              <option value="followers of username" <?php if ($settings->follow_source=='followers of username') echo "selected" ?>>Followers of username</option>
-              <option value="following of username" <?php if ($settings->follow_source=='following of username') echo "selected" ?>>Following of username</option>
-            </select>
-          </div>
-        </div>
-
-
-      </div>
-    </div>
-  </div>  
-</div>                        
 <!--
 <div class="row">
   <div class="col-md-12 col-sm-12">
