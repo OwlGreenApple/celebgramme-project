@@ -83,6 +83,13 @@
 		
   $(document).ready(function() {
 		$("#extra-time").hide();
+    $('.add-spin-comment').click(function(e){
+			e.preventDefault();
+			var $select = $("#textarea-comments").selectize();
+			var selectize = $select[0].selectize;
+			selectize.addOption({value:$(this).html(),text:$(this).html()}); //option can be created manually or loaded using Ajax
+			selectize.addItem($(this).html()); 			
+    });
     $('#button-package').click(function(e){
 			if ($("#extra-time").is(":visible") ){
 				$("#extra-time").hide();
@@ -176,6 +183,19 @@
 				// $(this).find('.hint').slideToggle();
 			// }
 		// );		
+
+		$( "#select-media-source" ).change(function() {
+			if ( $( this ).val() == "usernames" ) {
+				$("#select-follow-source").html('<option value="followers of username">Followers of username</option><option value="following of username">Following of username</option>');
+				$("#div-usernames").show();
+				$("#div-hashtags").hide();
+			}
+			if ( $( this ).val() == "hashtags" ) {
+				$("#select-follow-source").html('<option value="hashtags">Hashtags</option>');
+				$("#div-usernames").hide();
+				$("#div-hashtags").show();
+			}
+		});
 		
     $('.selectize-default').selectize({
       plugins:['remove_button'],
@@ -488,13 +508,14 @@
         <div class="col-md-4">
           <label>Media Source</label> 
 					<span class="glyphicon glyphicon-question-sign" title="">
-						<div class="hint">Pilih Sumber Media untuk aktivitas Anda : <br>
+						<div class="hint">Aktifitas Follow, Like & Comments akan menggunakan Sumber Media ini<br>
+						  Pilih Sumber Media untuk aktivitas Anda : <br>
 							Hashtags - untuk menentukan Media sesuai Hashtags <br>
 							Usernames - untuk menentukan Media berdasarkan username <br>
 							
 						</div>
 					</span>
-          <select class="form-control" name="data[media_source]">
+          <select class="form-control" name="data[media_source]" id="select-media-source">
             <option value="hashtags" <?php if ($settings->media_source=='hashtags') echo "selected" ?>>Hashtags</option>
             <option value="usernames" <?php if ($settings->media_source=='usernames') echo "selected" ?>>Usernames</option>
           </select>
@@ -539,7 +560,7 @@
   </div>  
 </div>                        
 
-<div class="row">
+<div class="row" id="div-hashtags" <?php if ($settings->media_source=='usernames') echo "style='display:none;'"; ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -566,7 +587,7 @@
   </div>  
 </div>                    
 
-<div class="row">
+<div class="row" id="div-usernames" <?php if ($settings->media_source=='hashtags') echo "style='display:none;'"; ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -687,10 +708,14 @@
 							</span>
 						</div>
 						<div class="col-md-4">
-							<label>Copy paste contoh spin comment</label>
+							<label>Copy contoh spin comment (click)</label>
 							<span class="glyphicon glyphicon-menu-down" title="">
 								<div class="hint">
-									{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} 
+								<a href="#" class="add-spin-comment">{asli|serius},{nice|kerennn|cool|wow|keren|cooooolll|niceeeee}{sekaleee|sekali|banget|beneran|bener}{photo|foto|shot|poto|pic}{kamu|ini} </a>
+								<br> <br>
+								<a href="#" class="add-spin-comment">{nice|kerennn|cool|wow|keren|cooooolll|niceeeee}{sekaleee|sekali|banget|beneran|bener}{photo|foto|shot|poto|pic}{kamu|ini} </a> <br> <br>
+								<a href="#" class="add-spin-comment">{wow|amazing|incredible|whoa|seriously} {your|the|this|this particular} {photo|picture|photograph|image|photography} {is awesome|rocks !|very nice}. </a>
+								
 								</div>
 							</span>
 						</div>
@@ -707,7 +732,7 @@
 						</span>
           </div>
           <div class="col-md-12">
-            <textarea class="selectize-default" name="data[comments]">{{$settings->comments}}</textarea>
+            <input type="text" id="textarea-comments" class="selectize-default" name="data[comments]" value="{{$settings->comments}}">
           </div>
         </div>
 
@@ -747,8 +772,8 @@
 						<span class="glyphicon glyphicon-question-sign" title="">
 							<div class="hint">Pilih sesuai Media Source diatas atau berdasarkan Username Followers/Following.</div>
 						</span>
-            <select class="form-control" name="data[follow_source]">
-              <option value="media" <?php if ($settings->follow_source=='media') echo "selected" ?>>Media Source</option>
+            <select class="form-control" name="data[follow_source]" id="select-follow-source">
+              <option value="hashtags" <?php if ($settings->follow_source=='hashtags') echo "selected" ?>>Hashtags</option>
               <option value="followers of username" <?php if ($settings->follow_source=='followers of username') echo "selected" ?>>Followers of username</option>
               <option value="following of username" <?php if ($settings->follow_source=='following of username') echo "selected" ?>>Following of username</option>
             </select>

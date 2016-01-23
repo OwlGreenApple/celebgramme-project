@@ -30,7 +30,7 @@ class Setting extends Model {
         $setting->last_user = $arr['user_id'];
         //default data
         $setting->comments = "Nice;Pretty Awesome;Pretty Sweet;Aw Cool;Wow nice pictures;Superb;Amazing;Wonderful;Like it;Wow;{love|adore|really like|I love|enjoy|appreciate} {the way you|how you|the method that you} {took|shot|had taken} {the|the actual|this particular|your|this} {picture|image|photo|photograph|snapshot}";
-        $setting->tags = "selfie;anime;kuliner;weekend;graduation";
+        $setting->tags = "websugih;jajankulinersurabaya;olshop;kuliner;latepost";
         $setting->locations = "";
         $setting->activity = "follow";
         $setting->activity_speed = "normal";
@@ -40,7 +40,7 @@ class Setting extends Model {
         $setting->min_likes_media = "0";
         $setting->max_likes_media = "0";
         $setting->dont_comment_su = true;
-        $setting->follow_source = "media";
+        $setting->follow_source = "hashtags";
         $setting->dont_follow_su = false;
         $setting->dont_follow_pu = false;
         $setting->unfollow_source = "celebgramme";
@@ -86,7 +86,7 @@ class Setting extends Model {
         $setting->last_user = $arr['user_id'];
         //default data
         $setting->comments = "Nice;Pretty Awesome;Pretty Sweet;Aw Cool;Wow nice pictures;Superb;Amazing;Wonderful;Like it;Wow;{love|adore|really like|I love|enjoy|appreciate} {the way you|how you|the method that you} {took|shot|had taken} {the|the actual|this particular|your|this} {picture|image|photo|photograph|snapshot}";
-        $setting->tags = "selfie;anime;kuliner;weekend;graduation";
+        $setting->tags = "websugih;jajankulinersurabaya;olshop;kuliner;latepost";
         $setting->locations = "";
         $setting->activity = "follow";
         $setting->activity_speed = "normal";
@@ -96,7 +96,7 @@ class Setting extends Model {
         $setting->min_likes_media = "0";
         $setting->max_likes_media = "0";
         $setting->dont_comment_su = true;
-        $setting->follow_source = "media";
+        $setting->follow_source = "hashtags";
         $setting->dont_follow_su = false;
         $setting->dont_follow_pu = false;
         $setting->unfollow_source = "celebgramme";
