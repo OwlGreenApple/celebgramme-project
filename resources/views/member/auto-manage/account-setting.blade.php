@@ -493,9 +493,11 @@
         <div class="col-md-4">
           <label>Activity Speed</label> 
 					<span class="glyphicon glyphicon-question-sign" title="">
-						<div class="hint">Slow - Melakukan sekitar 550 Likes, 120 comments, 350 follows/unfollow /hari <br>
-							Normal - Melakukan sekitar 1200 likes, 180 comments, 450 follows/unfollows /hari. <br>
-							Fast - Melakukan 1800 likes, 240 comments, 600 follows/unfollows /hari. <br>
+						<div class="hint">
+						  • Jika Akun anda BARU / Tdk aktif, START dgn "SLOW/NORMAL" speed utk 5 hari <br>
+						  • Slow = Melakukan 550 Likes, 120 comments, 350 follow/unfollow /hari <br>
+							• Normal = Melakukan 1200 likes, 180 comments, 450 follow/unfollows /hari. <br>
+							• Fast = Melakukan 1800 likes, 240 comments, 600 follow/unfollows /hari. <br>
 						<br>
 						</div>
 					</span>
@@ -511,7 +513,7 @@
 						<div class="hint">Aktifitas Follow, Like & Comments akan menggunakan Sumber Media ini<br>
 						  Pilih Sumber Media untuk aktivitas Anda : <br>
 							Hashtags - untuk menentukan Media sesuai Hashtags <br>
-							Usernames - untuk menentukan Media berdasarkan username <br>
+							Usernames - untuk menentukan Media berdasarkan Username <br>
 							
 						</div>
 					</span>
@@ -524,7 +526,7 @@
           <label>Media Age</label> 
 					<span class="glyphicon glyphicon-question-sign" title="">
 						<div class="hint">
-							Pilih Umur / Media Age yang akan berinteraksi dengan anda.<br>
+							Pilih Umur Media / Media Age yang akan berinteraksi dengan anda.<br>
 							Latest : Hanya post terbaru (default)<br>
 							Any    : Post kapan saja<br>
 												
@@ -546,7 +548,7 @@
         <div class="col-md-4">
           <label>Media Type</label> 
 					<span class="glyphicon glyphicon-question-sign" title="">
-						<div class="hint">Media yang dipakai untuk interaksi, pilih Foto atau Video. Anda juga dapat memilih keduanya.</div>
+						<div class="hint">Media yang dipakai untuk interaksi, Foto atau Video atau Semuanya? </div>
 					</span>
           <select class="form-control" name="data[media_type]">
             <option value="any" <?php if ($settings->media_type=='any') echo "selected" ?>>Any</option>
@@ -573,9 +575,10 @@
             <label>Hashtags</label> 
 						<span class="glyphicon glyphicon-question-sign" title="">
 							<div class="hint">
-								Tambahkan MIN 1 Hashtag jika anda menggunakan Hashtags di Media Source. <br>
-								*Catatan: bahwa simbol # (tanda pagar) tidak diperlukan. Rekomendasi : 10 tags atau lebih<br>
-								Anda dapat menambahkan MAX 100 Hashtags.
+								• ADD MIN 1 Hashtag jika anda memilih "Hashtags" di Media Source. <br>
+								• TIDAK PERLU ADD simbol # (tanda pagar) <br>
+								• Rekomendasi : 10 tags atau lebih<br>
+								• Anda dapat menambahkan MAX 50 Hashtags
 							</div>
 						</span>
             <textarea class="selectize-default" name="data[tags]">{{$settings->tags}}</textarea>
@@ -599,8 +602,9 @@
           <div class="col-md-12">
             <label>Usernames</label> 
 						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">Tambahkan MIN 1 username jika anda menggunakan Followers/Following of Usernames di Media Source. <br>
-								Anda dapat menambahkan MAX 50 usernames.
+							<div class="hint">
+							  • Add MIN 1 username jika menggunakan "Usernames" di Media Source. <br>
+								• Anda dapat menambahkan MAX 50 usernames.
 							</div>
 						</span>
             <textarea class="selectize-default" name="data[username]">{{$settings->username}}</textarea>
@@ -624,7 +628,7 @@
           <div class="col-md-4 checkbox">
             <label><input type="checkbox" name="data[dont_follow_su]" <?php if($settings->dont_follow_su) echo "checked"; ?> >Don't Follow same user</label> 
 						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">Tidak akan follow user yang sama sebanyak 2 kali setelah anda Unfollow mereka.</div>
+							<div class="hint">Tidak akan Follow lagi user yang sama, setelah anda Unfollow mereka.</div>
 						</span>
           </div>
         </div>
@@ -632,7 +636,7 @@
           <div class="col-md-4 checkbox">
             <label><input type="checkbox" name="data[dont_follow_pu]" <?php if($settings->dont_follow_pu) echo "checked"; ?> >Dont Follow private user</label> 
 						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">Tidak Follow user yang akun nya di private</div>
+							<div class="hint">Tidak akan Follow Private Account User</div>
 						</span>
           </div>
         </div>
@@ -640,7 +644,7 @@
           <div class="col-md-4">
             <label>Follow source</label> 
 						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">Khusus untuk Follow Source : Usernames, bisa dipilih berdasarkan mau Follow siapa. Followersnya atau Following nya username tersebut.</div>
+							<div class="hint">Jika Follow Source : "Usernames" bisa pilih mau Follow siapa. "Followersnya/Following" nya username tsb.</div>
 						</span>
             <select class="form-control" name="data[follow_source]" id="select-follow-source">
 							<?php if ($settings->media_source=='hashtags') { ?>
@@ -670,8 +674,9 @@
           <div class="col-md-12">
             <label>Usernames</label> 
 						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">Saat anda melakukan UNFOLLOW, usernames di whitelist ini akan diabaikan / tidak akan di "UNFOLLOW"
-							usulan penggunaan : teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW
+							<div class="hint">
+							• Saat anda UNFOLLOW. Usernames di "Whitelist" ini akan diabaikan / tidak akan di "UNFOLLOW"<br>
+							• Usulan penggunaan : teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW
 							</div>
 						</span>
             <textarea class="selectize-default" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>
@@ -737,24 +742,24 @@
 -->
         <div class="row">
           <div class="col-md-12">
-						<div class="col-md-4" style="padding-left:0px!important;">
+						<div class="col-md-5 col-sm-12 col-xm-12" style="padding-left:0px!important;">
 							<label>Comments</label> 
 							<span class="glyphicon glyphicon-question-sign" title="">
 								<div class="hint">
-									Tambahkan setidaknya satu komentar, jika anda mengaktifkan fitur comments <br>
-									Tambahkan pula : <@owner> , di akhir comment untuk men-"tag" owner dari post tersebut
-                  untuk setiap posting komentar baru, komentar akan dipilih secara acak dari daftar ini. Celebgramme hanya akan memberikan 1 kali komentar pada setiap posting foto atau video. <br>
-									Kami menyarankan, paling tidak 10 komentar netral yang berbeda seperti : nice!, awesome!, beautiful!, itu keren!, dll <br>
-									Komentar tidak boleh lebih dari 300 karakter. <br>
-									Komentar tidak boleh berisi lebih dari 4 hashtag <br>
-									Komentar tidak boleh berisi lebih dari 1 URL <br>
-									Komentar tidak boleh terdiri dari huruf kapital semua. <br>
-									Komentar sebisa mungkin harus berbeda satu sama lain. <br>
-									Anda dapat menambahkan sampai dengan 100 comments.
+									 <br>
+									• Tambahkan : <@owner> , di akhir comment untuk men-"tag" owner dari post tersebut<br>
+                  • Komentar akan dipilih secara acak dari daftar ini. <br>
+									• Celebgramme hanya memberikan 1x komentar pada setiap posting <br>
+									• Min 10 komentar netral contoh: nice!, awesome!, beautiful!, itu keren!, dll <br>
+									• Komentar tidak boleh lebih dari 300 karakter. <br>
+									• Komentar tidak boleh berisi lebih dari 4 hashtag <br>
+									• Komentar tidak boleh berisi lebih dari 1 URL <br>
+									• Komentar tidak boleh terdiri dari huruf kapital semua. <br>
+									• Komentar sebisa mungkin harus berbeda satu sama lain. <br>
 								</div>
 							</span>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-5 col-sm-12 col-xm-12" style="padding-left:0px!important;">
 							<label>Copy contoh spin comment (click)</label>
 							<span class="glyphicon glyphicon-menu-down" title="">
 								<div class="hint">
@@ -837,4 +842,11 @@
 </div>                    
 <input type="hidden" name="data[id]" value="{{$settings->setting_id}}">
 </form>
+
+<div class="row">
+  <div class="col-md-12">
+    <p align="center"> <br><br><br><br><br><br><br><br> @Copyright <a href="http://celebgramme.com/celebgramme">Celebgramme</a> 2016</p>    
+  </div>                    
+</div>                    
+
 @endsection
