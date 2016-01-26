@@ -22,7 +22,7 @@ class PaymentController extends Controller
 {
 	public function __construct(){   
 		Veritrans::$serverKey = env('VERITRANS_SERVERKEY');
-		Veritrans::$isProduction = true;
+		Veritrans::$isProduction = env('VERITRANS_IS_PRODUCTION');
 	}
   
 	/* Veritrans */
