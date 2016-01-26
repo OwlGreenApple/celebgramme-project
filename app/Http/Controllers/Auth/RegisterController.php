@@ -149,7 +149,7 @@ class RegisterController extends Controller
           'quantity' => 1,
           'name' => "Paket ".$package->package_name,
         ]);
-        $totalPrice = $checkout_data['unique_id'];
+        $totalPrice = $checkout_data['total'];
         // Populate customer's billing address
         $billing_address = [
           'first_name' => $user->fullname,
