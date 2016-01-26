@@ -333,7 +333,7 @@ class AutoManageController extends Controller
 			$setting->status = "deleted";
 			$setting->save();
 			
-			$setting_temp = Setting::post_info_admin($setting->id);
+			$setting_temp = Setting::post_info_admin($setting->id, "[Celebgramme] Post Auto Manage (Delete IG Account)");
 		}
 		
 		return $arr;
