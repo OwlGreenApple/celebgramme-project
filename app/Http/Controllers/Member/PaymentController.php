@@ -105,7 +105,7 @@ class PaymentController extends Controller
       $transaction_data = array(
         'payment_type' => 'vtweb', 
         'vtweb' => array(
-            //'enabled_payments' => [],
+            'enabled_payments' => ["credit_card"],
             'credit_card_3d_secure' => true
         ),
         'transaction_details'=> array(
