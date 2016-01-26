@@ -76,7 +76,7 @@ class LandingPageController extends Controller
   		}
 
 	    $arr = array (
-	      "package_id"=>Request::input("select-daily-like"),
+	      "package_id"=>Request::input("select-auto-manage"),
 	      "package_manage_id"=>Request::input("select-auto-manage"),
 	      "coupon_code"=>Request::input("coupon-code"),
 	      "payment_method"=>Request::input("payment-method"),

@@ -742,7 +742,8 @@
 							<span class="glyphicon glyphicon-question-sign" title="">
 								<div class="hint">
 									Tambahkan setidaknya satu komentar, jika anda mengaktifkan fitur comments <br>
-									untuk setiap posting komentar baru, komentar akan dipilih secara acak dari daftar ini. Celebgramme hanya akan memberikan 1 kali komentar pada setiap posting foto atau video. <br>
+									Tambahkan pula : <@owner> , di akhir comment untuk men-"tag" owner dari post tersebut
+                  untuk setiap posting komentar baru, komentar akan dipilih secara acak dari daftar ini. Celebgramme hanya akan memberikan 1 kali komentar pada setiap posting foto atau video. <br>
 									Kami menyarankan, paling tidak 10 komentar netral yang berbeda seperti : nice!, awesome!, beautiful!, itu keren!, dll <br>
 									Komentar tidak boleh lebih dari 300 karakter. <br>
 									Komentar tidak boleh berisi lebih dari 4 hashtag <br>
@@ -757,10 +758,10 @@
 							<label>Copy contoh spin comment (click)</label>
 							<span class="glyphicon glyphicon-menu-down" title="">
 								<div class="hint">
-								<a href="#" class="add-spin-comment">{asli|serius},{nice|kerennn|cool|wow|keren|cooooolll|niceeeee}{sekaleee|sekali|banget|beneran|bener}{photo|foto|shot|poto|pic}{kamu|ini} </a>
+								<a href="#" class="add-spin-comment">{asli|serius},{nice|kerennn|cool|wow|keren|cooooolll|niceeeee}{sekaleee|sekali|banget|beneran|bener}{photo|foto|shot|poto|pic}{kamu|ini} <@owner> </a>
 								<br> <br>
-								<a href="#" class="add-spin-comment">{nice|kerennn|cool|wow|keren|cooooolll|niceeeee}{sekaleee|sekali|banget|beneran|bener}{photo|foto|shot|poto|pic}{kamu|ini} </a> <br> <br>
-								<a href="#" class="add-spin-comment">{wow|amazing|incredible|whoa|seriously} {your|the|this|this particular} {photo|picture|photograph|image|photography} {is awesome|rocks !|very nice}. </a>
+								<a href="#" class="add-spin-comment">{nice|kerennn|cool|wow|keren|cooooolll|niceeeee}{sekaleee|sekali|banget|beneran|bener}{photo|foto|shot|poto|pic}{kamu|ini} <@owner></a> <br> <br>
+								<a href="#" class="add-spin-comment">{wow|amazing|incredible|whoa|seriously} {your|the|this} {photo|picture|photograph|image|foto} {is awesome|rocks !|very nice} <@owner> </a>
 								
 								</div>
 							</span>

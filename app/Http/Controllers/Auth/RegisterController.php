@@ -110,14 +110,14 @@ class RegisterController extends Controller
 
     if (! $request->session()->has('checkout_data')) {
       //return redirect('/home');
-      return Redirect::to("http://celebgramme.com/email-konfirmasi/");
+      // return Redirect::to("http://celebgramme.com/email-konfirmasi/");
     } else {
       $user->valid_until = "0000-00-00 00:00:00";
       $user->status_free_trial = 0;
       $user->save();
 
       $checkout_data = $request->session()->get('checkout_data');
-      // $package = Package::find($checkout_data["package_id"]);
+      $package = Package::find($checkout_data["package_id"]);
       
       if ($checkout_data["payment_method"]== 1) {
         $data = array (
@@ -145,11 +145,11 @@ class RegisterController extends Controller
         // package
         array_push($items, [
           'id' => '#Package',
-          'price' => $package->price,
+          'price' => $checkout_data['total'],
           'quantity' => 1,
-          'name' => $package->package_name,
+          'name' => "Paket ".$package->package_name,
         ]);
-        $totalPrice = $package->price;
+        $totalPrice = $checkout_data['unique_id'];
         // Populate customer's billing address
         $billing_address = [
           'first_name' => $user->fullname,

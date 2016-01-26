@@ -29,7 +29,7 @@ class Setting extends Model {
         $setting->insta_password = $arr['insta_password'];
         $setting->last_user = $arr['user_id'];
         //default data
-        $setting->comments = "Nice;Pretty Awesome;Pretty Sweet;Aw Cool;Wow nice pictures;Superb;Amazing;Wonderful;Like it;Wow;{love|adore|really like|I love|enjoy|appreciate} {the way you|how you|the method that you} {took|shot|had taken} {the|the actual|this particular|your|this} {picture|image|photo|photograph|snapshot}";
+        $setting->comments = "Nice;Pretty Awesome;Pretty Sweet;Aw Cool;Wow nice pictures;Superb;Amazing;Wonderful;Like it;Wow;{love|adore|really like|I love|enjoy|appreciate} {the way you|how you} {took|shot|had taken} {the|the actual|this particular|your|this} {picture|pic|image|photo|foto|snapshot} ^_^ <@owner>";
         $setting->tags = "websugih;jajankulinersurabaya;olshop;kuliner;latepost";
         $setting->locations = "";
         $setting->activity = "follow";
@@ -85,7 +85,7 @@ class Setting extends Model {
         $setting->insta_password = $arr['insta_password'];
         $setting->last_user = $arr['user_id'];
         //default data
-        $setting->comments = "Nice;Pretty Awesome;Pretty Sweet;Aw Cool;Wow nice pictures;Superb;Amazing;Wonderful;Like it;Wow;{love|adore|really like|I love|enjoy|appreciate} {the way you|how you|the method that you} {took|shot|had taken} {the|the actual|this particular|your|this} {picture|image|photo|photograph|snapshot}";
+        $setting->comments = "Nice;Pretty Awesome;Pretty Sweet;Aw Cool;Wow nice pictures;Superb;Amazing;Wonderful;Like it;Wow;{love|adore|really like|I love|enjoy|appreciate} {the way you|how you} {took|shot|had taken} {the|the actual|this particular|your|this} {picture|pic|image|photo|foto|snapshot} ^_^ <@owner>";
         $setting->tags = "websugih;jajankulinersurabaya;olshop;kuliner;latepost";
         $setting->locations = "";
         $setting->activity = "follow";

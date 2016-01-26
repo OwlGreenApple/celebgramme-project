@@ -22,7 +22,7 @@ class PaymentController extends Controller
 {
 	public function __construct(){   
 		Veritrans::$serverKey = env('VERITRANS_SERVERKEY');
-		Veritrans::$isProduction = false;
+		Veritrans::$isProduction = true;
 	}
   
 	/* Veritrans */
@@ -36,22 +36,22 @@ class PaymentController extends Controller
     //$package = Package::find(Input::get("package-daily-likes"));
 
     //hitung total
-	$total = 0;
-	// $package = Package::find(Input::get("package-daily-likes"));
-	// if (!is_null($package)) {
-	// 	$total += $package->price;
-	// }
-	$package = Package::find(Input::get("package-auto-manage"));
-	if (!is_null($package)) {
-		$total += $package->price;
-	}
-	$dt = Carbon::now();
-	$coupon = Coupon::where("coupon_code","=",Input::get("coupon-code"))
-				->where("valid_until",">=",$dt->toDateTimeString())->first();
-	if (!is_null($coupon)) {
-		$total -= $coupon->coupon_value;
-		if ($total<0) { $total =0; }
-	}
+		$total = 0;
+		// $package = Package::find(Input::get("package-daily-likes"));
+		// if (!is_null($package)) {
+			// $total += $package->price;
+		// }
+		$package = Package::find(Input::get("package-auto-manage"));
+		if (!is_null($package)) {
+			$total += $package->price;
+		}
+		$dt = Carbon::now();
+		$coupon = Coupon::where("coupon_code","=",Input::get("coupon-code"))
+					->where("valid_until",">=",$dt->toDateTimeString())->first();
+		if (!is_null($coupon)) {
+			$total -= $coupon->coupon_value;
+			if ($total<0) { $total =0; }
+		}
 
     
     //transfer bank
@@ -81,11 +81,11 @@ class PaymentController extends Controller
       // package
       array_push($items, [
         'id' => '#Package',
-        'price' => $package->price,
+        'price' => $total,
         'quantity' => 1,
-        'name' => $package->package_name,
+        'name' => "Paket ".$package->package_name,
       ]);
-      $totalPrice = $package->price;
+      $totalPrice = $total;
       // Populate customer's billing address
       $billing_address = [
         'first_name' => $user->fullname,
