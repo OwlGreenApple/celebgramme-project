@@ -28,7 +28,7 @@ class RegisterController extends Controller
 		$this->middleware('guest', ['except' => 'getLogout']);
     
 		Veritrans::$serverKey = env('VERITRANS_SERVERKEY');
-		Veritrans::$isProduction = false;
+		Veritrans::$isProduction = true;
 	}
   
 	/**
