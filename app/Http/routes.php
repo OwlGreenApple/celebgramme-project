@@ -11,7 +11,6 @@
 |
 */
 
-
 /* register package */
 Route::get('package', 'LandingPageController@package');
 Route::get('prices', 'LandingPageController@package');
