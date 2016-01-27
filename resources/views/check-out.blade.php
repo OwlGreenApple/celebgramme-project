@@ -130,8 +130,8 @@
               <div class="col-sm-2 col-md-2">
               </div>
               <div class="col-sm-8 col-md-8">
-                <label class="col-xs-5 col-sm-5 control-label" for="formGroupInputSmall">Paket Auto Manage</label>
-                <div class="col-sm-4 col-md-4">
+                <label class="col-xs-4 col-sm-4 control-label" for="formGroupInputSmall">Paket Auto Manage</label>
+                <div class="col-sm-5 col-md-5">
                   <select class="form-control" name="select-auto-manage" id="select-auto-manage">
                     <option data-real="0" value="-">Silahkan pilih paket</option>
 										<!--
@@ -161,8 +161,8 @@
               <div class="col-sm-2 col-md-2">
               </div>
               <div class="col-sm-8 col-md-8">
-                <label class="col-xs-5 col-sm-5 control-label" for="formGroupInputSmall">Kode kupon (optional)</label>
-                <div class="col-sm-4 col-md-4">
+                <label class="col-xs-4 col-sm-4 control-label" for="formGroupInputSmall">Kode kupon (optional)</label>
+                <div class="col-sm-5 col-md-5">
                   <input type="text" class="form-control" placeholder="Masukkan kode kupon anda" id="text-coupon-code" name="coupon-code">
                 </div>
                 <div class="col-sm-1 col-md-1">
@@ -209,8 +209,8 @@
               <div class="col-sm-2 col-md-2">
               </div>
               <div class="col-sm-8 col-md-8">
-                <label class="col-xs-5 col-sm-5 control-label" for="formGroupInputSmall">Pilih Opsi Pembayaran Anda</label>
-                <div class="col-sm-4 col-md-4">
+                <label class="col-xs-4 col-sm-4 control-label" for="formGroupInputSmall">Pilih Opsi Pembayaran Anda</label>
+                <div class="col-sm-5 col-md-5">
                   <select class="form-control" name="payment-method">
                     <option value="1">Bank transfer</option>
                     <option value="2">Veritrans</option>
