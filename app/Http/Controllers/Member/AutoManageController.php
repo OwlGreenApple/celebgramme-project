@@ -73,8 +73,8 @@ class AutoManageController extends Controller
 												->where("type","=","temp")
 												->where("status","!=","deleted")
                         ->count();
-      if ( $count_setting>=3 ) {
-        $arr["message"]= "Account maksimal 3";
+      if ( $count_setting>=$user->max_account ) {
+        $arr["message"]= "Account maksimal ".$user->max_account;
         $arr["type"]= "error";
         return $arr;
       }
