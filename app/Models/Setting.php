@@ -64,6 +64,13 @@ class Setting extends Model {
 					$links = json_decode($json);
 					if (count($links->data)>0) {
 						$id = $links->data[0]->id;
+						foreach($links->data as $link){
+							if ($link->username == $arr['insta_username']){
+								$id = $link->id;
+							}
+						}
+						
+						
 						$json_url ='https://api.instagram.com/v1/users/'.$id.'?client_id=03eecaad3a204f51945da8ade3e22839';
 						$json = @file_get_contents($json_url);
 						if($json == TRUE) { 

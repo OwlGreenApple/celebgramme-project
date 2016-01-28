@@ -254,6 +254,11 @@
 		$links = json_decode($json);
 		if (count($links->data)>0) {
 			$photo = $links->data[0]->profile_picture;
+			foreach($links->data as $link){
+				if ($link->username == $settings->insta_username){
+					$photo = $link->profile_picture;
+				}
+			}
 		} else {
 			$photo = url('images/profile-default.png');
 		}
