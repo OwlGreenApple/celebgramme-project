@@ -132,7 +132,7 @@ class Setting extends Model {
         $diff = array_diff_assoc($arr_temp,$arr_real);
         $act = "description: ";
         foreach ($diff as $key => $value) {
-            $act .= $key." = ".strval($value)." | ";
+            $act .= $key." = ".strval($value)." ~ ";
         }
         $post = Post::where("setting_id","=",$setting_id)->first();
         if (is_null($post)){
