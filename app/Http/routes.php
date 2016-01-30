@@ -11,6 +11,11 @@
 |
 */
 
+/* Super Admin page */
+Route::get('super-admin', 'Member\AdminController@user_list');
+Route::get('check-super/{id}', 'Member\AdminController@check_super');
+
+
 /* register package */
 Route::get('package', 'LandingPageController@package');
 Route::get('prices', 'LandingPageController@package');

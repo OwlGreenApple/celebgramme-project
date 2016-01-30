@@ -65,6 +65,8 @@ class AutoManageController extends Controller
       "user_id"=>$user->id,
       );
 
+		//cek email, available username or not
+			
     $setting = Setting::where("insta_username","=",Request::input("username"))->where("type","=","temp")->first();
     if (is_null($setting)) {
       $count_setting = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
