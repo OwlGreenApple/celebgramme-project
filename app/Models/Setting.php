@@ -69,7 +69,7 @@ class Setting extends Model {
 						// $id = $links->data[0]->id;
 						$id = 0;
 						foreach($links->data as $link){
-							if ($link->username == $arr['insta_username']){
+							if (strtoupper($link->username) == strtoupper($arr['insta_username'])){
 								$id = $link->id;
 							}
 						}

@@ -15,7 +15,7 @@ if (isset($datas)) {
 			if (count($links->data)>0) {
 				$photo = url('images/profile-default.png');
 				foreach($links->data as $link){
-					if ($link->username == $data->insta_username){
+					if (strtoupper($link->username) == strtoupper ($data->insta_username)){
 						$photo = $link->profile_picture;
 					}
 				}
