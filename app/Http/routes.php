@@ -11,11 +11,6 @@
 |
 */
 
-/* Super Admin page */
-Route::get('super-admin', 'Member\AdminController@user_list');
-Route::get('check-super/{id}', 'Member\AdminController@check_super');
-
-
 /* register package */
 Route::get('package', 'LandingPageController@package');
 Route::get('prices', 'LandingPageController@package');
@@ -45,6 +40,10 @@ Route::post('change-password', ['as'=>'change.password', 'uses'=> 'LandingPageCo
 /*--------- Must Login Routes ---------*/
 Route::group(['middleware' => 'auth'], function()
 {
+	/* Super Admin page */
+	Route::get('super-admin', 'Member\AdminController@user_list');
+	Route::get('check-super/{id}', 'Member\AdminController@check_super');
+
   /* Pay with tweet */
   Route::get('confirm-paywithtweet/{cryptedcode}', 'Member\HomeController@confirm_paywithtweet');
 

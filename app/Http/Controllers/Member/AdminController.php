@@ -23,14 +23,24 @@ class AdminController extends Controller
 {
   
 	public function user_list(){
-		$users = User::all();
-		foreach ($users as $user){
-			echo "<a href='".url("check-super")."/".$user->id."'>".$user->email."</a> <br>";
+		$user = Auth::user();
+		if ($user->type=="admin") {
+			$users = User::all();
+			foreach ($users as $user){
+				echo "<a href='".url("check-super")."/".$user->id."'>".$user->email."</a> <br>";
+			}
+		} else {
+			return "NOT AUTHORIZED";
 		}
   }
 
 	public function check_super($id){
-		Auth::loginUsingId($id);
-		return redirect("home");
+		$user = Auth::user();
+		if ($user->type=="admin") {
+			Auth::loginUsingId($id);
+			return redirect("home");
+		} else {
+			return "NOT AUTHORIZED";
+		}
 	}
 }
