@@ -156,7 +156,7 @@ class CronJobController extends Controller
 						// $id = $links->data[0]->id;
 						$id = 0;
 						foreach($links->data as $link){
-							if ($link->username == $setting->insta_username){
+							if (strtoupper($link->username) == strtoupper($setting->insta_username)){
 								$id = $link->id;
 							}
 						}
