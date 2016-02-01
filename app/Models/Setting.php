@@ -21,7 +21,7 @@ class Setting extends Model {
     protected $fillable = ['activity_speed', 'media_source', 'media_age', 'media_type', 
     'min_likes_media', 'max_likes_media', 'dont_comment_su', 'follow_source', 'dont_follow_su', 'dont_follow_pu', 'unfollow_source', 'unfollow_wdfm', 'comments', 'tags', 'locations', 
     'insta_username', 'insta_password', 'insta_user_id', 'insta_access_token', 'last_user', 'start_time', 'running_time', 'user_id', 'tags_blacklist', 'usernames_blacklist', 
-    'likes_counter', 'unfollows_counter', 'comments_counter', 'follows_counter', 'username', 'status', 'activity', 'usernames_whitelist' ];
+    'likes_counter', 'unfollows_counter', 'comments_counter', 'follows_counter', 'username', 'status', 'activity', 'usernames_whitelist', 'status_follow_unfollow', 'status_like', 'status_comment' ];
 	protected function createSetting($arr)
 	{
         $setting = new Setting;
@@ -30,9 +30,12 @@ class Setting extends Model {
         $setting->last_user = $arr['user_id'];
         //default data
         $setting->comments = "Nice <@owner>;{love|adore|really like|I love|enjoy|appreciate} {the way you|how you} {took|shot|had taken} {the|the actual|this particular|your|this} {picture|pic|image|photo|foto|snapshot} ^_^ <@owner>";
-        $setting->tags = "websugih;jajankulinersurabaya;olshop;kuliner;latepost";
+        $setting->tags = "websugih;jajankulinersurabaya;olshop;kuliner;latepost;startup;olshopmurah;yolo;travel;foodie";
         $setting->locations = "";
         $setting->activity = "follow";
+        $setting->status_follow_unfollow = "on";
+        $setting->status_like = "on";
+        $setting->status_comment = "on";
         $setting->activity_speed = "normal";
         $setting->media_source = "hashtags";
         $setting->media_age = "1 hour";
@@ -63,7 +66,8 @@ class Setting extends Model {
 				if($json == TRUE) { 
 					$links = json_decode($json);
 					if (count($links->data)>0) {
-						$id = $links->data[0]->id;
+						// $id = $links->data[0]->id;
+						$id = 0;
 						foreach($links->data as $link){
 							if ($link->username == $arr['insta_username']){
 								$id = $link->id;
@@ -93,9 +97,12 @@ class Setting extends Model {
         $setting->last_user = $arr['user_id'];
         //default data
         $setting->comments = "Nice <@owner>;{love|adore|really like|I love|enjoy|appreciate} {the way you|how you} {took|shot|had taken} {the|the actual|this particular|your|this} {picture|pic|image|photo|foto|snapshot} ^_^ <@owner>";
-        $setting->tags = "websugih;jajankulinersurabaya;olshop;kuliner;latepost";
+        $setting->tags = "websugih;jajankulinersurabaya;olshop;kuliner;latepost;startup;olshopmurah;yolo;travel;foodie";
         $setting->locations = "";
         $setting->activity = "follow";
+        $setting->status_follow_unfollow = "on";
+        $setting->status_like = "on";
+        $setting->status_comment = "on";
         $setting->activity_speed = "normal";
         $setting->media_source = "hashtags";
         $setting->media_age = "1 hour";

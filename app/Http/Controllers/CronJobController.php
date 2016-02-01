@@ -137,43 +137,6 @@ class CronJobController extends Controller
   
 	
 	/**
-	 * Generating Data Followers and following now dari users
-	 *
-	 * @return response
-	 */
-	public function generate_data(){
-		$settings = Setting::where("type",'=','temp')
-								->get();
-		foreach ($settings as $setting) {
-			//create meta, jumlah followers & following
-			$followers_join = 0;
-			$following_join = 0;
-			$json_url = "https://api.instagram.com/v1/users/search?q=".$setting->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
-			$json = @file_get_contents($json_url);
-			if($json == TRUE) { 
-				$links = json_decode($json);
-				if (count($links->data)>0) {
-					$id = $links->data[0]->id;
-
-					$json_url ='https://api.instagram.com/v1/users/'.$id.'?client_id=03eecaad3a204f51945da8ade3e22839';
-					$json = @file_get_contents($json_url);
-					if($json == TRUE) { 
-						$links = json_decode($json);
-						if (count($links->data)>0) {
-							$followers_join = $links->data->counts->followed_by;
-							$following_join = $links->data->counts->follows;
-						}
-					}
-				} 
-			}
-			SettingMeta::createMeta("followers_join",$followers_join,$setting->id);
-			SettingMeta::createMeta("following_join",$following_join,$setting->id);
-			
-		}
-	}
-
-
-	/**
 	 * Checking following & followers of user
 	 *
 	 * @return response
@@ -190,7 +153,8 @@ class CronJobController extends Controller
 				if($json == TRUE) { 
 					$links = json_decode($json);
 					if (count($links->data)>0) {
-						$id = $links->data[0]->id;
+						// $id = $links->data[0]->id;
+						$id = 0;
 						foreach($links->data as $link){
 							if ($link->username == $setting->insta_username){
 								$id = $link->id;

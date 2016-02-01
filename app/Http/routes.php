@@ -103,4 +103,3 @@ Route::get('cron-notif-member', 'CronJobController@notif_member');
 Route::get('auto-follow-unfollow', 'CronJobController@auto_follow_unfollow');
 Route::get('replace-delimiter', 'CronJobController@replace_delimiter');
 
-Route::get('generate-data', 'CronJobController@generate_data');

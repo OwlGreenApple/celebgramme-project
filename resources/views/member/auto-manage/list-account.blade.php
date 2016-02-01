@@ -13,7 +13,7 @@ if (isset($datas)) {
 		if($json == TRUE) { 
 			$links = json_decode($json);
 			if (count($links->data)>0) {
-				$photo = $links->data[0]->profile_picture;
+				$photo = url('images/profile-default.png');
 				foreach($links->data as $link){
 					if ($link->username == $data->insta_username){
 						$photo = $link->profile_picture;
