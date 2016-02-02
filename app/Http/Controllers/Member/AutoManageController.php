@@ -16,6 +16,7 @@ use Celebgramme\Models\Setting;
 use Celebgramme\Models\SettingMeta;
 use Celebgramme\Models\LinkUserSetting;
 use Celebgramme\Models\Post;
+use Celebgramme\Models\Meta;
 use Celebgramme\Veritrans\Veritrans;
 
 use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt;
@@ -31,10 +32,12 @@ class AutoManageController extends Controller
 	public function index(){
     $user = Auth::user();
     $order = Order::where("order_status","=","pending")->where("user_id","=",$user->id)->where("image",'=','')->first();
+		$status_server = Meta::where("meta_name","=","status_server")->first()->meta_value;
 		
     return view("member.auto-manage.index")->with(array(
       'user'=>$user,
       'order'=>$order,
+      'status_server'=>$status_server,
       ));
 	}
 
@@ -295,6 +298,12 @@ class AutoManageController extends Controller
 
   public function call_action(){  
     $user = Auth::user();
+		$status_server = Meta::where("meta_name","=","status_server")->first()->meta_value;
+    $arr["message"]= "data berhasil di ubah";
+		if ( (Request::input('action')=='start') && ($status_server=="maintenance") ) {
+			$arr["message"]= "Settings akan dijalankan saat Status Server Normal/Delay";
+		}
+		
     $arr["action"]= Request::input('action');
     $arr["id"]= Request::input('id');
 
@@ -356,7 +365,6 @@ class AutoManageController extends Controller
     }
 
 
-    $arr["message"]= "data berhasil di ubah";
     $arr["type"]= "success";
     return $arr;
   }

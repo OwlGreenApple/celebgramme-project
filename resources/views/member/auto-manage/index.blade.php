@@ -227,13 +227,13 @@
                 $("#alert").html(data.message);
                 if(data.type=='success')
                 {
-                  $("#alert").addClass('btn-danger');
-                  $("#alert").removeClass('alert-success');
+                  $("#alert").addClass('alert-success');
+                  $("#alert").removeClass('btn-danger');
                 }
                 else if(data.type=='error')
                 {
-                  $("#alert").addClass('alert-success');
-                  $("#alert").removeClass('btn-danger');
+                  $("#alert").addClass('btn-danger');
+                  $("#alert").removeClass('alert-success');
                 }
                 $("#username").val("");
                 $("#password").val("");
@@ -402,13 +402,23 @@
         <i class="fn">
         </i>
       </div>
-			<div class="fl" style="margin-left:10px;margin-top:10px;">
-				<label> Total waktu per akun : </label>
+			<div class="fl" style="margin-left:10px;">
+				<span class="server-status"></span><label style="font-size:11px;"> &nbsp Server Status : </label>
+				<span class="glyphicon glyphicon-question-sign hint-button" title="">
+				<div class="hint">
+					Normal - Server berjalan dengan normal <br>
+					Delay - Server in High Traffic, Perubahan Settings akan Delay 120-360 menit <br>
+					Maintenance - Perubahan settings akan dijalankan saat Status Server Normal/Delay 
+				
+				</div>
+				</span>
+				<span style="font-size:11px;color:#5abe5a;" >{{$status_server}}</span> <br>
+				<label style="font-size:11px;"> Total waktu per akun : </label>
 					<span class="glyphicon glyphicon-question-sign hint-button" title="">
 					<div class="hint">Total waktu per akun start = Total waktu pembelian / total akun start <br>
 						hanya akun yang di start saja yang dikurangi waktunya dari total waktu pembelian</div>
-					</span><br>
-				<span style="color:#5abe5a;" id="time-account-start"></span>
+					</span>
+				<span style="font-size:11px;color:#5abe5a;" id="time-account-start"></span>
 				
 			</div>
 			<div class="fn">

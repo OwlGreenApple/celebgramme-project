@@ -229,6 +229,15 @@
 			// }
 		// });
 		
+		$( "#select-follow-source" ).change(function() {
+			if ( $( this ).val() == "hashtags" ) {
+				$("#div-usernames").hide();
+			}
+			if ( ( $( this ).val() == "followers of username" ) || ( $( this ).val() == "following of username" )) {
+				$("#div-usernames").show();
+			}
+		});
+		
     $('.selectize-default').selectize({
       plugins:['remove_button'],
       delimiter: ';',
@@ -715,7 +724,7 @@
   </div>  
 </div>                    
 
-<div class="row" id="div-usernames">
+<div class="row" id="div-usernames" <?php if ($settings->follow_source=='hashtags') echo "style='display:none;'" ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
