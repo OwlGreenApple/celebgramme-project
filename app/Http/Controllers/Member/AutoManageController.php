@@ -44,7 +44,35 @@ class AutoManageController extends Controller
     $arr["message"]= "Ubah password berhasil dilakukan, sistem akan berjalan secara otomatis maksimum 1x24jam";
     $arr["type"]= "success";
 
+    $data = array (
+      "insta_username"=>Request::input("edit_username"),
+      "insta_password"=>Request::input("edit_password"),
+      "user_id"=>$user->id,
+      );
+
+		$validator = Validator::make($data, [
+			'insta_username' => 'required|max:255',
+			'insta_password' => 'required',
+		]);
+		if ($validator->fails())
+    {
+			$arr["message"]= "Instagram username or password required";
+			$arr["type"]= "error";
+			return $arr;
+		}
+		//cek email, available username or not
+		$validator = Validator::make($data, [
+			'insta_username' => 'email',
+		]);
+		if (!$validator->fails())
+    {
+			$arr["message"]= "Instagram username tidak boleh email";
+			$arr["type"]= "error";
+			return $arr;
+		}
+			
     $setting_temp = Setting::find(Request::input('setting_id'));
+    $setting_temp->insta_username = Request::input('edit_username');
     $setting_temp->insta_password = Request::input('edit_password');
     $setting_temp->error_cred = false;
     $setting_temp->save();
@@ -65,7 +93,26 @@ class AutoManageController extends Controller
       "user_id"=>$user->id,
       );
 
+		$validator = Validator::make($data, [
+			'insta_username' => 'required|max:255',
+			'insta_password' => 'required',
+		]);
+		if ($validator->fails())
+    {
+			$arr["message"]= "Instagram username or password required";
+			$arr["type"]= "error";
+			return $arr;
+		}
 		//cek email, available username or not
+		$validator = Validator::make($data, [
+			'insta_username' => 'email',
+		]);
+		if (!$validator->fails())
+    {
+			$arr["message"]= "Instagram username tidak boleh email";
+			$arr["type"]= "error";
+			return $arr;
+		}
 			
     $setting = Setting::where("insta_username","=",Request::input("username"))->where("type","=","temp")->first();
     if (is_null($setting)) {

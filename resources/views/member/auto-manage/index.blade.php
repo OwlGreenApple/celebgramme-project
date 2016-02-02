@@ -272,14 +272,16 @@
                 {
                   $("#alert").addClass('alert-success');
                   $("#alert").removeClass('btn-danger');
+
+									$("#username").val("");
+									$("#password").val("");
+									$("#confirm_password").val("");
                 }
                 else if(data.type=='error')
                 {
                   $("#alert").addClass('btn-danger');
                   $("#alert").removeClass('alert-success');
                 }
-                $("#username").val("");
-                $("#password").val("");
                 loadaccount();
             }
         });
@@ -315,6 +317,7 @@
 										<p style="color:#a94442;">4. Dilarang keras menggunakan sistem auto manage / instagram bot yang lain saat anda menjalankan Celebgramme <br>
 										5. Untuk menggunakan Celebgramme akun jangan di private<br>
 										6. System Celebgramme akan otomatis melakukan Unfollow apabila akun anda mendekati batas following Instagram (7500 following)<br>
+										7. Dilarang mengganti username/password selama menggunakan Celebgramme services
 										</p>
                   </div>
                 </div>
@@ -508,6 +511,12 @@ hanya akun yang di start saja yang dikurangi waktunya dari total waktu pembelian
         </div>
         <div class="modal-body">
           <form enctype="multipart/form-data" id="form-edit-password">
+            <div class="form-group form-group-sm row">
+              <label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Username</label>
+              <div class="col-sm-8 col-md-6">
+                <input type="text" class="form-control" placeholder="Your username" name="edit_username" id="edit_username">
+              </div>
+            </div>  
             <div class="form-group form-group-sm row">
               <label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Password</label>
               <div class="col-sm-8 col-md-6">
