@@ -301,7 +301,7 @@ class AutoManageController extends Controller
       return $arr;
 		}
 		
-		$pieces = explode(";",$data["tags"]);
+		$pieces = explode(";",$data["hashtags"]);
 		if (count($pieces)<10) {
       $arr["message"]= "Hashtags minimal harus ada 10";
       $arr["type"]= "error";

@@ -715,7 +715,7 @@
 								• Anda dapat menambahkan MAX 50 Hashtags
 							</div>
 						</span>
-            <textarea class="selectize-default" name="data[tags]">{{$settings->tags}}</textarea>
+            <textarea class="selectize-default" name="data[hashtags]">{{$settings->hashtags}}</textarea>
           </div>
         </div>
 

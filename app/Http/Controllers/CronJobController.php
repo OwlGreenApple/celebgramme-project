@@ -248,7 +248,7 @@ class CronJobController extends Controller
 		$settings = Setting::all();
 		foreach($settings as $setting) {
 			$setting->comments =  str_replace(",", ";", $setting->comments);
-			$setting->tags =  str_replace(",", ";", $setting->tags);
+			$setting->hashtags =  str_replace(",", ";", $setting->hashtags);
 			$setting->save();
 		}
 		$posts = Post::all();
