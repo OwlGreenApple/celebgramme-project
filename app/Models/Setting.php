@@ -61,13 +61,13 @@ class Setting extends Model {
 				//create meta, jumlah followers & following
 				$followers_join = 0;
 				$following_join = 0;
+				$id = 0;
 				$json_url = "https://api.instagram.com/v1/users/search?q=".$arr['insta_username']."&client_id=03eecaad3a204f51945da8ade3e22839";
 				$json = @file_get_contents($json_url);
 				if($json == TRUE) { 
 					$links = json_decode($json);
 					if (count($links->data)>0) {
 						// $id = $links->data[0]->id;
-						$id = 0;
 						foreach($links->data as $link){
 							if (strtoupper($link->username) == strtoupper($arr['insta_username'])){
 								$id = $link->id;
@@ -90,6 +90,8 @@ class Setting extends Model {
 				SettingMeta::createMeta("following_join",$following_join,$setting->id);
 				SettingMeta::createMeta("followers",$followers_join,$setting->id);
 				SettingMeta::createMeta("following",$following_join,$setting->id);
+				$setting->insta_user_id = $id;
+				$setting->save();
         
         $setting = new Setting;
         $setting->insta_username = $arr['insta_username'];
@@ -118,6 +120,7 @@ class Setting extends Model {
         $setting->user_id = $arr['user_id'];
         $setting->status = 'stopped';
         $setting->type = 'real';
+				$setting->insta_user_id = $id;
         $setting->save();
 
         $linkUserSetting = new LinkUserSetting;
