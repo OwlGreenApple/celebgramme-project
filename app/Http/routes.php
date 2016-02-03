@@ -96,9 +96,13 @@ Route::group(['middleware' => 'auth'], function()
 
 Route::post('payment/vtnotification', ['as' => 'vt.notif', 'uses' => 'Member\PaymentController@veritransNotification']);
 
+/*Active cron*/
 Route::get('generate-balance', 'CronJobController@generate_balance');
 Route::get('cron-auto-manage', 'CronJobController@auto_manage');
 Route::get('cron-notif-member', 'CronJobController@notif_member');
 Route::get('auto-follow-unfollow', 'CronJobController@auto_follow_unfollow');
+
+/*needed*/
+Route::get('update-insta-user-id', 'CronJobController@update_insta_user_id');
 Route::get('replace-delimiter', 'CronJobController@replace_delimiter');
 

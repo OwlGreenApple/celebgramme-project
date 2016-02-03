@@ -148,13 +148,13 @@ class CronJobController extends Controller
 		foreach($settings as $setting) {
 				$followers = 0;
 				$following = 0;
+				$id = 0;
 				$json_url = "https://api.instagram.com/v1/users/search?q=".$setting->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
 				$json = @file_get_contents($json_url);
 				if($json == TRUE) { 
 					$links = json_decode($json);
 					if (count($links->data)>0) {
 						// $id = $links->data[0]->id;
-						$id = 0;
 						foreach($links->data as $link){
 							if (strtoupper($link->username) == strtoupper($setting->insta_username)){
 								$id = $link->id;
@@ -191,6 +191,29 @@ class CronJobController extends Controller
 					$setting_temp = Setting::post_info_admin($setting->id, "[Celebgramme] Post Auto Manage (warning 1000 following IG Account, from auto unfollow)");
 				}
 		}
+	}
+	
+	public function update_insta_user_id(){
+		$settings = Setting::all();
+		foreach($settings as $setting) {
+				$json_url = "https://api.instagram.com/v1/users/search?q=".$setting->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
+				$json = @file_get_contents($json_url);
+				$id = 0;
+				if($json == TRUE) { 
+					$links = json_decode($json);
+					if (count($links->data)>0) {
+						// $id = $links->data[0]->id;
+						foreach($links->data as $link){
+							if (strtoupper($link->username) == strtoupper($setting->insta_username)){
+								$id = $link->id;
+							}
+						}
+					}
+				}
+				$setting->insta_user_id = $id;
+				$setting->save();
+				
+		}		
 	}
 	
 	/**
