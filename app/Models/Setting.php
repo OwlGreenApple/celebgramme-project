@@ -134,7 +134,7 @@ class Setting extends Model {
     protected function post_info_admin($setting_id,$type_message="[Celebgramme] Post Auto Manage") 
     {
         $setting_temp = Setting::find($setting_id);
-        $setting_real = Setting::where("insta_username","=",$setting_temp->insta_user_id)->where("type","=","real")->first();
+        $setting_real = Setting::where("insta_user_id","=",$setting_temp->insta_user_id)->where("type","=","real")->first();
         $arr_temp = $setting_temp->toArray();
         $arr_real = $setting_real->toArray();
         unset($arr_temp['id']);unset($arr_temp['type']);unset($arr_temp['last_user']);unset($arr_temp['user_id']);

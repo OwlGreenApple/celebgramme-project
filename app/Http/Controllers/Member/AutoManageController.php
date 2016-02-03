@@ -274,11 +274,19 @@ class AutoManageController extends Controller
 
     $setting_temp = Setting::find($data['id']);
 		$following = intval (SettingMeta::getMeta($setting_temp->id,"following"));
-		if ($following>7250 ) {
+		if (($following>7250 ) && ($data["activity"]=="follow") ) {
       $arr["message"]= "Tidak dapat melakukan activity following";
       $arr["type"]= "error";
       return $arr;
 		}
+		
+		$pieces = explode(";",$data["tags"]);
+		if (count($pieces)<10) {
+      $arr["message"]= "Hashtags minimal harus ada 10";
+      $arr["type"]= "error";
+      return $arr;
+		}
+		
 	
     if (isset($data['dont_comment_su'])) { $data['dont_comment_su'] = 1; } else { $data['dont_comment_su'] = 0; }
     if (isset($data['dont_follow_su'])) { $data['dont_follow_su'] = 1; } else { $data['dont_follow_su'] = 0; }
