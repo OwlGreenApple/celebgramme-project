@@ -106,13 +106,34 @@ class AutoManageController extends Controller
 			$arr["type"]= "error";
 			return $arr;
 		}
-		//cek email, available username or not
+		//cek not in email format
 		$validator = Validator::make($data, [
 			'insta_username' => 'email',
 		]);
 		if (!$validator->fails())
     {
 			$arr["message"]= "Instagram username tidak boleh email";
+			$arr["type"]= "error";
+			return $arr;
+		}
+		
+		//available username or not
+		$found = false;
+		$json_url = "https://api.instagram.com/v1/users/search?q=".Request::input("username")."&client_id=03eecaad3a204f51945da8ade3e22839";
+		$json = @file_get_contents($json_url);
+		if($json == TRUE) { 
+			$links = json_decode($json);
+			if (count($links->data)>0) {
+				// $id = $links->data[0]->id;
+				foreach($links->data as $link){
+					if (strtoupper($link->username) == strtoupper(Request::input("username"))){
+						$found = true;
+					}
+				}
+			}
+		}
+		if (!$found) {
+			$arr["message"]= "Instagram username not found";
 			$arr["type"]= "error";
 			return $arr;
 		}

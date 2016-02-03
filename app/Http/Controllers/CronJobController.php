@@ -148,7 +148,7 @@ class CronJobController extends Controller
 		foreach($settings as $setting) {
 				$followers = 0;
 				$following = 0;
-				$id = 0;
+				$id = 0; $found = false;
 				$json_url = "https://api.instagram.com/v1/users/search?q=".$setting->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
 				$json = @file_get_contents($json_url);
 				if($json == TRUE) { 
@@ -158,6 +158,7 @@ class CronJobController extends Controller
 						foreach($links->data as $link){
 							if (strtoupper($link->username) == strtoupper($setting->insta_username)){
 								$id = $link->id;
+								$found = true;
 							}
 						}
 						
@@ -174,6 +175,28 @@ class CronJobController extends Controller
 				}
 				SettingMeta::createMeta("followers",$followers,$setting->id);
 				SettingMeta::createMeta("following",$following,$setting->id);
+				if (!$found) {
+					$setting_temp = Setting::find($setting->id);
+					$setting_temp->error_cred = true;
+					$setting_temp->status = "stopped";
+					$setting_temp->save();
+
+					$setting_real = Setting::where('insta_user_id','=',$setting_temp->insta_user_id)->where('type','=','real')->first();
+					$setting_real->error_cred = true;
+					$setting_real->status = "stopped";
+					$setting_real->save();
+
+					$user = User::find($setting_temp->last_user);
+					$emaildata = [
+							'user' => $user,
+							'insta_username' => $setting_temp->insta_username,
+					];
+					Mail::queue('emails.error-cred', $emaildata, function ($message) use ($user) {
+						$message->from('no-reply@celebgramme.com', 'Celebgramme');
+						$message->to($user->email);
+						$message->subject('[Celebgramme] Error Login Instagram Account');
+					});
+				}
 				
 				if ($following >=7250 ) {
 					SettingMeta::createMeta("auto_unfollow","yes",$setting->id);
