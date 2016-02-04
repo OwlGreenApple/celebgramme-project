@@ -77,8 +77,8 @@
 			e.preventDefault();
 			var $select = $("#textarea-comments").selectize();
 			var selectize = $select[0].selectize;
-			selectize.addOption({value:$(this).html(),text:$(this).html()}); //option can be created manually or loaded using Ajax
-			selectize.addItem($(this).html()); 			
+			selectize.addOption({value:$(this).text(),text:$(this).text()}); //option can be created manually or loaded using Ajax
+			selectize.addItem($(this).text()); 			
     });
     $('#button-package').click(function(e){
 			if ($("#extra-time").is(":visible") ){
@@ -108,11 +108,13 @@
 			$("#activity").val("follow");
 			$('#followButton').addClass('btn-success');
 			$('#unfollowButton').removeClass('btn-success');
+			$('#div-unfollow-whitelist').hide();
 		});
 		$('#unfollowButton').click(function(e){
 			$("#activity").val("unfollow");
 			$('#followButton').removeClass('btn-success');
 			$('#unfollowButton').addClass('btn-success');
+			$('#div-unfollow-whitelist').show();
 		});
 		
 
@@ -124,12 +126,17 @@
 			$('#statusFollowOnButton').addClass('btn-primary');
 			$('#statusFollowOffButton').removeClass('btn-danger');
 			$(".status-follow").show();
+			
+			if ($('#unfollowButton').hasClass("btn-success")) {
+				$('#div-unfollow-whitelist').show();
+			}
 		});
 		$('#statusFollowOffButton').click(function(e){
 			$("#status_follow_unfollow").val("off");
 			$('#statusFollowOnButton').removeClass('btn-primary');
 			$('#statusFollowOffButton').addClass('btn-danger');
 			$(".status-follow").hide();
+			$('#div-unfollow-whitelist').hide();
 		});
 
 		$('#statusLikeOnButton').click(function(e){
@@ -147,11 +154,13 @@
 			$("#status_comment").val("on");
 			$('#statusCommentOnButton').addClass('btn-primary');
 			$('#statusCommentOffButton').removeClass('btn-danger');
+			$('#div-comment').show();
 		});
 		$('#statusCommentOffButton').click(function(e){
 			$("#status_comment").val("off");
 			$('#statusCommentOnButton').removeClass('btn-primary');
 			$('#statusCommentOffButton').addClass('btn-danger');
+			$('#div-comment').hide();
 		});
 		
 		
@@ -508,10 +517,10 @@
           <label>Activity Speed</label> 
 					<span class="glyphicon glyphicon-question-sign" title="">
 						<div class="hint">
-						  • Jika Akun anda BARU / Tdk aktif, START dgn "SLOW/NORMAL" speed utk 5 hari <br>
-						  • Slow = Melakukan 550 Likes, 120 comments, 350 follow/unfollow /hari <br>
-							• Normal = Melakukan 1200 likes, 180 comments, 450 follow/unfollows /hari. <br>
-							• Fast = Melakukan 1800 likes, 240 comments, 600 follow/unfollows /hari. <br>
+						  Jika Akun anda BARU / Tdk aktif, START dgn "SLOW/NORMAL" speed utk 5 hari <br>
+						  • <strong>Slow</strong> = Melakukan 550 Likes, 120 comments, 350 follow/unfollow /hari <br>
+							• <strong>Normal</strong> = Melakukan 1200 likes, 180 comments, 450 follow/unfollows /hari. <br>
+							• <strong>Fast</strong> = Melakukan 1800 likes, 240 comments, 600 follow/unfollows /hari. <br>
 						<br>
 						</div>
 					</span>
@@ -543,8 +552,8 @@
 					<span class="glyphicon glyphicon-question-sign" title="">
 						<div class="hint">
 							Pilih Umur Media / Media Age yang akan berinteraksi dengan anda.<br>
-							Latest : Hanya post terbaru (default)<br>
-							Any    : Post kapan saja<br>
+							<strong>Latest</strong> : Hanya post terbaru (default)<br>
+							<strong>Any</strong>    : Post kapan saja<br>
 												
 						</div>
 					</span>
@@ -564,7 +573,7 @@
         <div class="col-md-4">
           <label>Media Type</label> 
 					<span class="glyphicon glyphicon-question-sign" title="">
-						<div class="hint">Media yang dipakai untuk interaksi, Foto atau Video atau Semuanya? </div>
+						<div class="hint">Media yang dipakai untuk interaksi, Foto atau Video atau Semuanya </div>
 					</span>
           <select class="form-control" name="data[media_type]">
             <option value="any" <?php if ($settings->media_type=='any') echo "selected" ?>>Any</option>
@@ -657,7 +666,7 @@
 
         <div class="row">
           <div class="col-md-12">
-            <label>Fitur like & comment hanya menggunakan hashtags</label> 
+            <label>Fitur like & comment hanya menggunakan media source hashtags</label> 
 						<span class="glyphicon glyphicon-question-sign" title="">
 							<div class="hint">
 								Anda wajib memasukkan Hashtags niche/target market, sehingga akan lebih banyak pilihan foto untuk dilike & comment <br>
@@ -696,6 +705,32 @@
   </div>  
 </div>   
 
+<div class="row" id="div-usernames" <?php if ($settings->follow_source=='hashtags') echo "style='display:none;'" ?>>
+  <div class="col-md-12 col-sm-12">
+    <div class="panel panel-info ">
+      <div class="panel-heading">
+        <h3 class="panel-title">Media source : Usernames</h3>
+      </div>
+      <div class="panel-body">
+
+        <div class="row">
+          <div class="col-md-12">
+            <label>Usernames</label> 
+						<span class="glyphicon glyphicon-question-sign" title="">
+							<div class="hint">
+							  • Add MIN 1 username jika menggunakan "Usernames" di Media Source. <br>
+								• Anda dapat menambahkan MAX 50 usernames.
+							</div>
+						</span>
+            <textarea class="selectize-default" name="data[username]">{{$settings->username}}</textarea>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>  
+</div>                    
+
 <div class="row" id="div-hashtags">
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
@@ -724,33 +759,7 @@
   </div>  
 </div>                    
 
-<div class="row" id="div-usernames" <?php if ($settings->follow_source=='hashtags') echo "style='display:none;'" ?>>
-  <div class="col-md-12 col-sm-12">
-    <div class="panel panel-info ">
-      <div class="panel-heading">
-        <h3 class="panel-title">Media source : Usernames</h3>
-      </div>
-      <div class="panel-body">
-
-        <div class="row">
-          <div class="col-md-12">
-            <label>Usernames</label> 
-						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">
-							  • Add MIN 1 username jika menggunakan "Usernames" di Media Source. <br>
-								• Anda dapat menambahkan MAX 50 usernames.
-							</div>
-						</span>
-            <textarea class="selectize-default" name="data[username]">{{$settings->username}}</textarea>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>  
-</div>                    
-
-<div class="row">
+<div class="row" id="div-unfollow-whitelist" <?php if ( ($settings->activity=="follow") || ($settings->status_follow_unfollow=="off") ) { echo "style='display:none;'"; } ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -810,7 +819,7 @@
   </div>  
 </div>            
 -->
-<div class="row">
+<div class="row" id="div-comment" <?php if ($settings->status_comment=="off") { echo "style='display:none;'"; } ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -834,7 +843,6 @@
 							<label>Comments</label> 
 							<span class="glyphicon glyphicon-question-sign" title="">
 								<div class="hint">
-									 <br>
 									• Tambahkan : <@owner> , di akhir comment untuk men-"tag" owner dari post tersebut<br>
                   • Komentar akan dipilih secara acak dari daftar ini. <br>
 									• Celebgramme hanya memberikan 1x komentar pada setiap posting <br>

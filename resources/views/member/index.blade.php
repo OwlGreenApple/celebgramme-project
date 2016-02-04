@@ -9,6 +9,7 @@
       <link href="{{ asset('/css/bootstrap-theme.min.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/main.css') }}" rel="stylesheet">
       <script type="text/javascript" src="{{ asset('/js/jquery-1.11.3.js') }}"></script>
+			<script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
       <script>
         $(document).ready(function(){
           $("#div-loading").hide();

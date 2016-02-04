@@ -36,7 +36,7 @@ class Setting extends Model {
         $setting->status_follow_unfollow = "on";
         $setting->status_like = "on";
         $setting->status_comment = "on";
-        $setting->activity_speed = "normal";
+        $setting->activity_speed = "slow";
         $setting->media_source = "hashtags";
         $setting->media_age = "1 hour";
         $setting->media_type = "any";
@@ -105,7 +105,7 @@ class Setting extends Model {
         $setting->status_follow_unfollow = "on";
         $setting->status_like = "on";
         $setting->status_comment = "on";
-        $setting->activity_speed = "normal";
+        $setting->activity_speed = "slow";
         $setting->media_source = "hashtags";
         $setting->media_age = "1 hour";
         $setting->media_type = "any";
