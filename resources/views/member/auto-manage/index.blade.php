@@ -361,11 +361,6 @@
       </div>  
     </div>          
   <?php } ?>
-  <div class="col-sm-10 col-md-10">
-    <div class="alert alert-info col-sm-18 col-md-18" id="">
-      PS : Untuk menggunakan celebgramme harap akun jangan di private
-    </div>  
-  </div>          
   <div class="col-sm-10 col-md-10">            
     <div class="alert btn-danger col-sm-18 col-md-18" id="alert">
     </div>  

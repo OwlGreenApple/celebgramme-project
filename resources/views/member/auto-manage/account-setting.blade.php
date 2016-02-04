@@ -337,10 +337,10 @@
 <div class="col-md-1 col-xs-1 col-sm-1">
 </div>
 <div class="col-md-6 col-xs-6 col-sm-6 pricing" style="margin-left:-10px;">
-	<div class="col-md-12 col-xs-12 col-sm-12">
+	<div class="row">
 		<p>Perpanjang waktu berlangganan anda :</p>
 	</div>
-	<div class="col-md-12 col-xs-12 col-sm-12">
+	<div class="row">
 		<div id="normal-time">
 			<div class="col-md-3 col-sm-3 border-price">
 				<div class="row im-centered"> 
@@ -442,7 +442,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-12 col-xs-12 col-sm-12">
+	<div class="row">
 		<a href="#" id="button-package">Extra Time Package</a>
 	</div>
 

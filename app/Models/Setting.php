@@ -30,7 +30,7 @@ class Setting extends Model {
         $setting->last_user = $arr['user_id'];
         //default data
         $setting->comments = "Nice <@owner>;{love|adore|really like|I love|enjoy|appreciate} {the way you|how you} {took|shot|had taken} {the|the actual|this particular|your|this} {picture|pic|image|photo|foto|snapshot} ^_^ <@owner>";
-        $setting->hashtags = "websugih;jajankulinersurabaya;olshop;kuliner;latepost;startup;olshopmurah;yolo;travel;foodie";
+        $setting->hashtags = "websugih;jajankulinersurabaya;tacoelrico;celebgramme;olshop;kuliner;latepost;startup;olshopmurah;yolo;travel;foodie";
         $setting->locations = "";
         $setting->activity = "follow";
         $setting->status_follow_unfollow = "on";
@@ -99,7 +99,7 @@ class Setting extends Model {
         $setting->last_user = $arr['user_id'];
         //default data
         $setting->comments = "Nice <@owner>;{love|adore|really like|I love|enjoy|appreciate} {the way you|how you} {took|shot|had taken} {the|the actual|this particular|your|this} {picture|pic|image|photo|foto|snapshot} ^_^ <@owner>";
-        $setting->hashtags = "websugih;jajankulinersurabaya;olshop;kuliner;latepost;startup;olshopmurah;yolo;travel;foodie";
+        $setting->hashtags = "websugih;jajankulinersurabaya;tacoelrico;celebgramme;olshop;kuliner;latepost;startup;olshopmurah;yolo;travel;foodie";
         $setting->locations = "";
         $setting->activity = "follow";
         $setting->status_follow_unfollow = "on";
@@ -156,6 +156,7 @@ class Setting extends Model {
 				SettingMeta::createMeta("auto_unfollow","",$setting_temp->id);
 				
 				//send email to admin
+				$type_message .= "IG ACCOUNT: ".$setting_temp->insta_username;
 				$emaildata = [
 					"setting_temp" => $setting_temp,
 				];
