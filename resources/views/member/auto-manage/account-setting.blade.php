@@ -251,6 +251,10 @@
       plugins:['remove_button'],
       delimiter: ';',
       persist: false,
+			onChange: function(value) {
+               // alert(value);
+				// console.log($(this).parent());
+      },
       create: function(input) {
         return {
           value: input,
@@ -258,15 +262,46 @@
         }
       },
     });
+		
+		
+		
+		/*
+		$(function(){
+			var $wrapper=$('.control-group');
+			$('script',$wrapper).each(function(){
+				var code=this.text;if(code&&code.length){var lines=code.split('\n');var indent=null;for(var i=0;i<lines.length;i++){if(/^[	 ]*$/.test(lines[i]))continue;if(!indent){var lineindent=lines[i].match(/^([ 	]+)/);if(!lineindent)break;indent=lineindent[1];}
+			lines[i]=lines[i].replace(new RegExp('^'+ indent),'');}
+			var code=$.trim(lines.join('\n')).replace(/	/g,'    ');
+			var $pre=$('<pre>').addClass('js').text(code);$pre.append(this);}});
 
+			$('select.selectized,input.selectized',$wrapper).each(function(){
+				var $container=$('<div>').addClass('value').html('Current Value: ');
+				var $value=$('<span>').appendTo($container);
+				var $input=$(this);
+				var update=function(e){$value.text(JSON.stringify($input.val()));}
+				$(this).on('change',update);update();$container.append($input);
+			});
+
+		});		
+		*/
+	// show current input values
+	$('textarea.selectize-default,select.selectize-default,input.selectize-default').each(function() {
+		var $container = $('<div style="font-size:11px;">').addClass('value').html('Current Value: ');
+		var $value = $('<span>').appendTo($container);
+		var $input = $(this);
+		var update = function(e) { $value.text(JSON.stringify($input.val())); }
+
+		$(this).on('change', update);
+		update();
+
+		$container.insertAfter($input.next());
+	});
+	
+		
+		
 
   });
 </script>
-  <link href="{{ asset('/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="{{ asset('/selectize/js/standalone/selectize.js') }}"></script>
 
 <div class="row">
   <div class="col-sm-12 col-md-12">            
@@ -722,7 +757,9 @@
 								• Anda dapat menambahkan MAX 50 usernames.
 							</div>
 						</span>
-            <textarea class="selectize-default" name="data[username]">{{$settings->username}}</textarea>
+						<div class="control-group">						
+							<textarea class="selectize-default" name="data[username]">{{$settings->username}}</textarea>
+						</div>
           </div>
         </div>
 
@@ -750,7 +787,9 @@
 								• Anda dapat menambahkan MAX 50 Hashtags
 							</div>
 						</span>
-            <textarea class="selectize-default" name="data[hashtags]">{{$settings->hashtags}}</textarea>
+						<div class="control-group">
+							<textarea class="selectize-default" name="data[hashtags]">{{$settings->hashtags}}</textarea>
+						</div>
           </div>
         </div>
 
@@ -776,7 +815,9 @@
 							• Usulan penggunaan : teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW
 							</div>
 						</span>
-            <textarea class="selectize-default" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>
+						<div class="control-group">
+							<textarea class="selectize-default" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>
+						</div>
           </div>
         </div>
 
@@ -880,7 +921,9 @@
 						</span>
           </div>
           <div class="col-md-12">
-            <input type="text" id="textarea-comments" class="selectize-default" name="data[comments]" value="{{$settings->comments}}">
+						<div class="control-group">
+							<input type="text" id="textarea-comments" class="selectize-default" name="data[comments]" value="{{$settings->comments}}">
+						</div>
           </div>
         </div>
 

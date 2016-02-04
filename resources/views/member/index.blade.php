@@ -7,9 +7,11 @@
       <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
       <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/bootstrap-theme.min.css') }}" rel="stylesheet">
+			<link href="{{ asset('/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/main.css') }}" rel="stylesheet">
       <script type="text/javascript" src="{{ asset('/js/jquery-1.11.3.js') }}"></script>
 			<script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
+			<script type="text/javascript" src="{{ asset('/selectize/js/standalone/selectize.js') }}"></script>
       <script>
         $(document).ready(function(){
           $("#div-loading").hide();
