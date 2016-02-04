@@ -141,13 +141,12 @@ class HomeController extends Controller
 
 	public function order(){
     $user = Auth::user();
-    $invoice = Invoice::join("orders","orders.id","=","invoices.order_id")
-               ->join("packages","packages.id","=","orders.package_id")
-               ->select("orders.*","packages.package_name","invoices.no_invoice")
+    $orders = Order::leftJoin("packages","packages.id","=","orders.package_manage_id")
+               ->select("orders.*","packages.package_name")
                ->where('orders.user_id','=',$user->id)->get();
 		return view('member.order')
       ->with(array(
-        'invoice'=>$invoice,
+        'orders'=>$orders,
         'user'=>$user,
       ));
 	}
