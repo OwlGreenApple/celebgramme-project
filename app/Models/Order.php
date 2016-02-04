@@ -7,12 +7,14 @@ use Carbon\Carbon;
 
 use Celebgramme\Models\User;
 use Celebgramme\Models\Package;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Mail;
 
 class Order extends Model {
 
 	protected $table = 'orders';
+	use SoftDeletes;
   
 	protected function createOrder($cdata,$flag)
 	{
