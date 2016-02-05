@@ -76,3 +76,13 @@ if (isset($datas)) {
 			</div>
 		</li>
 <?php } } ?>
+<script>
+	var max = -1;
+	$(".border-styling").each(function() {
+			var h = $(this).height(); 
+			max = h > max ? h : max;
+	});
+	$(".border-styling").each(function() {
+			$(this).height(max); 
+	});
+</script>
