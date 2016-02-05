@@ -25,7 +25,7 @@ if (isset($datas)) {
 			}
 		}
 	*/
-		if (SettingMeta::getMeta($data->id,"photo_filename") =="") {
+		if (SettingMeta::getMeta($data->id,"photo_filename") == 0) {
 			$photo = url('images/profile-default.png');
 		} else {
 			$photo = url("images/pp/". SettingMeta::getMeta($data->id,"photo_filename"));

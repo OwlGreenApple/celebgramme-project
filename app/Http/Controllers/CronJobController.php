@@ -202,7 +202,8 @@ class CronJobController extends Controller
 				//saveimage url to meta
 				if ($pp_url<>"") {
 					$extension = pathinfo($pp_url, PATHINFO_EXTENSION);
-					$filename = str_random(4)."-".str_slug($setting->insta_username).".".$extension;
+					// $filename = str_random(4)."-".str_slug($setting->insta_username).".".$extension;
+					$filename = str_slug($setting->insta_username).".".$extension;
 					
 					//get file content
 					$arrContextOptions=array(
