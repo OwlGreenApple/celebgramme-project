@@ -5,9 +5,9 @@
 </script>
 <?php 
 use Celebgramme\Models\SettingMeta; 
-/*
 if (isset($datas)) { 
   foreach ($datas as $data ) {
+/*
 		$photo = url('images/profile-default.png');
 		$json_url = "https://api.instagram.com/v1/users/search?q=".$data->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
 		$json = @file_get_contents($json_url);
