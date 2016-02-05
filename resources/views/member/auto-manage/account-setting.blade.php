@@ -272,8 +272,6 @@
 		var $input = $(this);
 		var update = function(e) { 
 			$value.text(JSON.stringify($input.val())); 
-			// console.log(JSON.stringify($input.val()));
-			console.log($input);
 		}
 
 		$(this).on('change', update);
@@ -286,6 +284,11 @@
 		$("#textarea-copy").html($("#"+$(this).attr("data-text")).val());
 	});
 		
+	// $('#button-ok-copy').click(function(e){
+		// console.log("asd");
+		// e.preventDefault();
+		// copyToClipboard($("#textarea-copy"));
+	// });
 		
 
   });
@@ -307,9 +310,64 @@
 					<textarea id="textarea-copy" class="form-control" style="min-height:100px;height:auto;"></textarea>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" id="button-ok-copy">OK</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="button-ok-copy">Copy All</button>
         </div>
       </div>
+<script>
+document.getElementById("button-ok-copy").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("textarea-copy"));
+});
+		function copyToClipboard(elem) {
+				// create hidden text element, if it doesn't already exist
+				var targetId = "_hiddenCopyText_";
+				var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+				var origSelectionStart, origSelectionEnd;
+				if (isInput) {
+						// can just use the original source element for the selection and copy
+						target = elem;
+						origSelectionStart = elem.selectionStart;
+						origSelectionEnd = elem.selectionEnd;
+				} else {
+						// must use a temporary form element for the selection and copy
+						target = document.getElementById(targetId);
+						if (!target) {
+								var target = document.createElement("textarea");
+								target.style.position = "absolute";
+								target.style.left = "-9999px";
+								target.style.top = "0";
+								target.id = targetId;
+								document.body.appendChild(target);
+						}
+						target.textContent = elem.textContent;
+				}
+				// select the content
+				var currentFocus = document.activeElement;
+				target.focus();
+				target.setSelectionRange(0, target.value.length);
+				
+				// copy the selection
+				var succeed;
+				try {
+						succeed = document.execCommand("copy");
+				} catch(e) {
+						succeed = false;
+				}
+				// restore original focus
+				if (currentFocus && typeof currentFocus.focus === "function") {
+						currentFocus.focus();
+				}
+				
+				if (isInput) {
+						// restore prior selection
+						elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+				} else {
+						// clear temporary content
+						target.textContent = "";
+				}
+				return succeed;
+		}
+
+</script>
       
     </div>
   </div>
@@ -631,7 +689,7 @@
         <div class="col-md-4">
           <label>Media Type</label> 
 					<span class="glyphicon glyphicon-question-sign" title="">
-						<div class="hint">Media yang dipakai untuk interaksi, Foto atau Video atau Semuanya </div>
+						<div class="hint"><strong>Media yang dipakai untuk interaksi</strong>, Foto atau Video atau Semuanya </div>
 					</span>
           <select class="form-control" name="data[media_type]">
             <option value="any" <?php if ($settings->media_type=='any') echo "selected" ?>>Any</option>
@@ -657,8 +715,8 @@
 					<div class="col-md-4">
 						<label>Status</label>
 						<span class="glyphicon glyphicon-question-sign hint-button" title="">
-						<div class="hint">Status ON akan melakukan "Follow/Unfollow" <br>
-						                  Status OFF Tidak akan melakukan "Follow/Unfollow" <br>
+						<div class="hint"><strong>Status ON </strong>akan melakukan "Follow/Unfollow" <br>
+						                  <strong>Status OFF </strong>Tidak akan melakukan "Follow/Unfollow" <br>
 															*PS: Status OFF berguna apabila anda hanya mau melakukan Aktifitas lain (Like & Comment) saja</div>
 						</span>
 						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
@@ -672,7 +730,7 @@
 					<div class="col-md-4 status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 						<label>Activity</label>
 						<span class="glyphicon glyphicon-question-sign hint-button" title="">
-						<div class="hint">PILIH salah satu Follow / Unfollow. Tidak bisa bersamaan</div>
+						<div class="hint">PILIH salah satu <strong>Follow / Unfollow</strong>. Tidak bisa bersamaan</div>
 						</span>
 						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
 							<button type="button" class="btn <?php if ($settings->activity=="follow") echo 'btn-success' ?>" id="followButton" style="color:#fff;">Follow</button>
@@ -686,13 +744,13 @@
           <div class="col-md-12 checkbox">
             <label><input type="checkbox" name="data[dont_follow_su]" <?php if($settings->dont_follow_su) echo "checked"; ?> >Don't Follow same user</label> 
 						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">Tidak akan Follow lagi user yang sama, setelah anda Unfollow mereka.</div>
+							<div class="hint"><strong>Tidak akan Follow lagi user yang sama</strong>, setelah anda Unfollow mereka.</div>
 						</span>
           </div>
           <div class="col-md-12 checkbox" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
             <label><input type="checkbox" name="data[dont_follow_pu]" <?php if($settings->dont_follow_pu) echo "checked"; ?> >Dont Follow private user</label> 
 						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">Tidak akan Follow Private Account User</div>
+							<div class="hint"><strong>Tidak akan Follow Private Account User</strong></div>
 						</span>
           </div>
         </div>
@@ -700,7 +758,7 @@
           <div class="col-md-4">
             <label>Follow source</label> 
 						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">Jika Follow Source : "Usernames" bisa pilih mau Follow siapa. "Followersnya/Following" nya username tsb.</div>
+							<div class="hint"><strong>Jika Follow Source</strong> : "Usernames" bisa pilih mau Follow siapa. "Followersnya/Following" nya username tsb.</div>
 						</span>
             <select class="form-control" name="data[follow_source]" id="select-follow-source">
 							<option value="hashtags" <?php if ($settings->follow_source=='hashtags') echo "selected" ?>>Hashtags</option>
@@ -917,15 +975,17 @@
 							<label>Comments</label> 
 							<span class="glyphicon glyphicon-question-sign" title="">
 								<div class="hint">
-									• Tambahkan : <@owner> , di akhir comment untuk men-"tag" owner dari post tersebut<br>
+									• Tambahkan : <@owner> , untuk men-tag owner dari post tersebut<br>
+									• apabila anda lupa, by Default Celebgramme akan selalu menambahkan tags <@owner> di akhir setiap comment anda<br>
+									• untuk membuat setiap comment anda unik di Instagram<br>
                   • Komentar akan dipilih secara acak dari daftar ini. <br>
 									• Celebgramme hanya memberikan 1x komentar pada setiap posting <br>
-									• Min 10 komentar netral contoh: nice!, awesome!, beautiful!, itu keren!, dll <br>
+									• Min 10 komentar netral contoh: nice! <@owner>, awesome <@owner>, beautiful <@owner>, dll <br>
 									• Komentar tidak boleh lebih dari 300 karakter. <br>
 									• Komentar tidak boleh berisi lebih dari 4 hashtag <br>
 									• Komentar tidak boleh berisi lebih dari 1 URL <br>
 									• Komentar tidak boleh terdiri dari huruf kapital semua. <br>
-									• Komentar sebisa mungkin harus berbeda satu sama lain. <br>
+									• Komentar HARUS berbeda satu sama lain. <br>
 								</div>
 							</span>
 						</div>
@@ -1023,5 +1083,6 @@
     <p align="center"> <br><br><br><br><br><br><br><br> @Copyright <a href="http://celebgramme.com/celebgramme">Celebgramme</a> 2016</p>    
   </div>                    
 </div>                    
+
 
 @endsection

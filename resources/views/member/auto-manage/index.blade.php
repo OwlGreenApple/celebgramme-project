@@ -58,6 +58,16 @@
                 // $('#result').html(data);
                 $("#div-loading").hide();
                 $("#account-all").html(result);
+
+							var max = -1;
+							$(".border-styling").each(function() {
+									var h = $(this).height(); 
+									max = h > max ? h : max;
+							});
+							$(".border-styling").each(function() {
+									$(this).height(max); 
+							});
+							
 								
             }
         })
@@ -133,15 +143,6 @@
     $("#alert").hide();
     loadaccount();
 
-		var max = -1;
-		$(".border-styling").each(function() {
-				var h = $(this).height(); 
-				max = h > max ? h : max;
-		});
-		$(".border-styling").each(function() {
-				$(this).height(max); 
-		});
-		
     $( "body" ).on( "click", ".delete-button", function() {
 			$("#id-setting").val($(this).attr("data-id"));
     });
@@ -312,7 +313,7 @@
                     <h3 class="panel-title">Steps</h3>
                   </div>
                   <div class="panel-body">
-                    1. Add Account Instagram anda ( MAX 3 accounts ) <br>
+                    1. Add Account Instagram anda<br>
                     2. Click Setting di setiap Account Instagram anda<br>
                     3. Tetapkan Setting yang anda inginkan, sesudah selesai Click START<br>
 										<p style="color:#a94442;">4. Dilarang keras menggunakan sistem auto manage / instagram bot yang lain saat anda menjalankan Celebgramme <br>
@@ -405,16 +406,18 @@
 					Normal - Server berjalan dengan normal <br>
 					Delay - Server in High Traffic, Perubahan Settings akan Delay 120-360 menit <br>
 					Maintenance - Perubahan settings akan dijalankan saat Status Server Normal/Delay 
-				
 				</div>
 				</span>
 				<span style="font-size:11px;color:#5abe5a;" >{{$status_server}}</span> <br>
+				
 				<label style="font-size:11px;"> Total waktu per akun : </label>
 					<span class="glyphicon glyphicon-question-sign hint-button" title="">
 					<div class="hint">Total waktu per akun start = Total waktu pembelian / total akun start <br>
 						hanya akun yang di start saja yang dikurangi waktunya dari total waktu pembelian</div>
 					</span>
-				<span style="font-size:11px;color:#5abe5a;" id="time-account-start"></span>
+				<span style="font-size:11px;color:#5abe5a;" id="time-account-start"></span> <br>
+				
+				<label style="font-size:11px;"> Maksimal akun : {{$user->max_account}}</label>
 				
 			</div>
 			<div class="fn">
