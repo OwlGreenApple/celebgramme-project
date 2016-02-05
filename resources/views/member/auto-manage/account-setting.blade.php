@@ -265,25 +265,6 @@
 		
 		
 		
-		/*
-		$(function(){
-			var $wrapper=$('.control-group');
-			$('script',$wrapper).each(function(){
-				var code=this.text;if(code&&code.length){var lines=code.split('\n');var indent=null;for(var i=0;i<lines.length;i++){if(/^[	 ]*$/.test(lines[i]))continue;if(!indent){var lineindent=lines[i].match(/^([ 	]+)/);if(!lineindent)break;indent=lineindent[1];}
-			lines[i]=lines[i].replace(new RegExp('^'+ indent),'');}
-			var code=$.trim(lines.join('\n')).replace(/	/g,'    ');
-			var $pre=$('<pre>').addClass('js').text(code);$pre.append(this);}});
-
-			$('select.selectized,input.selectized',$wrapper).each(function(){
-				var $container=$('<div>').addClass('value').html('Current Value: ');
-				var $value=$('<span>').appendTo($container);
-				var $input=$(this);
-				var update=function(e){$value.text(JSON.stringify($input.val()));}
-				$(this).on('change',update);update();$container.append($input);
-			});
-
-		});		
-		*/
 	// show current input values
 	$('textarea.selectize-default,select.selectize-default,input.selectize-default').each(function() {
 		var $container = $('<div style="font-size:11px;">').addClass('value').html('Current Value: ');
@@ -302,8 +283,6 @@
 	});
 	
 	$('.button-copy').click(function(e){
-		// console.log($(this).attr("data-text"));
-		// console.log($("#"+$(this).attr("data-text")).val());
 		$("#textarea-copy").html($("#"+$(this).attr("data-text")).val());
 	});
 		
@@ -368,6 +347,7 @@
       <div class="panel-body">
 <div class="col-md-5 col-xs-5 col-sm-5 border-styling ">
 	<?php 
+	/*
 	$photo = url('images/profile-default.png');
 	$json_url = "https://api.instagram.com/v1/users/search?q=".$settings->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
 	$json = @file_get_contents($json_url);
@@ -385,7 +365,12 @@
 			$photo = url('images/profile-default.png');
 		}
 	}
-	
+	*/
+		if (SettingMeta::getMeta($settings->id,"photo_filename") == "0") {
+			$photo = url('images/profile-default.png');
+		} else {
+			$photo = url("images/pp/". SettingMeta::getMeta($settings->id,"photo_filename"));
+		}
 	?>	
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="row"> <img src="{{$photo}}" class="circle-image"> </div>
