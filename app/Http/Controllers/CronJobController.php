@@ -143,7 +143,7 @@ class CronJobController extends Controller
 	 */
 	public function auto_follow_unfollow(){
 		$settings = Setting::where("type",'=','temp')
-								->where('status','=',"started")
+								//->where('status','=',"started")
 								->get();
 		foreach($settings as $setting) {
 				$pp_url = "";
@@ -220,7 +220,7 @@ class CronJobController extends Controller
 					}
 				}
 				
-				if ($following >=7250 ) {
+				if ( ($following >=7250 ) && ($setting->status == "started") ) {
 					SettingMeta::createMeta("auto_unfollow","yes",$setting->id);
 
 					$setting->activity = "unfollow";
@@ -228,7 +228,7 @@ class CronJobController extends Controller
 					$setting_temp = Setting::post_info_admin($setting->id, "[Celebgramme] Post Auto Manage (warning 7250 following IG Account)");
 					
 				}
-				if ( ($following <=1000 ) && (SettingMeta::getMeta($setting->id,"auto_unfollow")=="yes" ) ) {
+				if ( ($following <=1000 ) && (SettingMeta::getMeta($setting->id,"auto_unfollow")=="yes" ) && ($setting->status == "started") ) {
 					SettingMeta::createMeta("auto_unfollow","no",$setting->id);
 
 					$setting->activity = "follow";
