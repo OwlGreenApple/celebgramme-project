@@ -59,6 +59,7 @@ class Setting extends Model {
         $linkUserSetting->save();
 				
 				//create meta, jumlah followers & following
+				$pp_url = "";
 				$followers_join = 0;
 				$following_join = 0;
 				$id = 0;
@@ -71,6 +72,7 @@ class Setting extends Model {
 						foreach($links->data as $link){
 							if (strtoupper($link->username) == strtoupper($arr['insta_username'])){
 								$id = $link->id;
+								$pp_url = $link->profile_picture;
 							}
 						}
 						
@@ -92,6 +94,26 @@ class Setting extends Model {
 				SettingMeta::createMeta("following",$following_join,$setting->id);
 				$setting->insta_user_id = $id;
 				$setting->save();
+				
+				//saveimage url to meta
+				if ($pp_url<>"") {
+					$extension = pathinfo($pp_url, PATHINFO_EXTENSION);
+					$filename = str_random(4)."-".str_slug($arr['insta_username']).".".$extension;
+					
+					//get file content
+					$arrContextOptions=array(
+							"ssl"=>array(
+									"verify_peer"=>false,
+									"verify_peer_name"=>false,
+							),
+					);  
+					$file = file_get_contents($pp_url, false, stream_context_create($arrContextOptions));
+					
+					$save = file_put_contents("images/pp/".$filename, $file);
+					if ($save) {
+						SettingMeta::createMeta("photo_filename",$filename,$setting->id);
+					}
+				}
         
         $setting = new Setting;
         $setting->insta_username = $arr['insta_username'];

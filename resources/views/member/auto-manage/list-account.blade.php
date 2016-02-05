@@ -5,6 +5,7 @@
 </script>
 <?php 
 use Celebgramme\Models\SettingMeta; 
+/*
 if (isset($datas)) { 
   foreach ($datas as $data ) {
 		$photo = url('images/profile-default.png');
@@ -23,7 +24,12 @@ if (isset($datas)) {
 				$photo = url('images/profile-default.png');
 			}
 		}
-	
+	*/
+		if (SettingMeta::getMeta($data->id,"photo_filename") =="") {
+			$photo = url('images/profile-default.png');
+		} else {
+			$photo = url("images/pp/" SettingMeta::getMeta($data->id,"photo_filename"));
+		}
 		?>	
 		<li class="col-md-5 col-xs-5 col-sm-5 border-styling">
 			<div class="row"> 

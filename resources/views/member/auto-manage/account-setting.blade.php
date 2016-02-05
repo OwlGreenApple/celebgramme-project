@@ -289,19 +289,55 @@
 		var $container = $('<div style="font-size:11px;">').addClass('value').html('Current Value: ');
 		var $value = $('<span>').appendTo($container);
 		var $input = $(this);
-		var update = function(e) { $value.text(JSON.stringify($input.val())); }
+		var update = function(e) { 
+			$value.text(JSON.stringify($input.val())); 
+			// console.log(JSON.stringify($input.val()));
+			console.log($input);
+		}
 
 		$(this).on('change', update);
 		update();
 
-		$container.insertAfter($input.next());
+		// $container.insertAfter($input.next());
 	});
 	
+	$('.button-copy').click(function(e){
+		// console.log($(this).attr("data-text"));
+		// console.log($("#"+$(this).attr("data-text")).val());
+		$("#textarea-copy").html($("#"+$(this).attr("data-text")).val());
+	});
 		
 		
 
   });
 </script>
+
+
+
+<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Copy your text</h4>
+        </div>
+        <div class="modal-body">
+					<textarea id="textarea-copy" class="form-control" style="min-height:100px;height:auto;"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="button-ok-copy">OK</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+
 
 <div class="row">
   <div class="col-sm-12 col-md-12">            
@@ -378,11 +414,11 @@
 		</div>
 	</div>
 </div>
-<div class="col-md-1 col-xs-1 col-sm-1">
-</div>
-<div class="col-md-6 col-xs-6 col-sm-6 pricing" style="margin-left:-10px;">
+<div class="col-md-7 col-xs-7 col-sm-7 pricing" style="margin-left:-10px;">
 	<div class="row">
-		<p>Perpanjang waktu berlangganan anda :</p>
+		<div class="col-md-12 col-sm-12">
+			<p>Perpanjang waktu berlangganan anda :</p>
+		</div>
 	</div>
 	<div class="row">
 		<div id="normal-time">
@@ -487,7 +523,9 @@
 		</div>
 	</div>
 	<div class="row">
-		<a href="#" id="button-package">Extra Time Package</a>
+		<div class="col-md-12 col-sm-12">
+			<a href="#" id="button-package">Extra Time Package</a>
+		</div>
 	</div>
 
 </div>
@@ -749,7 +787,7 @@
       <div class="panel-body">
 
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-11">
             <label>Usernames</label> 
 						<span class="glyphicon glyphicon-question-sign" title="">
 							<div class="hint">
@@ -757,10 +795,13 @@
 								• Anda dapat menambahkan MAX 50 usernames.
 							</div>
 						</span>
-						<div class="control-group">						
-							<textarea class="selectize-default" name="data[username]">{{$settings->username}}</textarea>
-						</div>
           </div>
+					<div class="col-md-1">
+						<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-username">copy</p>
+          </div>
+					<div class="col-md-12">						
+						<textarea class="selectize-default" id="textarea-username" name="data[username]">{{$settings->username}}</textarea>
+					</div>
         </div>
 
       </div>
@@ -777,7 +818,7 @@
       <div class="panel-body">
 
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-11">
             <label>Hashtags</label> 
 						<span class="glyphicon glyphicon-question-sign" title="">
 							<div class="hint">
@@ -787,10 +828,13 @@
 								• Anda dapat menambahkan MAX 50 Hashtags
 							</div>
 						</span>
-						<div class="control-group">
-							<textarea class="selectize-default" name="data[hashtags]">{{$settings->hashtags}}</textarea>
-						</div>
           </div>
+					<div class="col-md-1">
+						<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-hashtags">copy</p>
+          </div>
+					<div class="col-md-12">
+						<textarea class="selectize-default" id="textarea-hashtags" name="data[hashtags]">{{$settings->hashtags}}</textarea>
+					</div>
         </div>
 
       </div>
@@ -807,7 +851,7 @@
       <div class="panel-body">
 
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-11">
             <label>Usernames whitelist</label> 
 						<span class="glyphicon glyphicon-question-sign" title="">
 							<div class="hint">
@@ -815,10 +859,14 @@
 							• Usulan penggunaan : teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW
 							</div>
 						</span>
-						<div class="control-group">
-							<textarea class="selectize-default" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>
-						</div>
           </div>
+					<div class="col-md-1">
+						<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-unfollow-whitelist">copy</p>
+          </div>
+					<div class="col-md-12">
+						<textarea class="selectize-default" id="textarea-unfollow-whitelist" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>
+					</div>
+					
         </div>
 
       </div>
@@ -900,7 +948,7 @@
 							<label>Copy contoh spin comment (click)</label>
 							<span class="glyphicon glyphicon-menu-down" title="">
 								<div class="hint">
-								<a href="#" class="add-spin-comment">{asli|serius},{nice|kerennn|cool|wow|keren|cooooolll|niceeeee}{sekaleee|sekali|banget|beneran|bener}{photo|foto|shot|poto|pic}{kamu|ini} <@owner> </a>
+								<a href="#" class="add-spin-comment">{asli|serius},{nice|kerennn|cool|wow|keren|cooooolll|niceeeee}{sekaleee|sekali|banget|beneran|bener}{photo|foto|shot|poto|pic}{kamu|ini} <@owner></a>
 								<br> <br>
 								<a href="#" class="add-spin-comment">{nice|kerennn|cool|wow|keren|cooooolll|niceeeee}{sekaleee|sekali|banget|beneran|bener}{photo|foto|shot|poto|pic}{kamu|ini} <@owner></a> <br> <br>
 								<a href="#" class="add-spin-comment">{wow|amazing|incredible|whoa|seriously} {your|the|this} {photo|picture|photograph|image|foto} {is awesome|rocks !|very nice} <@owner> </a>
@@ -909,7 +957,7 @@
 							</span>
 						</div>
           </div>
-          <div class="col-md-12">
+          <div class="col-md-11">
 						<label>Penjelasan fitur spin comment</label>
 						<span class="glyphicon glyphicon-question-sign" title="">
 							<div class="hint">
@@ -919,6 +967,9 @@
 																		*Spin Comment default akan digunakan, utk menghindari Comment yang sama berulang-ulang
 							</div>
 						</span>
+          </div>
+					<div class="col-md-1">
+						<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-comments">copy</p>
           </div>
           <div class="col-md-12">
 						<div class="control-group">

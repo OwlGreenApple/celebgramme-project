@@ -146,6 +146,7 @@ class CronJobController extends Controller
 								->where('status','=',"started")
 								->get();
 		foreach($settings as $setting) {
+				$pp_url = "";
 				$followers = 0;
 				$following = 0;
 				$id = 0; $found = false;
@@ -159,6 +160,7 @@ class CronJobController extends Controller
 							if (strtoupper($link->username) == strtoupper($setting->insta_username)){
 								$id = $link->id;
 								$found = true;
+								$pp_url = $link->profile_picture;
 							}
 						}
 						
@@ -196,6 +198,25 @@ class CronJobController extends Controller
 						$message->to($user->email);
 						$message->subject('[Celebgramme] Error Login Instagram Account');
 					});
+				}
+				//saveimage url to meta
+				if ($pp_url<>"") {
+					$extension = pathinfo($pp_url, PATHINFO_EXTENSION);
+					$filename = str_random(4)."-".str_slug($arr['insta_username']).".".$extension;
+					
+					//get file content
+					$arrContextOptions=array(
+							"ssl"=>array(
+									"verify_peer"=>false,
+									"verify_peer_name"=>false,
+							),
+					);  
+					$file = file_get_contents($pp_url, false, stream_context_create($arrContextOptions));
+					
+					$save = file_put_contents("images/pp/".$filename, $file);
+					if ($save) {
+						SettingMeta::createMeta("photo_filename",$filename,$setting->id);
+					}
 				}
 				
 				if ($following >=7250 ) {
