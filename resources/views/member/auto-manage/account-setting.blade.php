@@ -281,7 +281,7 @@
 	});
 	
 	$('.button-copy').click(function(e){
-		$("#textarea-copy").html($("#"+$(this).attr("data-text")).val());
+		$("#textarea-copy").val($("#"+$(this).attr("data-text")).val());
 	});
 		
 	// $('#button-ok-copy').click(function(e){
@@ -304,7 +304,17 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Copy your text</h4>
+          <h4 class="modal-title">Copy your text
+										<span class="glyphicon glyphicon-question-sign" title="">
+						<div class="hint">
+						  • Fasilitas untuk mencopy ke textbox lain. <br>
+							• Silahkan edit dulu sebelum melakukan copy paste ke textbox lain. <br>
+							• Text yang sama persis tidak dapat di paste ke textbox lain
+						<br>
+						</div>
+					</span>
+
+					</h4>
         </div>
         <div class="modal-body">
 					<textarea id="textarea-copy" class="form-control" style="min-height:100px;height:auto;"></textarea>
