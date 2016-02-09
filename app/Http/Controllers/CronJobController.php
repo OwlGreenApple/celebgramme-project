@@ -68,14 +68,33 @@ class CronJobController extends Controller
                     $user->active_auto_manage = 0;
                     $setting->status = 'stopped';
                         //post info ke admin
-                        $post = Post::where('setting_id', '=', $setting->id)->first();
+                        $post = Post::where('setting_id', '=', $setting->last_user)->first();
                         if (is_null($post)) {
                             $post = new Post;
                             $post->description = "stopped";
                         } else {
                             $post->description = $post->description." (stopped) ";
                         }
+												$post->type = "pending";
                         $post->save();
+
+												//send email to admin
+												$type_message .= "IG ACCOUNT(TIME OUT): ".$setting->insta_username;
+												$emaildata = [
+													"setting_temp" => $setting,
+												];
+												Mail::queue('emails.info-post-admin', $emaildata, function ($message) use ($type_message) {
+													$message->from('no-reply@celebgramme.com', 'Celebgramme');
+													$message->to("celebgramme.adm@gmail.com");
+													$message->bcc(array(
+														"celebgram@gmail.com",
+														"michaelsugih@gmail.com",
+														"it2.axiapro@gmail.com",
+													));
+													$message->subject($type_message);
+												});
+												
+												
                 }
                 else{
                     $setting->running_time = $now->toDateTimeString();
