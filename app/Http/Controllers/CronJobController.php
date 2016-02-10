@@ -68,12 +68,13 @@ class CronJobController extends Controller
                     $user->active_auto_manage = 0;
                     $setting->status = 'stopped';
                         //post info ke admin
-                        $post = Post::where('setting_id', '=', $setting->last_user)->first();
+                        $post = Post::where('setting_id', '=', $setting->id)->first();
                         if (is_null($post)) {
                             $post = new Post;
-                            $post->description = "stopped";
+                            $post->description = "description: status = stopped ";
+                            $post->setting_id = $setting->id;
                         } else {
-                            $post->description = $post->description." (stopped) ";
+                            $post->description = $post->description." status = stopped ";
                         }
 												$post->type = "pending";
                         $post->save();
