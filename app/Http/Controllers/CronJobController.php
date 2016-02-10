@@ -79,6 +79,7 @@ class CronJobController extends Controller
                         $post->save();
 
 												//send email to admin
+												$type_message="[Celebgramme] Post Auto Manage";
 												$type_message .= "IG ACCOUNT(TIME OUT): ".$setting->insta_username;
 												$emaildata = [
 													"setting_temp" => $setting,
