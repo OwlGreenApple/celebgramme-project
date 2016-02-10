@@ -98,10 +98,10 @@ class LandingPageController extends Controller
 				return redirect('forgot-password')->with(array('error'=>'1',));
 			}
 			if (App::environment() == 'local'){
-				$url = 'http://localhost/celebgramme/public/redirect-auth/';
+				$url = 'https://localhost/celebgramme/public/redirect-auth/';
 			}
 			else if (App::environment() == 'production'){
-				$url = 'http://celebgramme.com/celebgramme/redirect-auth/';
+				$url = 'https://celebgramme.com/celebgramme/redirect-auth/';
 			}
 			$secret_data = [
 				'email' => $email,
