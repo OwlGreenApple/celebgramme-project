@@ -805,9 +805,9 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
         <div class="row">
           <div class="col-md-11">
             <label>Hashtags</label> 
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Hashtags</div><div class='panel-content'>• ADD MIN 10 Hashtags <br>
-								• TIDAK PERLU ADD simbol # (tanda pagar) <br>
-								• Anda dapat menambahkan MAX 50 Hashtags
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Media source : Hashtags</div><div class='panel-content'>• ADD <strong>MIN 10 Hashtags</strong> <br>
+								• TIDAK PERLU ADD <strong>simbol # (tanda pagar) </strong><br>
+								• Anda dapat menambahkan <strong>MAX 50 Hashtags</strong>
 </div>"></span>
           </div>
 					<div class="col-md-1">
@@ -834,7 +834,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
         <div class="row">
           <div class="col-md-12">
             <label>"Like & Comments" hanya menggunakan media source : Hashtags</label> 
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Like & Comment</div><div class="panel-content">Wajib mengisi min 10 "Hashtags" jika memakai Fitur "Like & Comments"</div>'></span>
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Like & Comment</div><div class="panel-content">Wajib mengisi <strong>min 10 "Hashtags" </strong>jika memakai Fitur "Like & Comments"</div>'></span>
 						
           </div>
         </div>
@@ -878,8 +878,8 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
         <div class="row">
           <div class="col-md-11">
             <label>Usernames whitelist</label> 
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Usernames whitelist</div><div class="panel-content">• Saat anda UNFOLLOW. Usernames di "Whitelist" ini akan diabaikan / tidak akan di "UNFOLLOW"<br>
-							• Usulan penggunaan : teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW</div>'></span>
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Usernames whitelist</div><div class="panel-content">• Saat anda UNFOLLOW. <strong>Usernames di "Whitelist" ini akan diabaikan / tidak akan di "UNFOLLOW"</strong><br>
+							• <strong>Usulan penggunaan : </strong>teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW</div>'></span>
           </div>
 					<div class="col-md-1">
 						<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-unfollow-whitelist">copy</p>
@@ -951,17 +951,16 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
           <div class="col-md-12">
 						<div class="col-md-5 col-sm-12 col-xm-12" style="padding-left:0px!important;">
 							<label>Comments</label> 
-							<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Comments</div><div class='panel-content'>• Tambahkan : <@owner> , untuk men-tag owner dari post tersebut<br>
-									• apabila anda lupa, by Default Celebgramme akan selalu menambahkan tags <@owner> di akhir setiap comment anda<br>
-									• untuk membuat setiap comment anda unik di Instagram<br>
-                  • Komentar akan dipilih secara acak dari daftar ini. <br>
-									• Celebgramme hanya memberikan 1x komentar pada setiap posting <br>
-									• Min 10 komentar netral contoh: nice! <@owner>, awesome <@owner>, beautiful <@owner>, dll <br>
-									• Komentar tidak boleh lebih dari 300 karakter. <br>
-									• Komentar tidak boleh berisi lebih dari 4 hashtag <br>
-									• Komentar tidak boleh berisi lebih dari 1 URL <br>
-									• Komentar tidak boleh terdiri dari huruf kapital semua. <br>
-									• Komentar HARUS berbeda satu sama lain. <br>
+							<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Comments</div><div class='panel-content'>• <strong>Tambahkan : </strong><@owner> , untuk men-tag owner dari post tersebut<br>
+									• apabila anda lupa, <strong>by Default Celebgramme akan selalu menambahkan</strong> tags <@owner> di akhir setiap comment anda<br>
+                  • <strong>Komentar akan dipilih secara acak </strong>dari daftar ini. <br>
+									• <strong>Celebgramme hanya memberikan 1x komentar </strong>pada setiap posting <br>
+									• <strong>Min 10 komentar netral</strong> contoh: nice! <@owner>, awesome <@owner>, beautiful <@owner>, dll <br>
+									• <strong>Komentar tidak boleh </strong>lebih dari 300 karakter. <br>
+									• <strong>Komentar tidak boleh </strong>berisi lebih dari 4 hashtag <br>
+									• <strong>Komentar tidak boleh </strong>berisi lebih dari 1 URL <br>
+									• <strong>Komentar tidak boleh </strong>terdiri dari huruf kapital semua. <br>
+									• <strong>Komentar HARUS berbeda </strong>satu sama lain. <br>
 </div>"></span>
 						</div>
 						<div class="col-md-5 col-sm-12 col-xm-12" style="padding-left:0px!important;">
@@ -976,10 +975,10 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
           </div>
           <div class="col-md-11">
 						<label>Penjelasan fitur spin comment</label>
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Penjelasan fitur spin comment</div>								<div class="panel-content">*Gunakan Feature "Spin Comment" contoh : <br>
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Penjelasan fitur spin comment</div>								<div class="panel-content"><strong>Gunakan Feature "Spin Comment" </strong>contoh : <br>
 																	{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
-																		*contoh diatas akan menghasilkan = 4x3x3x6 = 216 kombinasi comments sekaligus" <br>
-																		*Spin Comment default akan digunakan, utk menghindari Comment yang sama berulang-ulang
+																		*contoh diatas akan menghasilkan <strong>4x3x3x6 = 216 kombinasi comments </strong> sekaligus <br>
+																		*<strong>Spin Comment default akan digunakan</strong>, utk menghindari Comment yang sama berulang-ulang
 </div>'>
 						</span>
           </div>

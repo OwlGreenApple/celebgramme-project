@@ -64,6 +64,18 @@ return [
             'strict'    => false,
         ],
 
+        'mysqlAffiliate' => [
+            'driver'    => 'mysql',
+            'host'      => "101.50.3.105",
+            'database'  => "celebgra_af1",
+            'username'  => "celebgra_all",
+            'password'  => "5Ay+KCfU5uQg",
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+        ],
+				
         'pgsql' => [
             'driver'   => 'pgsql',
             'host'     => env('DB_HOST', 'localhost'),
