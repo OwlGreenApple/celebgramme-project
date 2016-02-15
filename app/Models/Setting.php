@@ -182,6 +182,7 @@ class Setting extends Model {
 				$type_message .= "IG ACCOUNT: ".$setting_temp->insta_username;
 				$emaildata = [
 					"setting_temp" => $setting_temp,
+					"post" => $post,
 				];
 				Mail::queue('emails.info-post-admin', $emaildata, function ($message) use ($type_message) {
 					$message->from('no-reply@celebgramme.com', 'Celebgramme');

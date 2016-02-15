@@ -84,6 +84,7 @@ class CronJobController extends Controller
 												$type_message .= "IG ACCOUNT(TIME OUT): ".$setting->insta_username;
 												$emaildata = [
 													"setting_temp" => $setting,
+													"post" => $post,
 												];
 												Mail::queue('emails.info-post-admin', $emaildata, function ($message) use ($type_message) {
 													$message->from('no-reply@celebgramme.com', 'Celebgramme');

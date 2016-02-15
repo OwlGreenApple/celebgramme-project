@@ -1,2 +1,2 @@
 instagram user : {{$setting_temp->insta_username}} <br>
-cek admin untuk melakukan setting
+Update yang dilakukan user : {{$post->description}}
