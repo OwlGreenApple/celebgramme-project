@@ -1,0 +1,16 @@
+.tooltipster-noir {
+	border-radius: 0px; 
+	border: 1px solid #E3E0E1;
+	background: #fff;
+	color: #2c2c2c; 
+-webkit-border-radius: 5px 5px 5px 5px;
+border-radius: 5px 5px 5px 5px;
+-webkit-box-shadow: 1px 1px 5px 1px #E3E0E1;
+box-shadow: 1px 1px 5px 1px #E3E0E1;
+}
+.tooltipster-noir .tooltipster-content {
+	font-family: "Helvetica Neue,Helvetica,Arial,sans-serif";
+	font-size: 14px;
+	line-height: 16px;
+	padding: 8px 10px;
+}
