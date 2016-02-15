@@ -313,13 +313,8 @@
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Copy your text
-										<span class="glyphicon glyphicon-question-sign" title="">
-						<div class="hint">
-						  • Fasilitas untuk mencopy ke textbox lain. <br>
-							• Silahkan edit dulu sebelum melakukan copy paste ke textbox lain. <br>
-							• Text yang sama persis tidak dapat di paste ke textbox lain
-						<br>
-						</div>
+										<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Copy your text</div><div class='panel-content'>• Fasilitas untuk mencopy ke textbox lain. <br>• Silahkan edit dulu sebelum melakukan copy paste ke textbox lain. <br>• Text yang sama persis tidak dapat di paste ke textbox lain</div>">
+							
 					</span>
 
 					</h4>
@@ -649,7 +644,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 
         <div class="col-md-4">
           <label>Activity Speed</label> 
-					<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="Jika Akun anda BARU / Tdk aktif, START dgn SLOW/NORMAL speed utk 5 hari <br>• <strong>Slow</strong> = Melakukan 550 Likes, 120 comments, 350 follow/unfollow /hari <br>• <strong>Normal</strong> = Melakukan 1200 likes, 180 comments, 450 follow/unfollows /hari. <br>• <strong>Fast</strong> = Melakukan 1800 likes, 240 comments, 600 follow/unfollows /hari. <br>">
+					<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Activity speed</div><div class='panel-content'>Jika Akun anda BARU / Tdk aktif, START dgn SLOW/NORMAL speed utk 5 hari <br>• <strong>Slow</strong> = Melakukan 550 Likes, 120 comments, 350 follow/unfollow /hari <br>• <strong>Normal</strong> = Melakukan 1200 likes, 180 comments, 450 follow/unfollows /hari. <br>• <strong>Fast</strong> = Melakukan 1800 likes, 240 comments, 600 follow/unfollows /hari. <br></div>">
 					</span>
           <select class="form-control" name="data[activity_speed]" title="Slow - Kecepatan yang aman untuk melakukan sekitar 480 Likes, 144 comments, 336 follows, 240 unfollow per hari ( kecepatan terbaik untuk awal pemakaian )">
             <option value="normal" <?php if ($settings->activity_speed=='normal') echo "selected" ?>>Normal</option>
@@ -676,10 +671,10 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 				-->
         <div class="col-md-4">
           <label>Media Age</label> 
-					<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="Pilih Umur Media / Media Age yang akan berinteraksi dengan anda.<br>
+					<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Media Age</div><div class='panel-content'>Pilih Umur Media / Media Age yang akan berinteraksi dengan anda.<br>
 							<strong>Latest</strong> : Hanya post terbaru (default)<br>
 							<strong>Any</strong>    : Post kapan saja<br>
-">
+</div>">
 					</span>
           <select class="form-control" name="data[media_age]">
             <option value="latest" <?php if ($settings->media_age=='latest') echo "selected" ?>>Latest</option>
@@ -696,7 +691,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
         </div>
         <div class="col-md-4">
           <label>Media Type</label> 
-					<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<strong>Media yang dipakai untuk interaksi</strong>, Foto atau Video atau Semuanya ">
+					<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Media Type</div><div class='panel-content'><strong>Media yang dipakai untuk interaksi</strong>, Foto atau Video atau Semuanya </div>">
 					</span>
           <select class="form-control" name="data[media_type]">
             <option value="any" <?php if ($settings->media_type=='any') echo "selected" ?>>Any</option>
@@ -721,9 +716,9 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
         <div class="row">
 					<div class="col-md-4">
 						<label>Status</label>
-						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<strong>Status ON </strong>akan melakukan 'Follow/Unfollow' <br>
+						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Follow Status</div><div class='panel-content'><strong>Status ON </strong>akan melakukan 'Follow/Unfollow' <br>
 						                  <strong>Status OFF </strong>Tidak akan melakukan 'Follow/Unfollow' <br>
-															*PS: Status OFF berguna apabila anda hanya mau melakukan Aktifitas lain (Like & Comment) saja">
+															*PS: Status OFF berguna apabila anda hanya mau melakukan Aktifitas lain (Like & Comment) saja</div>">
 						</span>
 						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
 							<button type="button" class="btn <?php if ($settings->status_follow_unfollow=="on") echo 'btn-primary' ?>" id="statusFollowOnButton" style="color:#fff;">ON</button>
@@ -735,7 +730,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 
 					<div class="col-md-4 status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 						<label>Activity</label>
-						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="PILIH salah satu <strong>Follow / Unfollow</strong>. Tidak bisa bersamaan">
+						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Follow Activity</div><div class='panel-content'>PILIH salah satu <strong>Follow / Unfollow</strong>. Tidak bisa bersamaan</div>">
 						</span>
 						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
 							<button type="button" class="btn <?php if ($settings->activity=="follow") echo 'btn-success' ?>" id="followButton" style="color:#fff;">Follow</button>
@@ -748,19 +743,19 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
         <div class="row status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
           <div class="col-md-12 checkbox">
             <label><input type="checkbox" name="data[dont_follow_su]" <?php if($settings->dont_follow_su) echo "checked"; ?> >Don't Follow same user</label> 
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<strong>Tidak akan Follow lagi user yang sama</strong>, setelah anda Unfollow mereka.">
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Dont follow same user</div><div class='panel-content'><strong>Tidak akan Follow lagi user yang sama</strong>, setelah anda Unfollow mereka.</div>">
 						</span>
           </div>
           <div class="col-md-12 checkbox" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
             <label><input type="checkbox" name="data[dont_follow_pu]" <?php if($settings->dont_follow_pu) echo "checked"; ?> >Dont Follow private user</label> 
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<strong>Tidak akan Follow Private Account User</strong>">
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Dont follow private user</div><div class='panel-content'><strong>Tidak akan Follow Private Account User</strong></div>">
 						</span>
           </div>
         </div>
         <div class="row status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
           <div class="col-md-4">
             <label>Follow source</label> 
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<strong>Jika Follow Source</strong> : 'Usernames' bisa pilih mau Follow siapa. 'Followersnya/Following' nya username tsb."></span>
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Follow Source</div><div class='panel-content'><strong>Jika Follow Source</strong> : 'Usernames' bisa pilih mau Follow siapa. 'Followersnya/Following' nya username tsb.</div>"></span>
             <select class="form-control" name="data[follow_source]" id="select-follow-source">
 							<option value="hashtags" <?php if ($settings->follow_source=='hashtags') echo "selected" ?>>Hashtags</option>
 							<option value="followers of username" <?php if ($settings->follow_source=='followers of username') echo "selected" ?>>Followers of username</option>
@@ -784,7 +779,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
         <div class="row">
           <div class="col-md-11">
             <label>Usernames</label> 
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='• Add MIN 10 username jika menggunakan "Usernames" di Media Source. <br>• Anda dapat menambahkan MAX 50 usernames.'></span>
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Usernames</div><div class="panel-content">• Add MIN 10 username jika menggunakan "Usernames" di Media Source. <br>• Anda dapat menambahkan MAX 50 usernames.</div>'></span>
           </div>
 					<div class="col-md-1">
 						<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-username">copy</p>
@@ -810,10 +805,10 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
         <div class="row">
           <div class="col-md-11">
             <label>Hashtags</label> 
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="• ADD MIN 10 Hashtags <br>
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Hashtags</div><div class='panel-content'>• ADD MIN 10 Hashtags <br>
 								• TIDAK PERLU ADD simbol # (tanda pagar) <br>
 								• Anda dapat menambahkan MAX 50 Hashtags
-"></span>
+</div>"></span>
           </div>
 					<div class="col-md-1">
 						<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-hashtags">copy</p>
@@ -839,7 +834,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
         <div class="row">
           <div class="col-md-12">
             <label>"Like & Comments" hanya menggunakan media source : Hashtags</label> 
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='Wajib mengisi min 10 "Hashtags" jika memakai Fitur "Like & Comments"'></span>
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Like & Comment</div><div class="panel-content">Wajib mengisi min 10 "Hashtags" jika memakai Fitur "Like & Comments"</div>'></span>
 						
           </div>
         </div>
@@ -883,8 +878,8 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
         <div class="row">
           <div class="col-md-11">
             <label>Usernames whitelist</label> 
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='• Saat anda UNFOLLOW. Usernames di "Whitelist" ini akan diabaikan / tidak akan di "UNFOLLOW"<br>
-							• Usulan penggunaan : teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW'></span>
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Usernames whitelist</div><div class="panel-content">• Saat anda UNFOLLOW. Usernames di "Whitelist" ini akan diabaikan / tidak akan di "UNFOLLOW"<br>
+							• Usulan penggunaan : teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW</div>'></span>
           </div>
 					<div class="col-md-1">
 						<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-unfollow-whitelist">copy</p>
@@ -956,7 +951,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
           <div class="col-md-12">
 						<div class="col-md-5 col-sm-12 col-xm-12" style="padding-left:0px!important;">
 							<label>Comments</label> 
-							<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="• Tambahkan : <@owner> , untuk men-tag owner dari post tersebut<br>
+							<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Comments</div><div class='panel-content'>• Tambahkan : <@owner> , untuk men-tag owner dari post tersebut<br>
 									• apabila anda lupa, by Default Celebgramme akan selalu menambahkan tags <@owner> di akhir setiap comment anda<br>
 									• untuk membuat setiap comment anda unik di Instagram<br>
                   • Komentar akan dipilih secara acak dari daftar ini. <br>
@@ -967,25 +962,25 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 									• Komentar tidak boleh berisi lebih dari 1 URL <br>
 									• Komentar tidak boleh terdiri dari huruf kapital semua. <br>
 									• Komentar HARUS berbeda satu sama lain. <br>
-"></span>
+</div>"></span>
 						</div>
 						<div class="col-md-5 col-sm-12 col-xm-12" style="padding-left:0px!important;">
 							<label>Copy contoh spin comment (click)</label>
-							<span class="glyphicon glyphicon-menu-down tooltipPlugin" title='								<a href="#" class="add-spin-comment">{asli|serius},{nice|kerennn|cool|wow|keren|cooooolll|niceeeee}{sekaleee|sekali|banget|beneran|bener}{photo|foto|shot|poto|pic}{kamu|ini} <@owner></a>
+							<span class="glyphicon glyphicon-menu-down tooltipPlugin" title='<div class="panel-content">								<a href="#" class="add-spin-comment">{asli|serius},{nice|kerennn|cool|wow|keren|cooooolll|niceeeee}{sekaleee|sekali|banget|beneran|bener}{photo|foto|shot|poto|pic}{kamu|ini} <@owner></a>
 								<br> <br>
 								<a href="#" class="add-spin-comment">{nice|kerennn|cool|wow|keren|cooooolll|niceeeee}{sekaleee|sekali|banget|beneran|bener}{photo|foto|shot|poto|pic}{kamu|ini} <@owner></a> <br> <br>
 								<a href="#" class="add-spin-comment">{wow|amazing|incredible|whoa|seriously} {your|the|this} {photo|picture|photograph|image|foto} {is awesome|rocks !|very nice} <@owner> </a>
-'>
+</div>'>
 							</span>
 						</div>
           </div>
           <div class="col-md-11">
 						<label>Penjelasan fitur spin comment</label>
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='								*Gunakan Feature "Spin Comment" contoh : <br>
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Penjelasan fitur spin comment</div>								<div class="panel-content">*Gunakan Feature "Spin Comment" contoh : <br>
 																	{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
 																		*contoh diatas akan menghasilkan = 4x3x3x6 = 216 kombinasi comments sekaligus" <br>
 																		*Spin Comment default akan digunakan, utk menghindari Comment yang sama berulang-ulang
-'>
+</div>'>
 						</span>
           </div>
 					<div class="col-md-1">

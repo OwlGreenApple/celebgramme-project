@@ -12,5 +12,10 @@ box-shadow: 1px 1px 5px 1px #E3E0E1;
 	font-family: "Helvetica Neue,Helvetica,Arial,sans-serif";
 	font-size: 14px;
 	line-height: 16px;
-	padding: 8px 10px;
+}
+.tooltipster-noir .panel-heading{    
+    background-color: #E3E0E1;
+    border-color: #E3E0E1E3E0E1;}
+.tooltipster-noir .panel-content{    
+    	padding: 8px 10px;
 }
