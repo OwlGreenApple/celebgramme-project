@@ -20,6 +20,8 @@ use Celebgramme\Models\Setting;
 use Celebgramme\Models\SettingMeta;
 use Celebgramme\Models\Post;
 
+use Celebgramme\Helpers\GeneralHelper;
+
 use View, Input, Mail, Request, App, Hash, Validator, Carbon, DB;
 
 class CronJobController extends Controller
@@ -74,7 +76,11 @@ class CronJobController extends Controller
                             $post->description = "description: status = stopped ";
                             $post->setting_id = $setting->id;
                         } else {
+													if ($post->type == "pending") {
                             $post->description = $post->description." status = stopped ";
+													} else {
+                            $post->description = " status = stopped ";
+													}
                         }
 												$post->type = "pending";
                         $post->save();
@@ -303,58 +309,61 @@ class CronJobController extends Controller
 	}
 
 	public function create_user_from_affiliate(){
-		$datas = DB::connection('mysqlAffiliate')->select("select * from wp_af1posts where post_title like 'CLB%' and post_content=''");		
+		$datas = DB::connection('mysqlAffiliate')->select("select p.*,u.user_email,u.display_name from wp_af1posts p inner join wp_af1users u on u.id=p.post_author where post_title like 'CLB%' and post_content=''");		
 		// dd($datas);
 		// echo $datas[0]->ID;
 		foreach ($datas as $data) {
 			// echo $data->post_status."<br>";
 			if ($data->post_status=="publish") {
 				
-				
 				//kirim email create user
-    $data = array (
-      "email" => Request::input("email"),
-    );
-    $validator = Validator::make($data, [
-      'email' => 'required|email|max:255|unique:users',
-    ]);
-    if ($validator->fails()){
-      $arr["type"] = "error";
-      $arr["message"] = "Email sudah terdaftar atau tidak valid";
-      return $arr;
-    }
+				$temp = array (
+					"email" => $data->user_email,
+				);
+				$validator = Validator::make($temp, [
+					'email' => 'required|email|max:255|unique:users',
+				]);
+				if ($validator->fails()){
+					break;
+				}
 
-    $karakter= 'abcdefghjklmnpqrstuvwxyz123456789';
-    $string = '';
-    for ($i = 0; $i < 8 ; $i++) {
-      $pos = rand(0, strlen($karakter)-1);
-      $string .= $karakter{$pos};
-    }
+				$karakter= 'abcdefghjklmnpqrstuvwxyz123456789';
+				$string = '';
+				for ($i = 0; $i < 8 ; $i++) {
+					$pos = rand(0, strlen($karakter)-1);
+					$string .= $karakter{$pos};
+				}
 
-    $user = new User;
-    $user->email = Request::input("email");
-    $user->password = $string;
-    $user->fullname = Request::input("fullname");
-    $user->type = "confirmed-email";
-    $user->save();
-		
-		$order = Order::find(Request::input("select-order"));
-		$order->user_id = $user->id;
-		$order->save();
+				$user = new User;
+				$user->email = $data->user_email;
+				$user->password = $string;
+				$user->fullname = $data->display_name;
+				$user->type = "confirmed-email";
+				$user->save();
+				
+				$dt = Carbon::now();
+				$order = new Order;
+				$str = 'OCLB'.$dt->format('ymdHi');
+				$order_number = GeneralHelper::autoGenerateID($order, 'no_order', $str, 3, '0');
+				$order->no_order = $order_number;
+				$order->package_manage_id = 31;
+				$package = Package::find(31);
+				$order->total = $package->price;
+				$order->user_id = $user->id;
+				$order->save();
 
-		$package = Package::find(31);
-    $user->active_auto_manage = $package->active_days * 86400;
-    $user->save();
+				$user->active_auto_manage = $package->active_days * 86400;
+				$user->save();
 
-    $emaildata = [
-        'user' => $user,
-        'password' => $string,
-    ];
-    Mail::queue('emails.create-user', $emaildata, function ($message) use ($user) {
-      $message->from('no-reply@celebgramme.com', 'Celebgramme');
-      $message->to($user->email);
-      $message->subject('[Celebgramme] Welcome to celebgramme.com');
-    });
+				$emaildata = [
+						'user' => $user,
+						'password' => $string,
+				];
+				Mail::queue('emails.create-user', $emaildata, function ($message) use ($user) {
+					$message->from('no-reply@celebgramme.com', 'Celebgramme');
+					$message->to($user->email);
+					$message->subject('[Celebgramme] Welcome to celebgramme.com');
+				});
 				
 				
 				$affected = DB::connection('mysqlAffiliate')->update('update wp_af1posts set post_content = "registered" where id="'.$data->ID.'"');
