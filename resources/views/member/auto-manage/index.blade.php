@@ -440,11 +440,11 @@
       </div>
 			<div class="fl" style="margin-left:10px;">
 				<span class="server-status"></span><label style="font-size:11px;"> &nbsp Server Status : </label>
-				<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-content'>Normal - Server berjalan dengan normal <br>Delay - Server in High Traffic, Perubahan Settings akan Delay 120-360 menit <br>Maintenance - Perubahan settings akan dijalankan saat Status Server Normal/Delay</div>"></span>
+				<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Server Status</div><div class='panel-content'><strong>Normal</strong> - Server berjalan dengan normal <br><strong>Delay</strong> - Server in High Traffic, Perubahan Settings akan Delay 120-360 menit <br><strong>Maintenance</strong> - Perubahan settings akan dijalankan saat Status Server Normal/Delay</div>"></span>
 				<span style="font-size:11px;color:#5abe5a;" >{{$status_server}}</span> <br>
 				
 				<label style="font-size:11px;"> Total waktu per akun : </label>
-					<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-content'>Total waktu per akun start = Total waktu pembelian / total akun start <br>hanya akun yang di start saja yang dikurangi waktunya dari total waktu pembelian</div>"></span>
+					<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Total Waktu Per Akun</div><div class='panel-content'><strong>Total waktu per akun start </strong>= Total waktu pembelian / total akun start <br><strong>hanya akun yang di start saja </strong>yang dikurangi waktunya dari total waktu pembelian</div>"></span>
 				<span style="font-size:11px;color:#5abe5a;" id="time-account-start"></span> <br>
 				
 				<label style="font-size:11px;"> Maksimal akun : {{$user->max_account}}</label>

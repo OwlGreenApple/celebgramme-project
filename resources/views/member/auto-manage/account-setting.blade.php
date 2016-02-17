@@ -90,12 +90,12 @@
     $('#button-package').click(function(e){
 			if ($("#extra-time").is(":visible") ){
 				$("#extra-time").hide();
-				$("#normal-time").show();
+				$("#normal-time").fadeIn(1000);
 				$(this).html("Normal Time Package");
 			} else 
 			if ($("#normal-time").is(":visible") ){
-				$("#extra-time").show();
 				$("#normal-time").hide();
+				$("#extra-time").fadeIn(1000);
 				$(this).html("Extra Time Package");
 			}
     });
@@ -115,13 +115,13 @@
 			$("#activity").val("follow");
 			$('#followButton').addClass('btn-success');
 			$('#unfollowButton').removeClass('btn-success');
-			$('#div-unfollow-whitelist').hide();
+			$('#div-unfollow-whitelist').fadeOut(500);
 		});
 		$('#unfollowButton').click(function(e){
 			$("#activity").val("unfollow");
 			$('#followButton').removeClass('btn-success');
 			$('#unfollowButton').addClass('btn-success');
-			$('#div-unfollow-whitelist').show();
+			$('#div-unfollow-whitelist').fadeIn(500);
 		});
 		
 
@@ -132,30 +132,30 @@
 			$("#status_follow_unfollow").val("on");
 			$('#statusFollowOnButton').addClass('btn-primary');
 			$('#statusFollowOffButton').removeClass('btn-danger');
-			$(".status-follow").show();
+			$(".status-follow").fadeIn(500);
 			
 			if ($('#unfollowButton').hasClass("btn-success")) {
-				$('#div-unfollow-whitelist').show();
+				$('#div-unfollow-whitelist').fadeIn(500);
 			}
 
 			if ( $("#select-follow-source").val() == "hashtags" ) {
-				$("#div-usernames").hide();
+				$("#div-usernames").fadeOut(500);
 			}
 			if ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) {
-				$("#div-usernames").show();
+				$("#div-usernames").fadeIn(500);
 			}
-			$("#div-hashtags").show();
+			$("#div-hashtags").fadeIn(500);
 		});
 		$('#statusFollowOffButton').click(function(e){
 			$("#status_follow_unfollow").val("off");
 			$('#statusFollowOnButton').removeClass('btn-primary');
 			$('#statusFollowOffButton').addClass('btn-danger');
-			$(".status-follow").hide();
-			$('#div-unfollow-whitelist').hide();
-			$("#div-usernames").hide();
+			$(".status-follow").fadeOut(500);
+			$('#div-unfollow-whitelist').fadeOut(500);
+			$("#div-usernames").fadeOut(500);
 
 			if ( ($('#statusFollowOffButton').hasClass("btn-danger")) && ($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))  ) {
-				$('#div-hashtags').hide();
+				$('#div-hashtags').fadeOut(500);
 			}
 		});
 
@@ -163,7 +163,7 @@
 			$("#status_like").val("on");
 			$('#statusLikeOnButton').addClass('btn-primary');
 			$('#statusLikeOffButton').removeClass('btn-danger');
-			$("#div-hashtags").show();
+			$("#div-hashtags").fadeIn(500);
 		});
 		$('#statusLikeOffButton').click(function(e){
 			$("#status_like").val("off");
@@ -171,7 +171,7 @@
 			$('#statusLikeOffButton').addClass('btn-danger');
 			
 			if ( ($('#statusFollowOffButton').hasClass("btn-danger")) && ($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))  ) {
-				$('#div-hashtags').hide();
+				$('#div-hashtags').fadeOut(500);
 			}
 		});
 
@@ -179,17 +179,17 @@
 			$("#status_comment").val("on");
 			$('#statusCommentOnButton').addClass('btn-primary');
 			$('#statusCommentOffButton').removeClass('btn-danger');
-			$('#div-comment').show();
-			$("#div-hashtags").show();
+			$('#div-comment').fadeIn(500);
+			$("#div-hashtags").fadeIn(500);
 		});
 		$('#statusCommentOffButton').click(function(e){
 			$("#status_comment").val("off");
 			$('#statusCommentOnButton').removeClass('btn-primary');
 			$('#statusCommentOffButton').addClass('btn-danger');
-			$('#div-comment').hide();
+			$('#div-comment').fadeOut(500);
 			
 			if ( ($('#statusFollowOffButton').hasClass("btn-danger")) && ($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))  ) {
-				$('#div-hashtags').hide();
+				$('#div-hashtags').fadeOut(500);
 			}
 		});
 		
@@ -248,10 +248,10 @@
 		
 		$( "#select-follow-source" ).change(function() {
 			if ( $( this ).val() == "hashtags" ) {
-				$("#div-usernames").hide();
+				$("#div-usernames").fadeOut(500);
 			}
 			if ( ( $( this ).val() == "followers of username" ) || ( $( this ).val() == "following of username" )) {
-				$("#div-usernames").show();
+				$("#div-usernames").fadeIn(500);
 			}
 		});
 		
