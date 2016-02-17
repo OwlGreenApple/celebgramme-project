@@ -311,7 +311,7 @@
 
 
 <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal fade" id="myModalTermsConditions" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">

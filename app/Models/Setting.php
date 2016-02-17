@@ -33,9 +33,9 @@ class Setting extends Model {
         $setting->hashtags = "websugih;jajankulinersurabaya;tacoelrico;celebgramme;olshop;kuliner;latepost;startup;olshopmurah;yolo;travel;foodie";
         $setting->locations = "";
         $setting->activity = "follow";
-        $setting->status_follow_unfollow = "on";
-        $setting->status_like = "on";
-        $setting->status_comment = "on";
+        $setting->status_follow_unfollow = "off";
+        $setting->status_like = "off";
+        $setting->status_comment = "off";
         $setting->activity_speed = "slow";
         $setting->media_source = "hashtags";
         $setting->media_age = "1 hour";
@@ -125,9 +125,9 @@ class Setting extends Model {
         $setting->hashtags = "websugih;jajankulinersurabaya;tacoelrico;celebgramme;olshop;kuliner;latepost;startup;olshopmurah;yolo;travel;foodie";
         $setting->locations = "";
         $setting->activity = "follow";
-        $setting->status_follow_unfollow = "on";
-        $setting->status_like = "on";
-        $setting->status_comment = "on";
+        $setting->status_follow_unfollow = "off";
+        $setting->status_like = "off";
+        $setting->status_comment = "off";
         $setting->activity_speed = "slow";
         $setting->media_source = "hashtags";
         $setting->media_age = "1 hour";

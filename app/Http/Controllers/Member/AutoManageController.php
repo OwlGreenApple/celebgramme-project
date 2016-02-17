@@ -308,6 +308,11 @@ class AutoManageController extends Controller
       return $arr;
 		}
 		
+		if ( ($setting_temp->status=="started") && ($data['status_follow_unfollow']=="off") && ($data['status_like']=="off") && ($data['status_comment']=="off") ) {
+      $arr["message"]= "Silahkan pilih activity follow / like / comment";
+      $arr["type"]= "error";
+      return $arr;
+		}
 	
     if (isset($data['dont_comment_su'])) { $data['dont_comment_su'] = 1; } else { $data['dont_comment_su'] = 0; }
     if (isset($data['dont_follow_su'])) { $data['dont_follow_su'] = 1; } else { $data['dont_follow_su'] = 0; }
@@ -351,7 +356,18 @@ class AutoManageController extends Controller
                 ->get();
       foreach ($links as $link) {
         $setting_temp = Setting::find($link->setting_id);
+				if ($setting_temp->error_cred==1) {
+					$url = url('auto-manage');
+					$arr["message"]= "Anda tidak dapat menjalankan program, silahkan update login credential account anda <a href='".$url."'>disini</a>";
+					$arr["type"]= "error";
+					return $arr;
+				}
         if (Request::input('action')=='start') {
+					if ( ($setting_temp->status_follow_unfollow=="off")&&($setting_temp->status_like=="off")&&($setting_temp->status_comment=="off") ) {
+						$arr["message"]= "Anda tidak dapat menjalankan program, silahkan pilih aktifitas yang akan dilakukan (follow/like/comment) di account ".$setting_temp->insta_username;
+						$arr["type"]= "error";
+						return $arr;
+					}
           $setting_temp->status = "started";
           $setting_temp->start_time = $dt->toDateTimeString();
           $setting_temp->running_time = $dt->toDateTimeString();
@@ -374,11 +390,17 @@ class AutoManageController extends Controller
       if (!is_null($link)){
         $setting_temp = Setting::find($link->setting_id);
 				if ($setting_temp->error_cred==1) {
-					$arr["message"]= "Anda tidak dapat menjalankan program, silahkan update login credential account anda";
+					$url = url('auto-manage');
+					$arr["message"]= "Anda tidak dapat menjalankan program, silahkan update login credential account anda <a href='".$url."'>disini</a>";
 					$arr["type"]= "error";
 					return $arr;
 				}
         if (Request::input('action')=='start') {
+					if ( ($setting_temp->status_follow_unfollow=="off")&&($setting_temp->status_like=="off")&&($setting_temp->status_comment=="off") ) {
+						$arr["message"]= "Anda tidak dapat menjalankan program, silahkan pilih aktifitas yang akan dilakukan (follow/like/comment) ";
+						$arr["type"]= "error";
+						return $arr;
+					}
           $setting_temp->status = "started";
           $setting_temp->start_time = $dt->toDateTimeString();
           $setting_temp->running_time = $dt->toDateTimeString();

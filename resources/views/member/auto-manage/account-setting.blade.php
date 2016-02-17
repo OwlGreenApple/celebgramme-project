@@ -45,9 +45,7 @@
                 }
                 else if(data.type=='error')
                 {
-									url = "<?php echo url('auto-manage') ?>";
-									str = " <a href='"+url+"'>disini</a>";
-									$("#alert").html($("#alert").html()+str);
+									$("#alert").html($("#alert").html());
                   $("#alert").addClass('alert-danger');
                   $("#alert").removeClass('alert-success');
                 }
