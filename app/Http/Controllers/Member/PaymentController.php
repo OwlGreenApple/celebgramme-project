@@ -268,7 +268,7 @@ class PaymentController extends Controller
 
 	public function doku_page($action){
 		if($action=="verify"){
-			$veritrans = new Veritrans;
+			$veritrans = new VeritransModel;
 			$veritrans->save();
 			return "Continue";
 		}
