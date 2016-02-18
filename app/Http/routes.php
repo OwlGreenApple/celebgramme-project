@@ -112,7 +112,7 @@ Route::get('replace-delimiter', 'CronJobController@replace_delimiter');
 /* DOKU PAYMENT */
 Route::get('process-doku', 'Member\PaymentController@process_doku');
 Route::post('notification-doku', 'Member\PaymentController@notification_doku');
-Route::get('doku-page/{action}', 'Member\PaymentController@doku_page');
+Route::post('doku-page/{action}', 'Member\PaymentController@doku_page');
 
 
 
