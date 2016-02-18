@@ -29,6 +29,8 @@
                 </label>
               </div>      
             <button class="btn btn-lg btn-block" type="submit">Sign in</button>
+						<p style="font-size:10px;">Dengan mengklik tombol sign-in berarti anda telah menyetujui<br>
+						 <a href="">Terms & Conditions </a>pemakaian aplikasi celebgramme.com</p>
           {!! Form::close() !!}
           <a href="{{url('forgot-password')}}" class="forgot-link-landing"> Forgot password </a>
           <a href="{{url('package')}}" class="register-link-landing"> Need an account ? </a>

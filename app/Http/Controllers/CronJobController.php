@@ -82,6 +82,7 @@ class CronJobController extends Controller
                             $post->description = " status = stopped ";
 													}
                         }
+												$post->status_admin = false;
 												$post->type = "pending";
                         $post->save();
 

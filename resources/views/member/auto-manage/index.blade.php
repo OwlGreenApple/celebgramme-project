@@ -145,7 +145,7 @@
 
 		/*Terms and condition*/
 		<?php if ($user->agree_term_condition==0) { ?>
-		$('#myModalTermsConditions').modal('show');
+		// $('#myModalTermsConditions').modal('show');
 		<?php } ?>
 		$('#button-ok-terms').click(function(e){
 			if ( $('#checkbox-term').is(':checked') == false ) {

@@ -174,6 +174,7 @@ class Setting extends Model {
         $post->setting_id = $setting_id;
         $post->description = $act;
         $post->type = "pending";
+        $post->status_admin = false;
         $post->save();
 				
 				SettingMeta::createMeta("auto_unfollow","",$setting_temp->id);
