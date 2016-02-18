@@ -268,7 +268,7 @@ class PaymentController extends Controller
 
 	public function doku_page($action){
 		if($action=="verify"){
-			echo "Continue";
+			return "Continue";
 		}
 	}
 	
