@@ -260,40 +260,17 @@ class PaymentController extends Controller
   
 	/*DOKU*/
 	public function process_doku(){
-		//extract data from the post
-		//set POST variables
-		$url = 'https://apps.myshortcart.com/payment/request-payment/';
-		$fields = array(
-			'basket' => urlencode(''),
-			'transidmerchant' => urlencode(''),
-			'storeid' => urlencode(''),
-			'ammount' => urlencode(''),
-			'url' => urlencode(''),
-			'cname' => urlencode(''),
-			'cemail' => urlencode(''),
-			'cwphone' => urlencode(''),
-			'chphone' => urlencode(''),
-			'cmphone' => urlencode(''),
-			'words' => urlencode(sha1("c5j7w5C7r7P6")),
-		);
-
-		//url-ify the data for the POST
-		foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
-		rtrim($fields_string, '&');
-
-		//open connection
-		$ch = curl_init();
-
-		//set the url, number of POST vars, POST data
-		curl_setopt($ch,CURLOPT_URL, $url);
-		curl_setopt($ch,CURLOPT_POST, count($fields));
-		curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
-
-		//execute post
-		$result = curl_exec($ch);
-
-		//close connection
-		curl_close($ch);		
+		return view("form-doku");
 	}
+
+	public function notification_doku(){
+	}
+
+	public function doku_page($action){
+		if($action=="verify"){
+			echo "Continue";
+		}
+	}
+	
 	
 }
