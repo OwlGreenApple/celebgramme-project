@@ -90,7 +90,8 @@ Route::group(['middleware' => 'auth'], function()
   Route::post('process-save-setting', 'Member\AutoManageController@process_save_setting');
   Route::get('call-action', 'Member\AutoManageController@call_action');
   Route::post('delete-setting', 'Member\AutoManageController@delete_setting');
-
+	Route::get('agree-terms', 'Member\AutoManageController@agree_terms');
+	
 });
 
 
@@ -103,7 +104,13 @@ Route::get('cron-notif-member', 'CronJobController@notif_member');
 Route::get('auto-follow-unfollow', 'CronJobController@auto_follow_unfollow');
 Route::get('check-create-affiliate', 'CronJobController@create_user_from_affiliate');
 
-/*needed*/
+/*needed for update databasw*/
 Route::get('update-insta-user-id', 'CronJobController@update_insta_user_id');
 Route::get('replace-delimiter', 'CronJobController@replace_delimiter');
+
+
+/* DOKU PAYMENT */
+Route::get('process-doku', 'Member\PaymentController@process_doku');
+
+
 

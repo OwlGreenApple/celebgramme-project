@@ -38,7 +38,7 @@ class Setting extends Model {
         $setting->status_comment = "off";
         $setting->activity_speed = "slow";
         $setting->media_source = "hashtags";
-        $setting->media_age = "1 hour";
+        $setting->media_age = "any";
         $setting->media_type = "any";
         $setting->min_likes_media = "0";
         $setting->max_likes_media = "0";
@@ -130,7 +130,7 @@ class Setting extends Model {
         $setting->status_comment = "off";
         $setting->activity_speed = "slow";
         $setting->media_source = "hashtags";
-        $setting->media_age = "1 hour";
+        $setting->media_age = "any";
         $setting->media_type = "any";
         $setting->min_likes_media = "0";
         $setting->max_likes_media = "0";

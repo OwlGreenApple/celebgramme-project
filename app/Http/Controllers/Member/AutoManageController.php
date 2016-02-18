@@ -446,4 +446,13 @@ class AutoManageController extends Controller
 		
 		return $arr;
 	}
+
+	public function agree_terms(){  
+		$user = Auth::user();
+		$user->agree_term_condition=1;
+		$user->save();
+		
+		return "success";
+	}
+
 }

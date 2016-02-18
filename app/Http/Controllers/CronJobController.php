@@ -353,6 +353,7 @@ class CronJobController extends Controller
 				$order->save();
 
 				$user->active_auto_manage = $package->active_days * 86400;
+				$user->max_account = $package->max_account;
 				$user->save();
 
 				$emaildata = [

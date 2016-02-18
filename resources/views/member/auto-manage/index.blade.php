@@ -143,8 +143,41 @@
 		
   $(document).ready(function() {
 
+		/*Terms and condition*/
+		<?php if ($user->agree_term_condition==0) { ?>
+		$('#myModalTermsConditions').modal('show');
+		<?php } ?>
+		$('#button-ok-terms').click(function(e){
+			if ( $('#checkbox-term').is(':checked') == false ) {
+				alert("Anda belum setuju dengan terms and condition berikut");
+			} else {
+
+        $.ajax({
+            type: 'get',
+            url: "<?php echo url('agree-terms'); ?>",
+            data: {},
+            dataType: 'text',
+            beforeSend: function()
+            {
+              $("#div-loading").show();
+            },
+            success: function(result) {
+                // $('#result').html(data);
+                $("#div-loading").hide();
+                if(result=='success')
+                {
+									$('#myModalTermsConditions').modal('hide');
+                }
+            }
+        });
+			
+
+			}
+		});
+		
 		initializeClock('clockdiv', <?php echo $user->active_auto_manage ?>);
 
+		/*Hint*/
 		$('.tooltipPlugin').tooltipster({
 				theme: 'tooltipster-noir',
 				contentAsHTML: true,
@@ -316,25 +349,35 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
           <h4 class="modal-title">Term & Conditions
 					</h4>
         </div>
         <div class="modal-body">
-					<p>
-						1. Add Account Instagram anda<br>
-						2. Click Setting di setiap Account Instagram anda<br>
-						3. Tetapkan Setting yang anda inginkan, sesudah selesai Click START<br>
-						4. DILARANG KERAS menggunakan sistem auto manage / instagram bot yang lain saat anda menggunakan Celebgramme.com <br>
-						5. Untuk menggunakan Celebgramme.com akun jangan di private<br>
-						6. System Celebgramme akan otomatis melakukan Unfollow apabila akun anda mendekati batas following Instagram (7500 following)<br>
-						7. DILARANG MENGGANTI username/password selama menggunakan Celebgramme.com <br>
-						8. DILARANG MEMBELI FOLLOWERS - selama menggunakan Celebgramme.com 
-					</p>
+				
+				
+<h3 class="">Informasi Umum</h3>
+<ul class=""><li class=""><p style="margin-bottom: 0px !important;">Celebgramme.com sebagai penyedia jasa peningkatan reputasi individual / brand melalui media cetak, radio, tv dan sosial media berusaha menyediakan berbagai fitur dan layanan untuk menjamin keamanan dan kenyamanan para penggunanya.</p></li><li><p style="margin-bottom: 0px !important;">Jasa yang ditawarkan Celebgramme.com bersifat as-is ( apa adanya ) dan bergantung kepada kebijaksanaan &amp; peraturan masing-masing media ( Instagram, media cetak, media online lainnya ) .</p></li><li><p style="margin-bottom: 0px !important;">Celebgramme.com tidak bertanggung jawab apabila akun pengguna di ban/block oleh media, rusaknya reputasi pihak lain, dan/atau segala bentuk perselisihan yang dapat terjadi pada akun pengguna situs.</p></li><li><p style="margin-bottom: 0px !important;">Celebgramme.com memiliki kewenangan untuk mengambil tindakan yang dianggap perlu terhadap akun yang diduga dan/atau terindikasi melakukan penyalahgunaan dan pelanggaran peraturan di Celebgramme.com, mulai dari melakukan moderasi, menghentikan layanan, maupun menutup akun tersebut tanpa memberikan pemberitahuan atau informasi terlebih dahulu kepada pemilik akun yang bersangkutan.</p></li><li><p style="margin-bottom: 0px !important;">Kerugian yang diakibatkan keterlibatan pihak lain di luar customer/klien terdaftar Celebgramme.com dan Celebgramme.com, tidak menjadi tanggung jawab Celebgramme.com.</p></li><li><p style="margin-bottom: 0px !important;">Silakan cek Berita &amp; Pengumuman terbaru tentang peraturan di Celebgramme.com.</p></li><li><p style="margin-bottom: 0px !important;">Hati-hati terhadap penipuan yang mengatasnamakan Celebgramme.com.</p></li><li class=""><p style="margin-bottom: 35px !important;">Celebgramme.com tidak berasosiasi dengan website/app Instagram, Facebook, Soundcloud, Youtube &amp; Twitter dalam hal apapun juga tanpa terkecuali .</p></li></ul>
+
+<h3 class="">Pembatasan Tanggung Jawab</h3>				
+<ul class=""><li><p style="margin-bottom: 0px !important;">Celebgramme.com tidak bertanggung jawab atas segala resiko dan kerugian yang timbul dari dan dalam kaitannya dengan informasi yang dituliskan oleh pengguna Celebgramme.com.</p></li><li><p style="margin-bottom: 0px !important;">Celebgramme.com tidak bertanggungjawab atas segala pelanggaran hak cipta, merek, desain industri, desain tata letak sirkuit, hak paten atau hak-hak pribadi lain yang melekat atas suatu barang, berkenaan dengan segala informasi yang dibuat oleh Pelapak.</p></li><li class=""><p style="margin-bottom: 0px !important;">Celebgramme.com tidak bertanggungjawab atas segala resiko dan kerugian yang timbul berkenaan dengan penggunaan barang yang dibeli melalui Celebgramme.com, dalam hal terjadi pelanggaran ketentuan perundang-undangan.</p></li><li><p style="margin-bottom: 0px !important;">Celebgramme.com tidak bertanggungjawab atas segala resiko dan kerugian yang timbul berkenaan dengan peretasan terhadap akun pengguna yang dilakukan oleh pihak ketiga.</p></li><li class=""><p style="margin-bottom: 0px !important;">Celebgramme.com tidak bertanggungjawab atas segala resiko dan kerugian yang timbul akibat kesalahan atau perbedaan nominal yang seharusnya ditransfer ke Celebgramme.</p></li><li class="" style="margin-bottom: 35px !important;">Celebgramme.com tidak bertanggungjawab atas segala resiko dan kerugian yang timbul apabila transaksi telah dianggap selesai (dana telah masuk ke akun admin Celebgramme ataupun Pembeli).</li></ul>
+
+<h3 class="">Sanksi</h3>
+<p>Segala tindakan yang melanggar peraturan di Celebgramme.com akan dikenakan sanksi berupa:</p>
+<ul class="">
+<li><p style="">Akun dibekukan atau dinonaktifkan.</p></li>
+<li><p style="">Pelaporan ke pihak terkait (Kepolisian, dll).</p></li>
+</ul>
+
+<h3 class="">Pengguna</h3>
+<ul class=""><li><p style="margin-bottom: 0px !important;">Pengguna situs Celebgramme.com wajib mengisi data pribadi secara lengkap dan jujur di halaman akun (profil).</p></li><li><p style="margin-bottom: 0px !important;">Pengguna situs Celebgramme.com bertanggung jawab sendiri atas keamanan dari informasi akses akun termasuk penggunaan e-mail dan password.</p></li><li><p style="margin-bottom: 0px !important;">Pengguna situs Celebgramme.com wajib membayar terlebih dahulu sebelum menggunakan jasa / service Celebgramme.com</p></li><li><p style="margin-bottom: 0px !important;">Penggunaan fasilitas apapun yang disediakan oleh Celebgramme.com mengindikasikan bahwa pengguna telah memahami dan menyetujui segala aturan yang diberlakukan oleh Celebgramme.com.</p></li><li><p style="margin-bottom: 0px !important;">Selama menggunakan&nbsp;service/layanan Celebgramme.com, pengguna dilarang keras menyampaikan setiap jenis konten apapun ( baik di profile, comments, foto dan video ) yang mengandung / bersinggungan dengan unsur SARA, pornografi, diskriminasi, dan/atau menghina / merusak nama baik / menyudutkan pihak lain.</p></li><li><p style="margin-bottom: 0px !important;">Pengguna situs Celebgramme.com tidak diperbolehkan untuk menggunakan situs ini untuk melanggar peraturan yang ditetapkan oleh hukum di Indonesia maupun di negara lainnya.</p></li><li><p style="margin-bottom: 0px !important;">Pengguna situs Celebgramme.com bertanggung jawab atas segala resiko yang timbul di kemudian hari atas informasi yang diberikannya ke dalam situs ini, termasuk namun tidak terbatas pada hal-hal yang berkaitan dengan hak cipta, merek, desain industri, desain tata letak industri dan hak paten atas suatu produk.</p></li><li><p style="margin-bottom: 0px !important;">Pengguna situs Celebgramme.com diwajibkan menghargai hak-hak pengguna lainnya dengan tidak memberikan informasi pribadi ke pihak lain tanpa izin pihak yang bersangkutan.</p></li><li><p style="margin-bottom: 0px !important;">Pengguna situs Celebgramme.com tidak diperkenankan membuat link atau mengirimkan e-mail spam dengan merujuk ke bagian apapun dari situs ini, tanpa seijin admin.</p></li><li><p style="margin-bottom: 0px !important;">Celebgramme.com memiliki hak untuk memblokir / menutup penggunaan sistem terhadap pengguna situs yang dianggap melanggar peraturan dan ketetapan yang berlaku di dalam halaman terms &amp; conditions ini. Sisa pembayaran langganan service Celebgramme akan dianggap hangus dan tidak dapat dikembalikan dengan alasan apapun. Keputusan ini sifatnya prerogratif admin Celebgramme.com</p></li><li><p>Pengguna situs Celebgramme.com akan mendapatkan beragam informasi promo terbaru dan penawaran eksklusif dari email newsletter. Namun, pengguna situs Celebgramme.com dapat berhenti berlangganan (unsubscribe) email newsletter jika tidak ingin menerima informasi tersebut.</p></li></ul>				
+				
+				
+				
 					<input type="checkbox" id="checkbox-term"> <label for="checkbox-term">Saya setuju dengan Term & Conditions diatas</label>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" id="button-ok-copy">Lanjut</button>
+          <button type="button" class="btn btn-default" id="button-ok-terms">OK</button>
         </div>
       </div>
     </div>
@@ -358,7 +401,7 @@
 										6. System Celebgramme akan otomatis melakukan Unfollow apabila akun anda mendekati batas following Instagram (7500 following)<br>
 										7. DILARANG MENGGANTI username/password selama menggunakan Celebgramme.com <br>
 										8. DILARANG MEMBELI FOLLOWERS - selama menggunakan Celebgramme.com <br>
-										9. Baca Terms & Conditions User Celebgramme.com sebelum memakai service ini.
+										9. Baca <a href="https://celebgramme.com/terms-conditions/" target="_blank">Terms & Conditions </a>User Celebgramme.com sebelum memakai service ini.
 										</p>
                   </div>
                 </div>
