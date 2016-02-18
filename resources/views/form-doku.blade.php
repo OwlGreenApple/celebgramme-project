@@ -21,7 +21,7 @@
 <input type=hidden name="STOREID" value="00302583">
 <input type=hidden name="TRANSIDMERCHANT" value="CLB001">
 <input type=hidden name="AMOUNT" value="75000.00">
-<input type=hidden name="URL" value="https://www.celebgramme.com/celebgramme">
+<input type=hidden name="URL" value="https://celebgramme.com/celebgramme/doku-page/verify">
 <input type=hidden name="WORDS" value="{{sha1('75000.00'.'c5j7w5C7r7P6'.'CLB001')}}">
 <input type=hidden name="CNAME" value="Ismail Danuarta">
 <input type=hidden name="CEMAIL" value="ismail@gmail.com">
