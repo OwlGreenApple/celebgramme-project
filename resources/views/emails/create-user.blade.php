@@ -1,4 +1,4 @@
-Hi , {{ucfirst(strtolower($user->fullname)}} <br>
+Hi , {{ucfirst(strtolower($user->fullname))}} <br>
 <br>
 Terima kasih anda sudah membeli service Celebgramme.com <br>
 Berikut ini adalah user credentials anda : <br>
