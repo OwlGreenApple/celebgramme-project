@@ -5,10 +5,21 @@ namespace Celebgramme\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
-use Carbon\Carbon;
+use Celebgramme\Models\RequestModel;
+use Celebgramme\Models\Invoice;
+use Celebgramme\Models\Order;
+use Celebgramme\Models\OrderMeta;
 use Celebgramme\Models\User;
+use Celebgramme\Veritrans\Veritrans;
 use Celebgramme\Models\PackageUser;
+use Celebgramme\Models\Package;
 use Celebgramme\Models\Setting;
+use Celebgramme\Models\SettingMeta;
+use Celebgramme\Models\Post;
+
+use Celebgramme\Helpers\GeneralHelper;
+
+use View, Input, Mail, Request, App, Hash, Validator, Carbon, DB;
 
 
 class Kernel extends ConsoleKernel
@@ -30,79 +41,28 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-      $schedule->call(function () {
-        /*$user = User::find(1);
-        $user->test=123;
-        $user->save();
-
-        $users = User::all();
-        foreach ($users as $user){
-            $user->test = 1;
-            $user->save();
-            //if ($user->valid_until <> "0000-00-00 00:00:00") {
-
-                $now = Carbon::now()->setTime(23, 59, 59);
-                $date_until = Carbon::createFromFormat('Y-m-d H:i:s', $user->valid_until);
-                if ($now->lte($date_until)) {
-                    $packageUser = PackageUser::join("packages",'packages.id','=','packages_users.package_id')
-                                    ->where("packages_users.user_id","=",$user->id)->orderBy('packages_users.created_at', 'desc')->first();
-                    if (!is_null($packageUser)) {
-                        $user->balance = $packageUser->daily_likes;
-                    }
-
-                    $user->save();
-                } else 
-                if ($date_until->lt($now)) {
-                    $user->balance = 0;
-                    $user->save();
-                }
-
-            // }
-        }
-
-        */
-      })->everyMinute();
-
-      /*
 
       $schedule->call(function () {
-
-        //kurangin detik, buat auto manage
-        $now = Carbon::now();
-        $users = User::where("active_auto_manage",">",0);
-        foreach ($users as $user){
-            $settings = Setting::where("type",'=','temp')
-                        ->where('user_id','=',$user->id)
-                        ->where('status','=',"started")
-                        ->where('type','=',"temp")
-                        ->get();
-            foreach($settings as $setting) {
-                $runTime = Carbon::createFromFormat('Y-m-d H:i:s', $setting->running_time);
-                $timevalue = $now->diffInSeconds($runTime);
-                $user->active_auto_manage -= $timevalue;
-                if ($user->active_auto_manage <= 0){
-                    $user->active_auto_manage = 0;
-                    $setting->status = 'stopped';
-                        //post info ke admin
-                        $post = Post::where('setting_id', '=', $setting->id)->first();
-                        if (is_null($post)) {
-                            $post = new Post;
-                            $post->description = "stopped";
-                        } else {
-                            $post->description = $post->description." (stopped) ";
-                        }
-                        $post->save();
-                }
-                else{
-                    $setting->running_time = $dt->toDateTimeString();
-                }
-                $setting->save();
-                $user->save();
-            }
-        }
 
 
       })->everyFiveMinutes();
+
+      $schedule->call(function () {
+
+
+      })->twiceDaily(1,13);
+
+      $schedule->call(function () {
+
+
+      })->hourly();
+
+      $schedule->call(function () {
+				$user = User::find(99);
+				$user->test=1;
+				$user->save();
+
+      })->everyMinute();
 
 
 */
