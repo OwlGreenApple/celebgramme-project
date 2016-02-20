@@ -154,6 +154,7 @@ class Kernel extends ConsoleKernel
 
       $schedule->call(function () { //auto follow unfollow
 				$settings = Setting::where("type",'=','temp')
+										->where('error_cred','=',0)
 										//->where('status','=',"started")
 										->get();
 				foreach($settings as $setting) {

@@ -172,6 +172,7 @@ class CronJobController extends Controller
 	 */
 	public function auto_follow_unfollow(){
 		$settings = Setting::where("type",'=','temp')
+								->where('error_cred','=',0)
 								//->where('status','=',"started")
 								->get();
 		foreach($settings as $setting) {
