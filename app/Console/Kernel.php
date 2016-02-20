@@ -41,7 +41,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-
+/*
       $schedule->call(function () { //auto-manage
         //kurangin detik, buat auto manage
         $now = Carbon::now();
@@ -315,7 +315,7 @@ class Kernel extends ConsoleKernel
 					}
 				}
       })->everyMinute();
-
+*/
 
 /*
 wget https://celebgramme.com/celebgramme/cron-auto-manage every 5 min
