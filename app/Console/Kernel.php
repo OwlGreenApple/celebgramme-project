@@ -200,15 +200,17 @@ class Kernel extends ConsoleKernel
 							$setting_real->save();
 
 							$user = User::find($setting_temp->last_user);
-							$emaildata = [
-									'user' => $user,
-									'insta_username' => $setting_temp->insta_username,
-							];
-							Mail::queue('emails.error-cred', $emaildata, function ($message) use ($user) {
-								$message->from('no-reply@celebgramme.com', 'Celebgramme');
-								$message->to($user->email);
-								$message->subject('[Celebgramme] Error Login Instagram Account');
-							});
+							if (!is_null($user)) {
+								$emaildata = [
+										'user' => $user,
+										'insta_username' => $setting_temp->insta_username,
+								];
+								Mail::queue('emails.error-cred', $emaildata, function ($message) use ($user) {
+									$message->from('no-reply@celebgramme.com', 'Celebgramme');
+									$message->to($user->email);
+									$message->subject('[Celebgramme] Error Login Instagram Account');
+								});
+							}
 						}
 						//saveimage url to meta
 						if ($pp_url<>"") {
