@@ -117,7 +117,7 @@ class AutoManageController extends Controller
 			return $arr;
 		}
 		
-		//available username or not
+		/*//available username or not
 		$found = false;
 		$json_url = "https://api.instagram.com/v1/users/search?q=".Request::input("username")."&client_id=03eecaad3a204f51945da8ade3e22839";
 		$json = @file_get_contents($json_url);
@@ -134,6 +134,14 @@ class AutoManageController extends Controller
 		}
 		if (!$found) {
 			$arr["message"]= "Instagram username not found";
+			$arr["type"]= "error";
+			return $arr;
+		}*/
+		
+		if($this->checking_cred_instagram(Request::input("username"),Request::input("password"))) {
+			
+		} else {
+			$arr["message"]= "Instagram Login tidak valid";
 			$arr["type"]= "error";
 			return $arr;
 		}
@@ -455,4 +463,61 @@ class AutoManageController extends Controller
 		return "success";
 	}
 
+	public function checking_cred_instagram($username,$password){  
+		$url = "https://www.instagram.com/accounts/login/?force_classic_login=&next=/oauth/authorize/".urlencode("client_id=03eecaad3a204f51945da8ade3e22839&redirect_uri=http://localhost/otomagram/client-code&response_type=token");
+		if(App::environment() == "local"){		
+			$cookiefile = base_path().'/../general/ig-cookies/'.$username.'-cookiess.txt';
+		} else{
+			$cookiefile = base_path().'/../public_html/general/ig-cookies/'.$username.'-cookiess.txt';
+		}
+		$c = curl_init();
+    curl_setopt($c, CURLOPT_URL, $url);
+    curl_setopt($c, CURLOPT_REFERER, $url);
+    curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($c, CURLOPT_COOKIEFILE, $cookiefile);
+    curl_setopt($c, CURLOPT_COOKIEJAR, $cookiefile);
+    $page = curl_exec($c);
+    curl_close($c);
+    preg_match_all('/<input type="hidden" name="csrfmiddlewaretoken" value="([A-z0-9]{32})"\/>/', $page, $token);
+		
+    $c = curl_init();
+    curl_setopt($c, CURLOPT_URL, $url);
+    curl_setopt($c, CURLOPT_REFERER, $url);
+    curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($c, CURLOPT_POST, true);
+    curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($c, CURLOPT_POSTFIELDS, "csrfmiddlewaretoken=".$token[1][0]."&username=".$username."&password=".$password);
+    curl_setopt($c, CURLOPT_COOKIEFILE, $cookiefile);
+    curl_setopt($c, CURLOPT_COOKIEJAR, $cookiefile);
+    $page = curl_exec($c);
+    curl_close($c);
+
+    $c = curl_init();
+    curl_setopt($c, CURLOPT_URL, $url);
+    curl_setopt($c, CURLOPT_REFERER, $url);
+    curl_setopt($c, CURLOPT_HTTPHEADER, array(
+        'Accept-Language: en-US,en;q=0.8',
+        'User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36',
+        'Accept: */*',
+        'X-Requested-With: XMLHttpRequest',
+        'Connection: keep-alive'
+        ));	
+    curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($c, CURLOPT_COOKIEFILE, $cookiefile);
+    curl_setopt($c, CURLOPT_COOKIEJAR, $cookiefile);
+    $page = curl_exec($c);
+    curl_close($c);
+		// unlink($cookiefile);
+		preg_match_all('/<input type="hidden" name="csrfmiddlewaretoken" value="([A-z0-9]{32})"\/>/', $page, $token);
+		if (count($token[1])==0) { //login valid
+			return true;
+		} else { //login invalid
+			return false;
+		}
+	}
 }
