@@ -438,4 +438,8 @@ class CronJobController extends Controller
 		}
 	}
 	
+	
+	public function reset_client_used(){
+		$client = Client::update(['used'=>0,]);
+	}		
 }

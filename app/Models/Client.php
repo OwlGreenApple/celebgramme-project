@@ -10,6 +10,8 @@ class Client extends Model {
 	protected $table = 'clients';
 	public $timestamps = false;
   
+	protected $fillable = ['used',];
+													 
 	protected function getClientId($name)
 	{
 		$client = Client::where('name','=',$name)->where("used","<",500)->first();
