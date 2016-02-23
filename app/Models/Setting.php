@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Celebgramme\Models\LinkUserSetting;
 use Celebgramme\Models\Post;
+use Celebgramme\Models\Client;
 
 use Celebgramme\Models\SettingMeta;
 
@@ -63,7 +64,7 @@ class Setting extends Model {
 				$followers_join = 0;
 				$following_join = 0;
 				$id = 0;
-				$json_url = "https://api.instagram.com/v1/users/search?q=".$arr['insta_username']."&client_id=03eecaad3a204f51945da8ade3e22839";
+				$json_url = "https://api.instagram.com/v1/users/search?q=".$arr['insta_username']."&client_id=".Client::getClientId("user-auth");
 				$json = @file_get_contents($json_url);
 				if($json == TRUE) { 
 					$links = json_decode($json);
@@ -77,7 +78,7 @@ class Setting extends Model {
 						}
 						
 						
-						$json_url ='https://api.instagram.com/v1/users/'.$id.'?client_id=03eecaad3a204f51945da8ade3e22839';
+						$json_url ='https://api.instagram.com/v1/users/'.$id.'?client_id='.Client::getClientId("user-auth");
 						$json = @file_get_contents($json_url);
 						if($json == TRUE) { 
 							$links = json_decode($json);

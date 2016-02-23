@@ -17,6 +17,7 @@ use Celebgramme\Models\SettingMeta;
 use Celebgramme\Models\LinkUserSetting;
 use Celebgramme\Models\Post;
 use Celebgramme\Models\Meta;
+use Celebgramme\Models\Client;
 use Celebgramme\Veritrans\Veritrans;
 
 use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt;
@@ -464,7 +465,7 @@ class AutoManageController extends Controller
 	}
 
 	public function checking_cred_instagram($username,$password){  
-		$url = "https://www.instagram.com/accounts/login/?force_classic_login=&next=/oauth/authorize/".urlencode("client_id=03eecaad3a204f51945da8ade3e22839&redirect_uri=http://localhost/otomagram/client-code&response_type=token");
+		$url = "https://www.instagram.com/accounts/login/?force_classic_login=&next=/oauth/authorize/".urlencode("client_id=".Client::getClientId("user-auth")."&redirect_uri=	http://localhost/redirect&response_type=token");
 		if(App::environment() == "local"){		
 			$cookiefile = base_path().'/../general/ig-cookies/'.$username.'-cookiess.txt';
 		} else{
@@ -482,6 +483,7 @@ class AutoManageController extends Controller
     curl_close($c);
     preg_match_all('/<input type="hidden" name="csrfmiddlewaretoken" value="([A-z0-9]{32})"\/>/', $page, $token);
 		
+		$url = "https://www.instagram.com/accounts/login/?force_classic_login=&next=/oauth/authorize/".urlencode("client_id=".Client::getClientId("user-auth")."&redirect_uri=	http://localhost/redirect&response_type=token");
     $c = curl_init();
     curl_setopt($c, CURLOPT_URL, $url);
     curl_setopt($c, CURLOPT_REFERER, $url);
@@ -495,6 +497,7 @@ class AutoManageController extends Controller
     $page = curl_exec($c);
     curl_close($c);
 
+		$url = "https://www.instagram.com/accounts/login/?force_classic_login=&next=/oauth/authorize/".urlencode("client_id=".Client::getClientId("user-auth")."&redirect_uri=	http://localhost/redirect&response_type=token");
     $c = curl_init();
     curl_setopt($c, CURLOPT_URL, $url);
     curl_setopt($c, CURLOPT_REFERER, $url);
