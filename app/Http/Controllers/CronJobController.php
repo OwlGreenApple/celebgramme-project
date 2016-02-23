@@ -426,7 +426,7 @@ class CronJobController extends Controller
     curl_setopt($c, CURLOPT_COOKIEJAR, $cookiefile);
     $page = curl_exec($c);
     curl_close($c);
-		// unlink($cookiefile);
+		unlink($cookiefile);
 		preg_match_all('/<input type="hidden" name="csrfmiddlewaretoken" value="([A-z0-9]{32})"\/>/', $page, $token);
 		if (count($token[1])==0) { //login valid
 			return true;
