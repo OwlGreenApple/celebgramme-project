@@ -22,7 +22,7 @@ class Setting extends Model {
     protected $fillable = ['activity_speed', 'media_source', 'media_age', 'media_type', 
     'min_likes_media', 'max_likes_media', 'dont_comment_su', 'follow_source', 'dont_follow_su', 'dont_follow_pu', 'unfollow_source', 'unfollow_wdfm', 'comments', 'hashtags', 'locations', 
     'insta_username', 'insta_password', 'insta_user_id', 'insta_access_token', 'last_user', 'start_time', 'running_time', 'user_id', 'tags_blacklist', 'usernames_blacklist', 
-    'likes_counter', 'unfollows_counter', 'comments_counter', 'follows_counter', 'username', 'status', 'activity', 'usernames_whitelist', 'status_follow_unfollow', 'status_like', 'status_comment' ];
+    'likes_counter', 'unfollows_counter', 'comments_counter', 'follows_counter', 'username', 'status', 'activity', 'usernames_whitelist', 'status_follow_unfollow', 'status_like', 'status_comment', 'error_cred' ];
 	protected function createSetting($arr)
 	{
         $setting = new Setting;
@@ -64,7 +64,7 @@ class Setting extends Model {
 				$followers_join = 0;
 				$following_join = 0;
 				$id = 0;
-				$json_url = "https://api.instagram.com/v1/users/search?q=".$arr['insta_username']."&client_id=".Client::getClientId("user-auth");
+				$json_url = "https://api.instagram.com/v1/users/search?q=".$arr['insta_username']."&client_id=03eecaad3a204f51945da8ade3e22839";
 				$json = @file_get_contents($json_url);
 				if($json == TRUE) { 
 					$links = json_decode($json);
@@ -78,7 +78,7 @@ class Setting extends Model {
 						}
 						
 						
-						$json_url ='https://api.instagram.com/v1/users/'.$id.'?client_id='.Client::getClientId("user-auth");
+						$json_url ='https://api.instagram.com/v1/users/'.$id.'?client_id=03eecaad3a204f51945da8ade3e22839';
 						$json = @file_get_contents($json_url);
 						if($json == TRUE) { 
 							$links = json_decode($json);

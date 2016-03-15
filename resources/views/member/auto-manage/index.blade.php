@@ -221,7 +221,7 @@
                 }
                 $("#username").val("");
                 $("#password").val("");
-                // $("#confirm_password").val("");
+                $("#confirm_password").val("");
                 loadaccount();
             }
         });
@@ -242,12 +242,12 @@
       call_action('stop','all');
     });
     $('#button-edit-password').click(function(e){
-      // if ($("#edit_password").val() != $("#edit_confirm_password").val()) {
-        // $("#alert").addClass('btn-danger');
-        // $("#alert").removeClass('alert-success');
-        // $("#alert").show();
-        // $("#alert").html("password anda tidak sesuai");
-      // } else {
+      if ($("#edit_password").val() != $("#edit_confirm_password").val()) {
+        $("#alert").addClass('btn-danger');
+        $("#alert").removeClass('alert-success');
+        $("#alert").show();
+        $("#alert").html("password anda tidak sesuai");
+      } else {
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -281,15 +281,15 @@
                 loadaccount();
             }
         });
-      // }
+      }
     });
     $('#button-process').click(function(e){
-      // if ($("#password").val() != $("#confirm_password").val()) {
-        // $("#alert").addClass('btn-danger');
-        // $("#alert").removeClass('alert-success');
-        // $("#alert").show();
-        // $("#alert").html("password anda tidak sesuai");
-      // } else {
+      if ($("#password").val() != $("#confirm_password").val()) {
+        $("#alert").addClass('btn-danger');
+        $("#alert").removeClass('alert-success');
+        $("#alert").show();
+        $("#alert").html("password anda tidak sesuai");
+      } else {
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -325,7 +325,7 @@
                 loadaccount();
             }
         });
-      // }
+      }
     });
 
 		$( "body" ).on( "click", ".glyphicon-menu-down", function(e) {
@@ -399,8 +399,7 @@
 										5. Untuk menggunakan Celebgramme.com akun jangan di private<br>
 										6. System Celebgramme akan otomatis melakukan Unfollow apabila akun anda mendekati batas following Instagram (7500 following)<br>
 										7. DILARANG MENGGANTI username/password selama menggunakan Celebgramme.com <br>
-										8. DILARANG MEMBELI FOLLOWERS - selama menggunakan Celebgramme.com <br>
-										9. Baca <a href="https://celebgramme.com/terms-conditions/" target="_blank">Terms & Conditions </a>User Celebgramme.com sebelum memakai service ini.
+										8. DILARANG MEMBELI FOLLOWERS - selama menggunakan Celebgramme.com 
 										</p>
                   </div>
                 </div>
@@ -564,14 +563,12 @@ hanya akun yang di start saja yang dikurangi waktunya dari total waktu pembelian
                 <input type="password" class="form-control" placeholder="Your password" name="password" id="password">
               </div>
             </div>  
-						<!--
             <div class="form-group form-group-sm row">
               <label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Confirm Password</label>
               <div class="col-sm-8 col-md-6">
                 <input type="password" class="form-control" placeholder="Confirm your password" name="confirm_password" id="confirm_password">
               </div>
             </div>  
-						-->
           </form>
         </div>
         <div class="modal-footer">
@@ -606,14 +603,12 @@ hanya akun yang di start saja yang dikurangi waktunya dari total waktu pembelian
                 <input type="password" class="form-control" placeholder="Your password" name="edit_password" id="edit_password">
               </div>
             </div>  
-						<!--
             <div class="form-group form-group-sm row">
               <label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Confirm Password</label>
               <div class="col-sm-8 col-md-6">
                 <input type="password" class="form-control" placeholder="Confirm your password" name="edit_confirm_password" id="edit_confirm_password">
               </div>
             </div>  
-						-->
             <input type="hidden" name="setting_id" id="setting_id">
           </form>
         </div>

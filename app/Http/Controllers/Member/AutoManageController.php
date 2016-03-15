@@ -87,6 +87,7 @@ class AutoManageController extends Controller
   }
 
   public function process_save_credential(){  
+		include('simple_html_dom.php');
     $user = Auth::user();
     $arr["message"]= "Setting berhasil diterima. Silahkan klik START untuk memulai program";
     $arr["type"]= "success";
@@ -465,13 +466,23 @@ class AutoManageController extends Controller
 	}
 
 	public function checking_cred_instagram($username,$password){  
-		$url = "https://www.instagram.com/accounts/login/?force_classic_login=&next=/oauth/authorize/".urlencode("client_id=".Client::getClientId("user-auth")."&redirect_uri=	http://localhost/redirect&response_type=token");
+		$ports[] = "10255";
+		$ports[] = "10254";
+		$port = $ports[array_rand($ports)];
+		$cred = "sugiarto:sugihproxy250";
+		$proxy = "45.79.212.85";//good proxy
+
+		$url = "https://www.instagram.com/accounts/login/?force_classic_login";
 		if(App::environment() == "local"){		
 			$cookiefile = base_path().'/../general/ig-cookies/'.$username.'-cookiess.txt';
 		} else{
 			$cookiefile = base_path().'/../public_html/general/ig-cookies/'.$username.'-cookiess.txt';
 		}
 		$c = curl_init();
+		curl_setopt($c, CURLOPT_PROXY, $proxy);
+    curl_setopt($c, CURLOPT_PROXYPORT, $port);
+		curl_setopt($c, CURLOPT_PROXYUSERPWD, $cred);
+    curl_setopt($c, CURLOPT_PROXYTYPE, 'HTTP');
     curl_setopt($c, CURLOPT_URL, $url);
     curl_setopt($c, CURLOPT_REFERER, $url);
     curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
@@ -483,8 +494,11 @@ class AutoManageController extends Controller
     curl_close($c);
     preg_match_all('/<input type="hidden" name="csrfmiddlewaretoken" value="([A-z0-9]{32})"\/>/', $page, $token);
 		
-		$url = "https://www.instagram.com/accounts/login/?force_classic_login=&next=/oauth/authorize/".urlencode("client_id=".Client::getClientId("user-auth")."&redirect_uri=	http://localhost/redirect&response_type=token");
     $c = curl_init();
+		curl_setopt($c, CURLOPT_PROXY, $proxy);
+    curl_setopt($c, CURLOPT_PROXYPORT, $port);
+		curl_setopt($c, CURLOPT_PROXYUSERPWD, $cred);
+    curl_setopt($c, CURLOPT_PROXYTYPE, 'HTTP');
     curl_setopt($c, CURLOPT_URL, $url);
     curl_setopt($c, CURLOPT_REFERER, $url);
     curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
@@ -497,7 +511,25 @@ class AutoManageController extends Controller
     $page = curl_exec($c);
     curl_close($c);
 
-		$url = "https://www.instagram.com/accounts/login/?force_classic_login=&next=/oauth/authorize/".urlencode("client_id=".Client::getClientId("user-auth")."&redirect_uri=	http://localhost/redirect&response_type=token");
+		unlink($cookiefile);
+		$html = str_get_html($page);
+		$check_error = $html->find('div[id="alerts"]');
+		if (count($check_error)>0) {
+			// echo "error login";
+			return false;
+		} else {
+			//login success
+			$check_csrf = $html->find('input[name="csrfmiddlewaretoken"]');
+			if (count($check_csrf)>0) {
+				// echo "error csrf";
+				return false;
+			} else {
+				// echo "masuk";
+				return true;
+			}
+		}
+		
+
     $c = curl_init();
     curl_setopt($c, CURLOPT_URL, $url);
     curl_setopt($c, CURLOPT_REFERER, $url);
