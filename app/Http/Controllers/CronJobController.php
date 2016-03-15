@@ -54,6 +54,8 @@ class CronJobController extends Controller
 	}
   
 	public function auto_manage(){
+		$count_log = 0;
+		
         //kurangin detik, buat auto manage
         $now = Carbon::now();
         $users = User::where("active_auto_manage",">",0)->get();
@@ -63,6 +65,7 @@ class CronJobController extends Controller
                         ->where('status','=',"started")
                         ->get();
             foreach($settings as $setting) {
+							$count_log += 1;
                 $runTime = Carbon::createFromFormat('Y-m-d H:i:s', $setting->running_time);
                 $timevalue = $now->diffInSeconds($runTime);
                 $user->active_auto_manage -= $timevalue;
@@ -73,13 +76,13 @@ class CronJobController extends Controller
                         $post = Post::where('setting_id', '=', $setting->id)->first();
                         if (is_null($post)) {
                             $post = new Post;
-                            $post->description = "description: status = stopped ";
+                            $post->description = "description: source_update = cron(timeout) ~ status = stopped ~";
                             $post->setting_id = $setting->id;
                         } else {
 													if ($post->type == "pending") {
-                            $post->description = $post->description." status = stopped ";
+                            $post->description = $post->description." source_update = cron(timeout) ~ status = stopped ~";
 													} else {
-                            $post->description = " status = stopped ";
+                            $post->description = "description: source_update = cron(timeout) ~ status = stopped ~";
 													}
                         }
 												$post->status_admin = false;
@@ -100,6 +103,7 @@ class CronJobController extends Controller
 														"celebgram@gmail.com",
 														"michaelsugih@gmail.com",
 														"it2.axiapro@gmail.com",
+														"design.axiapro@gmail.com",
 													));
 													$message->subject($type_message);
 												});
@@ -113,12 +117,22 @@ class CronJobController extends Controller
                 $user->save();
             }
         }
+		if(App::environment() == "local"){		
+			// $file = base_path().'/../general/ig-cookies/'.$username.'-cookiess.txt';
+		} else{
+			// $file = base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow/logs.txt';
+			$txt = date("F j, Y, g:i a")." total rec : ".$count_log;
+			$myfile = file_put_contents(base_path().'/../public_html/general/cron-job-logs/auto-manage-logs.txt', $txt.PHP_EOL , FILE_APPEND);
+		}
+				
 	}
 
 
-    public function notif_member(){
+  public function notif_member(){
+		$count_log = 0;
         $users = User::where("status_auto_manage","!=","")->get();
         foreach ($users as $user){
+					$count_log += 1;
             if ( ($user->status_auto_manage=="member") && ($user->active_auto_manage<=432000) ) {
                 $user->status_auto_manage="member-5days";
                 $user->save();
@@ -162,7 +176,17 @@ class CronJobController extends Controller
 
             }
         }
-    }
+				
+		if(App::environment() == "local"){		
+			// $file = base_path().'/../general/ig-cookies/'.$username.'-cookiess.txt';
+		} else{
+			// $file = base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow/logs.txt';
+			$txt = date("F j, Y, g:i a")." total rec : ".$count_log;
+			$myfile = file_put_contents(base_path().'/../public_html/general/cron-job-logs/notif-member-logs.txt', $txt.PHP_EOL , FILE_APPEND);
+		}
+				
+				
+  }
   
 	
 	/**
@@ -171,38 +195,81 @@ class CronJobController extends Controller
 	 * @return response
 	 */
 	public function auto_follow_unfollow(){
+		include('simple_html_dom.php'); 
+		$count_log = 0;
 		$settings = Setting::where("type",'=','temp')
 								->where('error_cred','=',0)
 								//->where('status','=',"started")
 								->get();
 		foreach($settings as $setting) {
+				$count_log += 1;
 				$pp_url = "";
 				$followers = 0;
 				$following = 0;
 				$id = 0; $found = false;
-				$json_url = "https://api.instagram.com/v1/users/search?q=".$setting->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
-				$json = @file_get_contents($json_url);
-				if($json == TRUE) { 
-					$links = json_decode($json);
-					if (count($links->data)>0) {
-						// $id = $links->data[0]->id;
-						foreach($links->data as $link){
-							if (strtoupper($link->username) == strtoupper($setting->insta_username)){
-								$id = $link->id;
-								$found = true;
-								$pp_url = $link->profile_picture;
+
+				$user = User::find($setting->last_user);
+				if (is_null($user)) {
+					continue;
+				}
+				if ($user->test==0){
+					$json_url = "https://api.instagram.com/v1/users/search?q=".$setting->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
+					$json = @file_get_contents($json_url);
+					if($json == TRUE) { 
+						$links = json_decode($json);
+						if (count($links->data)>0) {
+							// $id = $links->data[0]->id;
+							foreach($links->data as $link){
+								if (strtoupper($link->username) == strtoupper($setting->insta_username)){
+									$id = $link->id;
+									$found = true;
+									$pp_url = $link->profile_picture;
+								}
+							}
+							
+							$json_url ='https://api.instagram.com/v1/users/'.$id.'?client_id=03eecaad3a204f51945da8ade3e22839';
+							$json = @file_get_contents($json_url);
+							if($json == TRUE) { 
+								$links = json_decode($json);
+								if (count($links->data)>0) {
+									$followers = $links->data->counts->followed_by;
+									$following = $links->data->counts->follows;
+								}
 							}
 						}
-						
-						$json_url ='https://api.instagram.com/v1/users/'.$id.'?client_id=03eecaad3a204f51945da8ade3e22839';
-						$json = @file_get_contents($json_url);
-						if($json == TRUE) { 
-							$links = json_decode($json);
-							if (count($links->data)>0) {
-								$followers = $links->data->counts->followed_by;
-								$following = $links->data->counts->follows;
-							}
+					}
+				} else if ($user->test==1){
+					$url = "http://websta.me/n/".$setting->insta_username;
+					$c = curl_init();
+					curl_setopt($c, CURLOPT_URL, $url);
+					curl_setopt($c, CURLOPT_REFERER, $url);
+					curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+					curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+					curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+					$page = curl_exec($c);
+					curl_close($c);
+					
+					$html = str_get_html($page);
+					$profbox = $html->find('div[class="profbox"]');
+					if (count($profbox)>0) {
+						$found = true;
+						$html = str_get_html($profbox[0]);
+						if(($html->find('ul', 0))) {
+							$temp = explode(" ", $html->find('ul')[0]->class );
+							$temp1 = explode("-", $temp[1] );
+							$id = $temp1[1];
 						}
+						if(($html->find('img', 0))) {
+							$pp_url = $html->find('img')[0]->src;
+						}
+						if(($html->find('span[class="counts_followed_by"]', 0))) {
+							$followers = str_replace(",","",$html->find('span[class="counts_followed_by"]')[0]->innertext);
+						}
+						if(($html->find('span[class="following"]', 0))) {
+							$following = str_replace(",","",$html->find('span[class="following"]')[0]->innertext);
+						}
+					} else {
+						$found = false;
 					}
 				}
 				SettingMeta::createMeta("followers",$followers,$setting->id);
@@ -233,23 +300,34 @@ class CronJobController extends Controller
 				}
 				//saveimage url to meta
 				if ($pp_url<>"") {
-					$extension = pathinfo($pp_url, PATHINFO_EXTENSION);
-					// $filename = str_random(4)."-".str_slug($setting->insta_username).".".$extension;
-					$filename = str_slug($setting->insta_username).".".$extension;
 					
-					//get file content
-					$arrContextOptions=array(
-							"ssl"=>array(
-									"verify_peer"=>false,
-									"verify_peer_name"=>false,
-							),
-					);  
-					$file = file_get_contents($pp_url, false, stream_context_create($arrContextOptions));
-					
-					$save = file_put_contents("images/pp/".$filename, $file);
-					if ($save) {
-						SettingMeta::createMeta("photo_filename",$filename,$setting->id);
+					$file_headers = get_headers($pp_url,1);					
+					if(strpos($file_headers[0], '404') !== false){
+					// echo "File Doesn't Exists!";
+					} else {
+						// echo "File Exists!";
+
+						$extension = pathinfo($pp_url, PATHINFO_EXTENSION);
+						// $filename = str_random(4)."-".str_slug($setting->insta_username).".".$extension;
+						$filename = str_slug($setting->insta_username).".".$extension;
+						
+						//get file content
+						$arrContextOptions=array(
+								"ssl"=>array(
+										"verify_peer"=>true,
+										"verify_peer_name"=>false,
+								),
+						);  
+						$file = file_get_contents($pp_url, false, stream_context_create($arrContextOptions));
+						
+						$save = file_put_contents("images/pp/".$filename, $file);
+						if ($save) {
+							SettingMeta::createMeta("photo_filename",$filename,$setting->id);
+						}
+						
+						
 					}
+					
 				}
 				
 				if ( ($following >=7250 ) && ($setting->status == "started") ) {
@@ -257,7 +335,7 @@ class CronJobController extends Controller
 
 					$setting->activity = "unfollow";
 					$setting->save();
-					$setting_temp = Setting::post_info_admin($setting->id, "[Celebgramme] Post Auto Manage (warning 7250 following IG Account)");
+					$setting_temp = Setting::post_info_admin($setting->id, "[Celebgramme] Post Auto Manage (warning 7250 following IG Account)",true);
 					
 				}
 				if ( ($following <=1000 ) && (SettingMeta::getMeta($setting->id,"auto_unfollow")=="yes" ) && ($setting->status == "started") ) {
@@ -265,9 +343,19 @@ class CronJobController extends Controller
 
 					$setting->activity = "follow";
 					$setting->save();
-					$setting_temp = Setting::post_info_admin($setting->id, "[Celebgramme] Post Auto Manage (warning 1000 following IG Account, from auto unfollow)");
+					$setting_temp = Setting::post_info_admin($setting->id, "[Celebgramme] Post Auto Manage (warning 1000 following IG Account, from auto unfollow)",true);
 				}
 		}
+		
+		if(App::environment() == "local"){		
+			// $file = base_path().'/../general/ig-cookies/'.$username.'-cookiess.txt';
+		} else{
+			// $file = base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow/logs.txt';
+			$txt = date("F j, Y, g:i a")." total rec : ".$count_log;
+			$myfile = file_put_contents(base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow-logs.txt', $txt.PHP_EOL , FILE_APPEND);
+		}
+		
+		
 	}
 	
 	public function update_insta_user_id(){
@@ -313,12 +401,14 @@ class CronJobController extends Controller
 	}
 
 	public function create_user_from_affiliate(){
-		$datas = DB::connection('mysqlAffiliate')->select("select p.*,u.user_email,u.display_name from wp_af1posts p inner join wp_af1users u on u.id=p.post_author where post_title like 'CLB%' and post_content=''");		
+		$count_log = 0;
+		$datas = DB::connection('mysqlAffiliate')->select("select p.*,u.user_email,u.display_name from wp_af1posts p inner join wp_af1users u on u.id=p.post_author where post_title like 'CLB%' and post_content='' and post_status='publish'");		
 		// dd($datas);
 		// echo $datas[0]->ID;
 		foreach ($datas as $data) {
+			$count_log += 1;
 			// echo $data->post_status."<br>";
-			if ($data->post_status=="publish") {
+			// if ($data->post_status=="publish") {
 				
 				//kirim email create user
 				$temp = array (
@@ -328,7 +418,7 @@ class CronJobController extends Controller
 					'email' => 'required|email|max:255|unique:users',
 				]);
 				if ($validator->fails()){
-					break;
+					continue;
 				}
 
 				$karakter= 'abcdefghjklmnpqrstuvwxyz123456789';
@@ -372,7 +462,17 @@ class CronJobController extends Controller
 				
 				
 				$affected = DB::connection('mysqlAffiliate')->update('update wp_af1posts set post_content = "registered" where id="'.$data->ID.'"');
-			}
+			// }
 		}
+		
+		if(App::environment() == "local"){		
+			// $file = base_path().'/../general/ig-cookies/'.$username.'-cookiess.txt';
+		} else{
+			// $file = base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow/logs.txt';
+			$txt = date("F j, Y, g:i a")." total rec : ".$count_log;
+			$myfile = file_put_contents(base_path().'/../public_html/general/cron-job-logs/checking-cred-logs.txt', $txt.PHP_EOL , FILE_APPEND);
+		}
+		
+		
 	}
 }

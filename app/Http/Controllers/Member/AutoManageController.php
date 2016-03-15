@@ -87,7 +87,7 @@ class AutoManageController extends Controller
 
   public function process_save_credential(){  
     $user = Auth::user();
-    $arr["message"]= "Setting berhasil diterima. Silahkan klik START untuk memulai program";
+    $arr["message"]= "Silahkan melakukan Account SETTING";
     $arr["type"]= "success";
 
     $data = array (
@@ -118,24 +118,46 @@ class AutoManageController extends Controller
 		}
 		
 		//available username or not
-		$found = false;
-		$json_url = "https://api.instagram.com/v1/users/search?q=".Request::input("username")."&client_id=03eecaad3a204f51945da8ade3e22839";
-		$json = @file_get_contents($json_url);
-		if($json == TRUE) { 
-			$links = json_decode($json);
-			if (count($links->data)>0) {
-				// $id = $links->data[0]->id;
-				foreach($links->data as $link){
-					if (strtoupper($link->username) == strtoupper(Request::input("username"))){
-						$found = true;
+		if ($user->test==0){
+			$found = false;
+			$json_url = "https://api.instagram.com/v1/users/search?q=".Request::input("username")."&client_id=03eecaad3a204f51945da8ade3e22839";
+			$json = @file_get_contents($json_url);
+			if($json == TRUE) { 
+				$links = json_decode($json);
+				if (count($links->data)>0) {
+					// $id = $links->data[0]->id;
+					foreach($links->data as $link){
+						if (strtoupper($link->username) == strtoupper(Request::input("username"))){
+							$found = true;
+						}
 					}
 				}
 			}
-		}
-		if (!$found) {
-			$arr["message"]= "Instagram username not found";
-			$arr["type"]= "error";
-			return $arr;
+			if (!$found) {
+				$arr["message"]= "Instagram username not found";
+				$arr["type"]= "error";
+				return $arr;
+			}
+		} else if ($user->test==1){
+			include('simple_html_dom.php'); 
+			$url = "http://websta.me/n/".Request::input("username");
+			$c = curl_init();
+			curl_setopt($c, CURLOPT_URL, $url);
+			curl_setopt($c, CURLOPT_REFERER, $url);
+			curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+			$page = curl_exec($c);
+			curl_close($c);
+			
+			$html = str_get_html($page);
+			$profbox = $html->find('div[class="profbox"]');
+			if (count($profbox)>0) {
+			} else {
+				$arr["message"]= "Instagram username not found";
+				$arr["type"]= "error";
+				return $arr;
+			}
 		}
 			
     $setting = Setting::where("insta_username","=",Request::input("username"))->where("type","=","temp")->first();
@@ -308,11 +330,39 @@ class AutoManageController extends Controller
       return $arr;
 		}
 		
+		if ( ($data["follow_source"]=="followers of username") || ($data["follow_source"]=="following of username") ) {
+			$pieces = explode(";",$data["username"]);
+			if (count($pieces)<10) {
+				$arr["message"]= "Usernames minimal harus ada 10";
+				$arr["type"]= "error";
+				return $arr;
+			}
+		
+			$pieces = explode(";",$data["username"]);
+			if (count($pieces)>50) {
+				$arr["message"]= "Usernames maximal 50";
+				$arr["type"]= "error";
+				return $arr;
+			}
+		}
+		
 		if ( ($setting_temp->status=="started") && ($data['status_follow_unfollow']=="off") && ($data['status_like']=="off") && ($data['status_comment']=="off") ) {
       $arr["message"]= "Silahkan pilih activity follow / like / comment";
       $arr["type"]= "error";
       return $arr;
 		}
+		
+		if ($data['status_comment']=="on") {
+			if ( (strpos($data['comments'], '<@owner>') !== false) && (strpos($data['comments'], '{') !== false) && (strpos($data['comments'], '}')!==false) ) {
+			} else {
+				$arr["message"]= "Comments memerlukan <@owner> dan spin comment";
+				$arr["type"]= "error";
+				return $arr;
+			}
+		}
+		
+		//hapus space di hashtags
+		$data["hashtags"] = str_replace(" ","",$data["hashtags"]);
 	
     if (isset($data['dont_comment_su'])) { $data['dont_comment_su'] = 1; } else { $data['dont_comment_su'] = 0; }
     if (isset($data['dont_follow_su'])) { $data['dont_follow_su'] = 1; } else { $data['dont_follow_su'] = 0; }

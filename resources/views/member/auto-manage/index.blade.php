@@ -249,7 +249,7 @@
         $("#alert").html("password anda tidak sesuai");
       } else {
         $.ajax({
-            headers: {
+            headers: {  
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type: 'POST',
@@ -385,6 +385,29 @@
 
 
 
+<!-- Modal -->
+  <div class="modal fade" id="myModalTutorialVideo" role="dialog" >
+    <div class="modal-dialog" style="width:70%;">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+          <h4 class="modal-title">Tutorial Video
+					</h4>
+        </div>
+        <div class="modal-body">
+					<div class="embed-responsive embed-responsive-16by9">
+							<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/QoWlmcNIbik"></iframe>
+					</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 <?php   if ($user->type<>"not-confirmed") { ?>
 <div class="row">
               <div class="col-md-10 col-sm-10">
@@ -393,15 +416,16 @@
                     <h3 class="panel-title">Steps</h3>
                   </div>
                   <div class="panel-body">
-                    1. Add Account Instagram anda<br>
-                    2. Click Setting di setiap Account Instagram anda<br>
-                    3. Tetapkan Setting yang anda inginkan, sesudah selesai Click START<br>
-										<p style="color:#a94442;">4. DILARANG KERAS menggunakan sistem auto manage / instagram bot yang lain saat anda menggunakan Celebgramme.com <br>
-										5. Untuk menggunakan Celebgramme.com akun jangan di private<br>
-										6. System Celebgramme akan otomatis melakukan Unfollow apabila akun anda mendekati batas following Instagram (7500 following)<br>
-										7. DILARANG MENGGANTI username/password selama menggunakan Celebgramme.com <br>
-										8. DILARANG MEMBELI FOLLOWERS - selama menggunakan Celebgramme.com <br>
-										9. Baca <a href="https://celebgramme.com/terms-conditions/" target="_blank">Terms & Conditions </a>User Celebgramme.com sebelum memakai service ini.
+                    1. Click tutorial video <a href="#" data-toggle="modal" data-target="#myModalTutorialVideo" >disini</a><br>
+                    2. Add Account Instagram anda<br>
+                    3. Click Setting di setiap Account Instagram anda<br>
+                    4. Tetapkan Setting yang anda inginkan, sesudah selesai Click START<br>
+										5. Baca TUTORIAL Celebgramme <a href="https://docs.google.com/document/d/1-gOSIrsoXj7Mdwj4Nph-vwPIxpKB8JScjb_D-GUYmUE" target="_blank">disini</a> <br>
+										<p style="color:#a94442;">6. DILARANG KERAS menggunakan sistem auto manage / instagram bot yang lain saat anda menggunakan Celebgramme.com <br>
+										7. Untuk menggunakan Celebgramme.com akun jangan di private<br>
+										8. System Celebgramme akan otomatis melakukan Unfollow apabila akun anda mendekati batas following Instagram (7500 following)<br>
+										9. DILARANG MENGGANTI username/password selama menggunakan Celebgramme.com <br>
+										10. DILARANG MEMBELI FOLLOWERS - selama menggunakan Celebgramme.com 
 										</p>
                   </div>
                 </div>

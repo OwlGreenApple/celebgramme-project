@@ -91,7 +91,8 @@
               <li><a href="{{url('confirm-payment')}}">Confirm Payment</a></li>
               <li><a href="{{url('order')}}">Order History</a></li>
               <li><a href="{{url('edit-profile')}}">Ganti Password</a></li>
-              <li><a href="http://celebgramme.freshdesk.com" target="_blank">Support</a></li>
+              <li><a href="http://celebgramme.freshdesk.com" target="_blank">FAQ & Support</a></li>
+              <li><a href="https://docs.google.com/document/d/1-gOSIrsoXj7Mdwj4Nph-vwPIxpKB8JScjb_D-GUYmUE" target="_blank">Tutorial</a></li>
               <li><a href="{{url('logout')}}">Logout</a></li>
             </ul>
           

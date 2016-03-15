@@ -117,7 +117,7 @@
 		</div>  
 		<div class="col-sm-4 col-md-3">
 			<strong>Bank BCA</strong><br>
-			5335-927-122<br>
+			4800-227-122<br>
 			Sugiarto Lasjim<br><br>
 		</div>  
 

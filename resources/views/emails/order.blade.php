@@ -11,7 +11,7 @@ Anda telah memesan paket {{$package->package_name}} = <strong>Rp. {{number_forma
 	<strong>TRANSFER Melalui :</strong><br>
 	<br>
 	<strong>Bank BCA</strong><br>
-	5335-927-122<br>
+	4800-227-122<br>
 	Sugiarto Lasjim<br>
 	<br>
 	<strong>Bank Mandiri</strong><br>
