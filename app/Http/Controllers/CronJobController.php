@@ -205,8 +205,8 @@ class CronJobController extends Controller
 		foreach($settings as $setting) {
 				$count_log += 1;
 				$pp_url = "";
-				$followers = 0;
 				$following = 0;
+				$followers = 0;
 				$id = 0; $found = false;
 
 				$user = User::find($setting->last_user);
@@ -275,7 +275,8 @@ class CronJobController extends Controller
 				}
 				SettingMeta::createMeta("followers",$followers,$setting->id);
 				SettingMeta::createMeta("following",$following,$setting->id);
-				if ( (!$found) || !$this->checking_cred_instagram($setting->insta_username,$setting->insta_password) ) {
+				// if ( (!$found) || !$this->checking_cred_instagram($setting->insta_username,$setting->insta_password) ) {
+				if (!$found)  {
 					$setting_temp = Setting::find($setting->id);
 					$setting_temp->error_cred = true;
 					$setting_temp->status = "stopped";

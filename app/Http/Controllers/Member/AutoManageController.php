@@ -25,6 +25,11 @@ use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt;
 class AutoManageController extends Controller
 {
   
+	public function __construct()
+	{
+			include('simple_html_dom.php');
+	}
+	
 	/**
 	 * Menampilkan halaman utama
 	 *
@@ -44,6 +49,7 @@ class AutoManageController extends Controller
 
 
   public function process_edit_password(){  
+		
     $user = Auth::user();
     $arr["message"]= "Ubah password berhasil dilakukan, sistem akan berjalan secara otomatis maksimum 1x24jam";
     $arr["type"]= "success";
@@ -75,6 +81,14 @@ class AutoManageController extends Controller
 			return $arr;
 		}
 			
+		if($this->checking_cred_instagram(Request::input("edit_username"),Request::input("edit_password"))) {
+		} else {
+			$arr["message"]= "Instagram Login tidak valid";
+			$arr["type"]= "error";
+			return $arr;
+		}
+			
+			
     $setting_temp = Setting::find(Request::input('setting_id'));
     $setting_temp->insta_username = Request::input('edit_username');
     $setting_temp->insta_password = Request::input('edit_password');
@@ -87,7 +101,6 @@ class AutoManageController extends Controller
   }
 
   public function process_save_credential(){  
-		include('simple_html_dom.php');
     $user = Auth::user();
     $arr["message"]= "Silahkan melakukan Account SETTING";
     $arr["type"]= "success";
@@ -119,9 +132,35 @@ class AutoManageController extends Controller
 			return $arr;
 		}
 		
-<<<<<<< HEAD
 		//available username or not
 		if ($user->test==0){
+			if($this->checking_cred_instagram(Request::input("username"),Request::input("password"))) {
+				
+			} else {
+				$arr["message"]= "Instagram Login tidak valid";
+				$arr["type"]= "error";
+				return $arr;
+			}
+		} else if ($user->test==1){
+			$url = "http://websta.me/n/".Request::input("username");
+			$c = curl_init();
+			curl_setopt($c, CURLOPT_URL, $url);
+			curl_setopt($c, CURLOPT_REFERER, $url);
+			curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+			$page = curl_exec($c);
+			curl_close($c);
+			
+			$html = str_get_html($page);
+			$profbox = $html->find('div[class="profbox"]');
+			if (count($profbox)>0) {
+			} else {
+				$arr["message"]= "Instagram username not found";
+				$arr["type"]= "error";
+				return $arr;
+			}
+		} else if ($user->test==2){
 			$found = false;
 			$json_url = "https://api.instagram.com/v1/users/search?q=".Request::input("username")."&client_id=03eecaad3a204f51945da8ade3e22839";
 			$json = @file_get_contents($json_url);
@@ -141,57 +180,10 @@ class AutoManageController extends Controller
 				$arr["type"]= "error";
 				return $arr;
 			}
-		} else if ($user->test==1){
-			include('simple_html_dom.php'); 
-			$url = "http://websta.me/n/".Request::input("username");
-			$c = curl_init();
-			curl_setopt($c, CURLOPT_URL, $url);
-			curl_setopt($c, CURLOPT_REFERER, $url);
-			curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
-			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-			curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-			$page = curl_exec($c);
-			curl_close($c);
 			
-			$html = str_get_html($page);
-			$profbox = $html->find('div[class="profbox"]');
-			if (count($profbox)>0) {
-			} else {
-				$arr["message"]= "Instagram username not found";
-				$arr["type"]= "error";
-				return $arr;
-			}
-=======
-		/*//available username or not
-		$found = false;
-		$json_url = "https://api.instagram.com/v1/users/search?q=".Request::input("username")."&client_id=03eecaad3a204f51945da8ade3e22839";
-		$json = @file_get_contents($json_url);
-		if($json == TRUE) { 
-			$links = json_decode($json);
-			if (count($links->data)>0) {
-				// $id = $links->data[0]->id;
-				foreach($links->data as $link){
-					if (strtoupper($link->username) == strtoupper(Request::input("username"))){
-						$found = true;
-					}
-				}
-			}
 		}
-		if (!$found) {
-			$arr["message"]= "Instagram username not found";
-			$arr["type"]= "error";
-			return $arr;
-		}*/
 		
-		if($this->checking_cred_instagram(Request::input("username"),Request::input("password"))) {
-			
-		} else {
-			$arr["message"]= "Instagram Login tidak valid";
-			$arr["type"]= "error";
-			return $arr;
->>>>>>> 55609addb1d5f0ca1eee6efd1f8909bdbf8733fc
-		}
-			
+		
     $setting = Setting::where("insta_username","=",Request::input("username"))->where("type","=","temp")->first();
     if (is_null($setting)) {
       $count_setting = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
