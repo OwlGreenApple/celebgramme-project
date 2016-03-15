@@ -209,6 +209,9 @@ class AutoManageController extends Controller
         $linkUserSetting->save();
 
         $setting->last_user = $user->id;
+        if ($setting->status == "deleted") {
+					$setting->status = "stopped";
+				}
         $setting->save();
 
       } else {
