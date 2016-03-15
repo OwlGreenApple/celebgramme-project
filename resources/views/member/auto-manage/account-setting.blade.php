@@ -283,16 +283,29 @@
 		
 	// show current input values
 	$('textarea.selectize-default,select.selectize-default,input.selectize-default').each(function() {
-		var $container = $('<div style="font-size:11px;">').addClass('value').html('Current Value: ');
+		var $container = $('<div style="font-size:11px;">').addClass('value').html('Current count: ');
 		var $value = $('<span>').appendTo($container);
 		var $input = $(this);
 		var update = function(e) { 
-			$value.text(JSON.stringify($input.val())); 
+			// $value.text(JSON.stringify($input.val())); 
+
+			var str,res;
+			str = JSON.stringify($input.val());
+			res = str.split(";");
+			if ($input.val() == "") {
+				$value.text("0"); 
+			} else {
+				$value.text(res.length); 
+			}
+			// console.log(res.length);
+			// $container.insertAfter($input.next());
 		}
 
 		$(this).on('change', update);
 		update();
 
+		$container.insertAfter($input.next());
+		
 		// $container.insertAfter($input.next());
 	});
 	

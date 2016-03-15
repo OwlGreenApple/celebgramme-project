@@ -356,6 +356,11 @@ class AutoManageController extends Controller
       $arr["type"]= "error";
       return $arr;
 		}
+		if (count($pieces)>100) {
+      $arr["message"]= "Hashtags maximal 100";
+      $arr["type"]= "error";
+      return $arr;
+		}
 		
 		if ( ($data["follow_source"]=="followers of username") || ($data["follow_source"]=="following of username") ) {
 			$pieces = explode(";",$data["username"]);
@@ -366,8 +371,8 @@ class AutoManageController extends Controller
 			}
 		
 			$pieces = explode(";",$data["username"]);
-			if (count($pieces)>50) {
-				$arr["message"]= "Usernames maximal 50";
+			if (count($pieces)>100) {
+				$arr["message"]= "Usernames maximal 100";
 				$arr["type"]= "error";
 				return $arr;
 			}
