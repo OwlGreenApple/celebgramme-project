@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 
 use Celebgramme\Models\LinkUserSetting;
 use Celebgramme\Models\Post;
+use Celebgramme\Models\Client;
 
 use Celebgramme\Models\SettingMeta;
 
@@ -22,7 +23,7 @@ class Setting extends Model {
     protected $fillable = ['activity_speed', 'media_source', 'media_age', 'media_type', 
     'min_likes_media', 'max_likes_media', 'dont_comment_su', 'follow_source', 'dont_follow_su', 'dont_follow_pu', 'unfollow_source', 'unfollow_wdfm', 'comments', 'hashtags', 'locations', 
     'insta_username', 'insta_password', 'insta_user_id', 'insta_access_token', 'last_user', 'start_time', 'running_time', 'user_id', 'tags_blacklist', 'usernames_blacklist', 
-    'likes_counter', 'unfollows_counter', 'comments_counter', 'follows_counter', 'username', 'status', 'activity', 'usernames_whitelist', 'status_follow_unfollow', 'status_like', 'status_comment' ];
+    'likes_counter', 'unfollows_counter', 'comments_counter', 'follows_counter', 'username', 'status', 'activity', 'usernames_whitelist', 'status_follow_unfollow', 'status_like', 'status_comment', 'error_cred' ];
 	protected function createSetting($arr)
 	{
 		$user = Auth::user();

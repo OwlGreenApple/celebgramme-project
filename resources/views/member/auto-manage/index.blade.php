@@ -278,7 +278,6 @@
                 }
                 $("#username").val("");
                 $("#password").val("");
-                $("#confirm_password").val("");
                 loadaccount();
             }
         });
@@ -316,7 +315,7 @@
 
 									$("#username").val("");
 									$("#password").val("");
-									$("#confirm_password").val("");
+									// $("#confirm_password").val("");
                 }
                 else if(data.type=='error')
                 {

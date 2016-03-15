@@ -1,18 +1,15 @@
 Hi {{$user['fullname']}}, <br>
 <br>
-Silahkan Cek kembali username & password Instagram anda <br>
-Account yang perlu di benarkan adalah : <br>
-<strong>{{$insta_username}}</strong> <br>
+Ada perubahan di akun Instagram anda.
 <br>
-Ini merupakan bagian dari sistem keamanan Instagram untuk <br>
-mengkonfirmasi kebenaran dari akun tersebut. <br>
+<strong>Silahkan UPDATE kembali username & password Instagram anda </strong><br>
 <br>
-Setelah mengganti password  <br>
+<strong>CARA melakukan UPDATE :</strong>  <br>
 silahkan Login ke Celebgramme kembali disini <br>
 click to <a href="http://celebgramme.com/celebgramme"> ---> LOGIN <--- </a> <br>
 <br>
-EDIT user credential anda dengan Password yang Baru <br>
-di bagian "Username Box"  ( bagian bawah ) <br>
+EDIT akun Instagram anda<br>
+UPDATE username & password anda <br>
 Click "START" dan Celebgramme kembali bekerja untuk anda. <br>
 <br>
 Terima kasih atas perhatiannya, <br>
