@@ -44,16 +44,38 @@ class LandingPageController extends Controller
   	}
 
   	public function calculate_coupon() {
+			$valid = false;
   		$dt = Carbon::now();
   		$coupon = Coupon::where("coupon_code","=",Request::input('couponcode'))
   					->where("valid_until",">=",$dt->toDateTimeString())->first();
   		if (!is_null($coupon)) {
-  			$arr['show']=number_format($coupon->coupon_value,0,'','.');
-  			$arr['real']= $coupon->coupon_value;
+				if ($coupon->package_id == 0 ) {
+					$valid = true;
+				} else {
+					if ($coupon->package_id==Request::input('packageid')){
+						$valid = true;
+					}else {
+						$valid = false;
+					}
+				}
   		} else {
+				$valid = false;
+  		}
+				
+			if ($valid) {
+				if ($coupon->coupon_percent == 0 ) {
+					$arr['show']=number_format($coupon->coupon_value,0,'','.');
+					$arr['real']= $coupon->coupon_value;
+				} else if ($coupon->coupon_value == 0 ) {
+					$package = Package::find(Request::input('packageid'));
+					$val = floor ( $coupon->coupon_percent / 100 * $package->price );
+					$arr['show']=number_format($val,0,'','.');
+					$arr['real']= $val;
+				}
+			} else {
   			$arr['show']="0";
   			$arr['real']= 0;
-  		}
+			}
   		return $arr;
   	}
 

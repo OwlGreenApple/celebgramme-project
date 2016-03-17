@@ -9,9 +9,32 @@
     return val;
   }
   function count_total() {
-    total = price_daily_like + price_auto_manage - price_coupon;
-    if (total<0) { total = 0; }
-    $("#price-total").html(commaSeparateNumber(total));
+      $.ajax({
+          type: 'GET',
+          url: "<?php echo url('calculate-coupon'); ?>",
+          data: {
+            couponcode : $("#text-coupon-code").val(),
+            packageid : $("#select-auto-manage").val()
+          },
+          dataType: 'text',
+          beforeSend: function()
+          {
+            $("#div-loading").show();
+          },
+          success: function(result) {
+            $("#div-loading").hide();
+            var data = jQuery.parseJSON(result);
+            $("#price-coupon").html(data.show);
+            price_coupon = parseInt(data.real);
+						
+						
+						total = price_daily_like + price_auto_manage - price_coupon;
+						if (total<0) { total = 0; }
+						$("#price-total").html(commaSeparateNumber(total));
+						
+          }
+      });
+			
   }
   $(document).ready(function() {
     $("#alert").hide();
@@ -30,27 +53,7 @@
     });          
 
     $( "#text-coupon-code" ).keyup(function() {
-
-      $.ajax({
-          type: 'GET',
-          url: "<?php echo url('calculate-coupon'); ?>",
-          data: {
-            couponcode : $("#text-coupon-code").val()
-          },
-          dataType: 'text',
-          beforeSend: function()
-          {
-            $("#div-loading").show();
-          },
-          success: function(result) {
-            $("#div-loading").hide();
-            var data = jQuery.parseJSON(result);
-            $("#price-coupon").html(data.show);
-            price_coupon = parseInt(data.real);
-            count_total();
-          }
-      });
-
+			count_total();
     });          
 
 
