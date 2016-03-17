@@ -332,7 +332,7 @@ class CronJobController extends Controller
 					
 				}
 				
-				if ( ($following >=7250 ) && ($setting->activity = "follow") ) {
+				if ( ($following >=7250 ) && ($setting->activity == "follow") ) {
 					SettingMeta::createMeta("auto_unfollow","yes",$setting->id);
 
 					$setting->activity = "unfollow";
