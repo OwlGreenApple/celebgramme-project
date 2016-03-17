@@ -13,6 +13,7 @@ use Celebgramme\Models\Invoice;
 use Celebgramme\Models\Order;
 use Celebgramme\Models\OrderMeta;
 use Celebgramme\Models\User;
+use Celebgramme\Models\UserMeta;
 use Celebgramme\Veritrans\Veritrans;
 use Celebgramme\Models\PackageUser;
 use Celebgramme\Models\Package;
@@ -20,6 +21,8 @@ use Celebgramme\Models\Setting;
 use Celebgramme\Models\SettingMeta;
 use Celebgramme\Models\Post;
 use Celebgramme\Models\Client;
+use Celebgramme\Models\Coupon;
+use Celebgramme\Models\Meta;
 
 use Celebgramme\Helpers\GeneralHelper;
 
@@ -128,55 +131,64 @@ class CronJobController extends Controller
 				
 	}
 
-
+/*
+* harus dibuat cron jalan 2x sehari
+*/
   public function notif_member(){
+		$now = Carbon::now();
 		$count_log = 0;
-        $users = User::where("status_auto_manage","!=","")->get();
-        foreach ($users as $user){
+		$users = User::where("active_auto_manage","<=",453600)->where("active_auto_manage",">",0)->get();
+		foreach ($users as $user){
+				if ( ($user->active_auto_manage>=410400) && ($user->active_auto_manage<=453600) && (UserMeta::getMeta($user->id,"email5days")<>"yes") ) {
 					$count_log += 1;
-            if ( ($user->status_auto_manage=="member") && ($user->active_auto_manage<=432000) ) {
-                $user->status_auto_manage="member-5days";
-                $user->save();
+					$temp = UserMeta::createMeta("email5days","yes",$user->id);
 
-                $emaildata = [
-                    'user' => $user,
-                ];
-                Mail::queue('emails.notif-5days', $emaildata, function ($message) use ($user) {
-                  $message->from('no-reply@celebgramme.com', 'Celebgramme');
-                  $message->to($user->email);
-                  $message->subject('[Celebgramme] 5 hari lagi nih, nggak berasa yah');
-                });
+					$emaildata = [
+							'user' => $user,
+					];
+					Mail::queue('emails.notif-5days', $emaildata, function ($message) use ($user) {
+						$message->from('no-reply@celebgramme.com', 'Celebgramme');
+						$message->to($user->email);
+						$message->subject('[Celebgramme] 5 hari lagi nih, nggak berasa yah');
+					});
+				}
+				if ( ($user->active_auto_manage>=64800) && ($user->active_auto_manage<=108000) && (UserMeta::getMeta($user->id,"email3days")<>"yes") ) {
+					$count_log += 1;
+					$temp = UserMeta::createMeta("email3days","yes",$user->id);
 
-            }
-            if ( ($user->status_auto_manage=="member-5days") && ($user->active_auto_manage<=259200) ) {
-                $user->status_auto_manage="member-3days";
-                $user->save();
+					//coupon diberi saat last day. coupon expired setelah x hari, tergantung setting
+					do {
+						$karakter= 'abcdefghjklmnpqrstuvwxyz123456789';
+						$string = '';
+						for ($i = 0; $i < 5 ; $i++) {
+							$pos = rand(0, strlen($karakter)-1);
+							$string .= $karakter{$pos};
+						}
+						$coupon = Coupon::where("coupon_code","=",$string)->first();
+					} while (!is_null)
+					$coupon = new Coupon;
+					$coupon->coupon_value = Meta::getMeta('coupon_setting_value');
+					$coupon->coupon_percent = Meta::getMeta('coupon_setting_percentage');
+					$coupon->package_id = Meta::getMeta("coupon_setting_package_id");
+					$coupon->coupon_code = $string;
+					$coupon->user_id = $user->id;
+					$coupon->valid_until = $now->addDays(Meta::getMeta("coupon_setting_days"))->toDateTimeString();
+					$coupon->save();
 
-                $emaildata = [
-                    'user' => $user,
-                ];
-                Mail::queue('emails.notif-3days', $emaildata, function ($message) use ($user) {
-                  $message->from('no-reply@celebgramme.com', 'Celebgramme');
-                  $message->to($user->email);
-                  $message->subject('[Celebgramme] Welcome to celebgramme.com');
-                });
-
-            }
-            if ( ($user->status_auto_manage=="member-3days") && ($user->active_auto_manage==0) ) {
-                $user->status_auto_manage="member-expired";
-                $user->save();
-
-                $emaildata = [
-                    'user' => $user,
-                ];
-                Mail::queue('emails.notif-expired', $emaildata, function ($message) use ($user) {
-                  $message->from('no-reply@celebgramme.com', 'Celebgramme');
-                  $message->to($user->email);
-                  $message->subject('[Celebgramme] Hari ini service Celebgramme.com berakhir');
-                });
-
-            }
-        }
+					$emaildata = [
+						'user' => $user,
+					];
+					Mail::queue('emails.notif-expired', $emaildata, function ($message) use ($user) {
+						$message->from('no-reply@celebgramme.com', 'Celebgramme');
+						$message->to($user->email);
+						$message->subject('[Celebgramme] Hari ini service Celebgramme.com berakhir');
+					});
+				}
+				if ( ($user->active_auto_manage>=0) && ($user->active_auto_manage<=50000) ) {
+					$temp = UserMeta::createMeta("email3days","exp",$user->id);
+					$temp = UserMeta::createMeta("email5days","exp",$user->id);
+				}
+		}
 				
 		if(App::environment() == "local"){		
 			// $file = base_path().'/../general/ig-cookies/'.$username.'-cookiess.txt';

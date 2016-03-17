@@ -9,7 +9,7 @@ class Meta extends Model {
 
 	protected $table = 'metas';
   
-	protected function createMeta($name,$value,$id)
+	protected function createMeta($name,$value)
 	{
 		$meta = Meta::where("meta_name","=",$name)
 									->first();
@@ -21,9 +21,9 @@ class Meta extends Model {
     $meta->save();
   }
   
-	protected function getMeta($id,$meta_name)
+	protected function getMeta($meta_name)
 	{
-		$meta = SettingMeta::where('setting_id','=',$id)->where("meta_name","=",$meta_name)->first();
+		$meta = Meta::where("meta_name","=",$meta_name)->first();
 		if (!is_null($meta)) {
 			return $meta->meta_value;
 		} else {
