@@ -47,14 +47,27 @@ class LandingPageController extends Controller
 			$valid = false;
   		$dt = Carbon::now();
   		$coupon = Coupon::where("coupon_code","=",Request::input('couponcode'))
-  					->where("valid_until",">=",$dt->toDateTimeString())->first();
+  					->where("valid_until",">=",$dt->toDateString())->first();
   		if (!is_null($coupon)) {
-				if ($coupon->package_id == 0 ) {
-					$valid = true;
-				} else {
-					if ($coupon->package_id==Request::input('packageid')){
+				if ($coupon->user_id == 0 ) {
+					if ($coupon->package_id == 0 ) {
 						$valid = true;
-					}else {
+					} else {
+						if ($coupon->package_id==Request::input('packageid')){
+							$valid = true;
+						}else {
+							$valid = false;
+						}
+					}
+				} else {
+					if (Auth::check()) {
+						$user = Auth::user();
+						if ($user->id == $coupon->user_id) {
+							$valid = true;
+						} else {
+							$valid = false;
+						}
+					} else {
 						$valid = false;
 					}
 				}

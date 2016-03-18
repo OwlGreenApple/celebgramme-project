@@ -136,6 +136,7 @@ class CronJobController extends Controller
 */
   public function notif_member(){
 		$now = Carbon::now();
+		$dt_coupon_expired = $now->addDays(Meta::getMeta("coupon_setting_days"))->toDateString();
 		$count_log = 0;
 		$users = User::where("active_auto_manage","<=",453600)->where("active_auto_manage",">",0)->get();
 		foreach ($users as $user){
@@ -152,9 +153,9 @@ class CronJobController extends Controller
 						$message->subject('[Celebgramme] 5 hari lagi nih, nggak berasa yah');
 					});
 				}
-				if ( ($user->active_auto_manage>=64800) && ($user->active_auto_manage<=108000) && (UserMeta::getMeta($user->id,"email3days")<>"yes") ) {
+				if ( ($user->active_auto_manage>=64800) && ($user->active_auto_manage<=108000) && (UserMeta::getMeta($user->id,"email1days")<>"yes") ) {
 					$count_log += 1;
-					$temp = UserMeta::createMeta("email3days","yes",$user->id);
+					$temp = UserMeta::createMeta("email1days","yes",$user->id);
 
 					//coupon diberi saat last day. coupon expired setelah x hari, tergantung setting
 					do {
@@ -165,18 +166,21 @@ class CronJobController extends Controller
 							$string .= $karakter{$pos};
 						}
 						$coupon = Coupon::where("coupon_code","=",$string)->first();
-					} while (!is_null)
+					} while (!is_null($coupon));
 					$coupon = new Coupon;
 					$coupon->coupon_value = Meta::getMeta('coupon_setting_value');
 					$coupon->coupon_percent = Meta::getMeta('coupon_setting_percentage');
 					$coupon->package_id = Meta::getMeta("coupon_setting_package_id");
 					$coupon->coupon_code = $string;
 					$coupon->user_id = $user->id;
-					$coupon->valid_until = $now->addDays(Meta::getMeta("coupon_setting_days"))->toDateTimeString();
+					$coupon->valid_until = $dt_coupon_expired;
 					$coupon->save();
 
 					$emaildata = [
 						'user' => $user,
+						'code_coupon' => $string,
+						'days_coupon' => Meta::getMeta("coupon_setting_days"),
+						'percent_coupon' => Meta::getMeta('coupon_setting_percentage'),
 					];
 					Mail::queue('emails.notif-expired', $emaildata, function ($message) use ($user) {
 						$message->from('no-reply@celebgramme.com', 'Celebgramme');
@@ -184,21 +188,41 @@ class CronJobController extends Controller
 						$message->subject('[Celebgramme] Hari ini service Celebgramme.com berakhir');
 					});
 				}
-				if ( ($user->active_auto_manage>=0) && ($user->active_auto_manage<=50000) ) {
-					$temp = UserMeta::createMeta("email3days","exp",$user->id);
+				if ( ($user->active_auto_manage>0) && ($user->active_auto_manage<=50000) ) {
+					$temp = UserMeta::createMeta("email1days","exp",$user->id);
 					$temp = UserMeta::createMeta("email5days","exp",$user->id);
 				}
 		}
-				
+		
+		$coupons = Coupon::where("user_id","!=",0)
+								->where("valid_until","=",$now->toDateString())
+								->get();
+		foreach($coupons as $coupon){
+			// if (UserMeta::getMeta($user->id,"emailExpCoupon")<>"yes") {
+				$count_log += 1;
+				// $temp = UserMeta::createMeta("emailExpCoupon","yes",$user->id);
+				$emaildata = [
+					'user' => $user,
+					'code_coupon' => $coupon->coupon_value,
+				];
+				Mail::queue('emails.notif-coupon-expired', $emaildata, function ($message) use ($user) {
+					$message->from('no-reply@celebgramme.com', 'Celebgramme');
+					$message->to($user->email);
+					$message->subject('[Celebgramme] Hari ini terakhir penggunaan coupon order anda');
+				});
+			// }
+		}
+		
 		if(App::environment() == "local"){		
 			// $file = base_path().'/../general/ig-cookies/'.$username.'-cookiess.txt';
+			echo $count_log;
 		} else{
 			// $file = base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow/logs.txt';
 			$txt = date("F j, Y, g:i a")." total rec : ".$count_log;
 			$myfile = file_put_contents(base_path().'/../public_html/general/cron-job-logs/notif-member-logs.txt', $txt.PHP_EOL , FILE_APPEND);
 		}
-				
-				
+		
+		
   }
   
 	
