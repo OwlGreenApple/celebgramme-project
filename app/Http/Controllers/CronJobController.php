@@ -204,7 +204,7 @@ class CronJobController extends Controller
 				$user = User::find($coupon->user_id);
 				$emaildata = [
 					'user' => $user,
-					'code_coupon' => $coupon->coupon_value,
+					'code_coupon' => $coupon->coupon_code,
 				];
 				Mail::queue('emails.notif-coupon-expired', $emaildata, function ($message) use ($user) {
 					$message->from('no-reply@celebgramme.com', 'Celebgramme');
