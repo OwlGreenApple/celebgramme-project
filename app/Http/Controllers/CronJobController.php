@@ -136,7 +136,7 @@ class CronJobController extends Controller
 */
   public function notif_member(){
 		$now = Carbon::now();
-		$dt_coupon_expired = $now->addDays(Meta::getMeta("coupon_setting_days"))->toDateString();
+		$dt_coupon_expired = Carbon::now()->addDays(Meta::getMeta("coupon_setting_days"))->toDateString();
 		$count_log = 0;
 		$users = User::where("active_auto_manage","<=",453600)->where("active_auto_manage",">",0)->get();
 		foreach ($users as $user){
@@ -201,6 +201,7 @@ class CronJobController extends Controller
 			// if (UserMeta::getMeta($user->id,"emailExpCoupon")<>"yes") {
 				$count_log += 1;
 				// $temp = UserMeta::createMeta("emailExpCoupon","yes",$user->id);
+				$user = User::find($coupon->user_id);
 				$emaildata = [
 					'user' => $user,
 					'code_coupon' => $coupon->coupon_value,
