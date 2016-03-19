@@ -455,14 +455,15 @@ class CronJobController extends Controller
 					"email" => $data->user_email,
 				);
 				$validator = Validator::make($temp, [
-					'email' => 'required|email|max:255',
+					// 'email' => 'required|email|max:255',
+					'email' => 'required|email|max:255|unique:users',
 				]);
 				if ($validator->fails()){
 					continue;
 				}
 
-				$user = User::where("email","=",$data->user_email)->first();
-				if (is_null($user)) {
+				// $user = User::where("email","=",$data->user_email)->first();
+				// if (is_null($user)) {
 					$karakter= 'abcdefghjklmnpqrstuvwxyz123456789';
 					$string = '';
 					for ($i = 0; $i < 8 ; $i++) {
@@ -476,7 +477,7 @@ class CronJobController extends Controller
 					$user->fullname = $data->display_name;
 					$user->type = "confirmed-email";
 					$user->save();
-				}
+				// }
 				
 				$dt = Carbon::now();
 				$order = new Order;
@@ -489,7 +490,7 @@ class CronJobController extends Controller
 				$order->user_id = $user->id;
 				$order->save();
 
-				if (is_null($user)) {
+				// if (is_null($user)) {
 					$user->active_auto_manage = $package->active_days * 86400;
 					$user->max_account = $package->max_account;
 					$user->save();
@@ -501,23 +502,23 @@ class CronJobController extends Controller
 					Mail::queue('emails.create-user', $emaildata, function ($message) use ($user) {
 						$message->from('no-reply@celebgramme.com', 'Celebgramme');
 						$message->to($user->email);
-						$message->subject('[Celebgramme] Welcome to celebgramme.com');
+						$message->subject('[Celebgramme] Welcome to celebgramme.com (Info Login & Password)');
 					});
 				
-				} else {
-					$user->active_auto_manage += $package->active_days * 86400;
-					$user->save();
+				// } else {
+					// $user->active_auto_manage += $package->active_days * 86400;
+					// $user->save();
 					
-					$emaildata = [
-							'user' => $user,
-					];
-					Mail::queue('emails.adding-time-user', $emaildata, function ($message) use ($user) {
-						$message->from('no-reply@celebgramme.com', 'Celebgramme');
-						$message->to($user->email);
-						$message->subject('[Celebgramme] Welcome to celebgramme.com');
-					});
+					// $emaildata = [
+							// 'user' => $user,
+					// ];
+					// Mail::queue('emails.adding-time-user', $emaildata, function ($message) use ($user) {
+						// $message->from('no-reply@celebgramme.com', 'Celebgramme');
+						// $message->to($user->email);
+						// $message->subject('[Celebgramme] Congratulation Pembelian Sukses, & Kredit waktu sudah ditambahkan');
+					// });
 					
-				}
+				// }
 
 				
 				$affected = DB::connection('mysqlAffiliate')->update('update wp_af1posts set post_content = "registered" where id="'.$data->ID.'"');
