@@ -455,25 +455,28 @@ class CronJobController extends Controller
 					"email" => $data->user_email,
 				);
 				$validator = Validator::make($temp, [
-					'email' => 'required|email|max:255|unique:users',
+					'email' => 'required|email|max:255',
 				]);
 				if ($validator->fails()){
 					continue;
 				}
 
-				$karakter= 'abcdefghjklmnpqrstuvwxyz123456789';
-				$string = '';
-				for ($i = 0; $i < 8 ; $i++) {
-					$pos = rand(0, strlen($karakter)-1);
-					$string .= $karakter{$pos};
-				}
+				$user = User::where("email","=",$data->user_email)->first();
+				if (is_null($user)) {
+					$karakter= 'abcdefghjklmnpqrstuvwxyz123456789';
+					$string = '';
+					for ($i = 0; $i < 8 ; $i++) {
+						$pos = rand(0, strlen($karakter)-1);
+						$string .= $karakter{$pos};
+					}
 
-				$user = new User;
-				$user->email = $data->user_email;
-				$user->password = $string;
-				$user->fullname = $data->display_name;
-				$user->type = "confirmed-email";
-				$user->save();
+					$user = new User;
+					$user->email = $data->user_email;
+					$user->password = $string;
+					$user->fullname = $data->display_name;
+					$user->type = "confirmed-email";
+					$user->save();
+				}
 				
 				$dt = Carbon::now();
 				$order = new Order;
@@ -486,20 +489,36 @@ class CronJobController extends Controller
 				$order->user_id = $user->id;
 				$order->save();
 
-				$user->active_auto_manage = $package->active_days * 86400;
-				$user->max_account = $package->max_account;
-				$user->save();
-
-				$emaildata = [
-						'user' => $user,
-						'password' => $string,
-				];
-				Mail::queue('emails.create-user', $emaildata, function ($message) use ($user) {
-					$message->from('no-reply@celebgramme.com', 'Celebgramme');
-					$message->to($user->email);
-					$message->subject('[Celebgramme] Welcome to celebgramme.com');
-				});
+				if (is_null($user)) {
+					$user->active_auto_manage = $package->active_days * 86400;
+					$user->max_account = $package->max_account;
+					$user->save();
+					
+					$emaildata = [
+							'user' => $user,
+							'password' => $string,
+					];
+					Mail::queue('emails.create-user', $emaildata, function ($message) use ($user) {
+						$message->from('no-reply@celebgramme.com', 'Celebgramme');
+						$message->to($user->email);
+						$message->subject('[Celebgramme] Welcome to celebgramme.com');
+					});
 				
+				} else {
+					$user->active_auto_manage += $package->active_days * 86400;
+					$user->save();
+					
+					$emaildata = [
+							'user' => $user,
+					];
+					Mail::queue('emails.adding-time-user', $emaildata, function ($message) use ($user) {
+						$message->from('no-reply@celebgramme.com', 'Celebgramme');
+						$message->to($user->email);
+						$message->subject('[Celebgramme] Welcome to celebgramme.com');
+					});
+					
+				}
+
 				
 				$affected = DB::connection('mysqlAffiliate')->update('update wp_af1posts set post_content = "registered" where id="'.$data->ID.'"');
 			// }
