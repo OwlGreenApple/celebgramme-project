@@ -93,7 +93,8 @@ class Setting extends Model {
 							}
 						}
 					}
-				} else if ($user->test==1){
+				} 
+				if ( ($user->test==1) || ( ($id==0) && ($followers_join==0) && ($following_join==0) ) ){
 					$url = "http://websta.me/n/".$arr['insta_username'];
 					$c = curl_init();
 					curl_setopt($c, CURLOPT_URL, $url);

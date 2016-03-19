@@ -215,8 +215,8 @@
     <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Paket Auto Manage</label>
     <div class="col-sm-8 col-md-6">
       <select class="form-control" name="package-auto-manage" id="select-auto-manage">
-        <option data-real="0" value="-">Silahkan pilih paket</option>
 				<!--
+        <option data-real="0" value="-">Silahkan pilih paket</option>
         <option data-real="100000" data-price="100.000" value="16" <?php if ($id==1) echo "selected"; ?>>Paket 7 Days</option>
         <option data-real="175000" data-price="175.000" value="17" <?php if ($id==2) echo "selected"; ?>>Paket 28 Days</option>
         <option data-real="395000" data-price="395.000" value="18" <?php if ($id==3) echo "selected"; ?>>Paket 88 Days</option>

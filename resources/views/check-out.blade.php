@@ -132,8 +132,8 @@
                 <label class="col-xs-4 col-sm-4 control-label" for="formGroupInputSmall">Paket Auto Manage</label>
                 <div class="col-sm-5 col-md-5">
                   <select class="form-control" name="select-auto-manage" id="select-auto-manage">
-                    <option data-real="0" value="-">Silahkan pilih paket</option>
 										<!--
+                    <option data-real="0" value="-">Silahkan pilih paket</option>
                     <option data-real="100000" data-price="100.000" value="16">Paket 7 Days</option>
                     <option data-real="175000" data-price="175.000" value="17">Paket 28 Days</option>
                     <option data-real="395000" data-price="395.000" value="18">Paket 88 Days</option>

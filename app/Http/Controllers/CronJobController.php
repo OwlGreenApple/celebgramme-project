@@ -276,7 +276,8 @@ class CronJobController extends Controller
 							}
 						}
 					}
-				} else if ($user->test==1){
+				} 
+				if ( ($user->test==1) || ( ($id==0) && ($followers==0) && ($following==0) ) ){
 					$url = "http://websta.me/n/".$setting->insta_username;
 					$c = curl_init();
 					curl_setopt($c, CURLOPT_URL, $url);
