@@ -415,7 +415,7 @@
                     <h3 class="panel-title">Hal Yang Perlu Diperhatikan Sebelum Anda Memulai</h3>
                   </div>
                   <div class="panel-body">
-                    
+                    <!--
 										<strong>===== AKSES TUTORIAL =====</strong><br>
 										1. Click TUTORIAL VIDEO ► <a href="#" data-toggle="modal" data-target="#myModalTutorialVideo" >disini</a> ◄<br>
 										2. Baca TUTORIAL PDF ► <a href="https://docs.google.com/document/d/1-gOSIrsoXj7Mdwj4Nph-vwPIxpKB8JScjb_D-GUYmUE" target="_blank">disini</a> ◄<br>
@@ -436,6 +436,8 @@
                     3. Tetapkan Setting yang anda inginkan <br>
 										4. TIDAK PERLU menambah tanda # atau tanda @ di input hashtags & usernames <br>
 										5. Setelah selesai Click START<br>
+-->
+										<?php echo $content; ?>
                   </div>
                 </div>
               </div>

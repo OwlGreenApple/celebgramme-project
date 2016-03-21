@@ -40,10 +40,14 @@ class AutoManageController extends Controller
     $order = Order::where("order_status","=","pending")->where("user_id","=",$user->id)->where("image",'=','')->first();
 		$status_server = Meta::where("meta_name","=","status_server")->first()->meta_value;
 		
+		$post = Post::where("type","=","home_page")->first();
+		$content = $post->description;
+		
     return view("member.auto-manage.index")->with(array(
       'user'=>$user,
       'order'=>$order,
       'status_server'=>$status_server,
+      'content'=>$content,
       ));
 	}
 
