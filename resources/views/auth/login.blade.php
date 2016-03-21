@@ -33,7 +33,7 @@
 						 <a href="">Terms & Conditions </a>pemakaian aplikasi celebgramme.com</p>
           {!! Form::close() !!}
           <a href="{{url('forgot-password')}}" class="forgot-link-landing"> Forgot password </a>
-          <a href="{{url('package')}}" class="register-link-landing"> Need an account ? </a>
+          <!--<a href="{{url('package')}}" class="register-link-landing"> Need an account ? </a>-->
 					<div class="notif-user">
 						@if (session('error') )
 							<div class="alert alert-danger">

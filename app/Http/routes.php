@@ -12,7 +12,7 @@
 */
 
 /* register package */
-Route::get('package', 'LandingPageController@package');
+// Route::get('package', 'LandingPageController@package');
 Route::get('prices', 'LandingPageController@package');
 Route::get('checkout/{id}', 'LandingPageController@checkout');
 Route::get('checkout', 'LandingPageController@checkout');
