@@ -540,7 +540,7 @@ class CronJobController extends Controller
 
 				
 				$affected = DB::connection('mysqlAffiliate')->update('update wp_af1posts set post_content = "registered" where id="'.$data->ID.'"');
-			}
+			// }
 		}
 		
 		if(App::environment() == "local"){		
