@@ -463,8 +463,10 @@ class CronJobController extends Controller
 					continue;
 				}
 
+				$flag = false;
 				$user = User::where("email","=",$data->user_email)->first();
 				if (is_null($user)) {
+					$flag = true;
 					$karakter= 'abcdefghjklmnpqrstuvwxyz123456789';
 					$string = '';
 					for ($i = 0; $i < 8 ; $i++) {
@@ -491,7 +493,7 @@ class CronJobController extends Controller
 				$order->user_id = $user->id;
 				$order->save();
 
-				if (is_null($user)) {
+				if ($flag) {
 					$new_user += 1;
 					$user->active_auto_manage = $package->active_days * 86400;
 					$user->max_account = $package->max_account;
