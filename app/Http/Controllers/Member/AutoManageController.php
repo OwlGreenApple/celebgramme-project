@@ -212,8 +212,11 @@ class AutoManageController extends Controller
         if ($setting->status == "deleted") {
 					$setting->status = "stopped";
 				}
+				$setting->insta_password = Request::input("password");
+				$setting->error_cred = 0;
         $setting->save();
-
+				
+				$setting_temp = Setting::post_info_admin($setting->id);
       } else {
 				if ( ($setting->status=="stopped") || ($setting->status=="started") ) {
 					$arr["message"]= "Account anda sudah terdaftar";
@@ -224,7 +227,11 @@ class AutoManageController extends Controller
 				if ($setting->status=="deleted") {
 					$setting->status = 'stopped';
 					$setting->user_id = $user->id;
+					$setting->insta_password = Request::input("password");
+					$setting->error_cred = 0;
 					$setting->save();
+					
+					$setting_temp = Setting::post_info_admin($setting->id);
 				}
       }
     }

@@ -197,32 +197,32 @@ class Setting extends Model {
     {
         $setting_temp = Setting::find($setting_id);
         $setting_real = Setting::where("insta_user_id","=",$setting_temp->insta_user_id)->where("type","=","real")->first();
+
+				$arr_temp = $setting_temp->toArray();
+				$arr_real = $setting_real->toArray();
+				unset($arr_temp['id']);unset($arr_temp['type']);unset($arr_temp['last_user']);unset($arr_temp['user_id']);
+				unset($arr_real['id']);unset($arr_real['type']);unset($arr_real['last_user']);unset($arr_real['user_id']);
+				$diff = array_diff_assoc($arr_temp,$arr_real);
+				$act = "description: ";
+				if ($auto) {
+					$act .= "source_update = cron ~ ";
+				}
+				foreach ($diff as $key => $value) {
+					$act .= $key." = ".strval($value)." ~ ";
+				}
+				
+				$post = Post::where("setting_id","=",$setting_id)->first();
+				if (is_null($post)){
+					$post = new Post;
+				}
+				$post->setting_id = $setting_id;
+				$post->description = $act;
+				$post->status_admin = false;
 				
 				if ( ($setting_temp->status=="stopped") && ($setting_real->status=="stopped") ) {
-					
+					$post->type = "success";
 				} else {
-					$arr_temp = $setting_temp->toArray();
-					$arr_real = $setting_real->toArray();
-					unset($arr_temp['id']);unset($arr_temp['type']);unset($arr_temp['last_user']);unset($arr_temp['user_id']);
-					unset($arr_real['id']);unset($arr_real['type']);unset($arr_real['last_user']);unset($arr_real['user_id']);
-					$diff = array_diff_assoc($arr_temp,$arr_real);
-					$act = "description: ";
-					if ($auto) {
-						$act .= "source_update = cron ~ ";
-					}
-					foreach ($diff as $key => $value) {
-							$act .= $key." = ".strval($value)." ~ ";
-					}
-					$post = Post::where("setting_id","=",$setting_id)->first();
-					if (is_null($post)){
-						$post = new Post;
-					}
-					$post->setting_id = $setting_id;
-					$post->description = $act;
 					$post->type = "pending";
-					$post->status_admin = false;
-					$post->save();
-					
 					// SettingMeta::createMeta("auto_unfollow","",$setting_temp->id);
 					
 					//send email to admin
@@ -244,6 +244,7 @@ class Setting extends Model {
 					});
 				
 				}
+				$post->save();
 				
         return $setting_temp;
     }
