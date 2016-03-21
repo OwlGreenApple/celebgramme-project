@@ -23,6 +23,7 @@ use Celebgramme\Models\Post;
 use Celebgramme\Models\Client;
 use Celebgramme\Models\Coupon;
 use Celebgramme\Models\Meta;
+use Celebgramme\Models\UserLog;
 
 use Celebgramme\Helpers\GeneralHelper;
 
@@ -441,7 +442,7 @@ class CronJobController extends Controller
 	}
 
 	public function create_user_from_affiliate(){
-		$count_log = 0;
+		$count_log = 0; $new_user = 0; $adding_time = 0;
 		$datas = DB::connection('mysqlAffiliate')->select("select p.*,u.user_email,u.display_name from wp_af1posts p inner join wp_af1users u on u.id=p.post_author where post_title like 'CLB%' and post_content='' and post_status='publish'");		
 		// dd($datas);
 		// echo $datas[0]->ID;
@@ -455,15 +456,15 @@ class CronJobController extends Controller
 					"email" => $data->user_email,
 				);
 				$validator = Validator::make($temp, [
-					// 'email' => 'required|email|max:255',
-					'email' => 'required|email|max:255|unique:users',
+					'email' => 'required|email|max:255',
+					// 'email' => 'required|email|max:255|unique:users',
 				]);
 				if ($validator->fails()){
 					continue;
 				}
 
-				// $user = User::where("email","=",$data->user_email)->first();
-				// if (is_null($user)) {
+				$user = User::where("email","=",$data->user_email)->first();
+				if (is_null($user)) {
 					$karakter= 'abcdefghjklmnpqrstuvwxyz123456789';
 					$string = '';
 					for ($i = 0; $i < 8 ; $i++) {
@@ -477,7 +478,7 @@ class CronJobController extends Controller
 					$user->fullname = $data->display_name;
 					$user->type = "confirmed-email";
 					$user->save();
-				// }
+				}
 				
 				$dt = Carbon::now();
 				$order = new Order;
@@ -490,7 +491,8 @@ class CronJobController extends Controller
 				$order->user_id = $user->id;
 				$order->save();
 
-				// if (is_null($user)) {
+				if (is_null($user)) {
+					$new_user += 1;
 					$user->active_auto_manage = $package->active_days * 86400;
 					$user->max_account = $package->max_account;
 					$user->save();
@@ -505,31 +507,47 @@ class CronJobController extends Controller
 						$message->subject('[Celebgramme] Welcome to celebgramme.com (Info Login & Password)');
 					});
 				
-				// } else {
-					// $user->active_auto_manage += $package->active_days * 86400;
-					// $user->save();
+				} else {
+					$t = $package->active_days * 86400;
+					$days = floor($t / (60*60*24));
+					$hours = floor(($t / (60*60)) % 24);
+					$minutes = floor(($t / (60)) % 60);
+					$seconds = floor($t  % 60);
+					$time = $days."D ".$hours."H ".$minutes."M ".$seconds."S ";
+
+					$user_log = new UserLog;
+					$user_log->email = $user->email;
+					$user_log->admin = "Adding time from cron";
+					$user_log->description = "give time to member. ".$time;
+					$user_log->created = $dt->toDateTimeString();
+					$user_log->save();
 					
-					// $emaildata = [
-							// 'user' => $user,
-					// ];
-					// Mail::queue('emails.adding-time-user', $emaildata, function ($message) use ($user) {
-						// $message->from('no-reply@celebgramme.com', 'Celebgramme');
-						// $message->to($user->email);
-						// $message->subject('[Celebgramme] Congratulation Pembelian Sukses, & Kredit waktu sudah ditambahkan');
-					// });
 					
-				// }
+					$adding_time += 1;
+					$user->active_auto_manage += $package->active_days * 86400;
+					$user->save();
+					
+					$emaildata = [
+							'user' => $user,
+					];
+					Mail::queue('emails.adding-time-user', $emaildata, function ($message) use ($user) {
+						$message->from('no-reply@celebgramme.com', 'Celebgramme');
+						$message->to($user->email);
+						$message->subject('[Celebgramme] Congratulation Pembelian Sukses, & Kredit waktu sudah ditambahkan');
+					});
+					
+				}
 
 				
 				$affected = DB::connection('mysqlAffiliate')->update('update wp_af1posts set post_content = "registered" where id="'.$data->ID.'"');
-			// }
+			}
 		}
 		
 		if(App::environment() == "local"){		
 			// $file = base_path().'/../general/ig-cookies/'.$username.'-cookiess.txt';
 		} else{
 			// $file = base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow/logs.txt';
-			$txt = date("F j, Y, g:i a")." total rec : ".$count_log;
+			$txt = date("F j, Y, g:i a")." total rec : ".$count_log."   - new user: ".$new_user."    - adding time: ".$adding_time;
 			$myfile = file_put_contents(base_path().'/../public_html/general/cron-job-logs/checking-cred-logs.txt', $txt.PHP_EOL , FILE_APPEND);
 		}
 		
