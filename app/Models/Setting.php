@@ -225,7 +225,7 @@ class Setting extends Model {
 					$post->type = "pending";
 					// SettingMeta::createMeta("auto_unfollow","",$setting_temp->id);
 					
-					//send email to admin
+					/*//send email to admin
 					$type_message .= "IG ACCOUNT: ".$setting_temp->insta_username;
 					$emaildata = [
 						"setting_temp" => $setting_temp,
@@ -242,7 +242,7 @@ class Setting extends Model {
 						));
 						$message->subject($type_message);
 					});
-				
+				*/
 				}
 				$post->save();
 				
