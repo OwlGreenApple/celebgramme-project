@@ -558,6 +558,7 @@ class CronJobController extends Controller
 
 
 	public function checking_cred_instagram($username,$password){  
+	//test
 		$url = "https://www.instagram.com/accounts/login/?force_classic_login";
 		if(App::environment() == "local"){		
 			$cookiefile = base_path().'/../general/ig-cookies/'.$username.'-cookiess.txt';
