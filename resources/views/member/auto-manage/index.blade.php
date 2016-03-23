@@ -518,7 +518,7 @@
       </div>
 			<div class="fl" style="margin-left:10px;">
 				<span class="server-status"></span><label style="font-size:11px;"> &nbsp Server Status : </label>
-				<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Server Status</div><div class='panel-content'><strong>Normal</strong> - Server berjalan dengan normal <br><strong>Delay</strong> - Server in High Traffic, Perubahan Settings akan Delay 120-360 menit <br><strong>Maintenance</strong> - Perubahan settings akan dijalankan saat Status Server Normal/Delay</div>"></span>
+				<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Server Status</div><div class='panel-content'><strong>Normal</strong> - Server in Normal Traffic, Perubahan Settings akan berjalan sesuai dengan load server  <br><strong>Delay</strong> - Server in High Traffic, Perubahan Settings akan berjalan sesuai dengan load server <br><strong>Maintenance</strong> - Server under maintenance, Perubahan settings akan berjalan saat Status Server Normal/Delay</div>"></span>
 				<span style="font-size:11px;color:#5abe5a;" >{{$status_server}}</span> <br>
 				
 				<label style="font-size:11px;"> Total waktu per akun : </label>
