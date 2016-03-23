@@ -499,6 +499,8 @@ class CronJobController extends Controller
 					$user->max_account = $package->max_account;
 					$user->save();
 					
+					$affected = DB::connection('mysqlAffiliate')->update('update wp_af1posts set post_content = "registered" where id="'.$data->ID.'"');
+					
 					$emaildata = [
 							'user' => $user,
 							'password' => $string,
@@ -529,6 +531,8 @@ class CronJobController extends Controller
 					$user->active_auto_manage += $package->active_days * 86400;
 					$user->save();
 					
+					$affected = DB::connection('mysqlAffiliate')->update('update wp_af1posts set post_content = "registered" where id="'.$data->ID.'"');
+					
 					$emaildata = [
 							'user' => $user,
 					];
@@ -541,7 +545,7 @@ class CronJobController extends Controller
 				}
 
 				
-				$affected = DB::connection('mysqlAffiliate')->update('update wp_af1posts set post_content = "registered" where id="'.$data->ID.'"');
+				// $affected = DB::connection('mysqlAffiliate')->update('update wp_af1posts set post_content = "registered" where id="'.$data->ID.'"');
 			// }
 		}
 		
