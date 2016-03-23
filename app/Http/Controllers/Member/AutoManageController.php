@@ -406,6 +406,8 @@ class AutoManageController extends Controller
 		
 		//hapus space di hashtags
 		$data["hashtags"] = str_replace(" ","",$data["hashtags"]);
+		$data["hashtags"] = str_replace("@","",$data["hashtags"]);
+		$data["hashtags"] = str_replace("#","",$data["hashtags"]);
 	
     if (isset($data['dont_comment_su'])) { $data['dont_comment_su'] = 1; } else { $data['dont_comment_su'] = 0; }
     if (isset($data['dont_follow_su'])) { $data['dont_follow_su'] = 1; } else { $data['dont_follow_su'] = 0; }
