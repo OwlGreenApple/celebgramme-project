@@ -51,10 +51,10 @@ return [
 
         'sqs' => [
             'driver' => 'sqs',
-            'key'    => 'your-public-key',
-            'secret' => 'your-secret-key',
-            'queue'  => 'your-queue-url',
-            'region' => 'us-east-1',
+            'key'    => 'AKIAIJ2OUAZNLRM2LFVQ',
+            'secret' => 'E3nkmXLqRTX6rF0n+i0Nptcfe6BwPQ+vk72/ye4n',
+            'queue'  => 'https://sqs.ap-southeast-1.amazonaws.com/786061576002/automation',
+            'region' => 'ap-southeast-1',
         ],
 
         'iron' => [

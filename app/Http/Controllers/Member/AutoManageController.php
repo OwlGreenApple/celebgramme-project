@@ -20,6 +20,8 @@ use Celebgramme\Models\Meta;
 use Celebgramme\Models\Client;
 use Celebgramme\Veritrans\Veritrans;
 
+use Celebgramme\Jobs\Automation;
+
 use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt;
 
 class AutoManageController extends Controller
@@ -638,4 +640,9 @@ class AutoManageController extends Controller
 			return false;
 		}
 	}
+
+	public function check(){
+			$this->dispatch(new Automation());
+	}
+	
 }

@@ -117,3 +117,4 @@ Route::any('doku-page/{action}', 'Member\PaymentController@doku_page');
 
 
 
+Route::get('check-aws', 'Member\AutoManageController@check');

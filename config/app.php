@@ -147,6 +147,7 @@ return [
         
         Anouar\Paypalpayment\PaypalpaymentServiceProvider::class,
 				GeneaLabs\LaravelCaffeine\LaravelCaffeineServiceProvider::class,
+				// Aws\Laravel\AwsServiceProvider::class,
 
     ],
 
@@ -200,6 +201,7 @@ return [
         'HTML'=> Illuminate\Html\HtmlFacade::class,
         'Paypalpayment'   => Anouar\Paypalpayment\Facades\PaypalPayment::class,
         'Carbon' => 'Carbon\Carbon',
+				// 'AWS' => Aws\Laravel\AwsFacade::class,
         
 
     ],
