@@ -23,6 +23,14 @@ class HomeController extends Controller
 {
   
 	public function test(){
+    $emaildata = [
+    ];
+    Mail::queue('emails.test', $emaildata, function ($message) {
+      $message->from('no-reply@celebgramme.com', 'Celebgramme');
+      $message->to("it2.axiapro@gmail.com");
+      $message->subject('test email');
+    });
+		return "test";
 		$user = Auth::user();
 		$decrypted = Crypt::decrypt("asd");
 		return $decrypted;
