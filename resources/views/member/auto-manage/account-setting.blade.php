@@ -172,16 +172,7 @@
 			$("#status_like").val("on");
 			$('#statusLikeOnButton').addClass('btn-primary');
 			$('#statusLikeOffButton').removeClass('btn-danger');
-			
-			if ( $("#select-follow-source").val() == "hashtags" ) {
-				$("#div-usernames").fadeOut(500);
-				$("#div-hashtags").fadeIn(500);
-			}
-			if ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) {
-				$("#div-usernames").fadeIn(500);
-				$('#div-hashtags').fadeOut(500);
-			}
-			
+			$("#div-hashtags").fadeIn(500);
 		});
 		$('#statusLikeOffButton').click(function(e){
 			$("#status_like").val("off");
@@ -198,15 +189,7 @@
 			$('#statusCommentOnButton').addClass('btn-primary');
 			$('#statusCommentOffButton').removeClass('btn-danger');
 			$('#div-comment').fadeIn(500);
-			
-			if ( $("#select-follow-source").val() == "hashtags" ) {
-				$("#div-usernames").fadeOut(500);
-				$("#div-hashtags").fadeIn(500);
-			}
-			if ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) {
-				$("#div-usernames").fadeIn(500);
-				$('#div-hashtags').fadeOut(500);
-			}
+			$("#div-hashtags").fadeIn(500);
 		});
 		$('#statusCommentOffButton').click(function(e){
 			$("#status_comment").val("off");
@@ -275,9 +258,11 @@
 		$( "#select-follow-source" ).change(function() {
 			if ( $( this ).val() == "hashtags" ) {
 				$("#div-usernames").fadeOut(500);
+				$("#div-hashtags").fadeIn(500);
 			}
 			if ( ( $( this ).val() == "followers of username" ) || ( $( this ).val() == "following of username" )) {
 				$("#div-usernames").fadeIn(500);
+				$("#div-hashtags").fadeOut(500);
 			}
 		});
 		
