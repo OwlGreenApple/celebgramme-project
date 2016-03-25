@@ -238,6 +238,7 @@ class CronJobController extends Controller
 		$count_log = 0;
 		$settings = Setting::where("type",'=','temp')
 								->where('error_cred','=',0)
+								->where('status','<>',"deleted")
 								//->where('status','=',"started")
 								->get();
 		foreach($settings as $setting) {
