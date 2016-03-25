@@ -857,7 +857,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                    
 
-<div class="row" id="div-hashtags" <?php if ( ( ($settings->status_like=="off") && ($settings->status_comment=="off")) || ($settings->follow_source=='followers of username') || ($settings->follow_source=='following of username')  ) echo "style='display:none;'" ?>>
+<div class="row" id="div-hashtags" <?php if ( ( ($settings->status_follow_unfollow=="off") && ($settings->status_like=="off") && ($settings->status_comment=="off")) || ($settings->follow_source=='followers of username') || ($settings->follow_source=='following of username')  ) echo "style='display:none;'" ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
