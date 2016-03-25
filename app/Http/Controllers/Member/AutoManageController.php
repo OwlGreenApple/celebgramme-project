@@ -361,16 +361,18 @@ class AutoManageController extends Controller
       return $arr;
 		}
 		
-		$pieces = explode(";",$data["hashtags"]);
-		if (count($pieces)<10) {
-      $arr["message"]= "Hashtags minimal harus ada 10";
-      $arr["type"]= "error";
-      return $arr;
-		}
-		if (count($pieces)>100) {
-      $arr["message"]= "Hashtags maximal 100";
-      $arr["type"]= "error";
-      return $arr;
+		if ( ( ($data['status_comment']=="on") || ($data['status_like']=="on") ) && (($data["follow_source"]=="hashtags")) ) {
+			$pieces = explode(";",$data["hashtags"]);
+			if (count($pieces)<10) {
+				$arr["message"]= "Hashtags minimal harus ada 10";
+				$arr["type"]= "error";
+				return $arr;
+			}
+			if (count($pieces)>100) {
+				$arr["message"]= "Hashtags maximal 100";
+				$arr["type"]= "error";
+				return $arr;
+			}
 		}
 		
 		if ( ($data["follow_source"]=="followers of username") || ($data["follow_source"]=="following of username") ) {

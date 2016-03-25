@@ -148,11 +148,12 @@
 
 			if ( $("#select-follow-source").val() == "hashtags" ) {
 				$("#div-usernames").fadeOut(500);
+				$("#div-hashtags").fadeIn(500);
 			}
 			if ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) {
 				$("#div-usernames").fadeIn(500);
+				$('#div-hashtags').fadeOut(500);
 			}
-			$("#div-hashtags").fadeIn(500);
 		});
 		$('#statusFollowOffButton').click(function(e){
 			$("#status_follow_unfollow").val("off");
@@ -171,7 +172,16 @@
 			$("#status_like").val("on");
 			$('#statusLikeOnButton').addClass('btn-primary');
 			$('#statusLikeOffButton').removeClass('btn-danger');
-			$("#div-hashtags").fadeIn(500);
+			
+			if ( $("#select-follow-source").val() == "hashtags" ) {
+				$("#div-usernames").fadeOut(500);
+				$("#div-hashtags").fadeIn(500);
+			}
+			if ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) {
+				$("#div-usernames").fadeIn(500);
+				$('#div-hashtags').fadeOut(500);
+			}
+			
 		});
 		$('#statusLikeOffButton').click(function(e){
 			$("#status_like").val("off");
@@ -188,7 +198,15 @@
 			$('#statusCommentOnButton').addClass('btn-primary');
 			$('#statusCommentOffButton').removeClass('btn-danger');
 			$('#div-comment').fadeIn(500);
-			$("#div-hashtags").fadeIn(500);
+			
+			if ( $("#select-follow-source").val() == "hashtags" ) {
+				$("#div-usernames").fadeOut(500);
+				$("#div-hashtags").fadeIn(500);
+			}
+			if ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) {
+				$("#div-usernames").fadeIn(500);
+				$('#div-hashtags').fadeOut(500);
+			}
 		});
 		$('#statusCommentOffButton').click(function(e){
 			$("#status_comment").val("off");
@@ -854,7 +872,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                    
 
-<div class="row" id="div-hashtags" <?php if ( ($settings->status_follow_unfollow=="off") && ($settings->status_like=="off") && ($settings->status_comment=="off")) echo "style='display:none;'" ?>>
+<div class="row" id="div-hashtags" <?php if ( ( ($settings->status_like=="off") && ($settings->status_comment=="off")) || ($settings->follow_source=='followers of username') || ($settings->follow_source=='following of username')  ) echo "style='display:none;'" ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
