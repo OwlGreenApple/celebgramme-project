@@ -375,7 +375,7 @@ class AutoManageController extends Controller
 			}
 		}
 		
-		if ( ( ($data["follow_source"]=="followers of username") || ($data["follow_source"]=="following of username") ) && && ($data['status_follow_unfollow']=="on") ) {
+		if ( ( ($data["follow_source"]=="followers of username") || ($data["follow_source"]=="following of username") ) && ($data['status_follow_unfollow']=="on") ) {
 			$pieces = explode(";",$data["username"]);
 			if (count($pieces)<10) {
 				$arr["message"]= "Usernames minimal harus ada 10";
