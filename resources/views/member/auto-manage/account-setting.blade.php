@@ -152,7 +152,9 @@
 			}
 			if ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) {
 				$("#div-usernames").fadeIn(500);
-				$('#div-hashtags').fadeOut(500);
+				if (($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))) {
+					$('#div-hashtags').fadeOut(500);
+				}
 			}
 		});
 		$('#statusFollowOffButton').click(function(e){
