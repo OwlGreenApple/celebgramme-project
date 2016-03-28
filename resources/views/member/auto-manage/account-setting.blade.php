@@ -148,11 +148,14 @@
 
 			if ( $("#select-follow-source").val() == "hashtags" ) {
 				$("#div-usernames").fadeOut(500);
+				$("#div-hashtags").fadeIn(500);
 			}
 			if ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) {
 				$("#div-usernames").fadeIn(500);
+				if (($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))) {
+					$('#div-hashtags').fadeOut(500);
+				}
 			}
-			$("#div-hashtags").fadeIn(500);
 		});
 		$('#statusFollowOffButton').click(function(e){
 			$("#status_follow_unfollow").val("off");
@@ -162,7 +165,9 @@
 			$('#div-unfollow-whitelist').fadeOut(500);
 			$("#div-usernames").fadeOut(500);
 
-			if ( ($('#statusFollowOffButton').hasClass("btn-danger")) && ($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))  ) {
+			if ( (!$('#statusFollowOffButton').hasClass("btn-danger") && ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) ) 
+				&& ($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))  ) 
+			{
 				$('#div-hashtags').fadeOut(500);
 			}
 		});
@@ -178,7 +183,9 @@
 			$('#statusLikeOnButton').removeClass('btn-primary');
 			$('#statusLikeOffButton').addClass('btn-danger');
 			
-			if ( ($('#statusFollowOffButton').hasClass("btn-danger")) && ($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))  ) {
+			if ( (!$('#statusFollowOffButton').hasClass("btn-danger") && ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) ) 
+				&& ($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))  ) 
+			{
 				$('#div-hashtags').fadeOut(500);
 			}
 		});
@@ -196,7 +203,9 @@
 			$('#statusCommentOffButton').addClass('btn-danger');
 			$('#div-comment').fadeOut(500);
 			
-			if ( ($('#statusFollowOffButton').hasClass("btn-danger")) && ($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))  ) {
+			if ( (!$('#statusFollowOffButton').hasClass("btn-danger") && ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) ) 
+				&& ($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))  ) 
+			{
 				$('#div-hashtags').fadeOut(500);
 			}
 		});
@@ -257,9 +266,13 @@
 		$( "#select-follow-source" ).change(function() {
 			if ( $( this ).val() == "hashtags" ) {
 				$("#div-usernames").fadeOut(500);
+				$("#div-hashtags").fadeIn(500);
 			}
 			if ( ( $( this ).val() == "followers of username" ) || ( $( this ).val() == "following of username" )) {
 				$("#div-usernames").fadeIn(500);
+				if (($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))) {
+					$("#div-hashtags").fadeOut(500);
+				}
 			}
 		});
 		
@@ -854,7 +867,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                    
 
-<div class="row" id="div-hashtags" <?php if ( ($settings->status_follow_unfollow=="off") && ($settings->status_like=="off") && ($settings->status_comment=="off")) echo "style='display:none;'" ?>>
+<div class="row" id="div-hashtags" <?php if ( ( ($settings->status_follow_unfollow=="off") && ($settings->status_like=="off") && ($settings->status_comment=="off")) || ( (($settings->follow_source=='followers of username') || ($settings->follow_source=='following of username')) && ($settings->status_follow_unfollow=="on") )  ) echo "style='display:none;'" ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
