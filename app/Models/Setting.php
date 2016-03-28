@@ -200,8 +200,8 @@ class Setting extends Model {
 
 				$arr_temp = $setting_temp->toArray();
 				$arr_real = $setting_real->toArray();
-				unset($arr_temp['id']);unset($arr_temp['type']);unset($arr_temp['last_user']);unset($arr_temp['user_id']);
-				unset($arr_real['id']);unset($arr_real['type']);unset($arr_real['last_user']);unset($arr_real['user_id']);
+				unset($arr_temp['id']);unset($arr_temp['type']);unset($arr_temp['last_user']);unset($arr_temp['user_id']);unset($arr_temp['start_time']);unset($arr_temp['running_time']);
+				unset($arr_real['id']);unset($arr_real['type']);unset($arr_real['last_user']);unset($arr_real['user_id']);unset($arr_real['start_time']);unset($arr_real['running_time']);
 				$diff = array_diff_assoc($arr_temp,$arr_real);
 				$act = "description: ";
 				if ($auto) {
@@ -219,7 +219,8 @@ class Setting extends Model {
 				$post->description = $act;
 				$post->status_admin = false;
 				
-				if ( ($setting_temp->status=="stopped") && ($setting_real->status=="stopped") ) {
+				//klo ada diff baru diupdate, sama statusnya started
+				if ( ( ($setting_temp->status=="stopped") && ($setting_real->status=="stopped") )  ||  (count($diff)==0)  ) {
 					$post->type = "success";
 				} else {
 					$post->type = "pending";
