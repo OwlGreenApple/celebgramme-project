@@ -49,8 +49,9 @@ if (isset($datas)) {
 				Followers : <?php echo number_format(intval (SettingMeta::getMeta($data->id,"followers")),0,'','.'); ?></p></div>
 				<?php if ($data->error_cred) { ?>
 				<div class="row im-centered"> 
-					<p class="text-danger"> *Data login tidak sesuai <br>
-						silahkan <a href="#" data-id="{{$data->id}}" class="edit-cred" data-toggle="modal" data-target="#myModal-edit-password">Edit</a></p>
+					<p class="text-danger" style="font-size:12px;"> <strong>*Data login tidak sesuai <br>
+						silahkan ubah username password anda <br>
+						---> <a href="#" data-id="{{$data->id}}" class="edit-cred" data-toggle="modal" data-target="#myModal-edit-password">disini</a> <--- </strong></p>
 				</div>
 				<?php } ?>
 				<?php if ($data->status=='started') { ?>
