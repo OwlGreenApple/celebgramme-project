@@ -324,7 +324,7 @@ class CronJobController extends Controller
 
 					$setting_real = Setting::where('insta_user_id','=',$setting_temp->insta_user_id)->where('type','=','real')->first();
 					$setting_real->error_cred = true;
-					$setting_real->status = "stopped";
+					$setting_real->status = "stopped cron";
 					$setting_real->save();
 
 					$user = User::find($setting_temp->last_user);
