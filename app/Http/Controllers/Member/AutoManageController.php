@@ -94,7 +94,7 @@ class AutoManageController extends Controller
 			
 			
     $setting_temp = Setting::find(Request::input('setting_id'));
-    $setting_temp->insta_username = Request::input('edit_username');
+    // $setting_temp->insta_username = Request::input('edit_username');
     $setting_temp->insta_password = Request::input('edit_password');
     $setting_temp->error_cred = false;
     $setting_temp->save();
