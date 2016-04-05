@@ -53,29 +53,28 @@ class AutoManageController extends Controller
 
 
   public function process_edit_password(){  
-		
     $user = Auth::user();
     $arr["message"]= "Ubah password berhasil dilakukan, sistem akan berjalan secara otomatis maksimum 1x24jam";
     $arr["type"]= "success";
 
     $data = array (
-      "insta_username"=>Request::input("edit_username"),
+      // "insta_username"=>Request::input("edit_username"),
       "insta_password"=>Request::input("edit_password"),
       "user_id"=>$user->id,
       );
 
 		$validator = Validator::make($data, [
-			'insta_username' => 'required|max:255',
+			// 'insta_username' => 'required|max:255',
 			'insta_password' => 'required',
 		]);
 		if ($validator->fails())
     {
-			$arr["message"]= "Instagram username or password required";
+			$arr["message"]= "Instagram password required";
 			$arr["type"]= "error";
 			return $arr;
 		}
 		//cek email, available username or not
-		$validator = Validator::make($data, [
+		/*$validator = Validator::make($data, [
 			'insta_username' => 'email',
 		]);
 		if (!$validator->fails())
@@ -83,9 +82,9 @@ class AutoManageController extends Controller
 			$arr["message"]= "Instagram username tidak boleh email";
 			$arr["type"]= "error";
 			return $arr;
-		}
+		}*/
 			
-		if($this->checking_cred_instagram(Request::input("edit_username"),Request::input("edit_password"))) {
+		if($this->checking_cred_instagram(Request::input("hidden-username"),Request::input("edit_password"))) {
 		} else {
 			$arr["message"]= "Instagram Login tidak valid";
 			$arr["type"]= "error";

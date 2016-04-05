@@ -229,6 +229,7 @@
     $( "body" ).on( "click", ".edit-cred", function() {
       $("#setting_id").val($(this).attr("data-id"));
       $("#edit_username").val($(this).attr("data-username"));
+      $("#hidden-username").val($(this).attr("data-username"));
     });
     $( "body" ).on( "click", ".button-action", function() {
       action = "";
@@ -633,6 +634,7 @@ hanya akun yang di start saja yang dikurangi waktunya dari total waktu pembelian
               <label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Username</label>
               <div class="col-sm-8 col-md-6">
                 <input type="text" class="form-control" placeholder="Your username" name="edit_username" id="edit_username" disabled>
+                <input type="hidden" name="hidden-username" id="hidden-username" disabled>
               </div>
             </div>  
             <div class="form-group form-group-sm row">
