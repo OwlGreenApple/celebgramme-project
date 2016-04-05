@@ -556,9 +556,9 @@ class AutoManageController extends Controller
 		// $ports[] = "10255";
 		// $ports[] = "10254";
 		//new
-		$ports[] = "10223";
-		$ports[] = "10224";
-		$ports[] = "10214";
+		$ports[] = "10207";
+		$ports[] = "10208";
+		$ports[] = "10209";
 		$port = $ports[array_rand($ports)];
 		$cred = "sugiarto:sugihproxy250";
 		$proxy = "45.79.212.85";//good proxy
