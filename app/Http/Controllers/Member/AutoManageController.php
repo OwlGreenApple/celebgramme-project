@@ -84,7 +84,7 @@ class AutoManageController extends Controller
 			return $arr;
 		}*/
 			
-		if($this->checking_cred_instagram(Request::input("hidden-username"),Request::input("edit_password"))) {
+		if($this->checking_cred_instagram(Request::input("hidden_username"),Request::input("edit_password"))) {
 		} else {
 			$arr["message"]= "Instagram Login tidak valid";
 			$arr["type"]= "error";
