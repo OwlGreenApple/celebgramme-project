@@ -16,6 +16,7 @@ use Celebgramme\Models\User;
 use Celebgramme\Veritrans\Veritrans;
 use Celebgramme\Models\Setting;
 use Celebgramme\Models\LinkUserSetting;
+use Celebgramme\Models\UserLog;
 
 use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, Redirect;
 
@@ -35,8 +36,17 @@ class AdminController extends Controller
   }
 
 	public function check_super($id){
-		$user = Auth::user();
+		$admin = Auth::user();
 		if ($user->type=="admin") {
+			$dt = Carbon::now();
+			$user = User::find($id);
+			$user_log = new UserLog;
+			$user_log->email = $user->email;
+			$user_log->admin = $admin->fullname;
+			$user_log->description = "admin (".$admin->fullname.") using super admin to access (".$user->email.")";
+			$user_log->created = $dt->toDateTimeString();
+			$user_log->save();
+			
 			Auth::loginUsingId($id);
 			return redirect("home");
 		} else {
@@ -44,3 +54,4 @@ class AdminController extends Controller
 		}
 	}
 }
+
