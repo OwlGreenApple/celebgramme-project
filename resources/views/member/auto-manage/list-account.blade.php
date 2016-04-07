@@ -51,7 +51,7 @@ if (isset($datas)) {
 				<div class="row im-centered"> 
 					<p class="text-danger" style="font-size:12px;"> <strong>*Data login tidak sesuai <br>
 						silahkan ubah username password anda <br>
-						---> <a href="#" data-id="{{$data->id}}" data-username="{{$data->insta_username}}" class="edit-cred" data-toggle="modal" data-target="#myModal-edit-password">disini</a> <--- </strong></p>
+						---> <a href="#" data-id="{{$data->id}}" data-username="{{$data->insta_username}}" class="edit-cred" data-toggle="modal" data-target="#myModal-edit-password">CLICK disini</a> <--- </strong></p>
 				</div>
 				<?php } ?>
 				<?php if ($data->status=='started') { ?>
