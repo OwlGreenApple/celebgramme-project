@@ -37,7 +37,7 @@ class AdminController extends Controller
 
 	public function check_super($id){
 		$admin = Auth::user();
-		if ($user->type=="admin") {
+		if ($admin->type=="admin") {
 			$dt = Carbon::now();
 			$user = User::find($id);
 			$user_log = new UserLog;
