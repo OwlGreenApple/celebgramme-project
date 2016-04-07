@@ -131,6 +131,7 @@ class Setting extends Model {
 				SettingMeta::createMeta("following_join",$following_join,$setting->id);
 				SettingMeta::createMeta("followers",$followers_join,$setting->id);
 				SettingMeta::createMeta("following",$following_join,$setting->id);
+				SettingMeta::createMeta("fl_filename","-",$setting->id);
 				$setting->insta_user_id = $id;
 				$setting->save();
 				
