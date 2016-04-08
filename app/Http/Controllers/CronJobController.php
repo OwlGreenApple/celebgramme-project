@@ -253,6 +253,7 @@ class CronJobController extends Controller
 					continue;
 				}
 				if ($user->test==0){
+					/*
 					$json_url = "https://api.instagram.com/v1/users/search?q=".$setting->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
 					$json = @file_get_contents($json_url);
 					if($json == TRUE) { 
@@ -278,6 +279,23 @@ class CronJobController extends Controller
 							}
 						}
 					}
+					*/
+					$json_url = "https://www.instagram.com/".$setting->insta_username."/?__a=1";
+
+
+					$json = @file_get_contents($json_url);
+					if($json === false) {
+					} else {
+						$arr_json = json_decode($json,true);
+						if (count($arr_json)>0) {
+							$found = true;
+							$id = $arr_json["user"]["id"];
+							$pp_url = $arr_json["user"]["profile_pic_url_hd"];
+							$following_join = $arr_json["user"]["follows"]["count"];
+							$followers_join = $arr_json["user"]["followed_by"]["count"];
+						}
+					}
+					
 				} 
 				if ( ($user->test==1) || ( ($id==0) && ($followers==0) && ($following==0) ) ){
 					$url = "http://websta.me/n/".$setting->insta_username;

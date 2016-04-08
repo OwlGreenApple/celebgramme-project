@@ -68,6 +68,7 @@ class Setting extends Model {
 				$id = 0;
 
 				if ($user->test==0){
+					/*
 					$json_url = "https://api.instagram.com/v1/users/search?q=".$arr['insta_username']."&client_id=03eecaad3a204f51945da8ade3e22839";
 					$json = @file_get_contents($json_url);
 					if($json == TRUE) { 
@@ -93,6 +94,22 @@ class Setting extends Model {
 							}
 						}
 					}
+					*/
+					$json_url = "https://www.instagram.com/".$arr['insta_username']."/?__a=1";
+
+
+					$json = @file_get_contents($json_url);
+					if($json === false) {
+					} else {
+						$arr_json = json_decode($json,true);
+						if (count($arr_json)>0) {
+							$id = $arr_json["user"]["id"];
+							$pp_url = $arr_json["user"]["profile_pic_url_hd"];
+							$following_join = $arr_json["user"]["follows"]["count"];
+							$followers_join = $arr_json["user"]["followed_by"]["count"];
+						}
+					}
+					
 				} 
 				if ( ($user->test==1) || ( ($id==0) && ($followers_join==0) && ($following_join==0) ) ){
 					$url = "http://websta.me/n/".$arr['insta_username'];
