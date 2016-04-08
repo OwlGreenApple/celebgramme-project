@@ -291,8 +291,8 @@ class CronJobController extends Controller
 							$found = true;
 							$id = $arr_json["user"]["id"];
 							$pp_url = $arr_json["user"]["profile_pic_url_hd"];
-							$following_join = $arr_json["user"]["follows"]["count"];
-							$followers_join = $arr_json["user"]["followed_by"]["count"];
+							$following = $arr_json["user"]["follows"]["count"];
+							$followers = $arr_json["user"]["followed_by"]["count"];
 						}
 					}
 					
