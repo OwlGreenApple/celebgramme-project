@@ -104,7 +104,7 @@ class Setting extends Model {
 						$arr_json = json_decode($json,true);
 						if (count($arr_json)>0) {
 							$id = $arr_json["user"]["id"];
-							$pp_url = $arr_json["user"]["profile_pic_url_hd"];
+							$pp_url = $arr_json["user"]["profile_pic_url"];
 							$following_join = $arr_json["user"]["follows"]["count"];
 							$followers_join = $arr_json["user"]["followed_by"]["count"];
 						}
