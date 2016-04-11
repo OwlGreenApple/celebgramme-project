@@ -509,6 +509,7 @@ class CronJobController extends Controller
 				$order_number = GeneralHelper::autoGenerateID($order, 'no_order', $str, 3, '0');
 				$order->no_order = $order_number;
 				$order->package_manage_id = 31;
+				$order->order_status = "cron dari affiliate";
 				$package = Package::find(31);
 				$order->total = $package->price;
 				$order->user_id = $user->id;
