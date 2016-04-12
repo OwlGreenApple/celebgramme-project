@@ -237,6 +237,21 @@ class AutoManageController extends Controller
 					$setting_temp = Setting::post_info_admin($setting->id);
 				}
       }
+			
+			//update user-id 
+			$ig_data = Setting::get_ig_data($setting->insta_username);
+			$id = $ig_data["id"];
+			$setting->insta_user_id = $id;
+			$setting->save();
+			$setting_real = Setting::where("insta_username","=",Request::input("username"))->where("type","=","real")->first();
+			if (!is_null($setting_real)) {
+				$setting_real->insta_user_id = $id;
+				$setting_real->save();
+			}
+			
+			
+			
+			
     }
 
     return $arr;
@@ -535,13 +550,31 @@ class AutoManageController extends Controller
 		} else {
 			$setting = Setting::find($account->id);
 			$setting->status = "deleted";
+			
+			//slug delete 
+			$last_hit = Setting::where("insta_user_id","like","delete-%")->orderBy('insta_user_id', 'desc')->first();
+			if (is_null($last_hit)) {
+				$slug = "delete-00000";
+			} else {
+				$temp_arr = explode("-", $last_hit->insta_user_id );
+				$ctr = intval($temp_arr[1]); $ctr++;
+				$slug = "delete-".str_pad($ctr, 5, "0", STR_PAD_LEFT);
+			}
+			
+			$setting->insta_user_id = $slug;
 			$setting->save();
+			$setting_real = Setting::where("insta_username","=",$setting->insta_username)->where("type","=","real")->first();
+			if (!is_null($setting_real)) {
+				$setting_real->insta_user_id = $slug;
+				$setting_real->save();
+			}
 			
 			$setting_temp = Setting::post_info_admin($setting->id, "[Celebgramme] Post Auto Manage (Delete IG Account)");
 		}
 		
 		return $arr;
 	}
+	
 
 	public function agree_terms(){  
 		$user = Auth::user();
