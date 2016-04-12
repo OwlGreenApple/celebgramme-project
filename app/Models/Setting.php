@@ -95,6 +95,7 @@ class Setting extends Model {
 						}
 					}
 					*/
+					/*
 					$json_url = "https://www.instagram.com/".$arr['insta_username']."/?__a=1";
 
 
@@ -109,6 +110,12 @@ class Setting extends Model {
 							$followers_join = $arr_json["user"]["followed_by"]["count"];
 						}
 					}
+					*/
+					$ig_data = $this->get_ig_data($arr['insta_username']);
+					$id = $ig_data["id"];
+					$pp_url = $ig_data["pp_url"];
+					$following_join = $ig_data["following"];
+					$followers_join = $ig_data["followers"];
 					
 				} 
 				if ( ($user->test==1) || ( ($id==0) && ($followers_join==0) && ($following_join==0) ) ){
@@ -268,4 +275,42 @@ class Setting extends Model {
         return $setting_temp;
     }
 
+    /*
+		* get instagram data
+		* return num of followers & following, id ig, pp url
+		*/
+    protected function get_ig_data($username) 
+		{
+			$pp_url = "";
+			$followers = 0;
+			$following = 0;
+			$id = 0; $found = false;
+				
+			$json_url = "https://www.instagram.com/".$username."/?__a=1";
+
+
+			$json = @file_get_contents($json_url);
+			if($json === false) {
+			} else {
+				$arr_json = json_decode($json,true);
+				if (count($arr_json)>0) {
+					$found = true;
+					$id = $arr_json["user"]["id"];
+					$pp_url = $arr_json["user"]["profile_pic_url"];
+					$following = $arr_json["user"]["follows"]["count"];
+					$followers = $arr_json["user"]["followed_by"]["count"];
+				}
+			}
+			
+			$arr = array(
+				"id"=>$id,
+				"pp_url"=>$pp_url,
+				"following"=>$following,
+				"followers"=>$followers,
+				"found"=>$found,
+			);
+			
+			return $arr;
+			
+		}
 }

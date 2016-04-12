@@ -284,6 +284,7 @@ class CronJobController extends Controller
 						}
 					}
 					*/
+					/*
 					$json_url = "https://www.instagram.com/".$setting->insta_username."/?__a=1";
 
 
@@ -299,6 +300,14 @@ class CronJobController extends Controller
 							$followers = $arr_json["user"]["followed_by"]["count"];
 						}
 					}
+					*/
+					$ig_data = Setting::get_ig_data($arr['insta_username']);
+					$found = $ig_data["found"];
+					$id = $ig_data["id"];
+					$pp_url = $ig_data["pp_url"];
+					$following = $ig_data["following"];
+					$followers = $ig_data["followers"];
+					
 					
 				} 
 				if ( ($user->test==1) || ( ($id==0) && ($followers==0) && ($following==0) ) ){

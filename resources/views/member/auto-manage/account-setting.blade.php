@@ -804,7 +804,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
             <select class="form-control" name="data[follow_source]" id="select-follow-source">
 							<option value="hashtags" <?php if ($settings->follow_source=='hashtags') echo "selected" ?>>Hashtags</option>
 							<option value="followers of username" <?php if ($settings->follow_source=='followers of username') echo "selected" ?>>Followers of username</option>
-							<option value="following of username" <?php if ($settings->follow_source=='following of username') echo "selected" ?>>Following of username</option>
+<!--							<option value="following of username" <?php if ($settings->follow_source=='following of username') echo "selected" ?>>Following of username</option>-->
             </select>
           </div>
         </div>
