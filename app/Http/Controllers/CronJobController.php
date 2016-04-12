@@ -301,7 +301,7 @@ class CronJobController extends Controller
 						}
 					}
 					*/
-					$ig_data = Setting::get_ig_data($arr['insta_username']);
+					$ig_data = Setting::get_ig_data($setting->insta_username);
 					$found = $ig_data["found"];
 					$id = $ig_data["id"];
 					$pp_url = $ig_data["pp_url"];
