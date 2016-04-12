@@ -7,6 +7,7 @@ use Carbon\Carbon;
 
 use Celebgramme\Models\User;
 use Celebgramme\Models\Package;
+use Celebgramme\Models\OrderMeta;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Mail;
@@ -41,6 +42,8 @@ class Order extends Model {
         $order->package_manage_id = $cdata["package_manage_id"];
         $order->coupon_id = $coupon_id;
         $order->save();
+				
+				OrderMeta::createMeta("logs","create order by member",$order->id);
 
         $user = User::find($cdata["user_id"]);
         $package = Package::find($cdata["package_manage_id"]);
@@ -63,6 +66,23 @@ class Order extends Model {
           $message->subject('[Celebgramme] Order Nomor '.$shortcode);
         });
 
+				
+				//send email to admin
+				$type_message="[Celebgramme] Order Package";
+				$type_message .= "Fullname: ".$user->fullname;
+				$emaildata = [
+					"user" => $user,
+					"status" => "order",
+				];
+				Mail::queue('emails.info-order-admin', $emaildata, function ($message) use ($type_message) {
+					$message->from('no-reply@celebgramme.com', 'Celebgramme');
+					$message->to(array(
+						"michaelsugih@gmail.com",
+						"it2.axiapro@gmail.com",
+					));
+					$message->subject($type_message);
+				});
+				
         
         return $order;
   }

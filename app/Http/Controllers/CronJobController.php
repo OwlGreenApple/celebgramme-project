@@ -103,12 +103,16 @@ class CronJobController extends Controller
 												];
 												Mail::queue('emails.info-post-admin', $emaildata, function ($message) use ($type_message) {
 													$message->from('no-reply@celebgramme.com', 'Celebgramme');
-													$message->to("celebgramme.adm@gmail.com");
+													$message->to(array(
+														"celebgramme.adm@gmail.com",
+														"it.axiapro@gmail.com",
+														"hancelebgramme@gmail.com",
+														"design.axiapro@gmail.com",
+													));
 													$message->bcc(array(
 														"celebgram@gmail.com",
 														"michaelsugih@gmail.com",
 														"it2.axiapro@gmail.com",
-														"design.axiapro@gmail.com",
 													));
 													$message->subject($type_message);
 												});
@@ -514,6 +518,8 @@ class CronJobController extends Controller
 				$order->total = $package->price;
 				$order->user_id = $user->id;
 				$order->save();
+				
+				OrderMeta::createMeta("logs","create order from affiliate",$order->id);
 
 				if ($flag) {
 					$new_user += 1;

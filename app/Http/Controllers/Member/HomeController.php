@@ -237,6 +237,22 @@ class HomeController extends Controller
       $message->subject('[Celebgramme] Order Confirmation');
     });
 
+		//send email to admin
+		$type_message="[Celebgramme] Order Package";
+		$type_message .= "Fullname: ".$user->fullname;
+		$emaildata = [
+			"user" => $user,
+			"status" => "konfirmasi pembayaran",
+		];
+		Mail::queue('emails.info-order-admin', $emaildata, function ($message) use ($type_message) {
+			$message->from('no-reply@celebgramme.com', 'Celebgramme');
+			$message->to(array(
+				"michaelsugih@gmail.com",
+				"it2.axiapro@gmail.com",
+			));
+			$message->subject($type_message);
+		});
+		
     
     return $arr;
   }
