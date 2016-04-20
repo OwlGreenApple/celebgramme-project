@@ -12,10 +12,10 @@
 */
 
 /* register package */
-// Route::get('package', 'LandingPageController@package');
-// Route::get('prices', 'LandingPageController@package');
-// Route::get('checkout/{id}', 'LandingPageController@checkout');
-Route::get('checkout', 'LandingPageController@checkout');
+Route::get('package', 'LandingPageController@package');
+Route::get('prices', 'LandingPageController@package');
+Route::get('checkout/{id}', 'LandingPageController@checkout');
+Route::get('checkout', 'LandingPageController@checkout'); //??
 Route::get('calculate-coupon', 'LandingPageController@calculate_coupon');
 Route::post('process-package', 'LandingPageController@process_package');
 
@@ -26,7 +26,7 @@ Route::get('logout', 'Auth\LoginController@getLogout');
 
 /* register */
 Route::get('register', 'Auth\RegisterController@getRegister');
-// Route::get('register-checkout', 'LandingPageController@register_checkout');
+Route::get('register-checkout', 'LandingPageController@register_checkout');
 Route::post('auth/register', ['as'=>'auth.register', 'uses'=> 'Auth\RegisterController@postRegister']);
 
 Route::get('verifyemail/{cryptedcode}', 'Member\EmailController@verifyEmail');

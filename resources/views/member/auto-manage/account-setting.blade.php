@@ -515,23 +515,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 		<div id="normal-time">
 			<div class="col-md-3 col-sm-3 border-price">
 				<div class="row im-centered"> 
-					<p class="header">7</p>
-				</div>
-				<div class="row im-centered"> 
-					<p class="header-description">Days</p>
-				</div>
-				<div class="row im-centered"> 
-					<strong>Rp. 100.000</strong>
-				</div>
-				<div class="row im-centered"> 
-				</div>
-				<div class="row im-centered button-price"> 
-					<a href="{{url('buy-more/16')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
-				</div>
-			</div>
-			<div class="col-md-3 col-sm-3 border-price">
-				<div class="row im-centered"> 
-					<p class="header">28 </p>
+					<p class="header">30</p>
 				</div>
 				<div class="row im-centered"> 
 					<p class="header-description">Days</p>
@@ -542,12 +526,28 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 				<div class="row im-centered"> 
 				</div>
 				<div class="row im-centered button-price"> 
+					<a href="{{url('buy-more/16')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-3 border-price">
+				<div class="row im-centered"> 
+					<p class="header">60 </p>
+				</div>
+				<div class="row im-centered"> 
+					<p class="header-description">Days</p>
+				</div>
+				<div class="row im-centered"> 
+					<strong>Rp. 295.000</strong>
+				</div>
+				<div class="row im-centered"> 
+				</div>
+				<div class="row im-centered button-price"> 
 					<a href="{{url('buy-more/17')}}"><input type="button" value="Buy now" class="btn btn-success"></a>
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-3 border-price">
 				<div class="row im-centered"> 
-					<p class="header">88 </p>
+					<p class="header">90 </p>
 				</div>
 				<div class="row im-centered"> 
 					<p class="header-description">Days</p>
@@ -565,7 +565,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 		<div id="extra-time">
 			<div class="col-md-3 col-sm-3 border-price">
 				<div class="row im-centered"> 
-					<p class="header">178 </p>
+					<p class="header">180 </p>
 				</div>
 				<div class="row im-centered"> 
 					<p class="header-description">Days</p>
@@ -581,7 +581,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 			</div>
 			<div class="col-md-3 col-sm-3 border-price">
 				<div class="row im-centered"> 
-					<p class="header">268 </p>
+					<p class="header">270 </p>
 				</div>
 				<div class="row im-centered"> 
 					<p class="header-description">Days</p>
@@ -597,7 +597,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 			</div>
 			<div class="col-md-3 col-sm-3 border-price">
 				<div class="row im-centered"> 
-					<p class="header">358 </p>
+					<p class="header">360 </p>
 				</div>
 				<div class="row im-centered"> 
 					<p class="header-description">Days</p>
