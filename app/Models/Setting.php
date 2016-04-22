@@ -296,7 +296,7 @@ class Setting extends Model {
 			if(App::environment() == "local"){
 				$cookiefile = base_path().'/../general/ig-cookies/cookies-grab.txt';
 			} else{
-				$cookiefile = base_path().'/storage/ig-cookies/cookies-grab.txt';
+				$cookiefile = base_path().'/../public_html/general/ig-cookies/cookies-grab.txt';
 			}
 			
 			$url = "https://www.instagram.com/".$username."/?__a=1";
