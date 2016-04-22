@@ -929,7 +929,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
 							<button type="button" class="btn <?php if ($settings->status_comment=="on") echo 'btn-primary' ?>" id="statusCommentOnButton" style="color:#fff;">ON</button>
 							<button type="button" class="btn <?php if ($settings->status_comment=="off") echo 'btn-danger' ?>" id="statusCommentOffButton" style="color:#fff;">OFF</button>
-							<input type="hidden" value="{{$settings->status_like}}" name="data[status_comment]" id="status_comment">
+							<input type="hidden" value="{{$settings->status_comment}}" name="data[status_comment]" id="status_comment">
 						</div>				
 					</div>
         </div>

@@ -9,7 +9,7 @@ use Celebgramme\Models\Client;
 
 use Celebgramme\Models\SettingMeta;
 
-use Mail;
+use Mail, App;
 
 class Setting extends Model {
 
@@ -285,7 +285,53 @@ class Setting extends Model {
 			$followers = 0;
 			$following = 0;
 			$id = 0; $found = false;
+
+			$ports[] = "10204";
+			$ports[] = "10205";
+			$ports[] = "10206";
+			$port = $ports[array_rand($ports)];
+			$cred = "sugiarto:sugihproxy250";
+			$proxy = "45.79.212.85";//good proxy
+
+			if(App::environment() == "local"){
+				$cookiefile = base_path().'/../general/ig-cookies/cookies-grab.txt';
+			} else{
+				$cookiefile = base_path().'/storage/ig-cookies/cookies-grab.txt';
+			}
+			
+			$url = "https://www.instagram.com/".$username."/?__a=1";
+			$c = curl_init();
+
+
+			curl_setopt($c, CURLOPT_PROXY, $proxy);
+			curl_setopt($c, CURLOPT_PROXYPORT, $port);
+			curl_setopt($c, CURLOPT_PROXYUSERPWD, $cred);
+			curl_setopt($c, CURLOPT_PROXYTYPE, 'HTTP');
+			curl_setopt($c, CURLOPT_URL, $url);
+			curl_setopt($c, CURLOPT_REFERER, $url);
+			curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($c, CURLOPT_COOKIEFILE, $cookiefile);
+			curl_setopt($c, CURLOPT_COOKIEJAR, $cookiefile);
+			$page = curl_exec($c);
+			curl_close($c);
+			
+			$arr_json = json_decode($page,true);
+			if (count($arr_json)>0) {
+				$found = true;
+				$id = $arr_json["user"]["id"];
+				$pp_url = $arr_json["user"]["profile_pic_url"];
+				$following = $arr_json["user"]["follows"]["count"];
+				$followers = $arr_json["user"]["followed_by"]["count"];
 				
+			} else {
+				echo "username not found";
+			}
+			
+			unlink($cookiefile);
+			
+/*			
 			$json_url = "https://www.instagram.com/".$username."/?__a=1";
 
 
@@ -301,7 +347,7 @@ class Setting extends Model {
 					$followers = $arr_json["user"]["followed_by"]["count"];
 				}
 			}
-			
+	*/		
 			$arr = array(
 				"id"=>$id,
 				"pp_url"=>$pp_url,
