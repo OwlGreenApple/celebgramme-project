@@ -294,9 +294,9 @@ class Setting extends Model {
 			$proxy = "45.79.212.85";//good proxy
 
 			if(App::environment() == "local"){
-				$cookiefile = base_path().'/../general/ig-cookies/cookies-grab.txt';
+				$cookiefile = base_path().'/../general/ig-cookies/'.$username.'-cookies-grab.txt';
 			} else{
-				$cookiefile = base_path().'/../public_html/general/ig-cookies/cookies-grab.txt';
+				$cookiefile = base_path().'/../public_html/general/ig-cookies/'.$username.'-cookies-grab.txt';
 			}
 			
 			$url = "https://www.instagram.com/".$username."/?__a=1";
