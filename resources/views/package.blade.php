@@ -63,12 +63,12 @@
 								</a>
 							</div>
 							<div class="col-sm-4 col-md-4" style="padding-right:8px;padding-left:8px;">
-								<a href="{{url('checkout')}}/27">
+								<a href="{{url('checkout')}}/17">
 									<img src="{{url('images/price/prices-06.png')}}" class="img-responsive">
 								</a>
 							</div>
 							<div class="col-sm-3 col-md-3" style="padding-right:8px;padding-left:8px;margin-top:50px;">
-								<a href="{{url('checkout')}}/17">
+								<a href="{{url('checkout')}}/18">
 									<img src="{{url('images/price/prices-05.png')}}" class="img-responsive">
 								</a>
 							</div>
@@ -79,12 +79,12 @@
 							<div class="col-sm-1 col-md-1" style="padding-right:8px;padding-left:8px;">
 							</div>
 							<div class="col-sm-3 col-md-3" style="padding-right:8px;padding-left:8px;margin-top:10px;">
-								<a href="{{url('checkout')}}/18">
+								<a href="{{url('checkout')}}/19">
 									<img src="{{url('images/price/prices-02.png')}}" class="img-responsive">
 								</a>
 							</div>
 							<div class="col-sm-3 col-md-3" style="padding-right:8px;padding-left:8px;margin-top:10px;">
-								<a href="{{url('checkout')}}/19">
+								<a href="{{url('checkout')}}/25">
 									<img src="{{url('images/price/prices-03.png')}}" class="img-responsive">
 								</a>
 							</div>
