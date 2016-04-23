@@ -63,12 +63,12 @@
 								</a>
 							</div>
 							<div class="col-sm-4 col-md-4" style="padding-right:8px;padding-left:8px;">
-								<a href="{{url('checkout')}}/17">
+								<a href="{{url('checkout')}}/18">
 									<img src="{{url('images/price/prices-06.png')}}" class="img-responsive">
 								</a>
 							</div>
 							<div class="col-sm-3 col-md-3" style="padding-right:8px;padding-left:8px;margin-top:50px;">
-								<a href="{{url('checkout')}}/18">
+								<a href="{{url('checkout')}}/17">
 									<img src="{{url('images/price/prices-05.png')}}" class="img-responsive">
 								</a>
 							</div>
