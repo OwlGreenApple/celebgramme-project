@@ -53,6 +53,7 @@
             price_auto_manage = parseInt($(this).find("option:selected").attr("data-real"));
             count_total();
           });          
+					$( "#select-auto-manage" ).change();
 
           $( "#text-coupon-code" ).keyup(function() {
 						count_total();
