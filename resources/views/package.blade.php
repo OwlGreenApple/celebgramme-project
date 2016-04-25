@@ -78,7 +78,7 @@
             <div class="row">
 							<div class="col-sm-1 col-md-1" style="padding-right:8px;padding-left:8px;">
 							</div>
-							<div class="col-sm-3 col-md-3" style="padding-right:8px;padding-left:8px;margin-top:10px;">
+							<div class="col-sm-3 col-md-3" style="padding-right:8px;padding-left:8px;margin-top:10px;margin-left:35px;">
 								<a href="{{url('checkout')}}/19">
 									<img src="{{url('images/price/prices-02.png')}}" class="img-responsive">
 								</a>
