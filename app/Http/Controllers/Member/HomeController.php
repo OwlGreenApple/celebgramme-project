@@ -247,7 +247,7 @@ class HomeController extends Controller
 		Mail::queue('emails.info-order-admin', $emaildata, function ($message) use ($type_message) {
 			$message->from('no-reply@celebgramme.com', 'Celebgramme');
 			$message->to(array(
-				"michaelsugih@gmail.com",
+				"celebgramme@gmail.com",
 				"it2.axiapro@gmail.com",
 			));
 			$message->subject($type_message);
