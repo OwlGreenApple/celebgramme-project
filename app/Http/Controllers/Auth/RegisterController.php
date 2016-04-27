@@ -132,7 +132,7 @@ class RegisterController extends Controller
         
         $order = Order::createOrder($data, true);
         // return redirect('/home');
-        return Redirect::to("http://celebgramme.com/email-konfirmasi/");
+        return Redirect::to("http://celebgramme.com/halaman-konfirmasi/");
       }
       
       if ($checkout_data["payment_method"]== 2) {
