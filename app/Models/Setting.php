@@ -326,7 +326,7 @@ class Setting extends Model {
 				$followers = $arr_json["user"]["followed_by"]["count"];
 				
 			} else {
-				echo "username not found";
+				// echo "username not found";
 			}
 			
 			unlink($cookiefile);
