@@ -57,7 +57,7 @@
         </div>
         <div class="content-package container col-sm-8 col-md-8">  
 
-          <h3 class="price-list"> Registrasi Email</h3>
+          <h3 class="price-list"> Registrasi User</h3>
           {!! Form::open(array('url'=>URL::ROUTE('auth.register'),'method'=>'post','class'=>"form-signin",)) !!}
             {!! csrf_field() !!}
 <!--          <form action="{{url('process-package')}}" method="POST" class="form-signin"> -->
@@ -140,16 +140,16 @@
 
       <div class="footer-package row container">
         <div class="footer-center container row">
-          <div class="fl copyright col-md-6 col-sm-3">
-            Celebgramme.com is NOT affiliated with Instagram.com in anyway
+          <div class="copyright col-md-6 col-sm-6">
+            Celebgramme.com © 2015-2016
           </div>
-          <div class="col-md-6 col-sm-5 fl footer-helper ">
-            <a href="http://celebgramme.com/our-products/auto-manage">Our Products </a>| 
-            <a href="http://celebgramme.com/auto-manage">How It Works </a>  | 
-            <a href="http://celebgramme.com/prices">Prices </a>| 
+					<div class="col-md-2 col-sm-2">
+          </div>
+          <div class="col-md-4 col-sm-4 footer-helper ">
             <a href="http://celebgramme.com/blog">Blog </a>| 
-            <a href="http://celebgramme.com/faq">FAQ  </a>| 
             <a href="http://celebgramme.com/support">Support  </a>|  
+            <a href="http://celebgramme.com/faq">FAQ  </a>| 
+            <a href="http://celebgramme.com/prices">Prices </a>| 
             <a href="{{url('login')}}">Log in</a>
           </div>
           <div class="fn">
