@@ -62,6 +62,7 @@ Route::group(['middleware' => 'auth'], function()
   Route::post('process-like', 'Member\HomeController@process_like');
 
   Route::get('confirm-payment', 'Member\HomeController@confirm_payment');
+  Route::get('get-payment-total', 'Member\HomeController@get_payment_total');
   Route::post('process-payment', 'Member\HomeController@process_payment');
 
   

@@ -16,6 +16,7 @@ use Celebgramme\Models\User;
 use Celebgramme\Veritrans\Veritrans;
 use Celebgramme\Models\Setting;
 use Celebgramme\Models\LinkUserSetting;
+use Celebgramme\Models\Coupon;
 
 use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, Redirect;
 
@@ -167,6 +168,17 @@ class HomeController extends Controller
       ));
 	}
   
+	public function get_payment_total()
+	{
+		$order = Order::where("no_order","=","OCLB".Request::input("no_order"))->first();
+		if (!is_null($order)) {
+			$total = $order->total - $order->discount ; 
+			return "Rp. ".number_format($total,0,'','.');
+		} else {
+			return "Rp. 0";
+		}
+	}
+	
   public function process_payment()
   {
     $user = Auth::user();
@@ -199,7 +211,7 @@ class HomeController extends Controller
       $arr["type"]= "error";
       return $arr;
     }
-    
+		
     if(App::environment() == "local"){
       $destinationPath = base_path().'/../htdocs/general/images/confirm-payment/';
     } else {

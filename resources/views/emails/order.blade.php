@@ -4,7 +4,7 @@ Info Order anda adalah sebagai berikut <br>
 <strong>No Order :</strong> {{$no_order}} <br>
 <strong>Nama :</strong> {{$user->fullname}} <br>
 <strong>Status Order :</strong> {{$status}} <br>
-Anda telah memesan paket {{$package->package_name}} = <strong>Rp. {{number_format($order->total,0,'','.')}} </strong><br>
+Anda telah memesan paket {{$package->package_name}} = <strong>Rp. {{number_format($order->total - $order->discount,0,'','.')}} </strong><br>
 <br>
 <?php if ( $status == "Belum lunas" ) { ?>
 	Harap SEGERA melakukan pembayaran,<br> 

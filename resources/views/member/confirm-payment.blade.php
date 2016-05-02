@@ -66,6 +66,29 @@
     $("input:text").focus(function() { $(this).select(); } );
     $("#send-like").focus(function() { $(this).select(); } );
     $("#alert").hide();
+		// $("body").on('change', '#no_order',function(e) {
+		$("#no_order").keyup(function() {
+      $.ajax({
+          type: 'get',
+          url: "<?php echo url('get-payment-total'); ?>",
+          data: {
+						no_order : $("#no_order").val()
+					},
+          dataType: 'text',
+          beforeSend: function()
+          {
+            $("#div-loading").show();
+          },
+          success: function(result) {
+						// $('#result').html(data);
+						$("#div-loading").hide();
+						console.log(result);
+						$("#total").html(result);
+          }
+      });
+
+		
+		});
     $('#button-process').click(function(e){
       var uf = $('#form-confirm');
       var fd = new FormData(uf[0]);
@@ -155,7 +178,10 @@
     <div class="form-group form-group-sm row">
       <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Jumlah Transfer</label>
       <div class="col-sm-8 col-md-6">
+			<!--
         <input type="number" class="form-control" placeholder="Jumlah Transfer" name="total" onkeypress="return isNumberKey(event)" id="total" value=0>
+				-->
+				<label class="control-label" for="formGroupInputSmall" id="total"></label>
       </div>
     </div>  
     <div class="form-group form-group-sm row">

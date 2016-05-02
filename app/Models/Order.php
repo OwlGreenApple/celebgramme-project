@@ -25,6 +25,15 @@ class Order extends Model {
                     ->where("valid_until",">=",$dt->toDateTimeString())->first();
         if (!is_null($coupon)) {
             $coupon_id = $coupon->id;
+						
+					if ($coupon->coupon_percent == 0 ) {
+						$order_discount = $coupon->coupon_value;
+					} else if ($coupon->coupon_value == 0 ) {
+						$package = Package::find($cdata["package_manage_id"]);
+						$val = floor ( $coupon->coupon_percent / 100 * $package->price );
+						$order_discount = $val;
+					}
+						
         }
 
 
@@ -37,6 +46,7 @@ class Order extends Model {
         $order->order_status = $cdata["order_status"];
         $order->user_id = $cdata["user_id"];
         $order->total = $cdata["order_total"];
+        $order->discount = $order_discount;
         // $order->package_id = $cdata["package_id"];
         $order->package_id = 0;
         $order->package_manage_id = $cdata["package_manage_id"];
