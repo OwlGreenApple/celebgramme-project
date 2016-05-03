@@ -36,6 +36,8 @@ class Order extends Model {
 						
         }
 
+				//unique code 
+				$unique_code = mt_rand(1, 1000);
 
         $order = new Order;
     		
@@ -45,7 +47,7 @@ class Order extends Model {
         $order->order_type = $cdata["order_type"];
         $order->order_status = $cdata["order_status"];
         $order->user_id = $cdata["user_id"];
-        $order->total = $cdata["order_total"];
+        $order->total = $cdata["order_total"] + $unique_code;
         $order->discount = $order_discount;
         // $order->package_id = $cdata["package_id"];
         $order->package_id = 0;
