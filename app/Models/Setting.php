@@ -210,10 +210,12 @@ class Setting extends Model {
 				$setting->insta_user_id = $id;
         $setting->save();
 
+				/* needed ??
         $linkUserSetting = new LinkUserSetting;
         $linkUserSetting->user_id=$arr['user_id'];
         $linkUserSetting->setting_id=$setting->id;
         $linkUserSetting->save();
+				*/
         return "";
 	}
 

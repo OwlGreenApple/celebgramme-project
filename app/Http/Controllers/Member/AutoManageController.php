@@ -206,6 +206,10 @@ class AutoManageController extends Controller
                           ->where("setting_id","=",$setting->id)
                           ->first();
       if (is_null($linkUserSetting)) {
+				$arr["message"]= "Instagram username sudah digunakan";
+				$arr["type"]= "error";
+				return $arr;
+				/*
         $linkUserSetting = new LinkUserSetting;
         $linkUserSetting->user_id=$user->id;
         $linkUserSetting->setting_id=$setting->id;
@@ -220,6 +224,7 @@ class AutoManageController extends Controller
         $setting->save();
 				
 				$setting_temp = Setting::post_info_admin($setting->id);
+				*/
       } else {
 				if ( ($setting->status=="stopped") || ($setting->status=="started") ) {
 					$arr["message"]= "Account anda sudah terdaftar";
@@ -550,6 +555,12 @@ class AutoManageController extends Controller
 		} else {
 			$setting = Setting::find($account->id);
 			$setting->status = "deleted";
+			
+			//delete link 
+			$deleteLink = LinkUserSetting::
+											where("setting_id","=",$account->id)
+											->where("user_id","=",$user->id)
+											->delete();
 			
 			//slug delete 
 			$last_hit = Setting::where("insta_user_id","like","delete-%")->orderBy('insta_user_id', 'desc')->first();
