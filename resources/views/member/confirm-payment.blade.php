@@ -15,19 +15,19 @@
     var flag=true;
     error_message="";
 				if($('#no_order').val()=="") {
-					error_message+="No Order tidak boleh kosong diisi <br>";
+					error_message+="No Order tidak boleh kosong <br>";
 					flag=false;
 				}
 				if($('#nama_bank').val()=="") {
-					error_message+="Nama Bank tidak boleh kosong diisi <br>";
+					error_message+="Nama Bank tidak boleh kosong <br>";
 					flag=false;
 				}
 				if($('#no_rekening').val()=="") {
-					error_message+="No Rekening tidak boleh kosong diisi <br>";
+					error_message+="No Rekening tidak boleh kosong <br>";
 					flag=false;
 				}
 				if($('#nama').val()=="") {
-					error_message+="Nama Rekening tidak boleh kosong diisi <br>";
+					error_message+="Nama Rekening tidak boleh kosong <br>";
 					flag=false;
 				}
 				if($('#photo').val()=="") {

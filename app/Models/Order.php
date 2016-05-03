@@ -20,7 +20,7 @@ class Order extends Model {
 	protected function createOrder($cdata,$flag)
 	{
         $dt = Carbon::now();
-        $coupon_id = 0;
+        $coupon_id = 0;$order_discount = 0;
         $coupon = Coupon::where("coupon_code","=",$cdata["coupon_code"])
                     ->where("valid_until",">=",$dt->toDateTimeString())->first();
         if (!is_null($coupon)) {

@@ -212,6 +212,24 @@ class HomeController extends Controller
       return $arr;
     }
 		
+    if (Request::input("nama")=="") {
+      $arr["message"]= "Nama Pemilik Rekening tidak boleh kosong";
+      $arr["type"]= "error";
+      return $arr;
+    }
+		
+    if (Request::input("nama_bank")=="") {
+      $arr["message"]= "Nama Bank tidak boleh kosong";
+      $arr["type"]= "error";
+      return $arr;
+    }
+		
+    if (Request::input("no_rekening")=="") {
+      $arr["message"]= "Nomor Rekening tidak boleh kosong";
+      $arr["type"]= "error";
+      return $arr;
+    }
+		
     if(App::environment() == "local"){
       $destinationPath = base_path().'/../htdocs/general/images/confirm-payment/';
     } else {
