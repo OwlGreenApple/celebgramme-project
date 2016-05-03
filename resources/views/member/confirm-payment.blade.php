@@ -84,6 +84,7 @@
 						$("#div-loading").hide();
 						console.log(result);
 						$("#total").html(result);
+						$("#hidden-total").html(result);
           }
       });
 
@@ -181,6 +182,7 @@
 			<!--
         <input type="number" class="form-control" placeholder="Jumlah Transfer" name="total" onkeypress="return isNumberKey(event)" id="total" value=0>
 				-->
+				<input type="hidden" name="total" id="hidden-total">
 				<label class="control-label" for="formGroupInputSmall" id="total"></label>
       </div>
     </div>  
