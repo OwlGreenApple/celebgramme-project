@@ -55,7 +55,7 @@ class Order extends Model {
         $order->coupon_id = $coupon_id;
         $order->save();
 				
-				OrderMeta::createMeta("logs","create order by member",$order->id);
+				OrderMeta::createMeta("logs","create order by ".$cdata["logs"],$order->id);
 
         $user = User::find($cdata["user_id"]);
         $package = Package::find($cdata["package_manage_id"]);

@@ -128,6 +128,7 @@ class RegisterController extends Controller
           "package_id" => $checkout_data["package_id"],
           "package_manage_id" => $checkout_data["package_manage_id"],
           "coupon_code" => $checkout_data["coupon_code"],
+          "logs" => "NEW MEMBER",
         );
         
         $order = Order::createOrder($data, true);

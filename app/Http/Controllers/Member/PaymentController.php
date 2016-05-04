@@ -64,6 +64,7 @@ class PaymentController extends Controller
         "package_id" => Input::get("package-daily-likes"),
         "package_manage_id" => Input::get("package-auto-manage"),
         "coupon_code" => Input::get("coupon-code"),
+        "logs" => "EXISTING MEMBER",
       );
       
       $order = Order::createOrder($data,true);
