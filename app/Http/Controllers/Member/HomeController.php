@@ -259,14 +259,12 @@ class HomeController extends Controller
       $message->from('no-reply@celebgramme.com', 'Celebgramme');
       $message->to($user->email);
       $message->bcc(array(
-        "celebgram@gmail.com",
-        "michaelsugih@gmail.com",
         "it2.axiapro@gmail.com",
-        "celebgramme.adm@gmail.com",
+				"celebgramme@gmail.com",
         ));
       $message->subject('[Celebgramme] Order Confirmation');
     });
-
+/*
 		//send email to admin
 		$type_message="[Celebgramme] Order Package";
 		$type_message .= "Fullname: ".$user->fullname;
@@ -283,7 +281,7 @@ class HomeController extends Controller
 			$message->subject($type_message);
 		});
 		
-    
+  */  
     return $arr;
   }
   

@@ -84,7 +84,7 @@
 						$("#div-loading").hide();
 						console.log(result);
 						$("#total").html(result);
-						$("#hidden-total").html(result);
+						$("#hidden-total").val(result);
           }
       });
 
