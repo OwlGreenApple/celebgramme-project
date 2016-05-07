@@ -36,7 +36,7 @@ class EmailController extends Controller
       $url = 'http://localhost/celebgramme/public/verifyemail/';
     }
     else if (App::environment() == 'production'){
-      $url = 'http://celebgramme.com/celebgramme/verifyemail/';
+      $url = 'https://celebgramme.com/celebgramme/verifyemail/';
     }
     $secret_data = [
       'email' => $user->email,
