@@ -109,27 +109,40 @@
 
     $("#alert").hide();
 
-		$('#followButton').click(function(e){
-			$("#activity").val("follow");
-			$('#followButton').addClass('btn-success');
-			$('#unfollowButton').removeClass('btn-success');
-			$('#div-unfollow-whitelist').fadeOut(500);
+		$('#followYesButton').click(function(e){
+			$("#status_follow").val("on");
+			$('#followYesButton').addClass('btn-success');
+			$('#followNoButton').removeClass('btn-danger');
 
-			$('.status-unfollow').fadeIn(500);
+			$('.status-follow-source').fadeIn(500);
 			if ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) {
 				$("#div-usernames").fadeIn(500);
 			}
 			
 		});
-		$('#unfollowButton').click(function(e){
-			$("#activity").val("unfollow");
-			$('#followButton').removeClass('btn-success');
-			$('#unfollowButton').addClass('btn-success');
-			$('#div-unfollow-whitelist').fadeIn(500);
+		$('#followNoButton').click(function(e){
+			$("#status_follow").val("off");
+			$('#followYesButton').removeClass('btn-success');
+			$('#followNoButton').addClass('btn-danger');
 
-			$('.status-unfollow').fadeOut(500);
+			$('.status-follow-source').fadeOut(500);
 			$('#div-usernames').fadeOut(500);
 			
+		});
+		
+		$('#unfollowYesButton').click(function(e){
+			$("#status_unfollow").val("on");
+			$('#unfollowYesButton').addClass('btn-success');
+			$('#unfollowNoButton').removeClass('btn-danger');
+			$('#div-unfollow-whitelist').fadeIn(500);
+			$('.status-unfollow').fadeIn(500);
+		});
+		$('#unfollowNoButton').click(function(e){
+			$("#status_unfollow").val("off");
+			$('#unfollowYesButton').removeClass('btn-success');
+			$('#unfollowNoButton').addClass('btn-danger');
+			$('#div-unfollow-whitelist').fadeOut(500);
+			$('.status-unfollow').fadeOut(500);
 		});
 		
 
@@ -142,7 +155,7 @@
 			$('#statusFollowOffButton').removeClass('btn-danger');
 			$(".status-follow").fadeIn(500);
 			
-			if ($('#unfollowButton').hasClass("btn-success")) {
+			if ($('#unfollowYesButton').hasClass("btn-success")) {
 				$('#div-unfollow-whitelist').fadeIn(500);
 			}
 
@@ -768,6 +781,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 					</div>
 
 
+					<!--
 					<div class="col-md-4 status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 						<label>Activity</label>
 						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Follow Activity</div><div class='panel-content'>PILIH salah satu <strong>Follow / Unfollow</strong>. Tidak bisa bersamaan</div>">
@@ -778,24 +792,46 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 							<input type="hidden" value="{{$settings->activity}}" name="data[activity]" id="activity">
 						</div>				
 					</div>				
+					-->
+					<div class="col-md-4 status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
+						<label>Follow</label>
+						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Follow Activity</div><div class='panel-content'>PILIH salah satu <strong>Yes / No</strong>. </div>">
+						</span>
+						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
+							<button type="button" class="btn <?php if ($settings->status_follow=="on") echo 'btn-success' ?>" id="followYesButton" style="color:#fff;">Yes</button>
+							<button type="button" class="btn <?php if ($settings->status_follow=="off") echo 'btn-danger' ?>" id="followNoButton" style="color:#fff;">No</button>
+							<input type="hidden" value="{{$settings->status_follow}}" name="data[status_follow]" id="status_follow">
+						</div>				
+					</div>				
+					<div class="col-md-4 status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
+						<label>Unfollow</label>
+						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Unfollow Activity</div><div class='panel-content'>PILIH salah satu <strong>Yes / No</strong>.</div>">
+						</span>
+						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
+							<button type="button" class="btn <?php if ($settings->status_unfollow=="on") echo 'btn-success' ?>" id="unfollowYesButton" style="color:#fff;">Yes</button>
+							<button type="button" class="btn <?php if ($settings->status_unfollow=="off") echo 'btn-danger' ?>" id="unfollowNoButton" style="color:#fff;">No</button>
+							<input type="hidden" value="{{$settings->status_unfollow}}" name="data[status_unfollow]" id="status_unfollow">
+						</div>				
+					</div>				
+					
         </div>
 
+					<!--
         <div class="row status-follow status-unfollow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
           <div class="col-md-12 checkbox">
-            <label><input type="checkbox" name="data[dont_follow_su]" <?php if($settings->dont_follow_su) echo "checked"; ?> >Don't Follow same user</label> 
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Dont follow same user</div><div class='panel-content'><strong>Tidak akan Follow lagi user yang sama</strong>, setelah anda Unfollow mereka.</div>">
+            <label><input type="checkbox" name="data[dont_follow_su]" <?php if($settings->dont_follow_su) echo "checked"; ?> >Don't Unfollow Followers</label> 
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Dont follow same user</div><div class='panel-content'><strong>Tidak akan Unfollow lagi user yang sudah menjadi followers</strong>.</div>">
 						</span>
           </div>
-					<!--
           <div class="col-md-12 checkbox" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
             <label><input type="checkbox" name="data[dont_follow_pu]" <?php if($settings->dont_follow_pu) echo "checked"; ?> >Dont Follow private user</label> 
 						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Dont follow private user</div><div class='panel-content'><strong>Tidak akan Follow </strong>Private Account User</div>">
 						</span>
           </div>
-					-->
         </div>
-        <div class="row status-follow status-unfollow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
-          <div class="col-md-4">
+					-->
+        <div class="row status-follow status-follow status-follow-source" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
+          <div class="col-md-4" style ="margin-top:10px;">
             <label>Follow source</label> 
 						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Follow Source</div><div class='panel-content'>
 						Pilih 1 dari 3 Follow Sources ini (Hanya yang dipilih yang dijalankan) : <br>
