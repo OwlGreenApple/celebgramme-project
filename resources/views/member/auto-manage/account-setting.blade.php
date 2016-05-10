@@ -849,7 +849,33 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                        
 
-<div class="row" id="div-unfollow-whitelist" <?php if ( ($settings->activity=="follow") || ($settings->status_follow_unfollow=="off") ) { echo "style='display:none;'"; } ?>>
+<div class="row" id="div-usernames" <?php if ( ($settings->follow_source=='hashtags') || ($settings->status_follow_unfollow=="off") ) echo "style='display:none;'" ?>>
+  <div class="col-md-12 col-sm-12">
+    <div class="panel panel-info ">
+      <div class="panel-heading">
+        <h3 class="panel-title">Media source : Usernames</h3>
+      </div>
+      <div class="panel-body">
+
+        <div class="row">
+          <div class="col-md-11">
+            <label>Usernames</label> 
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Media source : Usernames</div><div class="panel-content">• <strong>Add MIN 10 username</strong> jika menggunakan "Usernames" di Media Source. <br>• Anda dapat menambahkan <strong>MAX 50 usernames.</strong></div>'></span>
+          </div>
+					<div class="col-md-1 col-sm-1 col-xm-1">
+						<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-username">copy</p>
+          </div>
+					<div class="col-md-12">						
+						<textarea class="selectize-default" id="textarea-username" name="data[username]">{{$settings->username}}</textarea>
+					</div>
+        </div>
+
+      </div>
+    </div>
+  </div>  
+</div>                    
+
+<div class="row" id="div-unfollow-whitelist" <?php if ( ($settings->status_unfollow=="off")  ) { echo "style='display:none;'"; } ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -870,32 +896,6 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 						<textarea class="selectize-default" id="textarea-unfollow-whitelist" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>
 					</div>
 					
-        </div>
-
-      </div>
-    </div>
-  </div>  
-</div>                    
-
-<div class="row" id="div-usernames" <?php if ( ($settings->follow_source=='hashtags') || ($settings->status_follow_unfollow=="off") ) echo "style='display:none;'" ?>>
-  <div class="col-md-12 col-sm-12">
-    <div class="panel panel-info ">
-      <div class="panel-heading">
-        <h3 class="panel-title">Media source : Usernames</h3>
-      </div>
-      <div class="panel-body">
-
-        <div class="row">
-          <div class="col-md-11">
-            <label>Usernames</label> 
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Media source : Usernames</div><div class="panel-content">• <strong>Add MIN 10 username</strong> jika menggunakan "Usernames" di Media Source. <br>• Anda dapat menambahkan <strong>MAX 50 usernames.</strong></div>'></span>
-          </div>
-					<div class="col-md-1 col-sm-1 col-xm-1">
-						<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-username">copy</p>
-          </div>
-					<div class="col-md-12">						
-						<textarea class="selectize-default" id="textarea-username" name="data[username]">{{$settings->username}}</textarea>
-					</div>
         </div>
 
       </div>
