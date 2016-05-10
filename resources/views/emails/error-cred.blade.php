@@ -6,7 +6,7 @@ Ada perubahan di akun Instagram anda.
 <br>
 <strong>CARA melakukan UPDATE :</strong>  <br>
 silahkan Login ke Celebgramme kembali disini <br>
-click to <a href="http://celebgramme.com/celebgramme"> ---> LOGIN <--- </a> <br>
+click to <a href="https://celebgramme.com/celebgramme"> ---> LOGIN <--- </a> <br>
 <br>
 EDIT akun Instagram anda<br>
 UPDATE username & password anda <br>
