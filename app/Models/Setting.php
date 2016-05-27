@@ -290,9 +290,9 @@ class Setting extends Model {
 			$following = 0;
 			$id = 0; $found = false;
 
-			$ports[] = "10204";
-			$ports[] = "10205";
-			$ports[] = "10206";
+			$ports[] = "10161"; 
+			$ports[] = "10162";
+			$ports[] = "10163";
 			$port = $ports[array_rand($ports)];
 			$cred = "sugiarto:sugihproxy250";
 			$proxy = "45.79.212.85";//good proxy
