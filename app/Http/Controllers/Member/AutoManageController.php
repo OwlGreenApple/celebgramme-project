@@ -18,6 +18,7 @@ use Celebgramme\Models\LinkUserSetting;
 use Celebgramme\Models\Post;
 use Celebgramme\Models\Meta;
 use Celebgramme\Models\Client;
+use Celebgramme\Models\SettingHelper;
 use Celebgramme\Veritrans\Veritrans;
 
 use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt;
@@ -99,6 +100,13 @@ class AutoManageController extends Controller
     $setting_temp->save();
 
     $setting_temp = Setting::post_info_admin($setting_temp->id);
+		
+		//for automation purpose
+		$setting_helper = SettingHelper::where("setting_id","=",Request::input('setting_id'))->first();
+		if (!is_null($setting_helper)) {
+			$setting_helper->cookies = "";
+			$setting_helper->save();
+		}
 
     return $arr;
   }
