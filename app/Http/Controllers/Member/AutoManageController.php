@@ -495,6 +495,13 @@ class AutoManageController extends Controller
           $setting_temp->status = "started";
           $setting_temp->start_time = $dt->toDateTimeString();
           $setting_temp->running_time = $dt->toDateTimeString();
+					
+					//for automation purpose
+					$setting_helper = SettingHelper::where("setting_id","=",$setting_temp->id)->first();
+					if (!is_null($setting_helper)) {
+						$setting_helper->cookies = "";
+						$setting_helper->save();
+					}
         }
 
         if (Request::input('action')=='stop') {
@@ -528,6 +535,13 @@ class AutoManageController extends Controller
           $setting_temp->status = "started";
           $setting_temp->start_time = $dt->toDateTimeString();
           $setting_temp->running_time = $dt->toDateTimeString();
+
+					//for automation purpose
+					$setting_helper = SettingHelper::where("setting_id","=",$setting_temp->id)->first();
+					if (!is_null($setting_helper)) {
+						$setting_helper->cookies = "";
+						$setting_helper->save();
+					}
         }
 
         if (Request::input('action')=='stop') {
