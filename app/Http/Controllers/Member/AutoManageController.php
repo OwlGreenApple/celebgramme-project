@@ -172,6 +172,7 @@ class AutoManageController extends Controller
 				return $arr;
 			}
 		} else if ($user->test==2){
+			/*
 			$found = false;
 			$json_url = "https://api.instagram.com/v1/users/search?q=".Request::input("username")."&client_id=03eecaad3a204f51945da8ade3e22839";
 			$json = @file_get_contents($json_url);
@@ -186,7 +187,10 @@ class AutoManageController extends Controller
 					}
 				}
 			}
-			if (!$found) {
+			*/
+			$ig_data = Setting::get_ig_data(Request::input("username"));			
+			if (!$ig_data["found"]) {
+			// if (!$found) {
 				$arr["message"]= "Instagram username not found";
 				$arr["type"]= "error";
 				return $arr;
@@ -618,13 +622,8 @@ class AutoManageController extends Controller
 	}
 
 	public function checking_cred_instagram($username,$password){  
-		//old
-		// $ports[] = "10255";
-		// $ports[] = "10254";
-		//new
-		$ports[] = "10161"; 
-		$ports[] = "10162";
-		$ports[] = "10163";
+		$ports[] = "10175"; 
+		$ports[] = "10176";
 		$port = $ports[array_rand($ports)];
 		$cred = "sugiarto:sugihproxy250";
 		$proxy = "45.79.212.85";//good proxy

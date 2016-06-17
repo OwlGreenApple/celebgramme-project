@@ -108,56 +108,28 @@
     });
 
     $("#alert").hide();
-		
-		/*
-like post of username
-hashtags & like post of username
-followers of username & like post of username
-*/
 
-
-		$('#autoButton').click(function(e){
-			$("#activity").val("auto");
-			
-			$("#status_follow").val("on");
-			$("#status_unfollow").val("off");
-			
-			$('#autoButton').addClass('btn-success');
-			$('#followButton').removeClass('btn-success');
-			$('#unfollowButton').removeClass('btn-success');
-			
-			$('#div-unfollow-whitelist').fadeOut(500);
-
-			$('.status-unfollow').fadeIn(500);
-			if ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" ) || ( $("#select-follow-source").val() == "like post of username" ) || ( $("#select-follow-source").val() == "hashtags & like post of username" ) || ( $("#select-follow-source").val() == "followers of username & like post of username" ) ) {
-				$("#div-usernames").fadeIn(500);
-			}
-		});
-		
 		$('#followButton').click(function(e){
-			$("#activity").val("follow");
-			
 			$("#status_follow").val("on");
 			$("#status_unfollow").val("off");
 			
-			$('#autoButton').removeClass('btn-success');
+			$("#activity").val("follow");
 			$('#followButton').addClass('btn-success');
 			$('#unfollowButton').removeClass('btn-success');
 			$('#div-unfollow-whitelist').fadeOut(500);
 
 			$('.status-unfollow').fadeIn(500);
-			if ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" ) || ( $("#select-follow-source").val() == "like post of username" ) || ( $("#select-follow-source").val() == "hashtags & like post of username" ) || ( $("#select-follow-source").val() == "followers of username & like post of username" ) ) {
+			if ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) {
 				$("#div-usernames").fadeIn(500);
 			}
 			
 		});
 		$('#unfollowButton').click(function(e){
-			$("#activity").val("unfollow");
-			
 			$("#status_follow").val("off");
 			$("#status_unfollow").val("on");
 			
-			$('#autoButton').removeClass('btn-success');
+			
+			$("#activity").val("unfollow");
 			$('#followButton').removeClass('btn-success');
 			$('#unfollowButton').addClass('btn-success');
 			$('#div-unfollow-whitelist').fadeIn(500);
@@ -179,13 +151,21 @@ followers of username & like post of username
 			
 			if ($('#unfollowButton').hasClass("btn-success")) {
 				$('#div-unfollow-whitelist').fadeIn(500);
+				
+				$("#status_follow").val("off");
+				$("#status_unfollow").val("on");
+			}
+			
+			if ($('#followButton').hasClass("btn-success")) {
+				$("#status_follow").val("on");
+				$("#status_unfollow").val("off");
 			}
 
 			if ( $("#select-follow-source").val() == "hashtags" ) {
 				$("#div-usernames").fadeOut(500);
 				$("#div-hashtags").fadeIn(500);
 			}
-			if ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" ) || ( $("#select-follow-source").val() == "like post of username" ) || ( $("#select-follow-source").val() == "hashtags & like post of username" ) || ( $("#select-follow-source").val() == "followers of username & like post of username" ) ) {
+			if ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) {
 				$("#div-usernames").fadeIn(500);
 				if (($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))) {
 					$('#div-hashtags').fadeOut(500);
@@ -193,6 +173,9 @@ followers of username & like post of username
 			}
 		});
 		$('#statusFollowOffButton').click(function(e){
+			$("#status_follow").val("off");
+			$("#status_unfollow").val("off");
+				
 			$("#status_follow_unfollow").val("off");
 			$('#statusFollowOnButton').removeClass('btn-primary');
 			$('#statusFollowOffButton').addClass('btn-danger');
@@ -200,7 +183,7 @@ followers of username & like post of username
 			$('#div-unfollow-whitelist').fadeOut(500);
 			$("#div-usernames").fadeOut(500);
 
-			if ( (!$('#statusFollowOffButton').hasClass("btn-danger") && ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" ) || ( $("#select-follow-source").val() == "like post of username" ) || ( $("#select-follow-source").val() == "hashtags & like post of username" ) || ( $("#select-follow-source").val() == "followers of username & like post of username" ) ) ) 
+			if ( (!$('#statusFollowOffButton').hasClass("btn-danger") && ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) ) 
 				&& ($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))  ) 
 			{
 				$('#div-hashtags').fadeOut(500);
@@ -218,7 +201,7 @@ followers of username & like post of username
 			$('#statusLikeOnButton').removeClass('btn-primary');
 			$('#statusLikeOffButton').addClass('btn-danger');
 			
-			if ( (!$('#statusFollowOffButton').hasClass("btn-danger") && ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" ) || ( $("#select-follow-source").val() == "like post of username" ) || ( $("#select-follow-source").val() == "hashtags & like post of username" ) || ( $("#select-follow-source").val() == "followers of username & like post of username" ) ) ) 
+			if ( (!$('#statusFollowOffButton').hasClass("btn-danger") && ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) ) 
 				&& ($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))  ) 
 			{
 				$('#div-hashtags').fadeOut(500);
@@ -238,7 +221,7 @@ followers of username & like post of username
 			$('#statusCommentOffButton').addClass('btn-danger');
 			$('#div-comment').fadeOut(500);
 			
-			if ( (!$('#statusFollowOffButton').hasClass("btn-danger") && ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" ) || ( $("#select-follow-source").val() == "like post of username" ) || ( $("#select-follow-source").val() == "hashtags & like post of username" ) || ( $("#select-follow-source").val() == "followers of username & like post of username" )) ) 
+			if ( (!$('#statusFollowOffButton').hasClass("btn-danger") && ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) ) 
 				&& ($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))  ) 
 			{
 				$('#div-hashtags').fadeOut(500);
@@ -303,7 +286,7 @@ followers of username & like post of username
 				$("#div-usernames").fadeOut(500);
 				$("#div-hashtags").fadeIn(500);
 			}
-			if ( ( $( this ).val() == "followers of username" ) || ( $( this ).val() == "following of username" ) || ( $("#select-follow-source").val() == "like post of username" ) || ( $("#select-follow-source").val() == "hashtags & like post of username" ) || ( $("#select-follow-source").val() == "followers of username & like post of username" )) {
+			if ( ( $( this ).val() == "followers of username" ) || ( $( this ).val() == "following of username" )) {
 				$("#div-usernames").fadeIn(500);
 				if (($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))) {
 					$("#div-hashtags").fadeOut(500);
@@ -808,32 +791,21 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Follow Activity</div><div class='panel-content'>PILIH salah satu <strong>Follow / Unfollow</strong>. Tidak bisa bersamaan</div>">
 						</span>
 						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
-							<button type="button" class="btn <?php if ($settings->activity=="auto") echo 'btn-success' ?>" id="autoButton" style="color:#fff;">Auto</button>
-							<button type="button" class="btn <?php if ($settings->status_follow=="on") echo 'btn-success' ?>" id="followButton" style="color:#fff;">Follow</button>
-							<button type="button" class="btn <?php if ($settings->status_unfollow=="on") echo 'btn-success' ?>" id="unfollowButton" style="color:#fff;">Unfollow</button>
+							<button type="button" class="btn <?php if ($settings->activity=="follow") echo 'btn-success' ?>" id="followButton" style="color:#fff;">Follow</button>
+							<button type="button" class="btn <?php if ($settings->activity=="unfollow") echo 'btn-success' ?>" id="unfollowButton" style="color:#fff;">Unfollow</button>
 							<input type="hidden" value="{{$settings->activity}}" name="data[activity]" id="activity">
+
 							<input type="hidden" value="{{$settings->status_follow}}" name="data[status_follow]" id="status_follow">
 							<input type="hidden" value="{{$settings->status_unfollow}}" name="data[status_unfollow]" id="status_unfollow">
+							
 						</div>				
 					</div>				
         </div>
-
-					<!--
+        
+				<br>
+					
         <div class="row status-follow status-unfollow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
-          <div class="col-md-12 checkbox">
-            <label><input type="checkbox" name="data[dont_follow_su]" <?php if($settings->dont_follow_su) echo "checked"; ?> >Don't Follow same user</label> 
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Dont follow same user</div><div class='panel-content'><strong>Tidak akan Follow lagi user yang sama</strong>, setelah anda Unfollow mereka.</div>">
-						</span>
-          </div>
-          <div class="col-md-12 checkbox" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
-            <label><input type="checkbox" name="data[dont_follow_pu]" <?php if($settings->dont_follow_pu) echo "checked"; ?> >Dont Follow private user</label> 
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Dont follow private user</div><div class='panel-content'><strong>Tidak akan Follow </strong>Private Account User</div>">
-						</span>
-          </div>
-        </div>
-					-->
-        <div class="row status-follow status-unfollow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
-          <div class="col-md-5" style="margin-top:10px;">
+          <div class="col-md-4">
             <label>Follow source</label> 
 						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Follow Source</div><div class='panel-content'>
 						Pilih 1 dari 3 Follow Sources ini (Hanya yang dipilih yang dijalankan) : <br>
@@ -842,9 +814,6 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
             <select class="form-control" name="data[follow_source]" id="select-follow-source">
 							<option value="hashtags" <?php if ($settings->follow_source=='hashtags') echo "selected" ?>>Hashtags</option>
 							<option value="followers of username" <?php if ($settings->follow_source=='followers of username') echo "selected" ?>>Followers of username</option>
-							<option value="like post of username" <?php if ($settings->follow_source=='like post of username') echo "selected" ?>>Like Post of username</option>
-							<option value="hashtags & like post of username" <?php if ($settings->follow_source=='hashtags & like post of username') echo "selected" ?>>Hashtags & Like Post of username</option>
-							<option value="followers of username & like post of username" <?php if ($settings->follow_source=='followers of username & like post of username') echo "selected" ?>>Followers of username & Like Post of username</option>
 <!--							<option value="following of username" <?php if ($settings->follow_source=='following of username') echo "selected" ?>>Following of username</option>-->
             </select>
           </div>
@@ -908,7 +877,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                    
 
-<div class="row" id="div-hashtags" <?php if ( ( ($settings->status_follow_unfollow=="off") && ($settings->status_like=="off") && ($settings->status_comment=="off")) || ( (($settings->follow_source=='followers of username') || ($settings->follow_source=='following of username')) && ($settings->status_follow_unfollow=="on") )  ) echo "style='display:none;'" ?>>
+<div class="row" id="div-hashtags" <?php if ( ( ($settings->status_follow_unfollow=="off") && ($settings->status_like=="off") && ($settings->status_comment=="off")) || ( (($settings->follow_source=='followers of username') || ($settings->follow_source=='following of username')) && ($settings->status_follow_unfollow=="on")&& ($settings->status_like=="off")&& ($settings->status_comment=="off") )  ) echo "style='display:none;'" ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
