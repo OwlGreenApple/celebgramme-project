@@ -35,8 +35,9 @@ class Setting extends Model {
         $setting->comments = "{Nice|Wow|Good|Sippp|Mantappp|Keren|Mantap|Ok} {pic|img|photo|foto|profile|^_^|:)} <@owner>;{love|adore|really like|I love|enjoy|appreciate} {the way you|how you} {took|shot|had taken} {the|the actual|this particular|your|this} {picture|pic|image|photo|foto|snapshot} ^_^ <@owner>";
         $setting->hashtags = "websugih;jajankulinersurabaya;tacoelrico;celebgramme;olshop;kuliner;latepost;startup;olshopmurah;yolo;travel;foodie";
         $setting->locations = "";
-        $setting->activity = "auto";
+        $setting->activity = "follow";
 				$setting->status_follow = "on";
+				$setting->status_unfollow = "off";
         $setting->status_follow_unfollow = "off";
         $setting->status_like = "off";
         $setting->status_comment = "off";
@@ -189,8 +190,9 @@ class Setting extends Model {
         $setting->comments = "{Nice|Wow|Good|Sippp|Mantappp|Keren|Mantap|Ok} {pic|img|photo|foto|profile|^_^|:)} <@owner>;{love|adore|really like|I love|enjoy|appreciate} {the way you|how you} {took|shot|had taken} {the|the actual|this particular|your|this} {picture|pic|image|photo|foto|snapshot} ^_^ <@owner>";
         $setting->hashtags = "websugih;jajankulinersurabaya;tacoelrico;celebgramme;olshop;kuliner;latepost;startup;olshopmurah;yolo;travel;foodie";
         $setting->locations = "";
-        $setting->activity = "auto";
+        $setting->activity = "follow";
 				$setting->status_follow = "on";
+				$setting->status_unfollow = "off";
         $setting->status_follow_unfollow = "off";
         $setting->status_like = "off";
         $setting->status_comment = "off";
