@@ -26,7 +26,7 @@
 						?>
 						</td>
             <td> {{$arr->package_name}} </td>
-            <td> {{"Rp. ".number_format($arr->total,0,'','.')}} </td>
+            <td> {{"Rp. ".number_format($arr->total-$arr->discount,0,'','.')}} </td>
             <td> 
 							<?php 
 							  if ($arr->order_status=="pending") {
