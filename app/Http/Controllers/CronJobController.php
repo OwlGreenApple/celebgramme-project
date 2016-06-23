@@ -104,14 +104,10 @@ class CronJobController extends Controller
 												Mail::queue('emails.info-post-admin', $emaildata, function ($message) use ($type_message) {
 													$message->from('no-reply@celebgramme.com', 'Celebgramme');
 													$message->to(array(
-														"celebgramme.adm@gmail.com",
+														"celebgramme@gmail.com",
 														"it.axiapro@gmail.com",
-														"hancelebgramme@gmail.com",
-														"design.axiapro@gmail.com",
 													));
 													$message->bcc(array(
-														"celebgram@gmail.com",
-														"michaelsugih@gmail.com",
 														"it2.axiapro@gmail.com",
 													));
 													$message->subject($type_message);
