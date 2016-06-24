@@ -253,50 +253,6 @@ class CronJobController extends Controller
 					continue;
 				}
 				if ($user->test==0){
-					/*
-					$json_url = "https://api.instagram.com/v1/users/search?q=".$setting->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
-					$json = @file_get_contents($json_url);
-					if($json == TRUE) { 
-						$links = json_decode($json);
-						if (count($links->data)>0) {
-							// $id = $links->data[0]->id;
-							foreach($links->data as $link){
-								if (strtoupper($link->username) == strtoupper($setting->insta_username)){
-									$id = $link->id;
-									$found = true;
-									$pp_url = $link->profile_picture;
-								}
-							}
-							
-							$json_url ='https://api.instagram.com/v1/users/'.$id.'?client_id=03eecaad3a204f51945da8ade3e22839';
-							$json = @file_get_contents($json_url);
-							if($json == TRUE) { 
-								$links = json_decode($json);
-								if (count($links->data)>0) {
-									$followers = $links->data->counts->followed_by;
-									$following = $links->data->counts->follows;
-								}
-							}
-						}
-					}
-					*/
-					/*
-					$json_url = "https://www.instagram.com/".$setting->insta_username."/?__a=1";
-
-
-					$json = @file_get_contents($json_url);
-					if($json === false) {
-					} else {
-						$arr_json = json_decode($json,true);
-						if (count($arr_json)>0) {
-							$found = true;
-							$id = $arr_json["user"]["id"];
-							$pp_url = $arr_json["user"]["profile_pic_url_hd"];
-							$following = $arr_json["user"]["follows"]["count"];
-							$followers = $arr_json["user"]["followed_by"]["count"];
-						}
-					}
-					*/
 					$ig_data = Setting::get_ig_data($setting->insta_username);
 					$found = $ig_data["found"];
 					$id = $ig_data["id"];
