@@ -66,10 +66,10 @@ return [
 
         'mysqlAffiliate' => [
             'driver'    => 'mysql',
-            'host'      => "101.50.3.105",
+            'host'      => env('DB_HOST', 'localhost'),
             'database'  => "celebgra_af1",
-            'username'  => "celebgra_all",
-            'password'  => "5Ay+KCfU5uQg",
+            'username'  => env('DB_USERNAME', ''),
+            'password'  => env('DB_PASSWORD', ''),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
