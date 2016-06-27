@@ -105,6 +105,7 @@ Route::get('cron-notif-member', 'CronJobController@notif_member');
 Route::get('auto-follow-unfollow', 'CronJobController@auto_follow_unfollow');
 Route::get('check-create-affiliate', 'CronJobController@create_user_from_affiliate');
 Route::get('reset-client-used', 'CronJobController@reset_client_used');
+Route::get('task-daily-automation-cron', 'CronJobController@task_daily_automation_cron');
 
 /*needed for update databasw*/
 Route::get('update-insta-user-id', 'CronJobController@update_insta_user_id');

@@ -19,6 +19,8 @@ use Celebgramme\Models\PackageUser;
 use Celebgramme\Models\Package;
 use Celebgramme\Models\Setting;
 use Celebgramme\Models\SettingMeta;
+use Celebgramme\Models\SettingCounter;
+use Celebgramme\Models\FailedJob;
 use Celebgramme\Models\Post;
 use Celebgramme\Models\Client;
 use Celebgramme\Models\Coupon;
@@ -617,4 +619,26 @@ class CronJobController extends Controller
 	public function reset_client_used(){
 		$client = Client::update(['used'=>0,]);
 	}		
+
+	/*
+	*
+	* Cron Helper untuk daily automation
+	*
+	*/
+	public function task_daily_automation_cron(){
+		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(7);
+		
+		//delete setting counter 
+		$setting_counter = SettingCounter::
+								where("created","<=",$dt->toDateTimeString())
+								->delete();
+		
+		//delete failed job 
+		$failed_job = FailedJob::
+								where("failed_at","<=",$dt->toDateTimeString())
+								->delete();
+		
+		
+		$setting_counter = null; $failed_job = null;
+	}
 }
