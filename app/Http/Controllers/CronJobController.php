@@ -633,6 +633,7 @@ class CronJobController extends Controller
 								where("created","<=",$dt->toDateTimeString())
 								->delete();
 		
+		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(1);
 		//delete failed job 
 		$failed_job = FailedJob::
 								where("failed_at","<=",$dt->toDateTimeString())
