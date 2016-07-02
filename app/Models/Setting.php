@@ -8,8 +8,6 @@ use Celebgramme\Models\Post;
 use Celebgramme\Models\Client;
 use Celebgramme\Models\SettingHelper;
 
-use Celebgramme\Helpers\GlobalHelper;
-
 use Celebgramme\Models\SettingMeta;
 
 use Mail, App;
@@ -73,7 +71,6 @@ class Setting extends Model {
 				$setting_helper->server_automation = "A1(automation-1)";
 				$setting_helper->server_spiderman = "C1";
 				$setting_helper->save();
-				GlobalHelper::clearProxy(serialize($setting));
 				
 				//create meta, jumlah followers & following
 				$pp_url = "";

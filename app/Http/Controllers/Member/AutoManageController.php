@@ -21,6 +21,8 @@ use Celebgramme\Models\Client;
 use Celebgramme\Models\SettingHelper;
 use Celebgramme\Veritrans\Veritrans;
 
+use Celebgramme\Helpers\GlobalHelper;
+
 use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt;
 
 class AutoManageController extends Controller
@@ -508,6 +510,11 @@ class AutoManageController extends Controller
 					if (!is_null($setting_helper)) {
 						$setting_helper->cookies = "";
 						$setting_helper->save();
+
+						// ONLY for init assign proxy
+						if ($setting_helper->proxy_id == 0) {
+							GlobalHelper::clearProxy(serialize($setting_temp));
+						}
 					}
         }
 
@@ -548,6 +555,11 @@ class AutoManageController extends Controller
 					if (!is_null($setting_helper)) {
 						$setting_helper->cookies = "";
 						$setting_helper->save();
+
+						// ONLY for init assign proxy
+						if ($setting_helper->proxy_id == 0) {
+							GlobalHelper::clearProxy(serialize($setting_temp));
+						}
 					}
         }
 
