@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Auth;
 use Celebgramme\Models\LinkUserSetting;
 use Celebgramme\Models\Post;
 use Celebgramme\Models\Client;
+use Celebgramme\Models\SettingHelper;
+
+use Celebgramme\Helpers\GlobalHelper;
 
 use Celebgramme\Models\SettingMeta;
 
@@ -63,6 +66,15 @@ class Setting extends Model {
         $linkUserSetting->setting_id=$setting->id;
         $linkUserSetting->save();
 				
+				//Automation purpose
+				$setting_helper = new SettingHelper;
+				$setting_helper->setting_id = $setting->id;
+				$setting_helper->use_automation = 1;
+				$setting_helper->server_automation = "A1(automation-1)";
+				$setting_helper->server_spiderman = "C1";
+				$setting_helper->save();
+				GlobalHelper::clearProxy(serialize($setting));
+				
 				//create meta, jumlah followers & following
 				$pp_url = "";
 				$followers_join = 0;
@@ -70,89 +82,13 @@ class Setting extends Model {
 				$id = 0;
 
 				if ($user->test==0){
-					/*
-					$json_url = "https://api.instagram.com/v1/users/search?q=".$arr['insta_username']."&client_id=03eecaad3a204f51945da8ade3e22839";
-					$json = @file_get_contents($json_url);
-					if($json == TRUE) { 
-						$links = json_decode($json);
-						if (count($links->data)>0) {
-							// $id = $links->data[0]->id;
-							foreach($links->data as $link){
-								if (strtoupper($link->username) == strtoupper($arr['insta_username'])){
-									$id = $link->id;
-									$pp_url = $link->profile_picture;
-								}
-							}
-							
-							
-							$json_url ='https://api.instagram.com/v1/users/'.$id.'?client_id=03eecaad3a204f51945da8ade3e22839';
-							$json = @file_get_contents($json_url);
-							if($json == TRUE) { 
-								$links = json_decode($json);
-								if (count($links->data)>0) {
-									$followers_join = $links->data->counts->followed_by;
-									$following_join = $links->data->counts->follows;
-								}
-							}
-						}
-					}
-					*/
-					/*
-					$json_url = "https://www.instagram.com/".$arr['insta_username']."/?__a=1";
-
-
-					$json = @file_get_contents($json_url);
-					if($json === false) {
-					} else {
-						$arr_json = json_decode($json,true);
-						if (count($arr_json)>0) {
-							$id = $arr_json["user"]["id"];
-							$pp_url = $arr_json["user"]["profile_pic_url"];
-							$following_join = $arr_json["user"]["follows"]["count"];
-							$followers_join = $arr_json["user"]["followed_by"]["count"];
-						}
-					}
-					*/
 					$ig_data = $this->get_ig_data($arr['insta_username']);
 					$id = $ig_data["id"];
 					$pp_url = $ig_data["pp_url"];
 					$following_join = $ig_data["following"];
 					$followers_join = $ig_data["followers"];
-					
 				} 
-				if ( ($user->test==1) || ( ($id==0) && ($followers_join==0) && ($following_join==0) ) ){
-					$url = "http://websta.me/n/".$arr['insta_username'];
-					$c = curl_init();
-					curl_setopt($c, CURLOPT_URL, $url);
-					curl_setopt($c, CURLOPT_REFERER, $url);
-					curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
-					curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-					curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-					$page = curl_exec($c);
-					curl_close($c);
-					
-					$html = str_get_html($page);
-					$profbox = $html->find('div[class="profbox"]');
-					if (count($profbox)>0) {
-						$html = str_get_html($profbox[0]);
-						
-						if(($html->find('ul', 0))) {
-							$temp = explode(" ", $html->find('ul')[0]->class );
-							$temp1 = explode("-", $temp[1] );
-							$id = $temp1[1];
-						}
-						if(($html->find('img', 0))) {
-							$pp_url = $html->find('img')[0]->src;
-						}
-						if(($html->find('span[class="counts_followed_by"]', 0))) {
-							$followers_join = str_replace(",","",$html->find('span[class="counts_followed_by"]')[0]->innertext);
-						}
-						if(($html->find('span[class="following"]', 0))) {
-							$following_join = str_replace(",","",$html->find('span[class="following"]')[0]->innertext);
-						}
-					} else {
-					}
-				}
+				
 				SettingMeta::createMeta("followers_join",$followers_join,$setting->id);
 				SettingMeta::createMeta("following_join",$following_join,$setting->id);
 				SettingMeta::createMeta("followers",$followers_join,$setting->id);
