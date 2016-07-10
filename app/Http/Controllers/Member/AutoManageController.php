@@ -181,51 +181,35 @@ class AutoManageController extends Controller
       }
       $setting = Setting::createSetting($data);
     } else {
-      $linkUserSetting = LinkUserSetting::where("user_id","=",$user->id)
-                          ->where("setting_id","=",$setting->id)
+      $linkUserSetting = LinkUserSetting::where("setting_id","=",$setting->id)
                           ->first();
-      if (is_null($linkUserSetting)) {
-				$arr["message"]= "Instagram username sudah digunakan";
-				$arr["type"]= "error";
-				return $arr;
-				/*
-        $linkUserSetting = new LinkUserSetting;
-        $linkUserSetting->user_id=$user->id;
-        $linkUserSetting->setting_id=$setting->id;
-        $linkUserSetting->save();
-
-        $setting->last_user = $user->id;
-        if ($setting->status == "deleted") {
-					$setting->status = "stopped";
-				}
-				$setting->insta_password = Request::input("password");
-				$setting->error_cred = 0;
-        $setting->save();
-				
-				$setting_temp = Setting::post_info_admin($setting->id);
-				*/
-      } else {
-				if ( ($setting->status=="stopped") || ($setting->status=="started") ) {
+      if (!is_null($linkUserSetting)) {
+        if ($linkUserSetting->user_id <> $user->id) {
+          $arr["message"]= "Instagram username sudah digunakan";
+          $arr["type"]= "error";
+          return $arr;
+        }
+        
+        if (  ($linkUserSetting->user_id == $user->id) && ( ($setting->status=="stopped") || ($setting->status=="started") )  ) {
 					$arr["message"]= "Account anda sudah terdaftar";
 					$arr["type"]= "error";
 					return $arr;
 				}
-				
-				if ($setting->status=="deleted") {
-					$setting->status = 'stopped';
-					$setting->user_id = $user->id;
-					$setting->insta_password = Request::input("password");
-					$setting->error_cred = 0;
-					$setting->save();
+      }
+      if ($setting->status=="deleted") {
+        $setting->status = 'stopped';
+        $setting->user_id = $user->id;
+        $setting->insta_password = Request::input("password");
+        $setting->error_cred = 0;
+        $setting->save();
 
-          $linkUserSetting = new LinkUserSetting;
-          $linkUserSetting->user_id = $user->id;
-          $linkUserSetting->setting_id = $setting->id;
-          $linkUserSetting->save();
-          
-					
-					$setting_temp = Setting::post_info_admin($setting->id);
-				}
+        $linkUserSetting = new LinkUserSetting;
+        $linkUserSetting->user_id = $user->id;
+        $linkUserSetting->setting_id = $setting->id;
+        $linkUserSetting->save();
+        
+        
+        $setting_temp = Setting::post_info_admin($setting->id);
       }
 			
 			//update user-id 
