@@ -219,7 +219,7 @@ class Setting extends Model {
 		* get instagram data
 		* return num of followers & following, id ig, pp url
 		*/
-    protected function get_ig_data($setting_id = 0,$username) 
+    protected function get_ig_data($username,$setting_id = 0) 
 		{
 			$pp_url = "";
 			$followers = 0;

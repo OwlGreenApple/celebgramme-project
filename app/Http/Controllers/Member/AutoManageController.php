@@ -88,7 +88,7 @@ class AutoManageController extends Controller
 			return $arr;
 		}*/
 			
-		if($this->checking_cred_instagram(Request::input('setting_id'),Request::input("hidden_username"),Request::input("edit_password"))) {
+		if($this->checking_cred_instagram(Request::input("hidden_username"),Request::input("edit_password"),Request::input('setting_id'))) {
 		} else {
 			$arr["message"]= "Instagram Login tidak valid";
 			$arr["type"]= "error";
@@ -229,7 +229,7 @@ class AutoManageController extends Controller
       }
 			
 			//update user-id 
-			$ig_data = Setting::get_ig_data($setting->id,$setting->insta_username);
+			$ig_data = Setting::get_ig_data($setting->insta_username,$setting->id);
 			$id = $ig_data["id"];
 			$setting->insta_user_id = $id;
 			$setting->save();
@@ -607,7 +607,7 @@ class AutoManageController extends Controller
 		return "success";
 	}
 
-	public function checking_cred_instagram($setting_id = 0,$username,$password){  
+	public function checking_cred_instagram($username,$password,$setting_id = 0){  
 		//default random proxy 
 		$ports[] = "10177"; 
 		$ports[] = "10178";
