@@ -232,6 +232,7 @@ class Setting extends Model {
 			$port = $ports[array_rand($ports)];
 			$cred = "sugiarto:sugihproxy250";
 			$proxy = "45.79.212.85";//good proxy
+      $auth = true;
       
       //use own proxy if have
       if ($setting_id <> 0) {
