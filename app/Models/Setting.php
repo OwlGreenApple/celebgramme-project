@@ -7,6 +7,7 @@ use Celebgramme\Models\LinkUserSetting;
 use Celebgramme\Models\Post;
 use Celebgramme\Models\Client;
 use Celebgramme\Models\SettingHelper;
+use Celebgramme\Models\Proxies;
 
 use Celebgramme\Models\SettingMeta;
 
@@ -218,7 +219,7 @@ class Setting extends Model {
 		* get instagram data
 		* return num of followers & following, id ig, pp url
 		*/
-    protected function get_ig_data($username) 
+    protected function get_ig_data($setting_id = 0,$username) 
 		{
 			$pp_url = "";
 			$followers = 0;
@@ -231,6 +232,23 @@ class Setting extends Model {
 			$port = $ports[array_rand($ports)];
 			$cred = "sugiarto:sugihproxy250";
 			$proxy = "45.79.212.85";//good proxy
+      
+      //use own proxy if have
+      if ($setting_id <> 0) {
+        $setting_helper = SettingHelper::where("setting_id","=",$setting_id)->first();
+        if (!is_null($setting_helper)) {
+          if ($setting_helper->proxy_id <> 0) {
+            $full_proxy =  Proxies::find($setting_helper->proxy_id);
+            if (!is_null($full_proxy)) {
+              $port = $full_proxy->port;
+              $cred = $full_proxy->cred;
+              $proxy = $full_proxy->proxy;
+              $auth = $full_proxy->auth;
+            }
+          }
+        }
+      }
+      
 
 			if(App::environment() == "local"){
 				$cookiefile = base_path().'/../general/ig-cookies/'.$username.'-cookies-grab.txt';
@@ -242,9 +260,13 @@ class Setting extends Model {
 			$c = curl_init();
 
 
-			curl_setopt($c, CURLOPT_PROXY, $proxy);
-			curl_setopt($c, CURLOPT_PROXYPORT, $port);
-			curl_setopt($c, CURLOPT_PROXYUSERPWD, $cred);
+      if ($auth) {
+        curl_setopt($c, CURLOPT_PROXY, $proxy);
+        curl_setopt($c, CURLOPT_PROXYPORT, $port);
+        curl_setopt($c, CURLOPT_PROXYUSERPWD, $cred);
+      } else if (!$auth) {
+        curl_setopt($c, CURLOPT_PROXY, $proxy.":".$port);
+      }
 			curl_setopt($c, CURLOPT_PROXYTYPE, 'HTTP');
 			curl_setopt($c, CURLOPT_URL, $url);
 			curl_setopt($c, CURLOPT_REFERER, $url);

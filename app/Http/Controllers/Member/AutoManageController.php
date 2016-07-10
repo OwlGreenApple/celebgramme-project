@@ -19,6 +19,7 @@ use Celebgramme\Models\Post;
 use Celebgramme\Models\Meta;
 use Celebgramme\Models\Client;
 use Celebgramme\Models\SettingHelper;
+use Celebgramme\Models\Proxies;
 use Celebgramme\Veritrans\Veritrans;
 
 use Celebgramme\Helpers\GlobalHelper;
@@ -87,7 +88,7 @@ class AutoManageController extends Controller
 			return $arr;
 		}*/
 			
-		if($this->checking_cred_instagram(Request::input("hidden_username"),Request::input("edit_password"))) {
+		if($this->checking_cred_instagram(Request::input('setting_id'),Request::input("hidden_username"),Request::input("edit_password"))) {
 		} else {
 			$arr["message"]= "Instagram Login tidak valid";
 			$arr["type"]= "error";
@@ -128,77 +129,41 @@ class AutoManageController extends Controller
 			'insta_username' => 'required|max:255',
 			'insta_password' => 'required',
 		]);
-		if ($validator->fails())
+	if ($validator->fails())
     {
-			$arr["message"]= "Instagram username or password required";
-			$arr["type"]= "error";
-			return $arr;
-		}
-		//cek not in email format
-		$validator = Validator::make($data, [
-			'insta_username' => 'email',
-		]);
-		if (!$validator->fails())
+		$arr["message"]= "Instagram username or password required";
+		$arr["type"]= "error";
+		return $arr;
+	}
+	//cek not in email format
+	$validator = Validator::make($data, [
+		'insta_username' => 'email',
+	]);
+	if (!$validator->fails())
     {
-			$arr["message"]= "Instagram username tidak boleh email";
-			$arr["type"]= "error";
-			return $arr;
-		}
+		$arr["message"]= "Instagram username tidak boleh email";
+		$arr["type"]= "error";
+		return $arr;
+	}
 		
-		//available username or not
-		if ($user->test==0){
-			if($this->checking_cred_instagram(Request::input("username"),Request::input("password"))) {
-				
-			} else {
-				$arr["message"]= "Instagram Login tidak valid";
-				$arr["type"]= "error";
-				return $arr;
-			}
-		} else if ($user->test==1){
-			$url = "http://websta.me/n/".Request::input("username");
-			$c = curl_init();
-			curl_setopt($c, CURLOPT_URL, $url);
-			curl_setopt($c, CURLOPT_REFERER, $url);
-			curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
-			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-			curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-			$page = curl_exec($c);
-			curl_close($c);
-			
-			$html = str_get_html($page);
-			$profbox = $html->find('div[class="profbox"]');
-			if (count($profbox)>0) {
-			} else {
-				$arr["message"]= "Instagram username not found";
-				$arr["type"]= "error";
-				return $arr;
-			}
-		} else if ($user->test==2){
-			/*
-			$found = false;
-			$json_url = "https://api.instagram.com/v1/users/search?q=".Request::input("username")."&client_id=03eecaad3a204f51945da8ade3e22839";
-			$json = @file_get_contents($json_url);
-			if($json == TRUE) { 
-				$links = json_decode($json);
-				if (count($links->data)>0) {
-					// $id = $links->data[0]->id;
-					foreach($links->data as $link){
-						if (strtoupper($link->username) == strtoupper(Request::input("username"))){
-							$found = true;
-						}
-					}
-				}
-			}
-			*/
-			$ig_data = Setting::get_ig_data(Request::input("username"));			
-			if (!$ig_data["found"]) {
-			// if (!$found) {
-				$arr["message"]= "Instagram username not found";
-				$arr["type"]= "error";
-				return $arr;
-			}
-			
+	//available username or not
+	if ($user->test==0){
+		if($this->checking_cred_instagram(Request::input("username"),Request::input("password"))) {
+		} else {
+			$arr["message"]= "Instagram Login tidak valid";
+			$arr["type"]= "error";
+			return $arr;
 		}
+	} else if ($user->test==2){
+
+		$ig_data = Setting::get_ig_data(Request::input("username"));			
+		if (!$ig_data["found"]) {
+		// if (!$found) {
+			$arr["message"]= "Instagram username not found";
+			$arr["type"]= "error";
+			return $arr;
+		}
+	}
 		
 		
     $setting = Setting::where("insta_username","=",Request::input("username"))->where("type","=","temp")->first();
@@ -252,13 +217,19 @@ class AutoManageController extends Controller
 					$setting->insta_password = Request::input("password");
 					$setting->error_cred = 0;
 					$setting->save();
+
+          $linkUserSetting = new LinkUserSetting;
+          $linkUserSetting->user_id = $user->id;
+          $linkUserSetting->setting_id = $setting->id;
+          $linkUserSetting->save();
+          
 					
 					$setting_temp = Setting::post_info_admin($setting->id);
 				}
       }
 			
 			//update user-id 
-			$ig_data = Setting::get_ig_data($setting->insta_username);
+			$ig_data = Setting::get_ig_data($setting->id,$setting->insta_username);
 			$id = $ig_data["id"];
 			$setting->insta_user_id = $id;
 			$setting->save();
@@ -636,12 +607,32 @@ class AutoManageController extends Controller
 		return "success";
 	}
 
-	public function checking_cred_instagram($username,$password){  
-		$ports[] = "10175"; 
-		$ports[] = "10176";
+	public function checking_cred_instagram($setting_id = 0,$username,$password){  
+		//default random proxy 
+		$ports[] = "10177"; 
+		$ports[] = "10178";
 		$port = $ports[array_rand($ports)];
 		$cred = "sugiarto:sugihproxy250";
 		$proxy = "45.79.212.85";//good proxy
+		$auth = true;
+
+		if ($setting_id <> 0) {
+			//use own proxy if have
+			$setting_helper = SettingHelper::where("setting_id","=",$setting_id)->first();
+			if (!is_null($setting_helper)) {
+				if ($setting_helper->proxy_id <> 0) {
+					$full_proxy =  Proxies::find($setting_helper->proxy_id);
+					if (!is_null($full_proxy)) {
+						$port = $full_proxy->port;
+						$cred = $full_proxy->cred;
+						$proxy = $full_proxy->proxy;
+						$auth = $full_proxy->auth;
+					}
+				}
+			}
+		}
+		
+	
 
 		$url = "https://www.instagram.com/accounts/login/?force_classic_login";
 		if(App::environment() == "local"){		
@@ -649,75 +640,85 @@ class AutoManageController extends Controller
 		} else{
 			$cookiefile = base_path().'/../public_html/general/ig-cookies/'.$username.'-cookiess.txt';
 		}
+			
 		$c = curl_init();
-		curl_setopt($c, CURLOPT_PROXY, $proxy);
-    curl_setopt($c, CURLOPT_PROXYPORT, $port);
-		curl_setopt($c, CURLOPT_PROXYUSERPWD, $cred);
-    curl_setopt($c, CURLOPT_PROXYTYPE, 'HTTP');
-    curl_setopt($c, CURLOPT_URL, $url);
-    curl_setopt($c, CURLOPT_REFERER, $url);
-    curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($c, CURLOPT_COOKIEFILE, $cookiefile);
-    curl_setopt($c, CURLOPT_COOKIEJAR, $cookiefile);
-    $page = curl_exec($c);
-    curl_close($c);
-    preg_match_all('/<input type="hidden" name="csrfmiddlewaretoken" value="([A-z0-9]{32})"\/>/', $page, $token);
-		
-    $c = curl_init();
-		curl_setopt($c, CURLOPT_PROXY, $proxy);
-    curl_setopt($c, CURLOPT_PROXYPORT, $port);
-		curl_setopt($c, CURLOPT_PROXYUSERPWD, $cred);
-    curl_setopt($c, CURLOPT_PROXYTYPE, 'HTTP');
-    curl_setopt($c, CURLOPT_URL, $url);
-    curl_setopt($c, CURLOPT_REFERER, $url);
-    curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($c, CURLOPT_POST, true);
-    curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($c, CURLOPT_POSTFIELDS, "csrfmiddlewaretoken=".$token[1][0]."&username=".$username."&password=".$password);
-    curl_setopt($c, CURLOPT_COOKIEFILE, $cookiefile);
-    curl_setopt($c, CURLOPT_COOKIEJAR, $cookiefile);
-    $page = curl_exec($c);
-    curl_close($c);
+		if ($auth) {
+			curl_setopt($c, CURLOPT_PROXY, $proxy);
+			curl_setopt($c, CURLOPT_PROXYPORT, $port);
+			curl_setopt($c, CURLOPT_PROXYUSERPWD, $cred);
+		} else if (!$auth) {
+			curl_setopt($c, CURLOPT_PROXY, $proxy.":".$port);
+		}
+		curl_setopt($c, CURLOPT_PROXYTYPE, 'HTTP');
+		curl_setopt($c, CURLOPT_URL, $url);
+		curl_setopt($c, CURLOPT_REFERER, $url);
+		curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($c, CURLOPT_COOKIEFILE, $cookiefile);
+		curl_setopt($c, CURLOPT_COOKIEJAR, $cookiefile);
+		$page = curl_exec($c);
+		curl_close($c);
+		preg_match_all('/<input type="hidden" name="csrfmiddlewaretoken" value="([A-z0-9]{32})"\/>/', $page, $token);
+			
+		$c = curl_init();
+    if ($auth) {
+			curl_setopt($c, CURLOPT_PROXY, $proxy);
+			curl_setopt($c, CURLOPT_PROXYPORT, $port);
+			curl_setopt($c, CURLOPT_PROXYUSERPWD, $cred);
+		} else if (!$auth) {
+			curl_setopt($c, CURLOPT_PROXY, $proxy.":".$port);
+		}
+		curl_setopt($c, CURLOPT_PROXYTYPE, 'HTTP');
+		curl_setopt($c, CURLOPT_URL, $url);
+		curl_setopt($c, CURLOPT_REFERER, $url);
+		curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($c, CURLOPT_POST, true);
+		curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($c, CURLOPT_POSTFIELDS, "csrfmiddlewaretoken=".$token[1][0]."&username=".$username."&password=".$password);
+		curl_setopt($c, CURLOPT_COOKIEFILE, $cookiefile);
+		curl_setopt($c, CURLOPT_COOKIEJAR, $cookiefile);
+		$page = curl_exec($c);
+		curl_close($c);
 
-		unlink($cookiefile);
-		$html = str_get_html($page);
-		$check_error = $html->find('div[id="alerts"]');
-		if (count($check_error)>0) {
-			// echo "error login";
-			return false;
-		} else {
-			//login success
-			$check_csrf = $html->find('input[name="csrfmiddlewaretoken"]');
-			if (count($check_csrf)>0) {
-				// echo "error csrf";
+			unlink($cookiefile);
+			$html = str_get_html($page);
+			$check_error = $html->find('div[id="alerts"]');
+			if (count($check_error)>0) {
+				// echo "error login";
 				return false;
 			} else {
-				// echo "masuk";
-				return true;
+				//login success
+				$check_csrf = $html->find('input[name="csrfmiddlewaretoken"]');
+				if (count($check_csrf)>0) {
+					// echo "error csrf";
+					return false;
+				} else {
+					// echo "masuk";
+					return true;
+				}
 			}
-		}
-		
+			
 
-    $c = curl_init();
-    curl_setopt($c, CURLOPT_URL, $url);
-    curl_setopt($c, CURLOPT_REFERER, $url);
-    curl_setopt($c, CURLOPT_HTTPHEADER, array(
-        'Accept-Language: en-US,en;q=0.8',
-        'User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36',
-        'Accept: */*',
-        'X-Requested-With: XMLHttpRequest',
-        'Connection: keep-alive'
-        ));	
-    curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($c, CURLOPT_COOKIEFILE, $cookiefile);
-    curl_setopt($c, CURLOPT_COOKIEJAR, $cookiefile);
-    $page = curl_exec($c);
-    curl_close($c);
+		$c = curl_init();
+		curl_setopt($c, CURLOPT_URL, $url);
+		curl_setopt($c, CURLOPT_REFERER, $url);
+		curl_setopt($c, CURLOPT_HTTPHEADER, array(
+			'Accept-Language: en-US,en;q=0.8',
+			'User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36',
+			'Accept: */*',
+			'X-Requested-With: XMLHttpRequest',
+			'Connection: keep-alive'
+			));	
+		curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($c, CURLOPT_COOKIEFILE, $cookiefile);
+		curl_setopt($c, CURLOPT_COOKIEJAR, $cookiefile);
+		$page = curl_exec($c);
+		curl_close($c);
+		
 		unlink($cookiefile);
 		preg_match_all('/<input type="hidden" name="csrfmiddlewaretoken" value="([A-z0-9]{32})"\/>/', $page, $token);
 		if (count($token[1])==0) { //login valid
