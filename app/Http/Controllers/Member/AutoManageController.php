@@ -212,6 +212,18 @@ class AutoManageController extends Controller
         $setting_temp = Setting::post_info_admin($setting->id);
       }
 			
+			//buatkan setting helper di assignkan ke A1 - new klo delete, add account lagi
+			//klo belum ada setting helper 
+			$setting_helper = SettingHelper::where("setting_id","=",$setting->id)->first();
+			if (is_null($setting_helper)) {
+				$setting_helper = new SettingHelper;
+				$setting_helper->setting_id = $setting->id;
+				$setting_helper->use_automation = 1;
+				$setting_helper->server_automation = "A1(automation-1)";
+				$setting_helper->server_spiderman = "C1";
+				$setting_helper->save();
+			}
+			
 			//update user-id 
 			$ig_data = Setting::get_ig_data($setting->insta_username,$setting->id);
 			$id = $ig_data["id"];
