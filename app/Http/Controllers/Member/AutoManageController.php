@@ -570,6 +570,13 @@ class AutoManageController extends Controller
 											->where("user_id","=",$user->id)
 											->delete();
 			
+			//for automation purpose
+			$setting_helper = SettingHelper::where("setting_id","=",$account->id)->first();
+			if (!is_null($setting_helper)) {
+				$setting_helper->proxy_id = 0 ; 
+				$setting_helper->save();
+			}
+					
 			//slug delete 
 			$last_hit = Setting::where("insta_user_id","like","delete-%")->orderBy('insta_user_id', 'desc')->first();
 			if (is_null($last_hit)) {
