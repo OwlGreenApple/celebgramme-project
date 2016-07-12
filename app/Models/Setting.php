@@ -291,7 +291,9 @@ class Setting extends Model {
 				// echo "username not found";
 			}
 			
-			unlink($cookiefile);
+			if (file_exists($cookiefile)) {
+				unlink($cookiefile);
+			}
 			
 			$arr = array(
 				"id"=>$id,
