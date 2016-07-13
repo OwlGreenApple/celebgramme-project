@@ -254,15 +254,13 @@ class CronJobController extends Controller
 				if (is_null($user)) {
 					continue;
 				}
-				if ($user->test==0){
+				if ( ($user->test==0) || ($user->test==2) ) {
 					$ig_data = Setting::get_ig_data($setting->insta_username,$setting->id);
 					$found = $ig_data["found"];
 					$id = $ig_data["id"];
 					$pp_url = $ig_data["pp_url"];
 					$following = $ig_data["following"];
 					$followers = $ig_data["followers"];
-					
-					
 				} 
 				if ( ($user->test==1) || ( ($id==0) && ($followers==0) && ($following==0) ) ){
 					$url = "http://websta.me/n/".$setting->insta_username;

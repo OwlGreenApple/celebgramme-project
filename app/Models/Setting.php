@@ -79,7 +79,7 @@ class Setting extends Model {
 				$following_join = 0;
 				$id = 0;
 
-				if ($user->test==0){
+				if ( ($user->test==0) || ($user->test==2) ){
 					$ig_data = $this->get_ig_data($arr['insta_username']);
 					$id = $ig_data["id"];
 					$pp_url = $ig_data["pp_url"];
