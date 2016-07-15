@@ -19,7 +19,6 @@ use Celebgramme\Models\PackageUser;
 use Celebgramme\Models\Package;
 use Celebgramme\Models\Setting;
 use Celebgramme\Models\SettingMeta;
-use Celebgramme\Models\SettingCounter;
 use Celebgramme\Models\FailedJob;
 use Celebgramme\Models\Post;
 use Celebgramme\Models\Client;
@@ -63,67 +62,67 @@ class CronJobController extends Controller
 	public function auto_manage(){
 		$count_log = 0;
 		
-        //kurangin detik, buat auto manage
-        $now = Carbon::now();
-        $users = User::where("active_auto_manage",">",0)->get();
-        foreach ($users as $user){
-            $settings = Setting::where("type",'=','temp')
-                        ->where('last_user','=',$user->id)
-                        ->where('status','=',"started")
-                        ->get();
-            foreach($settings as $setting) {
-							$count_log += 1;
-                $runTime = Carbon::createFromFormat('Y-m-d H:i:s', $setting->running_time);
-                $timevalue = $now->diffInSeconds($runTime);
-                $user->active_auto_manage -= $timevalue;
-                if ($user->active_auto_manage <= 0){
-                    $user->active_auto_manage = 0;
-                    $setting->status = 'stopped';
-                        //post info ke admin
-                        $post = Post::where('setting_id', '=', $setting->id)->first();
-                        if (is_null($post)) {
-                            $post = new Post;
-                            $post->description = "description: source_update = cron(timeout) ~ status = stopped ~";
-                            $post->setting_id = $setting->id;
-                        } else {
-													if ($post->type == "pending") {
-                            $post->description = $post->description." source_update = cron(timeout) ~ status = stopped ~";
-													} else {
-                            $post->description = "description: source_update = cron(timeout) ~ status = stopped ~";
-													}
-                        }
-												$post->status_admin = false;
-												$post->type = "pending";
-                        $post->save();
+		//kurangin detik, buat auto manage
+		$now = Carbon::now();
+		$users = User::where("active_auto_manage",">",0)->get();
+		foreach ($users as $user){
+			$settings = Setting::where("type",'=','temp')
+									->where('last_user','=',$user->id)
+									->where('status','=',"started")
+									->get();
+			foreach($settings as $setting) {
+				$count_log += 1;
+				$runTime = Carbon::createFromFormat('Y-m-d H:i:s', $setting->running_time);
+				$timevalue = $now->diffInSeconds($runTime);
+				$user->active_auto_manage -= $timevalue;
+				if ($user->active_auto_manage <= 0){
+					$user->active_auto_manage = 0;
+					$setting->status = 'stopped';
+					
+					//post info ke admin
+					$post = Post::where('setting_id', '=', $setting->id)->first();
+					if (is_null($post)) {
+							$post = new Post;
+							$post->description = "description: source_update = cron(timeout) ~ status = stopped ~";
+							$post->setting_id = $setting->id;
+					} else {
+						if ($post->type == "pending") {
+							$post->description = $post->description." source_update = cron(timeout) ~ status = stopped ~";
+						} else {
+							$post->description = "description: source_update = cron(timeout) ~ status = stopped ~";
+						}
+					}
+					$post->status_admin = false;
+					$post->type = "pending";
+					$post->save();
 
-												//send email to admin
-												$type_message="[Celebgramme] Post Auto Manage";
-												$type_message .= "IG ACCOUNT(TIME OUT): ".$setting->insta_username;
-												$emaildata = [
-													"setting_temp" => $setting,
-													"post" => $post,
-												];
-												Mail::queue('emails.info-post-admin', $emaildata, function ($message) use ($type_message) {
-													$message->from('no-reply@celebgramme.com', 'Celebgramme');
-													$message->to(array(
-														"celebgramme@gmail.com",
-														"it.axiapro@gmail.com",
-													));
-													$message->bcc(array(
-														"it2.axiapro@gmail.com",
-													));
-													$message->subject($type_message);
-												});
-												
-												
-                }
-                else{
-                    $setting->running_time = $now->toDateTimeString();
-                }
-                $setting->save();
-                $user->save();
-            }
-        }
+					//send email to admin
+					$type_message="[Celebgramme] Post Auto Manage";
+					$type_message .= "IG ACCOUNT(TIME OUT): ".$setting->insta_username;
+					$emaildata = [
+						"setting_temp" => $setting,
+						"post" => $post,
+					];
+					Mail::queue('emails.info-post-admin', $emaildata, function ($message) use ($type_message) {
+						$message->from('no-reply@celebgramme.com', 'Celebgramme');
+						$message->to(array(
+							"celebgramme@gmail.com",
+							"it.axiapro@gmail.com",
+						));
+						$message->bcc(array(
+							"it2.axiapro@gmail.com",
+						));
+						$message->subject($type_message);
+					});
+				}
+				else{
+						$setting->running_time = $now->toDateTimeString();
+				}
+				$setting->save();
+				$user->save();
+			}
+		}
+		
 		if(App::environment() == "local"){		
 			// $file = base_path().'/../general/ig-cookies/'.$username.'-cookiess.txt';
 		} else{
@@ -624,12 +623,6 @@ class CronJobController extends Controller
 	*
 	*/
 	public function task_daily_automation_cron(){
-		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(7);
-		
-		//delete setting counter 
-		$setting_counter = SettingCounter::
-								where("created","<=",$dt->toDateTimeString())
-								->delete();
 		
 		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(1);
 		//delete failed job 
