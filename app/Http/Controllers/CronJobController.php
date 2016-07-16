@@ -131,7 +131,7 @@ class CronJobController extends Controller
 			$settings = Setting::join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 									->where("type",'=','temp')
 									->where('last_user','=',$user->id)
-									->where("proxy_id","<>",0)
+									->where("proxy_id","!=",0)
 									->where("running_time","<",$dt->toDateTimeString())
 									->get();
 			foreach($settings as $setting) {
