@@ -18,6 +18,7 @@ use Celebgramme\Veritrans\Veritrans;
 use Celebgramme\Models\PackageUser;
 use Celebgramme\Models\Package;
 use Celebgramme\Models\Setting;
+use Celebgramme\Models\SettingHelper;
 use Celebgramme\Models\SettingMeta;
 use Celebgramme\Models\FailedJob;
 use Celebgramme\Models\Post;
@@ -120,6 +121,23 @@ class CronJobController extends Controller
 				}
 				$setting->save();
 				$user->save();
+			}
+		}
+		
+		//kurang dari 7 hari
+		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(8);
+		$users = User::where("active_auto_manage","=",0)->get();
+		foreach ($users as $user){
+			$settings = Setting::join("setting_helpers","settings.id","=","setting_helpers.setting_id")
+									->where("type",'=','temp')
+									->where('last_user','=',$user->id)
+									->where("proxy_id","<>",0)
+									->where("running_time","<",$dt->toDateTimeString())
+									->get();
+			foreach($settings as $setting) {
+				$update_setting_helper = SettingHelper::where("setting_id","=",$setting->setting_id)->first();
+				$update_setting_helper->proxy_id = 0;
+				$update_setting_helper->save();
 			}
 		}
 		
