@@ -19,6 +19,7 @@ use Celebgramme\Models\PackageUser;
 use Celebgramme\Models\Package;
 use Celebgramme\Models\Setting;
 use Celebgramme\Models\SettingMeta;
+use Celebgramme\Models\SettingHelper;
 use Celebgramme\Models\SettingCounter;
 use Celebgramme\Models\FailedJob;
 use Celebgramme\Models\Post;
@@ -639,5 +640,22 @@ class CronJobController extends Controller
 		
 		
 		$setting_counter = null; $failed_job = null;
+	}
+	
+	/*
+	*
+	* Cron Helper untuk daily automation
+	*
+	*/
+	public function task_daily_automation_cron(){
+		$arr_mediaid_like = array();
+		$settings = Setting::join("setting_helpers","settings.id","=","setting_helpers.setting_id")
+								->where("is_auto_get_likes","=",1)
+								->get();
+		foreach($settings as $setting) {
+			//curl to IG account and get 3 latest post
+			
+			$arr_mediaid_like[] = 
+		}
 	}
 }
