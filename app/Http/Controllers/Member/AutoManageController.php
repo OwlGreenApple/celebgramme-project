@@ -108,6 +108,7 @@ class AutoManageController extends Controller
 		$setting_helper = SettingHelper::where("setting_id","=",Request::input('setting_id'))->first();
 		if (!is_null($setting_helper)) {
 			$setting_helper->cookies = "";
+			$setting_helper->is_refresh = 1;
 			$setting_helper->save();
 		}
 
@@ -425,8 +426,16 @@ class AutoManageController extends Controller
     $setting_temp->update($data);
 
     
-    $setting_temp = Setting::post_info_admin($setting_temp->id);
+		//for automation purpose
+		$setting_helper = SettingHelper::where("setting_id","=",$setting_temp->id)->first();
+		if (!is_null($setting_helper)) {
+			$setting_helper->is_refresh = 1;
+			$setting_helper->save();
+		}
+		
 
+    $setting_temp = Setting::post_info_admin($setting_temp->id);
+		
 
     $arr["message"]= "Setting berhasil diupdate";
     $arr["type"]= "success";
