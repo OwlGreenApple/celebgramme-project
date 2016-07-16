@@ -136,6 +136,7 @@ class CronJobController extends Controller
 									->get();
 			foreach($settings as $setting) {
 				$update_setting_helper = SettingHelper::where("setting_id","=",$setting->setting_id)->first();
+				$update_setting_helper->cookies = "";
 				$update_setting_helper->proxy_id = 0;
 				$update_setting_helper->save();
 			}
