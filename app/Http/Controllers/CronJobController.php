@@ -647,15 +647,22 @@ class CronJobController extends Controller
 	* Cron Helper untuk daily automation
 	*
 	*/
-	public function task_daily_automation_cron(){
-		$arr_mediaid_like = array();
+	public function task_automation_like(){
 		$settings = Setting::join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 								->where("is_auto_get_likes","=",1)
 								->get();
 		foreach($settings as $setting) {
-			//curl to IG account and get 3 latest post
+			$arr_mediaid_like = array();
+			//curl to IG account 3 latest post and get media id 
+			//check if media id sudah di autolike atau belum
+			//klo belum add ke post_target_like
 			
 			$arr_mediaid_like[] = 
+			
+			//assign kan setting_id(ig_account) sebanyak x 
+			for ($i=1;$i<=$setting->number_likes,$i++) {
+				//random likers. Klo uda ada jgn di assign, dirandom likersnya
+			}
 		}
 	}
 }
