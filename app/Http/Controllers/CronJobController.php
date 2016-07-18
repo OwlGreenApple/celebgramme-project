@@ -164,6 +164,7 @@ class CronJobController extends Controller
 				if ( ($user->active_auto_manage>=410400) && ($user->active_auto_manage<=453600) && (UserMeta::getMeta($user->id,"email5days")<>"yes") ) {
 					$count_log += 1;
 					$temp = UserMeta::createMeta("email5days","yes",$user->id);
+					$temp = UserMeta::createMeta("emailExpCoupon","",$user->id);
 
 					$emaildata = [
 							'user' => $user,
@@ -171,6 +172,7 @@ class CronJobController extends Controller
 					Mail::queue('emails.notif-5days', $emaildata, function ($message) use ($user) {
 						$message->from('no-reply@celebgramme.com', 'Celebgramme');
 						$message->to($user->email);
+						$message->bcc("it2.axiapro@gmail.com");
 						$message->subject('[Celebgramme] 5 hari lagi nih, nggak berasa yah');
 					});
 				}
@@ -206,6 +208,7 @@ class CronJobController extends Controller
 					Mail::queue('emails.notif-expired', $emaildata, function ($message) use ($user) {
 						$message->from('no-reply@celebgramme.com', 'Celebgramme');
 						$message->to($user->email);
+						$message->bcc("it2.axiapro@gmail.com");
 						$message->subject('[Celebgramme] Hari ini service Celebgramme.com berakhir');
 					});
 				}
@@ -219,9 +222,9 @@ class CronJobController extends Controller
 								->where("valid_until","=",$now->toDateString())
 								->get();
 		foreach($coupons as $coupon){
-			// if (UserMeta::getMeta($user->id,"emailExpCoupon")<>"yes") {
+			if (UserMeta::getMeta($user->id,"emailExpCoupon")<>"yes") {
 				$count_log += 1;
-				// $temp = UserMeta::createMeta("emailExpCoupon","yes",$user->id);
+				$temp = UserMeta::createMeta("emailExpCoupon","yes",$user->id);
 				$user = User::find($coupon->user_id);
 				$emaildata = [
 					'user' => $user,
@@ -230,9 +233,10 @@ class CronJobController extends Controller
 				Mail::queue('emails.notif-coupon-expired', $emaildata, function ($message) use ($user) {
 					$message->from('no-reply@celebgramme.com', 'Celebgramme');
 					$message->to($user->email);
+					$message->bcc("it2.axiapro@gmail.com");
 					$message->subject('[Celebgramme] Hari ini terakhir penggunaan coupon order anda');
 				});
-			// }
+			}
 		}
 		
 		if(App::environment() == "local"){		
