@@ -280,67 +280,10 @@ class CronJobController extends Controller
 					$following = $ig_data["following"];
 					$followers = $ig_data["followers"];
 				} 
-				if ( ($user->test==1) || ( ($id==0) && ($followers==0) && ($following==0) ) ){
-					$url = "http://websta.me/n/".$setting->insta_username;
-					$c = curl_init();
-					curl_setopt($c, CURLOPT_URL, $url);
-					curl_setopt($c, CURLOPT_REFERER, $url);
-					curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
-					curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-					curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-					$page = curl_exec($c);
-					curl_close($c);
-					
-					$html = str_get_html($page);
-					$profbox = $html->find('div[class="profbox"]');
-					if (count($profbox)>0) {
-						$found = true;
-						$html = str_get_html($profbox[0]);
-						if(($html->find('ul', 0))) {
-							$temp = explode(" ", $html->find('ul')[0]->class );
-							$temp1 = explode("-", $temp[1] );
-							$id = $temp1[1];
-						}
-						if(($html->find('img', 0))) {
-							$pp_url = $html->find('img')[0]->src;
-						}
-						if(($html->find('span[class="counts_followed_by"]', 0))) {
-							$followers = str_replace(",","",$html->find('span[class="counts_followed_by"]')[0]->innertext);
-						}
-						if(($html->find('span[class="following"]', 0))) {
-							$following = str_replace(",","",$html->find('span[class="following"]')[0]->innertext);
-						}
-					} else {
-						$found = false;
-					}
-				}
 				SettingMeta::createMeta("followers",$followers,$setting->id);
 				SettingMeta::createMeta("following",$following,$setting->id);
 				// if ( (!$found) || !$this->checking_cred_instagram($setting->insta_username,$setting->insta_password) ) {
-				if (!$found)  {
-					$setting_temp = Setting::find($setting->id);
-					$setting_temp->error_cred = true;
-					$setting_temp->status = "stopped";
-					$setting_temp->save();
-
-					$setting_real = Setting::where('insta_user_id','=',$setting_temp->insta_user_id)->where('type','=','real')->first();
-					$setting_real->error_cred = true;
-					$setting_real->status = "stopped cron";
-					$setting_real->save();
-
-					$user = User::find($setting_temp->last_user);
-					if (!is_null($user)) {
-						$emaildata = [
-								'user' => $user,
-								'insta_username' => $setting_temp->insta_username,
-						];
-						Mail::queue('emails.error-cred', $emaildata, function ($message) use ($user) {
-							$message->from('no-reply@celebgramme.com', 'Celebgramme');
-							$message->to($user->email);
-							$message->subject('[Celebgramme] Error Login Instagram Account');
-						});
-					}
-				}
+					
 				//saveimage url to meta
 				if ($pp_url<>"") {
 					
