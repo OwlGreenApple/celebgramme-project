@@ -722,6 +722,7 @@ class CronJobController extends Controller
 							if ($i<=count($arr_setting_id_liker)) {
 								$postTargetLike = new PostTargetLike;
 								$postTargetLike->media_id = $data["id"];
+								$postTargetLike->owner_id = $data["owner"]["id"];
 								$postTargetLike->code = $data["code"];
 								$postTargetLike->setting_id = $setting->id;
 								$postTargetLike->setting_id_liker = $arr_setting_id_liker[$i];

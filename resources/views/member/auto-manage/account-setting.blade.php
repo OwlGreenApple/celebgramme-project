@@ -950,40 +950,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>   
 
-<!--<div class="row">
-  <div class="col-md-12 col-sm-12">
-    <div class="panel panel-info ">
-      <div class="panel-heading">
-        <h3 class="panel-title">Likes</h3>
-      </div>
-      <div class="panel-body">
 
-        <div class="col-md-4">
-          <label>Likes min filter</label> 
-					<span class="glyphicon glyphicon-question-sign" title="">
-						<div class="hint">Likes hanya diberikan pada media (foto/video) yang mempunyai MIN Likes sesuai filter <br>
-							Nilai yang disarankan : 1 - 5 <br>
-							Nilai = 0 untuk menonaktifkan filter ini
-						</div>
-					</span>
-          <input type="number" class="form-control" name="data[min_likes_media]" value="{{$settings->min_likes_media}}">
-        </div>
-        <div class="col-md-4">
-          <label>Likes max filter</label> 
-					<span class="glyphicon glyphicon-question-sign" title="">
-						<div class="hint">Likes hanya diberikan pada media (foto/video) yang mempunyai MAX Likes sesuai filter <br>
-							Nilai yang disarankan :50 - 100 <br>
-							Nilai = 0 untuk menonaktifkan filter ini
-						</div>
-					</span>
-          <input type="number" class="form-control" name="data[max_likes_media]" value="{{$settings->max_likes_media}}">
-        </div>
-
-      </div>
-    </div>
-  </div>  
-</div>            
--->
 <div class="row" id="div-comment" <?php if ($settings->status_comment=="off") { echo "style='display:none;'"; } ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
@@ -992,16 +959,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       </div>
       <div class="panel-body">
 
-<!--
-        <div class="row">
-          <div class="col-md-4 checkbox">
-            <label><input type="checkbox" name="data[dont_comment_su]" <?php if($settings->dont_comment_su) echo "checked"; ?> >Dont Comment same user</label> 
-						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">Ketika anda memberikan centang ke kotak ini, anda tidak akan memberikan comment lebih dari 1 pada foto atau video pada user yang sama.</div>
-						</span>
-          </div>
-        </div>
--->
+
           <div class="row">
 						<div class="col-md-5 col-sm-12 col-xm-12"">
 							<label>Comments</label> 

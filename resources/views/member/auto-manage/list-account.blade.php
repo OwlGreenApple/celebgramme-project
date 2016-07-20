@@ -31,7 +31,7 @@ if (isset($datas)) {
 			$photo = url("images/pp/". SettingMeta::getMeta($data->id,"photo_filename"));
 		}
 		?>	
-		<li class="col-md-5 col-xs-5 col-sm-5 border-styling">
+		<li class="col-md-4 col-xs-4 col-sm-4 border-styling">
 			<div class="row"> 
 				<div class="col-md-10 col-sm-10 col-xs-10"></div>
 				<div class="col-md-2 col-sm-2 col-xs-2">

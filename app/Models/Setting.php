@@ -23,9 +23,9 @@ class Setting extends Model {
      * @var array
      */
     protected $fillable = ['activity_speed', 'media_source', 'media_age', 'media_type', 
-    'min_likes_media', 'max_likes_media', 'dont_comment_su', 'follow_source', 'dont_follow_su', 'dont_follow_pu', 'unfollow_source', 'unfollow_wdfm', 'comments', 'hashtags', 'locations', 
+    'dont_comment_su', 'follow_source', 'dont_follow_su', 'dont_follow_pu', 'unfollow_source', 'unfollow_wdfm', 'comments', 'hashtags', 'locations', 
     'insta_username', 'insta_password', 'insta_user_id', 'insta_access_token', 'last_user', 'start_time', 'running_time', 'user_id', 'tags_blacklist', 'usernames_blacklist', 
-    'likes_counter', 'unfollows_counter', 'comments_counter', 'follows_counter', 'username', 'status', 'activity', 'usernames_whitelist', 'status_follow_unfollow', 'status_like', 'status_comment', 'error_cred', "status_follow", "status_unfollow" ];
+    'username', 'status', 'activity', 'usernames_whitelist', 'status_follow_unfollow', 'status_like', 'status_comment', 'error_cred', "status_follow", "status_unfollow" ];
 	protected function createSetting($arr)
 	{
 		$user = Auth::user();
@@ -47,8 +47,6 @@ class Setting extends Model {
         $setting->media_source = "hashtags";
         $setting->media_age = "any";
         $setting->media_type = "any";
-        $setting->min_likes_media = "0";
-        $setting->max_likes_media = "0";
         $setting->dont_comment_su = true;
         $setting->follow_source = "hashtags";
         $setting->dont_follow_su = false;
@@ -134,8 +132,6 @@ class Setting extends Model {
         $setting->media_source = "hashtags";
         $setting->media_age = "any";
         $setting->media_type = "any";
-        $setting->min_likes_media = "0";
-        $setting->max_likes_media = "0";
         $setting->dont_comment_su = true;
         $setting->follow_source = "hashtags";
         $setting->dont_follow_su = false;
