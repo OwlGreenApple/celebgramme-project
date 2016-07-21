@@ -1,7 +1,9 @@
 @extends('member.index')
 
 @section('content-auto-manage')
-<?php use Celebgramme\Models\SettingMeta; ?>
+<?php use Celebgramme\Models\SettingMeta; 
+use Celebgramme\Models\SettingHelper; 
+?>
 
 <script type="text/javascript">
 
@@ -350,10 +352,49 @@
 		// copyToClipboard($("#textarea-copy"));
 	// });
 		
+		
+		$('#button-fullauto').click(function(e){
+			e.preventDefault();
+			$('#button-fullauto').addClass('btn-primary');
+			$('#button-advanced').removeClass('btn-primary');
+			$("#status_auto").val(1);
+			
+			$("#div-loading").show();
+			$(".advanced-manual-setting").addClass("hide");
+			setTimeout(function() {
+				//your code to be executed after 1 second
+				$("#div-loading").hide();
+			}, 500);			
+		});
+		$('#button-advanced').click(function(e){
+			e.preventDefault();
+			$('#button-advanced').addClass('btn-primary');
+			$('#button-fullauto').removeClass('btn-primary');
+			$("#status_auto").val(0);
+			
+			$("#div-loading").show();
+			$(".advanced-manual-setting").removeClass("hide");
+			setTimeout(function() {
+				//your code to be executed after 1 second
+				$("#div-loading").hide();
+			}, 500);			
+		});
+		
+		$('#AutoLikesOnButton').click(function(e){
+			$("#is_auto_get_likes").val(1);
+			$('#AutoLikesOnButton').addClass('btn-primary');
+			$('#AutoLikesOffButton').removeClass('btn-danger');
+		});
+		$('#AutoLikesOffButton').click(function(e){
+			$("#is_auto_get_likes").val(0);
+			$('#AutoLikesOffButton').addClass('btn-danger');
+			$('#AutoLikesOnButton').removeClass('btn-primary');
+		});
 
   });
 </script>
-
+<style>
+</style>
 
 
 <!-- Modal -->
@@ -470,25 +511,6 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       <div class="panel-body">
 <div class="col-md-5 col-xs-5 col-sm-5 border-styling ">
 	<?php 
-	/*
-	$photo = url('images/profile-default.png');
-	$json_url = "https://api.instagram.com/v1/users/search?q=".$settings->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
-	$json = @file_get_contents($json_url);
-	if($json == TRUE) { 
-		$links = json_decode($json);
-		if (count($links->data)>0) {
-			// $photo = $links->data[0]->profile_picture;
-			$photo = url('images/profile-default.png');
-			foreach($links->data as $link){
-				if (strtoupper($link->username) == strtoupper($settings->insta_username)){
-					$photo = $link->profile_picture;
-				}
-			}
-		} else {
-			$photo = url('images/profile-default.png');
-		}
-	}
-	*/
 		if (SettingMeta::getMeta($settings->id,"photo_filename") == "0") {
 			$photo = url('images/profile-default.png');
 		} else {
@@ -516,8 +538,9 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 			</p>
 		</div>
 		<div class="row im-centered"> 
-			<input type="button" value="Save" class="btn btn-info" id="button-save">
-			<button data-id="{{$settings->id}}" class="btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
+			<input type="button" value="Save" class="btn btn-info" id="button-save" style="margin-bottom:5px;">
+			
+			<button data-id="{{$settings->id}}" class="btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>" style="margin-bottom:5px;">
 				<?php if ($settings->status=='stopped') { echo "<span class='glyphicon glyphicon-play'></span> Start"; } else {echo "<span class='glyphicon glyphicon-stop'></span> Stop";}?> 
 			</button>
 		</div>
@@ -692,10 +715,43 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 </div>                    
 
 <div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="panel panel-info ">
+      <div class="panel-heading">
+        <h3 class="panel-title">Main Settings
+						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Main Settings</div><div class='panel-content'>Pilih salah satu : FULL AUTO atau ADVANCED settings.<br> FULL AUTO = Fast Settings, Pilih kategori Target anda & Start,<br> FULL AUTO hanya untuk Follow, Like & Auto Like My Posts ( tidak termasuk Comment ). <br>ADVANCED = Setting manual customized semua fitur Celebgramme.</div>">
+						</span>
+				</h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-1 col-sm-12 col-xs-12">
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+					<button class="btn col-md-10 col-sm-12 col-xs-12 <?php if ($settings->status_auto) echo "btn-primary"; ?>" id="button-fullauto" style="border-radius:15px;font-size:16px;color:#fff;outline:none;">
+					<strong>FAST<br>Full Auto Settings</strong>
+					</button>
+        </div>
+        <div class="col-md-2 col-sm-12 col-xs-12">
+				<br>
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+					<button class="btn col-md-10 col-sm-12 col-xs-12 <?php if (!$settings->status_auto) echo "btn-primary"; ?>" id="button-advanced" style="border-radius:15px;font-size:16px;color:#fff;outline:none;">
+					<strong>ADVANCED<br>Manual Settings</strong>
+					</button>
+        </div>
+        <div class="col-md-1 col-sm-1">
+        </div>
+				<input type="hidden" value="{{$settings->status_auto}}" name="data[status_auto]" id="status_auto">
+      </div>
+    </div>
+  </div>  
+</div>                        
+
+<div class="row">
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
-        <h3 class="panel-title">Main Settings</h3>
+        <h3 class="panel-title">Global Settings</h3>
       </div>
       <div class="panel-body">
 
@@ -763,7 +819,45 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                        
 
-<div class="row">
+<div class="row advanced-manual-setting" <?php if ($settings->status_auto) echo "style='display:none;'"; ?>>
+  <div class="col-md-12 col-sm-12">
+    <div class="panel panel-info ">
+      <div class="panel-heading">
+        <h3 class="panel-title">Auto get likes</h3>
+      </div>
+      <div class="panel-body">
+				<?php 
+					$is_auto_get_likes = 0;
+					$setting_helper = SettingHelper::where("setting_id","=",$settings->id)->first();
+					if (!is_null($setting_helper)){
+						$is_auto_get_likes = $setting_helper->is_auto_get_likes;
+					}
+				?>
+
+        <div class="row">
+					<div class="col-md-12 col-xs-12 col-sm-12">
+						<label>Status
+						</label>
+						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto get likes</div><div class='panel-content'> asdasdsd</div>">
+						</span>
+					</div>
+					<div class="col-md-3 col-xs-12 col-sm-12">
+						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
+							<button type="button" class="btn <?php if ($is_auto_get_likes) echo 'btn-primary' ?>" id="AutoLikesOnButton" style="color:#fff;">ON</button>
+							<button type="button" class="btn <?php if (!$is_auto_get_likes) echo 'btn-danger' ?>" id="AutoLikesOffButton" style="color:#fff;">OFF</button>
+							<input type="hidden" value="{{$is_auto_get_likes}}" name="data[is_auto_get_likes]" id="is_auto_get_likes">
+						</div>
+					</div>
+
+
+        </div>
+        
+      </div>
+    </div>
+  </div>  
+</div>                        
+
+<div class="row advanced-manual-setting" <?php if ($settings->status_auto) echo "style='display:none;'"; ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -772,25 +866,28 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       <div class="panel-body">
 
         <div class="row">
-					<div class="col-md-4">
+					<div class="col-md-12 col-xs-12 col-sm-12">
 						<label>Status</label>
 						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Follow Status</div><div class='panel-content'><strong>Status ON </strong>akan melakukan 'Follow/Unfollow' <br>
 						                  <strong>Status OFF </strong>Tidak akan melakukan 'Follow/Unfollow' <br>
 															*PS: Status OFF berguna apabila anda hanya mau melakukan Aktifitas lain (Like & Comment) saja</div>">
 						</span>
-						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
+						<div class="btn-group col-xs-12 col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
 							<button type="button" class="btn <?php if ($settings->status_follow_unfollow=="on") echo 'btn-primary' ?>" id="statusFollowOnButton" style="color:#fff;">ON</button>
 							<button type="button" class="btn <?php if ($settings->status_follow_unfollow=="off") echo 'btn-danger' ?>" id="statusFollowOffButton" style="color:#fff;">OFF</button>
 							<input type="hidden" value="{{$settings->status_follow_unfollow}}" name="data[status_follow_unfollow]" id="status_follow_unfollow">
 						</div>
 					</div>
+					<div class="col-md-12 col-xs-12 col-sm-12">
+					<br>
+					</div>
 
 
-					<div class="col-md-4 status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
+					<div class="col-md-12 col-xs-12 col-sm-12 status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 						<label>Activity</label>
 						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Follow Activity</div><div class='panel-content'>PILIH salah satu <strong>Follow / Unfollow</strong>. Tidak bisa bersamaan</div>">
 						</span>
-						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
+						<div class="btn-group col-xs-12 col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
 							<button type="button" class="btn <?php if ($settings->activity=="follow") echo 'btn-success' ?>" id="followButton" style="color:#fff;">Follow</button>
 							<button type="button" class="btn <?php if ($settings->activity=="unfollow") echo 'btn-success' ?>" id="unfollowButton" style="color:#fff;">Unfollow</button>
 							<input type="hidden" value="{{$settings->activity}}" name="data[activity]" id="activity">
@@ -823,7 +920,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                        
 
-<div class="row" id="div-unfollow-whitelist" <?php if ( ($settings->activity=="follow") || ($settings->status_follow_unfollow=="off") ) { echo "style='display:none;'"; } ?>>
+<div class="row advanced-manual-setting" id="div-unfollow-whitelist" <?php if ( ($settings->activity=="follow") || ($settings->status_follow_unfollow=="off") || ($settings->status_auto) ) { echo "style='display:none;'"; } ?> >
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -851,7 +948,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                    
 
-<div class="row" id="div-usernames" <?php if ( ($settings->follow_source=='hashtags') || ($settings->status_follow_unfollow=="off") ) echo "style='display:none;'" ?>>
+<div class="row advanced-manual-setting" id="div-usernames" <?php if ( ($settings->follow_source=='hashtags') || ($settings->status_follow_unfollow=="off") || ($settings->status_auto) ) echo "style='display:none;'" ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -877,7 +974,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                    
 
-<div class="row" id="div-hashtags" <?php if ( ( ($settings->status_follow_unfollow=="off") && ($settings->status_like=="off") && ($settings->status_comment=="off")) || ( (($settings->follow_source=='followers of username') || ($settings->follow_source=='following of username')) && ($settings->status_follow_unfollow=="on")&& ($settings->status_like=="off")&& ($settings->status_comment=="off") )  ) echo "style='display:none;'" ?>>
+<div class="row advanced-manual-setting" id="div-hashtags" <?php if ( ( ($settings->status_follow_unfollow=="off") && ($settings->status_like=="off") && ($settings->status_comment=="off")) || ($settings->status_auto) || ( (($settings->follow_source=='followers of username') || ($settings->follow_source=='following of username')) && ($settings->status_follow_unfollow=="on")&& ($settings->status_like=="off")&& ($settings->status_comment=="off") )  ) echo "style='display:none;'" ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -906,7 +1003,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                    
 
-<div class="row">
+<div class="row advanced-manual-setting" <?php if ($settings->status_auto) echo "style='display:none;'"; ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -931,9 +1028,11 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 							<input type="hidden" value="{{$settings->status_like}}" name="data[status_like]" id="status_like">
 						</div>				
 					</div>				
-        </div>
-				
-        <div class="row">
+					
+					<div class="col-md-12 col-xs-12 col-sm-12">.
+					<br>
+					</div>
+					
 					<div class="col-md-12">
 						<label>Comment</label> 
 						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
@@ -951,7 +1050,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 </div>   
 
 
-<div class="row" id="div-comment" <?php if ($settings->status_comment=="off") { echo "style='display:none;'"; } ?>>
+<div class="row advanced-manual-setting" id="div-comment" <?php if ( ($settings->status_comment=="off") || ($settings->status_auto) ) { echo "style='display:none;'"; } ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -1018,53 +1117,11 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                        
 
-<!--
 <div class="row">
-  <div class="col-md-12 col-sm-12">
-    <div class="panel panel-info ">
-      <div class="panel-heading">
-        <h3 class="panel-title">Unfollow</h3>
-      </div>
-      <div class="panel-body">
-
-        <div class="row">
-          <div class="col-md-5 checkbox">
-            <label><input type="checkbox" name="data[unfollow_wdfm]" <?php if($settings->unfollow_wdfm) echo "checked"; ?> >Unfollow who dont follow me</label> 
-						<span class="glyphicon glyphicon-question-sign" title="">
-						<div class="hint">Unfollow users yang tidak Follow back anda. <br>
-						</div>
-						</span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <label>Unfollow source</label> 
-						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">
-								User yang mana yang akan di Unfollow? <br>
-								Celebgramme - Unfollow Users yang anda dapatkan dari Celebgramme <br>
-								All - Unfollow Semua Following anda
-							</div>
-						</span>
-            <select class="form-control" name="data[unfollow_source]">
-              <option value="celebgramme" <?php if ($settings->unfollow_source=='celebgramme') echo "selected" ?>>Celebgramme</option>
-              <option value="all" <?php if ($settings->unfollow_source=='all') echo "selected" ?>>All</option>
-            </select>
-          </div>
-        </div>
-
-
-      </div>
-    </div>
-  </div>  
-</div>                        
--->
-<div class="row">
-  <div class="col-md-2">
-    <input type="button" value="Save" class="btn btn-info col-md-12 col-sm-12" id="button-save2">    
-  </div>                    
-  <div class="col-md-2">
-		<button data-id="{{$settings->id}}" class="btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}} col-md-12 col-sm-12" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
+  <div class="col-md-12">
+    <input type="button" value="Save" class="btn btn-info" id="button-save2">    
+		
+		<button data-id="{{$settings->id}}" class="btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
 			<?php if ($settings->status=='stopped') { echo "<span class='glyphicon glyphicon-play'></span> Start"; } else {echo "<span class='glyphicon glyphicon-stop'></span> Stop";}?> 
 		</button>
 		
@@ -1075,7 +1132,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 
 <div class="row">
   <div class="col-md-12">
-    <p align="center"> <br><br><br><br><br><br><br><br> @Copyright <a href="http://celebgramme.com/celebgramme">Celebgramme</a> 2016</p>    
+    <p align="center"> <br><br><br><br><br><br><br><br> @Copyright <a href="http://celebgramme.com/celebgramme">Celebgramme</a> version 2.0 2016</p>    
   </div>                    
 </div>                    
 

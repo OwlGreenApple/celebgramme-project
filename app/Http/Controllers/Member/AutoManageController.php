@@ -406,6 +406,13 @@ class AutoManageController extends Controller
 			}
 		}
 		
+		//cek private, untuk yang full auto atau advanced manual tapi auto get like dipilih
+		if ( ($data["is_auto_get_likes"]) || ($data["status_auto"]) ) {
+			$arr["message"]= "Profile account instagram tidak boleh di Private, untuk fitur auto get like";
+			$arr["type"]= "error";
+			return $arr;
+		}
+		
 		//hapus pesan auto unfollow 
 		SettingMeta::createMeta("auto_unfollow","no",$setting_temp->id);
 		
