@@ -287,7 +287,35 @@ class CronJobController extends Controller
 				SettingMeta::createMeta("followers",$followers,$setting->id);
 				SettingMeta::createMeta("following",$following,$setting->id);
 				// if ( (!$found) || !$this->checking_cred_instagram($setting->insta_username,$setting->insta_password) ) {
-					
+				if (!$found)  {
+					$setting_temp = Setting::find($setting->id);
+					$setting_temp->error_cred = true;
+					$setting_temp->status = "stopped";
+					$setting_temp->save();
+
+					$setting_real = Setting::where('insta_user_id','=',$setting_temp->insta_user_id)->where('type','=','real')->first();
+					$setting_real->error_cred = true;
+					$setting_real->status = "stopped cron";
+					$setting_real->save();
+
+					$setting_helper = SettingHelper::where("setting_id","=",$setting->id)->first();
+					$setting_helper->cookies = "error auto by cron";
+					$setting_helper->save();
+
+					$user = User::find($setting_temp->last_user);
+					if (!is_null($user)) {
+						$emaildata = [
+								'user' => $user,
+								'insta_username' => $setting_temp->insta_username,
+						];
+						Mail::queue('emails.error-cred', $emaildata, function ($message) use ($user) {
+							$message->from('no-reply@celebgramme.com', 'Celebgramme');
+							$message->to($user->email);
+							$message->bcc("it2.axiapro@gmail.com");
+							$message->subject('[Celebgramme] Error Login Instagram Account');
+						});
+					}
+				}
 				//saveimage url to meta
 				if ($pp_url<>"") {
 					
