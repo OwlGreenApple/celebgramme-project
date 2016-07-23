@@ -719,7 +719,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
     <div class="panel panel-info ">
       <div class="panel-heading">
         <h3 class="panel-title">Main Settings
-						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Main Settings</div><div class='panel-content'>Pilih salah satu : FULL AUTO atau ADVANCED settings.<br> FULL AUTO = Fast Settings, Pilih kategori Target anda & Start,<br> FULL AUTO hanya untuk Follow, Like & Auto Like My Posts ( tidak termasuk Comment ). <br>ADVANCED = Setting manual customized semua fitur Celebgramme.</div>">
+						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Main Settings</div><div class='panel-content'>Pilih salah satu : FULL AUTO atau ADVANCED settings.<br> FULL AUTO = Fast Settings, Pilih kategori Target anda & Start,<br> FULL AUTO hanya untuk Follow, Like & Auto Like My Posts ( tidak termasuk Comment ). <br>ADVANCED = Setting manual customized semua fitur Celebgramme. <br>*PS: Settings yang AKTIF adalah yang TERAKHIR dipilih</div>">
 						</span>
 				</h3>
       </div>
@@ -823,7 +823,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
-        <h3 class="panel-title">Auto get likes</h3>
+        <h3 class="panel-title">Auto Like My Post (ALMP)</h3>
       </div>
       <div class="panel-body">
 				<?php 
