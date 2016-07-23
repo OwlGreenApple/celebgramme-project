@@ -390,6 +390,22 @@ use Celebgramme\Models\SettingHelper;
 			$('#AutoLikesOffButton').addClass('btn-danger');
 			$('#AutoLikesOnButton').removeClass('btn-primary');
 		});
+		
+		$('#BlacklistOnButton').click(function(e){
+			e.preventDefault();
+			$('#BlacklistOnButton').addClass('btn-primary');
+			$('#BlacklistOffButton').removeClass('btn-danger');
+			$("#status_blacklist").val(1);
+			$("#div-blacklist").fadeIn(500);
+		});
+		$('#BlacklistOffButton').click(function(e){
+			e.preventDefault();
+			$('#BlacklistOnButton').removeClass('btn-primary');
+			$('#BlacklistOffButton').addClass('btn-danger');
+			$("#status_blacklist").val(0);
+			$("#div-blacklist").fadeOut(500);
+		});
+		
 
   });
 </script>
@@ -719,7 +735,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
     <div class="panel panel-info ">
       <div class="panel-heading">
         <h3 class="panel-title">Main Settings
-						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Main Settings</div><div class='panel-content'>Pilih salah satu : FULL AUTO atau ADVANCED settings.<br> FULL AUTO = Fast Settings, Pilih kategori Target anda & Start,<br> FULL AUTO hanya untuk Follow, Like & Auto Like My Posts ( tidak termasuk Comment ). <br>ADVANCED = Setting manual customized semua fitur Celebgramme. <br>*PS: Settings yang AKTIF adalah yang TERAKHIR dipilih</div>">
+						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Main Settings</div><div class='panel-content'>Pilih salah satu : FULL AUTO atau ADVANCED settings.<br> FULL AUTO = Fast Settings, Pilih kategori Target anda & Start,<br> FULL AUTO hanya untuk Follow, Like & Auto Like My Posts ( tidak termasuk Comment ). <br>ADVANCED = Setting manual customized semua fitur Celebgramme. <br> <i>*PS: Settings yang AKTIF adalah yang TERAKHIR dipilih</i></div>">
 						</span>
 				</h3>
       </div>
@@ -755,7 +771,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       </div>
       <div class="panel-body">
 
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-12 col-xs-12">
           <label>Activity Speed</label> 
 					<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Activity speed</div><div class='panel-content'>Jika Akun anda BARU / Tdk aktif, START dgn SLOW/NORMAL speed utk 5 hari <br>• <strong>Slow</strong> = Melakukan 550 Likes, 120 comments, 350 follow/unfollow /hari <br>• <strong>Normal</strong> = Melakukan 1200 likes, 180 comments, 450 follow/unfollows /hari. <br>• <strong>Fast</strong> = Melakukan 1800 likes, 240 comments, 600 follow/unfollows /hari. <br></div>">
 					</span>
@@ -782,7 +798,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
           </select>
         </div>
 				-->
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-12 col-xs-12">
           <label>Media Age</label> 
 					<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Media Age</div><div class='panel-content'>Pilih Umur Media / Media Age yang akan berinteraksi dengan anda.<br>
 							<strong>Latest</strong> : Hanya post terbaru (default)<br>
@@ -802,6 +818,19 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
             <option value="any" <?php if ($settings->media_age=='any') echo "selected" ?>>Any</option>
           </select>
         </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+          <label>Blacklist</label> 
+					<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Blacklist </div><div class='panel-content'>List Username yang TIDAK akan di FLC (Follow, Like & Comment)<br>
+					Masukkan usernames SAJA disini (tanpa @), contoh: darthvader, hitler, kimjongil, dsbnya<br>
+					<i>*PS: berguna sekali untuk TIDAK follow, like, comment 'mantan' & 'kompetitor' anda</i><br>
+</div>">
+					</span>
+					<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
+						<button type="button" class="btn <?php if ($settings->status_blacklist) {echo'btn-primary';} ?>" id="BlacklistOnButton" style="color:#fff;">ON</button>
+						<button type="button" class="btn <?php if (!$settings->status_blacklist) {echo'btn-danger';} ?>" id="BlacklistOffButton" style="color:#fff;">OFF</button>
+					</div>
+					<input type="hidden" value="{{$settings->status_blacklist}}" name="data[status_blacklist]" id="status_blacklist">
+        </div>
 				<!--
         <div class="col-md-4">
           <label>Media Type</label> 
@@ -817,13 +846,29 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       </div>
     </div>
   </div>  
-</div>                        
+</div>       
+
+<div class="row" id="div-blacklist" <?php if (!$settings->status_blacklist) { echo 'style=display:none'; } ?>>
+  <div class="col-md-12 col-sm-12">
+    <div class="panel panel-info ">
+      <div class="panel-heading">
+        <h3 class="panel-title">Usernames blacklist</h3>
+      </div>
+      <div class="panel-body">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<textarea class="selectize-default" id="textarea-unfollow-blacklist" name="data[usernames_blacklist]">{{$settings->usernames_blacklist}}</textarea>
+				</div>
+      </div>
+    </div>
+  </div>  
+</div>       
+                 
 
 <div class="row advanced-manual-setting" <?php if ($settings->status_auto) echo "style='display:none;'"; ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
-        <h3 class="panel-title">Auto Like My Post (ALMP)</h3>
+        <h3 class="panel-title">Auto Like My Post ALMP</h3>
       </div>
       <div class="panel-body">
 				<?php 
@@ -838,7 +883,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 					<div class="col-md-12 col-xs-12 col-sm-12">
 						<label>Status
 						</label>
-						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto get likes</div><div class='panel-content'> asdasdsd</div>">
+						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Like My Post ALMP</div><div class='panel-content'>Fitur Keren ini akan membuat POST anda terlihat POPULER<br>SETIAP POST Terbaru anda akan MENDAPATKAN LIKES secara OTOMATIS<br> Max 24 jam = 30 Likes / 3 post / Hari TERAKHIR<br> <i>*PS: artinya HANYA 3 Post Terakhir per HARI <br>yang akan mendapatkan 30 Likes / masing-masing post</i>  </div>">
 						</span>
 					</div>
 					<div class="col-md-3 col-xs-12 col-sm-12">
@@ -870,7 +915,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 						<label>Status</label>
 						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Follow Status</div><div class='panel-content'><strong>Status ON </strong>akan melakukan 'Follow/Unfollow' <br>
 						                  <strong>Status OFF </strong>Tidak akan melakukan 'Follow/Unfollow' <br>
-															*PS: Status OFF berguna apabila anda hanya mau melakukan Aktifitas lain (Like & Comment) saja</div>">
+															<i>*PS: Status OFF berguna apabila anda hanya mau melakukan Aktifitas lain (Like & Comment) saja</i></div>">
 						</span>
 						<div class="btn-group col-xs-12 col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
 							<button type="button" class="btn <?php if ($settings->status_follow_unfollow=="on") echo 'btn-primary' ?>" id="statusFollowOnButton" style="color:#fff;">ON</button>
@@ -902,7 +947,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 				<br>
 					
         <div class="row status-follow status-unfollow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
-          <div class="col-md-4">
+          <div class="col-md-4 col-sm-4 col-xs-4">
             <label>Follow source</label> 
 						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Follow Source</div><div class='panel-content'>
 						Pilih 1 dari 3 Follow Sources ini (Hanya yang dipilih yang dijalankan) : <br>
@@ -929,15 +974,15 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       <div class="panel-body">
 
         <div class="row">
-          <div class="col-md-11">
+          <div class="col-md-11 col-sm-10 col-xs-10">
             <label>Usernames whitelist</label> 
 						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Usernames whitelist</div><div class="panel-content">• Saat anda UNFOLLOW. <strong>Usernames di "Whitelist" ini akan diabaikan / tidak akan di "UNFOLLOW"</strong><br>
 							• <strong>Usulan penggunaan : </strong>teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW</div>'></span>
           </div>
-					<div class="col-md-1 col-sm-1 col-xm-1">
+					<div class="col-md-1 col-sm-1 col-xs-1">
 						<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-unfollow-whitelist">copy</p>
           </div>
-					<div class="col-md-12">
+					<div class="col-md-12 col-sm-12 col-xs-12">
 						<textarea class="selectize-default" id="textarea-unfollow-whitelist" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>
 					</div>
 					
@@ -957,14 +1002,14 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       <div class="panel-body">
 
         <div class="row">
-          <div class="col-md-11">
+          <div class="col-md-11 col-sm-10 col-xs-10">
             <label>Usernames</label> 
 						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Media source : Usernames</div><div class="panel-content">• <strong>Add MIN 10 username</strong> jika menggunakan "Usernames" di Media Source. <br>• Anda dapat menambahkan <strong>MAX 50 usernames.</strong></div>'></span>
           </div>
-					<div class="col-md-1 col-sm-1 col-xm-1">
+					<div class="col-md-1 col-sm-1 col-xs-1">
 						<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-username">copy</p>
           </div>
-					<div class="col-md-12">						
+					<div class="col-md-12 col-sm-12 col-xs-12">						
 						<textarea class="selectize-default" id="textarea-username" name="data[username]">{{$settings->username}}</textarea>
 					</div>
         </div>
@@ -983,17 +1028,17 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       <div class="panel-body">
 
         <div class="row">
-          <div class="col-md-11">
+          <div class="col-md-11 col-sm-10 col-xs-10">
             <label>Hashtags</label> 
 						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Media source : Hashtags</div><div class='panel-content'>• ADD <strong>MIN 10 Hashtags</strong> <br>
 								• TIDAK PERLU ADD <strong>simbol # (tanda pagar) </strong><br>
 								• Anda dapat menambahkan <strong>MAX 50 Hashtags</strong>
 </div>"></span>
           </div>
-					<div class="col-md-1 col-sm-1 col-xm-1">
+					<div class="col-md-1 col-sm-1 col-xs-1">
 						<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-hashtags">copy</p>
           </div>
-					<div class="col-md-12">
+					<div class="col-md-12 col-sm-12 col-xs-12">
 						<textarea class="selectize-default" id="textarea-hashtags" name="data[hashtags]">{{$settings->hashtags}}</textarea>
 					</div>
         </div>
@@ -1085,7 +1130,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 						</div>
           </div>
           <div class="row">
-						<div class="col-md-5 col-sm-12 col-xm-12"">
+						<div class="col-md-5 col-sm-12 col-xs-12"">
 							<label>Penjelasan fitur spin comment</label>
 							<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Penjelasan fitur spin comment</div>								<div class="panel-content"><strong>Gunakan Feature "Spin Comment" </strong>contoh : <br>
 																		{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
@@ -1094,14 +1139,14 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 	</div>'>
 							</span>
 						</div>
-						<div class="col-md-6 col-sm-12 col-xm-12" ">
+						<div class="col-md-6 col-sm-10 col-xs-10" ">
 							<label>Petunjuk tanda baca spin comment</label>
 							<?php $tempurl = url("images/petunjuk-spin.jpg"); ?>
 							<span class="glyphicon glyphicon-search tooltipPlugin" title='<div class="panel-heading">Petunjuk tanda baca spin comment</div><div class="panel-content"><img src="{{$tempurl}}" width="800" height="250">
 	</div>'>
 							</span>
 						</div>
-						<div class="col-md-1 col-sm-1 col-xm-1">
+						<div class="col-md-1 col-sm-1 col-xs-1">
 							<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-comments">copy</p>
 						</div>
           </div>

@@ -408,9 +408,19 @@ class AutoManageController extends Controller
 		
 		//cek private, untuk yang full auto atau advanced manual tapi auto get like dipilih
 		if ( ($data["is_auto_get_likes"]) || ($data["status_auto"]) ) {
-			$arr["message"]= "Profile account instagram tidak boleh di Private, untuk fitur auto get like";
-			$arr["type"]= "error";
-			return $arr;
+			if ($this->check_private_user($setting_temp->insta_username)) {
+				$arr["message"]= "Profile account instagram tidak boleh di Private, untuk fitur auto get like";
+				$arr["type"]= "error";
+				return $arr;
+			}
+		}
+		
+		//change auto get likes
+		$setting_helper = SettingHelper::where("setting_id","=",$setting_temp->id)->first();
+		if (!is_null($setting_helper)) {
+			$setting_helper->is_auto_get_likes = $data["is_auto_get_likes"] ;
+			$setting_helper->number_likes = 30 ;
+			$setting_helper->save();
 		}
 		
 		//hapus pesan auto unfollow 
@@ -736,5 +746,69 @@ class AutoManageController extends Controller
 		} else { //login invalid
 			return false;
 		}
+	}
+
+	public function check_private_user($username){
+		$is_private = false;
+		
+		$ports[] = "10201"; 
+		$ports[] = "10202";
+		$ports[] = "10203";
+		$port = $ports[array_rand($ports)];
+		$cred = "sugiarto:sugihproxy250";
+		$proxy = "45.79.212.85";//good proxy
+		$auth = true;
+
+		if(App::environment() == "local"){
+			$cookiefile = base_path().'/../general/ig-cookies/'.$username.'-cookies-grab.txt';
+		} else{
+			$cookiefile = base_path().'/../public_html/general/ig-cookies/'.$username.'-cookies-grab.txt';
+		}
+			
+		$url = "https://www.instagram.com/".$username."/?__a=1";
+		$c = curl_init();
+
+
+		if ($auth) {
+			curl_setopt($c, CURLOPT_PROXY, $proxy);
+			curl_setopt($c, CURLOPT_PROXYPORT, $port);
+			curl_setopt($c, CURLOPT_PROXYUSERPWD, $cred);
+		} else if (!$auth) {
+			curl_setopt($c, CURLOPT_PROXY, $proxy.":".$port);
+		}
+		curl_setopt($c, CURLOPT_PROXYTYPE, 'HTTP');
+		curl_setopt($c, CURLOPT_URL, $url);
+		curl_setopt($c, CURLOPT_REFERER, $url);
+		curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($c, CURLOPT_COOKIEFILE, $cookiefile);
+		curl_setopt($c, CURLOPT_COOKIEJAR, $cookiefile);
+		$page = curl_exec($c);
+		curl_close($c);
+		
+		$arr = json_decode($page,true);
+		// var_dump(json_decode($page,true));
+		if (count($arr)>0) {
+			if ($arr["user"]["is_private"]) {
+				$is_private = true;
+			}
+			else if (!$arr["user"]["is_private"]) {
+				$is_private = false;
+			}
+			
+			// foreach ($arr["user"]["media"]["nodes"] as $data) {
+				// echo $data["id"]."   ".$data["code"]."  ".$data["owner"]["id"]."<br>";
+			// }
+		} else {
+			echo "username not found";
+		}
+		
+		
+		if (file_exists($cookiefile)) {
+			unlink($cookiefile);
+		}
+		
+		return $is_private;
 	}
 }
