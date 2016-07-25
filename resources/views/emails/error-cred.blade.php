@@ -4,6 +4,9 @@ Ada perubahan di akun Instagram anda.
 <br>
 <strong>Silahkan UPDATE kembali username & password Instagram anda </strong><br>
 <br>
+Account yang perlu di benarkan adalah : <br>
+<strong>{{$insta_username}}</strong> <br>
+<br>
 <strong>CARA melakukan UPDATE :</strong>  <br>
 silahkan Login ke Celebgramme kembali disini <br>
 click to <a href="https://celebgramme.com/celebgramme"> ---> LOGIN <--- </a> <br>
