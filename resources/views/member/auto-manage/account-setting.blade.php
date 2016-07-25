@@ -406,6 +406,18 @@ use Celebgramme\Models\SettingHelper;
 			$("#div-blacklist").fadeOut(500);
 		});
 		
+		$('#DontFollowPUOnButton').click(function(e){
+			e.preventDefault();
+			$('#DontFollowPUOnButton').addClass('btn-primary');
+			$('#DontFollowPUOffButton').removeClass('btn-danger');
+			$("#dont_follow_pu").val(1);
+		});
+		$('#DontFollowPUOffButton').click(function(e){
+			e.preventDefault();
+			$('#DontFollowPUOnButton').removeClass('btn-primary');
+			$('#DontFollowPUOffButton').addClass('btn-danger');
+			$("#dont_follow_pu").val(0);
+		});
 
   });
 </script>
@@ -862,7 +874,21 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
     </div>
   </div>  
 </div>       
-                 
+
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <div class="panel panel-info ">
+      <div class="panel-heading">
+        <h3 class="panel-title">Target Categories</h3>
+      </div>
+      <div class="panel-body">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<textarea class="selectize-default" id="textarea-unfollow-blacklist" name="data[usernames_blacklist]">{{$settings->usernames_blacklist}}</textarea>
+				</div>
+      </div>
+    </div>
+  </div>  
+</div>       
 
 <div class="row advanced-manual-setting" <?php if ($settings->status_auto) echo "style='display:none;'"; ?>>
   <div class="col-md-12 col-sm-12">
@@ -947,7 +973,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 				<br>
 					
         <div class="row status-follow status-unfollow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
-          <div class="col-md-4 col-sm-4 col-xs-4">
+          <div class="col-md-4 col-sm-5 col-xs-5">
             <label>Follow source</label> 
 						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Follow Source</div><div class='panel-content'>
 						Pilih 1 dari 3 Follow Sources ini (Hanya yang dipilih yang dijalankan) : <br>
@@ -958,6 +984,18 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 							<option value="followers of username" <?php if ($settings->follow_source=='followers of username') echo "selected" ?>>Followers of username</option>
 <!--							<option value="following of username" <?php if ($settings->follow_source=='following of username') echo "selected" ?>>Following of username</option>-->
             </select>
+          </div>
+					<div class="col-md-4 col-sm-7 col-xs-7">
+						<label for="">Dont follow private users</label> 
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Dont Follow Private users</div><div class='panel-content'>
+						Jika Dont Follow Private Users dicentang,<br> Maka proses follow tidak akan memfollow account-account IG yang private
+						</div>"></span>
+						<div class="btn-group col-xs-12 col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
+							<button type="button" class="btn <?php if ($settings->dont_follow_pu) echo 'btn-primary' ?>" id="DontFollowPUOnButton" style="color:#fff;">ON</button>
+							<button type="button" class="btn <?php if (!$settings->dont_follow_pu) echo 'btn-danger' ?>" id="DontFollowPUOffButton" style="color:#fff;">OFF</button>
+							<input type="hidden" value="{{$settings->dont_follow_pu}}" name="data[dont_follow_pu]" id="dont_follow_pu">
+						</div>
+						
           </div>
         </div>
       </div>

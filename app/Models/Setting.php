@@ -50,7 +50,7 @@ class Setting extends Model {
         $setting->dont_comment_su = true;
         $setting->follow_source = "hashtags";
         $setting->dont_follow_su = false;
-        $setting->dont_follow_pu = false;
+        $setting->dont_follow_pu = true;
         $setting->unfollow_source = "celebgramme";
         $setting->unfollow_wdfm = true;
         $setting->user_id = $arr['user_id'];
@@ -135,7 +135,7 @@ class Setting extends Model {
         $setting->dont_comment_su = true;
         $setting->follow_source = "hashtags";
         $setting->dont_follow_su = false;
-        $setting->dont_follow_pu = false;
+        $setting->dont_follow_pu = true;
         $setting->unfollow_source = "celebgramme";
         $setting->unfollow_wdfm = true;
         $setting->user_id = $arr['user_id'];
