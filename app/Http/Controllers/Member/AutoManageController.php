@@ -20,6 +20,7 @@ use Celebgramme\Models\Meta;
 use Celebgramme\Models\Client;
 use Celebgramme\Models\SettingHelper;
 use Celebgramme\Models\Proxies;
+use Celebgramme\Models\Category;
 use Celebgramme\Veritrans\Veritrans;
 
 use Celebgramme\Helpers\GlobalHelper;
@@ -331,11 +332,38 @@ class AutoManageController extends Controller
     if (is_null($link)) {
       return redirect('auto-manage')->with( 'error', 'Not authorize to access page');
     } 
+		
+
+		$categories = Category::all();
+		
+		$strCategory = "";
+		foreach ($categories as $category) {
+			$strCategory .= json_encode(
+								array(
+									"class"=>strtolower($category->categories),
+									"value"=>strtolower($category->name),
+									"name"=>ucfirst($category->name),
+								)).",";
+		}
+		
+		$strClassCategory = "";
+		$groupCategories = Category::groupBy('categories')->get();
+		foreach ($groupCategories as $groupCategory) {
+			$strClassCategory .= json_encode(
+								array(
+									"value"=>strtolower($groupCategory->categories),
+									"label"=>ucfirst($groupCategory->categories),
+								)).",";
+		}
+		
+		
     return view("member.auto-manage.account-setting")->with(array(
       'user'=>$user,
       'settings'=>$link,
       'view_timeperaccount'=>$view_timeperaccount,
       'view_totaltime'=>$view_totaltime,
+      'strCategory'=>$strCategory,
+      'strClassCategory'=>$strClassCategory,
       ));
   }
 
@@ -406,12 +434,32 @@ class AutoManageController extends Controller
 			}
 		}
 		
-		//cek private, untuk yang full auto atau advanced manual tapi auto get like dipilih
 		if ( ($data["is_auto_get_likes"]) || ($data["status_auto"]) ) {
+			//cek private, untuk yang full auto atau advanced manual tapi auto get like dipilih
 			if ($this->check_private_user($setting_temp->insta_username)) {
 				$arr["message"]= "Profile account instagram tidak boleh di Private, untuk fitur auto get like";
 				$arr["type"]= "error";
 				return $arr;
+			}
+			
+			$data["is_auto_get_likes"] = 1;
+			
+			if ($data["status_auto"]) {
+				// update hashtags auto , berdasarkan target category 
+				$hashtags_auto = "";
+				$target_arr = explode(";",$data["target_categories"]);
+				$counter = 1;
+				foreach ($target_arr as $target_data) {
+					$category = Category::where("name","like","%".$target_data."%")->first();
+					if ($counter<count($target_arr)) {
+						$hashtags_auto .= $category->hashtags.";"; 
+					} else {
+						$hashtags_auto .= $category->hashtags; 
+					}
+					$counter += 1;
+				}
+				$setting_temp->hashtags_auto = $hashtags_auto;
+				$setting_temp->save();
 			}
 		}
 		
@@ -420,6 +468,10 @@ class AutoManageController extends Controller
 		if (!is_null($setting_helper)) {
 			$setting_helper->is_auto_get_likes = $data["is_auto_get_likes"] ;
 			$setting_helper->number_likes = 30 ;
+			if ($data["status_auto"]) {
+				$setting_helper->is_auto_get_likes = 1 ;
+				$setting_helper->target = $data["target_categories"] ;
+			}
 			$setting_helper->save();
 		}
 		

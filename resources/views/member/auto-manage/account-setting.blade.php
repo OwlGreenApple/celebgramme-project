@@ -295,6 +295,29 @@ use Celebgramme\Models\SettingHelper;
 				}
 			}
 		});
+
+
+
+    $('.selectize-target').selectize({
+			persist: false,
+			delimiter: ';',
+			options: [
+				<?php echo $strCategory; ?>
+			],
+			optgroups: [
+				<?php echo $strClassCategory; ?>
+			],
+			optgroupField: 'class',
+			labelField: 'name',
+			searchField: ['name'],
+			render: {
+					optgroup_header: function(data, escape) {
+							return '<div class="optgroup-header" style="font-size:16px;"><strong>' + escape(data.label) + '</strong></div>';
+					}
+			},
+			plugins:['remove_button']
+    });
+
 		
     $('.selectize-default').selectize({
       plugins:['remove_button'],
@@ -358,6 +381,7 @@ use Celebgramme\Models\SettingHelper;
 			$('#button-fullauto').addClass('btn-primary');
 			$('#button-advanced').removeClass('btn-primary');
 			$("#status_auto").val(1);
+			$("#target-categories").show();
 			
 			$("#div-loading").show();
 			$(".advanced-manual-setting").addClass("hide");
@@ -371,6 +395,7 @@ use Celebgramme\Models\SettingHelper;
 			$('#button-advanced').addClass('btn-primary');
 			$('#button-fullauto').removeClass('btn-primary');
 			$("#status_auto").val(0);
+			$("#target-categories").hide();
 			
 			$("#div-loading").show();
 			$(".advanced-manual-setting").removeClass("hide");
@@ -379,6 +404,11 @@ use Celebgramme\Models\SettingHelper;
 				$("#div-loading").hide();
 			}, 500);			
 		});
+		
+		<?php if ($settings->status_auto) { ?>
+			$(".advanced-manual-setting").addClass("hide");
+		<?php } ?>
+
 		
 		$('#AutoLikesOnButton').click(function(e){
 			$("#is_auto_get_likes").val(1);
@@ -783,7 +813,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       </div>
       <div class="panel-body">
 
-        <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="col-md-3 col-sm-12 col-xs-12">
           <label>Activity Speed</label> 
 					<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Activity speed</div><div class='panel-content'>Jika Akun anda BARU / Tdk aktif, START dgn SLOW/NORMAL speed utk 5 hari <br>• <strong>Slow</strong> = Melakukan 550 Likes, 120 comments, 350 follow/unfollow /hari <br>• <strong>Normal</strong> = Melakukan 1200 likes, 180 comments, 450 follow/unfollows /hari. <br>• <strong>Fast</strong> = Melakukan 1800 likes, 240 comments, 600 follow/unfollows /hari. <br></div>">
 					</span>
@@ -810,7 +840,10 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
           </select>
         </div>
 				-->
-        <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="col-md-1 col-sm-12 col-xs-12">
+					<br>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
           <label>Media Age</label> 
 					<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Media Age</div><div class='panel-content'>Pilih Umur Media / Media Age yang akan berinteraksi dengan anda.<br>
 							<strong>Latest</strong> : Hanya post terbaru (default)<br>
@@ -830,7 +863,10 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
             <option value="any" <?php if ($settings->media_age=='any') echo "selected" ?>>Any</option>
           </select>
         </div>
-        <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="col-md-1 col-sm-12 col-xs-12">
+					<br>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
           <label>Blacklist</label> 
 					<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Blacklist </div><div class='panel-content'>List Username yang TIDAK akan di FLC (Follow, Like & Comment)<br>
 					Masukkan usernames SAJA disini (tanpa @), contoh: darthvader, hitler, kimjongil, dsbnya<br>
@@ -875,36 +911,41 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>       
 
-<div class="row">
+<?php 
+	$is_auto_get_likes = 0;
+	$target_categories = "";
+	$setting_helper = SettingHelper::where("setting_id","=",$settings->id)->first();
+	if (!is_null($setting_helper)){
+		$is_auto_get_likes = $setting_helper->is_auto_get_likes;
+		$target_categories = $setting_helper->target;
+	}
+?>
+
+<div class="row" id="target-categories" <?php if (!$settings->status_auto) echo "style='display:none;'"; ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
-        <h3 class="panel-title">Target Categories</h3>
+        <h3 class="panel-title">Target Categories
+						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Target Categories</div><div class='panel-content'>content categories</div>">
+						</span>
+				</h3>
       </div>
       <div class="panel-body">
 				<div class="col-md-12 col-sm-12 col-xs-12">
-					<textarea class="selectize-default" id="textarea-unfollow-blacklist" name="data[usernames_blacklist]">{{$settings->usernames_blacklist}}</textarea>
+					<textarea class="selectize-target" id="textarea-target-categories" name="data[target_categories]">{{$target_categories}}</textarea>
 				</div>
       </div>
     </div>
   </div>  
 </div>       
 
-<div class="row advanced-manual-setting" <?php if ($settings->status_auto) echo "style='display:none;'"; ?>>
+<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo "hide"; ?>" >
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
         <h3 class="panel-title">Auto Like My Post ALMP</h3>
       </div>
       <div class="panel-body">
-				<?php 
-					$is_auto_get_likes = 0;
-					$setting_helper = SettingHelper::where("setting_id","=",$settings->id)->first();
-					if (!is_null($setting_helper)){
-						$is_auto_get_likes = $setting_helper->is_auto_get_likes;
-					}
-				?>
-
         <div class="row">
 					<div class="col-md-12 col-xs-12 col-sm-12">
 						<label>Status
@@ -928,7 +969,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                        
 
-<div class="row advanced-manual-setting" <?php if ($settings->status_auto) echo "style='display:none;'"; ?>>
+<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo 'hide'; ?>" >
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -1003,7 +1044,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                        
 
-<div class="row advanced-manual-setting" id="div-unfollow-whitelist" <?php if ( ($settings->activity=="follow") || ($settings->status_follow_unfollow=="off") || ($settings->status_auto) ) { echo "style='display:none;'"; } ?> >
+<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo 'hide'; ?>" id="div-unfollow-whitelist" <?php if ( ($settings->activity=="follow") || ($settings->status_follow_unfollow=="off") ) { echo "style='display:none;'"; } ?> >
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -1031,7 +1072,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                    
 
-<div class="row advanced-manual-setting" id="div-usernames" <?php if ( ($settings->follow_source=='hashtags') || ($settings->status_follow_unfollow=="off") || ($settings->status_auto) ) echo "style='display:none;'" ?>>
+<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo 'hide'; ?>" id="div-usernames" <?php if ( ($settings->follow_source=='hashtags') || ($settings->status_follow_unfollow=="off") ) echo "style='display:none;'" ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -1057,7 +1098,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                    
 
-<div class="row advanced-manual-setting" id="div-hashtags" <?php if ( ( ($settings->status_follow_unfollow=="off") && ($settings->status_like=="off") && ($settings->status_comment=="off")) || ($settings->status_auto) || ( (($settings->follow_source=='followers of username') || ($settings->follow_source=='following of username')) && ($settings->status_follow_unfollow=="on")&& ($settings->status_like=="off")&& ($settings->status_comment=="off") )  ) echo "style='display:none;'" ?>>
+<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo 'hide'; ?>" id="div-hashtags" <?php if ( ( ($settings->status_follow_unfollow=="off") && ($settings->status_like=="off") && ($settings->status_comment=="off")) || ( (($settings->follow_source=='followers of username') || ($settings->follow_source=='following of username')) && ($settings->status_follow_unfollow=="on")&& ($settings->status_like=="off")&& ($settings->status_comment=="off") )  ) echo "style='display:none;'" ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -1086,7 +1127,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                    
 
-<div class="row advanced-manual-setting" <?php if ($settings->status_auto) echo "style='display:none;'"; ?>>
+<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo 'hide'; ?>">
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -1133,7 +1174,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 </div>   
 
 
-<div class="row advanced-manual-setting" id="div-comment" <?php if ( ($settings->status_comment=="off") || ($settings->status_auto) ) { echo "style='display:none;'"; } ?>>
+<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo 'hide'; ?>" id="div-comment" <?php if ($settings->status_comment=="off")   { echo "style='display:none;'"; } ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
