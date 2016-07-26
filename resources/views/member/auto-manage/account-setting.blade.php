@@ -926,7 +926,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
     <div class="panel panel-info ">
       <div class="panel-heading">
         <h3 class="panel-title">Target Categories
-						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Target Categories</div><div class='panel-content'>content categories</div>">
+						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Target Categories</div><div class='panel-content'>Silahkan Pilih Target Kategori (max 10)<br>yang akan anda Follow & Like<br>Fitur Full Auto Settings akan OTOMATIS<br>berjalan sesuai dengan target kategori yang anda pilih.</div>">
 						</span>
 				</h3>
       </div>

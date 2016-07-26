@@ -444,10 +444,16 @@ class AutoManageController extends Controller
 			
 			$data["is_auto_get_likes"] = 1;
 			
+			$target_arr = explode(";",$data["target_categories"]);
+			if (count($target_arr)>10) {
+				$arr["message"] = "Target Categories tidak boleh lebih dari 10 ";
+				$arr["type"] = "error";
+				return $arr;
+			}
+			
 			if ($data["status_auto"]) {
 				// update hashtags auto , berdasarkan target category 
 				$hashtags_auto = "";
-				$target_arr = explode(";",$data["target_categories"]);
 				$counter = 1;
 				foreach ($target_arr as $target_data) {
 					$category = Category::where("name","like","%".$target_data."%")->first();
