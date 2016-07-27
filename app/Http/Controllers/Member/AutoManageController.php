@@ -477,6 +477,7 @@ class AutoManageController extends Controller
 			if ($data["status_auto"]) {
 				$setting_helper->is_auto_get_likes = 1 ;
 				$setting_helper->target = $data["target_categories"] ;
+				$setting_helper->identity = "all" ;
 			}
 			$setting_helper->save();
 		}
