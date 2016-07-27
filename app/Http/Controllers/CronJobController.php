@@ -669,9 +669,9 @@ class CronJobController extends Controller
 			$proxy = "45.79.212.85";//good proxy
 
 			if(App::environment() == "local"){
-				$cookiefile = base_path().'/../general/ig-cookies/'.$username.'-cookies-auto-like.txt';
+				$cookiefile = base_path().'/../general/ig-cookies/'.$setting->insta_username.'-cookies-auto-like.txt';
 			} else{
-				$cookiefile = base_path().'/../public_html/general/ig-cookies/'.$username.'-cookies-auto-like.txt';
+				$cookiefile = base_path().'/../public_html/general/ig-cookies/'.$setting->insta_username.'-cookies-auto-like.txt';
 			}
 			
 			$url = "https://www.instagram.com/".$setting->insta_username."/?__a=1";
