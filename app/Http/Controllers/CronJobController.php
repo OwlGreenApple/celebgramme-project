@@ -698,10 +698,10 @@ class CronJobController extends Controller
 				foreach ($arr["user"]["media"]["nodes"] as $data) {
 					// echo $data["id"]."   ".$data["code"]."<br>";
 					
-					$postTargetLike = PostTargetLike::where("setting_id","=",$setting->id)
+					$postTargetLikeCheck = PostTargetLike::where("setting_id","=",$setting->id)
 														->where("media_id","!=",$data["id"])
 														->first();
-					if (is_null($postTargetLike)) {
+					if (is_null($postTargetLikeCheck)) {
 						//create 
 						$arr_setting_id_liker = array();
 						$check_settings = Setting::select("settings.id")
