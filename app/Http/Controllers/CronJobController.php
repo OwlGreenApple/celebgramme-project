@@ -709,7 +709,14 @@ class CronJobController extends Controller
 						->where("settings.status","=","started")
 						->where("setting_helpers.use_automation","=",1)
 						->where("setting_helpers.cookies","=","success")
-						->where("setting_helpers.target","like","%".$setting->identity."%")
+ 					  ->where(function ($query){
+							$pieces = explode(";",$setting->identity);
+							$query->where("setting_helpers.target","like","%none%");
+							// ->orWhere("setting_helpers.target","like","%".$setting->identity."%");
+							foreach($pieces as $piece){
+								$query->orWhere("setting_helpers.target","like","%".$piece."%");
+							}
+						})
 						->get();
 						foreach($check_settings as $check_setting) {
 							$arr_setting_id_liker[] = $check_setting->id;
