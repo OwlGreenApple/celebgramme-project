@@ -719,7 +719,7 @@ class CronJobController extends Controller
 
 						//assign kan setting_id(ig_account) sebanyak x 
 						for ( $i=0; $i<=$setting->number_likes - 1 ; $i++ ) {
-							if ($i<=count($arr_setting_id_liker)) {
+							if ($i<count($arr_setting_id_liker)) {
 								$postTargetLike = new PostTargetLike;
 								$postTargetLike->media_id = $data["id"];
 								$postTargetLike->owner_id = $data["owner"]["id"];
