@@ -709,7 +709,7 @@ class CronJobController extends Controller
 						->where("settings.status","=","started")
 						->where("setting_helpers.use_automation","=",1)
 						->where("setting_helpers.cookies","=","success")
- 					  ->where(function ($query, use $setting){
+ 					  ->where(function ($query) use ($setting) {
 							$pieces = explode(";",$setting->identity);
 							$query->where("setting_helpers.target","like","%none%");
 							// ->orWhere("setting_helpers.target","like","%".$setting->identity."%");
