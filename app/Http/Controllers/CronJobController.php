@@ -699,7 +699,7 @@ class CronJobController extends Controller
 					echo $data["id"]."   ".$data["code"]."<br>";
 					
 					$postTargetLikeCheck = PostTargetLike::where("setting_id","=",$setting->id)
-														->where("media_id","!=",$data["id"])
+														->where("media_id","=",$data["id"])
 														->first();
 					if (is_null($postTargetLikeCheck)) {
 						//create 
