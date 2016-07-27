@@ -776,8 +776,8 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
-        <h3 class="panel-title">Main Settings
-						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Main Settings</div><div class='panel-content'>Pilih salah satu : FULL AUTO atau ADVANCED settings.<br> FULL AUTO = Fast Settings, Pilih kategori Target anda & Start,<br> FULL AUTO hanya untuk Follow, Like & Auto Like My Posts ( tidak termasuk Comment ). <br>ADVANCED = Setting manual customized semua fitur Celebgramme. <br> <i>*PS: Settings yang AKTIF adalah yang TERAKHIR dipilih</i></div>">
+        <h3 class="panel-title">Choose Settings
+						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Choose Settings</div><div class='panel-content'>Pilih salah satu : FULL AUTO atau ADVANCED settings.<br> FULL AUTO = Fast Settings, Pilih kategori Target anda & Start,<br> FULL AUTO hanya untuk Follow, Like & Auto Like My Posts ( tidak termasuk Comment ). <br>ADVANCED = Setting manual customized semua fitur Celebgramme. <br> <i>*PS: Settings yang AKTIF adalah yang TERAKHIR dipilih</i></div>">
 						</span>
 				</h3>
       </div>
