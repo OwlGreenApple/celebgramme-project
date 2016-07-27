@@ -696,7 +696,7 @@ class CronJobController extends Controller
 			if (count($arr)>0) {
 				$counter = 0;
 				foreach ($arr["user"]["media"]["nodes"] as $data) {
-					echo $data["id"]."   ".$data["code"]."<br>";
+					// echo $data["id"]."   ".$data["code"]."<br>";
 					
 					$postTargetLikeCheck = PostTargetLike::where("setting_id","=",$setting->id)
 														->where("media_id","=",$data["id"])
@@ -712,7 +712,6 @@ class CronJobController extends Controller
  					  ->where(function ($query) use ($setting) {
 							$pieces = explode(";",$setting->identity);
 							$query->where("setting_helpers.target","like","%none%");
-							// ->orWhere("setting_helpers.target","like","%".$setting->identity."%");
 							foreach($pieces as $piece){
 								$query->orWhere("setting_helpers.target","like","%".$piece."%");
 							}
