@@ -696,7 +696,7 @@ class CronJobController extends Controller
 			if (count($arr)>0) {
 				$counter = 0;
 				foreach ($arr["user"]["media"]["nodes"] as $data) {
-					// echo $data["id"]."   ".$data["code"]."<br>";
+					echo $data["id"]."   ".$data["code"]."<br>";
 					
 					$postTargetLikeCheck = PostTargetLike::where("setting_id","=",$setting->id)
 														->where("media_id","!=",$data["id"])
