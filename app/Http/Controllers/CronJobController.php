@@ -659,8 +659,6 @@ class CronJobController extends Controller
 			//check if media id sudah di autolike atau belum
 			//klo belum add ke post_target_like
 			
-			
-
 			$ports[] = "10201";
 			$ports[] = "10202";
 			$ports[] = "10203";
@@ -703,8 +701,8 @@ class CronJobController extends Controller
 														->first();
 					if (is_null($postTargetLikeCheck)) {
 						//create 
-						$arr_setting_id_liker = array();
-						$check_settings = Setting::select("settings.id")
+						$arr_setting_id_liker = array(); 
+						$check_settings = Setting::select("settings.id","settings.status_blacklist","settings.usernames_blacklist")
 						->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 						->where("settings.status","=","started")
 						->where("setting_helpers.use_automation","=",1)
@@ -718,7 +716,13 @@ class CronJobController extends Controller
 						})
 						->get();
 						foreach($check_settings as $check_setting) {
-							$arr_setting_id_liker[] = $check_setting->id;
+							$usernames_blacklist = array();
+							if ($check_setting->status_blacklist) {
+								$usernames_blacklist =  explode(";", $check_setting->usernames_blacklist);
+							}
+							if (!in_array(strtolower($setting->insta_username), $usernames_blacklist )) {
+								$arr_setting_id_liker[] = $check_setting->id;
+							}
 						}
 						//random likers 
 						shuffle($arr_setting_id_liker);
