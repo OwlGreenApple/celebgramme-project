@@ -499,7 +499,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 						</span>
 						
 						<div class="btn-group col-xs-12 col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
-							<button type="button" class="btn <?php if ($settings->status_auto) echo 'gold-full-auto' ?>" id="button-fullauto" style="outline:none;color:#fff;">Full Auto</button>
+							<button type="button" class="btn <?php if ($settings->status_auto) echo 'gold-fullauto-setting' ?>" id="button-fullauto" style="outline:none;color:#fff;">Full Auto</button>
 							<button type="button" class="btn <?php if (!$settings->status_auto) echo 'btn-info' ?>" id="button-advanced" style="outline:none;color:#fff;">Manual</button>
 							<input type="hidden" value="{{$settings->status_auto}}" name="data[status_auto]" id="status_auto">
 							
