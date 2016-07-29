@@ -66,11 +66,18 @@ class Setting extends Model {
         $linkUserSetting->save();
 				
 				//Automation purpose
+				$count_IG_account_server_A1 = SettingHelper::where("cookies","=","success")->where("server_automation","like","A1%")->count();
+				$count_IG_account_server_A2 = SettingHelper::where("cookies","=","success")->where("server_automation","like","A2%")->count();
 				$setting_helper = new SettingHelper;
 				$setting_helper->setting_id = $setting->id;
 				$setting_helper->use_automation = 1;
-				$setting_helper->server_automation = "A1(automation-1)";
-				$setting_helper->server_spiderman = "C1";
+				if ($count_IG_account_server_A1 <= $count_IG_account_server_A2) {
+					$setting_helper->server_automation = "A1(automation-1)";
+					$setting_helper->server_spiderman = "C1";
+				} else {
+					$setting_helper->server_automation = "A2(automation-2)";
+					$setting_helper->server_spiderman = "C2";
+				}
 				$setting_helper->save();
 				
 				//create meta, jumlah followers & following
