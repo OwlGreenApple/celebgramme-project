@@ -1,236 +1,61 @@
 @extends('member.index')
 
 @section('content-auto-manage')
-<?php use Celebgramme\Models\SettingMeta; ?>
+<?php use Celebgramme\Models\SettingMeta; 
+use Celebgramme\Models\SettingHelper; 
+?>
 
-<script type="text/javascript">
-
-    function call_action(action,id){
-        $.ajax({
-            type: 'GET',
-            url: "<?php echo url('call-action'); ?>",
-            data: {
-              action : action,
-              id : id,
-            },
-            dataType: 'text',
-            beforeSend: function()
-            {
-              $("#div-loading").show();
-            },
-            success: function(result) {
-                // $('#result').html(data);
-                $("#div-loading").hide();
-                var data = jQuery.parseJSON(result);
-                $("#alert").show();
-                $("#alert").html(data.message);
-                if(data.type=='success')
-                {
-                  $("#alert").addClass('alert-success');
-                  $("#alert").removeClass('alert-danger');
-                  if(data.action=='start'){
-                    $(".btn-"+data.id).html("<span class='glyphicon glyphicon-stop'></span> Stop");
-                    $(".btn-"+data.id).val("Stop");
-                    $(".btn-"+data.id).parent().parent().parent().find(".status-activity p").html(' Status activity : <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> <span style="color:#5cb85c; font-weight:Bold;">Started</span>');
-                    $(".btn-"+data.id).removeClass("btn-success");
-                    $(".btn-"+data.id).addClass("btn-danger");
-                  }
-                  if(data.action=='stop'){
-										$(".btn-"+data.id).html("<span class='glyphicon glyphicon-play'></span> Start");
-                    $(".btn-"+data.id).val("Start");
-                    $(".btn-"+data.id).parent().parent().parent().find(".status-activity p").html(' Status activity : <span class="glyphicon glyphicon-stop"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>');
-                    $(".btn-"+data.id).removeClass("btn-danger");
-                    $(".btn-"+data.id).addClass("btn-success");
-                  }
-                }
-                else if(data.type=='error')
-                {
-									$("#alert").html($("#alert").html());
-                  $("#alert").addClass('alert-danger');
-                  $("#alert").removeClass('alert-success');
-                }
-            }
-        })
-        return false;
-    }
-
-		$(document).click(function(e) {
-				e.stopPropagation();
-				var target = e.target;
-
-				if ( $(target).is(".hint") != true ) {
-//						$('.hint').hide();
-					if (!$(target).is('.glyphicon-question-sign') ) {
-							$('.glyphicon-question-sign').find(".hint").hide();
-					}
-					if (!$(target).is('.glyphicon-menu-down')  ) {
-							$('.glyphicon-menu-down').find(".hint").hide();
-					}
+<script>
+	function call_action(action,id){
+		$.ajax({
+				type: 'GET',
+				url: "<?php echo url('call-action'); ?>",
+				data: {
+					action : action,
+					id : id,
+				},
+				dataType: 'text',
+				beforeSend: function()
+				{
+					$("#div-loading").show();
+				},
+				success: function(result) {
+						// $('#result').html(data);
+						$("#div-loading").hide();
+						var data = jQuery.parseJSON(result);
+						$("#alert").show();
+						$("#alert").html(data.message);
+						if(data.type=='success')
+						{
+							$("#alert").addClass('alert-success');
+							$("#alert").removeClass('alert-danger');
+							if(data.action=='start'){
+								$(".btn-"+data.id).html("<span class='glyphicon glyphicon-stop'></span> Stop");
+								$(".btn-"+data.id).val("Stop");
+								$(".btn-"+data.id).parent().parent().parent().find(".status-activity p").html(' Status activity : <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> <span style="color:#5cb85c; font-weight:Bold;">Started</span>');
+								$(".btn-"+data.id).removeClass("btn-success");
+								$(".btn-"+data.id).addClass("btn-danger");
+							}
+							if(data.action=='stop'){
+								$(".btn-"+data.id).html("<span class='glyphicon glyphicon-play'></span> Start");
+								$(".btn-"+data.id).val("Start");
+								$(".btn-"+data.id).parent().parent().parent().find(".status-activity p").html(' Status activity : <span class="glyphicon glyphicon-stop"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>');
+								$(".btn-"+data.id).removeClass("btn-danger");
+								$(".btn-"+data.id).addClass("btn-success");
+							}
+						}
+						else if(data.type=='error')
+						{
+							$("#alert").html($("#alert").html());
+							$("#alert").addClass('alert-danger');
+							$("#alert").removeClass('alert-success');
+						}
 				}
-		});
-		
-  $(document).ready(function() {
-		$('.tooltipPlugin').tooltipster({
-				theme: 'tooltipster-noir',
-				contentAsHTML: true,
-				interactive:true,
-		});
-		$("#extra-time").hide();
-    // $('.add-spin-comment').click(function(e){
-		$( "body" ).on( "click", ".add-spin-comment", function(e) {
-			e.preventDefault();
-			var $select = $("#textarea-comments").selectize();
-			var selectize = $select[0].selectize;
-			selectize.addOption({value:$(this).text(),text:$(this).text()}); //option can be created manually or loaded using Ajax
-			selectize.addItem($(this).text()); 			
-			console.log($(this).text());
-    });
-    $('#button-package').click(function(e){
-			if ($("#extra-time").is(":visible") ){
-				$("#extra-time").hide();
-				$("#normal-time").fadeIn(1000);
-				$(this).html("Normal Time Package");
-			} else 
-			if ($("#normal-time").is(":visible") ){
-				$("#normal-time").hide();
-				$("#extra-time").fadeIn(1000);
-				$(this).html("Extra Time Package");
-			}
-    });
-		
-    // $( "body" ).on( "click", ".button-action", function(e) {
-    $('.button-action').click(function(e){
-      e.preventDefault();
-      action = "";
-      if ($(this).val()=="Start") { action = "start"; }
-      if ($(this).val()=="Stop") { action = "stop"; }
-      call_action(action,$(this).attr("data-id"));
-    });
+		})
+		return false;
+	}
 
-    $("#alert").hide();
-
-		$('#followButton').click(function(e){
-			$("#status_follow").val("on");
-			$("#status_unfollow").val("off");
-			
-			$("#activity").val("follow");
-			$('#followButton').addClass('btn-success');
-			$('#unfollowButton').removeClass('btn-success');
-			$('#div-unfollow-whitelist').fadeOut(500);
-
-			$('.status-unfollow').fadeIn(500);
-			if ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) {
-				$("#div-usernames").fadeIn(500);
-			}
-			
-		});
-		$('#unfollowButton').click(function(e){
-			$("#status_follow").val("off");
-			$("#status_unfollow").val("on");
-			
-			
-			$("#activity").val("unfollow");
-			$('#followButton').removeClass('btn-success');
-			$('#unfollowButton').addClass('btn-success');
-			$('#div-unfollow-whitelist').fadeIn(500);
-
-			$('.status-unfollow').fadeOut(500);
-			$('#div-usernames').fadeOut(500);
-			
-		});
-		
-
-
-		
-		/*status follow like comment (on off nya) */
-		$('#statusFollowOnButton').click(function(e){
-			$("#status_follow_unfollow").val("on");
-			$('#statusFollowOnButton').addClass('btn-primary');
-			$('#statusFollowOffButton').removeClass('btn-danger');
-			$(".status-follow").fadeIn(500);
-			
-			if ($('#unfollowButton').hasClass("btn-success")) {
-				$('#div-unfollow-whitelist').fadeIn(500);
-				
-				$("#status_follow").val("off");
-				$("#status_unfollow").val("on");
-			}
-			
-			if ($('#followButton').hasClass("btn-success")) {
-				$("#status_follow").val("on");
-				$("#status_unfollow").val("off");
-			}
-
-			if ( $("#select-follow-source").val() == "hashtags" ) {
-				$("#div-usernames").fadeOut(500);
-				$("#div-hashtags").fadeIn(500);
-			}
-			if ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) {
-				$("#div-usernames").fadeIn(500);
-				if (($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))) {
-					$('#div-hashtags').fadeOut(500);
-				}
-			}
-		});
-		$('#statusFollowOffButton').click(function(e){
-			$("#status_follow").val("off");
-			$("#status_unfollow").val("off");
-				
-			$("#status_follow_unfollow").val("off");
-			$('#statusFollowOnButton').removeClass('btn-primary');
-			$('#statusFollowOffButton').addClass('btn-danger');
-			$(".status-follow").fadeOut(500);
-			$('#div-unfollow-whitelist').fadeOut(500);
-			$("#div-usernames").fadeOut(500);
-
-			if ( (!$('#statusFollowOffButton').hasClass("btn-danger") && ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) ) 
-				&& ($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))  ) 
-			{
-				$('#div-hashtags').fadeOut(500);
-			}
-		});
-
-		$('#statusLikeOnButton').click(function(e){
-			$("#status_like").val("on");
-			$('#statusLikeOnButton').addClass('btn-primary');
-			$('#statusLikeOffButton').removeClass('btn-danger');
-			$("#div-hashtags").fadeIn(500);
-		});
-		$('#statusLikeOffButton').click(function(e){
-			$("#status_like").val("off");
-			$('#statusLikeOnButton').removeClass('btn-primary');
-			$('#statusLikeOffButton').addClass('btn-danger');
-			
-			if ( (!$('#statusFollowOffButton').hasClass("btn-danger") && ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) ) 
-				&& ($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))  ) 
-			{
-				$('#div-hashtags').fadeOut(500);
-			}
-		});
-
-		$('#statusCommentOnButton').click(function(e){
-			$("#status_comment").val("on");
-			$('#statusCommentOnButton').addClass('btn-primary');
-			$('#statusCommentOffButton').removeClass('btn-danger');
-			$('#div-comment').fadeIn(500);
-			$("#div-hashtags").fadeIn(500);
-		});
-		$('#statusCommentOffButton').click(function(e){
-			$("#status_comment").val("off");
-			$('#statusCommentOnButton').removeClass('btn-primary');
-			$('#statusCommentOffButton').addClass('btn-danger');
-			$('#div-comment').fadeOut(500);
-			
-			if ( (!$('#statusFollowOffButton').hasClass("btn-danger") && ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) ) 
-				&& ($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))  ) 
-			{
-				$('#div-hashtags').fadeOut(500);
-			}
-		});
-		
-		
-		
-		
+	$(document).ready(function(){
     $('#button-save,#button-save2').click(function(e){
       $.ajax({
           headers: {
@@ -266,94 +91,51 @@
       })
     });
 
-		$('.hint').hide();
-
-		// $('.hint').click(function(e){
-			// e.preventDefault();
-			// e.stopPropagation();
-		// });
-		
-		// $('.glyphicon-menu-down').click(function(e){
-			// $(this).find('.hint').slideToggle();
-		// });
-
-		// $('.glyphicon-question-sign').click(function(e){
-			// $(this).find('.hint').slideToggle();
-		// });
-		
-		$( "#select-follow-source" ).change(function() {
-			if ( $( this ).val() == "hashtags" ) {
-				$("#div-usernames").fadeOut(500);
-				$("#div-hashtags").fadeIn(500);
-			}
-			if ( ( $( this ).val() == "followers of username" ) || ( $( this ).val() == "following of username" )) {
-				$("#div-usernames").fadeIn(500);
-				if (($('#statusLikeOffButton').hasClass("btn-danger")) && ($('#statusCommentOffButton').hasClass("btn-danger"))) {
-					$("#div-hashtags").fadeOut(500);
-				}
-			}
-		});
-		
-    $('.selectize-default').selectize({
-      plugins:['remove_button'],
-      delimiter: ';',
-      persist: false,
-			onChange: function(value) {
-               // alert(value);
-				// console.log($(this).parent());
-      },
-      create: function(input) {
-        return {
-          value: input,
-          text: input
-        }
-      },
+    $('.selectize-target').selectize({
+			persist: false,
+			delimiter: ';',
+			options: [
+				<?php echo $strCategory; ?>
+			],
+			optgroups: [
+				<?php echo $strClassCategory; ?>
+			],
+			optgroupField: 'class',
+			labelField: 'name',
+			searchField: ['name'],
+			render: {
+					optgroup_header: function(data, escape) {
+							return '<div class="optgroup-header" style="font-size:16px;"><strong>' + escape(data.label) + '</strong></div>';
+					}
+			},
+			plugins:['remove_button']
     });
-		
-		
-		
-	// show current input values
-	$('textarea.selectize-default,select.selectize-default,input.selectize-default').each(function() {
-		var $container = $('<div style="font-size:11px;">').addClass('value').html('Current count: ');
-		var $value = $('<span>').appendTo($container);
-		var $input = $(this);
-		var update = function(e) { 
-			// $value.text(JSON.stringify($input.val())); 
 
-			var str,res;
-			str = JSON.stringify($input.val());
-			res = str.split(";");
-			if ($input.val() == "") {
-				$value.text("0"); 
-			} else {
-				$value.text(res.length); 
-			}
-			// console.log(res.length);
-			// $container.insertAfter($input.next());
-		}
+		<?php if ($settings->status_auto) { ?>
+			$(".advanced-manual-setting").addClass("hide");
+		<?php } ?>
 
-		$(this).on('change', update);
-		update();
-
-		$container.insertAfter($input.next());
-		
-		// $container.insertAfter($input.next());
 	});
 	
-	$('.button-copy').click(function(e){
-		$("#textarea-copy").val($("#"+$(this).attr("data-text")).val());
-	});
-		
-	// $('#button-ok-copy').click(function(e){
-		// console.log("asd");
-		// e.preventDefault();
-		// copyToClipboard($("#textarea-copy"));
-	// });
-		
-
-  });
 </script>
-
+<script type="text/javascript" src="{{ asset('/js/setting.js') }}"></script>
+<style>
+	.gold-fullauto-setting {
+		background: #fff499; 
+		background: -moz-linear-gradient(top, #fff499 0%, #efdd37 100%); 
+		background: -webkit-linear-gradient(top, #fff499 0%,#efdd37 100%); 
+		background: linear-gradient(to bottom, #fff499 0%,#efdd37 100%); 
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff499', endColorstr='#efdd37',GradientType=0 ); 
+		color : #000!important; outline:none!important;
+	}
+	.black-blacklist {
+		background: #7d7e7d; 
+		background: -moz-linear-gradient(top,  #7d7e7d 0%, #0e0e0e 100%); 
+		background: -webkit-linear-gradient(top,  #7d7e7d 0%,#0e0e0e 100%); 
+		background: linear-gradient(to bottom,  #7d7e7d 0%,#0e0e0e 100%); 
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); 
+	}
+</style>
 
 
 <!-- Modal -->
@@ -470,25 +252,6 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       <div class="panel-body">
 <div class="col-md-5 col-xs-5 col-sm-5 border-styling ">
 	<?php 
-	/*
-	$photo = url('images/profile-default.png');
-	$json_url = "https://api.instagram.com/v1/users/search?q=".$settings->insta_username."&client_id=03eecaad3a204f51945da8ade3e22839";
-	$json = @file_get_contents($json_url);
-	if($json == TRUE) { 
-		$links = json_decode($json);
-		if (count($links->data)>0) {
-			// $photo = $links->data[0]->profile_picture;
-			$photo = url('images/profile-default.png');
-			foreach($links->data as $link){
-				if (strtoupper($link->username) == strtoupper($settings->insta_username)){
-					$photo = $link->profile_picture;
-				}
-			}
-		} else {
-			$photo = url('images/profile-default.png');
-		}
-	}
-	*/
 		if (SettingMeta::getMeta($settings->id,"photo_filename") == "0") {
 			$photo = url('images/profile-default.png');
 		} else {
@@ -516,8 +279,9 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 			</p>
 		</div>
 		<div class="row im-centered"> 
-			<input type="button" value="Save" class="btn btn-info" id="button-save">
-			<button data-id="{{$settings->id}}" class="btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
+			<input type="button" value="Save" class="btn btn-info" id="button-save" style="margin-bottom:5px;">
+			
+			<button data-id="{{$settings->id}}" class="btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>" style="margin-bottom:5px;">
 				<?php if ($settings->status=='stopped') { echo "<span class='glyphicon glyphicon-play'></span> Start"; } else {echo "<span class='glyphicon glyphicon-stop'></span> Stop";}?> 
 			</button>
 		</div>
@@ -691,61 +455,132 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                    
 
+<!--<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="panel panel-info ">
+      <div class="panel-heading">
+      </div>
+      <div class="panel-body">
+        <div class="col-md-1 col-sm-12 col-xs-12">
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+					<button class="btn col-md-10 col-sm-12 col-xs-12 <?php if ($settings->status_auto) echo "btn-primary"; ?>" id="button-fullauto" style="border-radius:15px;font-size:16px;color:#fff;outline:none;">
+					<strong>FAST<br>Full Auto Settings</strong>
+					</button>
+        </div>
+        <div class="col-md-2 col-sm-12 col-xs-12">
+				<br>
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+					<button class="btn col-md-10 col-sm-12 col-xs-12 <?php if (!$settings->status_auto) echo "btn-primary"; ?>" id="button-advanced" style="border-radius:15px;font-size:16px;color:#fff;outline:none;">
+					<strong>ADVANCED<br>Manual Settings</strong>
+					</button>
+        </div>
+        <div class="col-md-1 col-sm-1">
+        </div>
+				<input type="hidden" value="{{$settings->status_auto}}" name="data[status_auto]" id="status_auto">
+      </div>
+    </div>
+  </div>  
+</div>                        
+-->
 <div class="row">
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
-        <h3 class="panel-title">Main Settings</h3>
+        <h3 class="panel-title">Global Settings</h3>
       </div>
       <div class="panel-body">
 
-        <div class="col-md-4">
-          <label>Activity Speed</label> 
-					<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Activity speed</div><div class='panel-content'>Jika Akun anda BARU / Tdk aktif, START dgn SLOW/NORMAL speed utk 5 hari <br>• <strong>Slow</strong> = Melakukan 550 Likes, 120 comments, 350 follow/unfollow /hari <br>• <strong>Normal</strong> = Melakukan 1200 likes, 180 comments, 450 follow/unfollows /hari. <br>• <strong>Fast</strong> = Melakukan 1800 likes, 240 comments, 600 follow/unfollows /hari. <br></div>">
-					</span>
-          <select class="form-control" name="data[activity_speed]" title="Slow - Kecepatan yang aman untuk melakukan sekitar 480 Likes, 144 comments, 336 follows, 240 unfollow per hari ( kecepatan terbaik untuk awal pemakaian )">
-            <option value="normal" <?php if ($settings->activity_speed=='normal') echo "selected" ?>>Normal</option>
-            <option value="slow" <?php if ($settings->activity_speed=='slow') echo "selected" ?>>Slow</option>
-            <option value="fast" <?php if ($settings->activity_speed=='fast') echo "selected" ?>>Fast</option>
-          </select>
-        </div>
-				<!--
-        <div class="col-md-4">
-          <label>Media Source</label> 
-					<span class="glyphicon glyphicon-question-sign" title="">
-						<div class="hint">Aktifitas Follow, Like & Comments akan menggunakan Sumber Media ini<br>
-						  Pilih Sumber Media untuk aktivitas Anda : <br>
-							Hashtags - untuk menentukan Media sesuai Hashtags <br>
-							Usernames - untuk menentukan Media berdasarkan Username <br>
+				<div class="row">
+					<div class="col-md-3 col-sm-12 col-xs-12">
+						<label>Choose Settings</label> 
+						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Choose Settings</div><div class='panel-content'>Pilih salah satu : FULL AUTO atau Manual settings.<br> FULL AUTO = Fast Settings, Pilih kategori Target anda & Start,<br> FULL AUTO hanya untuk Follow, Like & Auto Like My Posts ( tidak termasuk Comment ). <br>Manual = Setting manual customized semua fitur Celebgramme. <br> <i>*PS: Settings yang AKTIF adalah yang TERAKHIR dipilih</i></div>">
+						</span>
+						
+						<div class="btn-group col-xs-12 col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
+							<button type="button" class="btn <?php if ($settings->status_auto) echo 'gold-fullauto-setting' ?>" id="button-fullauto" style="outline:none;color:#fff;">Full Auto</button>
+							<button type="button" class="btn <?php if (!$settings->status_auto) echo 'btn-info' ?>" id="button-advanced" style="outline:none;color:#fff;">Manual</button>
+							<input type="hidden" value="{{$settings->status_auto}}" name="data[status_auto]" id="status_auto">
 							
+						</div>				
+						
+						
+					</div>
+					<div class="col-md-1 col-sm-12 col-xs-12">
+						<br>
+					</div>
+					
+					<div class="col-md-3 col-sm-12 col-xs-12">
+						<label>Activity Speed</label> 
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Activity speed</div><div class='panel-content'>Jika Akun anda BARU / Tdk aktif, START dgn SLOW/NORMAL speed utk 5 hari <br>• <strong>Slow</strong> = Melakukan 550 Likes, 120 comments, 350 follow/unfollow /hari <br>• <strong>Normal</strong> = Melakukan 1200 likes, 180 comments, 450 follow/unfollows /hari. <br>• <strong>Fast</strong> = Melakukan 1800 likes, 240 comments, 600 follow/unfollows /hari. <br></div>">
+						</span>
+						<select class="form-control" name="data[activity_speed]" title="Slow - Kecepatan yang aman untuk melakukan sekitar 480 Likes, 144 comments, 336 follows, 240 unfollow per hari ( kecepatan terbaik untuk awal pemakaian )">
+							<option value="normal" <?php if ($settings->activity_speed=='normal') echo "selected" ?>>Normal</option>
+							<option value="slow" <?php if ($settings->activity_speed=='slow') echo "selected" ?>>Slow</option>
+							<option value="fast" <?php if ($settings->activity_speed=='fast') echo "selected" ?>>Fast</option>
+						</select>
+					</div>
+					<!--
+					<div class="col-md-4">
+						<label>Media Source</label> 
+						<span class="glyphicon glyphicon-question-sign" title="">
+							<div class="hint">Aktifitas Follow, Like & Comments akan menggunakan Sumber Media ini<br>
+								Pilih Sumber Media untuk aktivitas Anda : <br>
+								Hashtags - untuk menentukan Media sesuai Hashtags <br>
+								Usernames - untuk menentukan Media berdasarkan Username <br>
+								
+							</div>
+						</span>
+						<select class="form-control" name="data[media_source]" id="select-media-source">
+							<option value="hashtags" <?php if ($settings->media_source=='hashtags') echo "selected" ?>>Hashtags</option>
+							<option value="usernames" <?php if ($settings->media_source=='usernames') echo "selected" ?>>Usernames</option>
+						</select>
+					</div>
+					-->
+					<div class="col-md-1 col-sm-12 col-xs-12">
+						<br>
+					</div>
+					<div class="col-md-3 col-sm-12 col-xs-12">
+						<label>Blacklist</label> 
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Blacklist </div><div class='panel-content'>List Username yang TIDAK akan di FLC (Follow, Like & Comment)<br>
+						Masukkan usernames SAJA disini (tanpa @), contoh: darthvader, hitler, kimjongil, dsbnya<br>
+						<i>*PS: berguna sekali untuk TIDAK follow, like, comment 'mantan' & 'kompetitor' anda</i><br>
+	</div>">
+						</span>
+						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
+							<button type="button" class="btn <?php if ($settings->status_blacklist) {echo'black-blacklist';} ?>" id="BlacklistOnButton" style="color:#fff;"><strong>ON</strong></button>
+							<button type="button" class="btn <?php if (!$settings->status_blacklist) {echo'black-blacklist';} ?>" id="BlacklistOffButton" style="color:#fff;">OFF</button>
 						</div>
-					</span>
-          <select class="form-control" name="data[media_source]" id="select-media-source">
-            <option value="hashtags" <?php if ($settings->media_source=='hashtags') echo "selected" ?>>Hashtags</option>
-            <option value="usernames" <?php if ($settings->media_source=='usernames') echo "selected" ?>>Usernames</option>
-          </select>
-        </div>
-				-->
-        <div class="col-md-4">
-          <label>Media Age</label> 
-					<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Media Age</div><div class='panel-content'>Pilih Umur Media / Media Age yang akan berinteraksi dengan anda.<br>
-							<strong>Latest</strong> : Hanya post terbaru (default)<br>
-							<strong>Any</strong>    : Post kapan saja<br>
-</div>">
-					</span>
-          <select class="form-control" name="data[media_age]">
-            <option value="latest" <?php if ($settings->media_age=='latest') echo "selected" ?>>Latest</option>
-            <!--<option value="newest" <?php if ($settings->media_age=='newest') echo "selected" ?>>Newest</option>
-            <option value="1 hour" <?php if ($settings->media_age=='1 hour') echo "selected" ?>>1 Hour</option>
-            <option value="12 hours" <?php if ($settings->media_age=='12 hours') echo "selected" ?>>12 Hours</option>
-            <option value="1 day" <?php if ($settings->media_age=='1 day') echo "selected" ?>>1 Day</option>
-            <option value="3 day" <?php if ($settings->media_age=='3 day') echo "selected" ?>>3 Days</option>
-            <option value="1 week" <?php if ($settings->media_age=='1 week') echo "selected" ?>>1 Week</option>
-            <option value="2 week" <?php if ($settings->media_age=='2 week') echo "selected" ?>>2 Weeks</option>
-            <option value="1 month" <?php if ($settings->media_age=='1 month') echo "selected" ?>>1 Month</option>-->
-            <option value="any" <?php if ($settings->media_age=='any') echo "selected" ?>>Any</option>
-          </select>
-        </div>
+						<input type="hidden" value="{{$settings->status_blacklist}}" name="data[status_blacklist]" id="status_blacklist">
+					</div>
+					<div class="col-md-1 col-sm-12 col-xs-12">
+						<br>
+					</div>
+				</div>
+				<!--
+				<div class="row">
+					<div class="col-md-3 col-sm-12 col-xs-12">
+						<label>Media Age</label> 
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Media Age</div><div class='panel-content'>Pilih Umur Media / Media Age yang akan berinteraksi dengan anda.<br>
+								<strong>Latest</strong> : Hanya post terbaru (default)<br>
+								<strong>Any</strong>    : Post kapan saja<br>
+	</div>">
+						</span>
+						<select class="form-control" name="data[media_age]">
+							<option value="latest" <?php if ($settings->media_age=='latest') echo "selected" ?>>Latest</option>
+							<!--<option value="newest" <?php if ($settings->media_age=='newest') echo "selected" ?>>Newest</option>
+							<option value="1 hour" <?php if ($settings->media_age=='1 hour') echo "selected" ?>>1 Hour</option>
+							<option value="12 hours" <?php if ($settings->media_age=='12 hours') echo "selected" ?>>12 Hours</option>
+							<option value="1 day" <?php if ($settings->media_age=='1 day') echo "selected" ?>>1 Day</option>
+							<option value="3 day" <?php if ($settings->media_age=='3 day') echo "selected" ?>>3 Days</option>
+							<option value="1 week" <?php if ($settings->media_age=='1 week') echo "selected" ?>>1 Week</option>
+							<option value="2 week" <?php if ($settings->media_age=='2 week') echo "selected" ?>>2 Weeks</option>
+							<option value="1 month" <?php if ($settings->media_age=='1 month') echo "selected" ?>>1 Month</option>-->
+						<!--	<option value="any" <?php if ($settings->media_age=='any') echo "selected" ?>>Any</option>
+						</select>
+					</div>
+				</div>-->
 				<!--
         <div class="col-md-4">
           <label>Media Type</label> 
@@ -761,9 +596,82 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       </div>
     </div>
   </div>  
+</div>       
+
+<?php 
+	$is_auto_get_likes = 0;
+	$target_categories = "";
+	$setting_helper = SettingHelper::where("setting_id","=",$settings->id)->first();
+	if (!is_null($setting_helper)){
+		$is_auto_get_likes = $setting_helper->is_auto_get_likes;
+		$target_categories = $setting_helper->target;
+	}
+?>
+
+<div class="row" id="target-categories" <?php if (!$settings->status_auto) echo "style='display:none;'"; ?>>
+  <div class="col-md-12 col-sm-12">
+    <div class="panel panel-info ">
+      <div class="panel-heading">
+        <h3 class="panel-title">Full Auto: Target Categories
+						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Target Categories</div><div class='panel-content'>Silahkan Pilih Target Kategori (max 10)<br>yang akan anda Follow & Like<br>Fitur Full Auto Settings akan OTOMATIS<br>berjalan sesuai dengan target kategori yang anda pilih.</div>">
+						</span>
+				</h3>
+      </div>
+      <div class="panel-body">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<textarea class="selectize-target" id="textarea-target-categories" name="data[target_categories]">{{$target_categories}}</textarea>
+				</div>
+      </div>
+    </div>
+  </div>  
+</div>       
+
+<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo "hide"; ?>" >
+  <div class="col-md-12 col-sm-12">
+    <div class="panel panel-info ">
+      <div class="panel-heading">
+        <h3 class="panel-title">Auto Like My Post</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+					<div class="col-md-12 col-xs-12 col-sm-12">
+						<label>Status
+						</label>
+						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Like My Post ALMP</div><div class='panel-content'>Fitur Keren ini akan membuat POST anda terlihat POPULER<br>SETIAP POST Terbaru anda akan MENDAPATKAN LIKES secara OTOMATIS<br> Max 24 jam = 30 Likes / 3 post / Hari TERAKHIR<br> <i>*PS: artinya HANYA 3 Post Terakhir per HARI <br>yang akan mendapatkan 30 Likes / masing-masing post</i>  </div>">
+						</span>
+					</div>
+					<div class="col-md-3 col-xs-12 col-sm-12">
+						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
+							<button type="button" class="btn <?php if ($is_auto_get_likes) echo 'btn-primary' ?>" id="AutoLikesOnButton" style="color:#fff;">ON</button>
+							<button type="button" class="btn <?php if (!$is_auto_get_likes) echo 'btn-danger' ?>" id="AutoLikesOffButton" style="color:#fff;">OFF</button>
+							<input type="hidden" value="{{$is_auto_get_likes}}" name="data[is_auto_get_likes]" id="is_auto_get_likes">
+						</div>
+					</div>
+
+
+        </div>
+        
+      </div>
+    </div>
+  </div>  
 </div>                        
 
-<div class="row">
+<div class="row" id="div-blacklist" <?php if (!$settings->status_blacklist) { echo 'style=display:none'; } ?>>
+  <div class="col-md-12 col-sm-12">
+    <div class="panel panel-info ">
+      <div class="panel-heading">
+        <h3 class="panel-title">Usernames blacklist</h3>
+      </div>
+      <div class="panel-body">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<textarea class="selectize-default" id="textarea-unfollow-blacklist" name="data[usernames_blacklist]">{{$settings->usernames_blacklist}}</textarea>
+				</div>
+      </div>
+    </div>
+  </div>  
+</div>       
+
+<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo 'hide'; ?>" >
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -772,25 +680,28 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       <div class="panel-body">
 
         <div class="row">
-					<div class="col-md-4">
+					<div class="col-md-12 col-xs-12 col-sm-12">
 						<label>Status</label>
 						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Follow Status</div><div class='panel-content'><strong>Status ON </strong>akan melakukan 'Follow/Unfollow' <br>
 						                  <strong>Status OFF </strong>Tidak akan melakukan 'Follow/Unfollow' <br>
-															*PS: Status OFF berguna apabila anda hanya mau melakukan Aktifitas lain (Like & Comment) saja</div>">
+															<i>*PS: Status OFF berguna apabila anda hanya mau melakukan Aktifitas lain (Like & Comment) saja</i></div>">
 						</span>
-						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
+						<div class="btn-group col-xs-12 col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
 							<button type="button" class="btn <?php if ($settings->status_follow_unfollow=="on") echo 'btn-primary' ?>" id="statusFollowOnButton" style="color:#fff;">ON</button>
 							<button type="button" class="btn <?php if ($settings->status_follow_unfollow=="off") echo 'btn-danger' ?>" id="statusFollowOffButton" style="color:#fff;">OFF</button>
 							<input type="hidden" value="{{$settings->status_follow_unfollow}}" name="data[status_follow_unfollow]" id="status_follow_unfollow">
 						</div>
 					</div>
+					<div class="col-md-12 col-xs-12 col-sm-12">
+					<br>
+					</div>
 
 
-					<div class="col-md-4 status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
+					<div class="col-md-12 col-xs-12 col-sm-12 status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 						<label>Activity</label>
 						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Follow Activity</div><div class='panel-content'>PILIH salah satu <strong>Follow / Unfollow</strong>. Tidak bisa bersamaan</div>">
 						</span>
-						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
+						<div class="btn-group col-xs-12 col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
 							<button type="button" class="btn <?php if ($settings->activity=="follow") echo 'btn-success' ?>" id="followButton" style="color:#fff;">Follow</button>
 							<button type="button" class="btn <?php if ($settings->activity=="unfollow") echo 'btn-success' ?>" id="unfollowButton" style="color:#fff;">Unfollow</button>
 							<input type="hidden" value="{{$settings->activity}}" name="data[activity]" id="activity">
@@ -805,7 +716,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 				<br>
 					
         <div class="row status-follow status-unfollow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
-          <div class="col-md-4">
+          <div class="col-md-4 col-sm-5 col-xs-5">
             <label>Follow source</label> 
 						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Follow Source</div><div class='panel-content'>
 						Pilih 1 dari 3 Follow Sources ini (Hanya yang dipilih yang dijalankan) : <br>
@@ -817,13 +728,25 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 <!--							<option value="following of username" <?php if ($settings->follow_source=='following of username') echo "selected" ?>>Following of username</option>-->
             </select>
           </div>
+					<div class="col-md-4 col-sm-7 col-xs-7">
+						<label for="">Dont follow private users</label> 
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Dont Follow Private users</div><div class='panel-content'>
+						Jika Dont Follow Private Users dicentang,<br> Maka proses follow tidak akan memfollow account-account IG yang private
+						</div>"></span>
+						<div class="btn-group col-xs-12 col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
+							<button type="button" class="btn <?php if ($settings->dont_follow_pu) echo 'btn-primary' ?>" id="DontFollowPUOnButton" style="color:#fff;">ON</button>
+							<button type="button" class="btn <?php if (!$settings->dont_follow_pu) echo 'btn-danger' ?>" id="DontFollowPUOffButton" style="color:#fff;">OFF</button>
+							<input type="hidden" value="{{$settings->dont_follow_pu}}" name="data[dont_follow_pu]" id="dont_follow_pu">
+						</div>
+						
+          </div>
         </div>
       </div>
     </div>
   </div>  
 </div>                        
 
-<div class="row" id="div-unfollow-whitelist" <?php if ( ($settings->activity=="follow") || ($settings->status_follow_unfollow=="off") ) { echo "style='display:none;'"; } ?>>
+<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo 'hide'; ?>" id="div-unfollow-whitelist" <?php if ( ($settings->activity=="follow") || ($settings->status_follow_unfollow=="off") ) { echo "style='display:none;'"; } ?> >
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -832,15 +755,15 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       <div class="panel-body">
 
         <div class="row">
-          <div class="col-md-11">
+          <div class="col-md-11 col-sm-10 col-xs-10">
             <label>Usernames whitelist</label> 
 						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Usernames whitelist</div><div class="panel-content">• Saat anda UNFOLLOW. <strong>Usernames di "Whitelist" ini akan diabaikan / tidak akan di "UNFOLLOW"</strong><br>
 							• <strong>Usulan penggunaan : </strong>teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW</div>'></span>
           </div>
-					<div class="col-md-1 col-sm-1 col-xm-1">
+					<div class="col-md-1 col-sm-1 col-xs-1">
 						<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-unfollow-whitelist">copy</p>
           </div>
-					<div class="col-md-12">
+					<div class="col-md-12 col-sm-12 col-xs-12">
 						<textarea class="selectize-default" id="textarea-unfollow-whitelist" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>
 					</div>
 					
@@ -851,7 +774,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                    
 
-<div class="row" id="div-usernames" <?php if ( ($settings->follow_source=='hashtags') || ($settings->status_follow_unfollow=="off") ) echo "style='display:none;'" ?>>
+<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo 'hide'; ?>" id="div-usernames" <?php if ( ($settings->follow_source=='hashtags') || ($settings->status_follow_unfollow=="off") ) echo "style='display:none;'" ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -860,14 +783,14 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       <div class="panel-body">
 
         <div class="row">
-          <div class="col-md-11">
+          <div class="col-md-11 col-sm-10 col-xs-10">
             <label>Usernames</label> 
 						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Media source : Usernames</div><div class="panel-content">• <strong>Add MIN 10 username</strong> jika menggunakan "Usernames" di Media Source. <br>• Anda dapat menambahkan <strong>MAX 50 usernames.</strong></div>'></span>
           </div>
-					<div class="col-md-1 col-sm-1 col-xm-1">
+					<div class="col-md-1 col-sm-1 col-xs-1">
 						<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-username">copy</p>
           </div>
-					<div class="col-md-12">						
+					<div class="col-md-12 col-sm-12 col-xs-12">						
 						<textarea class="selectize-default" id="textarea-username" name="data[username]">{{$settings->username}}</textarea>
 					</div>
         </div>
@@ -877,7 +800,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                    
 
-<div class="row" id="div-hashtags" <?php if ( ( ($settings->status_follow_unfollow=="off") && ($settings->status_like=="off") && ($settings->status_comment=="off")) || ( (($settings->follow_source=='followers of username') || ($settings->follow_source=='following of username')) && ($settings->status_follow_unfollow=="on")&& ($settings->status_like=="off")&& ($settings->status_comment=="off") )  ) echo "style='display:none;'" ?>>
+<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo 'hide'; ?>" id="div-hashtags" <?php if ( ( ($settings->status_follow_unfollow=="off") && ($settings->status_like=="off") && ($settings->status_comment=="off")) || ( (($settings->follow_source=='followers of username') || ($settings->follow_source=='following of username')) && ($settings->status_follow_unfollow=="on")&& ($settings->status_like=="off")&& ($settings->status_comment=="off") )  ) echo "style='display:none;'" ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -886,17 +809,17 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       <div class="panel-body">
 
         <div class="row">
-          <div class="col-md-11">
+          <div class="col-md-11 col-sm-10 col-xs-10">
             <label>Hashtags</label> 
 						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Media source : Hashtags</div><div class='panel-content'>• ADD <strong>MIN 10 Hashtags</strong> <br>
 								• TIDAK PERLU ADD <strong>simbol # (tanda pagar) </strong><br>
 								• Anda dapat menambahkan <strong>MAX 50 Hashtags</strong>
 </div>"></span>
           </div>
-					<div class="col-md-1 col-sm-1 col-xm-1">
+					<div class="col-md-1 col-sm-1 col-xs-1">
 						<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-hashtags">copy</p>
           </div>
-					<div class="col-md-12">
+					<div class="col-md-12 col-sm-12 col-xs-12">
 						<textarea class="selectize-default" id="textarea-hashtags" name="data[hashtags]">{{$settings->hashtags}}</textarea>
 					</div>
         </div>
@@ -906,7 +829,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                    
 
-<div class="row">
+<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo 'hide'; ?>">
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -931,9 +854,11 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 							<input type="hidden" value="{{$settings->status_like}}" name="data[status_like]" id="status_like">
 						</div>				
 					</div>				
-        </div>
-				
-        <div class="row">
+					
+					<div class="col-md-12 col-xs-12 col-sm-12">.
+					<br>
+					</div>
+					
 					<div class="col-md-12">
 						<label>Comment</label> 
 						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
@@ -950,41 +875,8 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>   
 
-<!--<div class="row">
-  <div class="col-md-12 col-sm-12">
-    <div class="panel panel-info ">
-      <div class="panel-heading">
-        <h3 class="panel-title">Likes</h3>
-      </div>
-      <div class="panel-body">
 
-        <div class="col-md-4">
-          <label>Likes min filter</label> 
-					<span class="glyphicon glyphicon-question-sign" title="">
-						<div class="hint">Likes hanya diberikan pada media (foto/video) yang mempunyai MIN Likes sesuai filter <br>
-							Nilai yang disarankan : 1 - 5 <br>
-							Nilai = 0 untuk menonaktifkan filter ini
-						</div>
-					</span>
-          <input type="number" class="form-control" name="data[min_likes_media]" value="{{$settings->min_likes_media}}">
-        </div>
-        <div class="col-md-4">
-          <label>Likes max filter</label> 
-					<span class="glyphicon glyphicon-question-sign" title="">
-						<div class="hint">Likes hanya diberikan pada media (foto/video) yang mempunyai MAX Likes sesuai filter <br>
-							Nilai yang disarankan :50 - 100 <br>
-							Nilai = 0 untuk menonaktifkan filter ini
-						</div>
-					</span>
-          <input type="number" class="form-control" name="data[max_likes_media]" value="{{$settings->max_likes_media}}">
-        </div>
-
-      </div>
-    </div>
-  </div>  
-</div>            
--->
-<div class="row" id="div-comment" <?php if ($settings->status_comment=="off") { echo "style='display:none;'"; } ?>>
+<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo 'hide'; ?>" id="div-comment" <?php if ($settings->status_comment=="off")   { echo "style='display:none;'"; } ?>>
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
@@ -992,16 +884,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       </div>
       <div class="panel-body">
 
-<!--
-        <div class="row">
-          <div class="col-md-4 checkbox">
-            <label><input type="checkbox" name="data[dont_comment_su]" <?php if($settings->dont_comment_su) echo "checked"; ?> >Dont Comment same user</label> 
-						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">Ketika anda memberikan centang ke kotak ini, anda tidak akan memberikan comment lebih dari 1 pada foto atau video pada user yang sama.</div>
-						</span>
-          </div>
-        </div>
--->
+
           <div class="row">
 						<div class="col-md-5 col-sm-12 col-xm-12"">
 							<label>Comments</label> 
@@ -1028,7 +911,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 						</div>
           </div>
           <div class="row">
-						<div class="col-md-5 col-sm-12 col-xm-12"">
+						<div class="col-md-5 col-sm-12 col-xs-12"">
 							<label>Penjelasan fitur spin comment</label>
 							<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Penjelasan fitur spin comment</div>								<div class="panel-content"><strong>Gunakan Feature "Spin Comment" </strong>contoh : <br>
 																		{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
@@ -1037,14 +920,14 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 	</div>'>
 							</span>
 						</div>
-						<div class="col-md-6 col-sm-12 col-xm-12" ">
+						<div class="col-md-6 col-sm-10 col-xs-10" ">
 							<label>Petunjuk tanda baca spin comment</label>
 							<?php $tempurl = url("images/petunjuk-spin.jpg"); ?>
 							<span class="glyphicon glyphicon-search tooltipPlugin" title='<div class="panel-heading">Petunjuk tanda baca spin comment</div><div class="panel-content"><img src="{{$tempurl}}" width="800" height="250">
 	</div>'>
 							</span>
 						</div>
-						<div class="col-md-1 col-sm-1 col-xm-1">
+						<div class="col-md-1 col-sm-1 col-xs-1">
 							<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-comments">copy</p>
 						</div>
           </div>
@@ -1060,53 +943,11 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                        
 
-<!--
 <div class="row">
-  <div class="col-md-12 col-sm-12">
-    <div class="panel panel-info ">
-      <div class="panel-heading">
-        <h3 class="panel-title">Unfollow</h3>
-      </div>
-      <div class="panel-body">
-
-        <div class="row">
-          <div class="col-md-5 checkbox">
-            <label><input type="checkbox" name="data[unfollow_wdfm]" <?php if($settings->unfollow_wdfm) echo "checked"; ?> >Unfollow who dont follow me</label> 
-						<span class="glyphicon glyphicon-question-sign" title="">
-						<div class="hint">Unfollow users yang tidak Follow back anda. <br>
-						</div>
-						</span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <label>Unfollow source</label> 
-						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">
-								User yang mana yang akan di Unfollow? <br>
-								Celebgramme - Unfollow Users yang anda dapatkan dari Celebgramme <br>
-								All - Unfollow Semua Following anda
-							</div>
-						</span>
-            <select class="form-control" name="data[unfollow_source]">
-              <option value="celebgramme" <?php if ($settings->unfollow_source=='celebgramme') echo "selected" ?>>Celebgramme</option>
-              <option value="all" <?php if ($settings->unfollow_source=='all') echo "selected" ?>>All</option>
-            </select>
-          </div>
-        </div>
-
-
-      </div>
-    </div>
-  </div>  
-</div>                        
--->
-<div class="row">
-  <div class="col-md-2">
-    <input type="button" value="Save" class="btn btn-info col-md-12 col-sm-12" id="button-save2">    
-  </div>                    
-  <div class="col-md-2">
-		<button data-id="{{$settings->id}}" class="btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}} col-md-12 col-sm-12" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
+  <div class="col-md-12">
+    <input type="button" value="Save" class="btn btn-info" id="button-save2">    
+		
+		<button data-id="{{$settings->id}}" class="btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
 			<?php if ($settings->status=='stopped') { echo "<span class='glyphicon glyphicon-play'></span> Start"; } else {echo "<span class='glyphicon glyphicon-stop'></span> Stop";}?> 
 		</button>
 		
@@ -1117,7 +958,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 
 <div class="row">
   <div class="col-md-12">
-    <p align="center"> <br><br><br><br><br><br><br><br> @Copyright <a href="http://celebgramme.com/celebgramme">Celebgramme</a> 2016</p>    
+    <p align="center"> <br><br><br><br><br><br><br><br> @Copyright <a href="http://celebgramme.com/celebgramme">Celebgramme</a> version 2.0 2016</p>    
   </div>                    
 </div>                    
 

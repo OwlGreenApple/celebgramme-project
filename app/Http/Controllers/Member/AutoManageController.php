@@ -20,6 +20,7 @@ use Celebgramme\Models\Meta;
 use Celebgramme\Models\Client;
 use Celebgramme\Models\SettingHelper;
 use Celebgramme\Models\Proxies;
+use Celebgramme\Models\Category;
 use Celebgramme\Veritrans\Veritrans;
 
 use Celebgramme\Helpers\GlobalHelper;
@@ -332,11 +333,38 @@ class AutoManageController extends Controller
     if (is_null($link)) {
       return redirect('auto-manage')->with( 'error', 'Not authorize to access page');
     } 
+		
+
+		$categories = Category::all();
+		
+		$strCategory = "";
+		foreach ($categories as $category) {
+			$strCategory .= json_encode(
+								array(
+									"class"=>strtolower($category->categories),
+									"value"=>strtolower($category->name),
+									"name"=>ucfirst($category->name),
+								)).",";
+		}
+		
+		$strClassCategory = "";
+		$groupCategories = Category::groupBy('categories')->get();
+		foreach ($groupCategories as $groupCategory) {
+			$strClassCategory .= json_encode(
+								array(
+									"value"=>strtolower($groupCategory->categories),
+									"label"=>ucfirst($groupCategory->categories),
+								)).",";
+		}
+		
+		
     return view("member.auto-manage.account-setting")->with(array(
       'user'=>$user,
       'settings'=>$link,
       'view_timeperaccount'=>$view_timeperaccount,
       'view_totaltime'=>$view_totaltime,
+      'strCategory'=>$strCategory,
+      'strClassCategory'=>$strClassCategory,
       ));
   }
 
@@ -407,6 +435,56 @@ class AutoManageController extends Controller
 			}
 		}
 		
+		if ( ($data["is_auto_get_likes"]) || ($data["status_auto"]) ) {
+			//cek private, untuk yang full auto atau advanced manual tapi auto get like dipilih
+			if ($this->check_private_user($setting_temp->insta_username)) {
+				$arr["message"]= "Profile account instagram tidak boleh di Private, untuk fitur auto get like";
+				$arr["type"]= "error";
+				return $arr;
+			}
+			
+			$data["is_auto_get_likes"] = 1;
+			
+			$target_arr = explode(";",$data["target_categories"]);
+			if (count($target_arr)>10) {
+				$arr["message"] = "Target Categories tidak boleh lebih dari 10 ";
+				$arr["type"] = "error";
+				return $arr;
+			}
+			
+			if ($data["status_auto"]) {
+				// update hashtags auto , berdasarkan target category 
+				$hashtags_auto = "";
+				$counter = 1;
+				foreach ($target_arr as $target_data) {
+					$category = Category::where("name","like","%".$target_data."%")->first();
+					if ($counter<count($target_arr)) {
+						$hashtags_auto .= $category->hashtags.";"; 
+					} else {
+						$hashtags_auto .= $category->hashtags; 
+					}
+					$counter += 1;
+				}
+				$setting_temp->hashtags_auto = $hashtags_auto;
+				$setting_temp->save();
+			}
+		}
+		
+		//change auto get likes
+		$setting_helper = SettingHelper::where("setting_id","=",$setting_temp->id)->first();
+		if (!is_null($setting_helper)) {
+			$setting_helper->is_auto_get_likes = $data["is_auto_get_likes"] ;
+			$setting_helper->number_likes = 30 ;
+			if ($data["is_auto_get_likes"]) {
+				$setting_helper->identity = "none" ;
+			}
+			if ($data["status_auto"]) {
+				$setting_helper->is_auto_get_likes = 1 ;
+				$setting_helper->target = $data["target_categories"] ;
+			}
+			$setting_helper->save();
+		}
+		
 		//hapus pesan auto unfollow 
 		SettingMeta::createMeta("auto_unfollow","no",$setting_temp->id);
 		
@@ -420,7 +498,7 @@ class AutoManageController extends Controller
 	
     if (isset($data['dont_comment_su'])) { $data['dont_comment_su'] = 1; } else { $data['dont_comment_su'] = 0; }
     if (isset($data['dont_follow_su'])) { $data['dont_follow_su'] = 1; } else { $data['dont_follow_su'] = 0; }
-    if (isset($data['dont_follow_pu'])) { $data['dont_follow_pu'] = 1; } else { $data['dont_follow_pu'] = 0; }
+    // if (isset($data['dont_follow_pu'])) { $data['dont_follow_pu'] = 1; } else { $data['dont_follow_pu'] = 0; }
     if (isset($data['unfollow_wdfm'])) { $data['unfollow_wdfm'] = 1; } else { $data['unfollow_wdfm'] = 0; }
 
     $setting_temp->update($data);
@@ -741,5 +819,69 @@ class AutoManageController extends Controller
 		} else { //login invalid
 			return false;
 		}
+	}
+
+	public function check_private_user($username){
+		$is_private = false;
+		
+		$ports[] = "10201"; 
+		$ports[] = "10202";
+		$ports[] = "10203";
+		$port = $ports[array_rand($ports)];
+		$cred = "sugiarto:sugihproxy250";
+		$proxy = "45.79.212.85";//good proxy
+		$auth = true;
+
+		if(App::environment() == "local"){
+			$cookiefile = base_path().'/../general/ig-cookies/'.$username.'-cookies-grab.txt';
+		} else{
+			$cookiefile = base_path().'/../public_html/general/ig-cookies/'.$username.'-cookies-grab.txt';
+		}
+			
+		$url = "https://www.instagram.com/".$username."/?__a=1";
+		$c = curl_init();
+
+
+		if ($auth) {
+			curl_setopt($c, CURLOPT_PROXY, $proxy);
+			curl_setopt($c, CURLOPT_PROXYPORT, $port);
+			curl_setopt($c, CURLOPT_PROXYUSERPWD, $cred);
+		} else if (!$auth) {
+			curl_setopt($c, CURLOPT_PROXY, $proxy.":".$port);
+		}
+		curl_setopt($c, CURLOPT_PROXYTYPE, 'HTTP');
+		curl_setopt($c, CURLOPT_URL, $url);
+		curl_setopt($c, CURLOPT_REFERER, $url);
+		curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($c, CURLOPT_COOKIEFILE, $cookiefile);
+		curl_setopt($c, CURLOPT_COOKIEJAR, $cookiefile);
+		$page = curl_exec($c);
+		curl_close($c);
+		
+		$arr = json_decode($page,true);
+		// var_dump(json_decode($page,true));
+		if (count($arr)>0) {
+			if ($arr["user"]["is_private"]) {
+				$is_private = true;
+			}
+			else if (!$arr["user"]["is_private"]) {
+				$is_private = false;
+			}
+			
+			// foreach ($arr["user"]["media"]["nodes"] as $data) {
+				// echo $data["id"]."   ".$data["code"]."  ".$data["owner"]["id"]."<br>";
+			// }
+		} else {
+			echo "username not found";
+		}
+		
+		
+		if (file_exists($cookiefile)) {
+			unlink($cookiefile);
+		}
+		
+		return $is_private;
 	}
 }

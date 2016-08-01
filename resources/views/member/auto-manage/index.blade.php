@@ -411,7 +411,7 @@
 
 <?php   if ($user->type<>"not-confirmed") { ?>
 <div class="row">
-              <div class="col-md-10 col-sm-10">
+              <div class="col-md-12 col-sm-12">
                 <div class="panel panel-info ">
                   <div class="panel-heading">
                     <h3 class="panel-title">Hal Yang Perlu Diperhatikan Sebelum Anda Memulai</h3>
@@ -445,7 +445,7 @@
               </div>
 </div>
 <div class="row">
-              <div class="col-md-10 col-sm-10">
+              <div class="col-md-12 col-sm-12">
                 <div class="panel panel-info ">
                   <div class="panel-heading">
                     <h3 class="panel-title">Dashboard</h3>
@@ -469,25 +469,25 @@
 <div class="row">
 
   <?php if ($user->type=="not-confirmed") { ?> 
-    <div class="col-sm-10 col-md-10">            
+    <div class="col-sm-12 col-md-12">            
       <div class="alert alert-danger col-sm-18 col-md-18">
         Silahkan konfirmasi email terlebih dahulu. Klik <a href="" id="link-activation">disini</a> untuk kirim email konfirmasi ulang.
       </div>  
     </div>          
   <?php } ?>
   <?php if (!is_null($order)) { ?> 
-    <div class="col-sm-10 col-md-10">            
+    <div class="col-sm-12 col-md-12">            
       <div class="alert alert-danger col-sm-18 col-md-18">
         Anda belum melakukan konfirmasi pembayaran. silahkan klik <a href="{{url('confirm-payment')}}">disini</a> untuk melakukan konfirmasi pembayaran
       </div>  
     </div>          
   <?php } ?>
-  <div class="col-sm-10 col-md-10">            
+  <div class="col-sm-12 col-md-12">            
     <div class="alert btn-danger col-sm-18 col-md-18" id="alert">
     </div>  
   </div>          
   @if (session('error'))
-    <div class="col-sm-10 col-md-10">            
+    <div class="col-sm-12 col-md-12">            
       <div class="alert alert-danger col-sm-18 col-md-18" >
         {{ session('error') }}
       </div>  
@@ -496,7 +496,7 @@
 </div>                        
 
 <div class="row">
-  <div class="col-sm-10 col-md-10">
+  <div class="col-sm-12 col-md-12">
 			<h3>Total Waktu Berlangganan</h3>
       <div id="clockdiv" class="fl">
         <div class="fl">
@@ -559,7 +559,7 @@ hanya akun yang di start saja yang dikurangi waktunya dari total waktu pembelian
 
 <?php if ($user->type<>"not-confirmed") { ?>
 <div class="row">
-  <ul class="col-md-10" id="account-all">
+  <ul class="col-md-12" id="account-all">
 <!--
     <div class="col-md-5 border-styling">
       <div class="row"> <img src="#" class=""> </div>

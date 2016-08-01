@@ -8,7 +8,7 @@
 | Here is where you can register all of the routes for an application.
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the controller to call when that URI is requested.
-|
+| its version 2.
 */
 
 /* register package */
@@ -106,6 +106,7 @@ Route::get('auto-follow-unfollow', 'CronJobController@auto_follow_unfollow');
 Route::get('check-create-affiliate', 'CronJobController@create_user_from_affiliate');
 Route::get('reset-client-used', 'CronJobController@reset_client_used');
 Route::get('task-daily-automation-cron', 'CronJobController@task_daily_automation_cron');
+Route::get('task-automation-like', 'CronJobController@task_automation_like');
 
 /*needed for update databasw*/
 Route::get('update-insta-user-id', 'CronJobController@update_insta_user_id');
