@@ -231,7 +231,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 </div>                        
 <?php if (SettingMeta::getMeta($settings->id,"auto_unfollow") == "yes" )  { ?>
 <div class="row">
-  <div class="col-sm-10 col-md-10">            
+  <div class="col-sm-12 col-md-12">            
     <div class="alert alert-info col-sm-18 col-md-18" id="">
 			*Proses auto unfollow akan dijalankan karena jumlah following anda telah mencapai 7250
     </div>  
