@@ -83,7 +83,7 @@
     
       <div class="container-fluid content-mid">
         <div class="row">
-          <div class="col-sm-3 col-md-2 fl">    
+          <div class="col-sm-12 col-xs-12 col-md-2 fl">    
             <ul class="nav nav-sidebar">
 <!--              <li><a href="{{url('send-like')}}">Send Likes</a></li>-->
               <li><a href="{{url('auto-manage')}}">Home</a></li>
@@ -98,7 +98,7 @@
           
           </div>
           
-          <div class="col-sm-8 col-md-8  fl">
+          <div class="col-sm-12 col-xs-12 col-md-9  fl">
             <?php 
             $str = explode("/", Request::path());                                   /* karena  */
             if ((Request::path()=="auto-manage" )||($str[0]=="account-setting" )||(Request::path()=="/" )||(Request::path()=="home" )) { ?>

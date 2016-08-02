@@ -493,20 +493,17 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       <div class="panel-body">
 
 				<div class="row">
-					<div class="col-md-3 col-sm-12 col-xs-12">
+					<div class="col-md-4 col-sm-12 col-xs-12">
 						<label>Choose Settings</label> 
 						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Choose Settings</div><div class='panel-content'>Pilih salah satu : FULL AUTO atau Manual settings.<br> FULL AUTO = Fast Settings, Pilih kategori Target anda & Start,<br> FULL AUTO hanya untuk Follow, Like & Auto Like My Posts ( tidak termasuk Comment ). <br>Manual = Setting manual customized semua fitur Celebgramme. <br> <i>*PS: Settings yang AKTIF adalah yang TERAKHIR dipilih</i></div>">
 						</span>
-						
 						<div class="btn-group col-xs-12 col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
 							<button type="button" class="btn <?php if ($settings->status_auto) echo 'gold-fullauto-setting' ?>" id="button-fullauto" style="outline:none;color:#fff;">Full Auto</button>
 							<button type="button" class="btn <?php if (!$settings->status_auto) echo 'btn-info' ?>" id="button-advanced" style="outline:none;color:#fff;">Manual</button>
 							<input type="hidden" value="{{$settings->status_auto}}" name="data[status_auto]" id="status_auto">
-							
 						</div>				
-						
-						
 					</div>
+
 					<div class="col-md-1 col-sm-12 col-xs-12">
 						<br>
 					</div>
@@ -521,27 +518,14 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 							<option value="fast" <?php if ($settings->activity_speed=='fast') echo "selected" ?>>Fast</option>
 						</select>
 					</div>
-					<!--
-					<div class="col-md-4">
-						<label>Media Source</label> 
-						<span class="glyphicon glyphicon-question-sign" title="">
-							<div class="hint">Aktifitas Follow, Like & Comments akan menggunakan Sumber Media ini<br>
-								Pilih Sumber Media untuk aktivitas Anda : <br>
-								Hashtags - untuk menentukan Media sesuai Hashtags <br>
-								Usernames - untuk menentukan Media berdasarkan Username <br>
-								
-							</div>
-						</span>
-						<select class="form-control" name="data[media_source]" id="select-media-source">
-							<option value="hashtags" <?php if ($settings->media_source=='hashtags') echo "selected" ?>>Hashtags</option>
-							<option value="usernames" <?php if ($settings->media_source=='usernames') echo "selected" ?>>Usernames</option>
-						</select>
-					</div>
-					-->
-					<div class="col-md-1 col-sm-12 col-xs-12">
-						<br>
-					</div>
-					<div class="col-md-3 col-sm-12 col-xs-12">
+					
+				</div>
+
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<br>
+				</div>
+				<div class="row">
+					<div class="col-md-2 col-sm-12 col-xs-12">
 						<label>Blacklist</label> 
 						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Blacklist </div><div class='panel-content'>List Username yang TIDAK akan di FLC (Follow, Like & Comment)<br>
 						Masukkan usernames SAJA disini (tanpa @), contoh: darthvader, hitler, kimjongil, dsbnya<br>
@@ -556,6 +540,19 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 					</div>
 					<div class="col-md-1 col-sm-12 col-xs-12">
 						<br>
+					</div>
+					<div class="col-md-2 col-sm-12 col-xs-12">
+						<label>Whitelist</label> 
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Blacklist </div><div class='panel-content'>List Username yang TIDAK akan di FLC (Follow, Like & Comment)<br>
+						Masukkan usernames SAJA disini (tanpa @), contoh: darthvader, hitler, kimjongil, dsbnya<br>
+						<i>*PS: berguna sekali untuk TIDAK follow, like, comment 'mantan' & 'kompetitor' anda</i><br>
+	</div>">
+						</span>
+						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
+							<button type="button" class="btn <?php if ($settings->status_whitelist) {echo'black-blacklist';} ?>" id="BlacklistOnButton" style="color:#fff;"><strong>ON</strong></button>
+							<button type="button" class="btn <?php if (!$settings->status_whitelist) {echo'black-blacklist';} ?>" id="BlacklistOffButton" style="color:#fff;">OFF</button>
+						</div>
+						<input type="hidden" value="{{$settings->status_blacklist}}" name="data[status_blacklist]" id="status_blacklist">
 					</div>
 				</div>
 				<!--
