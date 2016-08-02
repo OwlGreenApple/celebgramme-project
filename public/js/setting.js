@@ -319,6 +319,21 @@
 			$("#status_blacklist").val(0);
 			$("#div-blacklist").fadeOut(500);
 		});
+
+		$('#WhitelistOnButton').click(function(e){
+			e.preventDefault();
+			$('#WhitelistOnButton').addClass('black-blacklist');
+			$('#WhitelistOffButton').removeClass('black-blacklist');
+			$("#status_whitelist").val(1);
+			$("#div-unfollow-whitelist").fadeIn(500);
+		});
+		$('#WhitelistOffButton').click(function(e){
+			e.preventDefault();
+			$('#WhitelistOnButton').removeClass('black-blacklist');
+			$('#WhitelistOffButton').addClass('black-blacklist');
+			$("#status_whitelist").val(0);
+			$("#div-unfollow-whitelist").fadeOut(500);
+		});
 		
 		$('#DontFollowPUOnButton').click(function(e){
 			e.preventDefault();

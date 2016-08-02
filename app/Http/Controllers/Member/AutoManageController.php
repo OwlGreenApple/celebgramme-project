@@ -445,14 +445,19 @@ class AutoManageController extends Controller
 			
 			$data["is_auto_get_likes"] = 1;
 			
-			$target_arr = explode(";",$data["target_categories"]);
-			if (count($target_arr)>10) {
-				$arr["message"] = "Target Categories tidak boleh lebih dari 10 ";
-				$arr["type"] = "error";
-				return $arr;
-			}
-			
 			if ($data["status_auto"]) {
+				$target_arr = explode(";",$data["target_categories"]);
+				if (count($target_arr)>10) {
+					$arr["message"] = "Target Categories tidak boleh lebih dari 10 ";
+					$arr["type"] = "error";
+					return $arr;
+				}
+				if ($data["target_categories"]=="") {
+					$arr["message"] = "Target Categories tidak boleh 0 ";
+					$arr["type"] = "error";
+					return $arr;
+				}
+			
 				// update hashtags auto , berdasarkan target category 
 				$hashtags_auto = "";
 				$counter = 1;
@@ -483,6 +488,22 @@ class AutoManageController extends Controller
 				$setting_helper->target = $data["target_categories"] ;
 			}
 			$setting_helper->save();
+		}
+		
+		//blacklist & whitelist
+		if ($data["status_blacklist"])   {
+			if ($data["usernames_blacklist"]=="") {
+				$arr["message"]= "Blacklist usernames anda masih 0";
+				$arr["type"]= "error";
+				return $arr;
+			}
+		}
+		if ($data["status_whitelist"])   {
+			if ($data["usernames_whitelist"]=="") {
+				$arr["message"]= "Whitelist usernames anda masih 0";
+				$arr["type"]= "error";
+				return $arr;
+			}
 		}
 		
 		//hapus pesan auto unfollow 

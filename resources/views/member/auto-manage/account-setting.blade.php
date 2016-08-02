@@ -485,7 +485,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 </div>                        
 -->
 <div class="row">
-  <div class="col-md-12 col-sm-12">
+  <div class="col-md-6 col-sm-6">
     <div class="panel panel-info ">
       <div class="panel-heading">
         <h3 class="panel-title">Global Settings</h3>
@@ -493,22 +493,23 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       <div class="panel-body">
 
 				<div class="row">
-					<div class="col-md-4 col-sm-12 col-xs-12">
+					<div class="col-md-12 col-sm-12 col-xs-12">
 						<label>Choose Settings</label> 
 						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Choose Settings</div><div class='panel-content'>Pilih salah satu : FULL AUTO atau Manual settings.<br> FULL AUTO = Fast Settings, Pilih kategori Target anda & Start,<br> FULL AUTO hanya untuk Follow, Like & Auto Like My Posts ( tidak termasuk Comment ). <br>Manual = Setting manual customized semua fitur Celebgramme. <br> <i>*PS: Settings yang AKTIF adalah yang TERAKHIR dipilih</i></div>">
 						</span>
-						<div class="btn-group col-xs-12 col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
+						<div class="btn-group col-xs-12 col-md-12 col-sm-12 col-xs-12" role="group" aria-label="..." style="margin-left:-15px;">
 							<button type="button" class="btn <?php if ($settings->status_auto) echo 'gold-fullauto-setting' ?>" id="button-fullauto" style="outline:none;color:#fff;">Full Auto</button>
 							<button type="button" class="btn <?php if (!$settings->status_auto) echo 'btn-info' ?>" id="button-advanced" style="outline:none;color:#fff;">Manual</button>
 							<input type="hidden" value="{{$settings->status_auto}}" name="data[status_auto]" id="status_auto">
 						</div>				
 					</div>
 
-					<div class="col-md-1 col-sm-12 col-xs-12">
+					
+					<div class="col-md-12 col-sm-12 col-xs-12">
 						<br>
 					</div>
 					
-					<div class="col-md-3 col-sm-12 col-xs-12">
+					<div class="col-md-5 col-sm-5 col-xs-12">
 						<label>Activity Speed</label> 
 						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Activity speed</div><div class='panel-content'>Jika Akun anda BARU / Tdk aktif, START dgn SLOW/NORMAL speed utk 5 hari <br>• <strong>Slow</strong> = Melakukan 550 Likes, 120 comments, 350 follow/unfollow /hari <br>• <strong>Normal</strong> = Melakukan 1200 likes, 180 comments, 450 follow/unfollows /hari. <br>• <strong>Fast</strong> = Melakukan 1800 likes, 240 comments, 600 follow/unfollows /hari. <br></div>">
 						</span>
@@ -519,82 +520,59 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 						</select>
 					</div>
 					
-				</div>
 
-				<div class="col-md-12 col-sm-12 col-xs-12">
-					<br>
+					
+					
 				</div>
+      </div>
+    </div>
+  </div>  
+
+	<div class="col-md-6 col-sm-6">
+    <div class="panel panel-info ">
+      <div class="panel-heading">
+        <h3 class="panel-title">Blacklist & Whitelist Settings</h3>
+      </div>
+      <div class="panel-body">
+				
 				<div class="row">
-					<div class="col-md-2 col-sm-12 col-xs-12">
+					<div class="col-md-12 col-sm-12 col-xs-12">
 						<label>Blacklist</label> 
 						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Blacklist </div><div class='panel-content'>List Username yang TIDAK akan di FLC (Follow, Like & Comment)<br>
 						Masukkan usernames SAJA disini (tanpa @), contoh: darthvader, hitler, kimjongil, dsbnya<br>
 						<i>*PS: berguna sekali untuk TIDAK follow, like, comment 'mantan' & 'kompetitor' anda</i><br>
 	</div>">
 						</span>
-						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
+						<div class="btn-group col-md-12 col-sm-12 col-xs-12" role="group" aria-label="..." style="margin-left:-15px;">
 							<button type="button" class="btn <?php if ($settings->status_blacklist) {echo'black-blacklist';} ?>" id="BlacklistOnButton" style="color:#fff;"><strong>ON</strong></button>
 							<button type="button" class="btn <?php if (!$settings->status_blacklist) {echo'black-blacklist';} ?>" id="BlacklistOffButton" style="color:#fff;">OFF</button>
 						</div>
 						<input type="hidden" value="{{$settings->status_blacklist}}" name="data[status_blacklist]" id="status_blacklist">
 					</div>
-					<div class="col-md-1 col-sm-12 col-xs-12">
+					
+					<div class="col-md-12 col-sm-12 col-xs-12">
 						<br>
 					</div>
-					<div class="col-md-2 col-sm-12 col-xs-12">
+					
+					<div class="col-md-12 col-sm-12 col-xs-12">
 						<label>Whitelist</label> 
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Blacklist </div><div class='panel-content'>List Username yang TIDAK akan di FLC (Follow, Like & Comment)<br>
-						Masukkan usernames SAJA disini (tanpa @), contoh: darthvader, hitler, kimjongil, dsbnya<br>
-						<i>*PS: berguna sekali untuk TIDAK follow, like, comment 'mantan' & 'kompetitor' anda</i><br>
-	</div>">
-						</span>
-						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
-							<button type="button" class="btn <?php if ($settings->status_whitelist) {echo'black-blacklist';} ?>" id="BlacklistOnButton" style="color:#fff;"><strong>ON</strong></button>
-							<button type="button" class="btn <?php if (!$settings->status_whitelist) {echo'black-blacklist';} ?>" id="BlacklistOffButton" style="color:#fff;">OFF</button>
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Usernames whitelist</div><div class="panel-content">• Saat anda UNFOLLOW. <strong>Usernames di "Whitelist" ini akan diabaikan / tidak akan di "UNFOLLOW"</strong><br>
+							• <strong>Usulan penggunaan : </strong>teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW</div>'></span>
+						<div class="btn-group col-md-12 col-sm-12 col-xs-12" role="group" aria-label="..." style="margin-left:-15px;">
+							<button type="button" class="btn <?php if ($settings->status_whitelist) {echo'black-blacklist';} ?>" id="WhitelistOnButton" style="color:#fff;"><strong>ON</strong></button>
+							<button type="button" class="btn <?php if (!$settings->status_whitelist) {echo'black-blacklist';} ?>" id="WhitelistOffButton" style="color:#fff;">OFF</button>
 						</div>
-						<input type="hidden" value="{{$settings->status_blacklist}}" name="data[status_blacklist]" id="status_blacklist">
+						<input type="hidden" value="{{$settings->status_whitelist}}" name="data[status_whitelist]" id="status_whitelist">
 					</div>
 				</div>
-				<!--
-				<div class="row">
-					<div class="col-md-3 col-sm-12 col-xs-12">
-						<label>Media Age</label> 
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Media Age</div><div class='panel-content'>Pilih Umur Media / Media Age yang akan berinteraksi dengan anda.<br>
-								<strong>Latest</strong> : Hanya post terbaru (default)<br>
-								<strong>Any</strong>    : Post kapan saja<br>
-	</div>">
-						</span>
-						<select class="form-control" name="data[media_age]">
-							<option value="latest" <?php if ($settings->media_age=='latest') echo "selected" ?>>Latest</option>
-							<!--<option value="newest" <?php if ($settings->media_age=='newest') echo "selected" ?>>Newest</option>
-							<option value="1 hour" <?php if ($settings->media_age=='1 hour') echo "selected" ?>>1 Hour</option>
-							<option value="12 hours" <?php if ($settings->media_age=='12 hours') echo "selected" ?>>12 Hours</option>
-							<option value="1 day" <?php if ($settings->media_age=='1 day') echo "selected" ?>>1 Day</option>
-							<option value="3 day" <?php if ($settings->media_age=='3 day') echo "selected" ?>>3 Days</option>
-							<option value="1 week" <?php if ($settings->media_age=='1 week') echo "selected" ?>>1 Week</option>
-							<option value="2 week" <?php if ($settings->media_age=='2 week') echo "selected" ?>>2 Weeks</option>
-							<option value="1 month" <?php if ($settings->media_age=='1 month') echo "selected" ?>>1 Month</option>-->
-						<!--	<option value="any" <?php if ($settings->media_age=='any') echo "selected" ?>>Any</option>
-						</select>
-					</div>
-				</div>-->
-				<!--
-        <div class="col-md-4">
-          <label>Media Type</label> 
-					<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Media Type</div><div class='panel-content'><strong>Media yang dipakai untuk interaksi</strong>, Foto atau Video atau Semuanya </div>">
-					</span>
-          <select class="form-control" name="data[media_type]">
-            <option value="any" <?php if ($settings->media_type=='any') echo "selected" ?>>Any</option>
-            <option value="photos" <?php if ($settings->media_type=='photos') echo "selected" ?>>Photos</option>
-            <option value="videos" <?php if ($settings->media_type=='videos') echo "selected" ?>>Videos</option>
-          </select>
-        </div>
-				-->
-      </div>
-    </div>
-  </div>  
-</div>       
 
+
+					
+					
+		  </div>
+    </div>
+  </div>
+</div>  
 <?php 
 	$is_auto_get_likes = 0;
 	$target_categories = "";
@@ -615,8 +593,10 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 				</h3>
       </div>
       <div class="panel-body">
-				<div class="col-md-12 col-sm-12 col-xs-12">
-					<textarea class="selectize-target" id="textarea-target-categories" name="data[target_categories]">{{$target_categories}}</textarea>
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<textarea class="selectize-target" id="textarea-target-categories" name="data[target_categories]">{{$target_categories}}</textarea>
+					</div>
 				</div>
       </div>
     </div>
@@ -657,16 +637,47 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info ">
       <div class="panel-heading">
-        <h3 class="panel-title">Usernames blacklist</h3>
+        <h3 class="panel-title">Usernames blacklist
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Blacklist </div><div class='panel-content'>List Username yang TIDAK akan di FLC (Follow, Like & Comment)<br>
+						Masukkan usernames SAJA disini (tanpa @), contoh: darthvader, hitler, kimjongil, dsbnya<br>
+						<i>*PS: berguna sekali untuk TIDAK follow, like, comment 'mantan' & 'kompetitor' anda</i><br>
+	</div>">
+						</span>
+				</h3>
       </div>
       <div class="panel-body">
-				<div class="col-md-12 col-sm-12 col-xs-12">
-					<textarea class="selectize-default" id="textarea-unfollow-blacklist" name="data[usernames_blacklist]">{{$settings->usernames_blacklist}}</textarea>
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<textarea class="selectize-default" id="textarea-unfollow-blacklist" name="data[usernames_blacklist]">{{$settings->usernames_blacklist}}</textarea>
+					</div>
 				</div>
       </div>
     </div>
   </div>  
 </div>       
+
+<div class="row" id="div-unfollow-whitelist" <?php if (!$settings->status_whitelist) { echo 'style=display:none'; } ?> >
+  <div class="col-md-12 col-sm-12">
+    <div class="panel panel-info ">
+      <div class="panel-heading">
+        <h3 class="panel-title">Usernames whitelist
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Usernames whitelist</div><div class="panel-content">• Saat anda UNFOLLOW. <strong>Usernames di "Whitelist" ini akan diabaikan / tidak akan di "UNFOLLOW"</strong><br>
+							• <strong>Usulan penggunaan : </strong>teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW</div>'></span>
+				</h3>
+      </div>
+      <div class="panel-body">
+
+        <div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<textarea class="selectize-default" id="textarea-unfollow-whitelist" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>
+					</div>
+					
+        </div>
+
+      </div>
+    </div>
+  </div>  
+</div>                    
 
 <div class="row advanced-manual-setting <?php if ($settings->status_auto) echo 'hide'; ?>" >
   <div class="col-md-12 col-sm-12">
@@ -742,34 +753,6 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
     </div>
   </div>  
 </div>                        
-
-<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo 'hide'; ?>" id="div-unfollow-whitelist" <?php if ( ($settings->activity=="follow") || ($settings->status_follow_unfollow=="off") ) { echo "style='display:none;'"; } ?> >
-  <div class="col-md-12 col-sm-12">
-    <div class="panel panel-info ">
-      <div class="panel-heading">
-        <h3 class="panel-title">Unfollow whitelist</h3>
-      </div>
-      <div class="panel-body">
-
-        <div class="row">
-          <div class="col-md-11 col-sm-10 col-xs-10">
-            <label>Usernames whitelist</label> 
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Usernames whitelist</div><div class="panel-content">• Saat anda UNFOLLOW. <strong>Usernames di "Whitelist" ini akan diabaikan / tidak akan di "UNFOLLOW"</strong><br>
-							• <strong>Usulan penggunaan : </strong>teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW</div>'></span>
-          </div>
-					<div class="col-md-1 col-sm-1 col-xs-1">
-						<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-unfollow-whitelist">copy</p>
-          </div>
-					<div class="col-md-12 col-sm-12 col-xs-12">
-						<textarea class="selectize-default" id="textarea-unfollow-whitelist" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>
-					</div>
-					
-        </div>
-
-      </div>
-    </div>
-  </div>  
-</div>                    
 
 <div class="row advanced-manual-setting <?php if ($settings->status_auto) echo 'hide'; ?>" id="div-usernames" <?php if ( ($settings->follow_source=='hashtags') || ($settings->status_follow_unfollow=="off") ) echo "style='display:none;'" ?>>
   <div class="col-md-12 col-sm-12">
