@@ -575,7 +575,7 @@ class AutoManageController extends Controller
 					return $arr;
 				}
         if (Request::input('action')=='start') {
-					if ( ($setting_temp->status_follow_unfollow=="off")&&($setting_temp->status_like=="off")&&($setting_temp->status_comment=="off") ) {
+					if ( (!$setting_temp->status_auto)&&($setting_temp->status_follow_unfollow=="off")&&($setting_temp->status_like=="off")&&($setting_temp->status_comment=="off") ) {
 						$arr["message"]= "Anda tidak dapat menjalankan program, silahkan pilih aktifitas yang akan dilakukan (follow/like/comment) di account ".$setting_temp->insta_username;
 						$arr["type"]= "error";
 						return $arr;
