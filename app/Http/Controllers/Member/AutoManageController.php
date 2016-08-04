@@ -201,6 +201,7 @@ class AutoManageController extends Controller
       if ($setting->status=="deleted") {
         $setting->status = 'stopped';
         $setting->user_id = $user->id;
+        $setting->last_user = $user->id;
         $setting->insta_password = Request::input("password");
         $setting->error_cred = 0;
         $setting->save();
