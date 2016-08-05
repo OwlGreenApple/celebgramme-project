@@ -913,4 +913,5 @@ class AutoManageController extends Controller
 		
 		return $is_private;
 	}
+
 }

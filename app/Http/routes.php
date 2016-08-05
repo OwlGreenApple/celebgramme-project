@@ -118,5 +118,6 @@ Route::get('process-doku', 'Member\PaymentController@process_doku');
 Route::post('notification-doku', 'Member\PaymentController@notification_doku');
 Route::any('doku-page/{action}', 'Member\PaymentController@doku_page');
 
-
+/* IDAFF */
+Route::get('postback-idaff', 'LandingPageController@post_back_idaff');
 
