@@ -184,31 +184,20 @@ class LandingPageController extends Controller
 	}
 
 	public function post_back_idaff(){	
-		/*
-		[INVOICE] => Transaction Fee
-		[AMOUNT] => Transaction Amount
-		[CNAME] => Customer Name
-		[CEMAIL] => Customer Email
-		[CMPHONE] => Customer Phone
-		[STATUS] => Transaction Status, Verified=Pending Payment, SUCCESS=Payment Received
-		[IPADDRESS] => Customer IP Address
-		[GRAND_TOTAL] => Total of Transactions Fee, Product Amount - Discount + Shipping Fee
-		[SHIPPING_FEE] => Shipping Fee	
-		*/
-		$idaff = Idaff::where("trans_id","=",Input::get("ID"))->first();
+		$idaff = Idaff::where("trans_id","=",Input::get("transid"))->first();
 		if (is_null($idaff)){
 			$idaff = new Idaff;
-			$idaff->trans_id = Input::get("ID");
+			$idaff->trans_id = Input::get("transid");
 			$idaff->executed = 0;
 		} else {
-			$idaff = Idaff::where("trans_id","=",Input::get("ID"))->first();
+			$idaff = Idaff::where("trans_id","=",Input::get("transid"))->first();
 		}
 		
-		$idaff->name = Input::get("CNAME");
-		$idaff->email = Input::get("CEMAIL");
-		$idaff->phone = Input::get("CMPHONE");
-		$idaff->status = Input::get("STATUS");
-		$idaff->grand_total = Input::get("GRAND_TOTAL");
+		$idaff->name = Input::get("cname");
+		$idaff->email = Input::get("cemail");
+		$idaff->phone = Input::get("cmphone");
+		$idaff->status = Input::get("status");
+		$idaff->grand_total = Input::get("grand_total");
 		$idaff->save();
 		
 		if ( ($idaff->status == "SUCCESS") && (!$idaff->executed) ) {
