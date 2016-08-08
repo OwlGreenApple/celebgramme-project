@@ -415,12 +415,6 @@ class AutoManageController extends Controller
 			}
 		}
 		
-		if ( ($setting_temp->status=="started") && ($data['status_follow_unfollow']=="off") && ($data['status_like']=="off") && ($data['status_comment']=="off") ) {
-      $arr["message"]= "Silahkan pilih activity follow / like / comment";
-      $arr["type"]= "error";
-      return $arr;
-		}
-		
 		if ($data['status_comment']=="on") {
 			if ( (strpos($data['comments'], '<@owner>') !== false) && (strpos($data['comments'], '{') !== false) && (strpos($data['comments'], '}')!==false) ) {
 			} else {
@@ -504,6 +498,12 @@ class AutoManageController extends Controller
 				$data["status_follow"] = "off";
 				$data["status_unfollow"] = "on";
 			}
+		}
+		
+		if ( ($setting_temp->status=="started") && ($data['status_follow_unfollow']=="off") && ($data['status_like']=="off") && ($data['status_comment']=="off") ) {
+      $arr["message"]= "Silahkan pilih activity follow / like / comment";
+      $arr["type"]= "error";
+      return $arr;
 		}
 		
 		//blacklist & whitelist
