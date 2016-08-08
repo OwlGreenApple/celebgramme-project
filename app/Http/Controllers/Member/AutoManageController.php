@@ -472,7 +472,7 @@ class AutoManageController extends Controller
 				$data["activity"] = "follow";
 				$data["status_follow"] = "on";
 				$data["status_unfollow"] = "off";
-				$data["status_like"] = 1;
+				$data["status_like"] = "on";
 			}
 		}
 		
