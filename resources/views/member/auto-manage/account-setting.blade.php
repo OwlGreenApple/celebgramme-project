@@ -938,7 +938,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 
 <div class="row">
   <div class="col-md-12">
-    <p align="center"> <br><br><br><br><br><br><br><br> @Copyright <a href="http://celebgramme.com/celebgramme">Celebgramme</a> version 2.0 2016</p>    
+    <p align="center"> <br><br><br><br><br><br><br><br> @Copyright <a href="http://celebgramme.com/celebgramme">Celebgramme</a> versi 2 2016</p>    
   </div>                    
 </div>                    
 
