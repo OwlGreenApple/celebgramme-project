@@ -195,13 +195,13 @@ class LandingPageController extends Controller
 		[GRAND_TOTAL] => Total of Transactions Fee, Product Amount - Discount + Shipping Fee
 		[SHIPPING_FEE] => Shipping Fee	
 		*/
-		$idaff = Idaff::where("trans_id","=",Input::get("TRANS_ID"))->first();
+		$idaff = Idaff::where("trans_id","=",Input::get("ID"))->first();
 		if (is_null($idaff)){
 			$idaff = new Idaff;
-			$idaff->trans_id = Input::get("TRANS_ID");
+			$idaff->trans_id = Input::get("ID");
 			$idaff->executed = 0;
 		} else {
-			$idaff = Idaff::where("trans_id","=",Input::get("TRANS_ID"))->first();
+			$idaff = Idaff::where("trans_id","=",Input::get("ID"))->first();
 		}
 		
 		$idaff->name = Input::get("CNAME");
