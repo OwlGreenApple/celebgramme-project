@@ -470,6 +470,7 @@ class AutoManageController extends Controller
 				
 				//default value klo full auto (auto follow, like)
 				$data["activity"] = "follow";
+				$data["status_follow_unfollow"] = "on";
 				$data["status_follow"] = "on";
 				$data["status_unfollow"] = "off";
 				$data["status_like"] = "on";
