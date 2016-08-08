@@ -429,8 +429,7 @@ class CronJobController extends Controller
 
 	public function create_user_from_affiliate(){
 		$count_log = 0; $new_user = 0; $adding_time = 0;
-		// $datas = DB::connection('mysqlAffiliate')->select("select p.*,u.user_email,u.display_name from wp_af1posts p inner join wp_af1users u on u.id=p.post_author where post_title like 'CLB%' and post_content='' and post_status='publish'");		
-		$datas = DB::connection('mysqlAffiliate')->select("select p.*,u.user_email,u.display_name from wp_af1posts p inner join wp_af1users u on u.id=p.post_author where post_title like 'CLB%' and post_content='' ");		
+		$datas = DB::connection('mysqlAffiliate')->select("select p.*,u.user_email,u.display_name from wp_af1posts p inner join wp_af1users u on u.id=p.post_author where post_title like 'CLB%' and post_content='' and post_status='publish'");		
 		// dd($datas);
 		// echo $datas[0]->ID;
 		foreach ($datas as $data) {
