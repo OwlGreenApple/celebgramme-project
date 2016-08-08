@@ -384,19 +384,6 @@ class AutoManageController extends Controller
     }
 
     $setting_temp = Setting::find($data['id']);
-		$following = intval (SettingMeta::getMeta($setting_temp->id,"following"));
-		if (($following>7000 ) && ($data["activity"]=="follow") ) {
-			if (!$data["status_auto"]) {
-				$arr["message"]= "Tidak dapat melakukan activity following";
-				$arr["type"]= "error";
-				return $arr;
-			}
-			if ($data["status_auto"]) {
-				$data["activity"] = "unfollow";
-				$data["status_follow"] = "off";
-				$data["status_unfollow"] = "on";
-			}
-		}
 		
 		if ( ( ($data['status_comment']=="on") || ($data['status_like']=="on") ) || (($data["follow_source"]=="hashtags") && ($data['status_follow_unfollow']=="on") ) ) {
 			$pieces = explode(";",$data["hashtags"]);
@@ -480,6 +467,12 @@ class AutoManageController extends Controller
 				}
 				$setting_temp->hashtags_auto = $hashtags_auto;
 				$setting_temp->save();
+				
+				//default value klo full auto (auto follow, like)
+				$data["activity"] = "follow";
+				$data["status_follow"] = "on";
+				$data["status_unfollow"] = "off";
+				$data["status_like"] = 1;
 			}
 		}
 		
@@ -496,6 +489,20 @@ class AutoManageController extends Controller
 				$setting_helper->target = $data["target_categories"] ;
 			}
 			$setting_helper->save();
+		}
+		
+		$following = intval (SettingMeta::getMeta($setting_temp->id,"following"));
+		if (($following>7000 ) && ($data["activity"]=="follow") ) {
+			if (!$data["status_auto"]) {
+				$arr["message"]= "Tidak dapat melakukan activity following";
+				$arr["type"]= "error";
+				return $arr;
+			}
+			if ($data["status_auto"]) {
+				$data["activity"] = "unfollow";
+				$data["status_follow"] = "off";
+				$data["status_unfollow"] = "on";
+			}
 		}
 		
 		//blacklist & whitelist
