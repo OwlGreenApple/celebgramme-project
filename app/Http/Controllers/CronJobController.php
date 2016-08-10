@@ -682,9 +682,13 @@ class CronJobController extends Controller
 			$arr = json_decode($page,true);
 			if (count($arr)>0) {
 				$counter = 0;
-				echo $setting->insta_username."  ";
+				// echo $setting->insta_username."  ";
+				if ($arr["user"]["is_private"]) {
+					unlink($cookiefile);
+					continue;
+				}
 				foreach ($arr["user"]["media"]["nodes"] as $data) {
-					echo $data["id"]."   ".$data["code"]."<br>";
+					// echo $data["id"]."   ".$data["code"]."<br>";
 					
 					$postTargetLikeCheck = PostTargetLike::where("setting_id","=",$setting->id)
 														->where("media_id","=",$data["id"])
