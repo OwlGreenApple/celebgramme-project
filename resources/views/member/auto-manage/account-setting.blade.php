@@ -736,7 +736,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 <!--							<option value="following of username" <?php if ($settings->follow_source=='following of username') echo "selected" ?>>Following of username</option>-->
             </select>
           </div>
-					<div class="col-md-4 col-sm-7 col-xs-7">
+					<div class="col-md-3 col-sm-7 col-xs-7">
 						<label for="">Dont follow private users</label> 
 						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Dont Follow Private users</div><div class='panel-content'>
 						Jika Dont Follow Private Users dicentang,<br> Maka proses follow tidak akan memfollow account-account IG yang private
@@ -748,6 +748,19 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 						</div>
 						
           </div>
+					<div class="col-md-3 col-sm-7 col-xs-7">
+						<label for="">Dont follow same users</label> 
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Dont Follow Same users</div><div class='panel-content'>
+						Jika Dont Follow Same Users dicentang,<br> Maka proses follow tidak akan memfollow account-account IG yang pernah difollow oleh celebgramme
+						</div>"></span>
+						<div class="btn-group col-xs-12 col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
+							<button type="button" class="btn <?php if ($settings->dont_follow_su) echo 'btn-primary' ?>" id="DontFollowSUOnButton" style="color:#fff;">ON</button>
+							<button type="button" class="btn <?php if (!$settings->dont_follow_su) echo 'btn-danger' ?>" id="DontFollowSUOffButton" style="color:#fff;">OFF</button>
+							<input type="hidden" value="{{$settings->dont_follow_su}}" name="data[dont_follow_su]" id="dont_follow_su">
+						</div>
+						
+          </div>
+					
         </div>
       </div>
     </div>

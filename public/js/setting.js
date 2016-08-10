@@ -348,4 +348,17 @@
 			$("#dont_follow_pu").val(0);
 		});
 
+		$('#DontFollowSUOnButton').click(function(e){
+			e.preventDefault();
+			$('#DontFollowSUOnButton').addClass('btn-primary');
+			$('#DontFollowSUOffButton').removeClass('btn-danger');
+			$("#dont_follow_su").val(1);
+		});
+		$('#DontFollowSUOffButton').click(function(e){
+			e.preventDefault();
+			$('#DontFollowSUOnButton').removeClass('btn-primary');
+			$('#DontFollowSUOffButton').addClass('btn-danger');
+			$("#dont_follow_su").val(0);
+		});
+		
   });
