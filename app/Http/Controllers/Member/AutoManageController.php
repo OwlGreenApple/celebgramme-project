@@ -476,7 +476,7 @@ class AutoManageController extends Controller
 		if (!is_null($setting_helper)) {
 			$setting_helper->is_auto_get_likes = $data["is_auto_get_likes"] ;
 			$setting_helper->number_likes = 30 ;
-			if ($data["is_auto_get_likes"]) {
+			if ( ($data["is_auto_get_likes"]) && ($setting_helper->identity=="") ) {
 				$setting_helper->identity = "none" ;
 			}
 			if ($data["status_auto"]) {
