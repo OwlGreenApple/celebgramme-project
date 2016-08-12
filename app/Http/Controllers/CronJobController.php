@@ -353,9 +353,15 @@ class CronJobController extends Controller
 				if ( ($following >=7000 ) && ($setting->activity == "follow") ) {
 					SettingMeta::createMeta("auto_unfollow","yes",$setting->id);
 
-					$setting->activity = "unfollow";
-					$setting->status_follow = "off";
-					$setting->status_unfollow = "on";
+					if (!$setting->status_auto) {
+						$setting->activity = "unfollow";
+						$setting->status_follow = "off";
+						$setting->status_unfollow = "on";
+					}
+					else if ($setting->status_auto) {
+						$setting->status_follow_auto = 0;
+						$setting->status_unfollow_auto = 1;
+					}
 					$setting->save();
 					$setting_temp = Setting::post_info_admin($setting->id, "[Celebgramme] Post Auto Manage (warning 7000 following IG Account)",true);
 					

@@ -463,11 +463,14 @@ class AutoManageController extends Controller
 				$setting_temp->save();
 				
 				//default value klo full auto (auto follow, like)
+				/*
 				$data["activity"] = "follow";
 				$data["status_follow_unfollow"] = "on";
 				$data["status_follow"] = "on";
 				$data["status_unfollow"] = "off";
-				$data["status_like"] = "on";
+				*/
+				$data["status_follow_auto"] = 1;
+				$data["status_unfollow_auto"] = 0;
 			}
 		}
 		
@@ -494,9 +497,13 @@ class AutoManageController extends Controller
 				return $arr;
 			}
 			if ($data["status_auto"]) {
+				/*
 				$data["activity"] = "unfollow";
 				$data["status_follow"] = "off";
 				$data["status_unfollow"] = "on";
+				*/
+				$data["status_follow_auto"] = 0;
+				$data["status_unfollow_auto"] = 1;
 			}
 		}
 		
