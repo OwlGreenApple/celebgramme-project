@@ -184,13 +184,14 @@ class LandingPageController extends Controller
 	}
 
 	public function post_back_idaff(){	
-		$idaff = Idaff::where("trans_id","=",Input::get("transid"))->first();
+		$idaff = Idaff::where("invoice","=",Input::get("invoice"))->first();
 		if (is_null($idaff)){
 			$idaff = new Idaff;
 			$idaff->trans_id = Input::get("transid");
+			$idaff->invoice = Input::get("invoice");
 			$idaff->executed = 0;
 		} else {
-			$idaff = Idaff::where("trans_id","=",Input::get("transid"))->first();
+			$idaff = Idaff::where("invoice","=",Input::get("invoice"))->first();
 		}
 		
 		$idaff->name = Input::get("cname");
