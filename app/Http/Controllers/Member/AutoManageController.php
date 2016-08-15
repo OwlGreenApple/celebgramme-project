@@ -744,8 +744,8 @@ class AutoManageController extends Controller
 
 	public function checking_cred_instagram($username,$password,$setting_id = 0){  
 		//default random proxy 
-		$ports[] = "10161"; 
-		$ports[] = "10162";
+		$ports[] = "10204"; 
+		$ports[] = "10205";
 		$port = $ports[array_rand($ports)];
 		$cred = "sugiarto:sugihproxy250";
 		$proxy = "45.79.212.85";//good proxy
