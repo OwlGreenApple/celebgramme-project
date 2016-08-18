@@ -842,8 +842,8 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 					<div class="col-md-12">
 						<label>Like</label> 
 						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
-							<button type="button" class="btn <?php if ($settings->status_like=="on") echo 'btn-primary' ?>" id="statusLikeOnButton" style="color:#fff;">ON</button>
-							<button type="button" class="btn <?php if ($settings->status_like=="off") echo 'btn-danger' ?>" id="statusLikeOffButton" style="color:#fff;">OFF</button>
+							<button type="button" class="btn <?php if ($settings->status_like=="on") echo 'btn-primary' ?>" id="statusLikeOnButton" style="color:#fff;z-index:99999;">ON</button>
+							<button type="button" class="btn <?php if ($settings->status_like=="off") echo 'btn-danger' ?>" id="statusLikeOffButton" style="color:#fff;z-index:99999;">OFF</button>
 							<input type="hidden" value="{{$settings->status_like}}" name="data[status_like]" id="status_like">
 						</div>				
 					</div>				
