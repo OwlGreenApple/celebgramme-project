@@ -634,12 +634,12 @@ class CronJobController extends Controller
 								where("failed_at","<=",$dt->toDateTimeString())
 								->delete();
 								
-		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(5);
+		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(1);
 		//delete post target like 
 		$postTargetLike = PostTargetLike::
 								where("created","<=",$dt->toDateTimeString())
 								->where("status","=",0)
-								->delete();
+								->update(['status' => 2]);
 		
 		
 		$setting_counter = null; $failed_job = null; $postTargetLike = null;
