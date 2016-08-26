@@ -21,6 +21,7 @@ use Celebgramme\Models\Client;
 use Celebgramme\Models\SettingHelper;
 use Celebgramme\Models\Proxies;
 use Celebgramme\Models\Category;
+use Celebgramme\Models\SettingLog;
 use Celebgramme\Veritrans\Veritrans;
 
 use Celebgramme\Helpers\GlobalHelper;
@@ -556,6 +557,15 @@ class AutoManageController extends Controller
 
     $setting_temp = Setting::post_info_admin($setting_temp->id);
 		
+		
+		//create log 
+		$dt = Carbon::now()->setTimezone('Asia/Jakarta');
+		$settingLog = new SettingLog;
+		$settingLog->setting_id = $setting_temp->id;
+		$settingLog->status = "save setting";
+		$settingLog->description = "settings log";
+		$settingLog->created = $dt->toDateTimeString();
+		$settingLog->save();
 
     $arr["message"]= "Setting berhasil diupdate";
     $arr["type"]= "success";
@@ -615,10 +625,27 @@ class AutoManageController extends Controller
 							GlobalHelper::clearProxy(serialize($setting_temp));
 						}
 					}
+					//create log 
+					$dt = Carbon::now()->setTimezone('Asia/Jakarta');
+					$settingLog = new SettingLog;
+					$settingLog->setting_id = $setting_temp->id;
+					$settingLog->status = "start all setting";
+					$settingLog->description = "settings log";
+					$settingLog->created = $dt->toDateTimeString();
+					$settingLog->save();
+					
         }
 
         if (Request::input('action')=='stop') {
           $setting_temp->status = "stopped";
+					//create log 
+					$dt = Carbon::now()->setTimezone('Asia/Jakarta');
+					$settingLog = new SettingLog;
+					$settingLog->setting_id = $setting_temp->id;
+					$settingLog->status = "stop all setting";
+					$settingLog->description = "settings log";
+					$settingLog->created = $dt->toDateTimeString();
+					$settingLog->save();
         }
         $setting_temp->save();
 
@@ -660,10 +687,26 @@ class AutoManageController extends Controller
 							GlobalHelper::clearProxy(serialize($setting_temp));
 						}
 					}
+					//create log 
+					$dt = Carbon::now()->setTimezone('Asia/Jakarta');
+					$settingLog = new SettingLog;
+					$settingLog->setting_id = $setting_temp->id;
+					$settingLog->status = "start setting";
+					$settingLog->description = "settings log";
+					$settingLog->created = $dt->toDateTimeString();
+					$settingLog->save();
         }
 
         if (Request::input('action')=='stop') {
           $setting_temp->status = "stopped";
+					//create log 
+					$dt = Carbon::now()->setTimezone('Asia/Jakarta');
+					$settingLog = new SettingLog;
+					$settingLog->setting_id = $setting_temp->id;
+					$settingLog->status = "stop setting";
+					$settingLog->description = "settings log";
+					$settingLog->created = $dt->toDateTimeString();
+					$settingLog->save();
         }
         $setting_temp->save();
 

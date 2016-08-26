@@ -28,6 +28,7 @@ use Celebgramme\Models\Client;
 use Celebgramme\Models\Coupon;
 use Celebgramme\Models\Meta;
 use Celebgramme\Models\UserLog;
+use Celebgramme\Models\TimeLog;
 
 use Celebgramme\Helpers\GeneralHelper;
 
@@ -640,6 +641,19 @@ class CronJobController extends Controller
 								where("created","<=",$dt->toDateTimeString())
 								->where("status","=",0)
 								->update(['status' => 2]);
+		
+		$dt = Carbon::now()->setTimezone('Asia/Jakarta');
+		//save ke log 
+		$users = User::where("active_auto_manage",">",0)->get();
+		foreach ($users as $user){
+			$timeLog = new TimeLog;
+			$timeLog->user_id = $user->id;
+			$timeLog->time = $user->active_auto_manage;
+			$timeLog->description = "daily log waktu users";
+			$timeLog->created = $dt->toDateTimeString();
+			$timeLog->save();
+		}
+
 		
 		
 		$setting_counter = null; $failed_job = null; $postTargetLike = null;
