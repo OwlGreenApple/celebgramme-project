@@ -22,6 +22,7 @@ use Celebgramme\Models\SettingHelper;
 use Celebgramme\Models\Proxies;
 use Celebgramme\Models\Category;
 use Celebgramme\Models\SettingLog;
+use Celebgramme\Models\TimeLog;
 use Celebgramme\Veritrans\Veritrans;
 
 use Celebgramme\Helpers\GlobalHelper;
@@ -625,29 +626,21 @@ class AutoManageController extends Controller
 							GlobalHelper::clearProxy(serialize($setting_temp));
 						}
 					}
-					//create log 
-					$dt = Carbon::now()->setTimezone('Asia/Jakarta');
-					$settingLog = new SettingLog;
-					$settingLog->setting_id = $setting_temp->id;
-					$settingLog->status = "start all setting";
-					$settingLog->description = "settings log";
-					$settingLog->created = $dt->toDateTimeString();
-					$settingLog->save();
-					
         }
 
         if (Request::input('action')=='stop') {
           $setting_temp->status = "stopped";
-					//create log 
-					$dt = Carbon::now()->setTimezone('Asia/Jakarta');
-					$settingLog = new SettingLog;
-					$settingLog->setting_id = $setting_temp->id;
-					$settingLog->status = "stop all setting";
-					$settingLog->description = "settings log";
-					$settingLog->created = $dt->toDateTimeString();
-					$settingLog->save();
         }
         $setting_temp->save();
+
+				//create log 
+				$dt = Carbon::now()->setTimezone('Asia/Jakarta');
+				$settingLog = new SettingLog;
+				$settingLog->setting_id = $setting_temp->id;
+				$settingLog->status = Request::input('action')." all setting";
+				$settingLog->description = "settings log";
+				$settingLog->created = $dt->toDateTimeString();
+				$settingLog->save();
 
         $setting_temp = Setting::post_info_admin($setting_temp->id);
       }
@@ -687,33 +680,33 @@ class AutoManageController extends Controller
 							GlobalHelper::clearProxy(serialize($setting_temp));
 						}
 					}
-					//create log 
-					$dt = Carbon::now()->setTimezone('Asia/Jakarta');
-					$settingLog = new SettingLog;
-					$settingLog->setting_id = $setting_temp->id;
-					$settingLog->status = "start setting";
-					$settingLog->description = "settings log";
-					$settingLog->created = $dt->toDateTimeString();
-					$settingLog->save();
         }
 
         if (Request::input('action')=='stop') {
           $setting_temp->status = "stopped";
-					//create log 
-					$dt = Carbon::now()->setTimezone('Asia/Jakarta');
-					$settingLog = new SettingLog;
-					$settingLog->setting_id = $setting_temp->id;
-					$settingLog->status = "stop setting";
-					$settingLog->description = "settings log";
-					$settingLog->created = $dt->toDateTimeString();
-					$settingLog->save();
         }
         $setting_temp->save();
 
+				//create log 
+				$dt = Carbon::now()->setTimezone('Asia/Jakarta');
+				$settingLog = new SettingLog;
+				$settingLog->setting_id = $setting_temp->id;
+				$settingLog->status = Request::input('action')." setting";
+				$settingLog->description = "settings log";
+				$settingLog->created = $dt->toDateTimeString();
+				$settingLog->save();
+					
         $setting_temp = Setting::post_info_admin($setting_temp->id);
       }
     }
 
+		$timeLog = new TimeLog;
+		$timeLog->user_id = $user->id;
+		$timeLog->time = $user->active_auto_manage;
+		$timeLog->description = "log waktu users, ".Request::input('action');
+		$timeLog->created = $dt->toDateTimeString();
+		$timeLog->save();
+		
 
     $arr["type"]= "success";
     return $arr;
@@ -769,6 +762,23 @@ class AutoManageController extends Controller
 				$setting_real->insta_user_id = $slug;
 				$setting_real->save();
 			}
+			
+			//create log 
+			$dt = Carbon::now()->setTimezone('Asia/Jakarta');
+			$settingLog = new SettingLog;
+			$settingLog->setting_id = $setting->id;
+			$settingLog->status = "Delete setting";
+			$settingLog->description = "settings log";
+			$settingLog->created = $dt->toDateTimeString();
+			$settingLog->save();
+
+			$timeLog = new TimeLog;
+			$timeLog->user_id = $user->id;
+			$timeLog->time = $user->active_auto_manage;
+			$timeLog->description = "log waktu users, deleted";
+			$timeLog->created = $dt->toDateTimeString();
+			$timeLog->save();
+			
 			
 			$setting_temp = Setting::post_info_admin($setting->id, "[Celebgramme] Post Auto Manage (Delete IG Account)");
 		}

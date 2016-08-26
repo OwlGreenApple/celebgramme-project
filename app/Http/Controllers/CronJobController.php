@@ -649,7 +649,7 @@ class CronJobController extends Controller
 			$timeLog = new TimeLog;
 			$timeLog->user_id = $user->id;
 			$timeLog->time = $user->active_auto_manage;
-			$timeLog->description = "daily log waktu users";
+			$timeLog->description = "daily log waktu users (cron)";
 			$timeLog->created = $dt->toDateTimeString();
 			$timeLog->save();
 		}
