@@ -183,7 +183,7 @@ class AutoManageController extends Controller
         $arr["type"]= "error";
         return $arr;
       }
-      $setting = Setting::createSetting($data);
+      $setting = unserialize(Setting::createSetting($data));
     } else {
       $linkUserSetting = LinkUserSetting::where("setting_id","=",$setting->id)
                           ->first();
@@ -245,6 +245,16 @@ class AutoManageController extends Controller
 			
     }
 
+		//create log 
+		$dt = Carbon::now()->setTimezone('Asia/Jakarta');
+		$settingLog = new SettingLog;
+		$settingLog->setting_id = $setting->id;
+		$settingLog->status = "ADD Account";
+		$settingLog->description = "settings log";
+		$settingLog->created = $dt->toDateTimeString();
+		$settingLog->save();
+		
+		
     return $arr;
   }
   

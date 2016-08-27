@@ -157,7 +157,7 @@ class Setting extends Model {
         $linkUserSetting->setting_id=$setting->id;
         $linkUserSetting->save();
 				*/
-        return "";
+        return serialize($setting);
 	}
 
     //setting id temp
