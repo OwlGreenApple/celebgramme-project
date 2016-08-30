@@ -68,20 +68,23 @@ class CronJobController extends Controller
 		
 		//kurangin detik, buat auto manage
 		$now = Carbon::now();
-		$users = User::where("active_auto_manage",">",0)->get();
-		foreach ($users as $user){
-			$settings = Setting::where("type",'=','temp')
-									->where('last_user','=',$user->id)
-									->where('status','=',"started")
+		// $users = User::/*where("active_auto_manage",">",0)->*/all();
+		// foreach ($users as $user){
+			$settings = Setting::select("settings.*")
+									->join("users","users.id","=","settings.last_user")
+									->where("settings.type",'=','temp')
+									->where('settings.status','=',"started")
 									->get();
 			foreach($settings as $setting) {
+				$update_user = User::find($setting->last_user);
+				$update_setting = Setting::find($setting->id);
 				$count_log += 1;
 				$runTime = Carbon::createFromFormat('Y-m-d H:i:s', $setting->running_time);
 				$timevalue = $now->diffInSeconds($runTime);
-				$user->active_auto_manage -= $timevalue;
-				if ($user->active_auto_manage <= 0){
-					$user->active_auto_manage = 0;
-					$setting->status = 'stopped';
+				$update_user->active_auto_manage -= $timevalue;
+				if ($update_user->active_auto_manage <= 0){
+					$update_user->active_auto_manage = 0;
+					$update_setting->status = 'stopped';
 					
 					//post info ke admin
 					$post = Post::where('setting_id', '=', $setting->id)->first();
@@ -120,12 +123,12 @@ class CronJobController extends Controller
 					});
 				}
 				else{
-						$setting->running_time = $now->toDateTimeString();
+						$update_setting->running_time = $now->toDateTimeString();
 				}
-				$setting->save();
-				$user->save();
+				$update_setting->save();
+				$update_user->save();
 			}
-		}
+		// }
 		
 		//kurang dari 7 hari
 		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(8);
