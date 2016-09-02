@@ -305,8 +305,10 @@ class CronJobController extends Controller
 					$setting_real->save();
 
 					$setting_helper = SettingHelper::where("setting_id","=",$setting->id)->first();
-					$setting_helper->cookies = "error auto by cron";
-					$setting_helper->save();
+					if (!is_null($setting_helper)) {
+						$setting_helper->cookies = "error auto by cron";
+						$setting_helper->save();
+					}
 
 					$user = User::find($setting_temp->last_user);
 					if (!is_null($user)) {
@@ -354,23 +356,25 @@ class CronJobController extends Controller
 					
 				}
 				
-				if ( ($following >=7000 ) && ($setting->activity == "follow") ) {
+				if ( ($following >=7000 ) && ($setting->activity == "follow") && (!$setting->status_auto) ) {
 					SettingMeta::createMeta("auto_unfollow","yes",$setting->id);
 
-					if (!$setting->status_auto) {
+					// if (!$setting->status_auto) {
 						$setting->activity = "unfollow";
 						$setting->status_follow = "off";
 						$setting->status_unfollow = "on";
-					}
-					else if ($setting->status_auto) {
-						$setting->status_follow_auto = 0;
-						$setting->status_unfollow_auto = 1;
-					}
+					// }
 					$setting->save();
-					$setting_temp = Setting::post_info_admin($setting->id, "[Celebgramme] Post Auto Manage (warning 7000 following IG Account)",true);
-					
+					// $setting_temp = Setting::post_info_admin($setting->id, "[Celebgramme] Post Auto Manage (warning 7000 following IG Account)",true);
 				}
-				
+				if ( ($setting->status_auto) && ($following >=7000 ) ) {
+					SettingMeta::createMeta("auto_unfollow","yes",$setting->id);
+					
+					$setting->status_follow_auto = 0;
+					$setting->status_unfollow_auto = 1;
+					$setting->save();
+				}
+
 				/*if ( ($following <=0 ) && ($setting->activity == "unfollow") ) {
 					SettingMeta::createMeta("auto_unfollow","no",$setting->id);
 
