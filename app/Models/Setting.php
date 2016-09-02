@@ -66,15 +66,19 @@ class Setting extends Model {
 				//Automation purpose
 				$count_IG_account_server_A1 = SettingHelper::where("cookies","=","success")->where("server_automation","like","A1%")->count();
 				$count_IG_account_server_A2 = SettingHelper::where("cookies","=","success")->where("server_automation","like","A2%")->count();
+				$count_IG_account_server_A3 = SettingHelper::where("cookies","=","success")->where("server_automation","like","A3%")->count();
 				$setting_helper = new SettingHelper;
 				$setting_helper->setting_id = $setting->id;
 				$setting_helper->use_automation = 1;
-				if ($count_IG_account_server_A1 <= $count_IG_account_server_A2) {
+				if ($count_IG_account_server_A3 <= $count_IG_account_server_A2) {
+					$setting_helper->server_automation = "A3(automation-3)";
+					$setting_helper->server_spiderman = "-";
+				} else if ($count_IG_account_server_A1 <= $count_IG_account_server_A2) {
 					$setting_helper->server_automation = "A1(automation-1)";
-					$setting_helper->server_spiderman = "C1";
+					$setting_helper->server_spiderman = "-";
 				} else {
 					$setting_helper->server_automation = "A2(automation-2)";
-					$setting_helper->server_spiderman = "C2";
+					$setting_helper->server_spiderman = "-";
 				}
 				$setting_helper->save();
 				

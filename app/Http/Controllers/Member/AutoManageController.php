@@ -224,8 +224,8 @@ class AutoManageController extends Controller
 				$setting_helper = new SettingHelper;
 				$setting_helper->setting_id = $setting->id;
 				$setting_helper->use_automation = 1;
-				$setting_helper->server_automation = "A1(automation-1)";
-				$setting_helper->server_spiderman = "C1";
+				$setting_helper->server_automation = "A3(automation-3)";
+				$setting_helper->server_spiderman = "-";
 				$setting_helper->save();
 			}
 			
