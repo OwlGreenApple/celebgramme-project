@@ -130,24 +130,6 @@ class CronJobController extends Controller
 			}
 		// }
 		
-		//kurang dari 7 hari
-		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(8);
-		$users = User::where("active_auto_manage","=",0)->get();
-		foreach ($users as $user){
-			$settings = Setting::join("setting_helpers","settings.id","=","setting_helpers.setting_id")
-									->where("type",'=','temp')
-									->where('last_user','=',$user->id)
-									->where("proxy_id","!=",0)
-									->where("running_time","<",$dt->toDateTimeString())
-									->get();
-			foreach($settings as $setting) {
-				$update_setting_helper = SettingHelper::where("setting_id","=",$setting->setting_id)->first();
-				$update_setting_helper->cookies = "";
-				$update_setting_helper->proxy_id = 0;
-				$update_setting_helper->save();
-			}
-		}
-		
 		if(App::environment() == "local"){		
 			// $file = base_path().'/../general/ig-cookies/'.$username.'-cookiess.txt';
 		} else{
@@ -658,6 +640,7 @@ class CronJobController extends Controller
 								// ->where("status","=",1)
 								// ->delete();
 		
+		//daily time log untuk mencatat sisa waktu users
 		$dt = Carbon::now()->setTimezone('Asia/Jakarta');
 		//save ke log 
 		$users = User::where("active_auto_manage",">",0)->get();
@@ -670,6 +653,29 @@ class CronJobController extends Controller
 			$timeLog->save();
 		}
 
+		//klo IG account stop or deleted or waktu nya habis(TIMED out) lebih dari 8 hari, maka proxy akan dicabut
+		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(8);
+		// $users = User::where("active_auto_manage","=",0)->get();
+		// foreach ($users as $user){
+		$settings = Setting::join("setting_helpers","settings.id","=","setting_helpers.setting_id")
+								->join("users","users.id","=","settings.last_user")
+								->where("settings.type",'=','temp')
+								->where("proxy_id","!=",0)
+								->where("settings.running_time","<",$dt->toDateTimeString())
+								->where(function ($query) {
+									$query->where("settings.status","=","stopped")
+												->orWhere("settings.status","=","deleted")
+												->orWhere("users.active_auto_manage","=",0);
+								})
+								->get();
+		foreach($settings as $setting) {
+			$update_setting_helper = SettingHelper::where("setting_id","=",$setting->setting_id)->first();
+			$update_setting_helper->cookies = "";
+			$update_setting_helper->proxy_id = 0;
+			$update_setting_helper->save();
+		}
+		// }
+		
 		
 		
 		$setting_counter = null; $failed_job = null; $postTargetLike = null;
