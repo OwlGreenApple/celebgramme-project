@@ -344,11 +344,12 @@ class CronJobController extends Controller
 										"verify_peer_name"=>false,
 								),
 						);  
-						$file = file_get_contents($pp_url, false, stream_context_create($arrContextOptions));
-						
-						$save = file_put_contents("images/pp/".$filename, $file);
-						if ($save) {
-							SettingMeta::createMeta("photo_filename",$filename,$setting->id);
+						$file = @file_get_contents($pp_url, false, stream_context_create($arrContextOptions));
+						if($file == TRUE) {
+							$save = file_put_contents("images/pp/".$filename, $file);
+							if ($save) {
+								SettingMeta::createMeta("photo_filename",$filename,$setting->id);
+							}
 						}
 						
 						
