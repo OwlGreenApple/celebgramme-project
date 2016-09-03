@@ -108,6 +108,9 @@ Route::get('reset-client-used', 'CronJobController@reset_client_used');
 Route::get('task-daily-automation-cron', 'CronJobController@task_daily_automation_cron');
 Route::get('task-automation-like', 'CronJobController@task_automation_like');
 
+//instant changing 
+Route::get('fixing-error-cred', 'CronJobController@fixing_error_cred');
+
 /*needed for update databasw*/
 Route::get('update-insta-user-id', 'CronJobController@update_insta_user_id');
 Route::get('replace-delimiter', 'CronJobController@replace_delimiter');
