@@ -745,7 +745,7 @@ class CronJobController extends Controller
 					if (is_null($postTargetLikeCheck)) {
 						//create 
 						$arr_setting_id_liker = array(); 
-						$check_settings = Setting::select("settings.id","settings.status_blacklist","settings.usernames_blacklist")
+						$check_settings = Setting::select("settings.id","settings.status_auto","settings.status_like","settings.status_blacklist","settings.usernames_blacklist")
 						->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 						->where("settings.status","=","started")
 						->where("setting_helpers.use_automation","=",1)
@@ -763,7 +763,7 @@ class CronJobController extends Controller
 							if ($check_setting->status_blacklist) {
 								$usernames_blacklist =  explode(";", $check_setting->usernames_blacklist);
 							}
-							if (!in_array(strtolower($setting->insta_username), $usernames_blacklist )) {
+							if ( (!in_array(strtolower($setting->insta_username), $usernames_blacklist )) && ( ($check_setting->status_auto) || ($check_setting->status_like) ) ) {
 								$arr_setting_id_liker[] = $check_setting->id;
 							}
 						}
