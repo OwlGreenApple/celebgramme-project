@@ -31,12 +31,12 @@
 							<?php 
 							  if ($arr->order_status=="pending") {
 									if ($arr->image=="") {
-										echo "Pending";
+										echo "<span style='color:#c12e2a;font-weight:Bold;'>Pending</span>";
 									} else {
-										echo "Waiting Admin confirmation";
+										echo "<span style='color:#FCF403;font-weight:Bold;'>Waiting Admin confirmation</span>";
 									}
 								} else if ($arr->order_status=="success") {
-									echo "Success";
+									echo "<span style='color:#1e80e1;font-weight:Bold;'>Success</span>";
 								}
 							?>
 						</td>
