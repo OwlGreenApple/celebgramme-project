@@ -800,7 +800,7 @@ class CronJobController extends Controller
 		$counter = 0 ;
 		$settings = Setting::select("settings.id")
 								->join("users","users.id","=","settings.last_user")
-								->join("setting_helpers","sh.setting_id","=","settings.id")
+								->join("setting_helpers","setting_helpers.setting_id","=","settings.id")
 								->where("setting_helpers.cookies",'=','error auto by cron')
 								->where('setting_helpers.proxy_id','<>',0)
 								->where("users.active_auto_manage",">",0)
