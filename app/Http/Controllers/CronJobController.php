@@ -466,7 +466,11 @@ class CronJobController extends Controller
 				$order->package_manage_id = 34;
 				$order->order_status = "cron dari affiliate";
 				// $package = Package::find(31);
-				$package = Package::find(34);
+				// $package = Package::find(34);
+				$data_meta = DB::connection('mysqlAffiliate')->select("select meta_value from wp_af1postmeta where meta_key='price' and post_id = ".$data->id);		
+				$package = Package::select("ABS( number - ".$data_meta->meta_value." ) AS distance")
+										->orderBy('distance', 'asc')
+										->first();
 				$order->total = $package->price;
 				$order->user_id = $user->id;
 				$order->save();
