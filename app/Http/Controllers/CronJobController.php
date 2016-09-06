@@ -147,7 +147,10 @@ class CronJobController extends Controller
 		$now = Carbon::now();
 		$dt_coupon_expired = Carbon::now()->addDays(Meta::getMeta("coupon_setting_days"))->toDateString();
 		$count_log = 0;
-		$users = User::where("active_auto_manage","<=",453600)->where("active_auto_manage",">",0)->get();
+		$users = User::where("active_auto_manage","<=",453600)
+							->where("active_auto_manage",">",0)
+							->where("link_affiliate","=","")
+							->get();
 		foreach ($users as $user){
 				if ( ($user->active_auto_manage>=367200) && ($user->active_auto_manage<=453600) && (UserMeta::getMeta($user->id,"email5days")<>"yes") ) {
 					$count_log += 1;
@@ -274,7 +277,7 @@ class CronJobController extends Controller
 			if ( ($user->active_auto_manage>0) && ($user->active_auto_manage<=86400) && (UserMeta::getMeta($user->id,"email-h-affiliate")<>"yes") ) {
 				$temp = UserMeta::createMeta("email-h-affiliate","yes",$user->id);
 				$dt = Carbon::now()->setTimezone('Asia/Jakarta')->addDays(2);
-				$temp = UserMeta::createMeta("h-affiliate-end",$dt->toDateString(),$user->id);
+				$temp = UserMeta::createMeta("h-affiliate-end",$dt->toDateTimeString(),$user->id);
 				
 				$emaildata = [
 						'user' => $user,
