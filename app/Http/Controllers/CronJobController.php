@@ -551,7 +551,7 @@ class CronJobController extends Controller
 				// $package = Package::find(34);
 				$data_meta = DB::connection('mysqlAffiliate')->select("select meta_value from wp_af1postmeta where meta_key='price' and post_id = ".$data->ID);		
 				dd($data_meta);
-				echo "<br>".$data_meta[0]->meta_value;
+				echo "<br>".$data_meta[0]['meta_value'];
 				$package = Package::select(DB::raw("ABS( price - ".$data_meta[0]->meta_value." ) AS distance"))
 										->orderBy('distance', 'asc')
 										->first();
