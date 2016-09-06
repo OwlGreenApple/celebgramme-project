@@ -291,7 +291,7 @@ class CronJobController extends Controller
 			}
 
 			$dt = Carbon::now()->setTimezone('Asia/Jakarta');
-			if ( ($user->active_auto_manage=0) && ( $dt >= UserMeta::getMeta($user->id,"h-affiliate-end") ) && (UserMeta::getMeta($user->id,"email-h-tambah-1-affiliate")<>"yes") ) {
+			if ( ($user->active_auto_manage==0) && ( $dt >= UserMeta::getMeta($user->id,"h-affiliate-end") ) && (UserMeta::getMeta($user->id,"email-h-tambah-1-affiliate")<>"yes") ) {
 				$temp = UserMeta::createMeta("email-h-tambah-1-affiliate","yes",$user->id);
 				$nama_affiliate = UserMeta::getMeta($user->id,"nama affiliate");
 				
