@@ -550,14 +550,21 @@ class CronJobController extends Controller
 				// $package = Package::find(31);
 				// $package = Package::find(34);
 				$data_meta = DB::connection('mysqlAffiliate')->select("select meta_value from wp_af1postmeta where meta_key='price' and post_id = ".$data->ID);		
-				// $package = Package::select(DB::raw("ABS( price - CAST(".$data_meta[0]->meta_value." AS UNSIGNED) ) AS distance"))
-				$package = Package::select(DB::raw("ABS( price - 455000 ) AS distance"))
+				$packages = Package::select(DB::raw("ABS( price - CAST(".$data_meta[0]->meta_value." AS UNSIGNED) ) AS distance"))
+				// $package = Package::select(DB::raw("ABS( price - 455000 ) AS distance"))
 										->where("package_group","=","auto-manage")
 										->orderBy('distance', 'asc')
 										->get();
-				dd($package);
-				// echo $package->id;exit;
-				$order->total = $package->price;
+				$p_price = 0 ; $p_id = 0; $p_active_days = 0; $p_max_account = 0;
+				foreach ($packages as $package) {
+					$p_price = $package->price;
+					$p_id = $package->id;
+					$p_active_days = $package->active_days; 
+					$p_max_account = $package->max_account;
+					break;
+				}
+				echo $p_price." ". $p_id." ".$p_active_days." ".$p_max_account; exit;
+				$order->total = $p_price;
 				$order->user_id = $user->id;
 				$order->package_manage_id = $package->id;
 				$order->save();
@@ -566,8 +573,8 @@ class CronJobController extends Controller
 
 				if ($flag) {
 					$new_user += 1;
-					$user->active_auto_manage = $package->active_days * 86400;
-					$user->max_account = $package->max_account;
+					$user->active_auto_manage = $p_active_days * 86400;
+					$user->max_account = $p_max_account;
 					$user->save();
 					
 					$affected = DB::connection('mysqlAffiliate')->update('update wp_af1posts set post_content = "registered" where id="'.$data->ID.'"');
@@ -583,7 +590,7 @@ class CronJobController extends Controller
 					});
 				
 				} else {
-					$t = $package->active_days * 86400;
+					$t = $p_active_days * 86400;
 					$days = floor($t / (60*60*24));
 					$hours = floor(($t / (60*60)) % 24);
 					$minutes = floor(($t / (60)) % 60);
@@ -599,7 +606,7 @@ class CronJobController extends Controller
 					
 					
 					$adding_time += 1;
-					$user->active_auto_manage += $package->active_days * 86400;
+					$user->active_auto_manage += $p_active_days * 86400;
 					
 					//hapus affiliate link. Buy more jadi biasa, setelah pembelian pertama kali.
 					$user->link_affiliate = "";
