@@ -11,10 +11,10 @@ iya habis beneran. <br>
 <br>
 Jika kakak tetap mau Followers & Likesnya bertambah terus, <br>
 silahkan langsung Order & Klik disini <br>
-< wuoy page affiliate > <br>
+<a href="{{$user->link_affiliate}}">Disini</a> <br>
 <br>
 PS: Belajar dari cerita sukses teman2 yang jualan di Instagram dilink ini <br>
-https://celebgramme.com/category/testimonial/ <br>
+<a href="https://celebgramme.com/category/testimonial/">https://celebgramme.com/category/testimonial/</a> <br>
 <br>
 salam hangat, <br>
 <br>

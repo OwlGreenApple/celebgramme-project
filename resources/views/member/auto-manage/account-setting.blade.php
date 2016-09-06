@@ -288,6 +288,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 	</div>
 </div>
 <div class="col-md-7 col-xs-7 col-sm-7 pricing" style="margin-left:-10px;">
+	<?php if ($user->link_affiliate=="") { ?>
 	<div class="row">
 		<div class="col-md-12 col-sm-12">
 			<p>Perpanjang waktu berlangganan anda :</p>
@@ -400,7 +401,11 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 			<a href="#" id="button-package">Extra Time Package</a>
 		</div>
 	</div>
-
+	<?php } else { ?>
+	<div class="row">
+		<a target="_blank" href="{{$user->link_affiliate}}"><img src="{{url('images/button-buy-affiliate.png')}}" class="img-responsive"> </a>
+	</div>
+	<?php } ?>
 </div>
       </div>
     </div>

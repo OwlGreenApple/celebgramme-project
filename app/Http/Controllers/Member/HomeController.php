@@ -13,6 +13,7 @@ use Celebgramme\Models\Order;
 use Celebgramme\Models\Package;
 use Celebgramme\Models\OrderMeta;
 use Celebgramme\Models\User;
+use Celebgramme\Models\UserMeta;
 use Celebgramme\Veritrans\Veritrans;
 use Celebgramme\Models\Setting;
 use Celebgramme\Models\LinkUserSetting;
@@ -24,11 +25,19 @@ class HomeController extends Controller
 {
   
 	public function test(){
+		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->addDays(2);
+		$dt2 = Carbon::now()->setTimezone('Asia/Jakarta');
+		$temp = UserMeta::createMeta("h-affiliate-end",$dt->toDateString(),1);
+		if ( ( $dt >= UserMeta::getMeta(1,"h-affiliate-end") )  ) {
+			echo "a";
+		}
+		exit;
+		
     $emaildata = [
     ];
     Mail::queue('emails.test', $emaildata, function ($message) {
       $message->from('no-reply@celebgramme.com', 'Celebgramme');
-      $message->to("it2.axiapro@gmail.com");
+      $message->to("celebgramme.dev@gmail.com");
       $message->subject('test email');
     });
 		return "test";
@@ -259,7 +268,7 @@ class HomeController extends Controller
       $message->from('no-reply@celebgramme.com', 'Celebgramme');
       $message->to($user->email);
       $message->bcc(array(
-        "it2.axiapro@gmail.com",
+        "celebgramme.dev@gmail.com",
 				"celebgramme@gmail.com",
         ));
       $message->subject('[Celebgramme] Order Confirmation');
@@ -276,7 +285,7 @@ class HomeController extends Controller
 			$message->from('no-reply@celebgramme.com', 'Celebgramme');
 			$message->to(array(
 				"celebgramme@gmail.com",
-				"it2.axiapro@gmail.com",
+				"celebgramme.dev@gmail.com",
 			));
 			$message->subject($type_message);
 		});

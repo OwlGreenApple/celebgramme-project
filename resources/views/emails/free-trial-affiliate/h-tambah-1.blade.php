@@ -11,19 +11,19 @@ Followers itu Asset Digital yang bisa mendatangkan berkat <br>
 <br>
 Kemarin Masa Trial Kakak HABIS <br>
 Tapi kami berikan kesempatan sekali lagi <br>
-untuk mendapatkan Penawaran khusus dari <nama affiliate> <br>
+untuk mendapatkan Penawaran Special dari {{ucfirst(strtolower($nama_affiliate))}} <br>
 Yang hanya bisa didapatkan melalui Link ini <br>
 <br>
-► < link wuoy page affiliate > <br>
+<a href="{{$user->link_affiliate}}">► Disini</a> <br>
 <br>
 Jangan ditunggu lagi yah, <br>
 "Kesempatan nggak datang 3 kali" <br>
 <br>
 Order sekarang disini <br>
-► < link wuoy page affiliate > <br>
+<a href="{{$user->link_affiliate}}">► Disini</a> <br>
 <br>
 PS: Nambah Followers, Nambah engagements, Nambah Omzet <br>
-https://celebgramme.com/category/testimonial/ <br>
+<a href="https://celebgramme.com/category/testimonial/">https://celebgramme.com/category/testimonial/</a> <br>
 <br>
 salam hangat, <br>
 <br>

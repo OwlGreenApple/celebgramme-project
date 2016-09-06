@@ -117,7 +117,7 @@ class CronJobController extends Controller
 							"it.axiapro@gmail.com",
 						));
 						$message->bcc(array(
-							"it2.axiapro@gmail.com",
+							"celebgramme.dev@gmail.com",
 						));
 						$message->subject($type_message);
 					});
@@ -149,7 +149,7 @@ class CronJobController extends Controller
 		$count_log = 0;
 		$users = User::where("active_auto_manage","<=",453600)->where("active_auto_manage",">",0)->get();
 		foreach ($users as $user){
-				if ( ($user->active_auto_manage>=410400) && ($user->active_auto_manage<=453600) && (UserMeta::getMeta($user->id,"email5days")<>"yes") ) {
+				if ( ($user->active_auto_manage>=367200) && ($user->active_auto_manage<=453600) && (UserMeta::getMeta($user->id,"email5days")<>"yes") ) {
 					$count_log += 1;
 					$temp = UserMeta::createMeta("email5days","yes",$user->id);
 					$temp = UserMeta::createMeta("emailExpCoupon","",$user->id);
@@ -160,11 +160,11 @@ class CronJobController extends Controller
 					Mail::queue('emails.notif-5days', $emaildata, function ($message) use ($user) {
 						$message->from('no-reply@celebgramme.com', 'Celebgramme');
 						$message->to($user->email);
-						$message->bcc("it2.axiapro@gmail.com");
+						$message->bcc("celebgramme.dev@gmail.com");
 						$message->subject('[Celebgramme] 5 hari lagi nih, nggak berasa yah');
 					});
 				}
-				if ( ($user->active_auto_manage>=64800) && ($user->active_auto_manage<=108000) && (UserMeta::getMeta($user->id,"email1days")<>"yes") ) {
+				if ( ($user->active_auto_manage>=43200) && ($user->active_auto_manage<=129600) && (UserMeta::getMeta($user->id,"email1days")<>"yes") ) {
 					$count_log += 1;
 					$temp = UserMeta::createMeta("email1days","yes",$user->id);
 
@@ -196,7 +196,7 @@ class CronJobController extends Controller
 					Mail::queue('emails.notif-expired', $emaildata, function ($message) use ($user) {
 						$message->from('no-reply@celebgramme.com', 'Celebgramme');
 						$message->to($user->email);
-						$message->bcc("it2.axiapro@gmail.com");
+						$message->bcc("celebgramme.dev@gmail.com");
 						$message->subject('[Celebgramme] Hari ini service Celebgramme.com berakhir');
 					});
 				}
@@ -221,10 +221,89 @@ class CronJobController extends Controller
 				Mail::queue('emails.notif-coupon-expired', $emaildata, function ($message) use ($user) {
 					$message->from('no-reply@celebgramme.com', 'Celebgramme');
 					$message->to($user->email);
-					$message->bcc("it2.axiapro@gmail.com");
+					$message->bcc("celebgramme.dev@gmail.com");
 					$message->subject('[Celebgramme] Hari ini terakhir penggunaan coupon order anda');
 				});
 			}
+		}
+		
+		$users = User::where("link_affiliate","<>","")->get();
+		foreach ($users as $user){
+			if ( ($user->active_auto_manage>=intval(UserMeta::getMeta($user->id,"start_waktu"))-172800) && ($user->active_auto_manage<=intval(UserMeta::getMeta($user->id,"start_waktu"))-86400) && (UserMeta::getMeta($user->id,"email-2-hari-affiliate")<>"yes") ) {
+				$temp = UserMeta::createMeta("email-2-hari-affiliate","yes",$user->id);
+				
+				$emaildata = [
+						'user' => $user,
+				];
+				Mail::queue('emails.free-trial-affiliate.awal-trial-2', $emaildata, function ($message) use ($user) {
+					$message->from('no-reply@celebgramme.com', 'Celebgramme');
+					$message->to($user->email);
+					$message->bcc("celebgramme.dev@gmail.com");
+					$message->subject('[Celebgramme] Hi, sudah naik berapa followersnya ?');
+				});
+			}
+			
+			if ( ($user->active_auto_manage>=172800) && ($user->active_auto_manage<=259200) && (UserMeta::getMeta($user->id,"email-h-kurang-2-affiliate")<>"yes") ) {
+				$temp = UserMeta::createMeta("email-h-kurang-2-affiliate","yes",$user->id);
+				
+				$emaildata = [
+						'user' => $user,
+				];
+				Mail::queue('emails.free-trial-affiliate.h-kurang-2', $emaildata, function ($message) use ($user) {
+					$message->from('no-reply@celebgramme.com', 'Celebgramme');
+					$message->to($user->email);
+					$message->bcc("celebgramme.dev@gmail.com");
+					$message->subject('[Celebgramme] Selamat, Anda mendapatkan Bonus 7 Video Rahasia OLShop Sukses Instagram');
+				});
+			}
+			
+			if ( ($user->active_auto_manage>=86400) && ($user->active_auto_manage<=172800) && (UserMeta::getMeta($user->id,"email-h-kurang-1-affiliate")<>"yes") ) {
+				$temp = UserMeta::createMeta("email-h-kurang-1-affiliate","yes",$user->id);
+				
+				$emaildata = [
+						'user' => $user,
+				];
+				Mail::queue('emails.free-trial-affiliate.h-kurang-1', $emaildata, function ($message) use ($user) {
+					$message->from('no-reply@celebgramme.com', 'Celebgramme');
+					$message->to($user->email);
+					$message->bcc("celebgramme.dev@gmail.com");
+					$message->subject('[Celebgramme] Jualan di Instagram itu gampang yah');
+				});
+			}
+			
+			if ( ($user->active_auto_manage>0) && ($user->active_auto_manage<=86400) && (UserMeta::getMeta($user->id,"email-h-affiliate")<>"yes") ) {
+				$temp = UserMeta::createMeta("email-h-affiliate","yes",$user->id);
+				$dt = Carbon::now()->setTimezone('Asia/Jakarta')->addDays(2);
+				$temp = UserMeta::createMeta("h-affiliate-end",$dt->toDateString(),$user->id);
+				
+				$emaildata = [
+						'user' => $user,
+				];
+				Mail::queue('emails.free-trial-affiliate.h', $emaildata, function ($message) use ($user) {
+					$message->from('no-reply@celebgramme.com', 'Celebgramme');
+					$message->to($user->email);
+					$message->bcc("celebgramme.dev@gmail.com");
+					$message->subject('[Celebgramme] HARI ini Masa Trial Kakak HABIS');
+				});
+			}
+
+			$dt = Carbon::now()->setTimezone('Asia/Jakarta');
+			if ( ($user->active_auto_manage=0) && ( $dt >= UserMeta::getMeta($user->id,"h-affiliate-end") ) && (UserMeta::getMeta($user->id,"email-h-tambah-1-affiliate")<>"yes") ) {
+				$temp = UserMeta::createMeta("email-h-tambah-1-affiliate","yes",$user->id);
+				$nama_affiliate = UserMeta::getMeta($user->id,"nama affiliate");
+				
+				$emaildata = [
+						'user' => $user,
+						'nama_affiliate' => $nama_affiliate,
+				];
+				Mail::queue('emails.free-trial-affiliate.h-tambah-1', $emaildata, function ($message) use ($user) {
+					$message->from('no-reply@celebgramme.com', 'Celebgramme');
+					$message->to($user->email);
+					$message->bcc("celebgramme.dev@gmail.com");
+					$message->subject('[Celebgramme] Kesempatan nggak datang 2 kali');
+				});
+			}
+			
 		}
 		
 		if(App::environment() == "local"){		
@@ -304,7 +383,7 @@ class CronJobController extends Controller
 						Mail::queue('emails.error-cred', $emaildata, function ($message) use ($user) {
 							$message->from('no-reply@celebgramme.com', 'Celebgramme');
 							$message->to($user->email);
-							$message->bcc("it2.axiapro@gmail.com");
+							$message->bcc("celebgramme.dev@gmail.com");
 							$message->subject('[Celebgramme] Error Login Instagram Account');
 						});
 					}
@@ -463,7 +542,7 @@ class CronJobController extends Controller
 				$order_number = GeneralHelper::autoGenerateID($order, 'no_order', $str, 3, '0');
 				$order->no_order = $order_number;
 				// $order->package_manage_id = 31;
-				$order->package_manage_id = 34;
+				// $order->package_manage_id = 34;
 				$order->order_status = "cron dari affiliate";
 				// $package = Package::find(31);
 				// $package = Package::find(34);
@@ -473,6 +552,7 @@ class CronJobController extends Controller
 										->first();
 				$order->total = $package->price;
 				$order->user_id = $user->id;
+				$order->package_manage_id = $package->id;
 				$order->save();
 				
 				OrderMeta::createMeta("logs","create order from affiliate",$order->id);
@@ -513,6 +593,10 @@ class CronJobController extends Controller
 					
 					$adding_time += 1;
 					$user->active_auto_manage += $package->active_days * 86400;
+					
+					//hapus affiliate link. Buy more jadi biasa, setelah pembelian pertama kali.
+					$user->link_affiliate = "";
+					
 					$user->save();
 					
 					$affected = DB::connection('mysqlAffiliate')->update('update wp_af1posts set post_content = "registered" where id="'.$data->ID.'"');

@@ -11,18 +11,18 @@ biar lebih kekinian lagi ^_^ <br>
 Oh iya, buat yang tertarik belajar Jualan di Instagram <br>
 ini ada Video Keren 7 Rahasia OLShop sukses di Instagram <br>
 Bisa langsung di tonton - GRATIS <br>
-Klik Disini ► http://bit.ly/dmusecrets <br>
+Klik Disini <a href="http://bit.ly/dmusecrets">► http://bit.ly/dmusecrets</a> <br>
 <br>
 Apabila bermanfaat, silahkan di share Videonya <br>
 <br>
 Sekalian, mau mengingatkan juga, <br>
 Masa Trial Kakak akan habis 2 hari lagi. <br>
 Jika mau menambahkan waktu berlangganan <br>
-silahkan Klik langsung disini <br>
-< wuoy page affiliate > <br>
+silahkan Klik langsung  <br>
+<a href="{{$user->link_affiliate}}">Disini</a> <br>
 <br>
 PS: cek Testimonials sukses teman-teman yang sudah menggunakan Celebgramme disini <br>
-https://celebgramme.com/category/testimonial/ <br>
+<a href="https://celebgramme.com/category/testimonial/">https://celebgramme.com/category/testimonial/</a> <br>
 <br>
 salam hangat, <br>
 <br>

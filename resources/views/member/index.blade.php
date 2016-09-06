@@ -87,7 +87,7 @@
             <ul class="nav nav-sidebar">
 <!--              <li><a href="{{url('send-like')}}">Send Likes</a></li>-->
               <li><a href="{{url('auto-manage')}}">Home</a></li>
-              <li><a href="{{url('buy-more')}}">Buy More</a></li>
+              <li><a href="<?php if ($user->link_affiliate == "") { echo url('buy-more'); } else { echo $user->link_affiliate; }?>" <?php if ($user->link_affiliate == "") {} else { echo "target='_blank'"; }?>>Buy More</a></li>
               <li><a href="{{url('confirm-payment')}}">Confirm Payment</a></li>
               <li><a href="{{url('order')}}">Order History</a></li>
               <li><a href="{{url('edit-profile')}}">Ganti Password</a></li>

@@ -7,7 +7,7 @@ Mau dapetin omzet 1-5 juta/ hari ( iya per hari ), <br>
 SEKARANG sudah terlihat di depan mata<br>
 <br>
 Belum nonton ?<br>
-Silahkan Klik Disini ► http://bit.ly/dmusecrets <br>
+Silahkan Klik Disini <a href="http://bit.ly/dmusecrets">► http://bit.ly/dmusecrets</a> <br>
 Kesempatan BELAJAR GRATIS, kapan lagi ? <br>
 <br>
 Apabila bermanfaat, jangan lupa di share Videonya <br>
@@ -17,10 +17,10 @@ Sekalian, mau mengingatkan juga, <br>
 Masa Trial Kakak besok akan habis. <br>
 Jika mau menambahkan waktu berlangganan <br>
 silahkan Klik langsung disini <br>
-< link wuoy page affiliate > <br>
+<a href="{{$user->link_affiliate}}">Disini</a> <br>
 <br>
 PS: Belajar dari cerita sukses teman2 yang jualan di Instagram dilink ini <br>
-https://celebgramme.com/category/testimonial/ <br>
+<a href="https://celebgramme.com/category/testimonial/">https://celebgramme.com/category/testimonial/</a> <br>
 <br>
 salam hangat, <br>
 <br>
