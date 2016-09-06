@@ -554,7 +554,8 @@ class CronJobController extends Controller
 				$package = Package::select(DB::raw("ABS( price - 455000 ) AS distance"))
 										->orderBy('distance', 'asc')
 										->first();
-				dd($package);
+				// dd($package);
+				echo $package->id;exit;
 				$order->total = $package->price;
 				$order->user_id = $user->id;
 				$order->package_manage_id = $package->id;
