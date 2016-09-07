@@ -185,7 +185,7 @@ class GlobalHelper {
 				$array_cookie = array(
 					'cookie:mid='.$mid.'; fbm_124024574287414=base_domain=.instagram.com; sessionid='.$session_id.'; s_network=; ds_user_id='.$ds_user_id,
 					'origin:https://www.instagram.com',
-					'user-agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36',
+					'user-agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.89 Safari/537.36',
 					'x-csrftoken:'.$csrftoken,
 					'x-instagram-ajax:1',
 					'x-requested-with:XMLHttpRequest',
