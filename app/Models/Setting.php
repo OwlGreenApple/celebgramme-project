@@ -64,9 +64,24 @@ class Setting extends Model {
         $linkUserSetting->save();
 				
 				//Automation purpose
-				$count_IG_account_server_A1 = SettingHelper::where("cookies","=","success")->where("server_automation","like","A1%")->count();
-				$count_IG_account_server_A2 = SettingHelper::where("cookies","=","success")->where("server_automation","like","A2%")->count();
-				$count_IG_account_server_A3 = SettingHelper::where("cookies","=","success")->where("server_automation","like","A3%")->count();
+				$count_IG_account_server_A1 = SettingHelper::
+																			join("settings","settings.id","=","setting_helpers.setting_id")
+																			->where("cookies","=","success")
+																			->where("server_automation","like","A1%")
+																			->where("settings.status","=","started")
+																			->count();
+				$count_IG_account_server_A2 = SettingHelper::
+																			join("settings","settings.id","=","setting_helpers.setting_id")
+																			->where("cookies","=","success")
+																			->where("server_automation","like","A2%")
+																			->where("settings.status","=","started")
+																			->count();
+				$count_IG_account_server_A3 = SettingHelper::
+																			join("settings","settings.id","=","setting_helpers.setting_id")
+																			->where("cookies","=","success")
+																			->where("server_automation","like","A3%")
+																			->where("settings.status","=","started")
+																			->count();
 				$setting_helper = new SettingHelper;
 				$setting_helper->setting_id = $setting->id;
 				$setting_helper->use_automation = 1;
