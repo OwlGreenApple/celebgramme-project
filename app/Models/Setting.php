@@ -87,13 +87,10 @@ class Setting extends Model {
 				$setting_helper->use_automation = 1;
 				if ($count_IG_account_server_A3 <= $count_IG_account_server_A2) {
 					$setting_helper->server_automation = "A3(automation-3)";
-					$setting_helper->server_spiderman = "-";
 				} else if ($count_IG_account_server_A1 <= $count_IG_account_server_A2) {
 					$setting_helper->server_automation = "A1(automation-1)";
-					$setting_helper->server_spiderman = "-";
 				} else {
 					$setting_helper->server_automation = "A2(automation-2)";
-					$setting_helper->server_spiderman = "-";
 				}
 				$setting_helper->save();
 				
