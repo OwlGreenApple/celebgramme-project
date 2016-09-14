@@ -29,6 +29,7 @@ use Celebgramme\Models\Coupon;
 use Celebgramme\Models\Meta;
 use Celebgramme\Models\UserLog;
 use Celebgramme\Models\TimeLog;
+use Celebgramme\Models\Affiliate;
 
 use Celebgramme\Helpers\GeneralHelper;
 
@@ -596,6 +597,11 @@ class CronJobController extends Controller
 					$user_log->description = "give time to member. ".$time;
 					$user_log->created = $dt->toDateTimeString();
 					$user_log->save();
+
+					//buat log admin 
+					$affiliate = Affiliate::where("link","=",$user->link_affiliate)->first();
+					$affiliate->jumlah_user_beli += 1;
+					$affiliate->save();
 					
 					
 					$adding_time += 1;
