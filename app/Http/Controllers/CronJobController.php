@@ -600,8 +600,10 @@ class CronJobController extends Controller
 
 					//buat log admin 
 					$affiliate = Affiliate::where("link","=",$user->link_affiliate)->first();
-					$affiliate->jumlah_user_beli += 1;
-					$affiliate->save();
+					if (!is_null($affiliate)) {
+						$affiliate->jumlah_user_beli += 1;
+						$affiliate->save();
+					}
 					
 					
 					$adding_time += 1;
