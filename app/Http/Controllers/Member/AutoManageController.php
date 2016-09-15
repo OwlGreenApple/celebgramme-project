@@ -395,43 +395,61 @@ class AutoManageController extends Controller
     }
 
     $setting_temp = Setting::find($data['id']);
-		
-		if ( ( ($data['status_comment']=="on") || ($data['status_like']=="on") ) || (($data["follow_source"]=="hashtags") && ($data['status_follow_unfollow']=="on") ) ) {
-			$pieces = explode(";",$data["hashtags"]);
-			if (count($pieces)<10) {
-				$arr["message"]= "Hashtags minimal harus ada 10";
-				$arr["type"]= "error";
-				return $arr;
+
+		if (!$data["status_auto"]) {
+			if ( ( ($data['status_comment']=="on") || ($data['status_like']=="on") ) || (($data["follow_source"]=="hashtags") && ($data['status_follow_unfollow']=="on") ) ) {
+				$pieces = explode(";",$data["hashtags"]);
+				if (count($pieces)<10) {
+					$arr["message"]= "Hashtags minimal harus ada 10";
+					$arr["type"]= "error";
+					return $arr;
+				}
+				if (count($pieces)>100) {
+					$arr["message"]= "Hashtags maximal 100";
+					$arr["type"]= "error";
+					return $arr;
+				}
 			}
-			if (count($pieces)>100) {
-				$arr["message"]= "Hashtags maximal 100";
-				$arr["type"]= "error";
-				return $arr;
+			
+			if ( ( ($data["follow_source"]=="followers of username") || ($data["follow_source"]=="following of username") ) && ($data['status_follow_unfollow']=="on") ) {
+				$pieces = explode(";",$data["username"]);
+				if (count($pieces)<10) {
+					$arr["message"]= "Usernames minimal harus ada 10";
+					$arr["type"]= "error";
+					return $arr;
+				}
+			
+				$pieces = explode(";",$data["username"]);
+				if (count($pieces)>100) {
+					$arr["message"]= "Usernames maximal 100";
+					$arr["type"]= "error";
+					return $arr;
+				}
 			}
-		}
-		
-		if ( ( ($data["follow_source"]=="followers of username") || ($data["follow_source"]=="following of username") ) && ($data['status_follow_unfollow']=="on") ) {
-			$pieces = explode(";",$data["username"]);
-			if (count($pieces)<10) {
-				$arr["message"]= "Usernames minimal harus ada 10";
-				$arr["type"]= "error";
-				return $arr;
+			
+			if ($data['status_comment']=="on") {
+				if ( (strpos($data['comments'], '<@owner>') !== false) && (strpos($data['comments'], '{') !== false) && (strpos($data['comments'], '}')!==false) ) {
+				} else {
+					$arr["message"]= "Comments memerlukan <@owner> dan spin comment";
+					$arr["type"]= "error";
+					return $arr;
+				}
 			}
-		
-			$pieces = explode(";",$data["username"]);
-			if (count($pieces)>100) {
-				$arr["message"]= "Usernames maximal 100";
-				$arr["type"]= "error";
-				return $arr;
+			
+			//blacklist & whitelist
+			if ($data["status_blacklist"])   {
+				if ($data["usernames_blacklist"]=="") {
+					$arr["message"]= "Blacklist usernames anda masih 0";
+					$arr["type"]= "error";
+					return $arr;
+				}
 			}
-		}
-		
-		if ($data['status_comment']=="on") {
-			if ( (strpos($data['comments'], '<@owner>') !== false) && (strpos($data['comments'], '{') !== false) && (strpos($data['comments'], '}')!==false) ) {
-			} else {
-				$arr["message"]= "Comments memerlukan <@owner> dan spin comment";
-				$arr["type"]= "error";
-				return $arr;
+			if ($data["status_whitelist"])   {
+				if ($data["usernames_whitelist"]=="") {
+					$arr["message"]= "Whitelist usernames anda masih 0";
+					$arr["type"]= "error";
+					return $arr;
+				}
 			}
 		}
 		
@@ -522,22 +540,6 @@ class AutoManageController extends Controller
       $arr["message"]= "Silahkan pilih activity follow / like / comment";
       $arr["type"]= "error";
       return $arr;
-		}
-		
-		//blacklist & whitelist
-		if ($data["status_blacklist"])   {
-			if ($data["usernames_blacklist"]=="") {
-				$arr["message"]= "Blacklist usernames anda masih 0";
-				$arr["type"]= "error";
-				return $arr;
-			}
-		}
-		if ($data["status_whitelist"])   {
-			if ($data["usernames_whitelist"]=="") {
-				$arr["message"]= "Whitelist usernames anda masih 0";
-				$arr["type"]= "error";
-				return $arr;
-			}
 		}
 		
 		//hapus pesan auto unfollow 
