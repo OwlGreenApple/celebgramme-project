@@ -786,6 +786,7 @@ class CronJobController extends Controller
 		$settings = Setting::select("settings.*","setting_helpers.number_likes","setting_helpers.identity")
 								->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 								->where("is_auto_get_likes","=",1)
+								->where("settings.status","=","started")
 								->get();
 		foreach($settings as $setting) {
 			//curl to IG account 3 latest post and get media id 
