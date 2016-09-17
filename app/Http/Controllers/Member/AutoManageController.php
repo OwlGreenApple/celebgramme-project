@@ -369,6 +369,11 @@ class AutoManageController extends Controller
 								)).",";
 		}
 		
+		$ads_content = "";
+		$post = Post::where("type","=","ads")->first();
+		if (!is_null($post)) {
+			$ads_content = $post->description;
+		}
 		
     return view("member.auto-manage.account-setting")->with(array(
       'user'=>$user,
@@ -377,6 +382,7 @@ class AutoManageController extends Controller
       'view_totaltime'=>$view_totaltime,
       'strCategory'=>$strCategory,
       'strClassCategory'=>$strClassCategory,
+      'ads_content'=>$ads_content,
       ));
   }
 

@@ -250,7 +250,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
         <h3 class="panel-title">Data Users</h3>
       </div>
       <div class="panel-body">
-<div class="col-md-5 col-xs-5 col-sm-5 border-styling ">
+<div class="col-md-5 col-xs-12 col-sm-5 border-styling ">
 	<?php 
 		if (SettingMeta::getMeta($settings->id,"photo_filename") == "0") {
 			$photo = url('images/profile-default.png');
@@ -287,11 +287,12 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 		</div>
 	</div>
 </div>
-<div class="col-md-7 col-xs-7 col-sm-7 pricing" style="margin-left:-10px;">
+<div class="col-md-7 col-xs-12 col-sm-7 pricing" style="margin-left:-10px;">
 	<?php if ($user->link_affiliate=="") { ?>
 	<div class="row">
 		<div class="col-md-12 col-sm-12">
-			<p>Perpanjang waktu berlangganan anda :</p>
+			<p>Perpanjang waktu berlangganan anda : <a href="#" id="button-package">Extra Time Package</a></p>
+			
 		</div>
 	</div>
 	<div class="row">
@@ -396,16 +397,17 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-12 col-sm-12">
-			<a href="#" id="button-package">Extra Time Package</a>
-		</div>
-	</div>
 	<?php } else { ?>
 	<div class="row">
 		<a target="_blank" href="{{$user->link_affiliate}}"><img src="{{url('images/button-buy-affiliate.png')}}" class="img-responsive"> </a>
 	</div>
 	<?php } ?>
+	<div class="row">
+		<div class="col-md-12 col-sm-12">
+		<?php echo $ads_content; ?>
+		</div>
+	</div>
+	
 </div>
       </div>
     </div>
