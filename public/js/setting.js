@@ -60,7 +60,9 @@
 			$("#activity").val("follow");
 			$('#followButton').addClass('btn-success');
 			$('#unfollowButton').removeClass('btn-success');
-			$('#div-unfollow-whitelist').fadeOut(500);
+			if ($("#status_whitelist").val()==0) {
+				$('#div-unfollow-whitelist').fadeOut(500);
+			}
 
 			$('.status-unfollow').fadeIn(500);
 			if ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) {
@@ -76,7 +78,9 @@
 			$("#activity").val("unfollow");
 			$('#followButton').removeClass('btn-success');
 			$('#unfollowButton').addClass('btn-success');
-			$('#div-unfollow-whitelist').fadeIn(500);
+			if ($("#status_whitelist").val()==1) {
+				$('#div-unfollow-whitelist').fadeIn(500);
+			}
 
 			$('.status-unfollow').fadeOut(500);
 			$('#div-usernames').fadeOut(500);
@@ -94,7 +98,9 @@
 			$(".status-follow").fadeIn(500);
 			
 			if ($('#unfollowButton').hasClass("btn-success")) {
-				$('#div-unfollow-whitelist').fadeIn(500);
+				if ($("#status_whitelist").val()==1) {
+					$('#div-unfollow-whitelist').fadeIn(500);
+				}
 				
 				$("#status_follow").val("off");
 				$("#status_unfollow").val("on");
@@ -124,7 +130,9 @@
 			$('#statusFollowOnButton').removeClass('btn-primary');
 			$('#statusFollowOffButton').addClass('btn-danger');
 			$(".status-follow").fadeOut(500);
-			$('#div-unfollow-whitelist').fadeOut(500);
+			if ($("#status_whitelist").val()==0) {
+				$('#div-unfollow-whitelist').fadeOut(500);
+			}
 			$("#div-usernames").fadeOut(500);
 
 			if ( (!$('#statusFollowOffButton').hasClass("btn-danger") && ( ( $("#select-follow-source").val() == "followers of username" ) || ( $("#select-follow-source").val() == "following of username" )) ) 
