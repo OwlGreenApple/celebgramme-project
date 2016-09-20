@@ -249,7 +249,7 @@ class HomeController extends Controller
     $order->image = $filename;
     $order->save();
     
-    OrderMeta::createMeta("jumlah transfer",Request::input("total"),$order->id);
+    OrderMeta::createMeta("jumlah transfer","Rp. ".number_format($order->total - $order->discount,0,'','.'),$order->id);
     OrderMeta::createMeta("nama pemilik rekening",Request::input("nama"),$order->id);
     OrderMeta::createMeta("nama bank",Request::input("nama_bank"),$order->id);
     OrderMeta::createMeta("no rekening",Request::input("no_rekening"),$order->id);
@@ -258,7 +258,7 @@ class HomeController extends Controller
     //send email success payment
     $emaildata = [
       'no_order'=>Request::input("no_order"),
-      'jumlah_transfer'=>Request::input("total"),
+      'jumlah_transfer'=>"Rp. ".number_format($order->total - $order->discount,0,'','.'),
       'nama'=>Request::input("nama"),
       'no_rekening'=>Request::input("no_rekening"),
       'nama_bank'=>Request::input("nama_bank"),
