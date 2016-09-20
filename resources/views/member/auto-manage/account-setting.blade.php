@@ -889,11 +889,10 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 						<div class="col-md-5 col-sm-12 col-xm-12"">
 							<label>Comments</label> 
 							<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Comments</div><div class='panel-content'>• <strong>Tambahkan : </strong><@owner> , untuk men-tag owner dari post tersebut<br>
-									• apabila anda lupa, <strong>by Default Celebgramme akan selalu menambahkan</strong> tags <@owner> di akhir setiap comment anda<br>
-                  • <strong>Komentar akan dipilih secara acak </strong>dari daftar ini. <br>
+									• <strong>Tambahkan : </strong><@followers> , untuk men-tag followers anda<br>
+									• <strong>Tambahkan : </strong><@following> , untuk men-tag following anda<br>
+									• <strong>Komentar akan dipilih secara acak </strong>dari daftar ini. <br>
 									• <strong>Celebgramme hanya memberikan 1x komentar </strong>pada setiap posting <br>
-									• <strong>Min 10 komentar netral</strong> contoh: nice! <@owner>, awesome <@owner>, beautiful <@owner>, dll <br>
-									• <strong>Komentar tidak boleh </strong>lebih dari 300 karakter. <br>
 									• <strong>Komentar jangan menggunakan Hashtags </strong><br>
 									• <strong>Komentar jangan menggunakan URL </strong> <br>
 									• <strong>Komentar tidak boleh </strong>terdiri dari huruf kapital semua. <br>
