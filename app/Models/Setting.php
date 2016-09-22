@@ -85,7 +85,7 @@ class Setting extends Model {
 				$setting_helper = new SettingHelper;
 				$setting_helper->setting_id = $setting->id;
 				$setting_helper->use_automation = 1;
-				if ($count_IG_account_server_A3 <= $count_IG_account_server_A2) {
+				if ( ($count_IG_account_server_A3 <= $count_IG_account_server_A2) && ($count_IG_account_server_A3 <= $count_IG_account_server_A1) ) {
 					$setting_helper->server_automation = "A3(automation-3)";
 				} else if ($count_IG_account_server_A1 <= $count_IG_account_server_A2) {
 					$setting_helper->server_automation = "A1(automation-1)";
