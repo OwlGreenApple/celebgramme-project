@@ -133,41 +133,53 @@ class AutoManageController extends Controller
 			'insta_username' => 'required|max:255',
 			'insta_password' => 'required',
 		]);
-	if ($validator->fails())
-    {
-		$arr["message"]= "Instagram username or password required";
-		$arr["type"]= "error";
-		return $arr;
-	}
-	//cek not in email format
-	$validator = Validator::make($data, [
-		'insta_username' => 'email',
-	]);
-	if (!$validator->fails())
-    {
-		$arr["message"]= "Instagram username tidak boleh email";
-		$arr["type"]= "error";
-		return $arr;
-	}
-		
-	//available username or not
-	if ($user->test==0){
-		if($this->checking_cred_instagram(Request::input("username"),Request::input("password"))) {
-		} else {
-			$arr["message"]= "Instagram Login tidak valid";
+		if ($validator->fails())
+			{
+			$arr["message"]= "Instagram username or password required";
 			$arr["type"]= "error";
 			return $arr;
 		}
-	} else if ($user->test==2){
+		//cek not in email format
+		$validator = Validator::make($data, [
+			'insta_username' => 'email',
+		]);
+		if (!$validator->fails())
+			{
+			$arr["message"]= "Instagram username tidak boleh email";
+			$arr["type"]= "error";
+			return $arr;
+		}
+			
+		//available username or not
+		if ($user->test==0){
+			if($this->checking_cred_instagram(Request::input("username"),Request::input("password"))) {
+			} else {
+				$arr["message"]= "Instagram Login tidak valid";
+				$arr["type"]= "error";
+				return $arr;
+			}
+		} else if ($user->test==2){
 
-		$ig_data = Setting::get_ig_data(Request::input("username"));			
-		if (!$ig_data["found"]) {
-		// if (!$found) {
-			$arr["message"]= "Instagram username not found";
-			$arr["type"]= "error";
-			return $arr;
+			$ig_data = Setting::get_ig_data(Request::input("username"));			
+			if (!$ig_data["found"]) {
+			// if (!$found) {
+				$arr["message"]= "Instagram username not found";
+				$arr["type"]= "error";
+				return $arr;
+			}
 		}
-	}
+		
+		if ( $user->link_affiliate<> "" ) {
+			$ig_data = Setting::get_ig_data(Request::input("username"));
+			if ($ig_data["found"]) {
+				$setting = Setting::where("insta_user_id","=",$ig_data["id"])->where("type","=","temp")->first();
+				if ( !is_null($setting) ) {
+					$arr["message"]= "Account sudah pernah terdaftar sebelumnya, untuk MELANJUTKAN silahkan BERLANGGANAN terlebih dahulu";
+					$arr["type"]= "error";
+					return $arr;
+				}
+			}
+		}
 		
 		
     $setting = Setting::where("insta_username","=",Request::input("username"))->where("type","=","temp")->first();
@@ -772,13 +784,13 @@ class AutoManageController extends Controller
 				$slug = "delete-".str_pad($ctr, 5, "0", STR_PAD_LEFT);
 			}
 			
-			$setting->insta_user_id = $slug;
+			// $setting->insta_user_id = $slug;
 			$setting->save();
-			$setting_real = Setting::where("insta_username","=",$setting->insta_username)->where("type","=","real")->first();
-			if (!is_null($setting_real)) {
-				$setting_real->insta_user_id = $slug;
-				$setting_real->save();
-			}
+			// $setting_real = Setting::where("insta_username","=",$setting->insta_username)->where("type","=","real")->first();
+			// if (!is_null($setting_real)) {
+				// $setting_real->insta_user_id = $slug;
+				// $setting_real->save();
+			// }
 			
 			//create log 
 			$dt = Carbon::now()->setTimezone('Asia/Jakarta');
