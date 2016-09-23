@@ -34,8 +34,8 @@ class Setting extends Model {
         $setting->insta_password = $arr['insta_password'];
         $setting->last_user = $arr['user_id'];
         //default data
-        $setting->comments = "{Nice|Wow|Good|Sippp|Mantappp|Keren|Mantap|Ok} {pic|img|photo|foto|profile|^_^|:)} <@owner>;{love|adore|really like|I love|enjoy|appreciate} {the way you|how you} {took|shot|had taken} {the|the actual|this particular|your|this} {picture|pic|image|photo|foto|snapshot} ^_^ <@owner>";
-        $setting->hashtags = "websugih;jajankulinersurabaya;tacoelrico;celebgramme;olshop;kuliner;latepost;startup;olshopmurah;yolo;travel;foodie";
+        $setting->comments = "<@owner> <@followers> <@followers>;<@followers> <@following> <@following>;<@followers> <@followers> <@followers>";
+        $setting->hashtags = "websugih;jajankulinersurabaya;tacoelrico;jakarta;surabaya;digimaru;olshop;kuliner;latepost;startup;travel;foodie";
         $setting->locations = "";
         $setting->activity = "follow";
 				$setting->status_follow = "on";
@@ -142,8 +142,8 @@ class Setting extends Model {
         $setting->insta_password = $arr['insta_password'];
         $setting->last_user = $arr['user_id'];
         //default data
-        $setting->comments = "{Nice|Wow|Good|Sippp|Mantappp|Keren|Mantap|Ok} {pic|img|photo|foto|profile|^_^|:)} <@owner>;{love|adore|really like|I love|enjoy|appreciate} {the way you|how you} {took|shot|had taken} {the|the actual|this particular|your|this} {picture|pic|image|photo|foto|snapshot} ^_^ <@owner>";
-        $setting->hashtags = "websugih;jajankulinersurabaya;tacoelrico;celebgramme;olshop;kuliner;latepost;startup;olshopmurah;yolo;travel;foodie";
+        $setting->comments = "<@owner> <@followers> <@followers>;<@followers> <@following> <@following>;<@followers> <@followers> <@followers>";
+        $setting->hashtags = "websugih;jajankulinersurabaya;tacoelrico;jakarta;surabaya;digimaru;olshop;kuliner;latepost;startup;travel;foodie";
         $setting->locations = "";
         $setting->activity = "follow";
 				$setting->status_follow = "on";
