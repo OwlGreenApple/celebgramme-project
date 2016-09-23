@@ -901,10 +901,10 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 						</div>
 						<div class="col-md-6 col-sm-12 col-xm-12"">
 							<label>Copy contoh spin comment (click)</label>
-							<span class="glyphicon glyphicon-menu-down tooltipPlugin" title='<div class="panel-content">								<a href="#" class="add-spin-comment">{asli|serius}, {nice|kerennn|cool|wow|keren|cooooolll|niceeeee} {sekaleee|sekali|banget|beneran|bener} {photo|foto|shot|poto|pic}{kamu|ini} <@owner></a>
+							<span class="glyphicon glyphicon-menu-down tooltipPlugin" title='<div class="panel-content">								{asli|serius}, {nice|kerennn|cool|wow|keren|cooooolll|niceeeee} {sekaleee|sekali|banget|beneran|bener} {photo|foto|shot|poto|pic}{kamu|ini} <@owner>
 								<br> <br>
-								<a href="#" class="add-spin-comment">{nice|kerennn|cool|wow|keren|cooooolll|niceeeee} {sekaleee|sekali|banget|beneran|bener} {photo|foto|shot|poto|pic}{kamu|ini} <@owner></a> <br> <br>
-								<a href="#" class="add-spin-comment">{wow|amazing|incredible|whoa|seriously} {your|the|this} {photo|picture|photograph|image|foto} {is awesome|rocks !|very nice} <@owner> </a>
+								{nice|kerennn|cool|wow|keren|cooooolll|niceeeee} {sekaleee|sekali|banget|beneran|bener} {photo|foto|shot|poto|pic}{kamu|ini} <@owner> <br> <br>
+								{wow|amazing|incredible|whoa|seriously} {your|the|this} {photo|picture|photograph|image|foto} {is awesome|rocks !|very nice} <@owner> 
 </div>'>
 							</span>
 						</div>
