@@ -147,6 +147,29 @@
 		<?php if ($user->agree_term_condition==0) { ?>
 		// $('#myModalTermsConditions').modal('show');
 		<?php } ?>
+		$('#btn-add-account').click(function(e){
+			$("#username").prop('disabled', true);
+			$("#password").prop('disabled', true);
+			$("#confirm_password").prop('disabled', true);
+			$("#button-process").prop('disabled', true);
+			
+			$('#terms-add-account1').attr('checked', false); // Unchecks it
+			$('#terms-add-account2').attr('checked', false); // Unchecks it
+			$('#terms-add-account3').attr('checked', false); // Unchecks it
+			$('#terms-add-account4').attr('checked', false); // Unchecks it
+			$('#terms-add-account5').attr('checked', false); // Unchecks it
+			$('#terms-add-account6').attr('checked', false); // Unchecks it
+			$('#terms-add-account7').attr('checked', false); // Unchecks it
+			$('#terms-add-account8').attr('checked', false); // Unchecks it
+		});
+		$('.checkbox-term').click(function(){
+			if( ($("#terms-add-account1").prop("checked") == true) && ($("#terms-add-account2").prop("checked") == true) && ($("#terms-add-account3").prop("checked") == true) && ($("#terms-add-account4").prop("checked") == true) && ($("#terms-add-account5").prop("checked") == true) && ($("#terms-add-account6").prop("checked") == true) && ($("#terms-add-account7").prop("checked") == true) && ($("#terms-add-account8").prop("checked") == true) ){
+				$("#username").prop('disabled', false);
+				$("#password").prop('disabled', false);
+				$("#confirm_password").prop('disabled', false);
+				$("#button-process").prop('disabled', false);
+			}
+		});
 		$('#button-ok-terms').click(function(e){
 			if ( $('#checkbox-term').is(':checked') == false ) {
 				alert("Anda belum setuju dengan terms and condition berikut");
@@ -590,6 +613,39 @@ hanya akun yang di start saja yang dikurangi waktunya dari total waktu pembelian
         </div>
         <div class="modal-body">
           <form enctype="multipart/form-data" id="form-credential">
+            <div class="form-group form-group-sm row">
+								<div class="col-sm-12 col-md-12">
+									<p>HARAP DIBACA Sebelum menambah akun <br>
+									Pastikan akun Instagram anda memenuhi ketentuan di bawah ini:
+									</p> 
+								</div>  
+            </div>  
+            <div class="form-group form-group-sm row">
+							<div class="col-sm-12 col-md-12">
+								<input type="checkbox" class="checkbox-term" id="terms-add-account1"> <label for="terms-add-account1" class="control-label">UMUR akun Instagram minimal 10 hari</label>
+							</div>
+							<div class="col-sm-12 col-md-12">
+								<input type="checkbox" class="checkbox-term" id="terms-add-account2"> <label for="terms-add-account2" class="control-label">TIDAK menggunakan system automation Instagram selain Celebgramme</label>
+							</div>
+							<div class="col-sm-12 col-md-12">
+								<input type="checkbox" class="checkbox-term" id="terms-add-account3"> <label for="terms-add-account3" class="control-label">TIDAK membeli followers selama menggunakan Celebgramme</label>
+							</div>
+							<div class="col-sm-12 col-md-12">
+								<input type="checkbox" class="checkbox-term" id="terms-add-account4"> <label for="terms-add-account4" class="control-label">Email & No HP sudah terhubung dengan Account Instagram ini</label>
+							</div>
+							<div class="col-sm-12 col-md-12">
+								<input type="checkbox" class="checkbox-term" id="terms-add-account5"> <label for="terms-add-account5" class="control-label">PUNYA AKSES ke Email & No HP tersebut</label>
+							</div>
+							<div class="col-sm-12 col-md-12">
+								<input type="checkbox" class="checkbox-term" id="terms-add-account6"> <label for="terms-add-account6" class="control-label">Akun Instagram memiliki 10 Post Photo / Video</label>
+							</div>
+							<div class="col-sm-12 col-md-12">
+								<input type="checkbox" class="checkbox-term" id="terms-add-account7"> <label for="terms-add-account7" class="control-label">Turn OFF 2 Factor Authentications ( Khusus followers >1000 ) <a href="https://celebgramme.freshdesk.com/solution/articles/9000093394--instagram-error-instagram-selalu-minta-verifikasi-no-telp"> >> Link Help << </a> </label>
+							</div>
+							<div class="col-sm-12 col-md-12">
+								<input type="checkbox" class="checkbox-term" id="terms-add-account8"> <label for="terms-add-account8" class="control-label">Saya sudah membaca & menyetujui <a href="http://celebgramme.com/terms-conditions">TERMS & CONDITIONS</a> Celebgramme </label>
+							</div>
+            </div>  
             <div class="form-group form-group-sm row">
               <label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Username</label>
               <div class="col-sm-8 col-md-6">

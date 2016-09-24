@@ -229,12 +229,19 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       <div class="modal-content">
         <div class="modal-header">
           <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
-          <h4 class="modal-title">Pada saat TURN ON comment : 
+          <h4 class="modal-title">BACA DAHULU, Jika anda akan menggunakan fitur COMMENT : 
 					</h4>
         </div>
         <div class="modal-body">
 				<p>
-				*PENTING : Ada update terbaru instagram yang menyaring komen spam. Pastikan Komen yang anda buat: Benar-benar UNIK, di SPIN dengan Kombinasi RATUSAN komen
+				*PENTING : Ada update terbaru instagram yang menyaring comments spam.<br> 
+				Pastikan Comments yang anda buat: <br>
+				Benar-benar UNIK, di SPIN dengan Kombinasi RATUSAN comments, <br>
+				& gunakan juga <@owner> & <@followers> untuk menghindari comment yang sama. <br>
+				Apabila anda masih ragu, Cukup gunakan fitur LIKE & FOLLOW SAJA. <br>
+				Tidak perlu menggunakan Comment terlebih dahulu.<br>
+				<br>
+				Terima kasih atas perhatiannya<br>
 
 				</p>
         </div>
