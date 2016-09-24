@@ -221,6 +221,32 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 
 
 
+	
+<!-- Modal -->
+  <div class="modal fade" id="myModalCommentNotification" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+          <h4 class="modal-title">Pada saat TURN ON comment : 
+					</h4>
+        </div>
+        <div class="modal-body">
+				<p>
+				*PENTING : Ada update terbaru instagram yang menyaring komen spam. Pastikan Komen yang anda buat: Benar-benar UNIK, di SPIN dengan Kombinasi RATUSAN komen
+
+				</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" id="button-ok-info-comment" data-dismiss="modal" >OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+	
+	
+	
 
 
 <div class="row">
@@ -849,8 +875,8 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 					<div class="col-md-12">
 						<label>Like</label> 
 						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
-							<button type="button" class="btn <?php if ($settings->status_like=="on") echo 'btn-primary' ?>" id="statusLikeOnButton" style="color:#fff;z-index:99999;">ON</button>
-							<button type="button" class="btn <?php if ($settings->status_like=="off") echo 'btn-danger' ?>" id="statusLikeOffButton" style="color:#fff;z-index:99999;">OFF</button>
+							<button type="button" class="btn <?php if ($settings->status_like=="on") echo 'btn-primary' ?>" id="statusLikeOnButton" style="color:#fff;z-index:99;">ON</button>
+							<button type="button" class="btn <?php if ($settings->status_like=="off") echo 'btn-danger' ?>" id="statusLikeOffButton" style="color:#fff;z-index:99;">OFF</button>
 							<input type="hidden" value="{{$settings->status_like}}" name="data[status_like]" id="status_like">
 						</div>				
 					</div>				
@@ -862,7 +888,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 					<div class="col-md-12">
 						<label>Comment</label> 
 						<div class="btn-group col-md-12 col-sm-12" role="group" aria-label="..." style="margin-left:-15px;">
-							<button type="button" class="btn <?php if ($settings->status_comment=="on") echo 'btn-primary' ?>" id="statusCommentOnButton" style="color:#fff;">ON</button>
+							<button type="button" class="btn <?php if ($settings->status_comment=="on") echo 'btn-primary' ?>" id="statusCommentOnButton" data-toggle="modal" data-target="#myModalCommentNotification" style="color:#fff;">ON</button>
 							<button type="button" class="btn <?php if ($settings->status_comment=="off") echo 'btn-danger' ?>" id="statusCommentOffButton" style="color:#fff;">OFF</button>
 							<input type="hidden" value="{{$settings->status_comment}}" name="data[status_comment]" id="status_comment">
 						</div>				
