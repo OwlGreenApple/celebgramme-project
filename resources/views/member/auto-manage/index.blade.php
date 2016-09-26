@@ -163,7 +163,7 @@
 			$('#terms-add-account8').attr('checked', false); // Unchecks it
 		});
 		$('.checkbox-term').click(function(){
-			if( ($("#terms-add-account1").prop("checked") == true) && ($("#terms-add-account2").prop("checked") == true) && ($("#terms-add-account3").prop("checked") == true) && ($("#terms-add-account4").prop("checked") == true) && ($("#terms-add-account5").prop("checked") == true) && ($("#terms-add-account6").prop("checked") == true) && ($("#terms-add-account7").prop("checked") == true) && ($("#terms-add-account8").prop("checked") == true) ){
+			if( ($("#terms-add-account1").prop("checked") == true) && ($("#terms-add-account2").prop("checked") == true) && ($("#terms-add-account3").prop("checked") == true) && ($("#terms-add-account4").prop("checked") == true) && ($("#terms-add-account5").prop("checked") == true) && ($("#terms-add-account6").prop("checked") == true) && ($("#terms-add-account7").prop("checked") == true) && ($("#terms-add-account8").prop("checked") == true) && ($("#terms-add-account9").prop("checked") == true) ){
 				$("#username").prop('disabled', false);
 				$("#password").prop('disabled', false);
 				$("#confirm_password").prop('disabled', false);
@@ -641,6 +641,9 @@ hanya akun yang di start saja yang dikurangi waktunya dari total waktu pembelian
 							</div>
 							<div class="col-sm-12 col-md-12">
 								<input type="checkbox" class="checkbox-term" id="terms-add-account7"> <label for="terms-add-account7" class="control-label">Turn OFF 2 Factor Authentications ( Khusus followers >1000 ) <a href="https://celebgramme.freshdesk.com/solution/articles/9000093394--instagram-error-instagram-selalu-minta-verifikasi-no-telp"> >> Link Help << </a> </label>
+							</div>
+							<div class="col-sm-12 col-md-12">
+								<input type="checkbox" class="checkbox-term" id="terms-add-account9"> <label for="terms-add-account9" class="control-label">Saya sudah membaca dan mempelajari <a href="https://docs.google.com/document/d/1GWfW5kU5yvchCZlqPxEksK7NrMqgQGP0saqCG2VNGlQ"> Tutorial Celebgramme </a> </label>
 							</div>
 							<div class="col-sm-12 col-md-12">
 								<input type="checkbox" class="checkbox-term" id="terms-add-account8"> <label for="terms-add-account8" class="control-label">Saya sudah membaca & menyetujui <a href="http://celebgramme.com/terms-conditions">TERMS & CONDITIONS</a> Celebgramme </label>
