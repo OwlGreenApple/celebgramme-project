@@ -99,14 +99,14 @@ Route::group(['middleware' => 'auth'], function()
 Route::post('payment/vtnotification', ['as' => 'vt.notif', 'uses' => 'Member\PaymentController@veritransNotification']);
 
 /*Active cron*/
-Route::get('generate-balance', 'CronJobController@generate_balance');
-Route::get('cron-auto-manage', 'CronJobController@auto_manage');
-Route::get('cron-notif-member', 'CronJobController@notif_member');
+Route::get('generate-balance', 'CronJobController@generate_balance'); // unused
+Route::get('reset-client-used', 'CronJobController@reset_client_used'); // unused
+Route::get('cron-auto-manage-369', 'CronJobController@auto_manage');
+Route::get('cron-notif-member-369', 'CronJobController@notif_member');
 Route::get('check-instagram-username', 'CronJobController@check_instagram_username');
-Route::get('check-create-affiliate', 'CronJobController@create_user_from_affiliate');
-Route::get('reset-client-used', 'CronJobController@reset_client_used');
-Route::get('task-daily-automation-cron', 'CronJobController@task_daily_automation_cron');
-Route::get('task-automation-like', 'CronJobController@task_automation_like');
+Route::get('check-create-affiliate-369', 'CronJobController@create_user_from_affiliate');
+Route::get('task-daily-automation-cron-369', 'CronJobController@task_daily_automation_cron');
+Route::get('task-automation-like-369', 'CronJobController@task_automation_like');
 
 //instant changing 
 Route::get('fixing-error-cred', 'CronJobController@fixing_error_cred');
