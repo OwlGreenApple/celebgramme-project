@@ -330,14 +330,26 @@ class CronJobController extends Controller
 	 */
 	public function auto_follow_unfollow(){
 		include('simple_html_dom.php'); 
+		$dt = Carbon::now()->setTimezone('Asia/Jakarta'); 
+		$server_automation = "";
+		if ($dt->hour == 2) {
+			$server_automation = "A1(automation-1)";
+		}
+		if ($dt->hour == 3) {
+			$server_automation = "A2(automation-2)";
+		}
+		if ($dt->hour == 4) {
+			$server_automation = "A3(automation-3)";
+		}
 		$count_log = 0;
 		$settings = Setting::select("settings.*")
 								->join("users","users.id","=","settings.last_user")
+								->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 								->where("settings.type",'=','temp')
 								->where('settings.error_cred','=',0)
-								// ->where('settings.status','<>',"deleted")
 								->where('settings.status','=',"started")
 								->where("users.active_auto_manage",">",0)
+								->where("setting_helpers.server_automation","=",$server_automation)
 								->get();
 		foreach($settings as $setting) {
 				$count_log += 1;
@@ -388,7 +400,7 @@ class CronJobController extends Controller
 							$message->from('no-reply@celebgramme.com', 'Celebgramme');
 							$message->to($user->email);
 							$message->bcc("celebgramme.dev@gmail.com");
-							$message->subject('[Celebgramme] Error Login Instagram Account');
+							$message->subject('[Celebgramme] Error Instagram Account Username');
 						});
 					}
 				}
@@ -450,7 +462,7 @@ class CronJobController extends Controller
 			// $file = base_path().'/../general/ig-cookies/'.$username.'-cookiess.txt';
 		} else{
 			// $file = base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow/logs.txt';
-			$txt = date("F j, Y, g:i a")." total rec : ".$count_log;
+			$txt = date("F j, Y, g:i a")." total rec : ".$count_log." ".$server_automation;
 			$myfile = file_put_contents(base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow-logs.txt', $txt.PHP_EOL , FILE_APPEND);
 		}
 		
