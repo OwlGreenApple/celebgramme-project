@@ -102,7 +102,7 @@ Route::post('payment/vtnotification', ['as' => 'vt.notif', 'uses' => 'Member\Pay
 Route::get('generate-balance', 'CronJobController@generate_balance');
 Route::get('cron-auto-manage', 'CronJobController@auto_manage');
 Route::get('cron-notif-member', 'CronJobController@notif_member');
-Route::get('auto-follow-unfollow', 'CronJobController@auto_follow_unfollow');
+Route::get('check-instagram-username', 'CronJobController@check_instagram_username');
 Route::get('check-create-affiliate', 'CronJobController@create_user_from_affiliate');
 Route::get('reset-client-used', 'CronJobController@reset_client_used');
 Route::get('task-daily-automation-cron', 'CronJobController@task_daily_automation_cron');

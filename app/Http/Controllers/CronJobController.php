@@ -328,7 +328,7 @@ class CronJobController extends Controller
 	 *
 	 * @return response
 	 */
-	public function auto_follow_unfollow(){
+	public function check_instagram_username(){
 		include('simple_html_dom.php'); 
 		$dt = Carbon::now()->setTimezone('Asia/Jakarta'); 
 		$server_automation = "";
