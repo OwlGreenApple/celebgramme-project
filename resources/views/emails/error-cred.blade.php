@@ -1,7 +1,8 @@
 Hi {{$user['fullname']}}, <br>
 <br>
 Kami mendeteksi ada perubahan username di akun Instagram anda. <br>
-*Abaikan jika username akun instagram anda sama dengan yang ada di celebgramme dashboard anda.
+*Abaikan & cukup Tekan START ulang jika username akun instagram anda sama dengan yang ada di celebgramme dashboard anda.
+<br>
 <br>
 <strong>Silahkan UPDATE kembali username Instagram anda </strong><br>
 <br>
