@@ -342,6 +342,12 @@ class CronJobController extends Controller
 			$server_automation = "A3(automation-3)";
 		}
 		$count_log = 0;
+		
+		// $file = base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow/logs.txt';
+		$txt = date("F j, Y, g:i a")." total rec : ".$count_log." ".$server_automation." IN";
+		$myfile = file_put_contents(base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow-logs.txt', $txt.PHP_EOL , FILE_APPEND);
+				
+		
 		$settings = Setting::select("settings.*")
 								->join("users","users.id","=","settings.last_user")
 								->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
@@ -462,7 +468,7 @@ class CronJobController extends Controller
 			// $file = base_path().'/../general/ig-cookies/'.$username.'-cookiess.txt';
 		} else{
 			// $file = base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow/logs.txt';
-			$txt = date("F j, Y, g:i a")." total rec : ".$count_log." ".$server_automation;
+			$txt = date("F j, Y, g:i a")." total rec : ".$count_log." ".$server_automation." OUT";
 			$myfile = file_put_contents(base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow-logs.txt', $txt.PHP_EOL , FILE_APPEND);
 		}
 		
