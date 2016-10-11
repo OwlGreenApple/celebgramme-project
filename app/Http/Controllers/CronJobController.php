@@ -355,7 +355,7 @@ class CronJobController extends Controller
 								->where('settings.error_cred','=',0)
 								->where('settings.status','=',"started")
 								->where("users.active_auto_manage",">",0)
-								->where("setting_helpers.server_automation","=",$server_automation)
+								// ->where("setting_helpers.server_automation","=",$server_automation)
 								->get();
 		foreach($settings as $setting) {
 				$count_log += 1;
