@@ -452,6 +452,13 @@ class AutoManageController extends Controller
 					$arr["type"]= "error";
 					return $arr;
 				}
+				$pieces = explode(";",$data["comments"]);
+				if (count($pieces)<5) {
+					$arr["message"]= "Anda harus membuat Min 5 baris & 7 kombinasi kata variasi per Spin comments. Agar lebih variatif & membuat akun anda aman di Instagram. ";
+					$arr["type"]= "error";
+					return $arr;
+				}
+				
 			}
 			
 			//blacklist & whitelist
