@@ -252,6 +252,24 @@ class Setting extends Model {
 			$cred = "sugiarto:sugihproxy250";
 			$proxy = "45.79.212.85";//good proxy
       $auth = true;
+			
+			$arr_proxys = array();
+			$arr_proxys[] = [
+				"proxy"=>$proxy,
+				"cred"=>$cred,
+				"port"=>$port,
+			];
+			$arr_proxys[] = [
+				"proxy"=>"185.152.128.7",
+				"cred"=>"141sugiarto:celebgramme963123",
+				"port"=>"10168",
+			];
+			$arr_proxys[] = [
+				"proxy"=>"185.152.128.58",
+				"cred"=>"141sugiarto:celebgramme963123",
+				"port"=>"10037",
+			];
+			$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
       
       //use own proxy if have
       if ($setting_id <> 0) {
@@ -260,9 +278,9 @@ class Setting extends Model {
           if ($setting_helper->proxy_id <> 0) {
             $full_proxy =  Proxies::find($setting_helper->proxy_id);
             if (!is_null($full_proxy)) {
-              $port = $full_proxy->port;
-              $cred = $full_proxy->cred;
-              $proxy = $full_proxy->proxy;
+              $arr_proxy["port"] = $full_proxy->port;
+              $arr_proxy["cred"] = $full_proxy->cred;
+              $arr_proxy["proxy"] = $full_proxy->proxy;
               $auth = $full_proxy->auth;
             }
           }
@@ -281,11 +299,11 @@ class Setting extends Model {
 
 
       if ($auth) {
-        curl_setopt($c, CURLOPT_PROXY, $proxy);
-        curl_setopt($c, CURLOPT_PROXYPORT, $port);
-        curl_setopt($c, CURLOPT_PROXYUSERPWD, $cred);
+        curl_setopt($c, CURLOPT_PROXY, $arr_proxy["proxy"]);
+        curl_setopt($c, CURLOPT_PROXYPORT, $arr_proxy["port"]);
+        curl_setopt($c, CURLOPT_PROXYUSERPWD, $arr_proxy["cred"]);
       } else if (!$auth) {
-        curl_setopt($c, CURLOPT_PROXY, $proxy.":".$port);
+        curl_setopt($c, CURLOPT_PROXY, $arr_proxy["proxy"].":".$arr_proxy["port"]);
       }
 			curl_setopt($c, CURLOPT_PROXYTYPE, 'HTTP');
 			curl_setopt($c, CURLOPT_URL, $url);
