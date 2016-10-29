@@ -396,7 +396,6 @@ class LandingPageController extends Controller
 								},
 								thumbnail_src
 							},
-							count,
 							page_info{
 								end_cursor
 							}
