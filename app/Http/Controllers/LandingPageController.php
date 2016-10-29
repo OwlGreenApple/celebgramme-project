@@ -174,8 +174,7 @@ class LandingPageController extends Controller
 		}
 	}	
 	
-	public function change_password(req $request)
-	{
+	public function change_password(req $request){
 		$email = $request->session()->get('email');
 		$user = User::where("email",'=',$email)->first();
 		$user->password = Request::input("password");
@@ -286,6 +285,186 @@ class LandingPageController extends Controller
 		}
 		
 		
+		
+	}
+		
+		
+	public function get_photo_hashtags($hashtags,$cursor=null){
+    $user = Auth::user();
+
+		$arr_proxys = array();
+		// $arr_proxys[] = [
+			// "proxy"=>"185.152.131.111",
+			// "cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			// "port"=>"10822",
+			// "no"=>"1",
+		// ];
+		// $arr_proxys[] = [
+			// "proxy"=>"185.152.131.103",
+			// "cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			// "port"=>"10765",
+			// "no"=>"2",
+		// ];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.130.64",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10228",
+			"no"=>"3",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.130.60",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10196",
+			"no"=>"5",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.131.65",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10499",
+			"no"=>"6",
+		];
+		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
+
+
+		if(App::environment() == "local"){
+			$cookiefile = base_path().'/../general/ig-cookies/cookies-celebpost-'.$arr_proxy["no"].'.txt';
+		} else{
+			$cookiefile = base_path().'/../public_html/general/ig-cookies/cookies-celebpost-'.$arr_proxy["no"].'.txt';
+		}
+		if (file_exists($cookiefile)) {
+			unlink($cookiefile);
+		}
+
+		
+		//get token first
+		$url = "https://www.instagram.com/accounts/login/?force_classic_login";
+		// echo $url;exit;
+		$c = curl_init();
+			curl_setopt($c, CURLOPT_PROXY, $arr_proxy["proxy"]);
+			curl_setopt($c, CURLOPT_PROXYPORT, $arr_proxy["port"]);
+			curl_setopt($c, CURLOPT_PROXYUSERPWD, $arr_proxy["cred"]);
+			curl_setopt($c, CURLOPT_PROXYTYPE, 'HTTP');
+			curl_setopt($c, CURLOPT_URL, $url);
+			curl_setopt($c, CURLOPT_REFERER, $url);
+			curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($c, CURLOPT_COOKIEFILE, $cookiefile);
+			curl_setopt($c, CURLOPT_COOKIEJAR, $cookiefile);
+			$page = curl_exec($c);
+			curl_close($c);
+
+
+		preg_match_all('/<input type="hidden" name="csrfmiddlewaretoken" value="([A-z0-9]{32})"\/>/', $page, $token);
+		// dd($token);exit;
+		// echo $arr_proxy["no"]."<br>";
+		
+		$csrftoken = $token[1][0];
+		// echo $csrftoken;exit;
+		
+		
+		if(is_null($cursor)){
+			$query_string = "ig_hashtag(".$hashtags.") { media.first(9) {";
+		} else {
+			$query_string = "ig_hashtag(".$hashtags.") { media.after(".$cursor.", 9) {";
+		}
+		$fields = array(
+						'format' => 'json',
+						// 'q' => "ig_hashtag(".Request::input("inputHashtags").") { media.after(".Request::input("endCursor").", 12) {
+						'q' => $query_string.
+							"count,
+							nodes {
+								caption,
+								code,
+								comments {
+									count
+								},
+								date,
+								dimensions {
+									height,
+									width
+								},
+								display_src,
+								id,
+								is_video,
+								likes {
+									count
+								},
+								owner {
+									id, 
+									username,is_private,followed_by_viewer
+								},
+								thumbnail_src
+							},
+							count,
+							page_info{
+								end_cursor
+							}
+						}}",
+						'ref' => 'tags::show',
+		);
+		// url-ify the data for the POST
+		$field_string = urldecode(http_build_query($fields));
+		$len = strlen($field_string);
+		// echo $field_string."<br>".$len; 
+		// exit;
+
+		//set up header 
+		$arr = array(
+					'user-agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36',
+					'x-csrftoken:'.$csrftoken,
+					'x-instagram-ajax:1',
+					'x-requested-with:XMLHttpRequest',
+					'content-type:application/x-www-form-urlencoded; charset=UTF-8',
+					'content-length:'.strlen($field_string),
+		);
+
+		$url = "https://www.instagram.com/query/";
+		$c = curl_init();
+
+		curl_setopt($c,CURLOPT_HTTPHEADER, $arr );
+
+		curl_setopt($c, CURLOPT_PROXY, $arr_proxy["proxy"]);
+		curl_setopt($c, CURLOPT_PROXYPORT, $arr_proxy["port"]);
+		curl_setopt($c, CURLOPT_PROXYUSERPWD, $arr_proxy["cred"]);
+		curl_setopt($c, CURLOPT_PROXYTYPE, 'HTTP');
+		curl_setopt($c, CURLOPT_URL, $url);
+		curl_setopt($c, CURLOPT_REFERER, $url);
+		curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($c, CURLOPT_POSTFIELDS, $field_string);
+		curl_setopt($c, CURLOPT_COOKIEFILE, $cookiefile);
+		curl_setopt($c, CURLOPT_COOKIEJAR, $cookiefile);
+		curl_setopt($c, CURLOPT_CUSTOMREQUEST, 'POST');
+		curl_setopt($c, CURLOPT_POST, true);
+		$page = curl_exec($c);
+		curl_close($c);
+
+		$arr_res = json_decode($page,true);
+		// var_dump($arr_res);
+		
+		// var_dump(json_decode($page,true));exit;
+		// print_r($arr_res["media"]["nodes"]); exit;
+		$result = array();
+		foreach ($arr_res["media"]["nodes"] as $data) {
+			//scrape media
+			$result[] = [
+				"url"=>$data["display_src"],
+				"code"=>$data["code"],
+				"media_id"=>$data["id"],
+				"caption"=>$data["caption"],
+				"owner"=>$data["owner"]["username"],
+			]; 
+		}
+		$media_count = number_format($arr_res["media"]["count"],0,"",".");
+		$end_cursor = $arr_res["media"]["page_info"]["end_cursor"];
+		
+		return response()->json([
+			'result'=>$result,
+			'media_count'=>$media_count,
+			'end_cursor'=>$end_cursor,
+		]);				
 		
 	}
 		
