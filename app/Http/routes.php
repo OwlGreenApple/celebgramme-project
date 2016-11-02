@@ -128,4 +128,4 @@ Route::get('postback-idaff', 'LandingPageController@post_back_idaff');
 Route::get('get-photo-hashtags/{hashtags}', 'LandingPageController@get_photo_hashtags');
 Route::get('get-photo-hashtags/{hashtags}/{cursor}', 'LandingPageController@get_photo_hashtags');
 
-Route::get('fixing-error', 'LandingPageController@fixing_error');
+// Route::get('fixing-error', 'LandingPageController@fixing_error');
