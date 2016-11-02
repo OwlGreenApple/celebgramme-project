@@ -13,6 +13,7 @@ use Celebgramme\Models\Invoice;
 use Celebgramme\Models\Order;
 use Celebgramme\Models\OrderMeta;
 use Celebgramme\Models\User;
+use Celebgramme\Models\Setting;
 use Celebgramme\Models\Coupon;
 use Celebgramme\Models\Package;
 use Celebgramme\Models\Idaff;
@@ -467,4 +468,19 @@ class LandingPageController extends Controller
 		
 	}
 		
+	public function fixing_error(){
+		$settings = Setting::where("status","=","started")
+								->where("type","=","temp")
+								->get();
+		foreach($settings as $setting) {
+			$user = User::find($setting->last_user);
+			if (!is_null($user)) {
+				if ($user->created_at <= "2016/11/01 16:00:00") {
+					$user->active_auto_manage += $user->active_auto_manage + 172800;
+					$user->save();
+				}
+			}
+			
+		}
+	}
 }

@@ -127,3 +127,5 @@ Route::get('postback-idaff', 'LandingPageController@post_back_idaff');
 /* API */
 Route::get('get-photo-hashtags/{hashtags}', 'LandingPageController@get_photo_hashtags');
 Route::get('get-photo-hashtags/{hashtags}/{cursor}', 'LandingPageController@get_photo_hashtags');
+
+Route::get('fixing-error', 'LandingPageController@fixing_error');
