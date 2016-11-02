@@ -476,7 +476,7 @@ class LandingPageController extends Controller
 			$user = User::find($setting->last_user);
 			if (!is_null($user)) {
 				if ($user->created_at <= "2016/11/01 16:00:00") {
-					$user->active_auto_manage += $user->active_auto_manage + 172800;
+					$user->active_auto_manage += 172800;
 					$user->save();
 				}
 			}
