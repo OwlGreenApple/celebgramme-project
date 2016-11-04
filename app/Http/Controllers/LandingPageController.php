@@ -505,7 +505,7 @@ class LandingPageController extends Controller
 			//carikan proxy baru, yang available 
 			$availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
 												->groupBy("id","proxy","cred","port","auth")
-												->orderBy("countP","asc");
+												->orderBy("countP","asc")->get();
 			dd($availableProxy);
 			if ($availableProxy->count() > 0 ) {
 				$arrAvailableProxy = array();
