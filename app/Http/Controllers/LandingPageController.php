@@ -495,6 +495,7 @@ class LandingPageController extends Controller
 		$check = Setting::join("setting_helpers","setting_helpers.setting_id","=","settings.id")
 							->where("type","=","temp")
 							->where("proxy_id","!=",0)
+							->where("insta_username","=",$insta_username)
 							->first();
 		if (!is_null($check)) {
 			$arr["proxy_id"] = $check->proxy_id;
