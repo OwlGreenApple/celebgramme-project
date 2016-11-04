@@ -24,7 +24,7 @@ use Celebgramme\Veritrans\Veritrans;
 
 use Celebgramme\Helpers\GeneralHelper;
 
-use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, Config;
+use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, Config, DB;
 
 class LandingPageController extends Controller
 {
