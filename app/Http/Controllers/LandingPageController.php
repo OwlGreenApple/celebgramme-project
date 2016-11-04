@@ -18,6 +18,8 @@ use Celebgramme\Models\Coupon;
 use Celebgramme\Models\Package;
 use Celebgramme\Models\Idaff;
 use Celebgramme\Models\UserLog;
+use Celebgramme\Models\Proxies;
+
 use Celebgramme\Veritrans\Veritrans;
 
 use Celebgramme\Helpers\GeneralHelper;
@@ -483,4 +485,70 @@ class LandingPageController extends Controller
 			
 		}
 	}
+
+	/*
+	* FUNCTION CUMAN JALAN DI PRODUCTION, KARENA VIEW DATABASE
+	*/
+	public function get_proxy_id($insta_username){	
+		$database1 = Config::get('database.connections.mysql.database');
+		$database2 = Config::get('database.connections.mysql_celebpost.database');
+
+		$response = DB::table($database1.'.proxies as p')
+		->leftJoin($database2.'.accounts as a','a.proxy_id','=','p.id')
+		->get();
+		dd($response);
+		echo "aassww";
+		exit;
+		//check insta_username ada di celebgramme 
+		$check = Setting::join("setting_helpers","setting_helpers.setting_id","=","settings.id")
+							->where("type","=","temp")
+							->where("proxy_id","!=",0)
+							->first();
+		if (!is_null($check)) {
+			$arr["proxy_id"] = $check->proxy_id;
+			$arr["is_on_celebgramme"] = 1;
+		} else {
+
+			//carikan proxy baru, yang available 
+			$availableProxy = Proxies::leftJoin("setting_helpers","setting_helpers.proxy_id","=","proxies.id")
+					->select("proxies.id","proxies.proxy","proxies.cred","proxies.port","proxies.auth","count(proxies.id) as count_proxy")
+					->groupBy("proxies.id","proxies.proxy","proxies.cred","proxies.port","proxies.auth")
+					->havingRaw('count(proxies.id) < 5');
+			if ($availableProxy->count() > 0 ) {
+				$arrAvailableProxy = array();
+				foreach($availableProxy->get() as $data) {
+					$dataNew = array();
+					$dataNew["id"] = $data->id;
+					if ($data->auth) {
+						$dataNew["value"] = $data->proxy.":".$data->port.":".$data->cred;
+					} else {
+						$dataNew["value"] = $data->proxy;
+					}
+					$dataNew["count"] = $data->count_proxy;
+					$arrAvailableProxy[] = $dataNew;	
+				}
+				
+				//check dari celebpost 
+				
+				
+				$proxy_id = $arrAvailableProxy[array_rand($arrAvailableProxy)]["id"];
+			} else {
+				$availableProxy = Proxies::leftJoin("setting_helpers","setting_helpers.proxy_id","=","proxies.id")
+					->select("proxies.id","proxies.proxy","proxies.cred","proxies.port","proxies.auth", DB::raw("count(*) as countP") )
+					->groupBy("proxies.id","proxies.proxy","proxies.cred","proxies.port","proxies.auth")
+					->orderBy("countP","asc")
+					->first();
+				if (!is_null($availableProxy)) {
+					$proxy_id = $availableProxy->id;
+				}
+			}
+
+		
+		}
+	
+	
+		return $arr;
+	}
+	
+	
 }
