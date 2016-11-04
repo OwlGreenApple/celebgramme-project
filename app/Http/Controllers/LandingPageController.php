@@ -507,7 +507,6 @@ class LandingPageController extends Controller
 												->orderBy("countP","asc")
 												->having('countP', '<', 5)
 												->get();
-			dd($availableProxy);
 			$arrAvailableProxy = array();
 			foreach($availableProxy as $data) {
 				$dataNew = array();
