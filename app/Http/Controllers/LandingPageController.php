@@ -501,19 +501,20 @@ class LandingPageController extends Controller
 			$arr["proxy_id"] = $check->proxy_id;
 			$arr["is_on_celebgramme"] = 1;
 		} else {
-
 			//carikan proxy baru, yang available 
 			$availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
 												->groupBy("id","proxy","cred","port","auth")
-												->orderBy("countP","asc")->get();
+												->orderBy("countP","asc")
+												->having('countP', '<', 5)
+												->get();
 			dd($availableProxy);
-			if ($availableProxy->count() > 0 ) {
-				$arrAvailableProxy = array();
-				foreach($availableProxy->get() as $data) {
-					$dataNew = array();
-					$dataNew["id"] = $data->id;
-					$arrAvailableProxy[] = $dataNew;	
-				}
+			$arrAvailableProxy = array();
+			foreach($availableProxy as $data) {
+				$dataNew = array();
+				$dataNew["id"] = $data->id;
+				$arrAvailableProxy[] = $dataNew;	
+			}
+			if (!is_null()) {
 				$proxy_id = $arrAvailableProxy[array_rand($arrAvailableProxy)]["id"];
 			} else {
 				$availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
@@ -524,8 +525,9 @@ class LandingPageController extends Controller
 					$proxy_id = $availableProxy->id;
 				}
 			}
-
-		
+			$arr["proxy_id"] = $proxy_id;
+			$arr["is_on_celebgramme"] = 0;
+			
 		}
 	
 	
