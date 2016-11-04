@@ -493,7 +493,7 @@ class LandingPageController extends Controller
 		$database1 = Config::get('database.connections.mysql.database');
 		$database2 = Config::get('database.connections.mysql_celebpost.database');
 
-		$response = DB::table($database1.'.proxies as p')
+		$response = DB::table('proxies as p')
 		->leftJoin($database2.'.accounts as a','a.proxy_id','=','p.id')
 		->get();
 		dd($response);
