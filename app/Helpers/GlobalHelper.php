@@ -4,6 +4,8 @@ namespace Celebgramme\Helpers;
 use Celebgramme\Models\SettingHelper;
 use Celebgramme\Models\Proxies;
 use Celebgramme\Models\UserLog;
+use Celebgramme\Models\ViewProxyUses;
+
 use Celebgramme\Helpers\GlobalHelper;
 
 use Carbon\Carbon;
@@ -74,33 +76,29 @@ class GlobalHelper {
 		$setting_helper = SettingHelper::where("setting_id","=",$setting->id)->first();
 		
 		//carikan proxy baru, yang available 
-		$availableProxy = Proxies::leftJoin("setting_helpers","setting_helpers.proxy_id","=","proxies.id")
-				->select("proxies.id","proxies.proxy","proxies.cred","proxies.port","proxies.auth")
-				->groupBy("proxies.id","proxies.proxy","proxies.cred","proxies.port","proxies.auth")
-				->havingRaw('count(proxies.id) < 5');
-		if ($availableProxy->count() > 0 ) {
-			$arrAvailableProxy = array();
-			foreach($availableProxy->get() as $data) {
-				$dataNew = array();
-				$dataNew["id"] = $data->id;
-				if ($data->auth) {
-					$dataNew["value"] = $data->proxy.":".$data->port.":".$data->cred;
-				} else {
-					$dataNew["value"] = $data->proxy;
-				}
-				$arrAvailableProxy[] = $dataNew;	
-			}
+		$availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
+											->groupBy("id","proxy","cred","port","auth")
+											->orderBy("countP","asc")
+											->having('countP', '<', 5)
+											->get();
+		$arrAvailableProxy = array();
+		foreach($availableProxy as $data) {
+			$dataNew = array();
+			$dataNew["id"] = $data->id;
+			$arrAvailableProxy[] = $dataNew;	
+		}
+		if (count($arrAvailableProxy)>0) {
 			$proxy_id = $arrAvailableProxy[array_rand($arrAvailableProxy)]["id"];
 		} else {
-			$availableProxy = Proxies::leftJoin("setting_helpers","setting_helpers.proxy_id","=","proxies.id")
-				->select("proxies.id","proxies.proxy","proxies.cred","proxies.port","proxies.auth", DB::raw("count(*) as countP") )
-				->groupBy("proxies.id","proxies.proxy","proxies.cred","proxies.port","proxies.auth")
-				->orderBy("countP","asc")
-				->first();
+			$availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
+												->groupBy("id","proxy","cred","port","auth")
+												->orderBy("countP","asc")
+												->first();
 			if (!is_null($availableProxy)) {
 				$proxy_id = $availableProxy->id;
 			}
 		}
+
 
 		if (!is_null($setting_helper)) {
 			$setting_helper->proxy_id = $proxy_id;
@@ -245,6 +243,63 @@ class GlobalHelper {
 	}
 	
 
+	
+	
+	/*
+	*
+	*	for clear Proxy and assign with new proxy
+	*
+	*/
+	public static function clearProxy_backup($ssetting){
+		$setting = unserialize($ssetting);
+		$setting_helper = SettingHelper::where("setting_id","=",$setting->id)->first();
+		
+		//carikan proxy baru, yang available 
+		$availableProxy = Proxies::leftJoin("setting_helpers","setting_helpers.proxy_id","=","proxies.id")
+				->select("proxies.id","proxies.proxy","proxies.cred","proxies.port","proxies.auth")
+				->groupBy("proxies.id","proxies.proxy","proxies.cred","proxies.port","proxies.auth")
+				->havingRaw('count(proxies.id) < 5');
+		if ($availableProxy->count() > 0 ) {
+			$arrAvailableProxy = array();
+			foreach($availableProxy->get() as $data) {
+				$dataNew = array();
+				$dataNew["id"] = $data->id;
+				if ($data->auth) {
+					$dataNew["value"] = $data->proxy.":".$data->port.":".$data->cred;
+				} else {
+					$dataNew["value"] = $data->proxy;
+				}
+				$arrAvailableProxy[] = $dataNew;	
+			}
+			$proxy_id = $arrAvailableProxy[array_rand($arrAvailableProxy)]["id"];
+		} else {
+			$availableProxy = Proxies::leftJoin("setting_helpers","setting_helpers.proxy_id","=","proxies.id")
+				->select("proxies.id","proxies.proxy","proxies.cred","proxies.port","proxies.auth", DB::raw("count(*) as countP") )
+				->groupBy("proxies.id","proxies.proxy","proxies.cred","proxies.port","proxies.auth")
+				->orderBy("countP","asc")
+				->first();
+			if (!is_null($availableProxy)) {
+				$proxy_id = $availableProxy->id;
+			}
+		}
+
+		if (!is_null($setting_helper)) {
+			$setting_helper->proxy_id = $proxy_id;
+			$setting_helper->save();
+		}
+		
+		
+		/*
+		*
+		* destroy variable 
+		*
+		*/
+		$setting = null; $setting_helper = null; $proxy_id = null; $availableProxy = null; 
+		$arrAvailableProxy = null;
+	}
+	
+	
+	
 }
 
 ?>

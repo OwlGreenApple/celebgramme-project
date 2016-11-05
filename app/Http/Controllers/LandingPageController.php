@@ -25,7 +25,7 @@ use Celebgramme\Veritrans\Veritrans;
 
 use Celebgramme\Helpers\GeneralHelper;
 
-use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, Config, DB;
+use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, DB;
 
 class LandingPageController extends Controller
 {
@@ -513,7 +513,7 @@ class LandingPageController extends Controller
 				$dataNew["id"] = $data->id;
 				$arrAvailableProxy[] = $dataNew;	
 			}
-			if (!is_null()) {
+			if (count($arrAvailableProxy)>0) {
 				$proxy_id = $arrAvailableProxy[array_rand($arrAvailableProxy)]["id"];
 			} else {
 				$availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
@@ -530,7 +530,7 @@ class LandingPageController extends Controller
 		}
 	
 	
-		return $arr;
+		return response()->json($arr);
 	}
 	
 	

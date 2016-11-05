@@ -31,6 +31,9 @@ use Celebgramme\Models\UserLog;
 use Celebgramme\Models\TimeLog;
 use Celebgramme\Models\Affiliate;
 
+/* Celebpost model */
+use Celebgramme\Models\Account;
+
 use Celebgramme\Helpers\GeneralHelper;
 
 use View, Input, Mail, Request, App, Hash, Validator, Carbon, DB;
@@ -766,7 +769,7 @@ class CronJobController extends Controller
 			$timeLog->save();
 		}
 
-		//klo IG account stop or deleted or waktu nya habis(TIMED out) lebih dari 8 hari, maka proxy akan dicabut
+		//klo IG account stop or deleted or waktu nya habis(TIMED out) lebih dari 8 hari, maka proxy akan dicabut, klo ada di celebpost maka table accounts di celebpost is_on_celebgramme di 0 kan
 		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(8);
 		// $users = User::where("active_auto_manage","=",0)->get();
 		// foreach ($users as $user){
@@ -785,6 +788,13 @@ class CronJobController extends Controller
 			$update_setting_helper = SettingHelper::where("setting_id","=",$setting->setting_id)->first();
 			$update_setting_helper->cookies = "";
 			$update_setting_helper->proxy_id = 0;
+			
+			$account = Account::where("proxy_id","=",$update_setting_helper->proxy_id)->first();
+			if (!is_null($account)){
+				$account->is_on_celebgramme = 0;
+				$account->save();
+			}
+			
 			$update_setting_helper->save();
 		}
 		// }
