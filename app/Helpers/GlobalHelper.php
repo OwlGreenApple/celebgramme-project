@@ -5,6 +5,7 @@ use Celebgramme\Models\SettingHelper;
 use Celebgramme\Models\Proxies;
 use Celebgramme\Models\UserLog;
 use Celebgramme\Models\ViewProxyUses;
+use Celebgramme\Models\Account;
 
 use Celebgramme\Helpers\GlobalHelper;
 
@@ -103,6 +104,16 @@ class GlobalHelper {
 		if (!is_null($setting_helper)) {
 			$setting_helper->proxy_id = $proxy_id;
 			$setting_helper->save();
+
+			//kasi tanda yang di celebpost klo ada.
+			$account = Account::where("proxy_id","=",$update_setting_helper->proxy_id)
+									->where("insta_username","=",$setting->insta_username)
+									->first();
+			if (!is_null($account)){
+				$account->is_on_celebgramme = 0;
+				$account->save();
+			}
+			
 		}
 		
 		

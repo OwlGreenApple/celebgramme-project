@@ -789,7 +789,9 @@ class CronJobController extends Controller
 			$update_setting_helper->cookies = "";
 			$update_setting_helper->proxy_id = 0;
 			
-			$account = Account::where("proxy_id","=",$update_setting_helper->proxy_id)->first();
+			$account = Account::where("proxy_id","=",$update_setting_helper->proxy_id)
+									->where("insta_username","=",$setting->insta_username)
+									->first();
 			if (!is_null($account)){
 				$account->is_on_celebgramme = 0;
 				$account->save();
