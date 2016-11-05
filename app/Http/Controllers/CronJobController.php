@@ -874,7 +874,6 @@ class CronJobController extends Controller
 						$check_settings = Setting::select("settings.id","settings.status_auto","settings.status_like","settings.status_blacklist","settings.usernames_blacklist")
 						->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 						->where("settings.status","=","started")
-						->where("settings.status_auto","=",1)  //
 						->where("setting_helpers.use_automation","=",1)
 						->where("setting_helpers.cookies","=","success")
  					  ->where(function ($query) use ($setting) {
@@ -883,6 +882,10 @@ class CronJobController extends Controller
 							foreach($pieces as $piece){
 								$query->orWhere("setting_helpers.target","like","%".$piece."%");
 							}
+						})
+ 					  ->where(function ($query) {
+							$query->where("settings.status_auto","=",1);
+							$query->orWhere("settings.status_like","=","on");
 						})
 						->get();
 						foreach($check_settings as $check_setting) {
