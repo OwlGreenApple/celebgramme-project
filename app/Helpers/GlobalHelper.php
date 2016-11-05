@@ -107,7 +107,7 @@ class GlobalHelper {
 
 			//kasi tanda yang di celebpost klo ada.
 			$account = Account::where("proxy_id","=",$setting_helper->proxy_id)
-									->where("insta_username","=",$setting->insta_username)
+									->where("username","=",$setting->insta_username)
 									->first();
 			if (!is_null($account)){
 				$account->is_on_celebgramme = 0;
