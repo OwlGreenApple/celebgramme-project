@@ -106,7 +106,7 @@ class GlobalHelper {
 			$setting_helper->save();
 
 			//kasi tanda yang di celebpost klo ada.
-			$account = Account::where("proxy_id","=",$update_setting_helper->proxy_id)
+			$account = Account::where("proxy_id","=",$setting_helper->proxy_id)
 									->where("insta_username","=",$setting->insta_username)
 									->first();
 			if (!is_null($account)){
