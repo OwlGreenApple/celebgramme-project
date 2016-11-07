@@ -446,7 +446,7 @@ class CronJobController extends Controller
 					
 				}
 				
-				if ( ($following >=7000 ) && ($setting->activity == "follow") && (!$setting->status_auto) ) {
+				if ( ($following >=6300 ) && ($setting->activity == "follow") && (!$setting->status_auto) ) {
 					SettingMeta::createMeta("auto_unfollow","yes",$setting->id);
 
 					$setting_temp = Setting::find($setting->id);
@@ -455,7 +455,7 @@ class CronJobController extends Controller
 					$setting_temp->status_unfollow = "on";
 					$setting_temp->save();
 				}
-				if ( ($setting->status_auto) && ($following >=7000 ) ) {
+				if ( ($setting->status_auto) && ($following >=6300 ) ) {
 					SettingMeta::createMeta("auto_unfollow","yes",$setting->id);
 					
 					$setting_temp = Setting::find($setting->id);
