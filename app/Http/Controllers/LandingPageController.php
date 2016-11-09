@@ -14,6 +14,7 @@ use Celebgramme\Models\Order;
 use Celebgramme\Models\OrderMeta;
 use Celebgramme\Models\User;
 use Celebgramme\Models\Setting;
+use Celebgramme\Models\SettingHelper;
 use Celebgramme\Models\Coupon;
 use Celebgramme\Models\Package;
 use Celebgramme\Models\Idaff;
@@ -531,6 +532,42 @@ class LandingPageController extends Controller
 	
 	
 		return response()->json($arr);
+	}
+	
+	
+	public function check_instagram_username($insta_username){	
+		$setting_temp = Setting::where("insta_username","=",$insta_username)
+										->where("type","=","temp")
+										->first();
+		$setting_temp->status = "stopped";
+		$setting_temp->save();
+
+		$setting_real = Setting::where('insta_user_id','=',$setting_temp->insta_user_id)->where('type','=','real')->first();
+		if (!is_null($setting_real)) {
+			$setting_real->status = "stopped cron";
+			$setting_real->save();
+		}
+
+		$setting_helper = SettingHelper::where("setting_id","=",$setting_temp->id)->first();
+		if (!is_null($setting_helper)) {
+			$setting_helper->cookies = "error auto by cron";
+			$setting_helper->save();
+		}
+
+		$user = User::find($setting_temp->last_user);
+		if (!is_null($user)) {
+			$emaildata = [
+					'user' => $user,
+					'insta_username' => $setting_temp->insta_username,
+			];
+			Mail::queue('emails.error-cred', $emaildata, function ($message) use ($user) {
+				$message->from('no-reply@celebgramme.com', 'Celebgramme');
+				$message->to($user->email);
+				$message->bcc("celebgramme.dev@gmail.com");
+				$message->subject('[Celebgramme] Error Instagram Account Username');
+			});
+		}
+		
 	}
 	
 	

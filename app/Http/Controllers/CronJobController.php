@@ -327,27 +327,28 @@ class CronJobController extends Controller
   
 	
 	/**
-	 * Checking following & followers of user
+	 * Count following & followers of user
 	 *
 	 * @return response
 	 */
-	public function check_instagram_username(){
+	public function count_instagram_data($insta_username= ""){
 		include('simple_html_dom.php'); 
-		$dt = Carbon::now()->setTimezone('Asia/Jakarta'); 
-		$server_automation = "";
-		if ($dt->hour == 2) {
-			$server_automation = "A1(automation-1)";
-		}
-		if ($dt->hour == 3) {
-			$server_automation = "A2(automation-2)";
-		}
-		if ($dt->hour == 4) {
-			$server_automation = "A3(automation-3)";
-		}
+		// $dt = Carbon::now()->setTimezone('Asia/Jakarta'); 
+		// $server_automation = "";
+		// if ($dt->hour == 2) {
+			// $server_automation = "A1(automation-1)";
+		// }
+		// if ($dt->hour == 3) {
+			// $server_automation = "A2(automation-2)";
+		// }
+		// if ($dt->hour == 4) {
+			// $server_automation = "A3(automation-3)";
+		// }
 		$count_log = 0;
 		
 		// $file = base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow/logs.txt';
-		$txt = date("F j, Y, g:i a")." total rec : ".$count_log." ".$server_automation." IN";
+		// $txt = date("F j, Y, g:i a")." total rec : ".$count_log." ".$server_automation." IN";
+		$txt = date("F j, Y, g:i a")." total rec : ".$count_log." ".$insta_username." IN";
 		$myfile = file_put_contents(base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow-logs.txt', $txt.PHP_EOL , FILE_APPEND);
 				
 		
@@ -358,7 +359,8 @@ class CronJobController extends Controller
 								->where('settings.error_cred','=',0)
 								->where('settings.status','=',"started")
 								->where("users.active_auto_manage",">",0)
-								->where("setting_helpers.server_automation","=",$server_automation)
+								->where("insta_username","like","%".$insta_username."%")
+								// ->where("setting_helpers.server_automation","=",$server_automation)
 								->get();
 		foreach($settings as $setting) {
 				$count_log += 1;
@@ -381,37 +383,8 @@ class CronJobController extends Controller
 				} 
 				SettingMeta::createMeta("followers",$followers,$setting->id);
 				SettingMeta::createMeta("following",$following,$setting->id);
-				// if ( (!$found) || !$this->checking_cred_instagram($setting->insta_username,$setting->insta_password) ) {
 				if (!$found)  {
-					$setting_temp = Setting::find($setting->id);
-					// $setting_temp->error_cred = true;
-					$setting_temp->status = "stopped";
-					$setting_temp->save();
-
-					$setting_real = Setting::where('insta_user_id','=',$setting_temp->insta_user_id)->where('type','=','real')->first();
-					// $setting_real->error_cred = true;
-					$setting_real->status = "stopped cron";
-					$setting_real->save();
-
-					$setting_helper = SettingHelper::where("setting_id","=",$setting->id)->first();
-					if (!is_null($setting_helper)) {
-						$setting_helper->cookies = "error auto by cron";
-						$setting_helper->save();
-					}
-
-					$user = User::find($setting_temp->last_user);
-					if (!is_null($user)) {
-						$emaildata = [
-								'user' => $user,
-								'insta_username' => $setting_temp->insta_username,
-						];
-						Mail::queue('emails.error-cred', $emaildata, function ($message) use ($user) {
-							$message->from('no-reply@celebgramme.com', 'Celebgramme');
-							$message->to($user->email);
-							$message->bcc("celebgramme.dev@gmail.com");
-							$message->subject('[Celebgramme] Error Instagram Account Username');
-						});
-					}
+					//
 				}
 				//saveimage url to meta
 				if ($pp_url<>"") {
@@ -446,7 +419,7 @@ class CronJobController extends Controller
 					
 				}
 				
-				if ( ($following >=6300 ) && ($setting->activity == "follow") && (!$setting->status_auto) ) {
+				if ( ($following >=7000 ) && ($setting->activity == "follow") && (!$setting->status_auto) ) {
 					SettingMeta::createMeta("auto_unfollow","yes",$setting->id);
 
 					$setting_temp = Setting::find($setting->id);
@@ -455,7 +428,7 @@ class CronJobController extends Controller
 					$setting_temp->status_unfollow = "on";
 					$setting_temp->save();
 				}
-				if ( ($setting->status_auto) && ($following >=6300 ) ) {
+				if ( ($setting->status_auto) && ($following >=7000 ) ) {
 					SettingMeta::createMeta("auto_unfollow","yes",$setting->id);
 					
 					$setting_temp = Setting::find($setting->id);
@@ -471,7 +444,8 @@ class CronJobController extends Controller
 			// $file = base_path().'/../general/ig-cookies/'.$username.'-cookiess.txt';
 		} else{
 			// $file = base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow/logs.txt';
-			$txt = date("F j, Y, g:i a")." total rec : ".$count_log." ".$server_automation." OUT";
+			// $txt = date("F j, Y, g:i a")." total rec : ".$count_log." ".$server_automation." OUT";
+			$txt = date("F j, Y, g:i a")." total rec : ".$count_log." OUT";
 			$myfile = file_put_contents(base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow-logs.txt', $txt.PHP_EOL , FILE_APPEND);
 		}
 		
@@ -741,13 +715,13 @@ class CronJobController extends Controller
 								where("failed_at","<=",$dt->toDateTimeString())
 								->delete();
 								
-		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(1);
+		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(5);
 		//delete post target like 
 		$postTargetLike = PostTargetLike::
 								where("created","<=",$dt->toDateTimeString())
 								->where("status","=",0)
-								->update(['status' => 2]);
-								// ->delete();
+								// ->update(['status' => 2]);
+								->delete();
 
 		// $dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(3);
 		/*delete post target like */

@@ -103,7 +103,8 @@ Route::get('generate-balance', 'CronJobController@generate_balance'); // unused
 Route::get('reset-client-used', 'CronJobController@reset_client_used'); // unused
 Route::get('cron-auto-manage-369', 'CronJobController@auto_manage');
 Route::get('cron-notif-member-369', 'CronJobController@notif_member');
-Route::get('check-instagram-username', 'CronJobController@check_instagram_username');
+Route::get('count-instagram-data-369/{insta_username}', 'CronJobController@count_instagram_data');
+Route::get('count-instagram-data-369', 'CronJobController@count_instagram_data');
 Route::get('check-create-affiliate-369', 'CronJobController@create_user_from_affiliate');
 Route::get('task-daily-automation-cron-369', 'CronJobController@task_daily_automation_cron');
 Route::get('task-automation-like-369', 'CronJobController@task_automation_like');
@@ -130,3 +131,7 @@ Route::get('get-photo-hashtags/{hashtags}/{cursor}', 'LandingPageController@get_
 Route::get('get-proxy-id/{insta_username}', 'LandingPageController@get_proxy_id');
 
 // Route::get('fixing-error', 'LandingPageController@fixing_error');
+
+Route::get('check-instagram-username/{insta_username}', 'LandingPageController@check_instagram_username');
+
+
