@@ -730,15 +730,14 @@ class CronJobController extends Controller
 		$postTargetLike = PostTargetLike::
 								where("created","<=",$dt->toDateTimeString())
 								->where("status","=",0)
-								// ->update(['status' => 2]);
-								->delete();
+								->update(['status' => 2]);
 
-		// $dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(3);
+		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(5);
 		/*delete post target like */
-		// $postTargetLike = PostTargetLike::
-								// where("created","<=",$dt->toDateTimeString())
-								// ->where("status","=",1)
-								// ->delete();
+		$postTargetLike = PostTargetLike::
+								where("created","<=",$dt->toDateTimeString())
+								->where("status","=",1)
+								->delete();
 		
 		//daily time log untuk mencatat sisa waktu users
 		$dt = Carbon::now()->setTimezone('Asia/Jakarta');
