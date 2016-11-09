@@ -351,17 +351,27 @@ class CronJobController extends Controller
 		$txt = date("F j, Y, g:i a")." total rec : ".$count_log." ".$insta_username." IN";
 		$myfile = file_put_contents(base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow-logs.txt', $txt.PHP_EOL , FILE_APPEND);
 				
-		
-		$settings = Setting::select("settings.*")
+		if ($insta_username == "") {
+			$settings = Setting::select("settings.*")
 								->join("users","users.id","=","settings.last_user")
 								->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 								->where("settings.type",'=','temp')
 								->where('settings.error_cred','=',0)
 								->where('settings.status','=',"started")
 								->where("users.active_auto_manage",">",0)
-								->where("insta_username","like","%".$insta_username."%")
 								// ->where("setting_helpers.server_automation","=",$server_automation)
 								->get();
+		} else {
+			$settings = Setting::select("settings.*")
+								->join("users","users.id","=","settings.last_user")
+								->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
+								->where("settings.type",'=','temp')
+								->where('settings.error_cred','=',0)
+								->where("users.active_auto_manage",">",0)
+								->where("insta_username","=",$insta_username)
+								// ->where("setting_helpers.server_automation","=",$server_automation)
+								->get();
+		}
 		foreach($settings as $setting) {
 				$count_log += 1;
 				$pp_url = "";
