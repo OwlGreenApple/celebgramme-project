@@ -789,12 +789,130 @@ class CronJobController extends Controller
 		$setting_counter = null; $failed_job = null; $postTargetLike = null;
 	}
 	
-	/*
-	*
-	* Cron Helper untuk daily automation
-	*
-	*/
+
 	public function task_automation_like(){
+		$dt = Carbon::now()->setTimezone('Asia/Jakarta');
+		$settings = Setting::select("settings.*","setting_helpers.number_likes","setting_helpers.identity")
+								->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
+								->where("is_auto_get_likes","=",1)
+								->where("settings.status","=","started")
+								->get();
+		foreach($settings as $setting) {
+			//curl to IG account 3 latest post and get media id 
+			//check if media id sudah di autolike atau belum
+			//klo belum add ke post_target_like
+			
+			$ports[] = "10201";
+			$ports[] = "10202";
+			$ports[] = "10203";
+			$port = $ports[array_rand($ports)];
+			$cred = "sugiarto:sugihproxy250";
+			$proxy = "45.79.212.85";//good proxy
+
+			if(App::environment() == "local"){
+				$cookiefile = base_path().'/../general/ig-cookies/'.$setting->insta_username.'-cookies-auto-like.txt';
+			} else{
+				$cookiefile = base_path().'/../public_html/general/ig-cookies/'.$setting->insta_username.'-cookies-auto-like.txt';
+			}
+			
+			$url = "https://www.instagram.com/".$setting->insta_username."/?__a=1";
+			$c = curl_init();
+
+
+			curl_setopt($c, CURLOPT_PROXY, $proxy);
+			curl_setopt($c, CURLOPT_PROXYPORT, $port);
+			curl_setopt($c, CURLOPT_PROXYUSERPWD, $cred);
+			curl_setopt($c, CURLOPT_PROXYTYPE, 'HTTP');
+			curl_setopt($c, CURLOPT_URL, $url);
+			curl_setopt($c, CURLOPT_REFERER, $url);
+			curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($c, CURLOPT_COOKIEFILE, $cookiefile);
+			curl_setopt($c, CURLOPT_COOKIEJAR, $cookiefile);
+			$page = curl_exec($c);
+			curl_close($c);
+			
+			$arr = json_decode($page,true);
+			if (count($arr)>0) {
+				$counter = 0;
+				// echo $setting->insta_username."  ";
+				if ($arr["user"]["is_private"]) {
+					unlink($cookiefile);
+					continue;
+				}
+				foreach ($arr["user"]["media"]["nodes"] as $data) {
+					// echo $data["id"]."   ".$data["code"]."<br>";
+					
+					$postTargetLikeCheck = PostTargetLike::where("setting_id","=",$setting->id)
+														->where("media_id","=",$data["id"])
+														->first();
+					if (is_null($postTargetLikeCheck)) {
+						//create 
+						$arr_setting_id_liker = array(); 
+						$check_settings = Setting::select("settings.id","settings.status_auto","settings.status_like","settings.status_blacklist","settings.usernames_blacklist")
+						->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
+						->where("settings.status","=","started")
+						->where("setting_helpers.use_automation","=",1)
+						->where("setting_helpers.cookies","=","success")
+ 					  ->where(function ($query) use ($setting) {
+							$pieces = explode(";",$setting->identity);
+							$query->where("setting_helpers.target","like","%none%");
+							foreach($pieces as $piece){
+								$query->orWhere("setting_helpers.target","like","%".$piece."%");
+							}
+						})
+ 					  ->where(function ($query) {
+							$query->where("settings.status_auto","=",1);
+							$query->orWhere("settings.status_like","=","on");
+						})
+						->get();
+						foreach($check_settings as $check_setting) {
+							$usernames_blacklist = array();
+							if ($check_setting->status_blacklist) {
+								$usernames_blacklist =  explode(";", $check_setting->usernames_blacklist);
+							}
+							if ( (!in_array(strtolower($setting->insta_username), $usernames_blacklist )) && ( ($check_setting->status_auto) || ($check_setting->status_like) ) ) {
+								$arr_setting_id_liker[] = $check_setting->id;
+							}
+						}
+						//random likers 
+						shuffle($arr_setting_id_liker);
+
+						//assign kan setting_id(ig_account) sebanyak x 
+						for ( $i=0; $i<=$setting->number_likes - 1 ; $i++ ) {
+							if ($i<count($arr_setting_id_liker)) {
+								$postTargetLike = new PostTargetLike;
+								$postTargetLike->media_id = $data["id"];
+								$postTargetLike->owner_id = $data["owner"]["id"];
+								$postTargetLike->code = $data["code"];
+								$postTargetLike->setting_id = $setting->id;
+								$postTargetLike->setting_id_liker = $arr_setting_id_liker[$i];
+								$postTargetLike->status = 0;
+								$postTargetLike->created = $dt->toDateTimeString();
+								$postTargetLike->save();
+							}
+						}
+					}
+					
+					$counter += 1;
+					if ($counter==3) { break; }
+				}
+			} else {
+				// echo "username not found";
+			}
+			
+			
+			unlink($cookiefile);
+
+
+			
+			
+			
+		}
+	}
+
+	public function task_automation_like_backup(){
 		$dt = Carbon::now()->setTimezone('Asia/Jakarta');
 		$settings = Setting::select("settings.*","setting_helpers.number_likes","setting_helpers.identity")
 								->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
