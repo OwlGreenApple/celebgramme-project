@@ -842,19 +842,19 @@ class AutoManageController extends Controller
 		*/
 		$arr_proxys = array();		
 		$arr_proxys[] = [
-			"proxy"=>"185.152.131.20",
+			"proxy"=>"185.152.129.108",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10525",
+			"port"=>"10520",
 		];
 		$arr_proxys[] = [
-			"proxy"=>"185.152.130.15",
+			"proxy"=>"185.152.129.41",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10182",
+			"port"=>"10130",
 		];
 		$arr_proxys[] = [
-			"proxy"=>"185.152.130.47",
+			"proxy"=>"185.152.129.123",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10196",
+			"port"=>"10203",
 		];
 		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
 		$port = $arr_proxy["port"];
