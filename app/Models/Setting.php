@@ -248,6 +248,8 @@ class Setting extends Model {
 			$ports[] = "10201"; 
 			$ports[] = "10202";
 			$ports[] = "10203";
+			$ports[] = "10204";
+			$ports[] = "10205";
 			$port = $ports[array_rand($ports)];
 			$cred = "sugiarto:sugihproxy250";
 			$proxy = "45.79.212.85";//good proxy
@@ -259,7 +261,7 @@ class Setting extends Model {
 				"cred"=>$cred,
 				"port"=>$port,
 			];
-			$arr_proxys[] = [
+			/*$arr_proxys[] = [
 				"proxy"=>"185.152.128.7",
 				"cred"=>"141sugiarto:celebgramme963123",
 				"port"=>"10168",
@@ -268,7 +270,7 @@ class Setting extends Model {
 				"proxy"=>"185.152.128.58",
 				"cred"=>"141sugiarto:celebgramme963123",
 				"port"=>"10037",
-			];
+			];*/
 			$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
       
       //use own proxy if have
