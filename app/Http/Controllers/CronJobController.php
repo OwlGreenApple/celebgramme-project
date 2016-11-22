@@ -30,6 +30,7 @@ use Celebgramme\Models\Meta;
 use Celebgramme\Models\UserLog;
 use Celebgramme\Models\TimeLog;
 use Celebgramme\Models\Affiliate;
+use Celebgramme\Models\Proxies;
 
 /* Celebpost model */
 use Celebgramme\Models\Account;
@@ -1053,5 +1054,54 @@ class CronJobController extends Controller
 		}
 		echo $counter;
 		dd($settings);
+	}
+
+	public function check_all_proxy(){
+		$proxies = Proxies::all();
+		$logs = "";
+		
+		foreach($proxies as $data) {
+
+			$port = $data->port;
+			$cred = $data->cred;
+			$proxy = $data->proxy;
+
+			$cookiefile = base_path().'/../public_html/general/ig-cookies/check-proxies-cookiess.txt';
+			if (file_exists($cookiefile)) {
+				unlink($cookiefile);
+			}
+			$url = "https://www.instagram.com/joshwebdev/?__a=1";
+			$c = curl_init();
+
+
+			curl_setopt($c, CURLOPT_PROXY, $proxy);
+			curl_setopt($c, CURLOPT_PROXYPORT, $port);
+			curl_setopt($c, CURLOPT_PROXYUSERPWD, $cred);
+			curl_setopt($c, CURLOPT_PROXYTYPE, 'HTTP');
+			curl_setopt($c, CURLOPT_URL, $url);
+			curl_setopt($c, CURLOPT_REFERER, $url);
+			curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($c, CURLOPT_COOKIEFILE, $cookiefile);
+			curl_setopt($c, CURLOPT_COOKIEJAR, $cookiefile);
+			$page = curl_exec($c);
+			curl_close($c);
+			
+			$arr = json_decode($page,true);
+			$update_proxy = Proxies::find($data->id);
+			if (count($arr)>0) {
+				$update_proxy->is_error = 0;
+				unlink($cookiefile);
+			} else {
+				// echo "username not found";
+				$logs .= $data->proxy.":".$port.":".$cred."<br>";
+				$update_proxy->is_error = 1;
+			}
+			$update_proxy->save();
+
+		
+		}
+		echo $logs;
 	}
 }
