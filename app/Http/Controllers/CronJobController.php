@@ -168,7 +168,7 @@ class CronJobController extends Controller
 					Mail::queue('emails.notif-5days', $emaildata, function ($message) use ($user) {
 						$message->from('no-reply@celebgramme.com', 'Celebgramme');
 						$message->to($user->email);
-						$message->bcc("celebgramme.dev@gmail.com");
+						// $message->bcc("celebgramme.dev@gmail.com");
 						$message->subject('[Celebgramme] 5 hari lagi nih, nggak berasa yah');
 					});
 				}
@@ -204,7 +204,7 @@ class CronJobController extends Controller
 					Mail::queue('emails.notif-expired', $emaildata, function ($message) use ($user) {
 						$message->from('no-reply@celebgramme.com', 'Celebgramme');
 						$message->to($user->email);
-						$message->bcc("celebgramme.dev@gmail.com");
+						// $message->bcc("celebgramme.dev@gmail.com");
 						$message->subject('[Celebgramme] Hari ini service Celebgramme.com berakhir');
 					});
 				}
@@ -229,7 +229,7 @@ class CronJobController extends Controller
 				Mail::queue('emails.notif-coupon-expired', $emaildata, function ($message) use ($user) {
 					$message->from('no-reply@celebgramme.com', 'Celebgramme');
 					$message->to($user->email);
-					$message->bcc("celebgramme.dev@gmail.com");
+					// $message->bcc("celebgramme.dev@gmail.com");
 					$message->subject('[Celebgramme] Hari ini terakhir penggunaan coupon order anda');
 				});
 			}
@@ -246,7 +246,7 @@ class CronJobController extends Controller
 				Mail::queue('emails.free-trial-affiliate.awal-trial-2', $emaildata, function ($message) use ($user) {
 					$message->from('no-reply@celebgramme.com', 'Celebgramme');
 					$message->to($user->email);
-					$message->bcc("celebgramme.dev@gmail.com");
+					// $message->bcc("celebgramme.dev@gmail.com");
 					$message->subject('[Celebgramme] Hi, sudah naik berapa followersnya ?');
 				});
 			}
@@ -260,7 +260,7 @@ class CronJobController extends Controller
 				Mail::queue('emails.free-trial-affiliate.h-kurang-2', $emaildata, function ($message) use ($user) {
 					$message->from('no-reply@celebgramme.com', 'Celebgramme');
 					$message->to($user->email);
-					$message->bcc("celebgramme.dev@gmail.com");
+					// $message->bcc("celebgramme.dev@gmail.com");
 					$message->subject('[Celebgramme] Selamat, Anda mendapatkan Bonus 7 Video Rahasia OLShop Sukses Instagram');
 				});
 			}
@@ -274,7 +274,7 @@ class CronJobController extends Controller
 				Mail::queue('emails.free-trial-affiliate.h-kurang-1', $emaildata, function ($message) use ($user) {
 					$message->from('no-reply@celebgramme.com', 'Celebgramme');
 					$message->to($user->email);
-					$message->bcc("celebgramme.dev@gmail.com");
+					// $message->bcc("celebgramme.dev@gmail.com");
 					$message->subject('[Celebgramme] Jualan di Instagram itu gampang yah');
 				});
 			}
@@ -290,7 +290,7 @@ class CronJobController extends Controller
 				Mail::queue('emails.free-trial-affiliate.h', $emaildata, function ($message) use ($user) {
 					$message->from('no-reply@celebgramme.com', 'Celebgramme');
 					$message->to($user->email);
-					$message->bcc("celebgramme.dev@gmail.com");
+					// $message->bcc("celebgramme.dev@gmail.com");
 					$message->subject('[Celebgramme] HARI ini Masa Trial Kakak HABIS');
 				});
 			}
@@ -307,7 +307,7 @@ class CronJobController extends Controller
 				Mail::queue('emails.free-trial-affiliate.h-tambah-1', $emaildata, function ($message) use ($user) {
 					$message->from('no-reply@celebgramme.com', 'Celebgramme');
 					$message->to($user->email);
-					$message->bcc("celebgramme.dev@gmail.com");
+					// $message->bcc("celebgramme.dev@gmail.com");
 					$message->subject('[Celebgramme] Kesempatan nggak datang 2 kali');
 				});
 			}
