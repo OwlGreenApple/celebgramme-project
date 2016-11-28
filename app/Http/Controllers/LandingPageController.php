@@ -311,21 +311,21 @@ class LandingPageController extends Controller
 			// "no"=>"2",
 		// ];
 		$arr_proxys[] = [
-			"proxy"=>"185.152.130.64",
+			"proxy"=>"185.152.129.82",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10228",
+			"port"=>"10173",
 			"no"=>"3",
 		];
 		$arr_proxys[] = [
-			"proxy"=>"185.152.130.60",
+			"proxy"=>"185.152.129.81",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10196",
+			"port"=>"10033",
 			"no"=>"5",
 		];
 		$arr_proxys[] = [
-			"proxy"=>"185.152.131.65",
+			"proxy"=>"185.152.129.75",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10499",
+			"port"=>"10029",
 			"no"=>"6",
 		];
 		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
