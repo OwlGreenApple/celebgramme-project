@@ -715,7 +715,7 @@ class AutoManageController extends Controller
 
 						// ONLY for init assign proxy
 						if ($setting_helper->proxy_id == 0) {
-							GlobalHelper::clearProxy(serialize($setting_temp));
+							GlobalHelper::clearProxy(serialize($setting_temp),"new");
 						}
 					}
         }
