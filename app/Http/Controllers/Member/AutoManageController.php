@@ -23,6 +23,8 @@ use Celebgramme\Models\Proxies;
 use Celebgramme\Models\Category;
 use Celebgramme\Models\SettingLog;
 use Celebgramme\Models\TimeLog;
+use Celebgramme\Models\Account;
+
 use Celebgramme\Veritrans\Veritrans;
 
 use Celebgramme\Helpers\GlobalHelper;
@@ -659,7 +661,7 @@ class AutoManageController extends Controller
 
 						// ONLY for init assign proxy
 						if ($setting_helper->proxy_id == 0) {
-							GlobalHelper::clearProxy(serialize($setting_temp));
+							GlobalHelper::clearProxy(serialize($setting_temp),"new");
 						}
 					}
         }
@@ -878,7 +880,20 @@ class AutoManageController extends Controller
 			}
 		}
 		
+		//check klo uda ada di celebpost maka pake proxy celebpost
+		$account = Account::where("username","=",$setting->insta_username)
+								->first();
+		if (!is_null($account)){
+			$proxies = Proxies::find($account->proxy_id);
+			if (!is_null($proxies)) {
+				$port = $proxies->port;
+				$cred = $proxies->cred;
+				$proxy = $proxies->proxy;
+				$auth = $proxies->auth;
+			}
+		}
 	
+		
 
 		$url = "https://www.instagram.com/accounts/login/?force_classic_login";
 		if(App::environment() == "local"){		

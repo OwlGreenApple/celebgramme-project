@@ -72,12 +72,12 @@ class GlobalHelper {
 	*	for clear Proxy and assign with new proxy
 	*
 	*/
-	public static function clearProxy($ssetting){
+	public static function clearProxy($ssetting,$status){
 		$setting = unserialize($ssetting);
 		$setting_helper = SettingHelper::where("setting_id","=",$setting->id)->first();
 		
 		//carikan proxy baru, yang available 
-		$availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
+		$availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(	"sum(count_proxy) as countP"))
 											->groupBy("id","proxy","cred","port","auth")
 											->orderBy("countP","asc")
 											->having('countP', '<', 5)
@@ -100,17 +100,25 @@ class GlobalHelper {
 			}
 		}
 
+		if($status=="new"){
+			//klo assign baru, cek di celebpost klo uda ada ambil di celebpost.
+			$account = Account::where("username","=",$setting->insta_username)
+									->first();
+			if (!is_null($account)){
+				$proxy_id = $account->proxy_id;
+			}
+		} 
 
 		if (!is_null($setting_helper)) {
 			$setting_helper->proxy_id = $proxy_id;
 			$setting_helper->save();
 
 			//kasi tanda yang di celebpost klo ada.
-			$account = Account::where("proxy_id","=",$setting_helper->proxy_id)
-									->where("username","=",$setting->insta_username)
+			$account = Account::where("username","=",$setting->insta_username)
 									->first();
 			if (!is_null($account)){
-				$account->is_on_celebgramme = 0;
+				$account->is_on_celebgramme = 1;
+				$account->proxy_id = $proxy_id;
 				$account->save();
 			}
 			
@@ -203,7 +211,7 @@ class GlobalHelper {
 				//klo uda error jangan di counter lagi
 				if ( ( substr($setting_helper->cookies, 0, 7) == "success") || ($setting_helper->cookies=="") ) {
 				// if ( $setting_helper->cookies <> "error cookies" ) {
-					GlobalHelper::clearProxy($ssetting);
+					GlobalHelper::clearProxy($ssetting,"change");
 					// if ( substr($setting_helper->cookies, 0, 5) == "error" ) {
 						// $setting_helper->cookies .= ", error cookies";
 					// } else {
