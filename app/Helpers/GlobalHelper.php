@@ -72,7 +72,7 @@ class GlobalHelper {
 	*	for clear Proxy and assign with new proxy
 	*
 	*/
-	public static function clearProxy($ssetting,$status){
+	public static function clearProxy($ssetting, $status){
 		$setting = unserialize($ssetting);
 		$setting_helper = SettingHelper::where("setting_id","=",$setting->id)->first();
 		
