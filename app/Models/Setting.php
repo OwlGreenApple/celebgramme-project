@@ -82,10 +82,18 @@ class Setting extends Model {
 																			->where("server_automation","like","A3%")
 																			->where("settings.status","=","started")
 																			->count();
+				$count_IG_account_server_A5 = SettingHelper::
+																			join("settings","settings.id","=","setting_helpers.setting_id")
+																			->where("cookies","=","success")
+																			->where("server_automation","like","A5%")
+																			->where("settings.status","=","started")
+																			->count();
 				$setting_helper = new SettingHelper;
 				$setting_helper->setting_id = $setting->id;
 				$setting_helper->use_automation = 1;
-				if ( ($count_IG_account_server_A3 <= $count_IG_account_server_A2) && ($count_IG_account_server_A3 <= $count_IG_account_server_A1) ) { 
+				if ( ($count_IG_account_server_A5<=$count_IG_account_server_A3) && ($count_IG_account_server_A5 <= $count_IG_account_server_A2) && ($count_IG_account_server_A5 <= $count_IG_account_server_A1) ) {
+					$setting_helper->server_automation = "A5(automation-5)";
+				} else if ( ($count_IG_account_server_A3 <= $count_IG_account_server_A2) && ($count_IG_account_server_A3 <= $count_IG_account_server_A1) ) { 
 					$setting_helper->server_automation = "A3(automation-3)";
 				} else if ($count_IG_account_server_A1 <= $count_IG_account_server_A2) {
 					$setting_helper->server_automation = "A1(automation-1)";
