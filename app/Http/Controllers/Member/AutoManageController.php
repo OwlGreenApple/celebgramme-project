@@ -881,7 +881,7 @@ class AutoManageController extends Controller
 		}
 		
 		//check klo uda ada di celebpost maka pake proxy celebpost
-		$account = Account::where("username","=",$setting->insta_username)
+		$account = Account::where("username","=",$username)
 								->first();
 		if (!is_null($account)){
 			$proxies = Proxies::find($account->proxy_id);
