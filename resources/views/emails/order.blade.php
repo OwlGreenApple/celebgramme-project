@@ -22,6 +22,7 @@ Anda telah memesan paket {{$package->package_name}} = <strong>Rp. {{number_forma
 	
 	dan setelah selesai membayar<br>
 	silahkan KLIK <a href="{{url('confirm-payment')}}"> --> KONFIRMASI PEMBAYARAN <-- </a> disini . <br>
+	NB : No Rekening Account BCA untuk celebgramme & Celebpost berbeda, untuk mempercepat proses administrasi silahkan transfer pada rekening BCA service yang dibeli.
 <?php } ?>
 
 <br> Salam hangat, 
