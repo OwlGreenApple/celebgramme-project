@@ -678,15 +678,21 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
     <div class="panel panel-info ">
       <div class="panel-heading">
         <h3 class="panel-title">Usernames blacklist
+				</h3>
+      </div>
+      <div class="panel-body">
+				<div class="row">
+          <div class="col-md-11 col-sm-10 col-xs-10">
+            <label>Blacklist</label> 
 						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Blacklist </div><div class='panel-content'>List Username yang TIDAK akan di FLC (Follow, Like & Comment)<br>
 						Masukkan usernames SAJA disini (tanpa @), contoh: darthvader, hitler, kimjongil, dsbnya<br>
 						<i>*PS: berguna sekali untuk TIDAK follow, like, comment 'mantan' & 'kompetitor' anda</i><br>
 	</div>">
 						</span>
-				</h3>
-      </div>
-      <div class="panel-body">
-				<div class="row">
+          </div>
+					<div class="col-md-1 col-sm-1 col-xs-1">
+						<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-unfollow-blacklist">copy</p>
+          </div>
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<textarea class="selectize-default" id="textarea-unfollow-blacklist" name="data[usernames_blacklist]">{{$settings->usernames_blacklist}}</textarea>
 					</div>
@@ -701,13 +707,19 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
     <div class="panel panel-info ">
       <div class="panel-heading">
         <h3 class="panel-title">Usernames whitelist
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Usernames whitelist</div><div class="panel-content">• Saat anda UNFOLLOW. <strong>Usernames di "Whitelist" ini akan diabaikan / tidak akan di "UNFOLLOW"</strong><br>
-							• <strong>Usulan penggunaan : </strong>teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW</div>'></span>
 				</h3>
       </div>
       <div class="panel-body">
 
         <div class="row">
+          <div class="col-md-11 col-sm-10 col-xs-10">
+            <label>Whitelist</label> 
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Usernames whitelist</div><div class="panel-content">• Saat anda UNFOLLOW. <strong>Usernames di "Whitelist" ini akan diabaikan / tidak akan di "UNFOLLOW"</strong><br>
+							• <strong>Usulan penggunaan : </strong>teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW</div>'></span>
+          </div>
+					<div class="col-md-1 col-sm-1 col-xs-1">
+						<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" class="button-copy" data-text="textarea-unfollow-whitelist">copy</p>
+          </div>
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<textarea class="selectize-default" id="textarea-unfollow-whitelist" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>
 					</div>
