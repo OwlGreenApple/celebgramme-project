@@ -36,6 +36,7 @@ use Celebgramme\Models\Proxies;
 use Celebgramme\Models\Account;
 
 use Celebgramme\Helpers\GeneralHelper;
+use Celebgramme\Helpers\GlobalHelper;
 
 use View, Input, Mail, Request, App, Hash, Validator, Carbon, DB;
 
@@ -1093,9 +1094,43 @@ class CronJobController extends Controller
 				$update_proxy->is_error = 0;
 				unlink($cookiefile);
 			} else {
-				// echo "username not found";
+				// Kalo error proxy
 				$logs .= $data->proxy.":".$port.":".$cred."<br>";
 				$update_proxy->is_error = 1;
+				
+				//celebgramme ganti proxy trs di refresh supaya dapat cookies baru(klo perlu konfirmasi user diemail)..
+				$setting_helpers = SettingHelper::where("proxy_id","=",$data->id)->get();
+				foreach ($setting_helpers as $setting_helper){
+					$proxy_id = GlobalHelper::getProxy();
+					$update_setting_helper = SettingHelper::find($setting_helper->id);
+					$update_setting_helper->proxy_id = $proxy_id;
+					$update_setting_helper->is_refresh = 1;
+					$update_setting_helper->cookies = "";
+					$update_setting_helper->save();
+					
+					$setting = Setting::find($update_setting_helper->setting_id);
+					if (!is_null($setting)) {
+						$account = Account::where("username","=",$setting->insta_username)
+												->first();
+						if (!is_null($account)){
+							$account->proxy_id = $proxy_id;
+							$account->is_refresh = 1;
+							$account->save();
+						}
+					}
+				}
+				
+				//celebpost ganti proxy trs di refresh (klo perlu konfirmasi user diemail)
+				$accounts = Account::where("proxy_id","=",$data->id)
+										->where("is_on_celebgramme","=",0)
+										->get();
+				foreach ($accounts as $account){
+					$proxy_id = GlobalHelper::getProxy();
+					$update_account = Account::find($account->id);
+					$update_account->proxy_id = $proxy_id;
+					$update_account->is_refresh = 1;
+					$update_account->save();
+				}
 			}
 			$update_proxy->save();
 

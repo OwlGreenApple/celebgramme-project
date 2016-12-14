@@ -69,6 +69,38 @@ class GlobalHelper {
 	
 	/*
 	*
+	*	for get Proxy ID available
+	*
+	*/
+	public static function getProxy(){
+			//carikan proxy baru, yang available 
+			$availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
+												->groupBy("id","proxy","cred","port","auth")
+												->orderBy("countP","asc")
+												->having('countP', '<', 5)
+												->get();
+			$arrAvailableProxy = array();
+			foreach($availableProxy as $data) {
+				$dataNew = array();
+				$dataNew["id"] = $data->id;
+				$arrAvailableProxy[] = $dataNew;	
+			}
+			if (count($arrAvailableProxy)>0) {
+				$proxy_id = $arrAvailableProxy[array_rand($arrAvailableProxy)]["id"];
+			} else {
+				$availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
+													->groupBy("id","proxy","cred","port","auth")
+													->orderBy("countP","asc")
+													->first();
+				if (!is_null($availableProxy)) {
+					$proxy_id = $availableProxy->id;
+				}
+			}
+			return $proxy_id;
+	}
+	
+	/*
+	*
 	*	for clear Proxy and assign with new proxy
 	*
 	*/
