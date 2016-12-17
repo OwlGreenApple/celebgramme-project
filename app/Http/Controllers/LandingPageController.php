@@ -298,18 +298,28 @@ class LandingPageController extends Controller
     $user = Auth::user();
 
 		$arr_proxys = array();
-		// $arr_proxys[] = [
-			// "proxy"=>"185.152.131.111",
-			// "cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			// "port"=>"10822",
-			// "no"=>"1",
-		// ];
-		// $arr_proxys[] = [
-			// "proxy"=>"185.152.131.103",
-			// "cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			// "port"=>"10765",
-			// "no"=>"2",
-		// ];
+		
+		/* EX ERROR */
+		$arr_proxys[] = [
+			"proxy"=>"185.152.131.111",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10822",
+			"no"=>"1",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.131.103",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10765",
+			"no"=>"2",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.129.75",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10029",
+			"no"=>"6",
+		];
+		/* */
+		
 		$arr_proxys[] = [
 			"proxy"=>"185.152.129.82",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
@@ -322,12 +332,6 @@ class LandingPageController extends Controller
 			"port"=>"10033",
 			"no"=>"5",
 		];
-		// $arr_proxys[] = [
-			// "proxy"=>"185.152.129.75",
-			// "cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			// "port"=>"10029",
-			// "no"=>"6",
-		// ];
 		$arr_proxys[] = [
 			"proxy"=>"185.152.129.112",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
