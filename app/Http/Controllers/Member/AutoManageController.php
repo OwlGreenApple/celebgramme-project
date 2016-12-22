@@ -854,14 +854,14 @@ class AutoManageController extends Controller
 			"port"=>"10130",
 		];
 		$arr_proxys[] = [
-			"proxy"=>"185.152.129.33",
+			"proxy"=>"185.152.129.87",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10163",
+			"port"=>"10152",
 		];
 		$arr_proxys[] = [
-			"proxy"=>"185.152.129.85",
+			"proxy"=>"185.152.129.34",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10028",
+			"port"=>"10162",
 		];
 		$arr_proxys[] = [
 			"proxy"=>"185.152.129.58",
@@ -872,6 +872,16 @@ class AutoManageController extends Controller
 			"proxy"=>"185.152.129.62",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
 			"port"=>"10161",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.129.26",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10159",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.129.67",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10181",
 		];
 		// $arr_proxys[] = [
 			// "proxy"=>"185.152.129.123",
