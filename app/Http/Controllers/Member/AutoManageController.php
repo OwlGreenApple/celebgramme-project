@@ -843,21 +843,41 @@ class AutoManageController extends Controller
 		$proxy = "45.79.212.85";//good proxy
 		*/
 		$arr_proxys = array();		
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.108",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10520",
-		];
+		// $arr_proxys[] = [
+			// "proxy"=>"185.152.129.108",
+			// "cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			// "port"=>"10520",
+		// ];
 		$arr_proxys[] = [
 			"proxy"=>"185.152.129.41",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
 			"port"=>"10130",
 		];
 		$arr_proxys[] = [
-			"proxy"=>"185.152.129.123",
+			"proxy"=>"185.152.129.33",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10203",
+			"port"=>"10163",
 		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.129.85",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10028",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.129.58",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10152",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.129.62",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10161",
+		];
+		// $arr_proxys[] = [
+			// "proxy"=>"185.152.129.123",
+			// "cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			// "port"=>"10203",
+		// ];
 		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
 		$port = $arr_proxy["port"];
 		$cred = $arr_proxy["cred"];
