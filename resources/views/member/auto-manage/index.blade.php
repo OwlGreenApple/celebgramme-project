@@ -649,7 +649,7 @@ hanya akun yang di start saja yang dikurangi waktunya dari total waktu pembelian
 								<input type="checkbox" class="checkbox-term" id="terms-add-account8"> <label for="terms-add-account8" class="control-label">Saya sudah membaca & menyetujui <a href="http://celebgramme.com/terms-conditions">TERMS & CONDITIONS</a> Celebgramme </label>
 							</div>
 							<div class="col-sm-12 col-md-12">
-								<input type="checkbox" class="checkbox-term" id="terms-add-account10"> <label for="terms-add-account10" class="control-label">Silahkan login dahulu ke <a href="https://www.instagram.com/accounts/login/?force_classic_login">Instagram.com</a> via browser,<br> & jangan di logout sebelum berhasil add account </label>
+								<input type="checkbox" class="checkbox-term" id="terms-add-account10"> <label for="terms-add-account10" class="control-label">Silahkan login dahulu ke <a href="https://www.instagram.com/accounts/login/?force_classic_login">Instagram.com</a> via browser, & jangan di logout sebelum &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;berhasil add account </label>
 							</div>
             </div>  
             <div class="form-group form-group-sm row">
