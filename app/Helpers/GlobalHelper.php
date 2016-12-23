@@ -81,9 +81,12 @@ class GlobalHelper {
 												->get();
 			$arrAvailableProxy = array();
 			foreach($availableProxy as $data) {
-				$dataNew = array();
-				$dataNew["id"] = $data->id;
-				$arrAvailableProxy[] = $dataNew;	
+				$check_proxy = Proxies::find($data->id);
+				if ($check_proxy->is_error == 0){
+					$dataNew = array();
+					$dataNew["id"] = $data->id;
+					$arrAvailableProxy[] = $dataNew;	
+				}
 			}
 			if (count($arrAvailableProxy)>0) {
 				$proxy_id = $arrAvailableProxy[array_rand($arrAvailableProxy)]["id"];
@@ -116,9 +119,12 @@ class GlobalHelper {
 											->get();
 		$arrAvailableProxy = array();
 		foreach($availableProxy as $data) {
-			$dataNew = array();
-			$dataNew["id"] = $data->id;
-			$arrAvailableProxy[] = $dataNew;	
+			$check_proxy = Proxies::find($data->id);
+			if ($check_proxy->is_error == 0){
+				$dataNew = array();
+				$dataNew["id"] = $data->id;
+				$arrAvailableProxy[] = $dataNew;	
+			}
 		}
 		if (count($arrAvailableProxy)>0) {
 			$proxy_id = $arrAvailableProxy[array_rand($arrAvailableProxy)]["id"];
