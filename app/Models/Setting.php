@@ -67,31 +67,56 @@ class Setting extends Model {
 				$count_IG_account_server_A1 = SettingHelper::
 																			join("settings","settings.id","=","setting_helpers.setting_id")
 																			->where("cookies","=","success")
-																			->where("server_automation","like","A1%")
+																			->where("server_automation","like","A1(automation-1)%")
 																			->where("settings.status","=","started")
 																			->count();
 				$count_IG_account_server_A2 = SettingHelper::
 																			join("settings","settings.id","=","setting_helpers.setting_id")
 																			->where("cookies","=","success")
-																			->where("server_automation","like","A2%")
+																			->where("server_automation","like","A2(automation-2)%")
 																			->where("settings.status","=","started")
 																			->count();
 				$count_IG_account_server_A3 = SettingHelper::
 																			join("settings","settings.id","=","setting_helpers.setting_id")
 																			->where("cookies","=","success")
-																			->where("server_automation","like","A3%")
+																			->where("server_automation","like","A3(automation-3)%")
 																			->where("settings.status","=","started")
 																			->count();
 				$count_IG_account_server_A5 = SettingHelper::
 																			join("settings","settings.id","=","setting_helpers.setting_id")
 																			->where("cookies","=","success")
-																			->where("server_automation","like","A5%")
+																			->where("server_automation","like","A5(automation-5)%")
+																			->where("settings.status","=","started")
+																			->count();
+				//new
+				$count_IG_account_server_AA1 = SettingHelper::
+																			join("settings","settings.id","=","setting_helpers.setting_id")
+																			->where("cookies","=","success")
+																			->where("server_automation","like","AA1(automation-1)%")
+																			->where("settings.status","=","started")
+																			->count();
+				$count_IG_account_server_AA2 = SettingHelper::
+																			join("settings","settings.id","=","setting_helpers.setting_id")
+																			->where("cookies","=","success")
+																			->where("server_automation","like","AA2(automation-2)%")
+																			->where("settings.status","=","started")
+																			->count();
+				$count_IG_account_server_AA3 = SettingHelper::
+																			join("settings","settings.id","=","setting_helpers.setting_id")
+																			->where("cookies","=","success")
+																			->where("server_automation","like","AA3(automation-3)%")
 																			->where("settings.status","=","started")
 																			->count();
 				$setting_helper = new SettingHelper;
 				$setting_helper->setting_id = $setting->id;
 				$setting_helper->use_automation = 1;
-				if ( ($count_IG_account_server_A5<=$count_IG_account_server_A3) && ($count_IG_account_server_A5 <= $count_IG_account_server_A2) && ($count_IG_account_server_A5 <= $count_IG_account_server_A1) ) {
+				if ( ($count_IG_account_server_AA3<=$count_IG_account_server_AA2) && ($count_IG_account_server_AA3<=$count_IG_account_server_AA1) && ($count_IG_account_server_AA3<=$count_IG_account_server_A5) && ($count_IG_account_server_AA3<=$count_IG_account_server_A3) && ($count_IG_account_server_AA3 <= $count_IG_account_server_A2) && ($count_IG_account_server_AA3 <= $count_IG_account_server_A1) ) {
+					$setting_helper->server_automation = "AA3(automation-3)";
+				} else if ( ($count_IG_account_server_AA2<=$count_IG_account_server_AA1) && ($count_IG_account_server_AA2<=$count_IG_account_server_A5) && ($count_IG_account_server_AA2<=$count_IG_account_server_A3) && ($count_IG_account_server_AA2 <= $count_IG_account_server_A2) && ($count_IG_account_server_AA2 <= $count_IG_account_server_A1) ) {
+					$setting_helper->server_automation = "AA2(automation-2)";
+				} else if ( ($count_IG_account_server_AA1<=$count_IG_account_server_A5) && ($count_IG_account_server_AA1<=$count_IG_account_server_A3) && ($count_IG_account_server_AA1 <= $count_IG_account_server_A2) && ($count_IG_account_server_AA1 <= $count_IG_account_server_A1) ) {
+					$setting_helper->server_automation = "AA1(automation-1)";
+				} else if ( ($count_IG_account_server_A5<=$count_IG_account_server_A3) && ($count_IG_account_server_A5 <= $count_IG_account_server_A2) && ($count_IG_account_server_A5 <= $count_IG_account_server_A1) ) {
 					$setting_helper->server_automation = "A5(automation-5)";
 				} else if ( ($count_IG_account_server_A3 <= $count_IG_account_server_A2) && ($count_IG_account_server_A3 <= $count_IG_account_server_A1) ) { 
 					$setting_helper->server_automation = "A3(automation-3)";
