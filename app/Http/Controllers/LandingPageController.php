@@ -533,6 +533,15 @@ class LandingPageController extends Controller
 							->where("insta_username","=",$insta_username)
 							->first();
 		if (!is_null($check)) {
+			$on_celebgramme = 1;
+			if ($check->proxy_id==0) {
+				$on_celebgramme = 0;
+			}
+		} else {
+			$on_celebgramme = 0;
+		}
+		
+		if ($on_celebgramme) {
 			$arr["proxy_id"] = $check->proxy_id;
 			$arr["is_on_celebgramme"] = 1;
 		} else {
