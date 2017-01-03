@@ -533,15 +533,6 @@ class LandingPageController extends Controller
 							->where("insta_username","=",$insta_username)
 							->first();
 		if (!is_null($check)) {
-			$on_celebgramme = 1;
-			if ($check->proxy_id==0) {
-				$on_celebgramme = 0;
-			}
-		} else {
-			$on_celebgramme = 0;
-		}
-		
-		if ($on_celebgramme) {
 			$arr["proxy_id"] = $check->proxy_id;
 			$arr["is_on_celebgramme"] = 1;
 		} else {
@@ -553,9 +544,12 @@ class LandingPageController extends Controller
 												->get();
 			$arrAvailableProxy = array();
 			foreach($availableProxy as $data) {
-				$dataNew = array();
-				$dataNew["id"] = $data->id;
-				$arrAvailableProxy[] = $dataNew;	
+				$check_proxy = Proxies::find($data->id);
+				if ($check_proxy->is_error == 0){
+					$dataNew = array();
+					$dataNew["id"] = $data->id;
+					$arrAvailableProxy[] = $dataNew;	
+				}
 			}
 			if (count($arrAvailableProxy)>0) {
 				$proxy_id = $arrAvailableProxy[array_rand($arrAvailableProxy)]["id"];
