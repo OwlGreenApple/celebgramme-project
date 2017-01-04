@@ -202,6 +202,12 @@ class HomeController extends Controller
       $arr["type"]= "error";
       return $arr;
     }
+		
+		if ( ($order->order_status=="success") || ($order->order_status=="cron dari affiliate") ) {
+      $arr["message"]= "No order sudah lunas di confirm";
+      $arr["type"]= "error";
+      return $arr;
+		}
     
     if ($order->image<>"") {
       $arr["message"]= "Silahkan tunggu konfirmasi admin, no order anda sudah pernah di konfirmasi";
