@@ -551,9 +551,9 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 					
 					<div class="col-md-5 col-sm-5 col-xs-12">
 						<label>Activity Speed</label> 
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Activity speed</div><div class='panel-content'>Jika Akun anda BARU / Tdk aktif, START dgn SLOW/NORMAL speed utk 5 hari <br>• <strong>Slow</strong> = Melakukan 550 Likes, 120 comments, 350 follow/unfollow /hari <br>• <strong>Normal</strong> = Melakukan 1200 likes, 180 comments, 450 follow/unfollows /hari. <br>• <strong>Fast</strong> = Melakukan 1800 likes, 240 comments, 600 follow/unfollows /hari. <br></div>">
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Activity speed</div><div class='panel-content'>Jika Akun anda BARU / Tdk aktif, START dgn SLOW/NORMAL speed utk 5 hari <br>• <strong>Slow</strong> = Melakukan 200-250 Likes, 50 comments, 100-150 follow/unfollow /hari <br>• <strong>Normal</strong> = Melakukan 250-300 likes, 50 comments, 150-200 follow/unfollows /hari. <br>• <strong>Fast</strong> = Melakukan 300-350 likes, 50 comments, 200-250 follow/unfollows /hari. <br></div>">
 						</span>
-						<select class="form-control" name="data[activity_speed]" title="Slow - Kecepatan yang aman untuk melakukan sekitar 480 Likes, 144 comments, 336 follows, 240 unfollow per hari ( kecepatan terbaik untuk awal pemakaian )">
+						<select class="form-control" name="data[activity_speed]" title="">
 							<option value="normal" <?php if ($settings->activity_speed=='normal') echo "selected" ?>>Normal</option>
 							<option value="slow" <?php if ($settings->activity_speed=='slow') echo "selected" ?>>Slow</option>
 							<option value="fast" <?php if ($settings->activity_speed=='fast') echo "selected" ?>>Fast</option>
