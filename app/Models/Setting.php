@@ -117,7 +117,7 @@ class Setting extends Model {
 				} else if ( ($count_IG_account_server_AA1<=$count_IG_account_server_AA4) && ($count_IG_account_server_AA1<=$count_IG_account_server_A3) && ($count_IG_account_server_AA1 <= $count_IG_account_server_A2) && ($count_IG_account_server_AA1 <= $count_IG_account_server_A1) ) {
 					$setting_helper->server_automation = "AA1(automation-1)";
 				} else if ( ($count_IG_account_server_AA4<=$count_IG_account_server_A3) && ($count_IG_account_server_AA4 <= $count_IG_account_server_A2) && ($count_IG_account_server_AA4 <= $count_IG_account_server_A1) ) {
-					$setting_helper->server_automation = "A5(automation-5)";
+					$setting_helper->server_automation = "AA4(automation-4)";
 				} else if ( ($count_IG_account_server_A3 <= $count_IG_account_server_A2) && ($count_IG_account_server_A3 <= $count_IG_account_server_A1) ) { 
 					$setting_helper->server_automation = "A3(automation-3)";
 				} else if ($count_IG_account_server_A1 <= $count_IG_account_server_A2) {
