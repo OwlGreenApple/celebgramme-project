@@ -6,6 +6,7 @@ namespace Celebgramme\Http\Controllers\Member;
 
 use Celebgramme\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request as req;
 
 use Celebgramme\Models\RequestModel;
 use Celebgramme\Models\Invoice;
@@ -44,13 +45,62 @@ class AutoManageController extends Controller
 	 *
 	 * @return response
 	 */
-	public function index(){
+	public function index(req $request){
     $user = Auth::user();
     $order = Order::where("order_status","=","pending")->where("user_id","=",$user->id)->where("image",'=','')->first();
 		$status_server = Meta::where("meta_name","=","status_server")->first()->meta_value;
 		
 		$post = Post::where("type","=","home_page")->first();
 		$content = $post->description;
+		
+		//buat proxy random saat load page
+		//default random proxy 
+		$arr_proxys = array();		
+		$arr_proxys[] = [
+			"proxy"=>"185.152.129.41",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10130",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.129.87",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10152",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.129.34",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10162",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.129.58",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10152",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.129.62",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10161",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.129.26",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10159",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.129.67",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10181",
+		];
+		// $arr_proxys[] = [
+			// "proxy"=>"185.152.129.123",
+			// "cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			// "port"=>"10203",
+		// ];
+		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
+		$request->session()->put('arr_proxy', $arr_proxy);
+		
+		
+		
 		
     return view("member.auto-manage.index")->with(array(
       'user'=>$user,
@@ -61,7 +111,7 @@ class AutoManageController extends Controller
 	}
 
 
-  public function process_edit_password(){  
+  public function process_edit_password(req $request){  
     $user = Auth::user();
     $arr["message"]= "Ubah password berhasil dilakukan, sistem akan berjalan secara otomatis maksimum 1x24jam";
     $arr["type"]= "success";
@@ -93,7 +143,8 @@ class AutoManageController extends Controller
 			return $arr;
 		}*/
 			
-		if($this->checking_cred_instagram(Request::input("hidden_username"),Request::input("edit_password"),Request::input('setting_id'))) {
+		$arr_proxy = $request->session()->get('arr_proxy');
+		if($this->checking_cred_instagram(Request::input("hidden_username"),Request::input("edit_password"),$arr_proxy,Request::input('setting_id') )) {
 		} else {
 			$arr["message"]= "Instagram Login tidak valid";
 			$arr["type"]= "error";
@@ -120,7 +171,7 @@ class AutoManageController extends Controller
     return $arr;
   }
 
-  public function process_save_credential(){  
+  public function process_save_credential(req $request){  
     $user = Auth::user();
     $arr["message"]= "Silahkan melakukan Account SETTING";
     $arr["type"]= "success";
@@ -154,7 +205,8 @@ class AutoManageController extends Controller
 			
 		//available username or not
 		if ($user->test==0){
-			if($this->checking_cred_instagram(Request::input("username"),Request::input("password"))) {
+			$arr_proxy = $request->session()->get('arr_proxy');
+			if($this->checking_cred_instagram(Request::input("username"),Request::input("password"),$arr_proxy)) {
 			} else {
 				$arr["message"]= "Instagram Login tidak valid";
 				$arr["type"]= "error";
@@ -833,21 +885,10 @@ class AutoManageController extends Controller
 		return "success";
 	}
 
-	public function checking_cred_instagram($username,$password,$setting_id = 0){  
+	public function checking_cred_instagram($username,$password,$arr_proxy,$setting_id = 0){  
+/*
 		//default random proxy 
-		/*
-		$ports[] = "10204"; 
-		$ports[] = "10205";
-		$port = $ports[array_rand($ports)];
-		$cred = "sugiarto:sugihproxy250";
-		$proxy = "45.79.212.85";//good proxy
-		*/
 		$arr_proxys = array();		
-		// $arr_proxys[] = [
-			// "proxy"=>"185.152.129.108",
-			// "cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			// "port"=>"10520",
-		// ];
 		$arr_proxys[] = [
 			"proxy"=>"185.152.129.41",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
@@ -888,7 +929,10 @@ class AutoManageController extends Controller
 			// "cred"=>"141sugiartolasjim:qjubrkujxvhf",
 			// "port"=>"10203",
 		// ];
+		
 		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
+*/		
+		
 		$port = $arr_proxy["port"];
 		$cred = $arr_proxy["cred"];
 		$proxy = $arr_proxy["proxy"];
