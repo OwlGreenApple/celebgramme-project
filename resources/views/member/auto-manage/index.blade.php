@@ -625,7 +625,8 @@ hanya akun yang di start saja yang dikurangi waktunya dari total waktu pembelian
 								<input type="checkbox" class="checkbox-term" id="terms-add-account1"> <label for="terms-add-account1" class="control-label">UMUR akun Instagram minimal 10 hari</label>
 							</div>
 							<div class="col-sm-12 col-md-12">
-								<input type="checkbox" class="checkbox-term" id="terms-add-account2"> <label for="terms-add-account2" class="control-label">TIDAK menggunakan system automation Instagram selain Celebgramme</label>
+								<input type="checkbox" class="checkbox-term" id="terms-add-account2"> <label for="terms-add-account2" class="control-label">TIDAK menggunakan system automation Instagram selain Celebgramme </label>
+								<p style="font-size:11px; margin-left:10px;"> PS : Stop Celebgramme terlebih dahulu apabila akan melakukan <br>activity Instagram secara manual(Follow / Like / Comment / Unfollow)</p>
 							</div>
 							<div class="col-sm-12 col-md-12">
 								<input type="checkbox" class="checkbox-term" id="terms-add-account3"> <label for="terms-add-account3" class="control-label">TIDAK membeli followers selama menggunakan Celebgramme</label>
