@@ -28,6 +28,7 @@ class Setting extends Model {
     'username', 'status', 'activity', 'status_whitelist','usernames_whitelist', 'status_follow_unfollow', 'status_like', 'status_comment', 'error_cred', "status_follow", "status_unfollow", "status_auto", "status_follow_auto", "status_unfollow_auto" ];
 	protected function createSetting($arr)
 	{
+		$arr_proxy = $arr['arr_proxy'];
 		$user = Auth::user();
         $setting = new Setting;
         $setting->insta_username = $arr['insta_username'];
@@ -110,6 +111,7 @@ class Setting extends Model {
 				$setting_helper = new SettingHelper;
 				$setting_helper->setting_id = $setting->id;
 				$setting_helper->use_automation = 1;
+				$setting_helper->proxy_id = $arr_proxy["proxy_id"]; //
 				if ( ($count_IG_account_server_AA3<=$count_IG_account_server_AA2) && ($count_IG_account_server_AA3<=$count_IG_account_server_AA1) && ($count_IG_account_server_AA3<=$count_IG_account_server_AA4) && ($count_IG_account_server_AA3<=$count_IG_account_server_A3) && ($count_IG_account_server_AA3 <= $count_IG_account_server_A2) && ($count_IG_account_server_AA3 <= $count_IG_account_server_A1) ) {
 					$setting_helper->server_automation = "AA3(automation-3)";
 				} else if ( ($count_IG_account_server_AA2<=$count_IG_account_server_AA1) && ($count_IG_account_server_AA2<=$count_IG_account_server_AA4) && ($count_IG_account_server_AA2<=$count_IG_account_server_A3) && ($count_IG_account_server_AA2 <= $count_IG_account_server_A2) && ($count_IG_account_server_AA2 <= $count_IG_account_server_A1) ) {

@@ -143,7 +143,8 @@ class AutoManageController extends Controller
 			return $arr;
 		}*/
 			
-		$arr_proxy = $request->session()->get('arr_proxy');
+		// $arr_proxy = $request->session()->get('arr_proxy');
+		$arr_proxy = $this->get_proxy_id; //
 		if($this->checking_cred_instagram(Request::input("hidden_username"),Request::input("edit_password"),$arr_proxy,Request::input('setting_id') )) {
 		} else {
 			$arr["message"]= "Instagram Login tidak valid";
@@ -203,9 +204,11 @@ class AutoManageController extends Controller
 			return $arr;
 		}
 			
-		//available username or not
+		//Instagram Login Valid or not
 		if ($user->test==0){
-			$arr_proxy = $request->session()->get('arr_proxy');
+			// $arr_proxy = $request->session()->get('arr_proxy');
+			$arr_proxy = $this->get_proxy_id; //
+			$data["arr_proxy"] = $arr_proxy; //
 			if($this->checking_cred_instagram(Request::input("username"),Request::input("password"),$arr_proxy)) {
 			} else {
 				$arr["message"]= "Instagram Login tidak valid";
@@ -1127,4 +1130,57 @@ class AutoManageController extends Controller
 		return $is_private;
 	}
 
+	/*
+	* FUNCTION CUMAN JALAN DI PRODUCTION, KARENA VIEW DATABASE
+	* is_on_celebgramme tidak dipake 
+	*/
+	public function get_proxy_id($insta_username){	
+		//check insta_username ada di celebpost 
+		$check = Account::where("proxy_id","!=",0)
+							->where("username","=",$insta_username)
+							->first();
+		if (!is_null($check)) {
+			$arr["proxy_id"] = $check->proxy_id;
+		} else {
+			//carikan proxy baru, yang available 
+			$availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
+												->groupBy("id","proxy","cred","port","auth")
+												->orderBy("countP","asc")
+												->having('countP', '<', 5)
+												->get();
+			$arrAvailableProxy = array();
+			foreach($availableProxy as $data) {
+				$check_proxy = Proxies::find($data->id);
+				if ($check_proxy->is_error == 0){
+					$dataNew = array();
+					$dataNew["id"] = $data->id;
+					$arrAvailableProxy[] = $dataNew;	
+				}
+			}
+			if (count($arrAvailableProxy)>0) {
+				$proxy_id = $arrAvailableProxy[array_rand($arrAvailableProxy)]["id"];
+			} else {
+				$availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
+													->groupBy("id","proxy","cred","port","auth")
+													->orderBy("countP","asc")
+													->first();
+				if (!is_null($availableProxy)) {
+					$proxy_id = $availableProxy->id;
+				}
+			}
+			$arr["proxy_id"] = $proxy_id;
+			
+		}
+	
+		$full_proxy =  Proxies::find($arr["proxy_id"]);
+		if (!is_null($full_proxy)) {
+			$arr["port"] = $full_proxy->port;
+			$arr["cred"] = $full_proxy->cred;
+			$arr["proxy"] = $full_proxy->proxy;
+			$arr["auth"] = $full_proxy->auth;
+		}
+	
+		return $arr;
+	}
+	
 }
