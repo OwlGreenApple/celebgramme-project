@@ -144,7 +144,7 @@ class AutoManageController extends Controller
 		}*/
 			
 		// $arr_proxy = $request->session()->get('arr_proxy');
-		$arr_proxy = $this->get_proxy_id; //
+		$arr_proxy = $this->get_proxy_id(Request::input("hidden_username")); //
 		if($this->checking_cred_instagram(Request::input("hidden_username"),Request::input("edit_password"),$arr_proxy,Request::input('setting_id') )) {
 		} else {
 			$arr["message"]= "Instagram Login tidak valid";
@@ -207,7 +207,7 @@ class AutoManageController extends Controller
 		//Instagram Login Valid or not
 		if ($user->test==0){
 			// $arr_proxy = $request->session()->get('arr_proxy');
-			$arr_proxy = $this->get_proxy_id; //
+			$arr_proxy = $this->get_proxy_id(Request::input("username")); //
 			$data["arr_proxy"] = $arr_proxy; //
 			if($this->checking_cred_instagram(Request::input("username"),Request::input("password"),$arr_proxy)) {
 			} else {
