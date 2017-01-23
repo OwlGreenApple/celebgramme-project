@@ -27,6 +27,7 @@ use Celebgramme\Models\TimeLog;
 use Celebgramme\Models\Account;
 
 use Celebgramme\Veritrans\Veritrans;
+use Celebgramme\Models\ViewProxyUses;
 
 use Celebgramme\Helpers\GlobalHelper;
 
