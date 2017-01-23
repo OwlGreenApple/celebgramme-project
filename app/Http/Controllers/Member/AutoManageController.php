@@ -31,7 +31,7 @@ use Celebgramme\Models\ViewProxyUses;
 
 use Celebgramme\Helpers\GlobalHelper;
 
-use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt;
+use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, DB;
 
 class AutoManageController extends Controller
 {
