@@ -111,7 +111,7 @@ class Setting extends Model {
 				$setting_helper = new SettingHelper;
 				$setting_helper->setting_id = $setting->id;
 				$setting_helper->use_automation = 1;
-				$setting_helper->proxy_id = $arr_proxy["proxy_id"]; //
+				// $setting_helper->proxy_id = $arr_proxy["proxy_id"]; //
 				if ( ($count_IG_account_server_AA3<=$count_IG_account_server_AA2) && ($count_IG_account_server_AA3<=$count_IG_account_server_AA1) && ($count_IG_account_server_AA3<=$count_IG_account_server_AA4) && ($count_IG_account_server_AA3<=$count_IG_account_server_A3) && ($count_IG_account_server_AA3 <= $count_IG_account_server_A2) && ($count_IG_account_server_AA3 <= $count_IG_account_server_A1) ) {
 					$setting_helper->server_automation = "AA3(automation-3)";
 				} else if ( ($count_IG_account_server_AA2<=$count_IG_account_server_AA1) && ($count_IG_account_server_AA2<=$count_IG_account_server_AA4) && ($count_IG_account_server_AA2<=$count_IG_account_server_A3) && ($count_IG_account_server_AA2 <= $count_IG_account_server_A2) && ($count_IG_account_server_AA2 <= $count_IG_account_server_A1) ) {
