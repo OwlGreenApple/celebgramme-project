@@ -233,10 +233,10 @@ class AutoManageController extends Controller
 			else {
 				$full_proxy =  Proxies::find($setting->proxy_id);
 				if (!is_null($full_proxy)) {
-					$arr["port"] = $full_proxy->port;
-					$arr["cred"] = $full_proxy->cred;
-					$arr["proxy"] = $full_proxy->proxy;
-					$arr["auth"] = $full_proxy->auth;
+					$arr_proxy["port"] = $full_proxy->port;
+					$arr_proxy["cred"] = $full_proxy->cred;
+					$arr_proxy["proxy"] = $full_proxy->proxy;
+					$arr_proxy["auth"] = $full_proxy->auth;
 				}
 			}
 				

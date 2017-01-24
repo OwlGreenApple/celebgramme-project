@@ -142,6 +142,16 @@
 		});
 		
   $(document).ready(function() {
+		$('#terms-add-account1').attr('checked', false); // Unchecks it
+		$('#terms-add-account2').attr('checked', false); // Unchecks it
+		$('#terms-add-account3').attr('checked', false); // Unchecks it
+		$('#terms-add-account4').attr('checked', false); // Unchecks it
+		$('#terms-add-account5').attr('checked', false); // Unchecks it
+		$('#terms-add-account6').attr('checked', false); // Unchecks it
+		$('#terms-add-account7').attr('checked', false); // Unchecks it
+		$('#terms-add-account8').attr('checked', false); // Unchecks it
+		$('#terms-add-account9').attr('checked', false); // Unchecks it
+		$('#terms-add-account10').attr('checked', false); // Unchecks it
 
 		/*Terms and condition*/
 		<?php if ($user->agree_term_condition==0) { ?>
@@ -153,14 +163,6 @@
 			$("#confirm_password").prop('disabled', true);
 			$("#button-process").prop('disabled', true);
 			
-			$('#terms-add-account1').attr('checked', false); // Unchecks it
-			$('#terms-add-account2').attr('checked', false); // Unchecks it
-			$('#terms-add-account3').attr('checked', false); // Unchecks it
-			$('#terms-add-account4').attr('checked', false); // Unchecks it
-			$('#terms-add-account5').attr('checked', false); // Unchecks it
-			$('#terms-add-account6').attr('checked', false); // Unchecks it
-			$('#terms-add-account7').attr('checked', false); // Unchecks it
-			$('#terms-add-account8').attr('checked', false); // Unchecks it
 		});
 		$('.checkbox-term').click(function(){
 			if( ($("#terms-add-account1").prop("checked") == true) && ($("#terms-add-account2").prop("checked") == true) && ($("#terms-add-account3").prop("checked") == true) && ($("#terms-add-account4").prop("checked") == true) && ($("#terms-add-account5").prop("checked") == true) && ($("#terms-add-account6").prop("checked") == true) && ($("#terms-add-account7").prop("checked") == true) && ($("#terms-add-account8").prop("checked") == true) && ($("#terms-add-account9").prop("checked") == true) ){
@@ -340,6 +342,16 @@
 
 									$("#username").val("");
 									$("#password").val("");
+									$('#terms-add-account1').attr('checked', false); // Unchecks it
+									$('#terms-add-account2').attr('checked', false); // Unchecks it
+									$('#terms-add-account3').attr('checked', false); // Unchecks it
+									$('#terms-add-account4').attr('checked', false); // Unchecks it
+									$('#terms-add-account5').attr('checked', false); // Unchecks it
+									$('#terms-add-account6').attr('checked', false); // Unchecks it
+									$('#terms-add-account7').attr('checked', false); // Unchecks it
+									$('#terms-add-account8').attr('checked', false); // Unchecks it
+									$('#terms-add-account9').attr('checked', false); // Unchecks it
+									$('#terms-add-account10').attr('checked', false); // Unchecks it
 									// $("#confirm_password").val("");
                 }
                 else if(data.type=='error')
