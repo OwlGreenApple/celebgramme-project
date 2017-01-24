@@ -241,7 +241,9 @@ class AutoManageController extends Controller
 			}
 				
 			$data["arr_proxy"] = $arr_proxy; //
+			//check login valid / invalid
 			if($this->checking_cred_instagram(Request::input("username"),Request::input("password"),$arr_proxy)) {
+				//check klo uda ada gaa usa create lagi 
 				$setting = Setting::where("insta_username","=",Request::input("username"))
 										->where("type","=","temp")
 										->first();
@@ -251,6 +253,7 @@ class AutoManageController extends Controller
 					$setting_id_temp = $setting->id;
 				}
 			} else {
+				//check klo uda ada gaa usa create lagi 
 				$setting = Setting::where("insta_username","=",Request::input("username"))
 										->where("type","=","temp")
 										->first();

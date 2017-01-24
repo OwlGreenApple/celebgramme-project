@@ -253,6 +253,8 @@ class HomeController extends Controller
     $filename = $order->no_order.".".Input::file('photo')->getClientOriginalExtension();
     Input::file('photo')->move($destinationPath, $filename);
     $order->image = $filename;
+		$dt = Carbon::now();
+    $order->confirmed_at = $dt->toDateTimeString();
     $order->save();
     
     OrderMeta::createMeta("jumlah transfer","Rp. ".number_format($order->total - $order->discount,0,'','.'),$order->id);
