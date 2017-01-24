@@ -115,6 +115,11 @@ use Celebgramme\Models\SettingHelper;
 			$(".advanced-manual-setting").addClass("hide");
 		<?php } ?>
 
+		$('#activity-speed').on('change', function() {
+			if (this.value=="turbo") {
+				alert("Ada Resiko anda akan diban oleh instagram menggunakan speed ini.");
+			}
+		})
 	});
 	
 </script>
@@ -551,12 +556,16 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 					
 					<div class="col-md-5 col-sm-5 col-xs-12">
 						<label>Activity Speed</label> 
-						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Activity speed</div><div class='panel-content'>Jika Akun anda BARU / Tdk aktif, START dgn SLOW/NORMAL speed utk 5 hari <br>• <strong>Slow</strong> = Melakukan 200-250 Likes, 50 comments, 100-150 follow/unfollow /hari <br>• <strong>Normal</strong> = Melakukan 250-300 likes, 50 comments, 150-200 follow/unfollows /hari. <br>• <strong>Fast</strong> = Melakukan 300-350 likes, 50 comments, 200-250 follow/unfollows /hari. <br></div>">
+						<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="
+						<div class='panel-heading'>Activity speed</div><div class='panel-content'>Jika Akun anda BARU / Tdk aktif, START dgn SLOW/NORMAL speed utk 5 hari <br>• <strong>Slow</strong> = Melakukan 200-250 Likes, 50 comments, 100-150 follow/unfollow /hari <br>• <strong>Normal</strong> = Melakukan 250-300 likes, 50 comments, 150-200 follow/unfollows /hari. <br>• <strong>Fast</strong> = Melakukan 300-350 likes, 50 comments, 300-350 follow/unfollows /hari. <br>
+						• <strong>Turbo</strong> = Melakukan 600-750 likes, 50 comments, 600-750 follow/unfollows /hari. 
+						</div>">
 						</span>
-						<select class="form-control" name="data[activity_speed]" title="">
+						<select class="form-control" name="data[activity_speed]" title="" id="activity-speed">
 							<option value="normal" <?php if ($settings->activity_speed=='normal') echo "selected" ?>>Normal</option>
 							<option value="slow" <?php if ($settings->activity_speed=='slow') echo "selected" ?>>Slow</option>
 							<option value="fast" <?php if ($settings->activity_speed=='fast') echo "selected" ?>>Fast</option>
+							<option value="turbo" <?php if ($settings->activity_speed=='turbo') echo "selected" ?>>Turbo</option>
 						</select>
 					</div>
 					

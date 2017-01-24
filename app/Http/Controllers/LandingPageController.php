@@ -20,6 +20,7 @@ use Celebgramme\Models\Package;
 use Celebgramme\Models\Idaff;
 use Celebgramme\Models\UserLog;
 use Celebgramme\Models\Proxies;
+use Celebgramme\Models\Meta;
 use Celebgramme\Models\ViewProxyUses;
 
 use Celebgramme\Veritrans\Veritrans;
@@ -31,6 +32,13 @@ use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, DB;
 class LandingPageController extends Controller
 {
   
+	public function testing(){
+		$temp = Meta::createMeta("random_action_follow_turbo_min",3);
+		$temp = Meta::createMeta("random_action_follow_turbo_max",8);
+		$temp = Meta::createMeta("random_action_like_turbo_min",2);
+		$temp = Meta::createMeta("random_action_like_turbo_max",3);
+	}
+	
 	/**
 	 * Menampilkan halaman utama
 	 *
