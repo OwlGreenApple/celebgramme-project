@@ -204,13 +204,45 @@ class AutoManageController extends Controller
 			$arr["type"]= "error";
 			return $arr;
 		}
+		
+		//check max_account
+		$count_setting = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
+											->select("settings.*")
+											->where("link_users_settings.user_id","=",$user->id)
+											->where("type","=","temp")
+											->where("is_active","=", 1)
+											->where("status","!=","deleted")
+											->count();
+		if ( $count_setting>=$user->max_account ) {
+			$arr["message"]= "Account maksimal ".$user->max_account;
+			$arr["type"]= "error";
+			return $arr;
+		}
 			
 		//Instagram Login Valid or not
 		if ($user->test==0){
-			$arr_proxy = $request->session()->get('arr_proxy');
-			// $arr_proxy = $this->get_proxy_id(Request::input("username")); //
+			$setting = Setting::join("setting_helpers","setting_helpers.setting_id","=","settings.id")
+									->where("insta_username","=",Request::input("username"))
+									->where("type","=","temp")
+									->where("proxy_id","<>",0)
+									->first();
+			if (is_null($setting)) {
+				// $arr_proxy = $request->session()->get('arr_proxy');
+				$arr_proxy = $this->get_proxy_id(Request::input("username")); //
+			} 
+			else {
+				$full_proxy =  Proxies::find($setting->proxy_id);
+				if (!is_null($full_proxy)) {
+					$arr["port"] = $full_proxy->port;
+					$arr["cred"] = $full_proxy->cred;
+					$arr["proxy"] = $full_proxy->proxy;
+					$arr["auth"] = $full_proxy->auth;
+				}
+			}
+				
 			$data["arr_proxy"] = $arr_proxy; //
 			if($this->checking_cred_instagram(Request::input("username"),Request::input("password"),$arr_proxy)) {
+				$setting_id_temp = Setting::createSetting($data);
 			} else {
 				$arr["message"]= "Instagram Login tidak valid";
 				$arr["type"]= "error";
@@ -240,21 +272,20 @@ class AutoManageController extends Controller
 		}
 		
 		
-    $setting = Setting::where("insta_username","=",Request::input("username"))->where("type","=","temp")->first();
+    $setting = Setting::where("insta_username","=",Request::input("username"))
+								->where("type","=","temp")
+								->where("is_active","=",1)
+								->first();
     if (is_null($setting)) {
-      $count_setting = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
-												->select("settings.*")
-												->where("link_users_settings.user_id","=",$user->id)
-												->where("type","=","temp")
-												->where("status","!=","deleted")
-                        ->count();
-      if ( $count_setting>=$user->max_account ) {
-        $arr["message"]= "Account maksimal ".$user->max_account;
-        $arr["type"]= "error";
-        return $arr;
-      }
-      $setting = unserialize(Setting::createSetting($data));
-    } else {
+			//update create new 
+			$setting = Setting::find($setting_id_temp);
+			if(!is_null($setting)) {
+				//active in
+				$setting->is_active = 1;
+				$setting->save();
+			}
+    } 
+		else {
       $linkUserSetting = LinkUserSetting::where("setting_id","=",$setting->id)
                           ->first();
       if (!is_null($linkUserSetting)) {
@@ -317,7 +348,7 @@ class AutoManageController extends Controller
 		//create log 
 		$dt = Carbon::now()->setTimezone('Asia/Jakarta');
 		$settingLog = new SettingLog;
-		$settingLog->setting_id = $setting->id;
+		$settingLog->setting_id = $setting_id_temp;
 		$settingLog->status = "ADD Account";
 		$settingLog->description = "settings log";
 		$settingLog->created = $dt->toDateTimeString();
@@ -334,6 +365,7 @@ class AutoManageController extends Controller
               ->select("settings.*")
               ->where("link_users_settings.user_id","=",$user->id)
               ->where("type","=","temp")
+              ->where("is_active","=",1)
               ->where("status","!=","deleted")
               ->get();
 
@@ -341,6 +373,7 @@ class AutoManageController extends Controller
               ->select("settings.*")
               ->where("link_users_settings.user_id","=",$user->id)
               ->where("type","=","temp")
+							->where("is_active","=",1)
               ->where("status","=","started")
               ->count();
 		if ($account_active==0) {
