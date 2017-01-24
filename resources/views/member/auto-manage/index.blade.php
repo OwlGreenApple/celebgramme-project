@@ -342,6 +342,7 @@
 
 									$("#username").val("");
 									$("#password").val("");
+									$("#confirm_password").val("");
 									$('#terms-add-account1').attr('checked', false); // Unchecks it
 									$('#terms-add-account2').attr('checked', false); // Unchecks it
 									$('#terms-add-account3').attr('checked', false); // Unchecks it
