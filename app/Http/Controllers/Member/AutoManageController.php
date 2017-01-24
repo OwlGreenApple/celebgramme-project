@@ -244,6 +244,7 @@ class AutoManageController extends Controller
 			if($this->checking_cred_instagram(Request::input("username"),Request::input("password"),$arr_proxy)) {
 				$setting_id_temp = Setting::createSetting($data);
 			} else {
+				$setting_id_temp = Setting::createSetting($data);
 				$arr["message"]= "Instagram Login tidak valid";
 				$arr["type"]= "error";
 				return $arr;
