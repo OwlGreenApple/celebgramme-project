@@ -352,7 +352,7 @@
 									$('#terms-add-account7').attr('checked', false); // Unchecks it
 									$('#terms-add-account8').attr('checked', false); // Unchecks it
 									$('#terms-add-account9').attr('checked', false); // Unchecks it
-									$('#terms-add-account10').attr('checked', false); // Unchecks it
+									// $('#terms-add-account10').attr('checked', false); // Unchecks it
 									// $("#confirm_password").val("");
                 }
                 else if(data.type=='error')
