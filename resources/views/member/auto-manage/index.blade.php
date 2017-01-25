@@ -357,6 +357,7 @@
                 }
                 else if(data.type=='error')
                 {
+									$('#terms-add-account9').attr('checked', false); // Unchecks it
                   $("#alert").addClass('btn-danger');
                   $("#alert").removeClass('alert-success');
                 }
