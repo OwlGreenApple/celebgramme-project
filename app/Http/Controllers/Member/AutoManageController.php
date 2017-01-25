@@ -199,8 +199,20 @@ class AutoManageController extends Controller
 			'insta_username' => 'email',
 		]);
 		if (!$validator->fails())
-			{
+		{
 			$arr["message"]= "Instagram username tidak boleh email";
+			$arr["type"]= "error";
+			return $arr;
+		}
+		
+		//tidak boleh mengandung "@", " "
+		if (strpos(Request::input("username"), '@') !== false) {
+			$arr["message"]= "Instagram username tidak boleh mengandung @";
+			$arr["type"]= "error";
+			return $arr;
+		}
+		if (strpos(Request::input("username"), ' ') !== false) {
+			$arr["message"]= "Instagram username tidak boleh mengandung space";
 			$arr["type"]= "error";
 			return $arr;
 		}
