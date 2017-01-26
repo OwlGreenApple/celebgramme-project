@@ -124,9 +124,9 @@ class Setting extends Model {
 		} else if ( ($count_IG_account_server_A3 <= $count_IG_account_server_AA6) && ($count_IG_account_server_A3 <= $count_IG_account_server_AA5) ) { 
 			$setting_helper->server_automation = "A3(automation-3)";
 		} else if ($count_IG_account_server_AA5 <= $count_IG_account_server_AA6) {
-			$setting_helper->server_automation = "A1(automation-1)";
+			$setting_helper->server_automation = "AA5(automation-5)";
 		} else {
-			$setting_helper->server_automation = "A2(automation-2)";
+			$setting_helper->server_automation = "AA6(automation-6)";
 		}
 		$setting_helper->save();
 
