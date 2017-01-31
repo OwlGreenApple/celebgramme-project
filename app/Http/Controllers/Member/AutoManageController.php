@@ -353,7 +353,7 @@ class AutoManageController extends Controller
 				$setting_helper = new SettingHelper;
 				$setting_helper->setting_id = $setting->id;
 				$setting_helper->use_automation = 1;
-				$setting_helper->server_automation = "A3(automation-3)";
+				$setting_helper->server_automation = "AA7(automation-7)";
 				$setting_helper->save();
 			}
 			

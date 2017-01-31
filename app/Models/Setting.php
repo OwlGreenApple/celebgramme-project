@@ -77,10 +77,10 @@ class Setting extends Model {
 																	->where("server_automation","like","AA6(automation-6)%")
 																	->where("settings.status","=","started")
 																	->count();
-		$count_IG_account_server_A3 = SettingHelper::
+		$count_IG_account_server_AA7 = SettingHelper::
 																	join("settings","settings.id","=","setting_helpers.setting_id")
 																	->where("cookies","=","success")
-																	->where("server_automation","like","A3(automation-3)%")
+																	->where("server_automation","like","AA7(automation-7)%")
 																	->where("settings.status","=","started")
 																	->count();
 		//new
@@ -113,16 +113,16 @@ class Setting extends Model {
 		$setting_helper->use_automation = 1;
 		$setting_helper->proxy_id = $arr_proxy["proxy_id"]; //
 		// $setting_helper->proxy_id = $arr_proxy["proxy_id"]; //
-		if ( ($count_IG_account_server_AA3<=$count_IG_account_server_AA2) && ($count_IG_account_server_AA3<=$count_IG_account_server_AA1) && ($count_IG_account_server_AA3<=$count_IG_account_server_AA4) && ($count_IG_account_server_AA3<=$count_IG_account_server_A3) && ($count_IG_account_server_AA3 <= $count_IG_account_server_AA6) && ($count_IG_account_server_AA3 <= $count_IG_account_server_AA5) ) {
+		if ( ($count_IG_account_server_AA3<=$count_IG_account_server_AA2) && ($count_IG_account_server_AA3<=$count_IG_account_server_AA1) && ($count_IG_account_server_AA3<=$count_IG_account_server_AA4) && ($count_IG_account_server_AA3<=$count_IG_account_server_AA7) && ($count_IG_account_server_AA3 <= $count_IG_account_server_AA6) && ($count_IG_account_server_AA3 <= $count_IG_account_server_AA5) ) {
 			$setting_helper->server_automation = "AA3(automation-3)";
-		} else if ( ($count_IG_account_server_AA2<=$count_IG_account_server_AA1) && ($count_IG_account_server_AA2<=$count_IG_account_server_AA4) && ($count_IG_account_server_AA2<=$count_IG_account_server_A3) && ($count_IG_account_server_AA2 <= $count_IG_account_server_AA6) && ($count_IG_account_server_AA2 <= $count_IG_account_server_AA5) ) {
+		} else if ( ($count_IG_account_server_AA2<=$count_IG_account_server_AA1) && ($count_IG_account_server_AA2<=$count_IG_account_server_AA4) && ($count_IG_account_server_AA2<=$count_IG_account_server_AA7) && ($count_IG_account_server_AA2 <= $count_IG_account_server_AA6) && ($count_IG_account_server_AA2 <= $count_IG_account_server_AA5) ) {
 			$setting_helper->server_automation = "AA2(automation-2)";
-		} else if ( ($count_IG_account_server_AA1<=$count_IG_account_server_AA4) && ($count_IG_account_server_AA1<=$count_IG_account_server_A3) && ($count_IG_account_server_AA1 <= $count_IG_account_server_AA6) && ($count_IG_account_server_AA1 <= $count_IG_account_server_AA5) ) {
+		} else if ( ($count_IG_account_server_AA1<=$count_IG_account_server_AA4) && ($count_IG_account_server_AA1<=$count_IG_account_server_AA7) && ($count_IG_account_server_AA1 <= $count_IG_account_server_AA6) && ($count_IG_account_server_AA1 <= $count_IG_account_server_AA5) ) {
 			$setting_helper->server_automation = "AA1(automation-1)";
-		} else if ( ($count_IG_account_server_AA4<=$count_IG_account_server_A3) && ($count_IG_account_server_AA4 <= $count_IG_account_server_AA6) && ($count_IG_account_server_AA4 <= $count_IG_account_server_AA5) ) {
+		} else if ( ($count_IG_account_server_AA4<=$count_IG_account_server_AA7) && ($count_IG_account_server_AA4 <= $count_IG_account_server_AA6) && ($count_IG_account_server_AA4 <= $count_IG_account_server_AA5) ) {
 			$setting_helper->server_automation = "AA4(automation-4)";
-		} else if ( ($count_IG_account_server_A3 <= $count_IG_account_server_AA6) && ($count_IG_account_server_A3 <= $count_IG_account_server_AA5) ) { 
-			$setting_helper->server_automation = "A3(automation-3)";
+		} else if ( ($count_IG_account_server_AA7 <= $count_IG_account_server_AA6) && ($count_IG_account_server_AA7 <= $count_IG_account_server_AA5) ) { 
+			$setting_helper->server_automation = "AA7(automation-7)";
 		} else if ($count_IG_account_server_AA5 <= $count_IG_account_server_AA6) {
 			$setting_helper->server_automation = "AA5(automation-5)";
 		} else {
