@@ -368,6 +368,7 @@ class CronJobController extends Controller
 								->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 								->where("settings.type",'=','temp')
 								->where('settings.error_cred','=',0)
+								->where('settings.insta_user_id','=',"0")
 								->where("users.active_auto_manage",">",0)
 								->where("insta_username","=",$insta_username)
 								// ->where("setting_helpers.server_automation","=",$server_automation)
@@ -394,6 +395,14 @@ class CronJobController extends Controller
 				} 
 				SettingMeta::createMeta("followers",$followers,$setting->id);
 				SettingMeta::createMeta("following",$following,$setting->id);
+				
+				//klo insta_user_id == 0
+				if ($setting->insta_user_id == "0"){
+					$setting_temp = Setting::find($setting->id);
+					$setting_temp->insta_user_id = $id;
+					$setting_temp->save();
+				}
+				
 				if (!$found)  {
 					//
 				}
