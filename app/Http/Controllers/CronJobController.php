@@ -368,7 +368,6 @@ class CronJobController extends Controller
 								->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 								->where("settings.type",'=','temp')
 								->where('settings.error_cred','=',0)
-								->where('settings.insta_user_id','=',"0")
 								->where("users.active_auto_manage",">",0)
 								->where("insta_username","=",$insta_username)
 								// ->where("setting_helpers.server_automation","=",$server_automation)
