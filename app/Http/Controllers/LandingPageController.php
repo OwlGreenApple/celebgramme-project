@@ -501,6 +501,8 @@ class LandingPageController extends Controller
 				"media_id"=>$data["id"],
 				"caption"=>$data["caption"],
 				"owner"=>$data["owner"]["username"],
+				"likes_count"=>$data["likes"]["count"],
+				"comments_count"=>$data["comments"]["count"],
 			]; 
 		}
 		$media_count = number_format($arr_res["media"]["count"],0,"",".");
