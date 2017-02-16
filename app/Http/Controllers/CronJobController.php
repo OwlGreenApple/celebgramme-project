@@ -335,7 +335,8 @@ class CronJobController extends Controller
 	 */
 	public function count_instagram_data($insta_username= ""){
 		include('simple_html_dom.php'); 
-		// $dt = Carbon::now()->setTimezone('Asia/Jakarta'); 
+		$dt = Carbon::now()->setTimezone('Asia/Jakarta'); 
+		
 		// $server_automation = "";
 		// if ($dt->hour == 2) {
 			// $server_automation = "A1(automation-1)";
@@ -399,8 +400,14 @@ class CronJobController extends Controller
 				//create logs following followers 
 				$setting_log = new SettingLog;
 				$setting_log->setting_id = $setting->id;
-				$setting_log->description = "cron daily";
-				$setting_log->status = "following:".$following." followers:".$followers;
+				if ($insta_username=="") {
+					$setting_log->description = "Count by admin";
+					$setting_log->status = "Count by admin following:".$following." followers:".$followers;
+				} else {
+					$setting_log->description = "Cron Daily";
+					$setting_log->status = "Cron Daily following:".$following." followers:".$followers;
+				}
+				$setting_log->created = $dt->toDateTimeString();
 				$setting_log->save();
 				
 				//klo insta_user_id == 0
