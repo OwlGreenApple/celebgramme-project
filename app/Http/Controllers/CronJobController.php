@@ -18,6 +18,7 @@ use Celebgramme\Veritrans\Veritrans;
 use Celebgramme\Models\PackageUser;
 use Celebgramme\Models\Package;
 use Celebgramme\Models\Setting;
+use Celebgramme\Models\SettingLog;
 use Celebgramme\Models\SettingHelper;
 use Celebgramme\Models\SettingMeta;
 use Celebgramme\Models\SettingCounter;
@@ -394,6 +395,13 @@ class CronJobController extends Controller
 				} 
 				SettingMeta::createMeta("followers",$followers,$setting->id);
 				SettingMeta::createMeta("following",$following,$setting->id);
+				
+				//create logs following followers 
+				$setting_log = SettingLog new;
+				$setting_log->setting_id = $setting->id;
+				$setting_log->description = "cron daily";
+				$setting_log->status = "following:".$following." followers:".$followers;
+				$setting_log->save();
 				
 				//klo insta_user_id == 0
 				if ($setting->insta_user_id == "0"){
