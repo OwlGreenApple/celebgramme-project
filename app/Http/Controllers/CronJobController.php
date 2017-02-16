@@ -401,11 +401,11 @@ class CronJobController extends Controller
 				$setting_log = new SettingLog;
 				$setting_log->setting_id = $setting->id;
 				if ($insta_username=="") {
-					$setting_log->description = "Count by admin";
-					$setting_log->status = "Count by admin following:".$following." followers:".$followers;
-				} else {
 					$setting_log->description = "Cron Daily";
 					$setting_log->status = "Cron Daily following:".$following." followers:".$followers;
+				} else {
+					$setting_log->description = "Count by admin";
+					$setting_log->status = "Count by admin following:".$following." followers:".$followers;
 				}
 				$setting_log->created = $dt->toDateTimeString();
 				$setting_log->save();
