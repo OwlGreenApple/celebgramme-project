@@ -397,7 +397,7 @@ class CronJobController extends Controller
 				SettingMeta::createMeta("following",$following,$setting->id);
 				
 				//create logs following followers 
-				$setting_log = SettingLog new;
+				$setting_log = new SettingLog;
 				$setting_log->setting_id = $setting->id;
 				$setting_log->description = "cron daily";
 				$setting_log->status = "following:".$following." followers:".$followers;
