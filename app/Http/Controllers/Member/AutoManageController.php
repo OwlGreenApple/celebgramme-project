@@ -358,16 +358,13 @@ class AutoManageController extends Controller
 			}
 			
 			//update user-id 
-			$ig_data = Setting::get_ig_data($setting->insta_username,$setting->id);
-			$id = $ig_data["id"];
-			$setting->insta_user_id = $id;
-			$setting->save();
-			$setting_real = Setting::where("insta_username","=",Request::input("username"))->where("type","=","real")->first();
-			if (!is_null($setting_real)) {
-				$setting_real->insta_user_id = $id;
-				$setting_real->save();
+			if ($setting->insta_user_id == "0"){
+				$ig_data = Setting::get_ig_data($setting->insta_username,$setting->id);
+				$id = $ig_data["id"];
+				
+				$setting->insta_user_id = $id;
+				$setting->save();
 			}
-			
 			
 			
 			
