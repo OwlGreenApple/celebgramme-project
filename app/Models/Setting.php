@@ -65,25 +65,6 @@ class Setting extends Model {
 		$linkUserSetting->save();
 
 		//Automation purpose
-		$count_IG_account_server_AA5 = SettingHelper::
-																	join("settings","settings.id","=","setting_helpers.setting_id")
-																	->where("cookies","=","success")
-																	->where("server_automation","like","AA5(automation-5)%")
-																	->where("settings.status","=","started")
-																	->count();
-		$count_IG_account_server_AA6 = SettingHelper::
-																	join("settings","settings.id","=","setting_helpers.setting_id")
-																	->where("cookies","=","success")
-																	->where("server_automation","like","AA6(automation-6)%")
-																	->where("settings.status","=","started")
-																	->count();
-		$count_IG_account_server_AA7 = SettingHelper::
-																	join("settings","settings.id","=","setting_helpers.setting_id")
-																	->where("cookies","=","success")
-																	->where("server_automation","like","AA7(automation-7)%")
-																	->where("settings.status","=","started")
-																	->count();
-		//new
 		$count_IG_account_server_AA1 = SettingHelper::
 																	join("settings","settings.id","=","setting_helpers.setting_id")
 																	->where("cookies","=","success")
@@ -108,19 +89,46 @@ class Setting extends Model {
 																	->where("server_automation","like","AA4(automation-4)%")
 																	->where("settings.status","=","started")
 																	->count();
+
+		$count_IG_account_server_AA5 = SettingHelper::
+																	join("settings","settings.id","=","setting_helpers.setting_id")
+																	->where("cookies","=","success")
+																	->where("server_automation","like","AA5(automation-5)%")
+																	->where("settings.status","=","started")
+																	->count();
+		$count_IG_account_server_AA6 = SettingHelper::
+																	join("settings","settings.id","=","setting_helpers.setting_id")
+																	->where("cookies","=","success")
+																	->where("server_automation","like","AA6(automation-6)%")
+																	->where("settings.status","=","started")
+																	->count();
+		$count_IG_account_server_AA7 = SettingHelper::
+																	join("settings","settings.id","=","setting_helpers.setting_id")
+																	->where("cookies","=","success")
+																	->where("server_automation","like","AA7(automation-7)%")
+																	->where("settings.status","=","started")
+																	->count();
+		$count_IG_account_server_AA8 = SettingHelper::
+																	join("settings","settings.id","=","setting_helpers.setting_id")
+																	->where("cookies","=","success")
+																	->where("server_automation","like","AA8(automation-8)%")
+																	->where("settings.status","=","started")
+																	->count();
 		$setting_helper = new SettingHelper;
 		$setting_helper->setting_id = $setting->id;
 		$setting_helper->use_automation = 1;
 		$setting_helper->proxy_id = $arr_proxy["proxy_id"]; //
 		// $setting_helper->proxy_id = $arr_proxy["proxy_id"]; //
-		if ( ($count_IG_account_server_AA3<=$count_IG_account_server_AA2) && ($count_IG_account_server_AA3<=$count_IG_account_server_AA1) && ($count_IG_account_server_AA3<=$count_IG_account_server_AA4) && ($count_IG_account_server_AA3<=$count_IG_account_server_AA7) && ($count_IG_account_server_AA3 <= $count_IG_account_server_AA6) && ($count_IG_account_server_AA3 <= $count_IG_account_server_AA5) ) {
+		if ( ($count_IG_account_server_AA3<=$count_IG_account_server_AA2) && ($count_IG_account_server_AA3<=$count_IG_account_server_AA1) && ($count_IG_account_server_AA3<=$count_IG_account_server_AA4) && ($count_IG_account_server_AA3<=$count_IG_account_server_AA7) && ($count_IG_account_server_AA3 <= $count_IG_account_server_AA6) && ($count_IG_account_server_AA3 <= $count_IG_account_server_AA5) && ($count_IG_account_server_AA3 <= $count_IG_account_server_AA8) ) {
 			$setting_helper->server_automation = "AA3(automation-3)";
-		} else if ( ($count_IG_account_server_AA2<=$count_IG_account_server_AA1) && ($count_IG_account_server_AA2<=$count_IG_account_server_AA4) && ($count_IG_account_server_AA2<=$count_IG_account_server_AA7) && ($count_IG_account_server_AA2 <= $count_IG_account_server_AA6) && ($count_IG_account_server_AA2 <= $count_IG_account_server_AA5) ) {
+		} else if ( ($count_IG_account_server_AA2<=$count_IG_account_server_AA1) && ($count_IG_account_server_AA2<=$count_IG_account_server_AA4) && ($count_IG_account_server_AA2<=$count_IG_account_server_AA7) && ($count_IG_account_server_AA2 <= $count_IG_account_server_AA6) && ($count_IG_account_server_AA2 <= $count_IG_account_server_AA5) && ($count_IG_account_server_AA2 <= $count_IG_account_server_AA8) ) {
 			$setting_helper->server_automation = "AA2(automation-2)";
-		} else if ( ($count_IG_account_server_AA1<=$count_IG_account_server_AA4) && ($count_IG_account_server_AA1<=$count_IG_account_server_AA7) && ($count_IG_account_server_AA1 <= $count_IG_account_server_AA6) && ($count_IG_account_server_AA1 <= $count_IG_account_server_AA5) ) {
+		} else if ( ($count_IG_account_server_AA1<=$count_IG_account_server_AA4) && ($count_IG_account_server_AA1<=$count_IG_account_server_AA7) && ($count_IG_account_server_AA1 <= $count_IG_account_server_AA6) && ($count_IG_account_server_AA1 <= $count_IG_account_server_AA5) && ($count_IG_account_server_AA1 <= $count_IG_account_server_AA8) ) {
 			$setting_helper->server_automation = "AA1(automation-1)";
-		} else if ( ($count_IG_account_server_AA4<=$count_IG_account_server_AA7) && ($count_IG_account_server_AA4 <= $count_IG_account_server_AA6) && ($count_IG_account_server_AA4 <= $count_IG_account_server_AA5) ) {
+		} else if ( ($count_IG_account_server_AA4<=$count_IG_account_server_AA7) && ($count_IG_account_server_AA4 <= $count_IG_account_server_AA6) && ($count_IG_account_server_AA4 <= $count_IG_account_server_AA5) && ($count_IG_account_server_AA4 <= $count_IG_account_server_AA8) ) {
 			$setting_helper->server_automation = "AA4(automation-4)";
+		} else if ( ($count_IG_account_server_AA8<=$count_IG_account_server_AA7) && ($count_IG_account_server_AA8 <= $count_IG_account_server_AA6) && ($count_IG_account_server_AA8 <= $count_IG_account_server_AA5) && ($count_IG_account_server_AA8 <= $count_IG_account_server_AA4) ) {
+			$setting_helper->server_automation = "AA8(automation-8)";
 		} else if ( ($count_IG_account_server_AA7 <= $count_IG_account_server_AA6) && ($count_IG_account_server_AA7 <= $count_IG_account_server_AA5) ) { 
 			$setting_helper->server_automation = "AA7(automation-7)";
 		} else if ($count_IG_account_server_AA5 <= $count_IG_account_server_AA6) {
