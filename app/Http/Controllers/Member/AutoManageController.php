@@ -160,7 +160,7 @@ class AutoManageController extends Controller
     $setting_temp->error_cred = false;
     $setting_temp->save();
 
-    $setting_temp = Setting::post_info_admin($setting_temp->id);
+    // $setting_temp = Setting::post_info_admin($setting_temp->id);
 		
 		//for automation purpose
 		$setting_helper = SettingHelper::where("setting_id","=",Request::input('setting_id'))->first();
@@ -343,7 +343,7 @@ class AutoManageController extends Controller
         $linkUserSetting->save();
         
         
-        $setting_temp = Setting::post_info_admin($setting->id);
+        // $setting_temp = Setting::post_info_admin($setting->id);
       }
 			
 			//buatkan setting helper di assignkan ke A1 - new klo delete, add account lagi
@@ -708,7 +708,7 @@ class AutoManageController extends Controller
 		}
 		
 
-    $setting_temp = Setting::post_info_admin($setting_temp->id);
+    // $setting_temp = Setting::post_info_admin($setting_temp->id);
 		
 		
 		//create log 
@@ -794,7 +794,7 @@ class AutoManageController extends Controller
 				$settingLog->created = $dt->toDateTimeString();
 				$settingLog->save();
 
-        $setting_temp = Setting::post_info_admin($setting_temp->id);
+        // $setting_temp = Setting::post_info_admin($setting_temp->id);
       }
     } else {
       $link = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
@@ -848,7 +848,7 @@ class AutoManageController extends Controller
 				$settingLog->created = $dt->toDateTimeString();
 				$settingLog->save();
 					
-        $setting_temp = Setting::post_info_admin($setting_temp->id);
+        // $setting_temp = Setting::post_info_admin($setting_temp->id);
       }
     }
 
@@ -932,7 +932,7 @@ class AutoManageController extends Controller
 			$timeLog->save();
 			
 			
-			$setting_temp = Setting::post_info_admin($setting->id, "[Celebgramme] Post Auto Manage (Delete IG Account)");
+			// $setting_temp = Setting::post_info_admin($setting->id, "[Celebgramme] Post Auto Manage (Delete IG Account)");
 		}
 		
 		return $arr;
