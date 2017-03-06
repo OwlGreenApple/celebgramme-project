@@ -4,6 +4,7 @@ namespace Celebgramme\Http\Controllers\Auth;
 
 use Celebgramme\Http\Controllers\Controller;
 use Celebgramme\Models\User;
+use Celebgramme\Models\Post;
 use Illuminate\Http\Request;
 use Celebgramme\Http\Requests\LoginFormRequest as loginRequest;
 use Illuminate\Support\Facades\Auth;
@@ -29,11 +30,20 @@ class LoginController extends Controller
 	 */
 	public function getLogin()
 	{
+		
 		if (Auth::check()){
 			return Redirect('/');
 		}
 		else{
-			return view('auth/login');
+			// return view('auth/login');
+			$content = "";
+			$post = Post::where("type","=","footer_ads")->first();
+			if (!is_null($post)) {
+				$content = $post->description;
+			}
+			return view("auth.login")->with(array(
+				'content'=>$content,
+				));
 		}
 	}
 	
