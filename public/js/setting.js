@@ -369,4 +369,34 @@
 			$("#dont_follow_su").val(0);
 		});
 		
+		$('#button-mode-setting').click(function(e){
+			console.log("a");
+			$(".button-mode").removeClass("active");
+			$(this).addClass("active");
+		});
+		$('#button-mode-comment').click(function(e){
+			console.log("b");
+			$(".button-mode").removeClass("active");
+			$(this).addClass("active");
+		});
+		$('#button-mode-like').click(function(e){
+			console.log("c");
+			$(".button-mode").removeClass("active");
+			$(this).addClass("active");
+		});
+		$('#button-mode-mention').click(function(e){
+			console.log("d");
+			$(".button-mode").removeClass("active");
+			$(this).addClass("active");
+		});
+		$('#button-mode-tagged').click(function(e){
+			console.log("e");
+			$(".button-mode").removeClass("active");
+			$(this).addClass("active");
+		});
+		$('#button-mode-follow').click(function(e){
+			console.log("f");
+			$(".button-mode").removeClass("active");
+			$(this).addClass("active");
+		});
   });

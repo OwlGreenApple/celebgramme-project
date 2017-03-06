@@ -529,6 +529,19 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                        
 -->
+
+<ul class="nav nav-tabs">
+	<li class="active button-mode" id="button-mode-setting"><a href="#">Settings</a></li>
+	<li class="button-mode" id="button-mode-comment"><a href="#">Comments</a></li>
+	<li class="button-mode" id="button-mode-like"><a href="#">Likes</a></li>
+	<li class="button-mode" id="button-mode-mention"><a href="#">Mention</a></li>
+	<li class="button-mode" id="button-mode-tagged"><a href="#">Tagged</a></li>
+	<li class="button-mode" id="button-mode-follow"><a href="#">Follow</a></li>
+</ul>
+
+
+
+
 <div class="row">
   <div class="col-md-6 col-sm-6">
     <div class="panel panel-info ">
