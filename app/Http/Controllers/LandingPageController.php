@@ -33,10 +33,8 @@ class LandingPageController extends Controller
 {
   
 	public function testing(){
-		$temp = Meta::createMeta("random_action_follow_turbo_min",3);
-		$temp = Meta::createMeta("random_action_follow_turbo_max",8);
-		$temp = Meta::createMeta("random_action_like_turbo_min",2);
-		$temp = Meta::createMeta("random_action_like_turbo_max",3);
+		$temp = Meta::createMeta("random_hourly_limit_follow_turbo_min",3);
+		$temp = Meta::createMeta("random_hourly_limit_follow_turbo_max",8);
 	}
 	
 	/**
