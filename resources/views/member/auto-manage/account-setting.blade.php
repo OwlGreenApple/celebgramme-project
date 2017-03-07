@@ -541,7 +541,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 
 
 
-
+<div id="div-mode-setting" class="div-mode">
 <div class="row">
   <div class="col-md-6 col-sm-6">
     <div class="panel panel-info ">
@@ -1021,6 +1021,31 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 </div>                    
 <input type="hidden" name="data[id]" value="{{$settings->setting_id}}">
 </form>
+</div>                    
+
+
+<div id="div-mode-comment" class="div-mode">
+b
+</div>
+
+
+<div id="div-mode-like" class="div-mode">
+c
+</div>
+
+
+<div id="div-mode-mention" class="div-mode">
+d
+</div>
+
+
+<div id="div-mode-tagged" class="div-mode">
+e
+</div>
+
+<div id="div-mode-follow" class="div-mode">
+f
+</div>
 
 <div class="row">
   <div class="col-md-12">

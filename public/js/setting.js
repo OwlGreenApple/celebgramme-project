@@ -370,33 +370,45 @@
 		});
 		
 		$('#button-mode-setting').click(function(e){
-			console.log("a");
 			$(".button-mode").removeClass("active");
 			$(this).addClass("active");
+
+			$(".div-mode").addClass("hide");
+			$("#div-mode-setting").removeClass("hide");
 		});
 		$('#button-mode-comment').click(function(e){
-			console.log("b");
 			$(".button-mode").removeClass("active");
 			$(this).addClass("active");
+			
+			$(".div-mode").addClass("hide");
+			$("#div-mode-comment").removeClass("hide");
 		});
 		$('#button-mode-like').click(function(e){
-			console.log("c");
 			$(".button-mode").removeClass("active");
 			$(this).addClass("active");
+			
+			$(".div-mode").addClass("hide");
+			$("#div-mode-like").removeClass("hide");
 		});
 		$('#button-mode-mention').click(function(e){
-			console.log("d");
 			$(".button-mode").removeClass("active");
 			$(this).addClass("active");
+			
+			$(".div-mode").addClass("hide");
+			$("#div-mode-mention").removeClass("hide");
 		});
 		$('#button-mode-tagged').click(function(e){
-			console.log("e");
 			$(".button-mode").removeClass("active");
 			$(this).addClass("active");
+			
+			$(".div-mode").addClass("hide");
+			$("#div-mode-tagged").removeClass("hide");
 		});
 		$('#button-mode-follow').click(function(e){
-			console.log("f");
 			$(".button-mode").removeClass("active");
 			$(this).addClass("active");
+			
+			$(".div-mode").addClass("hide");
+			$("#div-mode-follow").removeClass("hide");
 		});
   });
