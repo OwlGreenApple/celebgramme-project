@@ -15,6 +15,7 @@ class CreateActivitiesTable extends Migration
 		// id, type(follow,mention,likes,tagged), description, profil_pic_object (user activity tsb), profil_pic_subject(yg like, comment, follow dsb), created_at,updated_at, posted (timestamp)
 		Schema::create('activities', function (Blueprint $table) {
 			$table->increments('id');
+			$table->string('media_id',255)->nullable();
 			$table->string('type')->nullable();
 			$table->text('description')->nullable();
 			$table->string('profil_pic_subject')->nullable();

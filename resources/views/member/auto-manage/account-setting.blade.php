@@ -1024,26 +1024,26 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 </div>                    
 
 
-<div id="div-mode-comment" class="div-mode">
+<div id="div-mode-comment" class="div-mode hide">
 b
 </div>
 
 
-<div id="div-mode-like" class="div-mode">
+<div id="div-mode-like" class="div-mode hide">
 c
 </div>
 
 
-<div id="div-mode-mention" class="div-mode">
+<div id="div-mode-mention" class="div-mode hide">
 d
 </div>
 
 
-<div id="div-mode-tagged" class="div-mode">
+<div id="div-mode-tagged" class="div-mode hide">
 e
 </div>
 
-<div id="div-mode-follow" class="div-mode">
+<div id="div-mode-follow" class="div-mode hide">
 f
 </div>
 
