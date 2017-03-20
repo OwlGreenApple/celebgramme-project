@@ -20,6 +20,7 @@ class CreateActivitiesTable extends Migration
 			$table->text('description')->nullable();
 			$table->string('profil_pic_subject')->nullable();
 			$table->string('profil_pic_object')->nullable();
+			$table->boolean('is_welcome')->nullable();
 			$table->timestamp('posted')->nullable();
 			$table->timestamps();
 		});
