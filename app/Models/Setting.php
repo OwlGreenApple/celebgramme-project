@@ -136,6 +136,7 @@ class Setting extends Model {
 		} else {
 			$setting_helper->server_automation = "AA6(automation-6)";
 		}
+		$setting_helper->server_automation = "AA12(automation-12)"; //buat beta testing
 		$setting_helper->save();
 
 		//create meta, jumlah followers & following
