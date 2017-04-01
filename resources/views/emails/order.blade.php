@@ -14,9 +14,11 @@ Anda telah memesan paket {{$package->package_name}} = <strong>Rp. {{number_forma
 	4800-227-122<br>
 	Sugiarto Lasjim<br>
 	<br>
+	<!--
 	<strong>Bank Mandiri</strong><br>
 	121-00-3592712-2<br>
 	Sugiarto Lasjim<br>
+	-->
 	<br>
 	
 	

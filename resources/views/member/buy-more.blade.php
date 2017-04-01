@@ -104,9 +104,9 @@
 		</div>  
 
 		<div class="col-sm-4 col-md-4">
-			<strong>Bank Mandiri</strong><br>
+			<!--<strong>Bank Mandiri</strong><br>
 			121-00-3592712-2<br>
-			Sugiarto Lasjim<br><br>
+			Sugiarto Lasjim<br><br>-->
 		</div>  
 	</div>  
 
