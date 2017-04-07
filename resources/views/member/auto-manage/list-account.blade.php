@@ -49,8 +49,16 @@ if (isset($datas)) {
 				Followers : <?php echo number_format(intval (SettingMeta::getMeta($data->id,"followers")),0,'','.'); ?></p></div>
 				<?php if ($data->error_cred) { ?>
 				<div class="row im-centered"> 
-					<p class="text-danger" style="font-size:12px;"> <strong>*Data login error <br>
-						silahkan input kembali password anda <br>
+					<p class="text-danger" style="font-size:12px;"> <strong>
+					<?php 
+						if ( SettingMeta::getMeta($data->id,"error_message_cred") == ""  ) {
+					?>
+						*Data login error <br>
+						silahkan input kembali password anda 
+						<?php } else { 
+							echo SettingMeta::getMeta($data->id,"error_message_cred");
+						} ?>
+						<br>
 						---> <a href="#" data-id="{{$data->id}}" data-username="{{$data->insta_username}}" class="edit-cred" data-toggle="modal" data-target="#myModal-edit-password">CLICK disini</a> <--- </strong></p>
 				</div>
 				<?php } ?>
