@@ -51,7 +51,7 @@ if (isset($datas)) {
 				<div class="row im-centered"> 
 					<p class="text-danger" style="font-size:12px;"> <strong>
 					<?php 
-						if ( SettingMeta::getMeta($data->id,"error_message_cred") == ""  ) {
+						if ( SettingMeta::getMeta($data->id,"error_message_cred") == "0"  ) {
 					?>
 						*Data login error <br>
 						silahkan input kembali password anda 
