@@ -117,7 +117,7 @@ use Celebgramme\Models\SettingHelper;
 
 		$('#activity-speed').on('change', function() {
 			if (this.value=="turbo") {
-				alert("Ada Resiko anda akan diban oleh instagram menggunakan speed ini.");
+				alert("Disclaimer : Menggunakan speed Turbo akan meningkatkan resiko akun anda di flag oleh Instagram");
 			}
 		})
 	});
