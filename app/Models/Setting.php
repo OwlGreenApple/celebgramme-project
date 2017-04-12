@@ -32,7 +32,7 @@ class Setting extends Model {
 		$setting->insta_password = $arr['insta_password'];
 		$setting->last_user = $arr['user_id'];
 		//default data
-		$setting->comments = "<@owner> <@followers> <@followers>;<@followers> <@following> <@following>;<@followers> <@followers> <@followers>";
+		$setting->comments = "{wow|waduh|walah|really|seriously|ga nyangka|masak sih} {kool|kueren|topdah|oklah|finee nice};{supper|vantastis|ketje|gaol} {bangetz|sangads|njedog|maximal} {voto|photo|foto|post|capturean} {hahaha|hehehe|hohoho|welewelewele} {kak|mas|bro|gan|sis} ;{masak|beneran|serius|ga boong|seriusan} {nih|nah|nich|this|barang ini} {wkwk|wkwkwk|akakaka|ahahaha};{oh|oo|OMG|oh wow|hah} {kak|mas|bro|gan|sis};{gila|heboh|ga masuk akal} {banget|barang|ini};{haha|wkwkwkkkk|GG|Lols} {Niceee|cool|pro|smile}";
 		$setting->hashtags = "websugih;jajankulinersurabaya;tacoelrico;jakarta;surabaya;digimaru;olshop;kuliner;latepost;startup;travel;foodie";
 		$setting->locations = "";
 		$setting->activity = "follow";
@@ -186,7 +186,7 @@ class Setting extends Model {
 		$setting->insta_password = $arr['insta_password'];
 		$setting->last_user = $arr['user_id'];
 		//default data
-		$setting->comments = "<@owner> <@followers> <@followers>;<@followers> <@following> <@following>;<@followers> <@followers> <@followers>";
+		$setting->comments = "{wow|waduh|walah|really|seriously|ga nyangka|masak sih} {kool|kueren|topdah|oklah|finee nice};{supper|vantastis|ketje|gaol} {bangetz|sangads|njedog|maximal} {voto|photo|foto|post|capturean} {hahaha|hehehe|hohoho|welewelewele} {kak|mas|bro|gan|sis} ;{masak|beneran|serius|ga boong|seriusan} {nih|nah|nich|this|barang ini} {wkwk|wkwkwk|akakaka|ahahaha};{oh|oo|OMG|oh wow|hah} {kak|mas|bro|gan|sis};{gila|heboh|ga masuk akal} {banget|barang|ini};{haha|wkwkwkkkk|GG|Lols} {Niceee|cool|pro|smile}";
 		$setting->hashtags = "websugih;jajankulinersurabaya;tacoelrico;jakarta;surabaya;digimaru;olshop;kuliner;latepost;startup;travel;foodie";
 		$setting->locations = "";
 		$setting->activity = "follow";

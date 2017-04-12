@@ -562,15 +562,16 @@ class AutoManageController extends Controller
 			}
 			
 			if ($data['status_comment']=="on") {
-				if ( (strpos($data['comments'], '<@owner>') !== false) && (strpos($data['comments'], '{') !== false) && (strpos($data['comments'], '}')!==false) ) {
+				// if ( (strpos($data['comments'], '<@owner>') !== false) && (strpos($data['comments'], '{') !== false) && (strpos($data['comments'], '}')!==false) ) {
+				if ( (strpos($data['comments'], '{') !== false) && (strpos($data['comments'], '}')!==false) ) {
 				} else {
-					$arr["message"]= "Comments memerlukan <@owner> dan spin comment";
+					$arr["message"]= "Comments memerlukan spin comment";
 					$arr["type"]= "error";
 					return $arr;
 				}
 				$pieces = explode(";",$data["comments"]);
 				if (count($pieces)<5) {
-					$arr["message"]= "Anda harus membuat Min 5 baris & 7 kombinasi kata variasi per Spin comments. Agar lebih variatif & membuat akun anda aman di Instagram. ";
+					$arr["message"]= "Anda harus membuat Min 5 Kalimat. Agar lebih variatif & membuat akun anda aman di Instagram. ";
 					$arr["type"]= "error";
 					return $arr;
 				}
