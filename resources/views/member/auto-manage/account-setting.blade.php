@@ -1024,8 +1024,29 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 </div>                    
 
 
-<div id="div-mode-comment" class="div-mode hide">
-b
+<div id="div-mode-comment" class="div-mode">
+Inbox :
+<br>
+<?php 
+	$inboxResponse = json_decode($settings->messages);
+	echo "total inbox: ".count($inboxResponse->inbox->threads)."<br>";
+	echo "total pending: ".count($inboxResponse->pending_requests_users)."<br>";
+?>
+<br>
+Request :
+<?php
+	foreach ($inboxResponse->pending_requests_users as $data_arr) {
+		echo $data_arr->username."<br>";
+	}
+?>
+<br>
+Inbox Real :
+<?php
+	foreach ($inboxResponse->inbox->threads as $data_arr) {
+		echo $data_arr->username."<br>";
+	}
+?>
+
 </div>
 
 
