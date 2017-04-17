@@ -503,7 +503,7 @@ class AutoManageController extends Controller
 			$ads_content = $post->description;
 		}
 
-		echo $inboxResponse = json_decode($link->messages);	
+		$inboxResponse = json_decode($link->messages);	
 		
     return view("member.auto-manage.account-setting")->with(array(
       'user'=>$user,

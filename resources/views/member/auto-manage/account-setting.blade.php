@@ -1041,11 +1041,12 @@ Request :
 	}
 ?>
 <br>
-Inbox Real :
+Inbox Real : <br>
 <?php
 	if (count($inboxResponse->inbox->threads) > 0 ) {
 		foreach ($inboxResponse->inbox->threads as $data_arr) {
-			echo $data_arr->username."<br>";
+			echo $data_arr->users[0]->username."<br>";
+			echo $data_arr->items[0]->text."<br>";
 		}
 	}
 ?>
