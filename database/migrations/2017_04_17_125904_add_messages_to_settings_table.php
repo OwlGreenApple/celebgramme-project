@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSettingidToUsersettingsTable extends Migration
+class AddMessagesToSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class AddSettingidToUsersettingsTable extends Migration
      */
     public function up()
     {
-        Schema::table('user_settings', function (Blueprint $table) {
-            $table->integer('setting_id')->nullable();
+        Schema::table('settings', function (Blueprint $table) {
+            $table->longText('messages');
         });
     }
 
@@ -24,7 +24,7 @@ class AddSettingidToUsersettingsTable extends Migration
      */
     public function down()
     {
-        Schema::table('user_settings', function (Blueprint $table) {
+        Schema::table('settings', function (Blueprint $table) {
             //
         });
     }
