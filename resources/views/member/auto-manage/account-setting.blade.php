@@ -1028,7 +1028,6 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 Inbox :
 <br>
 <?php 
-	$inboxResponse = json_decode($settings->messages);
 	echo "total inbox: ".count($inboxResponse->inbox->threads)."<br>";
 	echo "total pending: ".count($inboxResponse->pending_requests_users)."<br>";
 ?>

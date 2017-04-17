@@ -502,6 +502,8 @@ class AutoManageController extends Controller
 		if (!is_null($post)) {
 			$ads_content = $post->description;
 		}
+
+		$inboxResponse = json_decode($settings->messages);		
 		
     return view("member.auto-manage.account-setting")->with(array(
       'user'=>$user,
@@ -511,6 +513,7 @@ class AutoManageController extends Controller
       'strCategory'=>$strCategory,
       'strClassCategory'=>$strClassCategory,
       'ads_content'=>$ads_content,
+      'inboxResponse'=>$inboxResponse,
       ));
   }
 
