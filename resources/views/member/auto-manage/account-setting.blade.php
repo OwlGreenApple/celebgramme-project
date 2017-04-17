@@ -1035,15 +1035,19 @@ Inbox :
 <br>
 Request :
 <?php
-	foreach ($inboxResponse->pending_requests_users as $data_arr) {
-		echo $data_arr->username."<br>";
+	if (count($inboxResponse->pending_requests_users) > 0 ) {
+		foreach ($inboxResponse->pending_requests_users as $data_arr) {
+			echo $data_arr->username."<br>";
+		}
 	}
 ?>
 <br>
 Inbox Real :
 <?php
-	foreach ($inboxResponse->inbox->threads as $data_arr) {
-		echo $data_arr->username."<br>";
+	if (count($inboxResponse->inbox->threads) > 0 ) {
+		foreach ($inboxResponse->inbox->threads as $data_arr) {
+			echo $data_arr->username."<br>";
+		}
 	}
 ?>
 
