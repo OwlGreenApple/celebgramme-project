@@ -292,9 +292,11 @@ class AutoManageController extends Controller
 			if ($ig_data["found"]) {
 				$setting = Setting::where("insta_user_id","=",$ig_data["id"])->where("type","=","temp")->first();
 				if ( !is_null($setting) ) {
-					$arr["message"]= "Account sudah pernah terdaftar sebelumnya, untuk MELANJUTKAN silahkan BERLANGGANAN terlebih dahulu";
-					$arr["type"]= "error";
-					return $arr;
+					if ($setting->is_active == 1) {
+						$arr["message"]= "Account sudah pernah terdaftar sebelumnya, untuk MELANJUTKAN silahkan BERLANGGANAN terlebih dahulu";
+						$arr["type"]= "error";
+						return $arr;
+					}
 				}
 			}
 		}
