@@ -31,7 +31,9 @@ use Celebgramme\Models\ViewProxyUses;
 
 use Celebgramme\Helpers\GlobalHelper;
 
-use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, DB;
+use \InstagramAPI\Instagram;
+
+use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, DB, Config;
 
 class AutoManageController extends Controller
 {
@@ -431,6 +433,7 @@ class AutoManageController extends Controller
     $user = Auth::user();
 
     $link = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
+							->join("setting_helpers","setting_helpers.setting_id","=","settings.id")
               ->where("link_users_settings.user_id","=",$user->id)
               ->where("settings.id","=",$id)
               ->where("type","=","temp")
@@ -505,7 +508,31 @@ class AutoManageController extends Controller
 			$ads_content = $post->description;
 		}
 
-		$inboxResponse = json_decode($link->messages);	
+		//get response from 
+		// $inboxResponse = json_decode($link->messages);	
+		try {
+			$i = new Instagram(false,false,[
+				"storage"       => "mysql",
+				"dbhost"       => Config::get('automation.DB_HOST'),
+				"dbname"   => Config::get('automation.DB_DATABASE'),
+				"dbusername"   => Config::get('automation.DB_USERNAME'),
+				"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+			]);
+			
+			$i->setUser(strtolower($link->insta_username), $link->insta_password);
+			$proxy = Proxies::find($array_data["proxy_id"]);
+			if (!is_null($proxy)) {
+				$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+			}
+			
+			$i->login();
+			$inboxResponse = $i->getV2Inbox();
+		}
+		catch (Exception $e) {
+			return $e->getMessage();
+		}
+			
+		
 		
     return view("member.auto-manage.account-setting")->with(array(
       'user'=>$user,
