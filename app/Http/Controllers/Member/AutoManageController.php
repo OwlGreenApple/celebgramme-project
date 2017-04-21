@@ -431,6 +431,7 @@ class AutoManageController extends Controller
     $user = Auth::user();
 
     $link = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
+							->select("settings.*")
               ->where("link_users_settings.user_id","=",$user->id)
               ->where("settings.id","=",$id)
               ->where("type","=","temp")
