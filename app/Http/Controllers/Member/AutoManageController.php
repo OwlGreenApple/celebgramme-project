@@ -520,7 +520,7 @@ class AutoManageController extends Controller
 			]);
 			
 			$i->setUser(strtolower($link->insta_username), $link->insta_password);
-			$proxy = Proxies::find($array_data["proxy_id"]);
+			$proxy = Proxies::find($link->proxy_id);
 			if (!is_null($proxy)) {
 				$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
 			}
