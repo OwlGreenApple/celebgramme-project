@@ -528,6 +528,7 @@ class AutoManageController extends Controller
 			$i->login();
 			$inboxResponse = $i->getV2Inbox();
 			$pendingInboxResponse = $i->getPendingInbox();
+			dd($pendingInboxResponse);
 		}
 		catch (Exception $e) {
 			return $e->getMessage();
