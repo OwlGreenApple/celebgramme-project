@@ -1036,20 +1036,20 @@ Request :
 <?php
 	if (count($pendingInboxResponse->inbox->threads) > 0 ) {
 		foreach ($pendingInboxResponse->inbox->threads as $data_arr) {
-			echo $data_arr->users[0]->username." - ".$data_arr->profile_pic_url."<br>";
+			echo $data_arr->users[0]->username." - ".$data_arr->users[0]->profile_pic_url."<br>";
 		}
 	}
 ?>
 <br>
 Inbox Real : <br>
 <?php
-	// if (count($inboxResponse->inbox->threads) > 0 ) {
-		// foreach ($inboxResponse->inbox->threads as $data_arr) {
-			// echo $data_arr->users[0]->username." - ".$data_arr->profile_pic_url."<br>";
-			// echo $data_arr->items[0]->text."<br>";
-			// echo date("Y-m-d H:i:s", (int)$data_arr->items[0]->timestamp)."<br>";
-		// }
-	// }
+	if (count($inboxResponse->inbox->threads) > 0 ) {
+		foreach ($inboxResponse->inbox->threads as $data_arr) {
+			echo $data_arr->users[0]->username." - ".$data_arr->users[0]->profile_pic_url."<br>";
+			echo $data_arr->items[0]->text."<br>";
+			echo date("Y-m-d H:i:s", $data_arr->items[0]->timestamp)."<br>";
+		}
+	}
 ?>
 
 </div>
