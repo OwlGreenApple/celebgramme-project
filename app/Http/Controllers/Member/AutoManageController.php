@@ -527,6 +527,7 @@ class AutoManageController extends Controller
 			
 			$i->login();
 			$inboxResponse = $i->getV2Inbox();
+			$pendingInboxResponse = $i->getPendingInbox();
 		}
 		catch (Exception $e) {
 			return $e->getMessage();
@@ -543,6 +544,7 @@ class AutoManageController extends Controller
       'strClassCategory'=>$strClassCategory,
       'ads_content'=>$ads_content,
       'inboxResponse'=>$inboxResponse,
+      'pendingInboxResponse'=>$pendingInboxResponse,
       ));
   }
 

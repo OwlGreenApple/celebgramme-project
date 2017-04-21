@@ -1034,11 +1034,11 @@ Inbox :
 <br>
 Request :
 <?php
-	// if (count($inboxResponse->pending_requests_users) > 0 ) {
-		// foreach ($inboxResponse->pending_requests_users as $data_arr) {
-			// echo $data_arr->username." - ".$data_arr->profile_pic_url."<br>";
-		// }
-	// }
+	if (count($pendingInboxResponse->inbox->threads) > 0 ) {
+		foreach ($pendingInboxResponse->inbox->threads as $data_arr) {
+			echo $data_arr->username." - ".$data_arr->profile_pic_url."<br>";
+		}
+	}
 ?>
 <br>
 Inbox Real : <br>
