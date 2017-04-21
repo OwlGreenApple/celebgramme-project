@@ -120,6 +120,38 @@ use Celebgramme\Models\SettingHelper;
 				alert("Ada Resiko anda akan diban oleh instagram menggunakan speed ini.");
 			}
 		})
+		
+		
+		//buat kepentingan V3, nanti klo uda jalan bisa dipindah di asset
+		$( "body" ).on( "click", ".btn-open-message", function() {
+			$("#div-testing-email").html();
+			$.ajax({
+				type: 'GET',
+				url: "<?php echo url('check-message'); ?>",
+				data: {
+					thread_id : $(this).attr("data-thread-id"),
+					setting_id : $(this).attr("data-setting-id")
+				},
+				dataType: 'text',
+				beforeSend: function()
+				{
+					$("#div-loading").show();
+				},
+				success: function(result) {
+					$("#div-loading").hide();
+					// var data = jQuery.parseJSON(result);
+					// if(data.type=='success')
+					// {
+					// }
+					// else if(data.type=='error')
+					// {
+					// }
+				}
+			})
+			
+			
+		});
+		
 	});
 	
 </script>
@@ -1028,8 +1060,10 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 Inbox :
 <br>
 <?php 
-	echo "total inbox: ".count($inboxResponse->inbox->threads)."<br>";
-	echo "total pending: ".count($inboxResponse->pending_requests_users)."<br>";
+	if (!is_null($inboxResponse)) {
+		echo "total inbox: ".count($inboxResponse->inbox->threads)."<br>";
+		echo "total pending: ".count($inboxResponse->pending_requests_users)."<br>";
+	}
 ?>
 <br>
 Request :
@@ -1045,9 +1079,10 @@ Inbox Real : <br>
 <?php
 	if (count($inboxResponse->inbox->threads) > 0 ) {
 		foreach ($inboxResponse->inbox->threads as $data_arr) {
-			echo $data_arr->users[0]->username." - ".$data_arr->users[0]->profile_pic_url."<br>";
-			echo $data_arr->items[0]->text."<br>";
-			echo date("Y-m-d H:i:s", $data_arr->items[0]->timestamp)."<br>";
+			echo $data_arr->users[0]->username." - ".$data_arr->users[0]->profile_pic_url;
+			echo $data_arr->items[0]->text;
+			echo date("Y-m-d H:i:s", $data_arr->items[0]->timestamp);
+			echo '<a href="#" class="btn-open-message" data-setting-id="'.$settings->id.'" data-thread-id="'.$data_arr->thread_id.'">'.$data_arr->users[0]->username."</a><br>";
 		}
 	}
 ?>
@@ -1055,7 +1090,7 @@ Inbox Real : <br>
 </div>
 
 
-<div id="div-mode-like" class="div-mode hide">
+<div id="div-testing-email" class="div-mode hide">
 c
 </div>
 

@@ -528,13 +528,10 @@ class AutoManageController extends Controller
 			$i->login();
 			$inboxResponse = $i->getV2Inbox();
 			$pendingInboxResponse = $i->getPendingInbox();
-			// dd($pendingInboxResponse);
 		}
 		catch (Exception $e) {
 			return $e->getMessage();
 		}
-			
-		
 		
     return view("member.auto-manage.account-setting")->with(array(
       'user'=>$user,
@@ -549,7 +546,39 @@ class AutoManageController extends Controller
       ));
   }
 
-  public function process_save_setting(){  
+  public function check_message(){  
+		$arr["type"]="success";
+		
+		try {
+			$setting = Setting::join("setting_helpers","setting_helpers.setting_id","=","settings.id")
+									->where("settings.id",Request::input("setting_id"))
+									->first();
+			$i = new Instagram(false,false,[
+				"storage"       => "mysql",
+				"dbhost"       => Config::get('automation.DB_HOST'),
+				"dbname"   => Config::get('automation.DB_DATABASE'),
+				"dbusername"   => Config::get('automation.DB_USERNAME'),
+				"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+			]);
+			dd($setting);
+			$i->setUser(strtolower($setting->insta_username), $setting->insta_password);
+			$proxy = Proxies::find($setting->proxy_id);
+			if (!is_null($proxy)) {
+				$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+			}
+			
+			$i->login();
+			$listMessageResponse = $i->directThread(Request::input("thread_id"));
+			$arr["listMessageResponse"] = $listMessageResponse;
+		}
+		catch (Exception $e) {
+			$arr["type"]="error";
+		}
+		
+		return $arr;
+	}
+	
+	public function process_save_setting(){  
     $user = Auth::user();
     $data = Request::input("data");
     $link = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")

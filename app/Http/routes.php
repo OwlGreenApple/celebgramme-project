@@ -93,6 +93,7 @@ Route::group(['middleware' => 'auth'], function()
   Route::get('call-action', 'Member\AutoManageController@call_action');
   Route::post('delete-setting', 'Member\AutoManageController@delete_setting');
 	Route::get('agree-terms', 'Member\AutoManageController@agree_terms');
+	Route::get('check-message', 'Member\AutoManageController@check_message');
 	
 });
 
