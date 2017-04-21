@@ -1036,7 +1036,7 @@ Request :
 <?php
 	if (count($pendingInboxResponse->inbox->threads) > 0 ) {
 		foreach ($pendingInboxResponse->inbox->threads as $data_arr) {
-			echo $data_arr->username." - ".$data_arr->profile_pic_url."<br>";
+			echo $data_arr->users[0]->username." - ".$data_arr->profile_pic_url."<br>";
 		}
 	}
 ?>
