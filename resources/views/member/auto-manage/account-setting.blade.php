@@ -1006,7 +1006,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 		
   </div>                    
 </div>                    
-<input type="hidden" name="data[id]" value="{{$settings->setting_id}}">
+<input type="hidden" name="data[id]" value="{{$settings->id}}">
 </form>
 
 <div class="row">
