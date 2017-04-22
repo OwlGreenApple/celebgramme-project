@@ -434,6 +434,7 @@ class AutoManageController extends Controller
 
     $link = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
 							->join("setting_helpers","setting_helpers.setting_id","=","settings.id")
+							->select("settings.*","setting_helpers.proxy_id")
               ->where("link_users_settings.user_id","=",$user->id)
               ->where("settings.id","=",$id)
               ->where("type","=","temp")
@@ -560,7 +561,7 @@ class AutoManageController extends Controller
 				"dbusername"   => Config::get('automation.DB_USERNAME'),
 				"dbpassword"   => Config::get('automation.DB_PASSWORD'),
 			]);
-			dd($setting);
+			
 			$i->setUser(strtolower($setting->insta_username), $setting->insta_password);
 			$proxy = Proxies::find($setting->proxy_id);
 			if (!is_null($proxy)) {
@@ -569,7 +570,10 @@ class AutoManageController extends Controller
 			
 			$i->login();
 			$listMessageResponse = $i->directThread(Request::input("thread_id"));
-			$arr["listMessageResponse"] = $listMessageResponse;
+			// $arr["listMessageResponse"] = json_encode($listMessageResponse);
+			$arr["resultEmailData"] = view("member.auto-manage.message-inbox")->with(array(
+																			'listMessageResponse'=>$listMessageResponse,
+																		))->render();
 		}
 		catch (Exception $e) {
 			$arr["type"]="error";

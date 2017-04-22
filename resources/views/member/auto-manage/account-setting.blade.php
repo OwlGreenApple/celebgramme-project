@@ -124,7 +124,7 @@ use Celebgramme\Models\SettingHelper;
 		
 		//buat kepentingan V3, nanti klo uda jalan bisa dipindah di asset
 		$( "body" ).on( "click", ".btn-open-message", function() {
-			$("#div-testing-email").html();
+			
 			$.ajax({
 				type: 'GET',
 				url: "<?php echo url('check-message'); ?>",
@@ -139,7 +139,12 @@ use Celebgramme\Models\SettingHelper;
 				},
 				success: function(result) {
 					$("#div-loading").hide();
-					// var data = jQuery.parseJSON(result);
+					var data = jQuery.parseJSON(result);
+					console.log(data);
+					$("#div-testing-email").html(data.resultEmailData);
+					// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
+					// console.log(dataMessage);
+					
 					// if(data.type=='success')
 					// {
 					// }
@@ -1090,7 +1095,7 @@ Inbox Real : <br>
 </div>
 
 
-<div id="div-testing-email" class="div-mode hide">
+<div id="div-testing-email" class="div-mode">
 c
 </div>
 
