@@ -124,7 +124,6 @@ use Celebgramme\Models\SettingHelper;
 		
 		//buat kepentingan V3, nanti klo uda jalan bisa dipindah di asset
 		$( "body" ).on( "click", ".btn-open-message", function() {
-			
 			$.ajax({
 				type: 'GET',
 				url: "<?php echo url('check-message'); ?>",
@@ -153,8 +152,35 @@ use Celebgramme\Models\SettingHelper;
 					// }
 				}
 			})
-			
-			
+		});
+		$( "body" ).on( "click", ".button-message-inbox", function() {
+			$.ajax({
+				type: 'GET',
+				url: "<?php echo url('send-message'); ?>",
+				data: {
+					pk_id : $(this).attr("data-pk-id"),
+					message : $("#text-message-inbox").val(),
+					setting_id : $(this).attr("data-setting-id"),
+				},
+				dataType: 'text',
+				beforeSend: function()
+				{
+					$("#div-loading").show();
+				},
+				success: function(result) {
+					$("#div-loading").hide();
+					var data = jQuery.parseJSON(result);
+					// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
+					// console.log(dataMessage);
+					
+					// if(data.type=='success')
+					// {
+					// }
+					// else if(data.type=='error')
+					// {
+					// }
+				}
+			})
 		});
 		
 	});
@@ -1056,7 +1082,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 		
   </div>                    
 </div>                    
-<input type="hidden" name="data[id]" value="{{$settings->setting_id}}">
+<input type="hidden" name="data[id]" value="{{$settings->id}}">
 </form>
 </div>                    
 

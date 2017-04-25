@@ -25,6 +25,7 @@ use Celebgramme\Models\Category;
 use Celebgramme\Models\SettingLog;
 use Celebgramme\Models\TimeLog;
 use Celebgramme\Models\Account;
+use Celebgramme\Models\Message;
 
 use Celebgramme\Veritrans\Veritrans;
 use Celebgramme\Models\ViewProxyUses;
@@ -547,6 +548,19 @@ class AutoManageController extends Controller
       ));
   }
 
+  public function send_message(){  
+		$arr["type"]="success";
+		
+		$message = new SettingHelper;
+		$message->setting_id = Request::input("setting_id");
+		$message->pk_id = Request::input("pk_id");
+		$message->send_text = Request::input("message");
+		$message->send_text_timestamp = 0;
+		$message->is_done = 0;
+		$message->save();
+		return $arr;
+	}
+	
   public function check_message(){  
 		$arr["type"]="success";
 		
@@ -573,6 +587,7 @@ class AutoManageController extends Controller
 			// $arr["listMessageResponse"] = json_encode($listMessageResponse);
 			$arr["resultEmailData"] = view("member.auto-manage.message-inbox")->with(array(
 																			'listMessageResponse'=>$listMessageResponse,
+																			'setting_id'=>Request::input("setting_id"),
 																		))->render();
 		}
 		catch (Exception $e) {
