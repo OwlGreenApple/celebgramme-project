@@ -548,9 +548,10 @@ class AutoManageController extends Controller
       ));
   }
 
-  public function send_message(){  
+  public function action_direct_message(){  
 		$arr["type"]="success";
 		
+		/* ga jadi dipake, karena langsung disend(NO QUEUE)
 		$message = new SettingHelper;
 		$message->setting_id = Request::input("setting_id");
 		$message->pk_id = Request::input("pk_id");
@@ -558,6 +559,45 @@ class AutoManageController extends Controller
 		$message->send_text_timestamp = 0;
 		$message->is_done = 0;
 		$message->save();
+		*/
+		
+		try {
+			$setting = Setting::join("setting_helpers","setting_helpers.setting_id","=","settings.id")
+									->where("settings.id",Request::input("setting_id"))
+									->first();
+			$i = new Instagram(false,false,[
+				"storage"       => "mysql",
+				"dbhost"       => Config::get('automation.DB_HOST'),
+				"dbname"   => Config::get('automation.DB_DATABASE'),
+				"dbusername"   => Config::get('automation.DB_USERNAME'),
+				"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+			]);
+			
+			$i->setUser(strtolower($setting->insta_username), $setting->insta_password);
+			$proxy = Proxies::find($setting->proxy_id);
+			if (!is_null($proxy)) {
+				$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+			}
+			
+			$i->login();
+			if ( Request::input("type") == "message" ) {
+				$i->directMessage(Request::input("pk_id"), Request::input("message"));
+			}
+			else if ( Request::input("type") == "like" ) {
+				$i->directMessage(Request::input("pk_id"), Request::input("message"));
+			}
+			$listMessageResponse = $i->directThread(Request::input("thread_id"));
+
+			$arr["resultEmailData"] = view("member.auto-manage.message-inbox")->with(array(
+																			'listMessageResponse'=>$listMessageResponse,
+																			'setting_id'=>Request::input("setting_id"),
+																			'thread_id'=>Request::input("thread_id"),
+																		))->render();
+		}
+		catch (Exception $e) {
+			$arr["type"]="error";
+		}
+		
 		return $arr;
 	}
 	
@@ -588,6 +628,7 @@ class AutoManageController extends Controller
 			$arr["resultEmailData"] = view("member.auto-manage.message-inbox")->with(array(
 																			'listMessageResponse'=>$listMessageResponse,
 																			'setting_id'=>Request::input("setting_id"),
+																			'thread_id'=>Request::input("thread_id"),
 																		))->render();
 		}
 		catch (Exception $e) {

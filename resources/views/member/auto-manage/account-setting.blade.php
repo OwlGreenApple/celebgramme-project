@@ -153,14 +153,17 @@ use Celebgramme\Models\SettingHelper;
 				}
 			})
 		});
-		$( "body" ).on( "click", ".button-message-inbox", function() {
+		$( "body" ).on( "click", ".button-like-inbox", function(e) {
+			e.preventDefault();
 			$.ajax({
 				type: 'GET',
-				url: "<?php echo url('send-message'); ?>",
+				url: "<?php echo url('action-direct-message'); ?>",
 				data: {
 					pk_id : $(this).attr("data-pk-id"),
 					message : $("#text-message-inbox").val(),
 					setting_id : $(this).attr("data-setting-id"),
+					thread_id : $(this).attr("data-thread-id"),
+					type : 'like',
 				},
 				dataType: 'text',
 				beforeSend: function()
@@ -170,6 +173,39 @@ use Celebgramme\Models\SettingHelper;
 				success: function(result) {
 					$("#div-loading").hide();
 					var data = jQuery.parseJSON(result);
+					$("#div-testing-email").html(data.resultEmailData);
+					// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
+					// console.log(dataMessage);
+					
+					// if(data.type=='success')
+					// {
+					// }
+					// else if(data.type=='error')
+					// {
+					// }
+				}
+			})
+		});
+		$( "body" ).on( "click", ".button-message-inbox", function() {
+			$.ajax({
+				type: 'GET',
+				url: "<?php echo url('action-direct-message'); ?>",
+				data: {
+					pk_id : $(this).attr("data-pk-id"),
+					message : $("#text-message-inbox").val(),
+					setting_id : $(this).attr("data-setting-id"),
+					thread_id : $(this).attr("data-thread-id"),
+					type : 'message',
+				},
+				dataType: 'text',
+				beforeSend: function()
+				{
+					$("#div-loading").show();
+				},
+				success: function(result) {
+					$("#div-loading").hide();
+					var data = jQuery.parseJSON(result);
+					$("#div-testing-email").html(data.resultEmailData);
 					// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
 					// console.log(dataMessage);
 					
