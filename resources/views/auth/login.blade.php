@@ -48,14 +48,15 @@
 					</div>
         </div>
 
-				<!-- ADS -->
+				<!-- ADS 
 				<div class="container3" style="position:fixed;bottom:0;width:100%;left:0;z-index:99;">  
 					<div class="row">
 						<div class="col-sm-12 col-md-12" style="position:relative;overflow:hidden;">
-							<?php echo $content; ?>
+							<?php //echo $content; ?>
 						</div>
 					</div>
 				</div>
+				-->
       </div>
     </body>
 </html>

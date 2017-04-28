@@ -55,6 +55,7 @@ class Setting extends Model {
 		$setting->status = 'stopped';
 		$setting->type = 'temp';
 		$setting->is_active = 0;
+		$setting->method = "API";
 		$setting->save();
 		
 		$setting_id_temp = $setting->id;
