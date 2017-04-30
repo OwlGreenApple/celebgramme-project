@@ -205,24 +205,6 @@
                 </div>  
               </div>          
               <?php } ?>
-              <?php /* disable daily likes
-                $dt1 = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at);
-                $dt2 = Carbon::now();
-
-                if ($dt1->diffInDays($dt2) == 0 ) { $likes=250; }
-                if ($dt1->diffInDays($dt2) == 1 ) { $likes=300; }
-                if ($dt1->diffInDays($dt2) == 2 ) { $likes=350; }
-                if ($dt1->diffInDays($dt2) == 3 ) { $likes=400; }
-                if ($dt1->diffInDays($dt2) == 4 ) { $likes=450; }
-                if ($dt1->diffInDays($dt2) == 5 ) { $likes=500; }
-              if ( ($user->status_free_trial) && (($dt1->diffInDays($dt2) >= 0 )&&($dt1->diffInDays($dt2) <= 5 )) ) { */
-              ?> <!--
-              <div class="col-sm-8 col-md-8">
-                <div class="alert alert-info col-sm-18 col-md-18" id="">
-                  Silahkan kembali lagi besok. Besok anda mendapat {{--$likes}} likes dari total 2450 likes.
-                </div>  
-              </div>-->
-              <?php //} ?>          
               <?php if ($user->type=="not-confirmed") { ?> 
               <div class="col-sm-8 col-md-8">            
                 <div class="alert alert-danger col-sm-18 col-md-18" id="alert">
