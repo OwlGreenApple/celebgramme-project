@@ -592,7 +592,8 @@ class CronJobController extends Controller
 										->orderBy('distance', 'asc')
 										->first();
 										*/
-				$order->total = $package->price;
+				// $order->total = $package->price;
+				$order->total = intval($data_meta[0]->meta_value);
 				$order->user_id = $user->id;
 				$order->package_manage_id = $package->id;
 				$order->save();
