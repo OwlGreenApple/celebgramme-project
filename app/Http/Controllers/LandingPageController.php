@@ -33,10 +33,12 @@ class LandingPageController extends Controller
 {
   
 	public function testing(){
-		$temp = Meta::createMeta("daily_follow_turbo_limit_min",600);
-		$temp = Meta::createMeta("daily_follow_turbo_limit_max",750);
-		$temp = Meta::createMeta("daily_like_turbo_limit_min",600);
-		$temp = Meta::createMeta("daily_like_turbo_limit_max",750);
+		$dt_coupon_expired = Carbon::now()->addDays(Meta::getMeta("coupon_setting_days")+1)->toDateString();
+		echo $dt_coupon_expired;
+		// $temp = Meta::createMeta("daily_follow_turbo_limit_min",600);
+		// $temp = Meta::createMeta("daily_follow_turbo_limit_max",750);
+		// $temp = Meta::createMeta("daily_like_turbo_limit_min",600);
+		// $temp = Meta::createMeta("daily_like_turbo_limit_max",750);
 	}
 	
 	/**
