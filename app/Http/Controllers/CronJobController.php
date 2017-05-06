@@ -580,8 +580,10 @@ class CronJobController extends Controller
 				// $package = Package::find(31);
 				$package = Package::find(36);
 				$data_meta = DB::connection('mysqlAffiliate')->select("select meta_value from wp_af1postmeta where meta_key='price' and post_id = ".$data->ID);		
+				$isi_form_kaos = false;
 				if (intval($data_meta[0]->meta_value) >550000 ) {
-					$package = Package::find(36);
+					$package = Package::find(38);
+					$isi_form_kaos = true;
 				} else if (intval($data_meta[0]->meta_value) <500000 ) {
 					$package = Package::find(34);
 				}
@@ -611,6 +613,7 @@ class CronJobController extends Controller
 					$emaildata = [
 							'user' => $user,
 							'password' => $string,
+							'isi_form_kaos' => $isi_form_kaos,
 					];
 					Mail::queue('emails.create-user', $emaildata, function ($message) use ($user) {
 						$message->from('no-reply@celebgramme.com', 'Celebgramme');
@@ -653,6 +656,7 @@ class CronJobController extends Controller
 					
 					$emaildata = [
 							'user' => $user,
+							'isi_form_kaos' => $isi_form_kaos,
 					];
 					Mail::queue('emails.adding-time-user', $emaildata, function ($message) use ($user) {
 						$message->from('no-reply@celebgramme.com', 'Celebgramme');
