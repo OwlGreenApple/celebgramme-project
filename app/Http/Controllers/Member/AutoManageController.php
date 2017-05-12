@@ -828,11 +828,13 @@ class AutoManageController extends Controller
 					//for automation purpose
 					$setting_helper = SettingHelper::where("setting_id","=",$setting_temp->id)->first();
 					if (!is_null($setting_helper)) {
-						$setting_helper->cookies = "";
-						$setting_helper->save();
+						// $setting_helper->cookies = "";
+						// $setting_helper->save();
 
 						// ONLY for init assign proxy
 						if ($setting_helper->proxy_id == 0) {
+							$setting_helper->cookies = ""; //trying to fixing error "ubah setting instagram anda"
+							$setting_helper->save();
 							GlobalHelper::clearProxy(serialize($setting_temp),"new");
 						}
 					}
