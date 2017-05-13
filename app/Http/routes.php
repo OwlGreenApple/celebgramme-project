@@ -99,6 +99,7 @@ Route::group(['middleware' => 'auth'], function()
 	
 	/*--------- New-dashboard ---------*/
 	Route::get('test-new', 'Member\NewDashboardController@index');
+	Route::get('dashboard', 'Member\NewDashboardController@dashboard');
 });
 
 
