@@ -96,6 +96,9 @@ Route::group(['middleware' => 'auth'], function()
 	Route::get('check-message', 'Member\AutoManageController@check_message');
 	Route::get('action-direct-message', 'Member\AutoManageController@action_direct_message');
 	
+	
+	/*--------- New-dashboard ---------*/
+	Route::get('test-new', 'Member\NewDashboardController@index');
 });
 
 
