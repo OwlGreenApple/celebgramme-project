@@ -33,8 +33,8 @@
 .iconInstaAccount{margin-top:-15px !important;}
 .resposiveText .body h4{font-weight:200;}
 .bgGreenLight{background:#33cc33 !important;color:#fff !important;}
-#btnIcon{box-shadow:none;background:transparent !important;border:1px solid #fff;}
-#btnIcon i{position:relative;top:-3px;right:1.7px;}
+.btnIcon{box-shadow:none;background:transparent !important;border:1px solid #fff;}
+.btnIcon i{position:relative;top:-3px;right:1.7px;}
 .text-blue{color:#095c98;}
 .card .bg-lightGrey{background:#eaeaea !important;}
 #iconCollapse{width:25px;height:25px;margin-top:-4px;box-shadow:none !important;}
@@ -5164,13 +5164,14 @@ width:100% !important;
   margin-bottom: 25px; }
   .form-group .form-control {
     width: 100%;
-    border: none;
+    /*border: none;*/
     box-shadow: none;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     -ms-border-radius: 0;
     border-radius: 0;
-    padding-left: 0; }
+    /*padding-left: 0; */
+		}
   .form-group .help-info {
     float: right;
     font-size: 12px;
@@ -8169,3 +8170,4 @@ html.ie11 .bs-searchbox .form-control {
   width: 90%; }
 
 
+/*EDITED BY me*/

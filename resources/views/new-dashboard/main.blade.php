@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Welcome To | New CELEBGRAMME</title>
     <!-- Favicon-->
-    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="{{ asset('/images/celebgramme-favicon.png') }}" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -130,8 +130,8 @@
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
-                    <li id="home" @if(Request::is('coupon')) class="active" @endif>
-                        <a href="{{url('test-new')}}" data-identity="home" class="waves-light">
+                    <li id="home" @if(Request::is('home')) class="active" @endif>
+                        <a href="{{url('home')}}" data-identity="home" class="waves-light">
                             <i class="material-icons text-white">home</i>
                             <span>Home</span>
                         </a>
@@ -143,43 +143,43 @@
                         </a>
                     </li>
                     <li id="buyMore" @if(Request::is('buy-more')) class="active" @endif>
-                        <a href="" data-identity="buyMore"  class="waves-light">
+                        <a href="{{url('buy-more')}}" data-identity="buyMore"  class="waves-light">
                             <i class="material-icons text-white">shopping_cart</i>
                             <span>Buy More</span>
                         </a>
                     </li>
 					<li id="confirmPayment" @if(Request::is('confirm-payment')) class="active" @endif>
-                        <a href="javascript:void(0);" data-identity="confirmPayment"  class="waves-light">
+                        <a href="{{url('confirm-payment')}}" data-identity="confirmPayment"  class="waves-light">
                             <i class="material-icons text-white">event_available</i>
                             <span>Confirm Payment</span>
                         </a>
                     </li>
-					<li id="orderHistory" @if(Request::is('order-history')) class="active" @endif>
-                        <a href="javascript:void(0);" data-identity="orderHistory"  class="waves-light">
+					<li id="orderHistory" @if(Request::is('order')) class="active" @endif>
+                        <a href="{{url('order')}}" data-identity="orderHistory"  class="waves-light">
                             <img src="{{asset('/new-dashboard/images/orderHistory.png')}}" >
                             <span>Order History</span>
                         </a>
                     </li>
-					<li id="changePassword" @if(Request::is('change-password')) class="active" @endif>
-                        <a href="javascript:void(0);" data-identity="changePassword" class="waves-light">
+					<li id="changePassword" @if(Request::is('edit-profile')) class="active" @endif>
+                        <a href="{{url('edit-profile')}}" data-identity="changePassword" class="waves-light">
                             <i class="material-icons text-white">lock</i>
                             <span>Change Password</span>
                         </a>
                     </li>
 					<li id="faq">
-                        <a href="javascript:void(0);" data-identity="faq" class="waves-light">
+                        <a href="http://celebgramme.freshdesk.com" target="_blank" data-identity="faq" class="waves-light">
                             <img src="{{asset('/new-dashboard/images/faq.png')}}" >
                             <span>Faq & Support</span>
                         </a>
                     </li>
 					<li id="tutorial">
-                        <a href="javascript:void(0);" data-identity="tutorial" class="waves-light">
+                        <a href="https://docs.google.com/document/d/1GWfW5kU5yvchCZlqPxEksK7NrMqgQGP0saqCG2VNGlQ" target="_blank" data-identity="tutorial" class="waves-light">
                             <i class="material-icons text-white">class</i>
                             <span>Tutorial</span>
                         </a>
                     </li>
 					<li id="logout">
-                        <a href="javascript:void(0);" data-identity="logout" class="waves-light">
+                        <a href="{{url('logout')}}" data-identity="logout" class="waves-light">
                             <i class="material-icons text-white">power_settings_new</i>
                             <span>Logout</span>
                         </a>
@@ -190,7 +190,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2017 <a href="javascript:void(0);">Celeb Gramme</a>.
+                    &copy; 2017 <a href="{{url('')}}">Celebgramme</a>.
                     <b>Version: </b> 3.0.0
                 </div>
             </div>
@@ -210,8 +210,8 @@
             </div>
             <div class="menu" id="menuRight">
                 <ul class="list ">
-                    <li @if(Request::is('coupon')) class="active" @endif id="home">
-                        <a href="{{url('test-new')}}" data-identity="home" class="waves-light">
+                    <li @if(Request::is('home')) class="active" @endif id="home">
+                        <a href="{{url('home')}}" data-identity="home" class="waves-light">
                             <i class="material-icons text-white">home</i>
                             <span>Home</span>
                         </a>
@@ -223,43 +223,43 @@
                         </a>
                     </li>
                     <li id="buyMore" @if(Request::is('buy-more')) class="active" @endif>
-                        <a href="" data-identity="buyMore"  class="waves-light">
+                        <a href="{{url('buy-more')}}" data-identity="buyMore"  class="waves-light">
                             <i class="material-icons text-white">shopping_cart</i>
                             <span>Buy More</span>
                         </a>
                     </li>
 					<li id="confirmPayment" @if(Request::is('confirm-payment')) class="active" @endif>
-                        <a href="javascript:void(0);" data-identity="confirmPayment"  class="waves-light">
+                        <a href="{{url('confirm-payment')}};" data-identity="confirmPayment"  class="waves-light">
                             <i class="material-icons text-white">event_available</i>
                             <span>Confirm Payment</span>
                         </a>
                     </li>
-					<li id="orderHistory" @if(Request::is('order-history')) class="active" @endif>
-                        <a href="javascript:void(0);" data-identity="orderHistory"  class="waves-light">
+					<li id="orderHistory" @if(Request::is('order')) class="active" @endif>
+                        <a href="{{url('order')}}" data-identity="orderHistory"  class="waves-light">
                             <img src="{{asset('/new-dashboard/images/orderHistory.png')}}" >
                             <span>Order History</span>
                         </a>
                     </li>
-					<li id="changePassword" @if(Request::is('change-password')) class="active" @endif>
-                        <a href="javascript:void(0);" data-identity="changePassword" class="waves-light">
+					<li id="changePassword" @if(Request::is('edit-profile')) class="active" @endif>
+                        <a href="{{url('edit-profile')}}" data-identity="changePassword" class="waves-light">
                             <i class="material-icons text-white">lock</i>
                             <span>Change Password</span>
                         </a>
                     </li>
 					<li id="faq">
-                        <a href="javascript:void(0);" data-identity="faq" class="waves-light">
+                        <a href="http://celebgramme.freshdesk.com" target="_blank" data-identity="faq" class="waves-light">
                             <img src="{{asset('/new-dashboard/images/faq.png')}}" >
                             <span>Faq & Support</span>
                         </a>
                     </li>
 					<li id="tutorial">
-                        <a href="javascript:void(0);" data-identity="tutorial" class="waves-light">
+                        <a href="https://docs.google.com/document/d/1GWfW5kU5yvchCZlqPxEksK7NrMqgQGP0saqCG2VNGlQ" target="_blank" data-identity="tutorial" class="waves-light">
                             <i class="material-icons text-white">class</i>
                             <span>Tutorial</span>
                         </a>
                     </li>
 					<li id="logout">
-                        <a href="javascript:void(0);" data-identity="logout" class="waves-light">
+                        <a href="{{url('logout')}}" target="_blank" data-identity="logout" class="waves-light">
                             <i class="material-icons text-white">power_settings_new</i>
                             <span>Logout</span>
                         </a>
@@ -270,7 +270,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2017 <a href="javascript:void(0);">Celeb Gramme</a>.
+                    &copy; 2017 <a href="{{url('')}}">Celebgramme</a>.
                     <b>Version: </b> 3.0.0
                 </div>
             </div>

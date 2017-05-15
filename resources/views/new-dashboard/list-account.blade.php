@@ -1,0 +1,89 @@
+<style>
+a:hover, a:active, a:focus {
+  /* styling for any way a link is about to be used */
+	text-decoration:none!important;outline: none!important;
+}
+input[type="text"]:disabled,input[type="password"]:disabled {
+    background: #dddddd;
+}
+</style>
+				<?php 
+				use Celebgramme\Models\SettingMeta; 
+				if (isset($datas)) { 
+					foreach ($datas as $data ) {
+					if (SettingMeta::getMeta($data->id,"photo_filename") == "0") {
+						$photo = url('images/profile-default.png');
+					} else {
+						$photo = url("images/pp/". SettingMeta::getMeta($data->id,"photo_filename"));
+					}
+				?>
+				<div class="col-md-4 col-sm-12 col-xs-12">
+					<div class="card">
+                        <div class="header bg-cyan br-t-6">
+													<a href="https://instagram.com/{{$data->insta_username}}" target="_blank">
+                            <h2>
+															<img src="{{$photo}}" class="img-circle" style="width:70px;height:70px;">
+                                &nbsp; {{$data->insta_username}}
+                            </h2>
+													</a>
+                        </div>
+                        <div class="body">
+                            <div class="row">
+								<div class="col-md-3 col-sm-3 col-xs-3 startStopArea">
+									<center>
+									<small><b>Activity</b></small>
+									<img src="{{asset('/new-dashboard/images/startIcon.png')}}"class="img-responsive">
+									<span class="confirmStart text-success col-teal">Started</span>
+									</center>
+								</div>
+								<div class="col-md-3 col-sm-3 col-xs-3">
+									<center>
+									<small><b>Following</b></small>
+									<img src="{{asset('/new-dashboard/images/followingIcon.png')}}"class="img-responsive">
+									<?php echo number_format(intval (SettingMeta::getMeta($data->id,"following")),0,'','.'); ?>
+									</center>
+								</div>
+								<div class="col-md-3 col-sm-3 col-xs-3 text=center">
+									<center>
+									<small><b>Followers</b></small>
+									<img src="{{asset('/new-dashboard/images/followersIcon.png')}}"class="img-responsive">
+									<?php echo number_format(intval (SettingMeta::getMeta($data->id,"followers")),0,'','.'); ?>
+									</center>
+								</div>
+								<div class="col-md-3 col-sm-3 col-xs-3">
+									<center>
+									<small style="font-size:80%;white-space: nowrap;"><b>DM Inbox</b></small>
+									<img src="{{asset('/new-dashboard/images/mailIcon.png')}}" class="img-responsive">
+									5
+									</center>
+								</div>
+							</div>
+							<div class="row">
+								<?php if (SettingMeta::getMeta($data->id,"auto_unfollow") == "yes" )  { ?>
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<p class="text-center">*Proses auto unfollow akan dijalankan karena jumlah following anda telah mencapai 7250</p>
+								</div>
+								<?php } ?>
+							</div>
+							<div class="row">
+								<div class="col-md-6 col-sm-6 col-xs-6">
+									<!--
+									<button class="btn bg-red btn-block text-center waves-effect btnStop br-6">
+										<i class="fa fa-stop"></i>&nbsp;<span>Stop</span>
+									</button>
+									-->
+									<button data-id="{{$data->id}}" class="btn br-6 btn-block text-center waves-effect <?php if ($data->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$data->id}}" value="<?php if ($data->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
+										<?php if ($data->status=='stopped') { echo "<span class='glyphicon glyphicon-play'></span> Start"; } else {echo "<span class='glyphicon glyphicon-stop'></span> Stop";}?> 
+									</button>
+									
+								</div>
+								<div class="col-md-6 col-sm-6 col-xs-6">
+									<a href="{{url('setting/'.$data->id)}}">
+										<button class="btn bgBlueGreen btn-block text-center text-white waves-effect br-6"><i class="fa fa-cog"></i>&nbsp;Setting</button>
+									</a>
+								</div>
+							</div>
+                        </div>
+                    </div>
+				</div>
+				<?php } } ?>

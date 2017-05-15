@@ -1,4 +1,4 @@
-@extends('member.index')
+@extends('new-dashboard.main')
 
 @section('content')
 <script type="text/javascript">

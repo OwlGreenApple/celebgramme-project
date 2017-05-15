@@ -52,8 +52,8 @@ Route::group(['middleware' => 'auth'], function()
   Route::get('resend-activation', 'Member\EmailController@resendEmailActivation');
 
   Route::get('test', 'Member\HomeController@test');
-  Route::get('home', 'Member\AutoManageController@index');
-  Route::get('/', 'Member\AutoManageController@index');
+  // Route::get('home', 'Member\AutoManageController@index');
+  // Route::get('/', 'Member\AutoManageController@index');
   Route::get('order', 'Member\HomeController@order');
   
   Route::get('edit-profile', 'Member\HomeController@edit_profile');
@@ -85,7 +85,7 @@ Route::group(['middleware' => 'auth'], function()
 
   /*--------- Auto-manage ---------*/
   Route::get('auto-manage', 'Member\AutoManageController@index');
-  Route::get('load-account', 'Member\AutoManageController@load_account');
+  // Route::get('load-account', 'Member\AutoManageController@load_account');
   Route::get('account-setting/{id}', 'Member\AutoManageController@account_setting');
   Route::post('process-save-credential', 'Member\AutoManageController@process_save_credential');
   Route::post('process-edit-password', 'Member\AutoManageController@process_edit_password');
@@ -98,8 +98,11 @@ Route::group(['middleware' => 'auth'], function()
 	
 	
 	/*--------- New-dashboard ---------*/
-	Route::get('test-new', 'Member\NewDashboardController@index');
+	Route::get('/', 'Member\NewDashboardController@index');
+	Route::get('home', 'Member\NewDashboardController@index');
 	Route::get('dashboard', 'Member\NewDashboardController@dashboard');
+	Route::get('load-account', 'Member\NewDashboardController@load_account');
+	Route::get('setting/{id}', 'Member\NewDashboardController@setting_index');
 });
 
 

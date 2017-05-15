@@ -1,6 +1,10 @@
 @extends('new-dashboard.main')
 
 @section('content')
+<?php 
+use Celebgramme\Models\SettingMeta; 
+use Celebgramme\Models\SettingHelper; 
+?>
 <script>
 $(document).ready(function() {
 	$(".demo-tagsinput-area").each(function(){
@@ -27,14 +31,21 @@ $(document).ready(function() {
 							<div class="col-md-8 col-sm-12 col-xs-12 ">
 								<div class="row">
 									<div class="col-md-3 col-sm-3 col-xs-3">
-										<img src="../../celebGramme/images/user.png" class="m-t-20 img-circle">
+										<?php 
+											if (SettingMeta::getMeta($settings->id,"photo_filename") == "0") {
+												$photo = url('images/profile-default.png');
+											} else {
+												$photo = url("images/pp/". SettingMeta::getMeta($settings->id,"photo_filename"));
+											}
+										?>	
+										<img src="{{$photo}}" class="m-t-20 img-circle" style="width:50px;height:50px;">
 									</div>
 									<div class="col-md-9 col-sm-9 col-xs-9 padding-0 startStopArea">
 										<p style="white-space: nowrap;" class="padding-0">
-										<h5 class="text-primary">&nbsp;Instagram Name</h5>
+										<h5 class="text-primary">&nbsp;{{$settings->insta_username}}</h5>
 											<small>Status Activity &nbsp;: &nbsp;<span class="text-success col-teal">Started</span><br>
 												Total waktu berlangganan<br/>
-												<b class="text-primary">30 Hari 20:31</b>
+												<b class="text-primary">{{$view_totaltime}}</b>
 											</small>
 										</p>
 									</div>
@@ -56,7 +67,7 @@ $(document).ready(function() {
 										<small style="font-size:11px;white-space:nowrap;">Followers Saat Join&nbsp;:&nbsp;</small>
 									</div>
 									<div class="col-md-3 col-sm-3 col-xs-3 padding-0 text-center">
-										0
+										<?php echo number_format(intval (SettingMeta::getMeta($settings->id,"followers_join")),0,'','.'); ?>
 									</div>
 								</div>
 								<div class="row padding-0">
@@ -64,15 +75,20 @@ $(document).ready(function() {
 										<small style="font-size:11px;white-space:nowrap;">Following Saat Join&nbsp;:&nbsp;</small>
 									</div>
 									<div class="col-md-3 col-sm-3 col-xs-3 padding-0 text-center">
-										12
+										<?php echo number_format(intval (SettingMeta::getMeta($settings->id,"following_join")),0,'','.'); ?>
 									</div>
 								</div>
+								<?php 
+								$followers = intval (SettingMeta::getMeta($settings->id,"followers"));
+								$following = intval (SettingMeta::getMeta($settings->id,"following"));
+								
+								?>
 								<div class="row padding-0">
 									<div class="col-md-9 col-sm-9 col-xs-9 padding-0">
 										<small style="font-size:11px;white-space:nowrap;">Followers Hari ini&nbsp;:&nbsp;</small>
 									</div>
 									<div class="col-md-3 col-sm-3 col-xs-3 padding-0 text-center">
-										5131
+										{{number_format($followers,0,'','.')}}
 									</div>
 								</div>
 								<div class="row padding-0">
@@ -80,7 +96,7 @@ $(document).ready(function() {
 										<small style="font-size:11px;white-space:nowrap;">Following Hari ini&nbsp;:&nbsp;</small>
 									</div>
 									<div class="col-md-3 col-sm-3 col-xs-3 padding-0 text-center">
-										212
+										{{number_format($following,0,'','.')}}
 									</div>
 								</div>
 							</div>
