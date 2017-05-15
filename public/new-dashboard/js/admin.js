@@ -682,3 +682,17 @@ $(function () {
 
     setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 50);
 });
+
+
+$(document).on('click','#button-package-normal',function(){
+	$("#button-package-normal").addClass("bg-cyan");
+	$("#button-package-normal").removeClass("bgBlueGreen");
+	$("#button-package-extra").removeClass("bg-cyan");
+	$("#button-package-extra").addClass("bgBlueGreen");
+});
+$(document).on('click','#button-package-extra',function(){
+	$("#button-package-normal").removeClass("bg-cyan");
+	$("#button-package-normal").addClass("bgBlueGreen");
+	$("#button-package-extra").addClass("bg-cyan");
+	$("#button-package-extra").removeClass("bgBlueGreen");
+});

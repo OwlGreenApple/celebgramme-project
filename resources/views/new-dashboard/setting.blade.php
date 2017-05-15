@@ -13,8 +13,18 @@ $(document).ready(function() {
 		});
 	});
 	activateNouislide();
+
+	/*Hint*/
+	$('.tooltipPlugin').tooltipster({
+			theme: 'tooltipster-noir',
+			contentAsHTML: true,
+			interactive:true,
+	});
+		
+	
 });	
 </script>
+<form enctype="multipart/form-data" id="form-setting">
 <div class="row">
 	<div class="col-lg-12 col-md-12">
 		<div class="container-fluid">
@@ -113,10 +123,10 @@ $(document).ready(function() {
 								<b>Tambah waktu langganan </b>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-6 ">
-								<a class="btn btn-link btn-block bg-cyan br-6 text-center" data-toggle="tab" href="#normal">Normal</a>
+								<a class="btn btn-link btn-block bg-cyan br-6 text-white text-center" data-toggle="tab" href="#normal" id="button-package-normal">Normal</a>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-6 text-white">
-								<a class="btn btn-link btn-block bgBlueGreen text-white br-6 text-center" data-toggle="tab" href="#extra">Extra</a>
+								<a class="btn btn-link btn-block bgBlueGreen text-white br-6 text-center" data-toggle="tab" href="#extra" id="button-package-extra">Extra</a>
 							</div>
 						</div>
 						<div class="row">
@@ -215,7 +225,7 @@ $(document).ready(function() {
 												<div class="card m-b-0" style="background:transparent;box-shadow:none;">
 													<div class="header">
 														<h2>
-															Global Settings &nbsp;<img class="cursorActive" src="../../celebGramme/images/questionIcon.png">
+															Global Settings &nbsp;<img class="cursorActive tooltipPlugin " src="{{asset('/new-dashboard/images/questionIcon.png')}}" title="<div class='panel-heading'>Profile</div><div class='panel-content'>Jumlah Followers & Following ini hanya merupakan INFO saja ( bukan Real time ) <br> & hanya di update beberapa kali dalam sehari untuk memperingan kerja server</div>">
 														</h2>
 													</div>
 													<div class="body" style="background:transparent;box-shadow:none;">
@@ -246,7 +256,7 @@ $(document).ready(function() {
 												<div class="card m-b-0" style="background:transparent;box-shadow:none;">
 													<div class="header">
 														<h2>
-															Auto Like Settings
+															Auto Like Settings &nbsp;<img class="cursorActive" src="{{asset('/new-dashboard/images/questionIcon.png')}}">
 														</h2>
 													</div>
 													<div class="body" style="background:transparent;box-shadow:none;">
@@ -295,7 +305,7 @@ $(document).ready(function() {
 												<div class="card m-b-0" style="background:transparent;box-shadow:none;">
 													<div class="header">
 														<h2>
-															Black List & White List &nbsp;<img class="cursorActive" src="../../celebGramme/images/questionIcon.png">
+															Black List & White List &nbsp;<img class="cursorActive" src="{{asset('/new-dashboard/images/questionIcon.png')}}">
 														</h2>
 													</div>
 													<div class="body" style="background:transparent;box-shadow:none;">
@@ -357,7 +367,7 @@ $(document).ready(function() {
 												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
 													<div class="header">
 														<h2>
-															Follow &nbsp;<img class="cursorActive" src="../../celebGramme/images/questionIcon.png">
+															Follow &nbsp;<img class="cursorActive" src="{{asset('/new-dashboard/images/questionIcon.png')}}">
 														</h2>
 													</div>
 													<div class="body" style="background:transparent;box-shadow:none;">
@@ -449,7 +459,7 @@ $(document).ready(function() {
 												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
 													<div class="header">
 														<h2>
-															Media Source &nbsp;: &nbsp; #Hashtags &nbsp;<img class="cursorActive" src="../../celebGramme/images/questionIcon.png">
+															Media Source &nbsp;: &nbsp; #Hashtags &nbsp;<img class="cursorActive" src="{{asset('/new-dashboard/images/questionIcon.png')}}">
 														</h2>
 													</div>
 													<div class="body" style="background:transparent;box-shadow:none;">
@@ -472,7 +482,7 @@ $(document).ready(function() {
 												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
 													<div class="header">
 														<h2>
-															Like &nbsp; & &nbsp; Comment &nbsp;<img class="cursorActive" src="../../celebGramme/images/questionIcon.png">
+															Like &nbsp; & &nbsp; Comment &nbsp;<img class="cursorActive" src="{{asset('/new-dashboard/images/questionIcon.png')}}">
 														</h2>
 													</div>
 													<div class="body" style="background:transparent;box-shadow:none;">
@@ -758,6 +768,7 @@ $(document).ready(function() {
 		</div>
 	</div>
 </div>
+</form>
 
 <section id="userSetScript">
 		<script type="text/javascript" src="{{ asset('/new-dashboard/js/jquery-ui.js') }}"></script>

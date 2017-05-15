@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+		<meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Welcome To | New CELEBGRAMME</title>
@@ -35,6 +36,12 @@
 
    
 
+    <!-- Css for hint -->
+		<link href="{{ asset('/css/tooltipster.css') }}" rel="stylesheet">
+		<link href="{{ asset('/css/tooltipster-noir.css') }}" rel="stylesheet">
+		
+		
+		
     <!-- Custom Css -->
 		<link href="{{ asset('/new-dashboard/css/style.css') }}" rel="stylesheet">
 		<link href="{{ asset('/new-dashboard/css/jquery-ui.min.css') }}" rel="stylesheet">
@@ -61,6 +68,9 @@
 		<script type="text/javascript" src="{{ asset('/new-dashboard/plugins/node-waves/waves.js') }}"></script>
 
 
+    <!-- Js for hint -->
+		<script type="text/javascript" src="{{ asset('/js/jquery.tooltipster.min.js') }}"></script>		
+		
     <!-- Custom Js -->
 		<script type="text/javascript" src="{{ asset('/new-dashboard/js/admin.js') }}"></script>
 

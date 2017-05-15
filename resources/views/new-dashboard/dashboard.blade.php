@@ -158,43 +158,42 @@
 		});
 		
     $( "body" ).on( "click", "#delete-setting", function() {
-			//alert($(this).attr("data-id"));
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: 'POST',
-            url: "<?php echo url('delete-setting'); ?>",
-            data: {
-							id : $("#id-setting").val(),
-						},
-            dataType: 'text',
-            beforeSend: function()
-            {
-              $("#div-loading").show();
-            },
-            success: function(result) {
-                // $('#result').html(data);
-                $("#div-loading").hide();
-                var data = jQuery.parseJSON(result);
-                $("#alert").show();
-                $("#alert").html(data.message);
-                if(data.type=='success')
-                {
-                  $("#alert").addClass('btn-danger');
-                  $("#alert").removeClass('alert-success');
-                }
-                else if(data.type=='error')
-                {
-                  $("#alert").addClass('alert-success');
-                  $("#alert").removeClass('btn-danger');
-                }
-                $("#username").val("");
-                $("#password").val("");
-                $("#confirm_password").val("");
-                loadaccount();
-            }
-        });
+			$.ajax({
+					headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					},
+					type: 'POST',
+					url: "<?php echo url('delete-setting'); ?>",
+					data: {
+						id : $("#id-setting").val(),
+					},
+					dataType: 'text',
+					beforeSend: function()
+					{
+						$("#div-loading").show();
+					},
+					success: function(result) {
+							// $('#result').html(data);
+							$("#div-loading").hide();
+							var data = jQuery.parseJSON(result);
+							$("#alert").show();
+							$("#alert").html(data.message);
+							if(data.type=='success')
+							{
+								$("#alert").addClass('btn-danger');
+								$("#alert").removeClass('alert-success');
+							}
+							else if(data.type=='error')
+							{
+								$("#alert").addClass('alert-success');
+								$("#alert").removeClass('btn-danger');
+							}
+							$("#username").val("");
+							$("#password").val("");
+							$("#confirm_password").val("");
+							loadaccount();
+					}
+			});
     });
     $( "body" ).on( "click", ".edit-cred", function() {
       $("#setting_id").val($(this).attr("data-id"));
@@ -357,7 +356,7 @@
 			</div>
 			<div class="col-md-6 col-sm-12 col-xs-12">
 				<div class="card">
-					<div class="body bg-lightGrey">
+					<div class="body bg-lightGrey" style="padding-top: 40px;padding-bottom: 0px;">
 						<div class="row margin-0">
 							<div class="col-md-12 col-sm-4 col-xs-12">
 								<div class="card resposiveText br-6 cursorActive">

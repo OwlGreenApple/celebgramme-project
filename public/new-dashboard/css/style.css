@@ -8171,3 +8171,12 @@ html.ie11 .bs-searchbox .form-control {
 
 
 /*EDITED BY me*/
+.delete-button{
+	position : absolute;
+	top:15px;
+	right:15px;
+	/* width:14px; height:14px; */
+	/* display: inline-block; */
+	/* line-height:1; */
+	/* background-image: url("../images/x-button-normal.png"); */
+}

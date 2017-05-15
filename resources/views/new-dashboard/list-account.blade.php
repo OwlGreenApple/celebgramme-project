@@ -20,12 +20,14 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 				<div class="col-md-4 col-sm-12 col-xs-12">
 					<div class="card">
                         <div class="header bg-cyan br-t-6">
+													<span data-id="{{$data->id}}" class="delete-button glyphicon glyphicon-remove" style="cursor:pointer;" aria-hidden="true" data-toggle="modal" data-target="#confirm-delete" ></span> 
 													<a href="https://instagram.com/{{$data->insta_username}}" target="_blank">
                             <h2>
 															<img src="{{$photo}}" class="img-circle" style="width:70px;height:70px;">
                                 &nbsp; {{$data->insta_username}}
                             </h2>
 													</a>
+													
                         </div>
                         <div class="body">
                             <div class="row">
@@ -79,7 +81,9 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 								</div>
 								<div class="col-md-6 col-sm-6 col-xs-6">
 									<a href="{{url('setting/'.$data->id)}}">
-										<button class="btn bgBlueGreen btn-block text-center text-white waves-effect br-6"><i class="fa fa-cog"></i>&nbsp;Setting</button>
+										<button class="btn bgBlueGreen btn-block text-center text-white waves-effect br-6">
+											<span class='glyphicon glyphicon-cog'></span> Setting
+										</button>
 									</a>
 								</div>
 							</div>
