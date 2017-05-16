@@ -1052,7 +1052,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 
 
           <div class="row">
-						<div class="col-md-5 col-sm-12 col-xm-12"">
+						<div class="col-md-5 col-sm-12 col-xm-12">
 							<label>Comments</label> 
 							<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Comments</div><div class='panel-content'>• <strong>Tambahkan : </strong><@owner> , untuk men-tag owner dari post tersebut<br>
 									• <strong>Tambahkan : </strong><@followers> , untuk men-tag followers anda<br>
@@ -1065,7 +1065,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 									• <strong>Komentar HARUS berbeda </strong>satu sama lain. <br>
 </div>"></span>
 						</div>
-						<div class="col-md-6 col-sm-12 col-xm-12"">
+						<div class="col-md-6 col-sm-12 col-xm-12">
 							<label>Copy contoh spin comment (click)</label>
 							<span class="glyphicon glyphicon-menu-down tooltipPlugin" title='<div class="panel-content">								{asli|serius}, {nice|kerennn|cool|wow|keren|cooooolll|niceeeee} {sekaleee|sekali|banget|beneran|bener} {photo|foto|shot|poto|pic}{kamu|ini} <@owner>
 								<br> <br>
@@ -1076,7 +1076,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 						</div>
           </div>
           <div class="row">
-						<div class="col-md-5 col-sm-12 col-xs-12"">
+						<div class="col-md-5 col-sm-12 col-xs-12">
 							<label>Penjelasan fitur spin comment</label>
 							<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Penjelasan fitur spin comment</div>								<div class="panel-content"><strong>Gunakan Feature "Spin Comment" </strong>contoh : <br>
 																		{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
@@ -1085,7 +1085,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 	</div>'>
 							</span>
 						</div>
-						<div class="col-md-6 col-sm-10 col-xs-10" ">
+						<div class="col-md-6 col-sm-10 col-xs-10">
 							<label>Petunjuk tanda baca spin comment</label>
 							<?php $tempurl = url("images/petunjuk-spin.jpg"); ?>
 							<span class="glyphicon glyphicon-search tooltipPlugin" title='<div class="panel-heading">Petunjuk tanda baca spin comment</div><div class="panel-content"><img src="{{$tempurl}}" width="800" height="250">

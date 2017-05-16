@@ -312,6 +312,16 @@
 			$('#AutoLikesOffButton').addClass('btn-danger');
 			$('#AutoLikesOnButton').removeClass('btn-primary');
 		});
+		$('#AutoLikesFollowersOnButton').click(function(e){
+			$("#is_auto_get_likes").val(1);
+			$('#AutoLikesFollowersOnButton').addClass('btn-primary');
+			$('#AutoLikesFollowersOffButton').removeClass('btn-danger');
+		});
+		$('#AutoLikesFollowersOffButton').click(function(e){
+			$("#is_auto_get_likes").val(0);
+			$('#AutoLikesFollowersOffButton').addClass('btn-danger');
+			$('#AutoLikesFollowersOnButton').removeClass('btn-primary');
+		});
 		
 		$('#BlacklistOnButton').click(function(e){
 			e.preventDefault();

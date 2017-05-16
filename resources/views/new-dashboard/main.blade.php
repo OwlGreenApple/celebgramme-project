@@ -51,7 +51,6 @@
 
 
 
-
 	
     <!-- Jquery Core Js -->
 		<script type="text/javascript" src="{{ asset('/new-dashboard/plugins/jquery/jquery.min.js') }}"></script>
@@ -74,7 +73,6 @@
     <!-- Custom Js -->
 		<script type="text/javascript" src="{{ asset('/new-dashboard/js/admin.js') }}"></script>
 
-	
 		
 </head>
 

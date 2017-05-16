@@ -21,7 +21,7 @@ class Setting extends Model {
 	protected $fillable = ['activity_speed', 'media_source', 'media_age', 'media_type', 
 	'dont_comment_su', 'follow_source', 'dont_follow_su', 'dont_follow_pu', 'unfollow_source', 'unfollow_wdfm', 'comments', 'hashtags', 'locations', 
 	'insta_username', 'insta_password', 'insta_user_id', 'insta_access_token', 'last_user', 'start_time', 'running_time', 'user_id', 'status_blacklist', 'usernames_blacklist', 
-	'username', 'status', 'activity', 'status_whitelist','usernames_whitelist', 'status_follow_unfollow', 'status_like', 'status_comment', 'error_cred', "status_follow", "status_unfollow", "status_auto", "status_follow_auto", "status_unfollow_auto", "is_active" ];
+	'username', 'status', 'activity', 'status_whitelist','usernames_whitelist', 'status_follow_unfollow', 'status_like', 'status_comment', 'error_cred', "status_follow", "status_unfollow", "status_auto", "status_follow_auto", "status_unfollow_auto", "is_active", "is_like_followers", "percent_like_followers" ];
 
 	protected function createSetting($arr)
 	{
@@ -56,6 +56,7 @@ class Setting extends Model {
 		$setting->type = 'temp';
 		$setting->is_active = 0;
 		$setting->method = "API";
+		$setting->percent_like_followers = 25;
 		$setting->save();
 		
 		$setting_id_temp = $setting->id;

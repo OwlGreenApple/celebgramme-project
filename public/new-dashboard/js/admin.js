@@ -11,16 +11,37 @@ function activateNouislide(){
 
 // Range for the slider
 var rating_range = {
-  'min': [16.66],
+  'min': [25],
   'max': [100]
 };
+
+
+//check speed 
+start_value = 100;
+if ($('#activity-speed').val() == "slow") {
+	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div').removeClass('text-primary');
+	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(2)').addClass('text-primary');
+	start_value = 25;
+} else if ($('#activity-speed').val() == "normal") {
+	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div').removeClass('text-primary');
+	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(4)').addClass('text-primary');
+	start_value = 50;
+} else if ($('#activity-speed').val() == "fast") {
+	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div').removeClass('text-primary');
+	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(6)').addClass('text-primary');
+	start_value = 75;
+} else if ($('#activity-speed').val() == "turbo") {
+	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div').removeClass('text-primary');
+	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(9)').addClass('text-primary');
+	start_value = 100;
+} 
 
 
 // Initialize the slider
 noUiSlider.create(rating_slider, {
   range: rating_range,
-  start:100,
-  step: 1,
+  start:start_value,
+  step: 25,
   connect: 'lower',
   pips: {
     mode: 'range',
@@ -50,7 +71,23 @@ $('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(6)')
   .removeClass('noUi-marker-normal')
   <!-- .addClass('txt-b') -->
   .append('<div class="noUi-value noUi-value-horizontal noUi-value-large" style="left: 66.66667%"><small><b>Fast</b></small></div>');
-$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(9)').addClass('text-primary').html('<small style="margin-right:34px;"><b>Turbo</b></small>');
+$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(9)').html('<small style="margin-right:34px;"><b>Turbo</b></small>');
+
+//add class
+if ($('#activity-speed').val() == "slow") {
+	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div').removeClass('text-primary');
+	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(2)').addClass('text-primary');
+} else if ($('#activity-speed').val() == "normal") {
+	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div').removeClass('text-primary');
+	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(4)').addClass('text-primary');
+} else if ($('#activity-speed').val() == "fast") {
+	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div').removeClass('text-primary');
+	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(6)').addClass('text-primary');
+} else if ($('#activity-speed').val() == "turbo") {
+	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div').removeClass('text-primary');
+	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(9)').addClass('text-primary');
+} 
+
 
 
 // Slider event handlers
@@ -68,23 +105,28 @@ rating_slider.noUiSlider.on('slide', function (values, handle) {
 
 
   // Set hidden field to value
-  $('#rating_id').val(value);
+  // $('#rating_id').val(value);
+	// console.log(value);
 
   // Show score name in tool-tip
   $('#rating-tip').text(text).removeClass('hidden');
   $('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div').removeClass('text-primary');
-  if(value >= 0  && value <= 37 ){
-	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div').removeClass('text-primary');
-	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(2)').addClass('text-primary');
-  }else if(value >= 38 && value <= 52 ){
-	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div').removeClass('text-primary');
-	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(4)').addClass('text-primary');
-  }else if(value >= 65 && value <= 86){
-	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div').removeClass('text-primary');
-	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(6)').addClass('text-primary');
-  }else if(value >= 87 && value <= 100){
-	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div').removeClass('text-primary');
-	$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(9)').addClass('text-primary');
+  if(value >= 0  && value <= 25 ){
+		$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div').removeClass('text-primary');
+		$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(2)').addClass('text-primary');
+		$('#activity-speed').val("slow");
+  }else if(value >= 26 && value <= 50 ){
+		$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div').removeClass('text-primary');
+		$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(4)').addClass('text-primary');
+		$('#activity-speed').val("normal");
+  }else if(value >= 51 && value <= 75){
+		$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div').removeClass('text-primary');
+		$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(6)').addClass('text-primary');
+		$('#activity-speed').val("fast");
+  }else if(value >= 76 && value <= 100){
+		$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div').removeClass('text-primary');
+		$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(9)').addClass('text-primary');
+		$('#activity-speed').val("turbo");
   }
 });
 
