@@ -47,8 +47,8 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 									<span class="confirmStop text-danger col-pink">Stopped</span>'; 
 									} 
 									else {
-										echo '<img src="'.$started_icon.'" class="img-responsive">
-										<span class="confirmStart text-success col-teal glyphicon-refresh-animate">Started</span>';}
+										echo '<img src="'.$started_icon.'" class="img-responsive" style="animation: spin 2s infinite linear;">
+										<span class="confirmStart text-success col-teal">Started</span>';}
 									?>
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-3">
