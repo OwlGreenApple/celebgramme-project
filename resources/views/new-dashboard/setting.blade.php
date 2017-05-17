@@ -860,6 +860,7 @@ use Celebgramme\Models\SettingHelper;
 							<!--</div>-->
 						<!--</div>-->
 					</div>
+					<input type="hidden" name="data[id]" value="{{$settings->id}}">
 </form>
 					
 					<div id="message" class="tab-pane fade">
