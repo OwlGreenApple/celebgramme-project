@@ -74,6 +74,12 @@
 		<script type="text/javascript" src="{{ asset('/new-dashboard/js/admin.js') }}"></script>
 
 		
+      <script>
+        $(document).ready(function(){
+          $("#div-loading").hide();
+        });
+        
+      </script>
 </head>
 
 <body class="theme-default">
