@@ -148,7 +148,7 @@ class NewDashboardController extends Controller
 
 		//get response from 
 		// $inboxResponse = json_decode($link->messages);	
-		try {
+		/*try {
 			$i = new Instagram(false,false,[
 				"storage"       => "mysql",
 				"dbhost"       => Config::get('automation.DB_HOST'),
@@ -169,7 +169,7 @@ class NewDashboardController extends Controller
 		}
 		catch (Exception $e) {
 			return $e->getMessage();
-		}
+		}*/
 		
     return view("new-dashboard.setting")->with(array(
       'user'=>$user,
@@ -179,8 +179,8 @@ class NewDashboardController extends Controller
       'strCategory'=>$strCategory,
       'strClassCategory'=>$strClassCategory,
       'ads_content'=>$ads_content,
-      'inboxResponse'=>$inboxResponse,
-      'pendingInboxResponse'=>$pendingInboxResponse,
+      // 'inboxResponse'=>$inboxResponse,
+      // 'pendingInboxResponse'=>$pendingInboxResponse,
       ));
 	}
 
