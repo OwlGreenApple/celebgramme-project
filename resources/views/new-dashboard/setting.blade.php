@@ -42,16 +42,18 @@ use Celebgramme\Models\SettingHelper;
 							if(data.action=='start'){
 								$(".btn-"+data.id).html("<span class='glyphicon glyphicon-stop'></span> Stop");
 								$(".btn-"+data.id).val("Stop");
-								$(".btn-"+data.id).parent().parent().parent().find(".status-activity p").html(' Status activity : <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> <span style="color:#5cb85c; font-weight:Bold;">Started</span>');
+								// $(".btn-"+data.id).parent().parent().parent().find(".status-activity p").html(' Status activity : <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> <span style="color:#5cb85c; font-weight:Bold;">Started</span>');
 								$(".btn-"+data.id).removeClass("btn-success");
 								$(".btn-"+data.id).addClass("btn-danger");
+								$(".span-status-activity").html('<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> <span style="color:#5cb85c; font-weight:Bold;">Started</span>');
 							}
 							if(data.action=='stop'){
 								$(".btn-"+data.id).html("<span class='glyphicon glyphicon-play'></span> Start");
 								$(".btn-"+data.id).val("Start");
-								$(".btn-"+data.id).parent().parent().parent().find(".status-activity p").html(' Status activity : <span class="glyphicon glyphicon-stop"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>');
+								// $(".btn-"+data.id).parent().parent().parent().find(".status-activity p").html(' Status activity : <span class="glyphicon glyphicon-stop"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>');
 								$(".btn-"+data.id).removeClass("btn-danger");
 								$(".btn-"+data.id).addClass("btn-success");
+								$(".span-status-activity").html('<span class="glyphicon glyphicon-stop" style="color:black;"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>');
 							}
 						}
 						else if(data.type=='error')
@@ -294,7 +296,7 @@ use Celebgramme\Models\SettingHelper;
 										<p style="white-space: nowrap;" class="padding-0">
 										<h5 class="text-primary">&nbsp;{{$settings->insta_username}}</h5>
 											<small>Status Activity &nbsp;: &nbsp;
-											<span class="text-success col-teal">
+											<span class="text-success col-teal span-status-activity">
 												<?php 
 												if ($settings->status=='stopped') { 
 													echo '<span class="glyphicon glyphicon-stop" style="color:black;"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>'; 
