@@ -876,7 +876,7 @@ class AutoManageController extends Controller
       foreach ($links as $link) {
         $setting_temp = Setting::find($link->setting_id);
 				if ($setting_temp->error_cred==1) {
-					$url = url('auto-manage');
+					$url = url('dashboard');
 					$arr["message"]= "Anda tidak dapat menjalankan program, silahkan update login credential account anda <a href='".$url."'>disini</a>";
 					$arr["type"]= "error";
 					return $arr;
