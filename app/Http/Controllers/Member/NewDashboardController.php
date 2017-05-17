@@ -148,7 +148,8 @@ class NewDashboardController extends Controller
 
 		//get response from 
 		// $inboxResponse = json_decode($link->messages);	
-		/*try {
+		$status_login = false;
+		try {
 			$i = new Instagram(false,false,[
 				"storage"       => "mysql",
 				"dbhost"       => Config::get('automation.DB_HOST'),
@@ -163,13 +164,16 @@ class NewDashboardController extends Controller
 				$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
 			}
 			
-			$i->login();
-			$inboxResponse = $i->getV2Inbox();
-			$pendingInboxResponse = $i->getPendingInbox();
+			$i->login(false,300);
+			$status_login = $i->isLoggedIn();
+			if ($i->isLoggedIn()) { 
+				$inboxResponse = $i->getV2Inbox();
+				$pendingInboxResponse = $i->getPendingInbox();
+			}
 		}
 		catch (Exception $e) {
 			return $e->getMessage();
-		}*/
+		}
 		
     return view("new-dashboard.setting")->with(array(
       'user'=>$user,
@@ -179,9 +183,10 @@ class NewDashboardController extends Controller
       'strCategory'=>$strCategory,
       'strClassCategory'=>$strClassCategory,
       'ads_content'=>$ads_content,
-      // 'inboxResponse'=>$inboxResponse,
-      // 'pendingInboxResponse'=>$pendingInboxResponse,
-      ));
+      'inboxResponse'=>$inboxResponse,
+      'pendingInboxResponse'=>$pendingInboxResponse,
+      'status_login'=>$status_login,
+		));
 	}
 
 	public function dashboard(){
