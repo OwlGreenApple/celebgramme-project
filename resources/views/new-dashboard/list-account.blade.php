@@ -34,9 +34,22 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 								<div class="col-md-3 col-sm-3 col-xs-3 startStopArea">
 									<center>
 									<small><b>Activity</b></small>
+									<!--
 									<img src="{{asset('/new-dashboard/images/startIcon.png')}}"class="img-responsive">
 									<span class="confirmStart text-success col-teal">Started</span>
-									</center>
+									-->
+									<?php 
+									$stopped_icon = asset('/new-dashboard/images/stopIcon.png');
+									$started_icon = asset('/new-dashboard/images/startIcon.png');
+									
+									if ($data->status=='stopped') { 
+										echo '<img src="'.$stopped_icon.'" class="img-responsive">
+									<span class="confirmStop text-danger col-pink">Stopped</span>'; 
+									} 
+									else {
+										echo '<img src="'.$started_icon.'" class="img-responsive">
+										<span class="confirmStart text-success col-teal glyphicon-refresh-animate">Started</span>';}
+									?>
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-3">
 									<center>
