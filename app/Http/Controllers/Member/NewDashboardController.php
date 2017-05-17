@@ -166,7 +166,7 @@ class NewDashboardController extends Controller
 				$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
 			}
 			
-			$i->login(false,300);
+			dd($i->login(false,300));
 			$status_login = $i->isLoggedIn();
 			dd($i->isLoggedIn());
 			if ($i->isLoggedIn()) { 
