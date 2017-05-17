@@ -84,7 +84,6 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 									<?php } else { 
 										echo SettingMeta::getMeta($data->id,"error_message_cred");
 									} ?>
-									<br>
 									---> <a href="#" data-id="{{$data->id}}" data-username="{{$data->insta_username}}" class="edit-cred" data-toggle="modal" data-target="#myModal-edit-password">CLICK disini</a> <--- </strong></p>
 							</div>
 							<?php } ?>
