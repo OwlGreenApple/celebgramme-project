@@ -73,6 +73,22 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 									</center>
 								</div>
 							</div>
+							<?php if ($data->error_cred) { ?>
+							<div class="row im-centered"> 
+								<p class="text-danger" style="font-size:12px;"> <strong>
+								<?php 
+									if ( SettingMeta::getMeta($data->id,"error_message_cred") == "0"  ) {
+								?>
+									*Data login error <br>
+									silahkan input kembali password anda 
+									<?php } else { 
+										echo SettingMeta::getMeta($data->id,"error_message_cred");
+									} ?>
+									<br>
+									---> <a href="#" data-id="{{$data->id}}" data-username="{{$data->insta_username}}" class="edit-cred" data-toggle="modal" data-target="#myModal-edit-password">CLICK disini</a> <--- </strong></p>
+							</div>
+							<?php } ?>
+							
 							<div class="row">
 								<?php if (SettingMeta::getMeta($data->id,"auto_unfollow") == "yes" )  { ?>
 								<div class="col-md-12 col-sm-12 col-xs-12">
