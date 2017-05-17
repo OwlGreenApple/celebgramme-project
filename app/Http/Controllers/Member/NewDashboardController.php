@@ -151,30 +151,30 @@ class NewDashboardController extends Controller
 		$status_login = false;
 		$inboxResponse = "";
 		$pendingInboxResponse = "";
-		try {
-			$i = new Instagram(true,false,[
-				"storage"       => "mysql",
-				"dbhost"       => Config::get('automation.DB_HOST'),
-				"dbname"   => Config::get('automation.DB_DATABASE'),
-				"dbusername"   => Config::get('automation.DB_USERNAME'),
-				"dbpassword"   => Config::get('automation.DB_PASSWORD'),
-			]);
-			
-			$i->setUser(strtolower($link->insta_username), $link->insta_password);
-			$proxy = Proxies::find($link->proxy_id);
-			if (!is_null($proxy)) {
-				$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
-			}
-			
-			$i->login(false,300);
-			if (!is_null($i)) { 
+		if (!$link->error_cred) {
+			try {
+				$i = new Instagram(true,false,[
+					"storage"       => "mysql",
+					"dbhost"       => Config::get('automation.DB_HOST'),
+					"dbname"   => Config::get('automation.DB_DATABASE'),
+					"dbusername"   => Config::get('automation.DB_USERNAME'),
+					"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+				]);
+				
+				$i->setUser(strtolower($link->insta_username), $link->insta_password);
+				$proxy = Proxies::find($link->proxy_id);
+				if (!is_null($proxy)) {
+					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+				}
+				
+				$i->login(false,300);
 				$status_login = true;
 				$inboxResponse = $i->getV2Inbox();
 				$pendingInboxResponse = $i->getPendingInbox();
 			}
-		}
-		catch (Exception $e) {
-			return $e->getMessage();
+			catch (Exception $e) {
+				return $e->getMessage();
+			}
 		}
 		
     return view("new-dashboard.setting")->with(array(
