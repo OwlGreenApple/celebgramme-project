@@ -559,11 +559,15 @@ use Celebgramme\Models\SettingHelper;
 															<div class="col-md-offset-6 col-sm-offset-6 col-xs-offset-6 col-sm-6 col-xs-6">
 																<div class="row">
 																	<div class="col-md-6 col-sm-6 col-xs-6">
-																		<input name="data[percent_like_followers]" type="radio" class="with-gap radio-col-light-blue" id="radio_3" value="25" <?php if ($settings->percent_like_followers== 25) echo 'checked' ?>>
+																		<input name="data[percent_like_followers]" type="radio" class="with-gap radio-col-light-blue" id="radio_3" value="25" <?php 
+																			if ( ($settings->percent_like_followers== 25) || (is_null($settings->percent_like_followers)) ) {
+																				echo 'checked';
+																			}
+																		?>>
 																		<label for="radio_3">25%</label>
 																	</div>
 																	<div class="col-md-6 col-sm-6 col-xs-6">
-																		<input name="data[percent_like_followers]" type="radio" id="radio_4" class="with-gap radio-col-light-blue" value="50" <?php if ($settings->percent_like_followers== 50) echo 'checked' ?>>
+																		<input name="data[percent_like_followers]" type="radio" id="radio_4" class="with-gap radio-col-light-blue" value="50" <?php if ($settings->percent_like_followers== 50) { echo 'checked'; } ?>>
 																		<label for="radio_4">50%</label>
 																	</div>
 																</div>
