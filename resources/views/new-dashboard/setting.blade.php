@@ -260,7 +260,7 @@ use Celebgramme\Models\SettingHelper;
 		min-height:100px;
 	}
 	.btn {
-		margin-left: -3px;
+		margin-left: -5px;
     box-shadow: none!important;		
 	}
 </style>
@@ -301,14 +301,13 @@ use Celebgramme\Models\SettingHelper;
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input type="button" value="Save" class="btn btn-info" id="button-save" style="margin-bottom:5px;">
-										
-										<button data-id="{{$settings->id}}" class="btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>" style="margin-bottom:5px;">
+										<input type="button" value="Save" class="btn btn-info col-md-5 col-sm-5 col-xs-12" id="button-save" style="margin-bottom:5px;margin-left:0px;">
+										<div class="col-md-1 col-sm-1 col-xs-12"></div>
+										<button data-id="{{$settings->id}}" class="col-md-5 col-sm-5 col-xs-12 btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>" style="margin-bottom:5px;margin-left:0px;">
 										<?php if ($settings->status=='stopped') { echo "<span class='glyphicon glyphicon-play'></span> Start"; } else {echo "<span class='glyphicon glyphicon-stop'></span> Stop";}?> 
 										</button>
+										<div class="col-md-1 col-sm-1 col-xs-12"></div>
 										
-									</div>
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-12 col-xs-12 bl-blue">

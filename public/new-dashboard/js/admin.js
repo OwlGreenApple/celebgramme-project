@@ -127,6 +127,7 @@ rating_slider.noUiSlider.on('slide', function (values, handle) {
 		$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div').removeClass('text-primary');
 		$('#rating_slider > div.noUi-pips.noUi-pips-horizontal > div:nth-child(9)').addClass('text-primary');
 		$('#activity-speed').val("turbo");
+		alert("Disclaimer : Menggunakan speed Turbo akan meningkatkan resiko akun anda di flag oleh Instagram");
   }
 });
 
