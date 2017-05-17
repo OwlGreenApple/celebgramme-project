@@ -17,8 +17,8 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 						$photo = url("images/pp/". SettingMeta::getMeta($data->id,"photo_filename"));
 					}
 				?>
-				<div class="col-md-4 col-sm-12 col-xs-12 same-height">
-					<div class="card">
+				<div class="col-md-4 col-sm-12 col-xs-12">
+					<div class="card same-height">
                         <div class="header bg-cyan br-t-6">
 													<span data-id="{{$data->id}}" class="delete-button glyphicon glyphicon-remove" style="cursor:pointer;" aria-hidden="true" data-toggle="modal" data-target="#confirm-delete" ></span> 
 													<a href="https://instagram.com/{{$data->insta_username}}" target="_blank">
