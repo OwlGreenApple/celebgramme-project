@@ -152,7 +152,7 @@ class NewDashboardController extends Controller
 		$inboxResponse = "";
 		$pendingInboxResponse = "";
 		try {
-			$i = new Instagram(false,false,[
+			$i = new Instagram(true,false,[
 				"storage"       => "mysql",
 				"dbhost"       => Config::get('automation.DB_HOST'),
 				"dbname"   => Config::get('automation.DB_DATABASE'),
@@ -168,6 +168,7 @@ class NewDashboardController extends Controller
 			
 			$i->login(false,300);
 			$status_login = $i->isLoggedIn();
+			dd($i->isLoggedIn());
 			if ($i->isLoggedIn()) { 
 				$inboxResponse = $i->getV2Inbox();
 				$pendingInboxResponse = $i->getPendingInbox();
