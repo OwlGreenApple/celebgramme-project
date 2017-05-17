@@ -77,6 +77,7 @@ use Celebgramme\Models\SettingHelper;
 
 		
     $('#button-save,#button-save2').click(function(e){
+			e.preventDefault();
       $.ajax({
           headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
