@@ -266,7 +266,6 @@ use Celebgramme\Models\SettingHelper;
     box-shadow: none!important;		
 	}
 </style>
-<form enctype="multipart/form-data" id="form-setting">
 <div class="row">
 	<div class="col-lg-12 col-md-12">
 		<div class="container-fluid">
@@ -334,7 +333,7 @@ use Celebgramme\Models\SettingHelper;
 									<div class="col-md-9 col-sm-9 col-xs-9 padding-0">
 										<small style="font-size:11px;white-space:nowrap;">Followers Saat Join&nbsp;:&nbsp;</small>
 									</div>
-									<div class="col-md-3 col-sm-3 col-xs-3 padding-0 text-center">
+									<div class="col-md-3 col-sm-3 col-xs-3 padding-0 text-right">
 										<?php echo number_format(intval (SettingMeta::getMeta($settings->id,"followers_join")),0,'','.'); ?>
 									</div>
 								</div>
@@ -342,7 +341,7 @@ use Celebgramme\Models\SettingHelper;
 									<div class="col-md-9 col-sm-9 col-xs-9 padding-0">
 										<small style="font-size:11px;white-space:nowrap;">Following Saat Join&nbsp;:&nbsp;</small>
 									</div>
-									<div class="col-md-3 col-sm-3 col-xs-3 padding-0 text-center">
+									<div class="col-md-3 col-sm-3 col-xs-3 padding-0 text-right">
 										<?php echo number_format(intval (SettingMeta::getMeta($settings->id,"following_join")),0,'','.'); ?>
 									</div>
 								</div>
@@ -355,7 +354,7 @@ use Celebgramme\Models\SettingHelper;
 									<div class="col-md-9 col-sm-9 col-xs-9 padding-0">
 										<small style="font-size:11px;white-space:nowrap;">Followers Hari ini&nbsp;:&nbsp;</small>
 									</div>
-									<div class="col-md-3 col-sm-3 col-xs-3 padding-0 text-center">
+									<div class="col-md-3 col-sm-3 col-xs-3 padding-0 text-right">
 										{{number_format($followers,0,'','.')}}
 									</div>
 								</div>
@@ -363,7 +362,7 @@ use Celebgramme\Models\SettingHelper;
 									<div class="col-md-9 col-sm-9 col-xs-9 padding-0">
 										<small style="font-size:11px;white-space:nowrap;">Following Hari ini&nbsp;:&nbsp;</small>
 									</div>
-									<div class="col-md-3 col-sm-3 col-xs-3 padding-0 text-center">
+									<div class="col-md-3 col-sm-3 col-xs-3 padding-0 text-right">
 										{{number_format($following,0,'','.')}}
 									</div>
 								</div>
@@ -381,10 +380,10 @@ use Celebgramme\Models\SettingHelper;
 								<b>Tambah waktu langganan </b>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-6 ">
-								<a class="btn btn-link btn-block bg-cyan br-6 text-white text-center" data-toggle="tab" href="#normal" id="button-package-normal">Normal</a>
+								<a class="btn btn-link btn-block bg-cyan br-6 text-white text-center" data-toggle="tab" id="button-package-normal">Normal</a>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-6 text-white">
-								<a class="btn btn-link btn-block bgBlueGreen text-white br-6 text-center" data-toggle="tab" href="#extra" id="button-package-extra">Extra</a>
+								<a class="btn btn-link btn-block bgBlueGreen text-white br-6 text-center" data-toggle="tab"  id="button-package-extra">Extra</a>
 							</div>
 						</div>
 						<div class="row">
@@ -473,8 +472,8 @@ use Celebgramme\Models\SettingHelper;
 			</div>
 			<div class="clearfix"></div><br>
 			
-			<div class="row tabButton">
-					<div class="col-md-2 col-sm-6 col-xs-6">
+			<div class="row tabButton" style="margin-left:0px;">
+					<div class="col-md-2 col-sm-6 col-xs-6 padding-0">
 						<button class="btn btn-sm bg-cyan btn-block btnGeneral br-6" data-toggle="tab" href="#general"><i class="fa fa-cog"></i>&nbsp;General</button>
 					</div>
 					<div class="col-md-2 col-sm-6 col-xs-6 padding-0">
@@ -482,7 +481,8 @@ use Celebgramme\Models\SettingHelper;
 					</div>
 			</div>
 			<div class="clearfix"></div><br>
-			<div class="row">
+<form enctype="multipart/form-data" id="form-setting">
+			<div class="row" style="margin-left:0px;">
 				<div class="tab-content">
 					<div id="general" class="tab-pane fade in active">
 						<!--<div class="row">-->
@@ -859,6 +859,8 @@ use Celebgramme\Models\SettingHelper;
 							<!--</div>-->
 						<!--</div>-->
 					</div>
+</form>
+					
 					<div id="message" class="tab-pane fade">
 						<div class="clearfix"></div><br>
 						<div class="row">
@@ -1072,7 +1074,6 @@ use Celebgramme\Models\SettingHelper;
 		</div>
 	</div>
 </div>
-</form>
 
 
 

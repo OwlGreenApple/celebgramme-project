@@ -727,15 +727,21 @@ $(function () {
 });
 
 
-$(document).on('click','#button-package-normal',function(){
+$(document).on('click','#button-package-normal',function(e){
+	e.preventDefault();
 	$("#button-package-normal").addClass("bg-cyan");
 	$("#button-package-normal").removeClass("bgBlueGreen");
 	$("#button-package-extra").removeClass("bg-cyan");
 	$("#button-package-extra").addClass("bgBlueGreen");
+	$("#extra").hide();
+	$("#normal").fadeIn(1000);
 });
-$(document).on('click','#button-package-extra',function(){
+$(document).on('click','#button-package-extra',function(e){
+	e.preventDefault();
 	$("#button-package-normal").removeClass("bg-cyan");
 	$("#button-package-normal").addClass("bgBlueGreen");
 	$("#button-package-extra").addClass("bg-cyan");
 	$("#button-package-extra").removeClass("bgBlueGreen");
+	$("#normal").hide();
+	$("#extra").fadeIn(1000);
 });
