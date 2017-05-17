@@ -59,11 +59,11 @@
 
 							setTimeout(function(){
 									var max = -1;
-									$(".border-styling").each(function() {
+									$(".same-height").each(function() {
 											var h = $(this).height(); 
 											max = h > max ? h : max;
 									});
-									$(".border-styling").each(function() {
+									$(".same-height").each(function() {
 											$(this).height(max); 
 									});
 									
