@@ -166,10 +166,9 @@ class NewDashboardController extends Controller
 				$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
 			}
 			
-			dd($i->login(false,300));
-			$status_login = $i->isLoggedIn();
-			dd($i->isLoggedIn());
-			if ($i->isLoggedIn()) { 
+			$i->login(false,300);
+			if (!is_null($i)) { 
+				$status_login = true;
 				$inboxResponse = $i->getV2Inbox();
 				$pendingInboxResponse = $i->getPendingInbox();
 			}
