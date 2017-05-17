@@ -552,7 +552,7 @@ use Celebgramme\Models\SettingHelper;
 															<div class="col-md-3 col-sm-3 col-xs-3 padding-0">
 																<button type="button" class="btn <?php if ($settings->is_like_followers) echo 'btn-primary' ?>" id="AutoLikesFollowersOnButton" style="color:#fff;">ON</button>
 																<button type="button" class="btn <?php if (!$settings->is_like_followers) echo 'btn-danger' ?>" id="AutoLikesFollowersOffButton" style="color:#fff;">OFF</button>
-																<input type="hidden" value="{{$settings->is_like_followers}}" name="data[is_like_followers]" id="is_like_followers">
+																<input type="hidden" value="<?php if (!is_null($settings->is_like_followers)) { echo $settings->is_like_followers; } else { echo "0"; } ?>" name="data[is_like_followers]" id="is_like_followers">
 															</div>
 														</div>
 														<div class="row">

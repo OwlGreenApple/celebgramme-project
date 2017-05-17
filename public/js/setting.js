@@ -313,12 +313,12 @@
 			$('#AutoLikesOnButton').removeClass('btn-primary');
 		});
 		$('#AutoLikesFollowersOnButton').click(function(e){
-			$("#is_auto_get_likes").val(1);
+			$("#is_like_followers").val(1);
 			$('#AutoLikesFollowersOnButton').addClass('btn-primary');
 			$('#AutoLikesFollowersOffButton').removeClass('btn-danger');
 		});
 		$('#AutoLikesFollowersOffButton').click(function(e){
-			$("#is_auto_get_likes").val(0);
+			$("#is_like_followers").val(0);
 			$('#AutoLikesFollowersOffButton').addClass('btn-danger');
 			$('#AutoLikesFollowersOnButton').removeClass('btn-primary');
 		});
