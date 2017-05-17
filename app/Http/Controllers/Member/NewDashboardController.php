@@ -149,6 +149,8 @@ class NewDashboardController extends Controller
 		//get response from 
 		// $inboxResponse = json_decode($link->messages);	
 		$status_login = false;
+		$inboxResponse = "";
+		$pendingInboxResponse = "";
 		try {
 			$i = new Instagram(false,false,[
 				"storage"       => "mysql",
