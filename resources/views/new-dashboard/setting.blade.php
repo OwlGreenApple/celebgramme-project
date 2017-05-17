@@ -293,7 +293,17 @@ use Celebgramme\Models\SettingHelper;
 									<div class="col-md-9 col-sm-9 col-xs-9 padding-0 startStopArea">
 										<p style="white-space: nowrap;" class="padding-0">
 										<h5 class="text-primary">&nbsp;{{$settings->insta_username}}</h5>
-											<small>Status Activity &nbsp;: &nbsp;<span class="text-success col-teal">Started</span><br>
+											<small>Status Activity &nbsp;: &nbsp;
+											<span class="text-success col-teal">
+												<?php 
+												if ($settings->status=='stopped') { 
+													echo '<span class="glyphicon glyphicon-stop" style="color:black;"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>'; 
+												} 
+												else {
+													echo '<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> <span style="color:#5cb85c; font-weight:Bold;">Started</span>';
+												}?>
+											</span>
+											<br>
 												Total waktu berlangganan<br/>
 												<b class="text-primary">{{$view_totaltime}}</b>
 											</small>
