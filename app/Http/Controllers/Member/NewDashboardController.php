@@ -153,7 +153,7 @@ class NewDashboardController extends Controller
 		$pendingInboxResponse = "";
 		if (!$link->error_cred) {
 			try {
-				$i = new Instagram(true,false,[
+				$i = new Instagram(false,false,[
 					"storage"       => "mysql",
 					"dbhost"       => Config::get('automation.DB_HOST'),
 					"dbname"   => Config::get('automation.DB_DATABASE'),
