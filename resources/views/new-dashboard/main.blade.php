@@ -77,6 +77,12 @@
 </head>
 
 <body class="theme-default">
+    <div id="div-loading">
+      <div class="loadmain"></div>
+      <div class="background-load"></div>
+    </div>
+
+
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
