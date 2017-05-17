@@ -274,6 +274,13 @@ use Celebgramme\Models\SettingHelper;
 				<h2><i class="fa fa-cog"></i>&nbsp;User Settings</h2>
 			</div>
 			<div class="clearfix"></div><br>
+			
+<div class="row">
+  <div class="col-sm-12 col-md-12">            
+    <div class="alert alert-danger col-sm-18 col-md-18" id="alert">
+    </div>  
+  </div>          
+</div>                        
 			<div class="row">
 			<div class="col-md-5 col-sm-12 col-xs-12">
 				<h5>Profile</h5>
@@ -465,24 +472,23 @@ use Celebgramme\Models\SettingHelper;
 			</div>
 			</div>
 			<div class="clearfix"></div><br>
+			
 			<div class="row tabButton">
-				<div class="col-md-4 col-sm-8 col-xs-12 padding-0">
-					<div class="col-md-6 col-sm-6 col-xs-6 padding-0">
+					<div class="col-md-2 col-sm-6 col-xs-6">
 						<button class="btn btn-sm bg-cyan btn-block btnGeneral br-6" data-toggle="tab" href="#general"><i class="fa fa-cog"></i>&nbsp;General</button>
 					</div>
-					<div class="col-md-6 col-sm-6 col-xs-6 padding-0">
+					<div class="col-md-2 col-sm-6 col-xs-6 padding-0">
 						<button class="btn btn-sm bg-grey btn-block btnMessage br-6"  style="font-size:inherit;"data-toggle="tab" href="#message"><i class="fa fa-envelope text-white"></i>&nbsp;Direct Message</button>
 					</div>
-				</div>
 			</div>
+			<div class="clearfix"></div><br>
 			<div class="row">
 				<div class="tab-content">
 					<div id="general" class="tab-pane fade in active">
-						<div class="clearfix"></div><br>
-						<div class="row">
-							<div class="col-md-12">
+						<!--<div class="row">-->
+							<!--<div class="col-md-12">-->
 								<div class="card m-b-0">
-									<div class="body bg-lightGrey margin-0 padding-0">
+									<div class="body bg-lightGrey">
 										<div class="row">
 											<div class="col-md-6 col-sm-6 col-xs-12">
 												<div class="card m-b-0" style="background:transparent;box-shadow:none;">
@@ -850,8 +856,8 @@ use Celebgramme\Models\SettingHelper;
 										
 									</div>
 								</div>
-							</div>
-						</div>
+							<!--</div>-->
+						<!--</div>-->
 					</div>
 					<div id="message" class="tab-pane fade">
 						<div class="clearfix"></div><br>
