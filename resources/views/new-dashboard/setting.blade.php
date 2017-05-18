@@ -287,9 +287,10 @@ use Celebgramme\Models\SettingHelper;
 				<div class="card h-l-300">
 					<div class=" h-l-300 body bg-lightGrey">
 						<div class="row h-l-300">
-							<div class="col-md-8 col-sm-12 col-xs-12 ">
+							<div class="col-md-12 col-sm-12 col-xs-12 bl-blue">
 								<div class="row">
-									<div class="col-md-3 col-sm-3 col-xs-3">
+									<div class="col-md-2 col-sm-5 col-xs-4"></div>								
+									<div class="col-md-3 col-sm-7 col-xs-8">
 										<?php 
 											if (SettingMeta::getMeta($settings->id,"photo_filename") == "0") {
 												$photo = url('images/profile-default.png');
@@ -297,10 +298,10 @@ use Celebgramme\Models\SettingHelper;
 												$photo = url("images/pp/". SettingMeta::getMeta($settings->id,"photo_filename"));
 											}
 										?>	
-										<img src="{{$photo}}" class="m-t-20 img-circle" style="width:50px;height:50px;">
+										<img src="{{$photo}}" class="m-t-20 img-circle" style="width:75px;height:75px;">
 									</div>
-									<div class="col-md-9 col-sm-9 col-xs-9 padding-0 startStopArea">
-										<p style="white-space: nowrap;" class="padding-0">
+									<div class="col-md-0 col-sm-1 col-xs-1"></div>
+									<div class="col-md-7 col-sm-10 col-xs-10 startStopArea text-center" style="margin-top:-10px;">
 										<h5 class="text-primary">&nbsp;{{$settings->insta_username}}</h5>
 											<small>Status Activity &nbsp;: &nbsp;
 											<span class="text-success col-teal span-status-activity">
@@ -316,10 +317,9 @@ use Celebgramme\Models\SettingHelper;
 												Total waktu berlangganan<br/>
 												<b class="text-primary">{{$view_totaltime}}</b>
 											</small>
-										</p>
 									</div>
 								</div>
-								<div class="row">
+								<div class="row" style="padding:0 20px;">
 										<input type="button" value="Save" class="btn btn-info col-md-5 col-sm-5 col-xs-12" id="button-save" style="margin-bottom:5px;margin-left:0px;">
 										<div class="col-md-1 col-sm-1 col-xs-12"></div>
 										<button data-id="{{$settings->id}}" class="col-md-5 col-sm-5 col-xs-12 btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>" style="margin-bottom:5px;margin-left:0px;">
@@ -329,41 +329,36 @@ use Celebgramme\Models\SettingHelper;
 										
 								</div>
 							</div>
-							<div class="col-md-4 col-sm-12 col-xs-12 bl-blue">
-								<div class="row padding-0">
-									<div class="col-md-9 col-sm-9 col-xs-9 padding-0">
+							<div class="col-md-12 col-sm-12 col-xs-12 bl-blue">
+								<div class="row ">
+									<div class="col-md-3 col-sm-9 col-xs-9">
 										<small style="font-size:11px;white-space:nowrap;">Followers Saat Join&nbsp;:&nbsp;</small>
 									</div>
-									<div class="col-md-3 col-sm-3 col-xs-3 padding-0 text-right">
+									<div class="col-md-3 col-sm-3 col-xs-3 text-right">
 										<?php echo number_format(intval (SettingMeta::getMeta($settings->id,"followers_join")),0,'','.'); ?>
 									</div>
-								</div>
-								<div class="row padding-0">
-									<div class="col-md-9 col-sm-9 col-xs-9 padding-0">
+									<div class="col-md-3 col-sm-9 col-xs-9">
 										<small style="font-size:11px;white-space:nowrap;">Following Saat Join&nbsp;:&nbsp;</small>
 									</div>
-									<div class="col-md-3 col-sm-3 col-xs-3 padding-0 text-right">
+									<div class="col-md-3 col-sm-3 col-xs-3 text-right">
 										<?php echo number_format(intval (SettingMeta::getMeta($settings->id,"following_join")),0,'','.'); ?>
 									</div>
 								</div>
 								<?php 
-								$followers = intval (SettingMeta::getMeta($settings->id,"followers"));
-								$following = intval (SettingMeta::getMeta($settings->id,"following"));
-								
+									$followers = intval (SettingMeta::getMeta($settings->id,"followers"));
+									$following = intval (SettingMeta::getMeta($settings->id,"following"));
 								?>
-								<div class="row padding-0">
-									<div class="col-md-9 col-sm-9 col-xs-9 padding-0">
+								<div class="row">
+									<div class="col-md-3 col-sm-9 col-xs-9">
 										<small style="font-size:11px;white-space:nowrap;">Followers Hari ini&nbsp;:&nbsp;</small>
 									</div>
-									<div class="col-md-3 col-sm-3 col-xs-3 padding-0 text-right">
+									<div class="col-md-3 col-sm-3 col-xs-3 text-right">
 										{{number_format($followers,0,'','.')}}
 									</div>
-								</div>
-								<div class="row padding-0">
-									<div class="col-md-9 col-sm-9 col-xs-9 padding-0">
+									<div class="col-md-3 col-sm-9 col-xs-9">
 										<small style="font-size:11px;white-space:nowrap;">Following Hari ini&nbsp;:&nbsp;</small>
 									</div>
-									<div class="col-md-3 col-sm-3 col-xs-3 padding-0 text-right">
+									<div class="col-md-3 col-sm-3 col-xs-3 text-right">
 										{{number_format($following,0,'','.')}}
 									</div>
 								</div>
@@ -811,7 +806,7 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 																<div class="row">
 																	<div class="col-md-6 col-sm-12 col-xs-12">
-																		<label>Penjelasan fitur spin comment</label> &nbsp <span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Penjelasan fitur spin comment</div>								<div class="panel-content"><strong>Gunakan Feature "Spin Comment" </strong>contoh : <br>
+																		<label>Penjelasan spin comment</label> &nbsp <span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Penjelasan fitur spin comment</div>								<div class="panel-content"><strong>Gunakan Feature "Spin Comment" </strong>contoh : <br>
 																		{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
 																			*contoh diatas akan menghasilkan <strong>4x3x3x6 = 216 kombinasi comments </strong> sekaligus <br>
 																			*<strong>Spin Comment default akan digunakan</strong>, utk menghindari Comment yang sama berulang-ulang
@@ -896,22 +891,30 @@ use Celebgramme\Models\SettingHelper;
 													<div id="DMInbox" class="tab-pane fade in active">
 														<div class="col-md-12 col-sm-12 col-xs-12">
 															<div class="clearfix"></div><br/>
+															<?php
+																if (count($inboxResponse->inbox->threads) > 0 ) {
+																	foreach ($inboxResponse->inbox->threads as $data_arr) {
+															?>
 															<div class="row">
 																<div style="min-height:100px;" class="col-md-5 col-sm-12 col-xs-12 bg-white br-6">
 																	<h2 style="color:#333;font-weight:200;">
+																		<!--
 																		<button type="button" style="min-width:80px;height:80px;"class="pull-left m-t-25 iconInstaAccount btn bgBlueGreen btn-circle-lg waves-effect waves-circle waves-float">
 																			<i style="font-size:24px;" class="fa fa-user text-white"></i>
 																		</button>
-																		&nbsp;Ig_account name
+																		-->
+																		<img src="{{$data_arr->users[0]->profile_pic_url}}" class="img-circle" style="width:50px;height:50px;">
+																		
+																		&nbsp;{{$data_arr->users[0]->username}}
 																	</h2>
-																	<small style="color:#333;">Hi text here</small>
+																	<small style="color:#333;">{{$data_arr->items[0]->text}}</small>
 																</div>
 																<div class="col-md-7 col-sm-12 col-xs-12">
 																	<div class="row">
 																		<div class="col-md-4 col-sm-4 col-xs-4">
 																			<div class="br-6">
 																				<div style="min-height:100px;" class="body bg-white br-6 text-center">
-																					<b class="text-primary">Saturday<br/>21/4/2016</b>
+																					<b class="text-primary">{{date("l", $data_arr->items[0]->timestamp)}}<br>{{date("Y-m-d", $data_arr->items[0]->timestamp)}}</b>
 																				</div>
 																			</div>
 																		</div>
@@ -919,7 +922,7 @@ use Celebgramme\Models\SettingHelper;
 																			<div class="br-6">
 																				<div style="min-height:100px;" class="body bg-cyan br-6 text-center">
 																					<i class="fa fa-mail-reply fa-2x"></i><br/>
-																					<b class="text-white">Replay</b>
+																					<b class="text-white">Reply</b>
 																				</div>
 																			</div>
 																		</div>
@@ -934,56 +937,27 @@ use Celebgramme\Models\SettingHelper;
 																	</div>
 																</div>
 															</div>
-															<div class="row">
-																<div style="min-height:100px;" class="col-md-5 col-sm-12 col-xs-12 bg-white br-6">
-																	<h2 style="color:#333; font-weight:200;">
-																		<button type="button" style="min-width:80px;height:80px;"class="pull-left m-t-25 iconInstaAccount btn bgBlueGreen btn-circle-lg waves-effect waves-circle waves-float">
-																			<i style="font-size:24px;" class="fa fa-user text-white"></i>
-																		</button>
-																		&nbsp;Ig_account name
-																	</h2>
-																	<small style="color:#333;">Hi text here</small>
-																</div>
-																<div class="col-md-7 col-sm-12 col-xs-12">
-																	<div class="row">
-																		<div class="col-md-4 col-sm-4 col-xs-4">
-																			<div class="br-6">
-																				<div style="min-height:100px;" class="body bg-white br-6 text-center">
-																					<b class="text-primary">Saturday<br/>21/4/2016</b>
-																				</div>
-																			</div>
-																		</div>
-																		<div class="col-md-4 col-sm-4 col-xs-4">
-																			<div class="br-6">
-																				<div style="min-height:100px;" class="body bg-cyan br-6 text-center">
-																					<i class="fa fa-mail-reply fa-2x"></i><br/>
-																					<b class="text-white">Replay</b>
-																				</div>
-																			</div>
-																		</div>
-																		<div class="col-md-4 col-sm-4 col-xs-4">
-																			<div class="br-6">
-																				<div style="min-height:100px;" class="body bg-red br-6 text-center">
-																					<i class="fa fa-trash fa-2x"></i><br/>
-																					<b class="text-white">Delete</b>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
+															<?php 															
+																	}
+																}
+															?>
+															
 														</div>
 													</div>
 													<div id="DMRequest" class="tab-pane">
 														<div class="col-md-12 col-sm-12 col-xs-12">
 															<div class="clearfix"></div><br/>
+															
+															<?php
+																if (count($pendingInboxResponse->inbox->threads) > 0 ) {
+																	foreach ($pendingInboxResponse->inbox->threads as $data_arr) {
+															?>
 															<div class="row">
 																<div style="min-height:100px;" class="col-md-5 col-sm-12 col-xs-12 bg-white br-6">
 																	<h2 style="color:#333;font-weight:200;">
-																		<button type="button" style="min-width:80px;height:80px;"class="pull-left m-t-25 iconInstaAccount btn bgBlueGreen btn-circle-lg waves-effect waves-circle waves-float">
-																			<i style="font-size:24px;" class="fa fa-user text-white"></i>
-																		</button>
-																		&nbsp;Ig_account name
+																		<img src="{{$data_arr->users[0]->profile_pic_url}}" class="img-circle" style="width:50px;height:50px;">
+																	
+																		&nbsp;{{$data_arr->users[0]->username}}
 																	</h2>
 																	<small style="color:#333;">Request For</small>
 																</div>
@@ -992,7 +966,9 @@ use Celebgramme\Models\SettingHelper;
 																		<div class="col-md-4 col-sm-4 col-xs-4">
 																			<div class="br-6">
 																				<div style="min-height:100px;" class="body bg-white br-6 text-center">
-																					<b class="text-primary">Saturday<br/>21/4/2016</b>
+																					<b class="text-primary">
+																						{{date("l", $data_arr->items[0]->timestamp)}}<br>{{date("Y-m-d", $data_arr->items[0]->timestamp)}}
+																					</b>
 																				</div>
 																			</div>
 																		</div>
@@ -1015,44 +991,11 @@ use Celebgramme\Models\SettingHelper;
 																	</div>
 																</div>
 															</div>
-															<div class="row">
-																<div style="min-height:100px;" class="col-md-5 col-sm-12 col-xs-12 bg-white br-6">
-																	<h2 style="color:#333;font-weight:200;">
-																		<button type="button" style="min-width:80px;height:80px;"class="pull-left m-t-25 iconInstaAccount btn bgBlueGreen btn-circle-lg waves-effect waves-circle waves-float">
-																			<i style="font-size:24px;" class="fa fa-user text-white"></i>
-																		</button>
-																		&nbsp;Ig_account name
-																	</h2>
-																	<small style="color:#333;">Request For</small>
-																</div>
-																<div class="col-md-7 col-sm-12 col-xs-12">
-																	<div class="row">
-																		<div class="col-md-4 col-sm-4 col-xs-4">
-																			<div class="br-6">
-																				<div style="min-height:100px;" class="body bg-white br-6 text-center">
-																					<b class="text-primary">Saturday<br/>21/4/2016</b>
-																				</div>
-																			</div>
-																		</div>
-																		<div class="col-md-4 col-sm-4 col-xs-4">
-																			<div class="br-6">
-																				<div style="min-height:100px;" class="body bgGreenLight br-6 text-center">
-																					<i class="fa fa-check fa-2x"></i><br/>
-																					<b class="text-white">Accept</b>
-																				</div>
-																			</div>
-																		</div>
-																		<div class="col-md-4 col-sm-4 col-xs-4">
-																			<div class="br-6">
-																				<div style="min-height:100px;" class="body bg-red br-6 text-center">
-																					<i class="fa fa-times fa-2x"></i><br/>
-																					<b class="text-white">Decline</b>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
+														<?php 
+																}
+															}
+														?>
+															
 														</div>
 													</div>
 													
