@@ -233,7 +233,8 @@ class NewDashboardController extends Controller
     $user = Auth::user();
 
     $datas = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
-              ->select("settings.*")
+							->leftJoin("setting_helpers","setting_helpers.setting_id","=","settings.id")
+              ->select("settings.*","setting_helpers.proxy_id")
               ->where("link_users_settings.user_id","=",$user->id)
               ->where("type","=","temp")
               ->where("is_active","=",1)

@@ -9,6 +9,9 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 </style>
 				<?php 
 				use Celebgramme\Models\SettingMeta; 
+				use Celebgramme\Models\Proxies; 
+				use \InstagramAPI\Instagram;
+				
 				if (isset($datas)) { 
 					foreach ($datas as $data ) {
 					if (SettingMeta::getMeta($data->id,"photo_filename") == "0") {
@@ -16,6 +19,34 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 					} else {
 						$photo = url("images/pp/". SettingMeta::getMeta($data->id,"photo_filename"));
 					}
+					
+					//hitung unseen_count DM
+					$unseen_count = 0;
+					if (!$data->error_cred) {
+						try {
+							$i = new Instagram(false,false,[
+								"storage"       => "mysql",
+								"dbhost"       => Config::get('automation.DB_HOST'),
+								"dbname"   => Config::get('automation.DB_DATABASE'),
+								"dbusername"   => Config::get('automation.DB_USERNAME'),
+								"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+							]);
+							
+							$i->setUser(strtolower($data->insta_username), $data->insta_password);
+							$proxy = Proxies::find($data->proxy_id);
+							if (!is_null($proxy)) {
+								$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+							}
+							
+							$i->login(false,300);
+							$pendingInboxResponse = $i->getPendingInbox();
+							$unseen_count = $pendingInboxResponse->inbox->unseen_count;
+						}
+						catch (Exception $e) {
+							return $e->getMessage();
+						}
+					}
+					
 				?>
 				<div class="col-md-4 col-sm-12 col-xs-12">
 					<div class="card same-height">
@@ -69,7 +100,7 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 									<center>
 									<small style="font-size:80%;white-space: nowrap;"><b>DM Inbox</b></small>
 									<img src="{{asset('/new-dashboard/images/mailIcon.png')}}" class="img-responsive">
-									5
+										{{$unseen_count}}
 									</center>
 								</div>
 							</div>

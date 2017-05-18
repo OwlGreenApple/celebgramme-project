@@ -1143,7 +1143,6 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 	
 	
 	
-		<link href="{{ asset('/css/main.css') }}" rel="stylesheet">
 		<link href="{{ asset('/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet">
 
 		
