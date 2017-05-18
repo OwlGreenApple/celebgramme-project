@@ -894,6 +894,11 @@ use Celebgramme\Models\SettingHelper;
 															<?php
 																if (count($inboxResponse->inbox->threads) > 0 ) {
 																	foreach ($inboxResponse->inbox->threads as $data_arr) {
+																		$date_message = substr($data_arr->items[0]->timestamp,0,10);
+																		$text_message = $data_arr->users[0]->username;
+																		if (strlen($text_message)>=42) {
+																			$text_message = substr($text_message,0,42)." ...";
+																		}
 															?>
 															<div class="row">
 																<div style="min-height:100px;" class="col-md-5 col-sm-12 col-xs-12 bg-white br-6">
@@ -905,7 +910,7 @@ use Celebgramme\Models\SettingHelper;
 																		-->
 																		<img src="{{$data_arr->users[0]->profile_pic_url}}" class="img-circle" style="width:50px;height:50px;">
 																		
-																		&nbsp;{{$data_arr->users[0]->username}}
+																		&nbsp;{{$text_message}}
 																	</h2>
 																	<small style="color:#333;">{{$data_arr->items[0]->text}}</small>
 																</div>
@@ -914,7 +919,7 @@ use Celebgramme\Models\SettingHelper;
 																		<div class="col-md-4 col-sm-4 col-xs-4">
 																			<div class="br-6">
 																				<div style="min-height:100px;" class="body bg-white br-6 text-center">
-																					<b class="text-primary">{{date("l", $data_arr->items[0]->timestamp)}}<br>{{date("Y-m-d", $data_arr->items[0]->timestamp)}}</b>
+																					<b class="text-primary">{{date("l", $date_message)}}<br>{{date("Y-m-d", $date_message)}}</b>
 																				</div>
 																			</div>
 																		</div>
@@ -951,13 +956,18 @@ use Celebgramme\Models\SettingHelper;
 															<?php
 																if (count($pendingInboxResponse->inbox->threads) > 0 ) {
 																	foreach ($pendingInboxResponse->inbox->threads as $data_arr) {
+																		$date_message = substr($data_arr->items[0]->timestamp,0,10);
+																		$text_message = $data_arr->users[0]->username;
+																		if (strlen($text_message)>=42) {
+																			$text_message = substr($text_message,0,42)." ...";
+																		}
 															?>
 															<div class="row">
 																<div style="min-height:100px;" class="col-md-5 col-sm-12 col-xs-12 bg-white br-6">
 																	<h2 style="color:#333;font-weight:200;">
 																		<img src="{{$data_arr->users[0]->profile_pic_url}}" class="img-circle" style="width:50px;height:50px;">
 																	
-																		&nbsp;{{$data_arr->users[0]->username}}
+																		&nbsp;{{$text_message}}
 																	</h2>
 																	<small style="color:#333;">Request For</small>
 																</div>
@@ -967,7 +977,7 @@ use Celebgramme\Models\SettingHelper;
 																			<div class="br-6">
 																				<div style="min-height:100px;" class="body bg-white br-6 text-center">
 																					<b class="text-primary">
-																						{{date("l", $data_arr->items[0]->timestamp)}}<br>{{date("Y-m-d", $data_arr->items[0]->timestamp)}}
+																						{{date("l", $date_message)}}<br>{{date("Y-m-d", $date_message)}}
 																					</b>
 																				</div>
 																			</div>
