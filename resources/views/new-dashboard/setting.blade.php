@@ -490,13 +490,15 @@ use Celebgramme\Models\SettingHelper;
 												<div class="card m-b-0" style="background:transparent;box-shadow:none;">
 													<div class="header">
 														<h2>
-															Global Settings &nbsp;<img class="cursorActive tooltipPlugin " src="{{asset('/new-dashboard/images/questionIcon.png')}}" title="<div class='panel-heading'>Choose Settings</div><div class='panel-content'>Pilih salah satu : FULL AUTO atau Manual settings.<br> FULL AUTO = Fast Settings, Pilih kategori Target anda & Start,<br> FULL AUTO hanya untuk Follow, Like & Auto Like My Posts ( tidak termasuk Comment ). <br>Manual = Setting manual customized semua fitur Celebgramme. <br> <i>*PS: Settings yang AKTIF adalah yang TERAKHIR dipilih</i></div>">
+															Global Settings &nbsp;<!--<img class="cursorActive tooltipPlugin " src="{{asset('/new-dashboard/images/questionIcon.png')}}" title="<div class='panel-heading'>Choose Settings</div><div class='panel-content'>Pilih salah satu : FULL AUTO atau Manual settings.<br> FULL AUTO = Fast Settings, Pilih kategori Target anda & Start,<br> FULL AUTO hanya untuk Follow, Like & Auto Like My Posts ( tidak termasuk Comment ). <br>Manual = Setting manual customized semua fitur Celebgramme. <br> <i>*PS: Settings yang AKTIF adalah yang TERAKHIR dipilih</i></div>">-->
 														</h2>
 													</div>
 													<div class="body" style="background:transparent;box-shadow:none;">
 														<div class="row btnGroupOO">
 															<div class="col-md-6 col-sm-4 col-xs-4">
 																<b>Choose Settings</b>
+																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Choose Settings</div><div class='panel-content'>Pilih salah satu : FULL AUTO atau Manual settings.<br> FULL AUTO = Fast Settings, Pilih kategori Target anda & Start,<br> FULL AUTO hanya untuk Follow, Like & Auto Like My Posts ( tidak termasuk Comment ). <br>Manual = Setting manual customized semua fitur Celebgramme. <br> <i>*PS: Settings yang AKTIF adalah yang TERAKHIR dipilih</i></div>">
+																	</span>																
 															</div>
 																<!--<button class="btn btn-block bg-grey btnOff">Full Auto</button>-->
 																<button type="button" class="btn <?php if ($settings->status_auto) echo 'gold-fullauto-setting' ?>" id="button-fullauto" style="outline:none;color:#fff;">Full Auto</button><!--
@@ -509,6 +511,11 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row">
 															<div class="col-md-6 col-sm-6 col-xs-6">
 																<b>Activity Speed</b>
+																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="
+																<div class='panel-heading'>Activity speed</div><div class='panel-content'>Jika Akun anda BARU / Tdk aktif, START dgn SLOW/NORMAL speed utk 5 hari <br>• <strong>Slow</strong> = Melakukan 200-250 Likes, 50 comments, 100-150 follow/unfollow /hari <br>• <strong>Normal</strong> = Melakukan 250-300 likes, 50 comments, 150-200 follow/unfollows /hari. <br>• <strong>Fast</strong> = Melakukan 300-350 likes, 50 comments, 300-350 follow/unfollows /hari. <br>
+																• <strong>Turbo</strong> = Melakukan 600-750 likes, 50 comments, 600-750 follow/unfollows /hari. 
+																</div>">
+																</span>
 															</div>
 															<div class="col-md-6 col-sm-6 col-xs-6 padding-0">
 																<div class="cursorActive" id="rating_slider">
@@ -523,18 +530,20 @@ use Celebgramme\Models\SettingHelper;
 												<div class="card m-b-0" style="background:transparent;box-shadow:none;">
 													<div class="header">
 														<h2>
-															Auto Like Settings &nbsp;<img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title="<div class='panel-heading'>Usernames whitelist</div><div class='panel-content'>• Saat anda UNFOLLOW. <strong>Usernames di 'Whitelist' ini akan diabaikan / tidak akan di 'UNFOLLOW'</strong><br>
+															Auto Like Settings &nbsp;<!--<img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title="<div class='panel-heading'>Usernames whitelist</div><div class='panel-content'>• Saat anda UNFOLLOW. <strong>Usernames di 'Whitelist' ini akan diabaikan / tidak akan di 'UNFOLLOW'</strong><br>
 							• <strong>Usulan penggunaan : </strong>teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW <br> List Username yang TIDAK akan di FLC (Follow, Like & Comment)<br>
 						Masukkan usernames SAJA disini (tanpa @), contoh: darthvader, hitler, kimjongil, dsbnya<br>
-						<i>*PS: berguna sekali untuk TIDAK follow, like, comment 'mantan' & 'kompetitor' anda</i><br></div>">
+						<i>*PS: berguna sekali untuk TIDAK follow, like, comment 'mantan' & 'kompetitor' anda</i><br></div>">-->
 														</h2>
 													</div>
 													<div class="body" style="background:transparent;box-shadow:none;">
 														<div class="row btnGroupOO">
 															<div class="col-md-6 col-sm-6 col-xs-6">
 																<b>Auto Like My Post</b>
+																<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Like My Post ALMP</div><div class='panel-content'>Fitur Keren ini akan membuat POST anda terlihat POPULER<br>SETIAP POST Terbaru anda akan MENDAPATKAN LIKES secara OTOMATIS<br> Max 24 jam = 30 Likes / 3 post / Hari TERAKHIR<br> <i>*PS: artinya HANYA 3 Post Terakhir per HARI <br>yang akan mendapatkan 30 Likes / masing-masing post</i>  </div>">
+																</span>
 															</div>
-															<div class="col-md-3 col-sm-3 col-xs-3 padding-0">
+															<div class="col-md-6 col-sm-6 col-xs-6 padding-0">
 																<button type="button" class="btn <?php if ($is_auto_get_likes) echo 'btn-primary' ?>" id="AutoLikesOnButton" style="color:#fff;">ON</button>
 																<button type="button" class="btn <?php if (!$is_auto_get_likes) echo 'btn-danger' ?>" id="AutoLikesOffButton" style="color:#fff;">OFF</button>
 																<input type="hidden" value="{{$is_auto_get_likes}}" name="data[is_auto_get_likes]" id="is_auto_get_likes">
@@ -544,7 +553,7 @@ use Celebgramme\Models\SettingHelper;
 															<div class="col-md-6 col-sm-6 col-xs-6">
 																<b>Auto Like My Follower</b>
 															</div>
-															<div class="col-md-3 col-sm-3 col-xs-3 padding-0">
+															<div class="col-md-6 col-sm-6 col-xs-6 padding-0">
 																<button type="button" class="btn <?php if ($settings->is_like_followers) echo 'btn-primary' ?>" id="AutoLikesFollowersOnButton" style="color:#fff;">ON</button>
 																<button type="button" class="btn <?php if (!$settings->is_like_followers) echo 'btn-danger' ?>" id="AutoLikesFollowersOffButton" style="color:#fff;">OFF</button>
 																<input type="hidden" value="<?php if (!is_null($settings->is_like_followers)) { echo $settings->is_like_followers; } else { echo "0"; } ?>" name="data[is_like_followers]" id="is_like_followers">
@@ -577,13 +586,18 @@ use Celebgramme\Models\SettingHelper;
 												<div class="card m-b-0" style="background:transparent;box-shadow:none;">
 													<div class="header">
 														<h2>
-															Black List & White List &nbsp;<img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title="<div class='panel-heading'>Profile</div><div class='panel-content'>Jumlah Followers & Following ini hanya merupakan INFO saja ( bukan Real time ) <br> & hanya di update beberapa kali dalam sehari untuk memperingan kerja server</div>">
+															Black List & White List &nbsp;<!--<img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title="<div class='panel-heading'>Profile</div><div class='panel-content'>Jumlah Followers & Following ini hanya merupakan INFO saja ( bukan Real time ) <br> & hanya di update beberapa kali dalam sehari untuk memperingan kerja server</div>">-->
 														</h2>
 													</div>
 													<div class="body" style="background:transparent;box-shadow:none;">
 														<div class="row">
 															<div class="col-md-3 col-sm-3 col-xs-3">
 																<b>Black List</b>
+																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Blacklist </div><div class='panel-content'>List Username yang TIDAK akan di FLC (Follow, Like & Comment)<br>
+																Masukkan usernames SAJA disini (tanpa @), contoh: darthvader, hitler, kimjongil, dsbnya<br>
+																<i>*PS: berguna sekali untuk TIDAK follow, like, comment 'mantan' & 'kompetitor' anda</i><br></div>">
+																</span>
+																
 															</div>
 															<div class="col-md-7 col-sm-7 col-xs-7">
 																<div class="row btnGroupOO">
@@ -602,6 +616,8 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row">
 															<div class="col-md-3 col-sm-3 col-xs-3">
 																<b>White List</b>
+																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Usernames whitelist</div><div class="panel-content">• Saat anda UNFOLLOW. <strong>Usernames di "Whitelist" ini akan diabaikan / tidak akan di "UNFOLLOW"</strong><br>
+																	• <strong>Usulan penggunaan : </strong>teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW</div>'></span>
 															</div>
 															<div class="col-md-4 col-sm-9 col-xs-9">
 																<div class="row btnGroupOO">
@@ -627,13 +643,17 @@ use Celebgramme\Models\SettingHelper;
 												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
 													<div class="header">
 														<h2>
-															Follow &nbsp;<img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title="<div class='panel-heading'>Profile</div><div class='panel-content'>Jumlah Followers & Following ini hanya merupakan INFO saja ( bukan Real time ) <br> & hanya di update beberapa kali dalam sehari untuk memperingan kerja server</div>">
+															Follow &nbsp;<!--<img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title="<div class='panel-heading'>Profile</div><div class='panel-content'>Jumlah Followers & Following ini hanya merupakan INFO saja ( bukan Real time ) <br> & hanya di update beberapa kali dalam sehari untuk memperingan kerja server</div>">-->
 														</h2>
 													</div>
 													<div class="body" style="background:transparent;box-shadow:none;">
 														<div class="row">
 															<div class="col-md-4 col-sm-4 col-xs-4">
 																<b>Status</b>
+																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Follow Status</div><div class='panel-content'><strong>Status ON </strong>akan melakukan 'Follow/Unfollow' <br>
+																										<strong>Status OFF </strong>Tidak akan melakukan 'Follow/Unfollow' <br>
+																										<i>*PS: Status OFF berguna apabila anda hanya mau melakukan Aktifitas lain (Like & Comment) saja</i></div>">
+																	</span>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
 																<div class="row btnGroupOO">
@@ -643,9 +663,11 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 															</div>
 														</div>
-														<div class="row">
+														<div class="row status-follow">
 															<div class="col-md-4 col-sm-4 col-xs-4">
 																<b>Activity</b>
+																<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Follow Activity</div><div class='panel-content'>PILIH salah satu <strong>Follow / Unfollow</strong>. Tidak bisa bersamaan</div>">
+																</span>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
 																<div class="row btnGroupOO">
@@ -658,25 +680,34 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 															</div>
 														</div>
-														<div class="row">
+														<div class="row status-follow status-unfollow">
 															<div class="col-md-4 col-sm-4 col-xs-4">
 																<b>Follow Source</b>
+																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Follow Source</div><div class='panel-content'>
+																Pilih 1 dari 3 Follow Sources ini (Hanya yang dipilih yang dijalankan) : <br>
+																<strong>Jika Follow Source</strong> : 'HASHTAGS' akan Follow sesuai Hashtags tsb.<br>
+																<strong>Jika Follow Source</strong> : 'USERNAMES' bisa pilih mau Follow siapa. 'Followersnya/Following' nya username tsb.</div>"></span>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
-																<select class="form-control" name="data[follow_source]" id="select-follow-source">
-																	<option value="hashtags" <?php if ($settings->follow_source=='hashtags') echo "selected" ?>>Hashtags</option>
-																	<option value="followers of username" <?php if ($settings->follow_source=='followers of username') echo "selected" ?>>Followers of username</option>
+																<div class="row">
+																	<select class="form-control btnGroupOO" name="data[follow_source]" id="select-follow-source" style="margin-left:-5px;">
+																		<option value="hashtags" <?php if ($settings->follow_source=='hashtags') echo "selected" ?>>Hashtags</option>
+																		<option value="followers of username" <?php if ($settings->follow_source=='followers of username') echo "selected" ?>>Followers of username</option>
 										<!--							<option value="following of username" <?php if ($settings->follow_source=='following of username') echo "selected" ?>>Following of username</option>-->
 																</select>
+																</div>
 															</div>
 														</div>
-														<div class="row">
-															<div class="col-md-6 col-sm-6 col-xs-12">
+														<div class="row status-follow status-unfollow">
+															<div class="col-md-12 col-sm-12 col-xs-12">
 																<div class="row">
-																	<div class="col-md-4 col-sm-3 col-xs-12">
+																	<div class="col-md-4 col-sm-5 col-xs-5">
 																		<b>Don't Follow Private User</b>
+																		<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Dont Follow Private users</div><div class='panel-content'>
+																		Jika Dont Follow Private Users dicentang,<br> Maka proses follow tidak akan memfollow account-account IG yang private
+																		</div>"></span>
 																	</div>
-																	<div class="col-md-3 col-sm-9 col-xs-12">
+																	<div class="col-md-8 col-sm-7 col-xs-7">
 																		<div class="row btnGroupOO">
 																			<button type="button" class="btn <?php if ($settings->dont_follow_pu) echo 'btn-primary' ?>" id="DontFollowPUOnButton" style="color:#fff;">ON</button>
 																			<button type="button" class="btn <?php if (!$settings->dont_follow_pu) echo 'btn-danger' ?>" id="DontFollowPUOffButton" style="color:#fff;">OFF</button>
@@ -685,12 +716,15 @@ use Celebgramme\Models\SettingHelper;
 																	</div>
 																</div>
 															</div>
-															<div class="col-md-6 col-sm-6 col-xs-12">
+															<div class="col-md-12 col-sm-12 col-xs-12 status-follow status-unfollow">
 																<div class="row">
-																	<div class="col-md-4 col-sm-4 col-xs-12">
+																	<div class="col-md-4 col-sm-5 col-xs-5">
 																		<b>Don't Follow Same User</b>
+																		<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Dont Follow Same users</div><div class='panel-content'>
+																		Jika Dont Follow Same Users dicentang,<br> Maka proses follow tidak akan memfollow account-account IG yang pernah difollow oleh celebgramme
+																		</div>"></span>
 																	</div>
-																	<div class="col-md-3 col-sm-8 col-xs-12">
+																	<div class="col-md-8 col-sm-7 col-xs-7">
 																		<div class="row btnGroupOO">
 																			<button type="button" class="btn <?php if ($settings->dont_follow_su) echo 'btn-primary' ?>" id="DontFollowSUOnButton" style="color:#fff;">ON</button>
 																			<button type="button" class="btn <?php if (!$settings->dont_follow_su) echo 'btn-danger' ?>" id="DontFollowSUOffButton" style="color:#fff;">OFF</button>
@@ -705,12 +739,15 @@ use Celebgramme\Models\SettingHelper;
 											</div>
 										</div>
 										
-										<div class="row">
+										<div class="row" id="div-hashtags">
 											<div class="col-md-12 col-sm-12 col-xs-12">
 												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
 													<div class="header">
 														<h2>
-															Media Source &nbsp;: &nbsp; #Hashtags &nbsp;<img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title="<div class='panel-heading'>Profile</div><div class='panel-content'>Jumlah Followers & Following ini hanya merupakan INFO saja ( bukan Real time ) <br> & hanya di update beberapa kali dalam sehari untuk memperingan kerja server</div>">
+															Media Source &nbsp;: &nbsp; #Hashtags &nbsp;<img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title="<div class='panel-heading'>Media source : Hashtags</div><div class='panel-content'>• ADD <strong>MIN 10 Hashtags</strong> <br>
+															• TIDAK PERLU ADD <strong>simbol # (tanda pagar) </strong><br>
+															• Anda dapat menambahkan <strong>MAX 50 Hashtags</strong>
+															</div>">
 														</h2>
 													</div>
 													<div class="body" style="background:transparent;box-shadow:none;">
@@ -725,12 +762,12 @@ use Celebgramme\Models\SettingHelper;
 											</div>
 										</div>
 										
-										<div class="row">
+										<div class="row" id="div-usernames">
 											<div class="col-md-12 col-sm-12 col-xs-12">
 												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
 													<div class="header">
 														<h2>
-															Media Source &nbsp;: &nbsp; Usernames &nbsp;<img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title="<div class='panel-heading'>Profile</div><div class='panel-content'>Jumlah Followers & Following ini hanya merupakan INFO saja ( bukan Real time ) <br> & hanya di update beberapa kali dalam sehari untuk memperingan kerja server</div>">
+															Media Source &nbsp;: &nbsp; Usernames &nbsp;<img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title='<div class="panel-heading">Media source : Usernames</div><div class="panel-content">• <strong>Add MIN 10 username</strong> jika menggunakan "Usernames" di Media Source. <br>• Anda dapat menambahkan <strong>MAX 50 usernames.</strong></div>'>
 														</h2>
 													</div>
 													<div class="body" style="background:transparent;box-shadow:none;">
@@ -751,7 +788,7 @@ use Celebgramme\Models\SettingHelper;
 												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
 													<div class="header">
 														<h2>
-															Like &nbsp; & &nbsp; Comment &nbsp;<img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title="<div class='panel-heading'>Profile</div><div class='panel-content'>Jumlah Followers & Following ini hanya merupakan INFO saja ( bukan Real time ) <br> & hanya di update beberapa kali dalam sehari untuk memperingan kerja server</div>">
+															Like &nbsp; & &nbsp; Comment &nbsp;<img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title='<div class="panel-heading">Like & Comment</div><div class="panel-content">Wajib mengisi <strong>min 10 "Hashtags" </strong>jika memakai Fitur "Like & Comments"</div>'>
 														</h2>
 													</div>
 													<div class="body" style="background:transparent;box-shadow:none;">
@@ -779,7 +816,8 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 															</div>
 														</div>
-														<div class="row">
+														
+														<div class="row" id="div-comment">
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<div class="row">
 																	<div class="col-md-6 col-sm-12 col-xs-12">
