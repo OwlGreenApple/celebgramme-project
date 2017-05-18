@@ -895,7 +895,7 @@ use Celebgramme\Models\SettingHelper;
 																if (count($inboxResponse->inbox->threads) > 0 ) {
 																	foreach ($inboxResponse->inbox->threads as $data_arr) {
 																		$date_message = substr($data_arr->items[0]->timestamp,0,10);
-																		$text_message = $data_arr->users[0]->username;
+																		$text_message = $data_arr->items[0]->text;
 																		if (strlen($text_message)>=42) {
 																			$text_message = substr($text_message,0,42)." ...";
 																		}
@@ -910,9 +910,9 @@ use Celebgramme\Models\SettingHelper;
 																		-->
 																		<img src="{{$data_arr->users[0]->profile_pic_url}}" class="img-circle" style="width:50px;height:50px;">
 																		
-																		&nbsp;{{$text_message}}
+																		&nbsp;{{$data_arr->users[0]->username}}
 																	</h2>
-																	<small style="color:#333;">{{$data_arr->items[0]->text}}</small>
+																	<small style="color:#333;">{{$text_message}}</small>
 																</div>
 																<div class="col-md-7 col-sm-12 col-xs-12">
 																	<div class="row">
@@ -957,7 +957,7 @@ use Celebgramme\Models\SettingHelper;
 																if (count($pendingInboxResponse->inbox->threads) > 0 ) {
 																	foreach ($pendingInboxResponse->inbox->threads as $data_arr) {
 																		$date_message = substr($data_arr->items[0]->timestamp,0,10);
-																		$text_message = $data_arr->users[0]->username;
+																		$text_message = $data_arr->items[0]->text;
 																		if (strlen($text_message)>=42) {
 																			$text_message = substr($text_message,0,42)." ...";
 																		}
@@ -967,9 +967,9 @@ use Celebgramme\Models\SettingHelper;
 																	<h2 style="color:#333;font-weight:200;">
 																		<img src="{{$data_arr->users[0]->profile_pic_url}}" class="img-circle" style="width:50px;height:50px;">
 																	
-																		&nbsp;{{$text_message}}
+																		&nbsp;{{$data_arr->users[0]->username}}
 																	</h2>
-																	<small style="color:#333;">Request For</small>
+																	<small style="color:#333;">{{$text_message}}</small>
 																</div>
 																<div class="col-md-7 col-sm-12 col-xs-12">
 																	<div class="row">
