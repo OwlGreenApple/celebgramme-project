@@ -633,6 +633,7 @@ class AutoManageController extends Controller
 		}
 		catch (Exception $e) {
 			$arr["type"]="error";
+			$arr["resultEmailData"] = "error";
 		}
 		
 		return $arr;
