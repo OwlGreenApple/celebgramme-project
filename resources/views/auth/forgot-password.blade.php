@@ -36,7 +36,7 @@
             
             <button class="btn btn-lg btn-block" type="submit">Submit</button>
           {!! Form::close() !!}
-					<a href="{{url('login')}}" class="login-link-forgot"> Back to login </a>
+					<a href="{{url('/')}}" class="login-link-forgot"> Back to login </a>
         </div>
 
       </div>
