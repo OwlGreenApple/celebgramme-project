@@ -624,6 +624,7 @@ class AutoManageController extends Controller
 			
 			$i->login(false,300);
 			$listMessageResponse = $i->directThread(Request::input("thread_id"));
+			return $listMessageResponse;
 			// $arr["listMessageResponse"] = json_encode($listMessageResponse);
 			$arr["resultEmailData"] = view("member.auto-manage.message-inbox")->with(array(
 																			'listMessageResponse'=>$listMessageResponse,
