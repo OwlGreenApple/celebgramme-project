@@ -272,4 +272,42 @@ class NewDashboardController extends Controller
       ));
   }
 	
+	public function get_chat_all(){
+    $user = Auth::user();
+    $link = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
+							->join("setting_helpers","setting_helpers.setting_id","=","settings.id")
+							->select("settings.*","setting_helpers.proxy_id")
+              ->where("link_users_settings.user_id","=",$user->id)
+              ->where("settings.id","=",Request::input("setting_id"))
+              ->where("type","=","temp")
+              ->first();
+    if (is_null($link)) {
+      return redirect('dashboard')->with( 'error', 'Not authorize to access page');
+    } 
+							
+		if (!$link->error_cred) {
+			try {
+				$i = new Instagram(false,false,[
+					"storage"       => "mysql",
+					"dbhost"       => Config::get('automation.DB_HOST'),
+					"dbname"   => Config::get('automation.DB_DATABASE'),
+					"dbusername"   => Config::get('automation.DB_USERNAME'),
+					"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+				]);
+				
+				$i->setUser(strtolower($link->insta_username), $link->insta_password);
+				$proxy = Proxies::find($link->proxy_id);
+				if (!is_null($proxy)) {
+					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
+				}
+				
+				$i->login(false,300);
+				$chatAll = $i->directThread(Request::input("data_thread_id"));
+			}
+			catch (Exception $e) {
+				return $e->getMessage();
+			}
+		}
+		
+	}
 }

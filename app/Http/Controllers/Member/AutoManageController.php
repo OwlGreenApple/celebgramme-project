@@ -622,7 +622,7 @@ class AutoManageController extends Controller
 				$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
 			}
 			
-			$i->login();
+			$i->login(false,300);
 			$listMessageResponse = $i->directThread(Request::input("thread_id"));
 			// $arr["listMessageResponse"] = json_encode($listMessageResponse);
 			$arr["resultEmailData"] = view("member.auto-manage.message-inbox")->with(array(

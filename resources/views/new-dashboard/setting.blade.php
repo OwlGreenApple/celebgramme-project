@@ -16,6 +16,7 @@ use Celebgramme\Models\SettingHelper;
 
 ?>
 <script>
+	setting_id = <?php echo $settings->id; ?>;
 	function call_action(action,id){
 		$.ajax({
 				type: 'GET',
@@ -233,6 +234,37 @@ use Celebgramme\Models\SettingHelper;
 					// if(data.type=='success')
 					// {
 					// }
+					// else if(data.type=='error')
+					// {
+					// }
+				}
+			})
+		});
+		$( "body" ).on( "click", ".button-reply", function(e) {
+			$.ajax({
+				type: 'GET',
+				url: "<?php echo url('get-chat-all'); ?>",
+				data: {
+					data_thread_id : $(this).attr("data-thread-id"),
+					data_username : $(this).attr("data-username"),
+					setting_id : setting_id,
+				},
+				dataType: 'text',
+				beforeSend: function()
+				{
+					$("#div-loading").show();
+				},
+				success: function(result) {
+					$("#div-loading").hide();
+					var data = jQuery.parseJSON(result);
+					$("#div-testing-email").html(data.resultEmailData);
+					// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
+					// console.log(dataMessage);
+					
+					if(data.type=='success')
+					{
+						$("#chat-all").html();
+					}
 					// else if(data.type=='error')
 					// {
 					// }
@@ -663,7 +695,7 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 															</div>
 														</div>
-														<div class="row status-follow">
+														<div class="row status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 															<div class="col-md-4 col-sm-4 col-xs-4">
 																<b>Activity</b>
 																<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Follow Activity</div><div class='panel-content'>PILIH salah satu <strong>Follow / Unfollow</strong>. Tidak bisa bersamaan</div>">
@@ -680,7 +712,7 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 															</div>
 														</div>
-														<div class="row status-follow status-unfollow">
+														<div class="row status-follow status-unfollow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 															<div class="col-md-4 col-sm-4 col-xs-4">
 																<b>Follow Source</b>
 																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Follow Source</div><div class='panel-content'>
@@ -698,7 +730,7 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 															</div>
 														</div>
-														<div class="row status-follow status-unfollow">
+														<div class="row status-follow status-unfollow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<div class="row">
 																	<div class="col-md-4 col-sm-5 col-xs-5">
@@ -716,7 +748,7 @@ use Celebgramme\Models\SettingHelper;
 																	</div>
 																</div>
 															</div>
-															<div class="col-md-12 col-sm-12 col-xs-12 status-follow status-unfollow">
+															<div class="col-md-12 col-sm-12 col-xs-12 status-follow status-unfollow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 																<div class="row">
 																	<div class="col-md-4 col-sm-5 col-xs-5">
 																		<b>Don't Follow Same User</b>
@@ -739,7 +771,7 @@ use Celebgramme\Models\SettingHelper;
 											</div>
 										</div>
 										
-										<div class="row" id="div-hashtags">
+										<div class="row" id="div-hashtags" <?php if ( ( ($settings->status_follow_unfollow=="off") && ($settings->status_like=="off") && ($settings->status_comment=="off")) || ( (($settings->follow_source=='followers of username') || ($settings->follow_source=='following of username')) && ($settings->status_follow_unfollow=="on")&& ($settings->status_like=="off")&& ($settings->status_comment=="off") )  ) echo "style='display:none;'" ?>>
 											<div class="col-md-12 col-sm-12 col-xs-12">
 												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
 													<div class="header">
@@ -762,7 +794,7 @@ use Celebgramme\Models\SettingHelper;
 											</div>
 										</div>
 										
-										<div class="row" id="div-usernames">
+										<div class="row <?php if ($settings->status_auto) echo 'hide'; ?>" id="div-usernames" <?php if ( ($settings->follow_source=='hashtags') || ($settings->status_follow_unfollow=="off") ) echo "style='display:none;'" ?>>
 											<div class="col-md-12 col-sm-12 col-xs-12">
 												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
 													<div class="header">
@@ -817,7 +849,7 @@ use Celebgramme\Models\SettingHelper;
 															</div>
 														</div>
 														
-														<div class="row" id="div-comment">
+														<div class="row" id="div-comment" <?php if ($settings->status_comment=="off")   { echo "style='display:none;'"; } ?>>
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<div class="row">
 																	<div class="col-md-6 col-sm-12 col-xs-12">
@@ -963,12 +995,13 @@ use Celebgramme\Models\SettingHelper;
 																		</div>
 																		<div class="col-md-4 col-sm-4 col-xs-4">
 																			<div class="br-6">
-																				<div style="min-height:100px;" class="body bg-cyan br-6 text-center">
+																<div style="min-height:100px;cursor:pointer;" class="body bg-cyan br-6 text-center button-reply" data-thread-id="{{$data_arr->thread_id}}" data-username="{{$data_arr->users[0]->username}}" href="#chat-all" data-toggle="tab" >
 																					<i class="fa fa-mail-reply fa-2x"></i><br/>
 																					<b class="text-white">Reply</b>
 																				</div>
 																			</div>
 																		</div>
+																		<!--
 																		<div class="col-md-4 col-sm-4 col-xs-4">
 																			<div class="br-6">
 																				<div style="min-height:100px;" class="body bg-red br-6 text-center">
@@ -977,6 +1010,7 @@ use Celebgramme\Models\SettingHelper;
 																				</div>
 																			</div>
 																		</div>
+																		-->
 																	</div>
 																</div>
 															</div>
@@ -1046,6 +1080,10 @@ use Celebgramme\Models\SettingHelper;
 															
 														</div>
 													</div>
+													
+													<div id="chat-all" class="tab-pane">
+													</div>
+													
 													
 													<div id="DMAuto" class="tab-pane">
 														<div class="col-md-12 col-sm-12 col-xs-12">

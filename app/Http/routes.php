@@ -103,6 +103,7 @@ Route::group(['middleware' => 'auth'], function()
 	Route::get('dashboard', 'Member\NewDashboardController@dashboard');
 	Route::get('load-account', 'Member\NewDashboardController@load_account');
 	Route::get('setting/{id}', 'Member\NewDashboardController@setting_index');
+	Route::get('get-chat-all', 'Member\NewDashboardController@get_chat_all');
 });
 
 
