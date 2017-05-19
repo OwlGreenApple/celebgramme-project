@@ -22,6 +22,7 @@ Route::post('process-package', 'LandingPageController@process_package');
 
 /* LOGIN / LOGOUT */
 Route::get('/', 'Auth\LoginController@getLogin');
+Route::get('login', 'Auth\LoginController@getLogin');
 Route::post('auth/login', ['as'=>'auth.login', 'uses'=> 'Auth\LoginController@postLogin']);
 Route::get('logout', 'Auth\LoginController@getLogout');
 
