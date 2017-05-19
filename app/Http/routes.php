@@ -94,7 +94,7 @@ Route::group(['middleware' => 'auth'], function()
   Route::post('delete-setting', 'Member\AutoManageController@delete_setting');
 	Route::get('agree-terms', 'Member\AutoManageController@agree_terms');
 	Route::get('check-message', 'Member\AutoManageController@check_message');
-	Route::get('action-direct-message', 'Member\AutoManageController@action_direct_message');
+	// Route::get('action-direct-message', 'Member\AutoManageController@action_direct_message');
 	
 	
 	/*--------- New-dashboard ---------*/
@@ -104,6 +104,8 @@ Route::group(['middleware' => 'auth'], function()
 	Route::get('load-account', 'Member\NewDashboardController@load_account');
 	Route::get('setting/{id}', 'Member\NewDashboardController@setting_index');
 	Route::get('get-chat-all', 'Member\NewDashboardController@get_chat_all');
+	Route::get('action-direct-message', 'Member\NewDashboardController@action_direct_message');
+	Route::get('get-dm-req', 'Member\NewDashboardController@get_dm_req');
 });
 
 

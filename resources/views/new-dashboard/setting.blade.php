@@ -184,7 +184,7 @@ use Celebgramme\Models\SettingHelper;
 					pk_id : $(this).attr("data-pk-id"),
 					message : $("#text-message-inbox").val(),
 					setting_id : $(this).attr("data-setting-id"),
-					thread_id : $(this).attr("data-thread-id"),
+					data_thread_id : $(this).attr("data-thread-id"),
 					type : 'like',
 				},
 				dataType: 'text',
@@ -216,7 +216,9 @@ use Celebgramme\Models\SettingHelper;
 					pk_id : $(this).attr("data-pk-id"),
 					message : $("#text-message-inbox").val(),
 					setting_id : $(this).attr("data-setting-id"),
-					thread_id : $(this).attr("data-thread-id"),
+					data_thread_id : $(this).attr("data-thread-id"),
+					data_username : $(this).attr("data-username"),
+					data_pic : $(this).attr("data-pic"),
 					type : 'message',
 				},
 				dataType: 'text',
@@ -227,13 +229,14 @@ use Celebgramme\Models\SettingHelper;
 				success: function(result) {
 					$("#div-loading").hide();
 					var data = jQuery.parseJSON(result);
-					$("#div-testing-email").html(data.resultEmailData);
+					// $("#div-testing-email").html(data.resultEmailData);
 					// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
 					// console.log(dataMessage);
 					
-					// if(data.type=='success')
-					// {
-					// }
+					if(data.type=='success')
+					{
+						$("#chat-all").html(data.resultEmailData);
+					}
 					// else if(data.type=='error')
 					// {
 					// }
@@ -247,6 +250,7 @@ use Celebgramme\Models\SettingHelper;
 				data: {
 					data_thread_id : $(this).attr("data-thread-id"),
 					data_username : $(this).attr("data-username"),
+					data_pic : $(this).attr("data-pic"),
 					setting_id : setting_id,
 				},
 				dataType: 'text',
@@ -257,13 +261,40 @@ use Celebgramme\Models\SettingHelper;
 				success: function(result) {
 					$("#div-loading").hide();
 					var data = jQuery.parseJSON(result);
-					$("#div-testing-email").html(data.resultEmailData);
 					// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
 					// console.log(dataMessage);
 					
 					if(data.type=='success')
 					{
-						$("#chat-all").html();
+						$("#chat-all").html(data.resultEmailData);
+					}
+					// else if(data.type=='error')
+					// {
+					// }
+				}
+			})
+		});
+		$( "body" ).on( "click", ".btnDmRe", function(e) {
+			$.ajax({
+				type: 'GET',
+				url: "<?php echo url('get-dm-req'); ?>",
+				data: {
+					setting_id : setting_id,
+				},
+				dataType: 'text',
+				beforeSend: function()
+				{
+					$("#div-loading").show();
+				},
+				success: function(result) {
+					$("#div-loading").hide();
+					var data = jQuery.parseJSON(result);
+					// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
+					// console.log(dataMessage);
+					
+					if(data.type=='success')
+					{
+						$("#DMRequest").html(data.resultEmailData);
 					}
 					// else if(data.type=='error')
 					// {
@@ -995,7 +1026,7 @@ use Celebgramme\Models\SettingHelper;
 																		</div>
 																		<div class="col-md-4 col-sm-4 col-xs-4">
 																			<div class="br-6">
-																<div style="min-height:100px;cursor:pointer;" class="body bg-cyan br-6 text-center button-reply" data-thread-id="{{$data_arr->thread_id}}" data-username="{{$data_arr->users[0]->username}}" href="#chat-all" data-toggle="tab" >
+																<div style="min-height:100px;cursor:pointer;" class="body bg-cyan br-6 text-center button-reply" data-thread-id="{{$data_arr->thread_id}}" data-username="{{$data_arr->users[0]->username}}" data-pic="{{$data_arr->users[0]->profile_pic_url}}" href="#chat-all" data-toggle="tab" >
 																					<i class="fa fa-mail-reply fa-2x"></i><br/>
 																					<b class="text-white">Reply</b>
 																				</div>
@@ -1056,7 +1087,7 @@ use Celebgramme\Models\SettingHelper;
 																		</div>
 																		<div class="col-md-4 col-sm-4 col-xs-4">
 																			<div class="br-6">
-																				<div style="min-height:100px;" class="body bgGreenLight br-6 text-center">
+																				<div style="min-height:100px;cursor:pointer;" class="body bgGreenLight br-6 text-center button-accept-request">
 																					<i class="fa fa-check fa-2x"></i><br/>
 																					<b class="text-white">Accept</b>
 																				</div>
@@ -1064,7 +1095,7 @@ use Celebgramme\Models\SettingHelper;
 																		</div>
 																		<div class="col-md-4 col-sm-4 col-xs-4">
 																			<div class="br-6">
-																				<div style="min-height:100px;" class="body bg-red br-6 text-center">
+																				<div style="min-height:100px;cursor:pointer;" class="body bg-red br-6 text-center button-decline-request" data-toggle="modal" data-target="#confirm-decline">
 																					<i class="fa fa-times fa-2x"></i><br/>
 																					<b class="text-white">Decline</b>
 																				</div>
@@ -1226,6 +1257,28 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       </div>
     </div>
   </div>
+	
+	
+	
+	
+  <!-- Modal confirm decline-->
+	<div class="modal fade" id="confirm-decline" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+					<div class="modal-content">
+							<div class="modal-header">
+									Decline User
+							</div>
+							<div class="modal-body">
+									Are you sure want to decline ?
+							</div>
+							<input type="hidden" id="id-setting">
+							<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+									<button type="button" class="btn btn-danger btn-ok" id="delete-setting" data-dismiss="modal">Decline</button>
+							</div>
+					</div>
+			</div>
+	</div>	
 	
 	
 	

@@ -273,6 +273,7 @@ class NewDashboardController extends Controller
   }
 	
 	public function get_chat_all(){
+		$arr["type"]="success";
     $user = Auth::user();
     $link = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
 							->join("setting_helpers","setting_helpers.setting_id","=","settings.id")
@@ -303,11 +304,126 @@ class NewDashboardController extends Controller
 				
 				$i->login(false,300);
 				$chatAll = $i->directThread(Request::input("data_thread_id"));
+				// $arr["chatAll"] = json_encode($chatAll);
+				
+				$arr["resultEmailData"] = view("new-dashboard.chat-all")->with(array(
+																			'chatAll'=>$chatAll,
+																			'setting_id'=>Request::input("setting_id"),
+																			'thread_id'=>Request::input("data_thread_id"),
+																			'username_user'=> Request::input("data_username"),
+																			'data_pic'=> Request::input("data_pic"),
+																		))->render();
 			}
 			catch (Exception $e) {
-				return $e->getMessage();
+				$arr["type"]="error";
+				$arr["resultEmailData"] = $e->getMessage();
 			}
 		}
 		
+		return $arr;
+	}
+
+  public function action_direct_message(){  
+		$arr["type"]="success";
+		
+    $user = Auth::user();
+    $link = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
+							->join("setting_helpers","setting_helpers.setting_id","=","settings.id")
+							->select("settings.*","setting_helpers.proxy_id")
+              ->where("link_users_settings.user_id","=",$user->id)
+              ->where("settings.id","=",Request::input("setting_id"))
+              ->where("type","=","temp")
+              ->first();
+    if (is_null($link)) {
+      return redirect('dashboard')->with( 'error', 'Not authorize to access page');
+    } 
+		
+		if (!$link->error_cred) {
+			try {
+				$i = new Instagram(false,false,[
+					"storage"       => "mysql",
+					"dbhost"       => Config::get('automation.DB_HOST'),
+					"dbname"   => Config::get('automation.DB_DATABASE'),
+					"dbusername"   => Config::get('automation.DB_USERNAME'),
+					"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+				]);
+				
+				$i->setUser(strtolower($link->insta_username), $link->insta_password);
+				$proxy = Proxies::find($link->proxy_id);
+				if (!is_null($proxy)) {
+					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+				}
+				
+				$i->login(false,300);
+				if ( Request::input("type") == "message" ) {
+					$i->directMessage(Request::input("pk_id"), Request::input("message"));
+				}
+				else if ( Request::input("type") == "like" ) {
+					$i->directMessage(Request::input("pk_id"), Request::input("message"));
+				}
+				
+				$chatAll = $i->directThread(Request::input("data_thread_id"));
+
+				$arr["resultEmailData"] = view("new-dashboard.chat-all")->with(array(
+																				'chatAll'=>$chatAll,
+																				'setting_id'=>Request::input("setting_id"),
+																				'thread_id'=>Request::input("data_thread_id"),
+																				'username_user'=> Request::input("data_username"),
+																				'data_pic'=> Request::input("data_pic"),
+																			))->render();
+			}
+			catch (Exception $e) {
+				$arr["type"]="error";
+				$arr["resultEmailData"] = $e->getMessage();
+			}
+		}
+		
+		return $arr;
+	}
+	
+	public function get_dm_req(){
+		$arr["type"]="success";
+    $user = Auth::user();
+    $link = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
+							->join("setting_helpers","setting_helpers.setting_id","=","settings.id")
+							->select("settings.*","setting_helpers.proxy_id")
+              ->where("link_users_settings.user_id","=",$user->id)
+              ->where("settings.id","=",Request::input("setting_id"))
+              ->where("type","=","temp")
+              ->first();
+    if (is_null($link)) {
+      return redirect('dashboard')->with( 'error', 'Not authorize to access page');
+    } 
+							
+		if (!$link->error_cred) {
+			try {
+				$i = new Instagram(false,false,[
+					"storage"       => "mysql",
+					"dbhost"       => Config::get('automation.DB_HOST'),
+					"dbname"   => Config::get('automation.DB_DATABASE'),
+					"dbusername"   => Config::get('automation.DB_USERNAME'),
+					"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+				]);
+				
+				$i->setUser(strtolower($link->insta_username), $link->insta_password);
+				$proxy = Proxies::find($link->proxy_id);
+				if (!is_null($proxy)) {
+					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
+				}
+				
+				$i->login(false,300);
+				$pendingInboxResponse = $i->getPendingInbox();
+				
+				$arr["resultEmailData"] = view("new-dashboard.DM-req")->with(array(
+																			'pendingInboxResponse'=>$pendingInboxResponse,
+																		))->render();
+			}
+			catch (Exception $e) {
+				$arr["type"]="error";
+				$arr["resultEmailData"] = $e->getMessage();
+			}
+		}
+		
+		return $arr;
 	}
 }
