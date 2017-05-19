@@ -56,7 +56,7 @@ class LoginController extends Controller
 				return redirect('/home');
 			}
 		} else {
-			return Redirect::to('/login')
+			return Redirect::to('/')
 				->with(array("error"=>"Login anda salah"));
 		}
 	}
@@ -71,7 +71,7 @@ class LoginController extends Controller
 	{
 		$request->session()->flush();
 		Auth::logout();
-		return Redirect('/login');
+		return Redirect('/');
 	}
 	
 	/**

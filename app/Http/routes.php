@@ -21,7 +21,7 @@ Route::get('calculate-coupon', 'LandingPageController@calculate_coupon');
 Route::post('process-package', 'LandingPageController@process_package');
 
 /* LOGIN / LOGOUT */
-Route::get('login', 'Auth\LoginController@getLogin');
+Route::get('/', 'Auth\LoginController@getLogin');
 Route::post('auth/login', ['as'=>'auth.login', 'uses'=> 'Auth\LoginController@postLogin']);
 Route::get('logout', 'Auth\LoginController@getLogout');
 
@@ -53,7 +53,7 @@ Route::group(['middleware' => 'auth'], function()
 
   Route::get('test', 'Member\HomeController@test');
   Route::get('home', 'Member\AutoManageController@index');
-  Route::get('/', 'Member\AutoManageController@index');
+  // Route::get('/', 'Member\AutoManageController@index');
   Route::get('order', 'Member\HomeController@order');
   
   Route::get('edit-profile', 'Member\HomeController@edit_profile');
