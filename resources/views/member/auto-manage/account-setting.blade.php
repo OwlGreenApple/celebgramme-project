@@ -140,7 +140,7 @@ use Celebgramme\Models\SettingHelper;
 					$("#div-loading").hide();
 					var data = jQuery.parseJSON(result);
 					console.log(data);
-					// $("#div-testing-email").html(data.resultEmailData);
+					$("#div-testing-email").html(data.resultEmailData);
 					// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
 					// console.log(dataMessage);
 					
