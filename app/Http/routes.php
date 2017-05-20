@@ -106,6 +106,7 @@ Route::group(['middleware' => 'auth'], function()
 	Route::get('get-chat-all', 'Member\NewDashboardController@get_chat_all');
 	Route::get('action-direct-message', 'Member\NewDashboardController@action_direct_message');
 	Route::get('get-dm-req', 'Member\NewDashboardController@get_dm_req');
+	Route::get('action-dm-req', 'Member\NewDashboardController@action_dm_req');
 });
 
 

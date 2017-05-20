@@ -302,6 +302,74 @@ use Celebgramme\Models\SettingHelper;
 				}
 			})
 		});
+		$( "body" ).on( "click", ".button-accept-request", function() {
+			//dm req approve
+			$.ajax({
+				type: 'GET',
+				url: "<?php echo url('action-dm-req'); ?>",
+				data: {
+					setting_id : setting_id,
+					data_thread_id : $(this).attr("data-thread-id"),
+					type : 'approve',
+				},
+				dataType: 'text',
+				beforeSend: function()
+				{
+					$("#div-loading").show();
+				},
+				success: function(result) {
+					$("#div-loading").hide();
+					var data = jQuery.parseJSON(result);
+					// $("#div-testing-email").html(data.resultEmailData);
+					// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
+					// console.log(dataMessage);
+					
+					if(data.type=='success')
+					{
+						$("#DMRequest").html(data.resultEmailData);
+					}
+					// else if(data.type=='error')
+					// {
+					// }
+				}
+			})
+		});
+		$( "body" ).on( "click", ".button-decline-request", function() {
+			$("#hidden-thread-id").val($(this).attr("data-thread-id"));
+		});
+		$( "body" ).on( "click", "#decline-dm-req", function() {
+			//dm req decline
+			$.ajax({
+				type: 'GET',
+				url: "<?php echo url('action-dm-req'); ?>",
+				data: {
+					setting_id : setting_id,
+					data_thread_id : $("#hidden-thread-id").val(),
+					type : 'decline',
+				},
+				dataType: 'text',
+				beforeSend: function()
+				{
+					$("#div-loading").show();
+				},
+				success: function(result) {
+					$("#div-loading").hide();
+					var data = jQuery.parseJSON(result);
+					// $("#div-testing-email").html(data.resultEmailData);
+					// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
+					// console.log(dataMessage);
+					
+					if(data.type=='success')
+					{
+						$("#DMRequest").html(data.resultEmailData);
+					}
+					// else if(data.type=='error')
+					// {
+					// }
+				}
+			})
+		});
+		
 		
 	});	
 </script>
@@ -1271,10 +1339,10 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 							<div class="modal-body">
 									Are you sure want to decline ?
 							</div>
-							<input type="hidden" id="id-setting">
+							<input type="hidden" id="hidden-thread-id">
 							<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-									<button type="button" class="btn btn-danger btn-ok" id="delete-setting" data-dismiss="modal">Decline</button>
+									<button type="button" class="btn btn-danger btn-ok" id="decline-dm-req" data-dismiss="modal">Decline</button>
 							</div>
 					</div>
 			</div>

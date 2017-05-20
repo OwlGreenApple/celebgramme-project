@@ -32,7 +32,7 @@
 																		</div>
 																		<div class="col-md-4 col-sm-4 col-xs-4">
 																			<div class="br-6">
-																				<div style="min-height:100px;cursor:pointer;" class="body bgGreenLight br-6 text-center button-accept-request">
+																				<div style="min-height:100px;cursor:pointer;" class="body bgGreenLight br-6 text-center button-accept-request" data-thread-id="{{$data_arr->thread_id}}">
 																					<i class="fa fa-check fa-2x"></i><br/>
 																					<b class="text-white">Accept</b>
 																				</div>
@@ -40,7 +40,7 @@
 																		</div>
 																		<div class="col-md-4 col-sm-4 col-xs-4">
 																			<div class="br-6">
-																				<div style="min-height:100px;cursor:pointer;" class="body bg-red br-6 text-center button-decline-request" data-toggle="modal" data-target="#confirm-decline">
+																				<div style="min-height:100px;cursor:pointer;" class="body bg-red br-6 text-center button-decline-request" data-toggle="modal" data-target="#confirm-decline" data-thread-id="{{$data_arr->thread_id}}">
 																					<i class="fa fa-times fa-2x"></i><br/>
 																					<b class="text-white">Decline</b>
 																				</div>
