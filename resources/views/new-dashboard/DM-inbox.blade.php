@@ -25,16 +25,16 @@
 																</div>
 																<div class="col-md-7 col-sm-12 col-xs-12">
 																	<div class="row">
-																		<div class="col-md-4 col-sm-4 col-xs-4">
+																		<div class="col-md-4 col-sm-12 col-xs-12">
 																			<div class="br-6">
 																				<div style="min-height:100px;" class="body bg-white br-6 text-center">
 																					<b class="text-primary">{{date("l", $date_message)}}<br>{{date("Y-m-d", $date_message)}}</b>
 																				</div>
 																			</div>
 																		</div>
-																		<div class="col-md-4 col-sm-4 col-xs-4">
+																		<div class="col-md-4 col-sm-12 col-xs-12">
 																			<div class="br-6">
-																<div style="min-height:100px;cursor:pointer;" class="body bg-cyan br-6 text-center button-reply" data-thread-id="{{$data_arr->thread_id}}" data-username="{{$data_arr->users[0]->username}}" data-pic="{{$data_arr->users[0]->profile_pic_url}}" href="#chat-all" data-toggle="tab" >
+																				<div style="min-height:100px;cursor:pointer;" class="body bg-cyan br-6 text-center button-reply" data-thread-id="{{$data_arr->thread_id}}" data-username="{{$data_arr->users[0]->username}}" data-pic="{{$data_arr->users[0]->profile_pic_url}}" href="#chat-all" data-toggle="tab" >
 																					<i class="fa fa-mail-reply fa-2x"></i><br/>
 																					<b class="text-white">Reply</b>
 																				</div>

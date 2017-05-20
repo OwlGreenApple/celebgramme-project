@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request as req;
 
 use Celebgramme\Models\RequestModel;
-use Celebgramme\Models\Invoice;
 use Celebgramme\Models\Order;
 use Celebgramme\Models\OrderMeta;
 use Celebgramme\Models\User;
@@ -22,10 +21,9 @@ use Celebgramme\Models\Client;
 use Celebgramme\Models\SettingHelper;
 use Celebgramme\Models\Proxies;
 use Celebgramme\Models\Category;
-use Celebgramme\Models\SettingLog;
-use Celebgramme\Models\TimeLog;
 use Celebgramme\Models\Account;
 use Celebgramme\Models\Message;
+use Celebgramme\Models\AutoResponderSetting;
 
 use Celebgramme\Veritrans\Veritrans;
 use Celebgramme\Models\ViewProxyUses;
@@ -494,4 +492,60 @@ class NewDashboardController extends Controller
 		return $arr;
 	}
 	
+	public function save_welcome_message(){
+		$arr["type"] = "success";
+		$arr["message"] ="Welcome Message berhasil disimpan";
+		
+    $user = Auth::user();
+    $link = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
+							->join("setting_helpers","setting_helpers.setting_id","=","settings.id")
+							->select("settings.*","setting_helpers.proxy_id")
+              ->where("link_users_settings.user_id","=",$user->id)
+              ->where("settings.id","=",Request::input("setting_id"))
+              ->where("type","=","temp")
+              ->first();
+    if (is_null($link)) {
+			$arr["type"] = "error";
+			$arr["message"] = "Not authorize to access page";
+			return $arr;
+    } 
+		
+		$setting = Setting::find(Request::input("setting_id"));
+		$setting->messages = Request::input("message");
+		$setting->save();
+		
+		return $arr;
+	}
+	
+	public function submit_auto_responder(){
+    $user = Auth::user();
+    $link = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
+							->join("setting_helpers","setting_helpers.setting_id","=","settings.id")
+							->select("settings.*","setting_helpers.proxy_id")
+              ->where("link_users_settings.user_id","=",$user->id)
+              ->where("settings.id","=",Request::input("setting_id"))
+              ->where("type","=","temp")
+              ->first();
+    if (is_null($link)) {
+			$arr["type"] = "error";
+			$arr["message"] = "Not authorize to access page";
+			return $arr;
+    } 
+		
+    if (Request::input("id-auto-responder")=="new") {
+      $arr["message"] = "Proses add berhasil dilakukan";
+      $auto_responder = new AutoResponderSetting;
+    } else {
+      $arr["message"] = "Proses edit berhasil dilakukan";
+      $auto_responder = AutoResponderSetting::find(Request::input("id-auto-responder"));
+    }
+    $auto_responder->message = Request::input("message");
+    $auto_responder->num_of_day = Request::input("num_of_day");
+    $auto_responder->setting_id = Request::input("setting_id");
+    $auto_responder->save();
+
+    $arr['type'] = 'success';
+    $arr['id'] = Request::input("id-auto-responder");
+    return $arr;    
+	}
 }

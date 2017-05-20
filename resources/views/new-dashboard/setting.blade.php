@@ -398,6 +398,74 @@ use Celebgramme\Models\SettingHelper;
 				}
 			})
 		});
+		$( "body" ).on( "click", "#button-save-welcome-message", function(e) {
+			e.preventDefault();
+			//save welcome message
+			$.ajax({
+				type: 'get',
+				url: "<?php echo url('save-welcome-message'); ?>",
+				data: {
+					setting_id : setting_id,
+					message : $("#textarea-welcome-message").val(),
+				},
+				dataType: 'text',
+				beforeSend: function()
+				{
+					$("#div-loading").show();
+				},
+				success: function(result) {
+					window.scrollTo(0, 0);
+					$("#div-loading").hide();
+					var data = jQuery.parseJSON(result);
+					$("#alert").show();
+					$("#alert").html(data.message);
+					if(data.type=='success')
+					{
+						$("#alert").addClass('alert-success');
+						$("#alert").removeClass('alert-danger');
+					}
+					else if(data.type=='error')
+					{
+						$("#alert").addClass('alert-danger');
+						$("#alert").removeClass('alert-success');
+					}
+				}
+			})
+		});
+		$( "body" ).on( "click", "#button-create-auto-responder", function(e) {
+			e.preventDefault();
+			$("#id-auto-responder").val("new");
+		});
+		$( "body" ).on( "click", "#button-submit-auto-responder", function(e) {
+        $.ajax({                                      
+          url: '<?php echo url('submit-auto-responder'); ?>',
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          type: 'post',
+          data: $("#form-auto-responder").serialize(),
+          beforeSend: function()
+          {
+            $("#div-loading").show();
+          },
+          dataType: 'text',
+          success: function(result)
+          {
+            var data = jQuery.parseJSON(result);
+            $("#alert").show();
+            $("#alert").html(data.message);
+            if(data.type=='success') {
+              // refresh_autoresponder();
+              $("#alert").addClass("alert-success");
+              $("#alert").removeClass("alert-danger");
+            } else if (data.type=='error') {
+              $("#alert").addClass("alert-danger");
+              $("#alert").removeClass("alert-success");
+            }
+						$("#div-loading").hide();
+          }
+        });
+		});
 		
 		
 	});	
@@ -1087,13 +1155,13 @@ use Celebgramme\Models\SettingHelper;
 											<div class="col-md-12 col-sm-12 col-xs-12">	
 												<div class="btnTab">
 													<div class="col-md-6 col-sm-12 col-xs-12 padding-0">
-														<div class="col-md-4 col-sm-4 col-xs-4 padding-0">
+														<div class="col-md-4 col-sm-12 col-xs-12 padding-0">
 															<button class="btn btn-sm bg-cyan btn-block br-6 btnDmIn" data-toggle="tab" href="#DMInbox"><i class="fa fa-envelope"></i>&nbsp;<small class="text-white">DM Inbox</small></button>
 														</div>
-														<div class="col-md-4 col-sm-4 col-xs-4 padding-0">
+														<div class="col-md-4 col-sm-12 col-xs-12 padding-0">
 															<button class="btn btn-sm bg-grey btn-block br-6 btnDmRe"  style="font-size:inherit;"data-toggle="tab" href="#DMRequest"><i class="fa fa-envelope text-white"></i>&nbsp;<small class="text-white">DM Request</small></button>
 														</div>
-														<div class="col-md-4 col-sm-4 col-xs-4 padding-0">
+														<div class="col-md-4 col-sm-12 col-xs-12 padding-0">
 															<button class="btn btn-sm bg-grey btn-block br-6 btnDmAu"  style="font-size:inherit;"data-toggle="tab" href="#DMAuto"><i class="fa fa-envelope text-white"></i>&nbsp;<small class="text-white">DM Auto Reply</small></button>
 														</div>
 													</div>
@@ -1113,13 +1181,20 @@ use Celebgramme\Models\SettingHelper;
 													
 													
 													<div id="DMAuto" class="tab-pane">
-														<div class="col-md-12 col-sm-12 col-xs-12">
+														<div class="row">
 															<div class="clearfix"></div><br/>
-															<span>Cara setting auto reply</span>&nbsp;<i class="fa fa-question-circle"></i>
-															<br><br>
-															<textarea class="form-control"></textarea>
-															<br>
-															<button class="btn btn-md br-6 bg-cyan pull-left"><i class="fa fa-save"></i>&nbsp;Save</button>
+															<div class="col-md-12 col-sm-12 col-xs-12">
+																<span>Welcome Message New Followers</span>
+															</div>
+															<div class="col-md-12 col-sm-12 col-xs-12">
+																<textarea class="form-control" id="textarea-welcome-message" value="{{$settings->messages}}">{{$settings->messages}}</textarea>
+															</div>
+															<div class="col-md-2 col-sm-12 col-xs-12">
+																<button class="form-control btn btn-md bg-cyan pull-left" id="button-save-welcome-message" style="margin-left:0px;">Save</button>
+															</div>
+															<div class="col-md-2 col-sm-12 col-xs-12">
+																<button class="form-control btn btn-md bg-cyan pull-left" data-toggle="modal" data-target="#add-autoresponder" id="button-create-auto-responder" style="margin-left:0px;">Add</button>
+															</div>
 														</div>
 													</div>
 													
@@ -1275,27 +1350,61 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 					</div>
 			</div>
 	</div>	
-	
-	
-	
-		<link href="{{ asset('/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet">
-
-		
-<section id="userSetScript">
-		<script type="text/javascript" src="{{ asset('/new-dashboard/js/jquery-ui.js') }}"></script>
-
-		<!-- Noui Js -->
-		<script type="text/javascript" src="{{ asset('/new-dashboard/plugins/nouislider/nouislider.js') }}"></script>
-	
-		<!-- Input Mask Plugin Js -->
-		<script type="text/javascript" src="{{ asset('/new-dashboard/plugins/jquery-inputmask/jquery.inputmask.bundle.js') }}"></script>
 
 	
-		<!-- Bootstrap Tags Input Plugin Js -->
-		<script type="text/javascript" src="{{ asset('/new-dashboard/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js') }}"></script>
-		
-		<script type="text/javascript" src="{{ asset('/selectize/js/standalone/selectize.js') }}"></script>
-		
-</section>
+  <!-- Modal Add Auto Responder-->
+	<div class="modal fade" id="add-autoresponder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+					<div class="modal-content">
+							<div class="modal-header">
+									Auto responder
+							</div>
+							<div class="modal-body">
+								<!-- form auto responder -->
+								<form enctype="multipart/form-data" id="form-auto-responder">
+									<div class="form-group form-group-sm row">
+										<label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Message</label>
+										<div class="col-sm-8 col-md-6">
+											<input type="text" class="form-control" placeholder="Isi Auto Respond Message" name="message" id="message">
+										</div>
+									</div>  
+									<div class="form-group form-group-sm row">
+										<label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Jumlah hari </label>
+										<div class="col-sm-8 col-md-6">
+											<input type="number" class="form-control" placeholder="Jumlah hari sejak di follow" name="num_of_day" id="num_of_day">
+										</div>
+									</div>  
+									<input type="hidden" id="id-auto-responder" name="id-auto-responder">
+									<input type="hidden" name="setting_id" value="<?php echo $settings->id; ?>">
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+								<button type="button" class="btn btn-info btn-ok" id="button-submit-auto-responder" data-dismiss="modal">Submit</button>
+							</div>
+					</div>
+			</div>
+	</div>	
 	
+	
+	<link href="{{ asset('/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet">
+
+
+	<section id="userSetScript">
+			<script type="text/javascript" src="{{ asset('/new-dashboard/js/jquery-ui.js') }}"></script>
+
+			<!-- Noui Js -->
+			<script type="text/javascript" src="{{ asset('/new-dashboard/plugins/nouislider/nouislider.js') }}"></script>
+
+			<!-- Input Mask Plugin Js -->
+			<script type="text/javascript" src="{{ asset('/new-dashboard/plugins/jquery-inputmask/jquery.inputmask.bundle.js') }}"></script>
+
+
+			<!-- Bootstrap Tags Input Plugin Js -->
+			<script type="text/javascript" src="{{ asset('/new-dashboard/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js') }}"></script>
+
+			<script type="text/javascript" src="{{ asset('/selectize/js/standalone/selectize.js') }}"></script>
+
+	</section>
+
 @endsection
