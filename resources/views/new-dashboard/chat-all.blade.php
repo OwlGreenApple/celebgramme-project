@@ -15,7 +15,7 @@
 		<?php 
 			$items = array_reverse($chatAll->thread->items);
 			foreach($items as $data) { ?>
-				<div style="height:50px;overflow:hidden;">
+				<div style="min-height:50px;overflow:hidden;">
 				<div class="col-md-1 col-sm-1 col-xs-1">
 				&nbsp
 				</div>	

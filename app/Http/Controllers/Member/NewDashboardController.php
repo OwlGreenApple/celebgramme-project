@@ -270,7 +270,6 @@ class NewDashboardController extends Controller
 				}
 				
 				$i->login(false,300);
-				$chatAll = $i->directThreadAction(Request::input("data_thread_id"),"approve");
 				$chatAll = $i->directThread(Request::input("data_thread_id"));
 				// $arr["chatAll"] = json_encode($chatAll);
 				
