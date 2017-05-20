@@ -446,12 +446,12 @@ use Celebgramme\Models\SettingHelper;
   <div class="col-sm-12 col-md-12">            
     <div class="alert alert-danger col-sm-18 col-md-18">
 			<?php 
-				if ( SettingMeta::getMeta($data->id,"error_message_cred") == "0"  ) {
+				if ( SettingMeta::getMeta($settings->id,"error_message_cred") == "0"  ) {
 			?>
 				*Data login error <br>
 				Silahkan input kembali password anda 
 				<?php } else { 
-					echo SettingMeta::getMeta($data->id,"error_message_cred");
+					echo SettingMeta::getMeta($settings->id,"error_message_cred");
 				} ?>
 			
     </div>  
