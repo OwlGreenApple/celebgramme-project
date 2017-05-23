@@ -584,8 +584,10 @@ class CronJobController extends Controller
 				if (intval($data_meta[0]->meta_value) >550000 ) {
 					$package = Package::find(38);
 					$isi_form_kaos = true;
-				} else if (intval($data_meta[0]->meta_value) <500000 ) {
+				} else if ( (intval($data_meta[0]->meta_value) <457000 ) && (intval($data_meta[0]->meta_value) >=455000 ) ) {
 					$package = Package::find(34);
+				} else if ( (intval($data_meta[0]->meta_value) <461000 ) && (intval($data_meta[0]->meta_value) >=459000 ) ) {
+					$package = Package::find(39);
 				}
 				/*
 				$package = Package::select(DB::raw("ABS( price - CAST(".$data_meta[0]->meta_value." AS UNSIGNED) ) AS distance"))
