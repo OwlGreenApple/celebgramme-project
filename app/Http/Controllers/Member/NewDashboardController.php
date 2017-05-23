@@ -510,7 +510,7 @@ class NewDashboardController extends Controller
 			return $arr;
     } 
 		
-		if (Request::input("message") == "") {
+		if ( (Request::input("message") == "") && (Request::input("is_auto_responder")) ) {
 			$arr["type"] = "error";
 			$arr["message"] = "Silahkan input welcome message auto responder";
 			return $arr;
