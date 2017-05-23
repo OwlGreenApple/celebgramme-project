@@ -510,8 +510,21 @@ class NewDashboardController extends Controller
 			return $arr;
     } 
 		
+		if (Request::input("message") == "") {
+			$arr["type"] = "error";
+			$arr["message"] = "Silahkan input welcome message auto responder";
+			return $arr;
+		}
+		
+		if (!Request::input("is_auto_responder")) {
+			$arr["type"] = "error";
+			$arr["message"] = "Status OFF, Auto Responder tidak dijalankan";
+			return $arr;
+		}
+		
 		$setting = Setting::find(Request::input("setting_id"));
 		$setting->messages = Request::input("message");
+		$setting->is_auto_responder = Request::input("is_auto_responder");
 		$setting->save();
 		
 		return $arr;

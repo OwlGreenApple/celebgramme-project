@@ -407,6 +407,7 @@ use Celebgramme\Models\SettingHelper;
 				data: {
 					setting_id : setting_id,
 					message : $("#textarea-welcome-message").val(),
+					is_auto_responder : $("#is_auto_responder").val(),
 				},
 				dataType: 'text',
 				beforeSend: function()
@@ -1185,6 +1186,11 @@ use Celebgramme\Models\SettingHelper;
 															<div class="clearfix"></div><br/>
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<span>Welcome Message New Followers</span>
+															</div>
+															<div class="col-md-12 col-sm-12 col-xs-12">
+																<button type="button" class="btn <?php if ($settings->is_auto_responder) echo 'btn-primary' ?>" id="AutoResponderOnButton" style="color:#fff;margin-left:0px;">ON</button>
+																<button type="button" class="btn <?php if (!$settings->is_auto_responder) echo 'btn-danger' ?>" id="AutoResponderOffButton" style="color:#fff;">OFF</button>
+																<input type="hidden" value="<?php if (!is_null($settings->is_auto_responder)) { echo $settings->is_auto_responder; } else { echo "0"; } ?>" name="data[is_auto_responder]" id="is_auto_responder">
 															</div>
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<textarea class="form-control" id="textarea-welcome-message" value="{{$settings->messages}}">{{$settings->messages}}</textarea>
