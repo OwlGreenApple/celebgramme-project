@@ -1369,9 +1369,11 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 								<!-- form auto responder -->
 								<form enctype="multipart/form-data" id="form-auto-responder">
 									<div class="form-group form-group-sm row">
-										<label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Message</label>
-										<div class="col-sm-8 col-md-6">
-											<input type="text" class="form-control" placeholder="Isi Auto Respond Message" name="message" id="message">
+										<label class="col-xs-12 col-sm-12 md-12 control-label" for="formGroupInputSmall">Message</label>
+										<div class="col-sm-12 col-md-12 col-xs-12">
+											<!--<input type="text" class="form-control" placeholder="Isi Auto Respond Message" name="message" id="message">-->
+											<textarea class="form-control" id="message" name="message" row="5"></textarea>
+											
 										</div>
 									</div>  
 									<div class="form-group form-group-sm row">
