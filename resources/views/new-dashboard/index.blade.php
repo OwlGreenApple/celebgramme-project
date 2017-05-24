@@ -6,7 +6,7 @@
 				<div class="container-fluid">
 					<div class="block-header">
 						<div class="col-md-6 col-sm-12 col-xs-12 padding-0 text-left">
-							<h2 class="pull-left" style="font-size:15pt;">Hi, Your Name Here </h2>
+							<h2 class="pull-left" style="font-size:15pt;">Hi, {{$user->fullname}} </h2>
 						</div>
 						<div class="col-md-6 col-sm-12 col-xs-12 padding-0">
 							<a href="{{url('dashboard')}}"><button id="btnToDashboard" class="btn btn-block waves-effect br-6"><span>Masuk ke Dashboard</span>&nbsp;&nbsp;<i class="material-icons text-white">input</i>&nbsp;</button></a>

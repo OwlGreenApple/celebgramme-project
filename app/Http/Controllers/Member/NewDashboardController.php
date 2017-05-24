@@ -552,7 +552,7 @@ class NewDashboardController extends Controller
       $arr["message"] = "Proses edit berhasil dilakukan";
       $auto_responder = AutoResponderSetting::find(Request::input("id-auto-responder"));
     }
-    $auto_responder->message = Request::input("message");
+    $auto_responder->message = Request::input("message_responder");
     $auto_responder->num_of_day = Request::input("num_of_day");
     $auto_responder->setting_id = Request::input("setting_id");
     $auto_responder->save();
@@ -561,4 +561,52 @@ class NewDashboardController extends Controller
     $arr['id'] = Request::input("id-auto-responder");
     return $arr;    
 	}
+
+	public function get_auto_responder(){
+		$arr["type"]="success";
+    $user = Auth::user();
+    $link = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
+							->join("setting_helpers","setting_helpers.setting_id","=","settings.id")
+							->select("settings.*","setting_helpers.proxy_id")
+              ->where("link_users_settings.user_id","=",$user->id)
+              ->where("settings.id","=",Request::input("setting_id"))
+              ->where("type","=","temp")
+              ->first();
+    if (is_null($link)) {
+      return redirect('dashboard')->with( 'error', 'Not authorize to access page');
+    } 
+							
+		$auto_responder_setting = AutoResponderSetting::where("setting_id",Request::input("setting_id"))
+															->get();
+
+		
+		$arr["resultData"] = view("new-dashboard.auto-responder")->with(array(
+																	'auto_responder_setting'=>$auto_responder_setting,
+																))->render();
+		
+		return $arr;
+	}
+	
+	public function delete_auto_responder(){
+		$arr["type"]="success";
+    $user = Auth::user();
+    $link = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
+							->join("setting_helpers","setting_helpers.setting_id","=","settings.id")
+							->select("settings.*","setting_helpers.proxy_id")
+              ->where("link_users_settings.user_id","=",$user->id)
+              ->where("settings.id","=",Request::input("setting_id"))
+              ->where("type","=","temp")
+              ->first();
+    if (is_null($link)) {
+      return redirect('dashboard')->with( 'error', 'Not authorize to access page');
+    } 
+							
+		$arr["message"] = "Proses delete berhasil dilakukan";
+		$auto_responder = AutoResponderSetting::find(Request::input("id"))->delete();
+		
+		
+		return $arr;
+	}
+	
+	
 }

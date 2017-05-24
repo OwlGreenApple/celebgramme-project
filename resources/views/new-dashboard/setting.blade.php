@@ -17,6 +17,35 @@ use Celebgramme\Models\SettingHelper;
 ?>
 <script>
 	setting_id = <?php echo $settings->id; ?>;
+	function load_auto_responder(){
+		$.ajax({
+			type: 'GET',
+			url: "<?php echo url('get-auto-responder'); ?>",
+			data: {
+				setting_id : setting_id,
+			},
+			dataType: 'text',
+			beforeSend: function()
+			{
+				$("#div-loading").show();
+			},
+			success: function(result) {
+				$("#div-loading").hide();
+				var data = jQuery.parseJSON(result);
+				// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
+				// console.log(dataMessage);
+				
+				if(data.type=='success')
+				{
+					$("#div-auto-responder").html(data.resultData);
+				}
+				window.scrollTo(0, 0);
+				// else if(data.type=='error')
+				// {
+				// }
+			}
+		})
+	}
 	function call_action(action,id){
 		$.ajax({
 				type: 'GET',
@@ -75,7 +104,7 @@ use Celebgramme\Models\SettingHelper;
 			});
 		});
 		activateNouislide();
-
+		load_auto_responder();
 		
     $('#button-save,#button-save2').click(function(e){
 			e.preventDefault();
@@ -268,6 +297,15 @@ use Celebgramme\Models\SettingHelper;
 					// else if(data.type=='error')
 					// {
 					// }
+					var max = -1;
+					$(".same-height").each(function() {
+							var h = $(this).height(); 
+							max = h > max ? h : max;
+					});
+					$(".same-height").each(function() {
+							$(this).height(max); 
+					});
+					
 				}
 			})
 		});
@@ -328,6 +366,16 @@ use Celebgramme\Models\SettingHelper;
 					// else if(data.type=='error')
 					// {
 					// }
+					var max = -1;
+					$(".same-height").each(function() {
+							var h = $(this).height(); 
+							max = h > max ? h : max;
+					});
+					$(".same-height").each(function() {
+							$(this).height(max); 
+					});
+					
+					
 				}
 			})
 		});
@@ -437,6 +485,12 @@ use Celebgramme\Models\SettingHelper;
 			e.preventDefault();
 			$("#id-auto-responder").val("new");
 		});
+		$( "body" ).on( "click", ".button-edit-auto-responder", function(e) {
+			e.preventDefault();
+			$("#id-auto-responder").val($(this).attr("data-id"));
+			$("#num_of_day").val($(this).attr("data-num"));
+			$("#message_responder").val($(this).attr("data-message"));
+		});
 		$( "body" ).on( "click", "#button-submit-auto-responder", function(e) {
         $.ajax({                                      
           url: '<?php echo url('submit-auto-responder'); ?>',
@@ -457,15 +511,53 @@ use Celebgramme\Models\SettingHelper;
             $("#alert").html(data.message);
             if(data.type=='success') {
               // refresh_autoresponder();
+							load_auto_responder();
               $("#alert").addClass("alert-success");
               $("#alert").removeClass("alert-danger");
             } else if (data.type=='error') {
               $("#alert").addClass("alert-danger");
               $("#alert").removeClass("alert-success");
             }
+						window.scrollTo(0, 0);
 						$("#div-loading").hide();
           }
         });
+		});
+		$( "body" ).on( "click", ".button-delete-auto-responder", function(e) {
+			e.preventDefault();
+			$("#hidden-auto-responder-setting-id").val($(this).attr("data-id"));
+		});
+		$( "body" ).on( "click", "#button-delete-auto-responder-setting", function() {
+			//dm req decline
+			$.ajax({
+				type: 'GET',
+				url: "<?php echo url('delete-auto-responder'); ?>",
+				data: {
+					setting_id : setting_id,
+					id : $("#hidden-auto-responder-setting-id").val(),
+				},
+				dataType: 'text',
+				beforeSend: function()
+				{
+					$("#div-loading").show();
+				},
+				success: function(result) {
+            var data = jQuery.parseJSON(result);
+            $("#alert").show();
+            $("#alert").html(data.message);
+            if(data.type=='success') {
+              // refresh_autoresponder();
+							load_auto_responder();
+              $("#alert").addClass("alert-success");
+              $("#alert").removeClass("alert-danger");
+            } else if (data.type=='error') {
+              $("#alert").addClass("alert-danger");
+              $("#alert").removeClass("alert-success");
+            }
+						window.scrollTo(0, 0);
+						$("#div-loading").hide();
+				}
+			})
 		});
 		
 		
@@ -1163,7 +1255,7 @@ use Celebgramme\Models\SettingHelper;
 															<button class="btn btn-sm bg-grey btn-block br-6 btnDmRe"  style="font-size:inherit;"data-toggle="tab" href="#DMRequest"><i class="fa fa-envelope text-white"></i>&nbsp;<small class="text-white">DM Request</small></button>
 														</div>
 														<div class="col-md-4 col-sm-12 col-xs-12 padding-0">
-															<button class="btn btn-sm bg-grey btn-block br-6 btnDmAu"  style="font-size:inherit;"data-toggle="tab" href="#DMAuto"><i class="fa fa-envelope text-white"></i>&nbsp;<small class="text-white">DM Auto Reply</small></button>
+															<button class="btn btn-sm bg-grey btn-block br-6 btnDmAu"  style="font-size:inherit;"data-toggle="tab" href="#DMAuto"><i class="fa fa-envelope text-white"></i>&nbsp;<small class="text-white">DM Auto Responder</small></button>
 														</div>
 													</div>
 												</div>
@@ -1187,10 +1279,13 @@ use Celebgramme\Models\SettingHelper;
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<span>Welcome Message New Followers</span>
 															</div>
-															<div class="col-md-12 col-sm-12 col-xs-12">
+															<div class="col-md-5 col-sm-12 col-xs-12">
 																<button type="button" class="btn <?php if ($settings->is_auto_responder) echo 'btn-primary' ?>" id="AutoResponderOnButton" style="color:#fff;margin-left:0px;">ON</button>
 																<button type="button" class="btn <?php if (!$settings->is_auto_responder) echo 'btn-danger' ?>" id="AutoResponderOffButton" style="color:#fff;">OFF</button>
 																<input type="hidden" value="<?php if (!is_null($settings->is_auto_responder)) { echo $settings->is_auto_responder; } else { echo "0"; } ?>" name="data[is_auto_responder]" id="is_auto_responder">
+															</div>
+															<div class="col-md-2 col-sm-12 col-xs-12">
+																<button class="form-control btn btn-md bg-cyan pull-left" data-toggle="modal" data-target="#add-autoresponder" id="button-create-auto-responder" style="margin-left:0px;"><span class="glyphicon glyphicon-plus"></span> &nbsp Add Response</button>
 															</div>
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<textarea class="form-control" id="textarea-welcome-message" value="{{$settings->messages}}">{{$settings->messages}}</textarea>
@@ -1198,12 +1293,11 @@ use Celebgramme\Models\SettingHelper;
 															<div class="col-md-2 col-sm-12 col-xs-12">
 																<button class="form-control btn btn-md bg-cyan pull-left" id="button-save-welcome-message" style="margin-left:0px;">Save</button>
 															</div>
-															<div class="col-md-2 col-sm-12 col-xs-12">
-																<button class="form-control btn btn-md bg-cyan pull-left" data-toggle="modal" data-target="#add-autoresponder" id="button-create-auto-responder" style="margin-left:0px;">Add</button>
-															</div>
+														</div>
+														
+														<div class="row" id="div-auto-responder">
 														</div>
 													</div>
-													
 												</div>
 											</div>
 										</div>
@@ -1372,7 +1466,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 										<label class="col-xs-12 col-sm-12 md-12 control-label" for="formGroupInputSmall">Message</label>
 										<div class="col-sm-12 col-md-12 col-xs-12">
 											<!--<input type="text" class="form-control" placeholder="Isi Auto Respond Message" name="message" id="message">-->
-											<textarea class="form-control" id="message" name="message" row="5"></textarea>
+											<textarea class="form-control" id="message_responder" name="message_responder" style="height:70px;"></textarea>
 											
 										</div>
 									</div>  
@@ -1389,6 +1483,26 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 								<button type="button" class="btn btn-info btn-ok" id="button-submit-auto-responder" data-dismiss="modal">Submit</button>
+							</div>
+					</div>
+			</div>
+	</div>	
+	
+	
+  <!-- Modal delete auto responder-->
+	<div class="modal fade" id="delete-auto-responder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+					<div class="modal-content">
+							<div class="modal-header">
+									Delete Auto Responder
+							</div>
+							<div class="modal-body">
+									Are you sure want to delete ?
+							</div>
+							<input type="hidden" id="hidden-auto-responder-setting-id">
+							<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+									<button type="button" class="btn btn-danger btn-ok" id="button-delete-auto-responder-setting" data-dismiss="modal">Delete</button>
 							</div>
 					</div>
 			</div>

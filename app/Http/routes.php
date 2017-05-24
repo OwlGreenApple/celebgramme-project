@@ -111,6 +111,8 @@ Route::group(['middleware' => 'auth'], function()
 	Route::get('save-welcome-message', 'Member\NewDashboardController@save_welcome_message');
 	
 	Route::post('submit-auto-responder', 'Member\NewDashboardController@submit_auto_responder');
+	Route::get('get-auto-responder', 'Member\NewDashboardController@get_auto_responder');
+	Route::get('delete-auto-responder', 'Member\NewDashboardController@delete_auto_responder');
 });
 
 

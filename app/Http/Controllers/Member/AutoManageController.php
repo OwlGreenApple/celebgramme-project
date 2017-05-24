@@ -117,7 +117,7 @@ class AutoManageController extends Controller
 
   public function process_edit_password(req $request){  
     $user = Auth::user();
-    $arr["message"]= "Ubah password berhasil dilakukan, sistem akan berjalan secara otomatis maksimum 1x24jam";
+    $arr["message"]= "Ubah password berhasil dilakukan, tekan tombol start lalu sistem akan berjalan secara otomatis maksimum 1x24jam";
     $arr["type"]= "success";
 
     $data = array (
