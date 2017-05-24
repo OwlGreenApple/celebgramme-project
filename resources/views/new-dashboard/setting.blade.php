@@ -636,7 +636,7 @@ use Celebgramme\Models\SettingHelper;
 												$photo = url("images/pp/". SettingMeta::getMeta($settings->id,"photo_filename"));
 											}
 										?>	
-										<img src="{{$photo}}" class="m-t-20 img-circle" style="width:75px;height:75px;">
+										<img src="{{$photo}}" class="m-t-20 img-circle" style="width:87px;height:87px;">
 									</div>
 									<div class="col-md-0 col-sm-1 col-xs-1"></div>
 									<div class="col-md-7 col-sm-10 col-xs-10 startStopArea text-center" style="margin-top:-10px;">
@@ -658,9 +658,9 @@ use Celebgramme\Models\SettingHelper;
 									</div>
 								</div>
 								<div class="row" style="padding:0 20px;">
-										<input type="button" value="Save" class="btn btn-info col-md-5 col-sm-5 col-xs-12" id="button-save" style="margin-bottom:5px;margin-left:0px;">
+										<input type="button" value="Save" class="btn btn-info col-md-5 col-sm-5 col-xs-12" id="button-save" style="margin-bottom:5px;margin-left:10px;">
 										<div class="col-md-1 col-sm-1 col-xs-12"></div>
-										<button data-id="{{$settings->id}}" class="col-md-5 col-sm-5 col-xs-12 btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>" style="margin-bottom:5px;margin-left:0px;">
+										<button data-id="{{$settings->id}}" class="col-md-5 col-sm-5 col-xs-12 btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>" style="margin-bottom:5px;margin-left:10px;">
 										<?php if ($settings->status=='stopped') { echo "<span class='glyphicon glyphicon-play'></span> Start"; } else {echo "<span class='glyphicon glyphicon-stop'></span> Stop";}?> 
 										</button>
 										<div class="col-md-1 col-sm-1 col-xs-12"></div>
