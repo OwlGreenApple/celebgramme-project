@@ -48,7 +48,7 @@
 					</div>
 					<div class="clearfix"></div><br/>
 					<div class="row" role="tablist" id="videoTabs">
-						<div class="col-md-4 col-sm-6 col-xs-6" role="presentation">
+						<div class="col-md-4 col-sm-12 col-xs-12" role="presentation">
 							<a href="#home_animation_1" data-toggle="tab" aria-expanded="true" class="info-box waves-effect btn-video active">
 								<div class="icon">
 									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
@@ -58,7 +58,7 @@
 								</div>
 							</a>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-6" role="presentation">
+						<div class="col-md-4 col-sm-12 col-xs-12" role="presentation">
 							<a href="#profile_animation_1" data-toggle="tab" aria-expanded="false" class="info-box waves-effect btn-video">
 								
 								<div class="icon">
@@ -69,7 +69,7 @@
 								</div>
 							</a>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-6" role="presentation">
+						<div class="col-md-4 col-sm-12 col-xs-12" role="presentation">
 							<a href="#messages_animation_1" data-toggle="tab" aria-expanded="false" class="info-box waves-effect btn-video">
 								
 								<div class="icon">
@@ -118,7 +118,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-3 col-sm-3 col-xs-6" id="wrapCntentPromotion">
+			<div class="col-md-3 col-sm-8 col-xs-8" id="wrapCntentPromotion">
 				<div class="row clearfix">
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div class="card margin-0 br-t-6">
