@@ -2,7 +2,7 @@
 
 @section('content')
 		<div class="row">
-			<div class="col-md-8 col-sm-8 col-xs-12">
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 				<div class="container-fluid">
 					<div class="block-header">
 						<div class="col-md-6 col-sm-12 col-xs-12 padding-0 text-left">
@@ -22,7 +22,6 @@
 									<iframe src="//www.youtube.com/embed/ePbKGoIGAXY" style="width:100%;border:0px;">
 									</iframe>
 								</div>
-								-->
 								<div role="tabpanel" class="tab-pane animated flipInX" id="profile_animation_1">
 									<iframe src="https://www.youtube.com/embed/dXoCVy43AIM" style="width:100%;border:0px;">
 									</iframe>
@@ -31,8 +30,15 @@
 									<iframe src="https://www.youtube.com/embed/6vrUD1Uo1xE" style="width:100%;border:0px;">
 									</iframe>
 								</div>
-<div class="embed-responsive embed-responsive-16by9" id="home_animation_1">
-  <iframe class="embed-responsive-item" src="//www.youtube.com/embed/ePbKGoIGAXY"></iframe>
+								-->
+<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX active" id="home_animation_1" role="tabpanel" >
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DrJGSU6LiIQ?rel=0&amp;showinfo=0"></iframe>
+</div>								
+<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="profile_animation_1" role="tabpanel" >
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DrJGSU6LiIQ?rel=0&amp;showinfo=0"></iframe>
+</div>								
+<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="messages_animation_1" role="tabpanel" >
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DrJGSU6LiIQ?rel=0&amp;showinfo=0"></iframe>
 </div>								
 								<div role="tabpanel" class="tab-pane animated flipInX" id="settings_animation_1">
 									<b>Settings Content</b>
@@ -54,7 +60,7 @@
 									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
 								</div>
 								<div class="content">
-									<p class="text-white">Tutorial Video</p>
+									<p class="text-white">Tutorial Celebgramme</p>
 								</div>
 							</a>
 						</div>
@@ -65,7 +71,7 @@
 									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
 								</div>
 								<div class="content">
-									<p class="text-white">Tutorial Video</p>
+									<p class="text-white">Targetting Research</p>
 								</div>
 							</a>
 						</div>
@@ -76,7 +82,7 @@
 									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
 								</div>
 								<div class="content">
-									<p class="text-white">Tutorial Video</p>
+									<p class="text-white">DM Auto Responder</p>
 								</div>
 							</a>
 						</div>
@@ -118,7 +124,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-3 col-sm-8 col-xs-8" id="wrapCntentPromotion">
+			<div class="col-lg-3 col-md-3 col-sm-8 col-xs-8" id="wrapCntentPromotion">
 				<div class="row clearfix">
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div class="card margin-0 br-t-6">
