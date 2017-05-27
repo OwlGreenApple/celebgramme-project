@@ -426,7 +426,7 @@
 			
 			<div class="row">
 				<div class="col-md-12">
-					<h4><i class="fa fa-instagram"></i>&nbsp;Instagram Accounts</h4>
+					<h4>Instagram Accounts</h4>
 				</div>
 				<div id="account-all">
 				</div>
