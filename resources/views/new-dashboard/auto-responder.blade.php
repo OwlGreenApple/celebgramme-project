@@ -1,7 +1,7 @@
 															<?php foreach($auto_responder_setting as $data_auto_responder) { ?>
 																<div class="col-md-12 col-sm-12 col-xs-12">
 																	<div class="col-md-2 col-sm-12 col-xs-12">
-																		{{$data_auto_responder->num_of_day}} days
+																		Hari ke {{$data_auto_responder->num_of_day}} 
 																	</div>
 																	<div class="col-md-9 col-sm-12 col-xs-12">
 																		<textarea class="form-control" style="height:70px;" disabled value="{{$data_auto_responder->message}}">{{$data_auto_responder->message}}</textarea>

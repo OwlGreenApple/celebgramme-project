@@ -486,6 +486,8 @@ use Celebgramme\Models\SettingHelper;
 		$( "body" ).on( "click", "#button-create-auto-responder", function(e) {
 			e.preventDefault();
 			$("#id-auto-responder").val("new");
+			$("#num_of_day").val("");
+			$("#message_responder").val("");
 		});
 		$( "body" ).on( "click", ".button-edit-auto-responder", function(e) {
 			e.preventDefault();
@@ -1246,7 +1248,7 @@ use Celebgramme\Models\SettingHelper;
 								<div class="card m-b-0">
 									<div class="body bg-lightGrey margin-0 padding-0">
 										<div class="row">
-											<div class="col-md-12 col-sm-12 col-xs-12">	
+											<div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:-35px;">	
 												<div class="btnTab">
 													<div class="col-md-6 col-sm-12 col-xs-12 padding-0">
 														<div class="col-md-4 col-sm-12 col-xs-12 padding-0">
@@ -1279,6 +1281,11 @@ use Celebgramme\Models\SettingHelper;
 															<div class="clearfix"></div><br/>
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<span>Welcome Message New Followers</span>
+																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Blacklist </div><div class='panel-content'>List Username yang TIDAK akan di FLC (Follow, Like & Comment)<br>
+																Masukkan usernames SAJA disini (tanpa @), contoh: darthvader, hitler, kimjongil, dsbnya<br>
+																<i>*PS: berguna sekali untuk TIDAK follow, like, comment 'mantan' & 'kompetitor' anda</i><br></div>">
+																</span>
+																
 															</div>
 															<div class="col-md-5 col-sm-12 col-xs-12">
 																<button type="button" class="btn <?php if ($settings->is_auto_responder) echo 'btn-primary' ?>" id="AutoResponderOnButton" style="color:#fff;margin-left:0px;">ON</button>
@@ -1472,8 +1479,14 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 										</div>
 									</div>  
 									<div class="form-group form-group-sm row">
-										<label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Jumlah hari </label>
-										<div class="col-sm-8 col-md-6">
+										<label class="col-xs-12 col-sm-3 control-label" for="formGroupInputSmall">Hari ke -
+											<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Blacklist </div><div class='panel-content'>List Username yang TIDAK akan di FLC (Follow, Like & Comment)<br>
+											Masukkan usernames SAJA disini (tanpa @), contoh: darthvader, hitler, kimjongil, dsbnya<br>
+											<i>*PS: berguna sekali untuk TIDAK follow, like, comment 'mantan' & 'kompetitor' anda</i><br></div>">
+											</span>
+										
+										</label>
+										<div class="col-sm-12 col-md-9">
 											<input type="number" class="form-control" placeholder="Jumlah hari sejak di follow" name="num_of_day" id="num_of_day">
 										</div>
 									</div>  

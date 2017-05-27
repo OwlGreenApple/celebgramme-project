@@ -2,7 +2,7 @@
 
 @section('content')
 		<div class="row">
-			<div class="col-md-9 col-sm-9">
+			<div class="col-md-8 col-sm-8">
 				<div class="container-fluid">
 					<div class="block-header">
 						<div class="col-md-6 col-sm-12 col-xs-12 padding-0 text-left">
@@ -120,21 +120,17 @@
 								<h2>Promotions</h2>
 							</div>
 							<div class="">
-								<div style="min-height:150px;"class="card bg-green hover-expand-effect text-center margin-0 col-md-12 col-sm-12">
-									<br>
-									<i class="material-icons text-blueGramme">landscape</i>
+								<div style="padding:0;"class="card text-center margin-0 col-md-12 col-sm-12 col-xs-12">
+									<img src="{{asset('/images/promo-1.jpg')}}"class="img-responsive" style="max-height:145px;width:100%;">
 								</div>
-								<div style="min-height:100px;" class="card bg-red hover-expand-effect text-center margin-0 col-md-6 col-sm-6">
-									<br>
-									<i class="material-icons text-blueGramme">landscape</i>
+								<div style="padding:0;" class="card text-center margin-0 col-md-6 col-sm-6 col-xs-6">
+									<img src="{{asset('/images/promo-2.jpg')}}"class="img-responsive" style="max-height:145px;width:100%;">
 								</div>
-								<div style="min-height:100px;" class="card  bg-orange hover-expand-effect text-center col-md-6 col-sm-6 margin-0">
-									<br>
-									<i class="material-icons text-blueGramme">landscape</i>
+								<div style="padding:0;" class="card text-center col-md-6 col-xs-6 col-sm-6 margin-0">
+									<img src="{{asset('/images/promo-3.jpg')}}"class="img-responsive" style="max-height:145px;width:100%;">
 								</div>
-								<div style="min-height:150px;"  class="card  bg-blue-grey hover-expand-effect text-center col-md-12 col-sm-12 margin-0">
-									<br>
-									<i class="material-icons text-blueGramme">landscape</i>
+								<div style="padding:0;"  class="card text-center col-md-12 col-sm-12 col-xs-12 margin-0">
+									<img src="{{asset('/images/promo-4.jpg')}}"class="img-responsive" style="max-height:250px;width:100%;">
 								</div>
 							</div>
 						</div>
@@ -143,7 +139,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12 col-sm-12">
+			<div class="col-md-11 col-sm-11">
 				<div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
 					<div class="panel">
 						<div class="panel-heading bgBlueGreen br-6" role="tab" id="headingOne_1">
@@ -158,14 +154,7 @@
 						</div>
 						<div id="collapseOne_1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne_1" aria-expanded="true">
 							<div class="panel-body">
-								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-								non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-								eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-								single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-								helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-								Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
-								raw denim aesthetic synth nesciunt you probably haven't heard of them
-								accusamus labore sustainable VHS.
+								<?php echo $content; ?>
 							</div>
 						</div>
 					</div>

@@ -133,34 +133,35 @@
   });
 </script>
 
+<div class="container-fluid">
   <form enctype="multipart/form-data" id="form-confirm">
     <div class="form-group form-group-sm row">
-      <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">No. Order</label>
-      <div class="col-sm-8 col-md-6">
+      <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">No. Order</label>
+      <div class="col-sm-8 col-md-5">
         <input type="text" class="form-control" placeholder="No. Order" name="no_order" id="no_order">
       </div>
     </div>  
     <div class="form-group form-group-sm row">
-      <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Nama Bank</label>
-      <div class="col-sm-8 col-md-6">
+      <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">Nama Bank</label>
+      <div class="col-sm-8 col-md-5">
         <input type="text" class="form-control" placeholder="Nama Bank" name="nama_bank" id="nama_bank">
       </div>
     </div>  
     <div class="form-group form-group-sm row">
-      <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">No Rekening</label>
-      <div class="col-sm-8 col-md-6">
+      <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">No Rekening</label>
+      <div class="col-sm-8 col-md-5">
         <input type="text" class="form-control" placeholder="No Rekening" name="no_rekening" id="no_rekening">
       </div>
     </div>  
     <div class="form-group form-group-sm row">
-      <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Nama Pemilik Rekening</label>
-      <div class="col-sm-8 col-md-6">
+      <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">Nama Pemilik Rekening</label>
+      <div class="col-sm-8 col-md-5">
         <input type="text" class="form-control" placeholder="Nama Pemilik Rekening" name="nama" id="nama">
       </div>
     </div>  
     <div class="form-group form-group-sm row">
-      <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Jumlah Transfer</label>
-      <div class="col-sm-8 col-md-6">
+      <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">Jumlah Transfer</label>
+      <div class="col-sm-8 col-md-5">
 			<!--
         <input type="number" class="form-control" placeholder="Jumlah Transfer" name="total" onkeypress="return isNumberKey(event)" id="total" value=0>
 				-->
@@ -169,23 +170,24 @@
       </div>
     </div>  
     <div class="form-group form-group-sm row">
-      <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Upload Bukti Transfer</label>
-      <div class="col-sm-8 col-md-6">
+      <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">Upload Bukti Transfer</label>
+      <div class="col-sm-8 col-md-5">
         <input type="file" class="form-control" placeholder="" id="photo" name="photo">
       </div>
     </div>  
     <div class="form-group form-group-sm row">
-      <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Keterangan</label>
-      <div class="col-sm-8 col-md-6">
+      <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">Keterangan</label>
+      <div class="col-sm-8 col-md-5">
         <input type="text" class="form-control" placeholder="Keterangan (optional)" name="keterangan">
       </div>
     </div>  
     <div class="form-group form-group-sm row">
-      <div class="col-xs-8 col-sm-4">
+      <div class="col-xs-8 col-sm-4 col-md-3 ">
       </div>
-      <div class="col-sm-8 col-md-6">
+      <div class="col-sm-8 col-md-3">
         <input class="btn btn-default" type="button" value="Process" id="button-process">
       </div>
     </div>  
   </form>
+</div>  
 @endsection

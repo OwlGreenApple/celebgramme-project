@@ -8,6 +8,12 @@
 																		if (strlen($text_message)>=42) {
 																			$text_message = substr($text_message,0,115)." ...";
 																		}
+																		
+																		//checking new message or not
+																		$status_new_message = false;
+																		if ($data_arr->users[0]->pk == $data_arr->items[0]->user_id) {
+																			$status_new_message = true;
+																		}
 															?>
 															<div class="row">
 																<div style="padding:10px;" class="col-md-5 col-sm-12 col-xs-12 bg-white br-6 same-height">
@@ -15,10 +21,13 @@
 																		<img src="{{$data_arr->users[0]->profile_pic_url}}" class="img-circle" style="width:50px;height:50px;">
 																	</div>
 																	<div style="" class="col-md-10 col-sm-10 col-xs-10 ">
-																		<h3 style="color:#333;font-weight:200;">
-																			{{$data_arr->users[0]->username}}
-																		</h3>
-																		<small style="color:#333;">{{$text_message}}</small>
+																		<div>
+																			<h3 style="color:#333;font-weight:200;">
+																				{{$data_arr->users[0]->username}}
+																			</h3>
+																			<?php if ($status_new_message) { echo '<label class="label bgBlueGreen " style="position:absolute;top:0px;right:0px;">waiting response</label> '; } ?>
+																		</div>
+																		<small style="color:#333;<?php if ($status_new_message) { echo "font-weight:Bold;"; } ?>">{{$text_message}}</small>
 																	</div>
 																</div>
 																<div style="" class="col-md-7 col-sm-12 col-xs-12 ">

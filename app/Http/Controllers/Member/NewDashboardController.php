@@ -557,6 +557,24 @@ class NewDashboardController extends Controller
 			return $arr;
     } 
 		
+		//checking ga bole dalam hari yang sama, maximal 5
+		$auto_responder = AutoResponderSetting::where("setting_id",Request::input("setting_id"))->count();
+		if ($auto_responder >= 5) {
+			$arr["type"] = "error";
+			$arr["message"] = "Auto responder tidak boleh lebih dari 5";
+			return $arr;
+		}
+		$auto_responder = AutoResponderSetting::where("setting_id",Request::input("setting_id"))->get();
+		foreach($auto_responder as $data ) {
+			if ($data->num_of_day == Request::input("num_of_day")) {
+				if (Request::input("id-auto-responder")<>$data->id) {   
+					$arr["type"] = "error";
+					$arr["message"] = "Hari ke - ".Request::input("num_of_day")." sudah ada pada database, silahkan edit data";
+					return $arr;
+				}
+			}
+		}
+			
     if (Request::input("id-auto-responder")=="new") {
       $arr["message"] = "Proses add berhasil dilakukan";
       $auto_responder = new AutoResponderSetting;
@@ -589,6 +607,7 @@ class NewDashboardController extends Controller
     } 
 							
 		$auto_responder_setting = AutoResponderSetting::where("setting_id",Request::input("setting_id"))
+															->orderBy('num_of_day', 'asc')
 															->get();
 
 		
