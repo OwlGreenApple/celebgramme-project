@@ -16,30 +16,30 @@
 																		}
 															?>
 															<div class="row">
-																<div style="padding:10px;" class="col-md-5 col-sm-12 col-xs-12 bg-white br-6 same-height">
+																<div style="padding:5px;margin-bottom:5px;" class="col-md-5 col-sm-12 col-xs-12 bg-white br-6 same-height">
 																	<div style="margin-top:10px;" class="col-md-2 col-sm-2 col-xs-2 ">
 																		<img src="{{$data_arr->users[0]->profile_pic_url}}" class="img-circle" style="width:50px;height:50px;">
 																	</div>
 																	<div style="" class="col-md-10 col-sm-10 col-xs-10 ">
 																		<div>
-																			<h3 style="color:#333;font-weight:200;">
+																			<h5 style="color:#333;font-weight:200;">
 																				{{$data_arr->users[0]->username}}
-																			</h3>
+																			</h5>
 																			<?php if ($status_new_message) { echo '<label class="label bgBlueGreen " style="position:absolute;top:0px;right:0px;">waiting response</label> '; } ?>
 																		</div>
 																		<small style="color:#333;<?php if ($status_new_message) { echo "font-weight:Bold;"; } ?>">{{$text_message}}</small>
 																	</div>
 																</div>
-																<div style="" class="col-md-7 col-sm-12 col-xs-12 ">
+																<div style="margin-bottom:5px;" class="col-md-7 col-sm-12 col-xs-12 ">
 																	<div class="row">
-																		<div class="col-md-4 col-sm-12 col-xs-12 br-6" style="">
-																			<div style="padding:10px;" class="bg-white br-6 text-center same-height">
-																				<b class="text-primary" style="margin-top:25px;display:block">{{date("l", $date_message)}}<br>{{date("Y-m-d", $date_message)}}</b>
+																		<div class="col-md-4 col-sm-12 col-xs-12 br-6" style="margin-right: -16px;">
+																			<div style="padding:5px;" class="bg-white br-6 text-center same-height">
+																				<b class="text-primary" style="margin-top:15px;display:block">{{date("l", $date_message)}}<br>{{date("Y-m-d", $date_message)}}</b>
 																			</div>
 																		</div>
 																		<div class="col-md-4 col-sm-12 col-xs-12 br-6" style="">
-																			<div style="padding:10px;cursor:pointer;" class="bg-cyan br-6 text-center button-reply same-height" data-thread-id="{{$data_arr->thread_id}}" data-username="{{$data_arr->users[0]->username}}" data-pic="{{$data_arr->users[0]->profile_pic_url}}" href="#chat-all" data-toggle="tab" >
-																				<i class="fa fa-mail-reply fa-2x" style="margin-top:25px;display:block"></i>
+																			<div style="padding:5px;cursor:pointer;" class="bg-cyan br-6 text-center button-reply same-height" data-thread-id="{{$data_arr->thread_id}}" data-username="{{$data_arr->users[0]->username}}" data-pic="{{$data_arr->users[0]->profile_pic_url}}" href="#chat-all" data-toggle="tab" >
+																				<i class="fa fa-mail-reply fa-2x" style="margin-top:15px;display:block"></i>
 																				<b class="text-white">Reply</b>
 																			</div>
 																		</div>
