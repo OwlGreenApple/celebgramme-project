@@ -426,16 +426,28 @@ class NewDashboardController extends Controller
 				$i->login(false,300);
 				if ( Request::input("type") == "approve" ) {
 					$i->directThreadAction(Request::input("data_thread_id"), "approve");
+					$chatAll = $i->directThread(Request::input("data_thread_id"));
+					// $arr["chatAll"] = json_encode($chatAll);
+					
+					$arr["resultEmailData"] = view("new-dashboard.chat-all")->with(array(
+																			'chatAll'=>$chatAll,
+																			'setting_id'=>Request::input("setting_id"),
+																			'thread_id'=>Request::input("data_thread_id"),
+																			'username_user'=> $link->insta_username,
+																			'data_pic'=> Request::input("data_pic"),
+																		))->render();
+					
 				}
 				else if ( Request::input("type") == "decline" ) {
 					$i->directThreadAction(Request::input("data_thread_id"), "decline");
-				}
-				
-				$pendingInboxResponse = $i->getPendingInbox();
+					$pendingInboxResponse = $i->getPendingInbox();
 
-				$arr["resultEmailData"] = view("new-dashboard.DM-req")->with(array(
+					$arr["resultEmailData"] = view("new-dashboard.DM-req")->with(array(
 																				'pendingInboxResponse'=>$pendingInboxResponse,
 																			))->render();
+					
+				}
+				
 			}
 			catch (Exception $e) {
 				$arr["type"]="error";

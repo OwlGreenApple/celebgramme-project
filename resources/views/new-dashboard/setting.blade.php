@@ -387,6 +387,7 @@ use Celebgramme\Models\SettingHelper;
 				data: {
 					setting_id : setting_id,
 					data_thread_id : $(this).attr("data-thread-id"),
+					data_pic : $(this).attr("data-pic"),
 					type : 'approve',
 				},
 				dataType: 'text',
@@ -403,7 +404,8 @@ use Celebgramme\Models\SettingHelper;
 					
 					if(data.type=='success')
 					{
-						$("#DMRequest").html(data.resultEmailData);
+						// $("#DMRequest").html(data.resultEmailData);
+						$("#chat-all").html(data.resultEmailData);
 					}
 					// else if(data.type=='error')
 					// {
@@ -587,6 +589,7 @@ use Celebgramme\Models\SettingHelper;
 		margin-left: -5px;
     box-shadow: none!important;		
 	}
+	.selectize-input {min-height: 80px!important; }
 </style>
 <div class="row">
 	<div class="col-lg-12 col-md-12">
@@ -625,7 +628,7 @@ use Celebgramme\Models\SettingHelper;
 				<div class="card h-l-300">
 					<div class=" h-l-300 body bg-lightGrey">
 						<div class="row h-l-300">
-							<div class="col-md-12 col-sm-12 col-xs-12 bl-blue">
+							<div class="col-md-12 col-sm-12 col-xs-12 bl-blue" style="margin-bottom:0px;">
 								<div class="row">
 									<div class="col-md-2 col-sm-5 col-xs-4"></div>								
 									<div class="col-md-3 col-sm-7 col-xs-8">
@@ -658,9 +661,9 @@ use Celebgramme\Models\SettingHelper;
 									</div>
 								</div>
 								<div class="row" style="padding:0 20px;">
-										<input type="button" value="Save" class="btn btn-info col-md-5 col-sm-5 col-xs-12" id="button-save" style="margin-bottom:5px;margin-left:10px;">
+										<input type="button" value="Save" class="btn btn-lg btn-info col-md-5 col-sm-5 col-xs-12" id="button-save" style="margin-bottom:5px;margin-left:10px;">
 										<div class="col-md-1 col-sm-1 col-xs-12"></div>
-										<button data-id="{{$settings->id}}" class="col-md-5 col-sm-5 col-xs-12 btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>" style="margin-bottom:5px;margin-left:10px;">
+										<button data-id="{{$settings->id}}" class="btn-lg col-md-5 col-sm-5 col-xs-12 btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>" style="margin-bottom:5px;margin-left:10px;">
 										<?php if ($settings->status=='stopped') { echo "<span class='glyphicon glyphicon-play'></span> Start"; } else {echo "<span class='glyphicon glyphicon-stop'></span> Stop";}?> 
 										</button>
 										<div class="col-md-1 col-sm-1 col-xs-12"></div>
@@ -728,7 +731,7 @@ use Celebgramme\Models\SettingHelper;
 										<div class="col-md-4 col-sm-4 col-xs-12">
 											<div class="card resposiveText br-6">
 												<div class="body bgBlueGreen text-center br-6">
-													<h3 class="text-white">30<br><small class="text-white">Days</small></h3>
+													<h3 class="text-white" style="margin-top:0px;">30<br><small class="text-white">Days</small></h3>
 													<h4 class="text-white" style="white-space:nowrap;">Rp. 195.000,-</h4>
 													<a href="{{url('buy-more/16')}}">
 														<button class="btn btn-sm bgGreenLight text-white br-6">Buy Now</button>
@@ -739,7 +742,7 @@ use Celebgramme\Models\SettingHelper;
 										<div class="col-md-4 col-sm-4 col-xs-12">
 											<div class="card resposiveText br-6">
 												<div class="body bgBlueGreen text-center br-6">
-													<h3 class="text-white">60<br><small class="text-white">Days</small></h3>
+													<h3 class="text-white" style="margin-top:0px;">60<br><small class="text-white">Days</small></h3>
 													<h4 class="text-white" style="white-space:nowrap;">Rp. 295.000,-</h4>
 													<a href="{{url('buy-more/17')}}">
 														<button class="btn btn-sm bgGreenLight text-white br-6">Buy Now</button>
@@ -750,7 +753,7 @@ use Celebgramme\Models\SettingHelper;
 										<div class="col-md-4 col-sm-4 col-xs-12">
 											<div class="card resposiveText br-6">
 												<div class="body bgBlueGreen text-center br-6">
-													<h3 class="text-white">90<br><small class="text-white">Days</small></h3>
+													<h3 class="text-white" style="margin-top:0px;">90<br><small class="text-white">Days</small></h3>
 													<h4 class="text-white" style="white-space:nowrap;">Rp. 395.000,-</h4>
 													<a href="{{url('buy-more/18')}}">
 														<button class="btn btn-sm bgGreenLight text-white br-6">Buy Now</button>
@@ -765,7 +768,7 @@ use Celebgramme\Models\SettingHelper;
 										<div class="col-md-4 col-sm-4 col-xs-12">
 											<div class="card resposiveText br-6">
 												<div class="body bgBlueGreen text-center br-6">
-													<h3 class="text-white">180<br><small class="text-white">Days</small></h3>
+													<h3 class="text-white" style="margin-top:0px;">180<br><small class="text-white">Days</small></h3>
 													<h4 class="text-white" style="white-space:nowrap;">Rp. 695.000,-</h4>
 													<a href="{{url('buy-more/19')}}">
 														<button class="btn btn-sm bgGreenLight text-white br-6">Buy Now</button>
@@ -776,7 +779,7 @@ use Celebgramme\Models\SettingHelper;
 										<div class="col-md-4 col-sm-4 col-xs-12">
 											<div class="card resposiveText br-6">
 												<div class="body bgBlueGreen text-center br-6">
-													<h3 class="text-white">270<br><small class="text-white">Days</small></h3>
+													<h3 class="text-white" style="margin-top:0px;">270<br><small class="text-white">Days</small></h3>
 													<h4 class="text-white" style="white-space:nowrap;">Rp. 995.000,-</h4>
 													<a href="{{url('buy-more/25')}}">
 														<button class="btn btn-sm bgGreenLight text-white br-6">Buy Now</button>
@@ -787,7 +790,7 @@ use Celebgramme\Models\SettingHelper;
 										<div class="col-md-4 col-sm-4 col-xs-12">
 											<div class="card resposiveText br-6">
 												<div class="body bgBlueGreen text-center br-6">
-													<h3 class="text-white">360<br><small class="text-white">Days</small></h3>
+													<h3 class="text-white" style="margin-top:0px;">360<br><small class="text-white">Days</small></h3>
 													<h4 class="text-white" style="white-space:nowrap;">Rp. 1285.000,-</h4>
 													<a href="{{url('buy-more/20')}}">
 														<button class="btn btn-sm bgGreenLight text-white br-6">Buy Now</button>
@@ -808,10 +811,10 @@ use Celebgramme\Models\SettingHelper;
 			
 			<div class="row tabButton" style="margin-left:0px;">
 					<div class="col-md-2 col-sm-6 col-xs-6 padding-0">
-						<button class="btn btn-sm bg-cyan btn-block btnGeneral br-6" data-toggle="tab" href="#general"><i class="fa fa-cog"></i>&nbsp;General</button>
+						<button class="btn btn-lg bg-cyan btn-block btnGeneral br-6" data-toggle="tab" href="#general"><i class="fa fa-cog"></i>&nbsp;General</button>
 					</div>
 					<div class="col-md-2 col-sm-6 col-xs-6 padding-0">
-						<button class="btn btn-sm bg-grey btn-block btnMessage br-6"  style="font-size:inherit;"data-toggle="tab" href="#message" <?php if ($settings->error_cred) { echo "disabled"; } ?>><i class="fa fa-envelope text-white"></i>&nbsp;Direct Message</button>
+						<button class="btn btn-lg bg-grey btn-block btnMessage br-6"  style="font-size:inherit;"data-toggle="tab" href="#message" <?php if ($settings->error_cred) { echo "disabled"; } ?>><i class="fa fa-envelope text-white"></i>&nbsp;Direct Message</button>
 					</div>
 			</div>
 			<div class="clearfix"></div><br>
@@ -865,7 +868,7 @@ use Celebgramme\Models\SettingHelper;
 												</div>
 											</div>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<div class="card m-b-0" style="background:transparent;box-shadow:none;">
+												<div class="card" style="background:transparent;box-shadow:none;margin-bottom:-40px;">
 													<div class="header">
 														<h2>
 															Auto Like Settings &nbsp;<!--<img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title="<div class='panel-heading'>Usernames whitelist</div><div class='panel-content'>• Saat anda UNFOLLOW. <strong>Usernames di 'Whitelist' ini akan diabaikan / tidak akan di 'UNFOLLOW'</strong><br>
@@ -897,8 +900,7 @@ use Celebgramme\Models\SettingHelper;
 																<input type="hidden" value="<?php if (!is_null($settings->is_like_followers)) { echo $settings->is_like_followers; } else { echo "0"; } ?>" name="data[is_like_followers]" id="is_like_followers">
 															</div>
 														</div>
-														<div class="row">
-															<div class="col-md-offset-6 col-sm-offset-6 col-xs-offset-6 col-sm-6 col-xs-6">
+															<div class="col-md-offset-6 col-sm-offset-6 col-xs-offset-6">
 																<div class="row">
 																	<div class="col-md-6 col-sm-6 col-xs-6">
 																		<input name="data[percent_like_followers]" type="radio" class="with-gap radio-col-light-blue" id="radio_3" value="25" <?php 
@@ -914,7 +916,6 @@ use Celebgramme\Models\SettingHelper;
 																	</div>
 																</div>
 															</div>
-														</div>
 													</div>
 												</div>
 											</div>
@@ -1213,10 +1214,10 @@ use Celebgramme\Models\SettingHelper;
 													<div class="col-md-4 col-sm-6 col-xs-12">
 														<div class="row">
 															<div class="col-md-6 col-sm-6 col-xs-6">
-																<button id="button-save2" class="btn btn-block bg-cyan">Save</button>
+																<button id="button-save2" class="btn btn-lg btn-block bg-cyan">Save</button>
 															</div>
 															<div class="col-md-6 col-sm-6 col-xs-6">
-																<button data-id="{{$settings->id}}" class="btn btn-block bgGreenLight btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
+																<button data-id="{{$settings->id}}" class="btn btn-lg btn-block bgGreenLight btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
 																<?php if ($settings->status=='stopped') { echo "<span class='glyphicon glyphicon-play'></span> Start"; } else {echo "<span class='glyphicon glyphicon-stop'></span> Stop";}?>
 																</button>
 															</div>
