@@ -736,7 +736,7 @@ use Celebgramme\Models\SettingHelper;
 													<h3 class="text-white" style="margin-top:0px;">30<br><small class="text-white">Days</small></h3>
 													<h4 class="text-white" style="white-space:nowrap;">Rp. 195.000,-</h4>
 													<a href="{{url('buy-more/16')}}">
-														<button class="btn btn-sm bgGreenLight text-white br-6">Buy Now</button>
+														<button class="btn btn-lg bgGreenLight text-white br-6">Buy Now</button>
 													</a>
 												</div>
 											</div>
@@ -747,7 +747,7 @@ use Celebgramme\Models\SettingHelper;
 													<h3 class="text-white" style="margin-top:0px;">60<br><small class="text-white">Days</small></h3>
 													<h4 class="text-white" style="white-space:nowrap;">Rp. 295.000,-</h4>
 													<a href="{{url('buy-more/17')}}">
-														<button class="btn btn-sm bgGreenLight text-white br-6">Buy Now</button>
+														<button class="btn btn-lg bgGreenLight text-white br-6">Buy Now</button>
 													</a>
 												</div>
 											</div>
@@ -758,7 +758,7 @@ use Celebgramme\Models\SettingHelper;
 													<h3 class="text-white" style="margin-top:0px;">90<br><small class="text-white">Days</small></h3>
 													<h4 class="text-white" style="white-space:nowrap;">Rp. 395.000,-</h4>
 													<a href="{{url('buy-more/18')}}">
-														<button class="btn btn-sm bgGreenLight text-white br-6">Buy Now</button>
+														<button class="btn btn-lg bgGreenLight text-white br-6">Buy Now</button>
 													</a>
 												</div>
 											</div>
@@ -773,7 +773,7 @@ use Celebgramme\Models\SettingHelper;
 													<h3 class="text-white" style="margin-top:0px;">180<br><small class="text-white">Days</small></h3>
 													<h4 class="text-white" style="white-space:nowrap;">Rp. 695.000,-</h4>
 													<a href="{{url('buy-more/19')}}">
-														<button class="btn btn-sm bgGreenLight text-white br-6">Buy Now</button>
+														<button class="btn btn-lg bgGreenLight text-white br-6">Buy Now</button>
 													</a>
 												</div>
 											</div>
@@ -784,7 +784,7 @@ use Celebgramme\Models\SettingHelper;
 													<h3 class="text-white" style="margin-top:0px;">270<br><small class="text-white">Days</small></h3>
 													<h4 class="text-white" style="white-space:nowrap;">Rp. 995.000,-</h4>
 													<a href="{{url('buy-more/25')}}">
-														<button class="btn btn-sm bgGreenLight text-white br-6">Buy Now</button>
+														<button class="btn btn-lg bgGreenLight text-white br-6">Buy Now</button>
 													</a>
 												</div>
 											</div>
@@ -795,7 +795,7 @@ use Celebgramme\Models\SettingHelper;
 													<h3 class="text-white" style="margin-top:0px;">360<br><small class="text-white">Days</small></h3>
 													<h4 class="text-white" style="white-space:nowrap;">Rp. 1285.000,-</h4>
 													<a href="{{url('buy-more/20')}}">
-														<button class="btn btn-sm bgGreenLight text-white br-6">Buy Now</button>
+														<button class="btn btn-lg bgGreenLight text-white br-6">Buy Now</button>
 													</a>
 												</div>
 											</div>
@@ -882,7 +882,7 @@ use Celebgramme\Models\SettingHelper;
 													<div class="body" style="background:transparent;box-shadow:none;">
 														<div class="row btnGroupOO">
 															<div class="col-md-6 col-sm-6 col-xs-6">
-																<b>Auto Like My Post</b>
+																<b>Auto Like My Posts</b>
 																<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Like My Post ALMP</div><div class='panel-content'>Fitur Keren ini akan membuat POST anda terlihat POPULER<br>SETIAP POST Terbaru anda akan MENDAPATKAN LIKES secara OTOMATIS<br> Max 24 jam = 30 Likes / 3 post / Hari TERAKHIR<br> <i>*PS: artinya HANYA 3 Post Terakhir per HARI <br>yang akan mendapatkan 30 Likes / masing-masing post</i>  </div>">
 																</span>
 															</div>
@@ -894,7 +894,12 @@ use Celebgramme\Models\SettingHelper;
 														</div>
 														<div class="row btnGroupOO">
 															<div class="col-md-6 col-sm-6 col-xs-6">
-																<b>Auto Like My Follower</b>
+																<b>Auto Like My Followers</b>
+																<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Like My Followers</div><div class='panel-content'>Berguna untuk melakukan like ke Followers anda sendiri<br>
+																tujuannya untuk meningkatkan engagements <br>
+																sehingga terlihat natural dan dapat mengingatkan mereka <br>
+																untuk berinteraksi dengan akun anda kembali. <br>
+																</div>">
 															</div>
 															<div class="col-md-6 col-sm-6 col-xs-6 padding-0">
 																<button type="button" class="btn <?php if ($settings->is_like_followers) echo 'btn-primary' ?>" id="AutoLikesFollowersOnButton" style="color:#fff;">ON</button>
@@ -1252,13 +1257,13 @@ use Celebgramme\Models\SettingHelper;
 												<div class="btnTab">
 													<div class="col-md-6 col-sm-12 col-xs-12 padding-0">
 														<div class="col-md-4 col-sm-12 col-xs-12 padding-0">
-															<button class="btn btn-sm bg-cyan btn-block br-6 btnDmIn" data-toggle="tab" href="#DMInbox"><i class="fa fa-envelope"></i>&nbsp;<small class="text-white">DM Inbox</small></button>
+															<button class="btn btn-lg bg-cyan btn-block br-6 btnDmIn" data-toggle="tab" href="#DMInbox"><i class="fa fa-envelope"></i>&nbsp;<small class="text-white">DM Inbox</small></button>
 														</div>
 														<div class="col-md-4 col-sm-12 col-xs-12 padding-0">
-															<button class="btn btn-sm bg-grey btn-block br-6 btnDmRe"  style="font-size:inherit;"data-toggle="tab" href="#DMRequest"><i class="fa fa-envelope text-white"></i>&nbsp;<small class="text-white">DM Request</small></button>
+															<button class="btn btn-lg bg-grey btn-block br-6 btnDmRe"  style="font-size:inherit;"data-toggle="tab" href="#DMRequest"><i class="fa fa-envelope text-white"></i>&nbsp;<small class="text-white">DM Request</small></button>
 														</div>
 														<div class="col-md-4 col-sm-12 col-xs-12 padding-0">
-															<button class="btn btn-sm bg-grey btn-block br-6 btnDmAu"  style="font-size:inherit;"data-toggle="tab" href="#DMAuto"><i class="fa fa-envelope text-white"></i>&nbsp;<small class="text-white">DM Auto Responder</small></button>
+															<button class="btn btn-lg bg-grey btn-block br-6 btnDmAu"  style="font-size:inherit;"data-toggle="tab" href="#DMAuto"><i class="fa fa-envelope text-white"></i>&nbsp;<small class="text-white">DM Auto Responder</small></button>
 														</div>
 													</div>
 												</div>
@@ -1281,9 +1286,10 @@ use Celebgramme\Models\SettingHelper;
 															<div class="clearfix"></div><br/>
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<span>Welcome Message New Followers</span>
-																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Blacklist </div><div class='panel-content'>List Username yang TIDAK akan di FLC (Follow, Like & Comment)<br>
-																Masukkan usernames SAJA disini (tanpa @), contoh: darthvader, hitler, kimjongil, dsbnya<br>
-																<i>*PS: berguna sekali untuk TIDAK follow, like, comment 'mantan' & 'kompetitor' anda</i><br></div>">
+																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Welcome Message New Followers</div><div class='panel-content'>Fitur ini akan memberikan Direct Message (DM) kepada <br>
+																user yang pertama kali memfollow akun anda <br>
+																Gunakan fitur ini untuk menyapa mereka, sebagai welcome message <br>
+																</div>">
 																</span>
 																
 															</div>
@@ -1293,7 +1299,15 @@ use Celebgramme\Models\SettingHelper;
 																<input type="hidden" value="<?php if (!is_null($settings->is_auto_responder)) { echo $settings->is_auto_responder; } else { echo "0"; } ?>" name="data[is_auto_responder]" id="is_auto_responder">
 															</div>
 															<div class="col-md-2 col-sm-12 col-xs-12">
-																<button class="form-control btn btn-md bg-cyan pull-left" data-toggle="modal" data-target="#add-autoresponder" id="button-create-auto-responder" style="margin-left:0px;"><span class="glyphicon glyphicon-plus"></span> &nbsp Add Response</button>
+																<button class="btn btn-md bg-cyan pull-left" data-toggle="modal" data-target="#add-autoresponder" id="button-create-auto-responder" style="margin-left:0px;">
+																<span class="glyphicon glyphicon-plus"></span> &nbsp Add Response</button>
+																<img class="cursorActive tooltipPlugin " src="{{asset('/new-dashboard/images/questionIcon.png')}}" title="<div class='panel-heading'>Add Responses</div><div class='panel-content'>Fitur DM Auto responder ini berguna untuk melakukan Follow up <br>
+																dengan followers baru anda. Anda dapat menambahkan up to 5 Auto DM <br>
+																dengan pilihan hari yang berbeda-beda ( dihitung sejak followers tersebut <br>
+																menjadi followers anda )
+																</div>" style="margin-top: 5px;margin-left: 5px;">
+																
+																
 															</div>
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<textarea class="form-control" id="textarea-welcome-message" value="{{$settings->messages}}">{{$settings->messages}}</textarea>
@@ -1480,9 +1494,13 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 									</div>  
 									<div class="form-group form-group-sm row">
 										<label class="col-xs-12 col-sm-3 control-label" for="formGroupInputSmall">Hari ke -
-											<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Blacklist </div><div class='panel-content'>List Username yang TIDAK akan di FLC (Follow, Like & Comment)<br>
-											Masukkan usernames SAJA disini (tanpa @), contoh: darthvader, hitler, kimjongil, dsbnya<br>
-											<i>*PS: berguna sekali untuk TIDAK follow, like, comment 'mantan' & 'kompetitor' anda</i><br></div>">
+											<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Hari ke-</div><div class='panel-content'>Dihitung sejak Hari pertama user tersebut menjadi followers anda <br>
+											Tidak ada batasan pada hari ke berapa. DM akan otomatis dikirim. <br>
+											contoh :  <br>
+											Hari ke-2  --> Jangan lupa cek Youtube channel kami yah kak, di .... <br>
+											Hari ke-7 --> Setiap hari minggu ada sale di akun kita, dicek yah kak <br>
+											dan lain sebagainya.
+											</div>">
 											</span>
 										
 										</label>
