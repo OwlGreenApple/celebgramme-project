@@ -50,6 +50,7 @@ class AutoManageController extends Controller
 	 * @return response
 	 */
 	public function index(req $request){
+		return "";
     $user = Auth::user();
     $order = Order::where("order_status","=","pending")->where("user_id","=",$user->id)->where("image",'=','')->first();
 		$status_server = Meta::where("meta_name","=","status_server")->first()->meta_value;
