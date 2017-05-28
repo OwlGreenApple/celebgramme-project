@@ -322,77 +322,79 @@
 				<h2><i class="fa fa-dashboard"></i>&nbsp;Dashboard</h2>
 			</div>
 			<div class="clearfix"></div><br>
-			<div class="col-md-6 col-sm-12 col-xs-12">
-				<div class="card">
-					<div style="min-height:378px;" class="body bg-lightGrey">
-						<div class="row margin-0" id="clockdiv">
-							<h3>Total waktu berlangganan</h3>
-							<div class="col-md-3 col-sm-3 col-xs-3">
-								<h3 class="days text-blue">31</h3>
-								<p>Days</p>
-							</div>
-							<div class="col-md-3 col-sm-3 col-xs-3">
-								<h3 class="hours text-blue">21</h3>
-								<p>Hours</p>
-							</div>
-							<div class="col-md-3 col-sm-3 col-xs-3">
-								<h3 class="minutes text-blue">11</h3>
-								<p>Minutes</p>
-							</div>
-							<div class="col-md-3 col-sm-3 col-xs-3">
-								<h3 class="seconds text-blue">41</h3>
-								<p>Seconds</p>
-							</div>
-						</div>
-						<div class="row margin-0">
-							<p>
-								Status server<h5 class="text-blue">{{$status_server}}</h5>
-								Total waktu per akun&nbsp;<h5 class="text-blue">{{$timeperaccount}}</h5>
-								Maksimum Akun&nbsp;<h5 class="text-blue">{{$user->max_account}}</h5>
-							</p>
-						</div>
-					</div>            
-				</div>
-			</div>
-			<div class="col-md-6 col-sm-12 col-xs-12">
-				<div class="card">
-					<div class="body bg-lightGrey" style="padding-top: 40px;padding-bottom: 0px;">
-						<div class="row margin-0">
-							<div class="col-md-12 col-sm-4 col-xs-12">
-								<div class="card resposiveText br-6 cursorActive">
-									<div class="body bgBlueGreen text-center br-6" data-toggle="modal" data-target="#myModal" id="btn-add-account">
-										<button type="button" class="btnIcon text-center btn  btn-circle waves-effect waves-circle waves-float">
-											<i class="fa fa-plus text-white"></i>
-										</button>
-										<h4 class="text-white">Add IG Account</h4>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 col-sm-4 col-xs-12">
-								<div class="card resposiveText br-6 cursorActive">
-									<div class="body bgGreenLight text-center br-6" id="button-start-all">
-										<button type="button" class="btnIcon text-center btn btn-circle waves-effect waves-circle waves-float">
-											<i class="fa fa-play text-white"></i>
-										</button>
-										<h4 class="text-white">Start All</h4>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 col-sm-4 col-xs-12">
-								<div class="card resposiveText br-6 cursorActive">
-									<div class="body bg-red text-center br-6" id="button-stop-all">
-										<button type="button" class="btnIcon text-center btn btn-circle waves-effect waves-circle waves-float">
-											<i class="fa fa-stop text-white"></i>
-										</button>
-										<h4 class="text-white">Stop All</h4>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="clearfix"></div><br>
+      <div class="row">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+          <div class="card">
+            <div style="min-height:378px;" class="body bg-lightGrey">
+              <div class="row margin-0" id="clockdiv">
+                <h3>Total waktu berlangganan</h3>
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                  <h3 class="days text-blue">31</h3>
+                  <p>Days</p>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                  <h3 class="hours text-blue">21</h3>
+                  <p>Hours</p>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                  <h3 class="minutes text-blue">11</h3>
+                  <p>Minutes</p>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                  <h3 class="seconds text-blue">41</h3>
+                  <p>Seconds</p>
+                </div>
+              </div>
+              <div class="row margin-0">
+                <p>
+                  Status server<h5 class="text-blue">{{$status_server}}</h5>
+                  Total waktu per akun&nbsp;<h5 class="text-blue">{{$timeperaccount}}</h5>
+                  Maksimum Akun&nbsp;<h5 class="text-blue">{{$user->max_account}}</h5>
+                </p>
+              </div>
+            </div>            
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12 col-xs-12">
+          <div class="card">
+            <div class="body bg-lightGrey" style="padding-top: 40px;padding-bottom: 0px;">
+              <div class="row margin-0">
+                <div class="col-md-12 col-sm-4 col-xs-12">
+                  <div class="card resposiveText br-6 cursorActive">
+                    <div class="body bgBlueGreen text-center br-6" data-toggle="modal" data-target="#myModal" id="btn-add-account">
+                      <button type="button" class="btnIcon text-center btn  btn-circle waves-effect waves-circle waves-float">
+                        <i class="fa fa-plus text-white"></i>
+                      </button>
+                      <h4 class="text-white">Add IG Account</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-4 col-xs-12">
+                  <div class="card resposiveText br-6 cursorActive">
+                    <div class="body bgGreenLight text-center br-6" id="button-start-all">
+                      <button type="button" class="btnIcon text-center btn btn-circle waves-effect waves-circle waves-float">
+                        <i class="fa fa-play text-white"></i>
+                      </button>
+                      <h4 class="text-white">Start All</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-4 col-xs-12">
+                  <div class="card resposiveText br-6 cursorActive">
+                    <div class="body bg-red text-center br-6" id="button-stop-all">
+                      <button type="button" class="btnIcon text-center btn btn-circle waves-effect waves-circle waves-float">
+                        <i class="fa fa-stop text-white"></i>
+                      </button>
+                      <h4 class="text-white">Stop All</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div><br>
+      </div>
 
 			
 <div class="row">
