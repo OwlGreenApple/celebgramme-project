@@ -490,6 +490,10 @@ class NewDashboardController extends Controller
 				
 				$i->login(false,300);
 				$inboxResponse = $i->getV2Inbox();
+        
+        //save unseen_count
+        $pendingInboxResponse = $i->getPendingInbox();
+        SettingMeta::createMeta("unseen_count",$pendingInboxResponse->inbox->unseen_count,Request::input("setting_id"));
 				
 				$arr["resultEmailData"] = view("new-dashboard.DM-inbox")->with(array(
 																			'inboxResponse'=>$inboxResponse,

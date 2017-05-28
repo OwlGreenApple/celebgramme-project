@@ -11,7 +11,9 @@ use Celebgramme\Models\Proxies;
 
 use Celebgramme\Models\SettingMeta;
 
-use Mail, App;
+use \InstagramAPI\Instagram;
+
+use Mail, App, Config;
 
 class Setting extends Model {
 
@@ -58,7 +60,7 @@ class Setting extends Model {
 		$setting->method = "API";
 		$setting->percent_like_followers = 25;
 		$setting->save();
-		
+    
 		$setting_id_temp = $setting->id;
 
 		$linkUserSetting = new LinkUserSetting;
@@ -215,6 +217,45 @@ class Setting extends Model {
 		$setting->insta_user_id = $id;
 		$setting->is_active = 0;
 		$setting->save();
+    
+    //checking credential with API, hitung unseen_count DM
+    try {
+      $i = new Instagram(false,false,[
+        "storage"       => "mysql",
+        "dbhost"       => Config::get('automation.DB_HOST'),
+        "dbname"   => Config::get('automation.DB_DATABASE'),
+        "dbusername"   => Config::get('automation.DB_USERNAME'),
+        "dbpassword"   => Config::get('automation.DB_PASSWORD'),
+      ]);
+      
+      $i->setUser(strtolower($arr['insta_username']), $arr['insta_password']);
+      $proxy = Proxies::find($arr_proxy["proxy_id"]);
+      if (!is_null($proxy)) {
+        $i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+      }
+      
+      $i->login(false,300);
+      $pendingInboxResponse = $i->getPendingInbox();
+      SettingMeta::createMeta("unseen_count",$pendingInboxResponse->inbox->unseen_count,$setting_id_temp);
+    }
+    catch (\InstagramAPI\Exception\IncorrectPasswordException $e) {
+      //klo error password
+      $is_error = 1 ;
+      $error_message = $e->getMessage();
+      $ret = $this->error_password($setting_id_temp); 
+    }
+    catch (\InstagramAPI\Exception\CheckpointRequiredException $e) {
+      //klo error email / phone verification 
+      $is_error = 1 ;
+      $error_message = $e->getMessage();
+      $ret = $this->error_notification($setting_id_temp); 
+    }
+    catch (Exception $e) {
+      $is_error = 1 ;
+      $error_message = $e->getMessage();
+    }
+		
+    
 		
 		return $setting_id_temp;
 	}
@@ -388,4 +429,88 @@ class Setting extends Model {
 		return $arr;
 		
 	}
+
+    /*
+		* action klo error passowrd
+		* return 
+		* ONLY FOR AUTOMATION 
+		*/
+    protected function error_password($setting_id) 
+		{
+			$setting = Setting::find($setting_id);
+			if (!is_null($setting)) {
+				$setting->status = "stopped";
+				$setting->error_cred = 1;
+				$setting->save();
+				SettingMeta::createMeta("error_message_cred","*Data login error silahkan input kembali password anda",$setting_id);
+				
+				//di 1 in supaya nanti di check cred lagi, abis edit password
+				$setting_helper = SettingHelper::where("setting_id","=",$setting_id)->first();
+				if (!is_null($setting_helper)) {
+					$setting_helper->is_need_relog_API = 1;
+					$setting_helper->save();
+				}
+			
+				$link = LinkUserSetting::where("setting_id","=",$setting->id)->first();
+				if (!is_null($link)) {
+					$user = User::find($link->user_id);
+					if (!is_null($user)) {
+						$emaildata = [
+							"user" => $user,
+							"username" => $setting->insta_username,
+						];
+						Mail::queue('emails.notif-error-3', $emaildata, function ($message) use ($user) {
+							$message->from('no-reply@celebgramme.com', 'Celebgramme');
+							$message->to($user->email);
+							$message->bcc("celebgramme.dev@gmail.com");
+							$message->subject("[ Celebgramme ] Reset Password Instagram Anda.");
+						});
+					}
+				}
+			}
+			return "";
+		}
+		
+    /*
+		* action klo error perlu notifikasi
+		* return 
+		* ONLY FOR AUTOMATION 
+		*/
+    protected function error_notification($setting_id)
+		{		
+			$setting = Setting::find($setting_id);
+			if (!is_null($setting)) {
+				$setting->status = "stopped";
+				$setting->error_cred = 1;
+				$setting->save();
+				SettingMeta::createMeta("error_message_cred","*Data login error  silahkan verifikasi account IG anda lewat HP / browser lalu input kembali password anda",$setting_id);
+				
+				//di 1 in supaya nanti di check cred lagi, abis edit password
+				$setting_helper = SettingHelper::where("setting_id","=",$setting_id)->first();
+				if (!is_null($setting_helper)) {
+					$setting_helper->is_need_relog_API = 1;
+					$setting_helper->save();
+				}
+			
+				$link = LinkUserSetting::where("setting_id","=",$setting->id)->first();
+				if (!is_null($link)) {
+					$user = User::find($link->user_id);
+					if (!is_null($user)) {
+						$emaildata = [
+							"user" => $user,
+							"username" => $setting->insta_username,
+						];
+						Mail::queue('emails.notif-error-2', $emaildata, function ($message) use ($user) {
+							$message->from('no-reply@celebgramme.com', 'Celebgramme');
+							$message->to($user->email);
+							$message->bcc("celebgramme.dev@gmail.com");
+							$message->subject("[ Celebgramme ] Silahkan Login untuk Verifikasi Instagram.");
+						});
+					}
+				}
+			}
+			return "";
+		}
+		
+  
 }

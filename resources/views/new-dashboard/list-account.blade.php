@@ -21,31 +21,31 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 					}
 					
 					//hitung unseen_count DM
-					$unseen_count = 0;
-					if (!$data->error_cred) {
-						try {
-							$i = new Instagram(false,false,[
-								"storage"       => "mysql",
-								"dbhost"       => Config::get('automation.DB_HOST'),
-								"dbname"   => Config::get('automation.DB_DATABASE'),
-								"dbusername"   => Config::get('automation.DB_USERNAME'),
-								"dbpassword"   => Config::get('automation.DB_PASSWORD'),
-							]);
+					$unseen_count = SettingMeta::getMeta($data->id,"unseen_count");
+					// if (!$data->error_cred) {
+						// try {
+							// $i = new Instagram(false,false,[
+								// "storage"       => "mysql",
+								// "dbhost"       => Config::get('automation.DB_HOST'),
+								// "dbname"   => Config::get('automation.DB_DATABASE'),
+								// "dbusername"   => Config::get('automation.DB_USERNAME'),
+								// "dbpassword"   => Config::get('automation.DB_PASSWORD'),
+							// ]);
 							
-							$i->setUser(strtolower($data->insta_username), $data->insta_password);
-							$proxy = Proxies::find($data->proxy_id);
-							if (!is_null($proxy)) {
-								$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
-							}
+							// $i->setUser(strtolower($data->insta_username), $data->insta_password);
+							// $proxy = Proxies::find($data->proxy_id);
+							// if (!is_null($proxy)) {
+								// $i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+							// }
 							
-							$i->login(false,300);
-							$pendingInboxResponse = $i->getPendingInbox();
-							$unseen_count = $pendingInboxResponse->inbox->unseen_count;
-						}
-						catch (Exception $e) {
-							return $e->getMessage();
-						}
-					}
+							// $i->login(false,300);
+							// $pendingInboxResponse = $i->getPendingInbox();
+							// $unseen_count = $pendingInboxResponse->inbox->unseen_count;
+						// }
+						// catch (Exception $e) {
+							// return $e->getMessage();
+						// }
+					// }
 					
 				?>
 				<div class="col-md-4 col-sm-12 col-xs-12">
