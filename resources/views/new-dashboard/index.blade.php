@@ -38,7 +38,7 @@
   <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DrJGSU6LiIQ?rel=0&amp;showinfo=0"></iframe>
 </div>								
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="messages_animation_1" role="tabpanel" >
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DrJGSU6LiIQ?rel=0&amp;showinfo=0"></iframe>
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DWhDVq5WB8s?rel=0&amp;showinfo=0"></iframe>
 </div>								
 								<div role="tabpanel" class="tab-pane animated flipInX" id="settings_animation_1">
 									<b>Settings Content</b>
@@ -71,7 +71,7 @@
 									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
 								</div>
 								<div class="content">
-									<p class="text-white">Targetting Research</p>
+									<p class="text-white">DM Auto Responder</p>
 								</div>
 							</a>
 						</div>
@@ -82,7 +82,7 @@
 									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
 								</div>
 								<div class="content">
-									<p class="text-white">DM Auto Responder</p>
+									<p class="text-white">Celebpost</p>
 								</div>
 							</a>
 						</div>

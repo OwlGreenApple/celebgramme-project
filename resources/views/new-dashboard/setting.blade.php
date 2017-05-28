@@ -984,7 +984,29 @@ use Celebgramme\Models\SettingHelper;
 											</div>
 										</div>
 										
-										<div class="row">
+                    <div class="row" id="target-categories" <?php if (!$settings->status_auto) echo "style='display:none;'"; ?>>
+                      <div class="col-md-12 col-sm-12">
+                        <div class="panel panel-info ">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">Full Auto: Target Categories
+                                <span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Target Categories</div><div class='panel-content'>Silahkan Pilih Target Kategori (max 10)<br>yang akan anda Follow & Like<br>Fitur Full Auto Settings akan OTOMATIS<br>berjalan sesuai dengan target kategori yang anda pilih.</div>">
+                                </span>
+                            </h3>
+                          </div>
+                          <div class="panel-body">
+                            <div class="row">
+                              <div class="col-md-12 col-sm-12 col-xs-12">
+                                <textarea class="selectize-target" id="textarea-target-categories" name="data[target_categories]">{{$target_categories}}</textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>  
+                    </div>       
+
+                    
+                    
+										<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo "hide"; ?>">
 											<div class="col-md-12 col-sm-12 col-xs-12">
 												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
 													<div class="header">
@@ -1085,7 +1107,7 @@ use Celebgramme\Models\SettingHelper;
 											</div>
 										</div>
 										
-										<div class="row" id="div-hashtags" <?php if ( ( ($settings->status_follow_unfollow=="off") && ($settings->status_like=="off") && ($settings->status_comment=="off")) || ( (($settings->follow_source=='followers of username') || ($settings->follow_source=='following of username')) && ($settings->status_follow_unfollow=="on")&& ($settings->status_like=="off")&& ($settings->status_comment=="off") )  ) echo "style='display:none;'" ?>>
+										<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo "hide"; ?>" id="div-hashtags" <?php if ( ( ($settings->status_follow_unfollow=="off") && ($settings->status_like=="off") && ($settings->status_comment=="off")) || ( (($settings->follow_source=='followers of username') || ($settings->follow_source=='following of username')) && ($settings->status_follow_unfollow=="on")&& ($settings->status_like=="off")&& ($settings->status_comment=="off") )  ) echo "style='display:none;'" ?>>
 											<div class="col-md-12 col-sm-12 col-xs-12">
 												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
 													<div class="header">
@@ -1108,7 +1130,7 @@ use Celebgramme\Models\SettingHelper;
 											</div>
 										</div>
 										
-										<div class="row <?php if ($settings->status_auto) echo 'hide'; ?>" id="div-usernames" <?php if ( ($settings->follow_source=='hashtags') || ($settings->status_follow_unfollow=="off") ) echo "style='display:none;'" ?>>
+										<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo 'hide'; ?>" id="div-usernames" <?php if ( ($settings->follow_source=='hashtags') || ($settings->status_follow_unfollow=="off") ) echo "style='display:none;'" ?>>
 											<div class="col-md-12 col-sm-12 col-xs-12">
 												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
 													<div class="header">
@@ -1129,7 +1151,7 @@ use Celebgramme\Models\SettingHelper;
 										</div>
 										
 										
-										<div class="row">
+										<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo "hide"; ?>">
 											<div class="col-md-12 col-sm-12 col-xs-12">
 												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
 													<div class="header">

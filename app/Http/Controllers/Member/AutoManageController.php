@@ -50,7 +50,6 @@ class AutoManageController extends Controller
 	 * @return response
 	 */
 	public function index(req $request){
-		return "";
     $user = Auth::user();
     $order = Order::where("order_status","=","pending")->where("user_id","=",$user->id)->where("image",'=','')->first();
 		$status_server = Meta::where("meta_name","=","status_server")->first()->meta_value;
@@ -432,6 +431,7 @@ class AutoManageController extends Controller
   }
   
   public function account_setting($id){  
+		return "";
     $user = Auth::user();
 
     $link = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
