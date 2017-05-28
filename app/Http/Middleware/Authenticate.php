@@ -48,9 +48,11 @@ class Authenticate
 				
 				$dt = Carbon::now();
 				$user = Auth::user();
-				$user->last_seen = $dt->toDateTimeString();
-				$user->save();
-
+        if (!is_null($user)) {
+          $user->last_seen = $dt->toDateTimeString();
+          $user->save();
+        }
+        
         return $next($request);
     }
 }
