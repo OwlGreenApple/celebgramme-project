@@ -1239,24 +1239,24 @@ use Celebgramme\Models\SettingHelper;
 													</div>
 												</div>
 
-												<div class="row">
-													<div class="col-md-4 col-sm-6 col-xs-12">
-														<div class="row">
-															<div class="col-md-6 col-sm-6 col-xs-6">
-																<button id="button-save2" class="btn btn-lg btn-block bg-cyan">Save</button>
-															</div>
-															<div class="col-md-6 col-sm-6 col-xs-6">
-																<button data-id="{{$settings->id}}" class="btn btn-lg btn-block bgGreenLight btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
-																<?php if ($settings->status=='stopped') { echo "<span class='glyphicon glyphicon-play'></span> Start"; } else {echo "<span class='glyphicon glyphicon-stop'></span> Stop";}?>
-																</button>
-															</div>
-														</div>
-													</div>
-												</div>
-												
 											</div>
 											
 										</div>
+                    <div class="row">
+                      <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="row">
+                          <div class="col-md-6 col-sm-6 col-xs-6">
+                            <button id="button-save2" class="btn btn-lg btn-block bg-cyan">Save</button>
+                          </div>
+                          <div class="col-md-6 col-sm-6 col-xs-6">
+                            <button data-id="{{$settings->id}}" class="btn btn-lg btn-block bgGreenLight btn <?php if ($settings->status=='stopped') { echo 'btn-success'; } else {echo 'btn-danger';} ?> button-action btn-{{$settings->id}}" value="<?php if ($settings->status=='stopped') { echo 'Start'; } else {echo 'Stop';}?>">
+                            <?php if ($settings->status=='stopped') { echo "<span class='glyphicon glyphicon-play'></span> Start"; } else {echo "<span class='glyphicon glyphicon-stop'></span> Stop";}?>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
 										
 										
 										
