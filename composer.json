@@ -8,12 +8,13 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
         "illuminate/html": "5.*",
-        "guzzlehttp/guzzle": "~4.0",
+        "guzzlehttp/guzzle": "~6.0",
         "nesbot/carbon": "^1.20",
         "anouar/paypalpayment": "~1.0",
 				"predis/predis": "~1.0",
         "genealabs/laravel-caffeine": "~0.2",
-				"pda/pheanstalk": "^3.1"
+				"pda/pheanstalk": "^3.1",
+        "mgp25/instagram-php": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

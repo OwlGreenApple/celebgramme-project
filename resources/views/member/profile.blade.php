@@ -1,4 +1,4 @@
-@extends('member.index')
+@extends('new-dashboard.main')
 
 @section('content')
 <script type="text/javascript">
@@ -77,31 +77,33 @@
     });
   });
 </script>
+<div class="container-fluid">
   <form enctype="multipart/form-data" id="form-confirm">
     <div class="form-group form-group-sm row">
-      <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Password Lama</label>
-      <div class="col-sm-8 col-md-6">
+      <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">Password Lama</label>
+      <div class="col-sm-8 col-md-5">
         <input type="password" class="form-control" placeholder="Password Lama" name="old_password" id="old_password">
       </div>
     </div>  
     <div class="form-group form-group-sm row">
-      <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Password Baru</label>
-      <div class="col-sm-8 col-md-6">
+      <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">Password Baru</label>
+      <div class="col-sm-8 col-md-5">
         <input type="password" class="form-control" placeholder="Password Baru" name="new_password" id="new_password">
       </div>
     </div>  
     <div class="form-group form-group-sm row">
-      <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Konfirmasi Password Baru</label>
-      <div class="col-sm-8 col-md-6">
+      <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">Konfirmasi Password Baru</label>
+      <div class="col-sm-8 col-md-5">
         <input type="password" class="form-control" placeholder="Konfirmasi Password Baru" name="konfirmasi_new_password" id="konfirmasi_new_password">
       </div>
     </div>  
     <div class="form-group form-group-sm row">
-      <div class="col-xs-8 col-sm-4">
+      <div class="col-xs-8 col-sm-4 col-md-3 ">
       </div>
-      <div class="col-sm-8 col-md-6">
+      <div class="col-sm-8 col-md-5">
         <input class="btn btn-default" type="button" value="Process" id="button-process">
       </div>
     </div>  
   </form>
+</div>  
 @endsection

@@ -25,13 +25,16 @@ use Celebgramme\Models\Category;
 use Celebgramme\Models\SettingLog;
 use Celebgramme\Models\TimeLog;
 use Celebgramme\Models\Account;
+use Celebgramme\Models\Message;
 
 use Celebgramme\Veritrans\Veritrans;
 use Celebgramme\Models\ViewProxyUses;
 
 use Celebgramme\Helpers\GlobalHelper;
 
-use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, DB;
+use \InstagramAPI\Instagram;
+
+use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, DB, Config;
 
 class AutoManageController extends Controller
 {
@@ -47,6 +50,7 @@ class AutoManageController extends Controller
 	 * @return response
 	 */
 	public function index(req $request){
+		return "";
     $user = Auth::user();
     $order = Order::where("order_status","=","pending")->where("user_id","=",$user->id)->where("image",'=','')->first();
 		$status_server = Meta::where("meta_name","=","status_server")->first()->meta_value;
@@ -114,7 +118,7 @@ class AutoManageController extends Controller
 
   public function process_edit_password(req $request){  
     $user = Auth::user();
-    $arr["message"]= "Ubah password berhasil dilakukan, sistem akan berjalan secara otomatis maksimum 1x24jam";
+    $arr["message"]= "Ubah password berhasil dilakukan, tekan tombol start lalu sistem akan berjalan secara otomatis maksimum 1x24jam";
     $arr["type"]= "success";
 
     $data = array (
@@ -431,7 +435,8 @@ class AutoManageController extends Controller
     $user = Auth::user();
 
     $link = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
-							->select("settings.*")
+							->join("setting_helpers","setting_helpers.setting_id","=","settings.id")
+							->select("settings.*","setting_helpers.proxy_id")
               ->where("link_users_settings.user_id","=",$user->id)
               ->where("settings.id","=",$id)
               ->where("type","=","temp")
@@ -505,6 +510,31 @@ class AutoManageController extends Controller
 		if (!is_null($post)) {
 			$ads_content = $post->description;
 		}
+
+		//get response from 
+		// $inboxResponse = json_decode($link->messages);	
+		try {
+			$i = new Instagram(false,false,[
+				"storage"       => "mysql",
+				"dbhost"       => Config::get('automation.DB_HOST'),
+				"dbname"   => Config::get('automation.DB_DATABASE'),
+				"dbusername"   => Config::get('automation.DB_USERNAME'),
+				"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+			]);
+			
+			$i->setUser(strtolower($link->insta_username), $link->insta_password);
+			$proxy = Proxies::find($link->proxy_id);
+			if (!is_null($proxy)) {
+				$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+			}
+			
+			$i->login();
+			$inboxResponse = $i->getV2Inbox();
+			$pendingInboxResponse = $i->getPendingInbox();
+		}
+		catch (Exception $e) {
+			return $e->getMessage();
+		}
 		
     return view("member.auto-manage.account-setting")->with(array(
       'user'=>$user,
@@ -514,10 +544,103 @@ class AutoManageController extends Controller
       'strCategory'=>$strCategory,
       'strClassCategory'=>$strClassCategory,
       'ads_content'=>$ads_content,
+      'inboxResponse'=>$inboxResponse,
+      'pendingInboxResponse'=>$pendingInboxResponse,
       ));
   }
 
-  public function process_save_setting(){  
+  public function action_direct_message(){  
+		$arr["type"]="success";
+		
+		/* ga jadi dipake, karena langsung disend(NO QUEUE)
+		$message = new SettingHelper;
+		$message->setting_id = Request::input("setting_id");
+		$message->pk_id = Request::input("pk_id");
+		$message->send_text = Request::input("message");
+		$message->send_text_timestamp = 0;
+		$message->is_done = 0;
+		$message->save();
+		*/
+		
+		try {
+			$setting = Setting::join("setting_helpers","setting_helpers.setting_id","=","settings.id")
+									->where("settings.id",Request::input("setting_id"))
+									->first();
+			$i = new Instagram(false,false,[
+				"storage"       => "mysql",
+				"dbhost"       => Config::get('automation.DB_HOST'),
+				"dbname"   => Config::get('automation.DB_DATABASE'),
+				"dbusername"   => Config::get('automation.DB_USERNAME'),
+				"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+			]);
+			
+			$i->setUser(strtolower($setting->insta_username), $setting->insta_password);
+			$proxy = Proxies::find($setting->proxy_id);
+			if (!is_null($proxy)) {
+				$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+			}
+			
+			$i->login();
+			if ( Request::input("type") == "message" ) {
+				$i->directMessage(Request::input("pk_id"), Request::input("message"));
+			}
+			else if ( Request::input("type") == "like" ) {
+				$i->directMessage(Request::input("pk_id"), Request::input("message"));
+			}
+			$listMessageResponse = $i->directThread(Request::input("thread_id"));
+
+			$arr["resultEmailData"] = view("member.auto-manage.message-inbox")->with(array(
+																			'listMessageResponse'=>$listMessageResponse,
+																			'setting_id'=>Request::input("setting_id"),
+																			'thread_id'=>Request::input("thread_id"),
+																		))->render();
+		}
+		catch (Exception $e) {
+			$arr["type"]="error";
+		}
+		
+		return $arr;
+	}
+	
+  public function check_message(){  
+		$arr["type"]="success";
+		
+		try {
+			$setting = Setting::join("setting_helpers","setting_helpers.setting_id","=","settings.id")
+									->where("settings.id",Request::input("setting_id"))
+									->first();
+			$i = new Instagram(false,false,[
+				"storage"       => "mysql",
+				"dbhost"       => Config::get('automation.DB_HOST'),
+				"dbname"   => Config::get('automation.DB_DATABASE'),
+				"dbusername"   => Config::get('automation.DB_USERNAME'),
+				"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+			]);
+			
+			$i->setUser(strtolower($setting->insta_username), $setting->insta_password);
+			$proxy = Proxies::find($setting->proxy_id);
+			if (!is_null($proxy)) {
+				$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+			}
+			
+			$i->login(false,300);
+			$listMessageResponse = $i->directThread(Request::input("thread_id"));
+			// $arr["listMessageResponse"] = json_encode($listMessageResponse);
+			$arr["resultEmailData"] = view("member.auto-manage.message-inbox")->with(array(
+																			'listMessageResponse'=>$listMessageResponse,
+																			'setting_id'=>Request::input("setting_id"),
+																			'thread_id'=>Request::input("thread_id"),
+																		))->render();
+		}
+		catch (Exception $e) {
+			$arr["type"]="error";
+			$arr["resultEmailData"] = "error";
+		}
+		
+		return $arr;
+	}
+	
+	public function process_save_setting(){  
     $user = Auth::user();
     $data = Request::input("data");
     $link = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
@@ -756,7 +879,7 @@ class AutoManageController extends Controller
       foreach ($links as $link) {
         $setting_temp = Setting::find($link->setting_id);
 				if ($setting_temp->error_cred==1) {
-					$url = url('auto-manage');
+					$url = url('dashboard');
 					$arr["message"]= "Anda tidak dapat menjalankan program, silahkan update login credential account anda <a href='".$url."'>disini</a>";
 					$arr["type"]= "error";
 					return $arr;
@@ -810,7 +933,7 @@ class AutoManageController extends Controller
       if (!is_null($link)){
         $setting_temp = Setting::find($link->setting_id);
 				if ($setting_temp->error_cred==1) {
-					$url = url('auto-manage');
+					$url = url('dashboard');
 					$arr["message"]= "Anda tidak dapat menjalankan program, silahkan update login credential account anda <a href='".$url."'>disini</a>";
 					$arr["type"]= "error";
 					return $arr;

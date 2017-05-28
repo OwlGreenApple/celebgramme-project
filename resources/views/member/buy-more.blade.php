@@ -1,4 +1,4 @@
-@extends('member.index')
+@extends('new-dashboard.main')
 
 @section('content')
 <script type="text/javascript">
@@ -91,8 +91,9 @@
  
 <form action="{{url('payment/process')}}" method="POST">
 
+<div class="container-fluid">
 	<div class="row">
-		<div class="col-sm-4 col-md-4">
+		<div class="col-sm-4 col-md-3">
 			<p>
 			<strong>TRANSFER Melalui : </strong>
 			</p>
@@ -111,8 +112,8 @@
 	</div>  
 
   <div class="form-group form-group-sm row">
-    <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Paket Auto Manage</label>
-    <div class="col-sm-8 col-md-6">
+    <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">Paket Auto Manage</label>
+    <div class="col-sm-8 col-md-5">
       <select class="form-control" name="package-auto-manage" id="select-auto-manage">
 				<?php foreach($packages as $package) { ?>
 					<option data-real="{{$package->price}}" data-price="{{number_format($package->price,0,'','.')}}" value="{{$package->id}}" <?php if ($id==$package->id) echo "selected"; ?>>
@@ -123,7 +124,7 @@
   </div>  
 
   <div class="form-group form-group-sm row">
-    <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Code coupon</label>
+    <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">Code coupon</label>
     <div class="col-sm-6 col-md-4">
       <input type="text" class="form-control" name="coupon-code" placeholder="Kode kupon" id="text-coupon-code">
     </div>
@@ -133,8 +134,8 @@
   </div>  
 
   <div class="form-group form-group-sm row">
-    <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Metode Pembayaran</label>
-    <div class="col-sm-8 col-md-6">
+    <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">Metode Pembayaran</label>
+    <div class="col-sm-8 col-md-5">
       <select class="form-control" name="payment-method">
         <option value="1">Bank transfer</option>
         <!--<option value="2">Veritrans</option>-->
@@ -142,7 +143,7 @@
     </div>
   </div>  
   <div class="form-group form-group-sm row">
-    <label class="col-xs-8 col-sm-4 control-label" for="formGroupInputSmall">Total</label>
+    <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">Total</label>
     <div class="col-sm-1 col-md-1">
       <p>Rp. </p>
     </div>
@@ -154,5 +155,7 @@
   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
   <input class="btn btn-default" type="submit" value="Process" id="button-process">
 </form>
+
+</div>  
 
 @endsection

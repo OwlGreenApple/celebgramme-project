@@ -11,7 +11,9 @@ use Celebgramme\Models\Proxies;
 
 use Celebgramme\Models\SettingMeta;
 
-use Mail, App;
+use \InstagramAPI\Instagram;
+
+use Mail, App, Config;
 
 class Setting extends Model {
 
@@ -21,7 +23,7 @@ class Setting extends Model {
 	protected $fillable = ['activity_speed', 'media_source', 'media_age', 'media_type', 
 	'dont_comment_su', 'follow_source', 'dont_follow_su', 'dont_follow_pu', 'unfollow_source', 'unfollow_wdfm', 'comments', 'hashtags', 'locations', 
 	'insta_username', 'insta_password', 'insta_user_id', 'insta_access_token', 'last_user', 'start_time', 'running_time', 'user_id', 'status_blacklist', 'usernames_blacklist', 
-	'username', 'status', 'activity', 'status_whitelist','usernames_whitelist', 'status_follow_unfollow', 'status_like', 'status_comment', 'error_cred', "status_follow", "status_unfollow", "status_auto", "status_follow_auto", "status_unfollow_auto", "is_active" ];
+	'username', 'status', 'activity', 'status_whitelist','usernames_whitelist', 'status_follow_unfollow', 'status_like', 'status_comment', 'error_cred', "status_follow", "status_unfollow", "status_auto", "status_follow_auto", "status_unfollow_auto", "is_active", "is_like_followers", "percent_like_followers" ];
 
 	protected function createSetting($arr)
 	{
@@ -55,8 +57,10 @@ class Setting extends Model {
 		$setting->status = 'stopped';
 		$setting->type = 'temp';
 		$setting->is_active = 0;
+		$setting->method = "API";
+		$setting->percent_like_followers = 25;
 		$setting->save();
-		
+    
 		$setting_id_temp = $setting->id;
 
 		$linkUserSetting = new LinkUserSetting;
@@ -136,6 +140,8 @@ class Setting extends Model {
 		} else {
 			$setting_helper->server_automation = "AA6(automation-6)";
 		}
+		$setting_helper->server_automation = "AA12(automation-12)"; //buat beta testing
+		$setting_helper->is_need_relog_API = 1; 
 		$setting_helper->save();
 
 		//create meta, jumlah followers & following
@@ -211,7 +217,7 @@ class Setting extends Model {
 		$setting->insta_user_id = $id;
 		$setting->is_active = 0;
 		$setting->save();
-		
+    
 		return $setting_id_temp;
 	}
 	
@@ -384,4 +390,88 @@ class Setting extends Model {
 		return $arr;
 		
 	}
+
+    /*
+		* action klo error passowrd
+		* return 
+		* ONLY FOR AUTOMATION 
+		*/
+    protected function error_password($setting_id) 
+		{
+			$setting = Setting::find($setting_id);
+			if (!is_null($setting)) {
+				$setting->status = "stopped";
+				$setting->error_cred = 1;
+				$setting->save();
+				SettingMeta::createMeta("error_message_cred","*Data login error silahkan input kembali password anda",$setting_id);
+				
+				//di 1 in supaya nanti di check cred lagi, abis edit password
+				$setting_helper = SettingHelper::where("setting_id","=",$setting_id)->first();
+				if (!is_null($setting_helper)) {
+					$setting_helper->is_need_relog_API = 1;
+					$setting_helper->save();
+				}
+			
+				$link = LinkUserSetting::where("setting_id","=",$setting->id)->first();
+				if (!is_null($link)) {
+					$user = User::find($link->user_id);
+					if (!is_null($user)) {
+						$emaildata = [
+							"user" => $user,
+							"username" => $setting->insta_username,
+						];
+						Mail::queue('emails.notif-error-3', $emaildata, function ($message) use ($user) {
+							$message->from('no-reply@celebgramme.com', 'Celebgramme');
+							$message->to($user->email);
+							$message->bcc("celebgramme.dev@gmail.com");
+							$message->subject("[ Celebgramme ] Reset Password Instagram Anda.");
+						});
+					}
+				}
+			}
+			return "";
+		}
+		
+    /*
+		* action klo error perlu notifikasi
+		* return 
+		* ONLY FOR AUTOMATION 
+		*/
+    protected function error_notification($setting_id)
+		{		
+			$setting = Setting::find($setting_id);
+			if (!is_null($setting)) {
+				$setting->status = "stopped";
+				$setting->error_cred = 1;
+				$setting->save();
+				SettingMeta::createMeta("error_message_cred","*Data login error  silahkan verifikasi account IG anda lewat HP / browser lalu input kembali password anda",$setting_id);
+				
+				//di 1 in supaya nanti di check cred lagi, abis edit password
+				$setting_helper = SettingHelper::where("setting_id","=",$setting_id)->first();
+				if (!is_null($setting_helper)) {
+					$setting_helper->is_need_relog_API = 1;
+					$setting_helper->save();
+				}
+			
+				$link = LinkUserSetting::where("setting_id","=",$setting->id)->first();
+				if (!is_null($link)) {
+					$user = User::find($link->user_id);
+					if (!is_null($user)) {
+						$emaildata = [
+							"user" => $user,
+							"username" => $setting->insta_username,
+						];
+						Mail::queue('emails.notif-error-2', $emaildata, function ($message) use ($user) {
+							$message->from('no-reply@celebgramme.com', 'Celebgramme');
+							$message->to($user->email);
+							$message->bcc("celebgramme.dev@gmail.com");
+							$message->subject("[ Celebgramme ] Silahkan Login untuk Verifikasi Instagram.");
+						});
+					}
+				}
+			}
+			return "";
+		}
+		
+  
 }

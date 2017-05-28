@@ -312,6 +312,26 @@
 			$('#AutoLikesOffButton').addClass('btn-danger');
 			$('#AutoLikesOnButton').removeClass('btn-primary');
 		});
+		$('#AutoLikesFollowersOnButton').click(function(e){
+			$("#is_like_followers").val(1);
+			$('#AutoLikesFollowersOnButton').addClass('btn-primary');
+			$('#AutoLikesFollowersOffButton').removeClass('btn-danger');
+		});
+		$('#AutoLikesFollowersOffButton').click(function(e){
+			$("#is_like_followers").val(0);
+			$('#AutoLikesFollowersOffButton').addClass('btn-danger');
+			$('#AutoLikesFollowersOnButton').removeClass('btn-primary');
+		});
+		$('#AutoResponderOnButton').click(function(e){
+			$("#is_auto_responder").val(1);
+			$('#AutoResponderOnButton').addClass('btn-primary');
+			$('#AutoResponderOffButton').removeClass('btn-danger');
+		});
+		$('#AutoResponderOffButton').click(function(e){
+			$("#is_auto_responder").val(0);
+			$('#AutoResponderOffButton').addClass('btn-danger');
+			$('#AutoResponderOnButton').removeClass('btn-primary');
+		});
 		
 		$('#BlacklistOnButton').click(function(e){
 			e.preventDefault();
@@ -369,4 +389,46 @@
 			$("#dont_follow_su").val(0);
 		});
 		
+		$('#button-mode-setting').click(function(e){
+			$(".button-mode").removeClass("active");
+			$(this).addClass("active");
+
+			$(".div-mode").addClass("hide");
+			$("#div-mode-setting").removeClass("hide");
+		});
+		$('#button-mode-comment').click(function(e){
+			$(".button-mode").removeClass("active");
+			$(this).addClass("active");
+			
+			$(".div-mode").addClass("hide");
+			$("#div-mode-comment").removeClass("hide");
+		});
+		$('#button-mode-like').click(function(e){
+			$(".button-mode").removeClass("active");
+			$(this).addClass("active");
+			
+			$(".div-mode").addClass("hide");
+			$("#div-mode-like").removeClass("hide");
+		});
+		$('#button-mode-mention').click(function(e){
+			$(".button-mode").removeClass("active");
+			$(this).addClass("active");
+			
+			$(".div-mode").addClass("hide");
+			$("#div-mode-mention").removeClass("hide");
+		});
+		$('#button-mode-tagged').click(function(e){
+			$(".button-mode").removeClass("active");
+			$(this).addClass("active");
+			
+			$(".div-mode").addClass("hide");
+			$("#div-mode-tagged").removeClass("hide");
+		});
+		$('#button-mode-follow').click(function(e){
+			$(".button-mode").removeClass("active");
+			$(this).addClass("active");
+			
+			$(".div-mode").addClass("hide");
+			$("#div-mode-follow").removeClass("hide");
+		});
   });

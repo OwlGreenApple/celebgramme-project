@@ -53,7 +53,7 @@ Route::group(['middleware' => 'auth'], function()
   Route::get('resend-activation', 'Member\EmailController@resendEmailActivation');
 
   Route::get('test', 'Member\HomeController@test');
-  Route::get('home', 'Member\AutoManageController@index');
+  // Route::get('home', 'Member\AutoManageController@index');
   // Route::get('/', 'Member\AutoManageController@index');
   Route::get('order', 'Member\HomeController@order');
   
@@ -86,7 +86,7 @@ Route::group(['middleware' => 'auth'], function()
 
   /*--------- Auto-manage ---------*/
   Route::get('auto-manage', 'Member\AutoManageController@index');
-  Route::get('load-account', 'Member\AutoManageController@load_account');
+  // Route::get('load-account', 'Member\AutoManageController@load_account');
   Route::get('account-setting/{id}', 'Member\AutoManageController@account_setting');
   Route::post('process-save-credential', 'Member\AutoManageController@process_save_credential');
   Route::post('process-edit-password', 'Member\AutoManageController@process_edit_password');
@@ -94,7 +94,26 @@ Route::group(['middleware' => 'auth'], function()
   Route::get('call-action', 'Member\AutoManageController@call_action');
   Route::post('delete-setting', 'Member\AutoManageController@delete_setting');
 	Route::get('agree-terms', 'Member\AutoManageController@agree_terms');
+	Route::get('check-message', 'Member\AutoManageController@check_message');
+	// Route::get('action-direct-message', 'Member\AutoManageController@action_direct_message');
 	
+	
+	/*--------- New-dashboard ---------*/
+	Route::get('/', 'Member\NewDashboardController@index');
+	Route::get('home', 'Member\NewDashboardController@index');
+	Route::get('dashboard', 'Member\NewDashboardController@dashboard');
+	Route::get('load-account', 'Member\NewDashboardController@load_account');
+	Route::get('setting/{id}', 'Member\NewDashboardController@setting_index');
+	Route::get('get-chat-all', 'Member\NewDashboardController@get_chat_all');
+	Route::get('action-direct-message', 'Member\NewDashboardController@action_direct_message');
+	Route::get('get-dm-req', 'Member\NewDashboardController@get_dm_req');
+	Route::get('action-dm-req', 'Member\NewDashboardController@action_dm_req');
+	Route::get('get-dm-inbox', 'Member\NewDashboardController@get_dm_inbox');
+	Route::get('save-welcome-message', 'Member\NewDashboardController@save_welcome_message');
+	
+	Route::post('submit-auto-responder', 'Member\NewDashboardController@submit_auto_responder');
+	Route::get('get-auto-responder', 'Member\NewDashboardController@get_auto_responder');
+	Route::get('delete-auto-responder', 'Member\NewDashboardController@delete_auto_responder');
 });
 
 

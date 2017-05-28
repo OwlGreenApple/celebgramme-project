@@ -120,6 +120,105 @@ use Celebgramme\Models\SettingHelper;
 				alert("Disclaimer : Menggunakan speed Turbo akan meningkatkan resiko akun anda di flag oleh Instagram");
 			}
 		})
+		
+		
+		//buat kepentingan V3, nanti klo uda jalan bisa dipindah di asset
+		$( "body" ).on( "click", ".btn-open-message", function() {
+			$.ajax({
+				type: 'GET',
+				url: "<?php echo url('check-message'); ?>",
+				data: {
+					thread_id : $(this).attr("data-thread-id"),
+					setting_id : $(this).attr("data-setting-id")
+				},
+				dataType: 'text',
+				beforeSend: function()
+				{
+					$("#div-loading").show();
+				},
+				success: function(result) {
+					$("#div-loading").hide();
+					var data = jQuery.parseJSON(result);
+					console.log(data);
+					$("#div-testing-email").html(data.resultEmailData);
+					// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
+					// console.log(dataMessage);
+					
+					// if(data.type=='success')
+					// {
+					// }
+					// else if(data.type=='error')
+					// {
+					// }
+				}
+			})
+		});
+		$( "body" ).on( "click", ".button-like-inbox", function(e) {
+			e.preventDefault();
+			$.ajax({
+				type: 'GET',
+				url: "<?php echo url('action-direct-message'); ?>",
+				data: {
+					pk_id : $(this).attr("data-pk-id"),
+					message : $("#text-message-inbox").val(),
+					setting_id : $(this).attr("data-setting-id"),
+					thread_id : $(this).attr("data-thread-id"),
+					type : 'like',
+				},
+				dataType: 'text',
+				beforeSend: function()
+				{
+					$("#div-loading").show();
+				},
+				success: function(result) {
+					$("#div-loading").hide();
+					var data = jQuery.parseJSON(result);
+					$("#div-testing-email").html(data.resultEmailData);
+					// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
+					// console.log(dataMessage);
+					
+					// if(data.type=='success')
+					// {
+					// }
+					// else if(data.type=='error')
+					// {
+					// }
+				}
+			})
+		});
+		$( "body" ).on( "click", ".button-message-inbox", function() {
+			$.ajax({
+				type: 'GET',
+				url: "<?php echo url('action-direct-message'); ?>",
+				data: {
+					pk_id : $(this).attr("data-pk-id"),
+					message : $("#text-message-inbox").val(),
+					setting_id : $(this).attr("data-setting-id"),
+					thread_id : $(this).attr("data-thread-id"),
+					type : 'message',
+				},
+				dataType: 'text',
+				beforeSend: function()
+				{
+					$("#div-loading").show();
+				},
+				success: function(result) {
+					$("#div-loading").hide();
+					var data = jQuery.parseJSON(result);
+					$("#div-testing-email").html(data.resultEmailData);
+					// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
+					// console.log(dataMessage);
+					
+					// if(data.type=='success')
+					// {
+					// }
+					// else if(data.type=='error')
+					// {
+					// }
+				}
+			})
+		});
+		
 	});
 	
 </script>
@@ -529,6 +628,19 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>  
 </div>                        
 -->
+
+<ul class="nav nav-tabs">
+	<li class="active button-mode" id="button-mode-setting"><a href="#">Settings</a></li>
+	<li class="button-mode" id="button-mode-comment"><a href="#">Comments</a></li>
+	<li class="button-mode" id="button-mode-like"><a href="#">Likes</a></li>
+	<li class="button-mode" id="button-mode-mention"><a href="#">Mention</a></li>
+	<li class="button-mode" id="button-mode-tagged"><a href="#">Tagged</a></li>
+	<li class="button-mode" id="button-mode-follow"><a href="#">Follow</a></li>
+</ul>
+
+
+
+<div id="div-mode-setting" class="div-mode">
 <div class="row">
   <div class="col-md-6 col-sm-6">
     <div class="panel panel-info ">
@@ -940,7 +1052,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 
 
           <div class="row">
-						<div class="col-md-5 col-sm-12 col-xm-12"">
+						<div class="col-md-5 col-sm-12 col-xm-12">
 							<label>Comments</label> 
 							<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Comments</div><div class='panel-content'>• <strong>Tambahkan : </strong><@owner> , untuk men-tag owner dari post tersebut<br>
 									• <strong>Tambahkan : </strong><@followers> , untuk men-tag followers anda<br>
@@ -953,7 +1065,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 									• <strong>Komentar HARUS berbeda </strong>satu sama lain. <br>
 </div>"></span>
 						</div>
-						<div class="col-md-6 col-sm-12 col-xm-12"">
+						<div class="col-md-6 col-sm-12 col-xm-12">
 							<label>Copy contoh spin comment (click)</label>
 							<span class="glyphicon glyphicon-menu-down tooltipPlugin" title='<div class="panel-content">								{asli|serius}, {nice|kerennn|cool|wow|keren|cooooolll|niceeeee} {sekaleee|sekali|banget|beneran|bener} {photo|foto|shot|poto|pic}{kamu|ini} <@owner>
 								<br> <br>
@@ -964,7 +1076,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 						</div>
           </div>
           <div class="row">
-						<div class="col-md-5 col-sm-12 col-xs-12"">
+						<div class="col-md-5 col-sm-12 col-xs-12">
 							<label>Penjelasan fitur spin comment</label>
 							<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Penjelasan fitur spin comment</div>								<div class="panel-content"><strong>Gunakan Feature "Spin Comment" </strong>contoh : <br>
 																		{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
@@ -973,7 +1085,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 	</div>'>
 							</span>
 						</div>
-						<div class="col-md-6 col-sm-10 col-xs-10" ">
+						<div class="col-md-6 col-sm-10 col-xs-10">
 							<label>Petunjuk tanda baca spin comment</label>
 							<?php $tempurl = url("images/petunjuk-spin.jpg"); ?>
 							<span class="glyphicon glyphicon-search tooltipPlugin" title='<div class="panel-heading">Petunjuk tanda baca spin comment</div><div class="panel-content"><img src="{{$tempurl}}" width="800" height="250">
@@ -1008,6 +1120,60 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 </div>                    
 <input type="hidden" name="data[id]" value="{{$settings->id}}">
 </form>
+</div>                    
+
+
+<div id="div-mode-comment" class="div-mode">
+Inbox :
+<br>
+<?php 
+	if (!is_null($inboxResponse)) {
+		echo "total inbox: ".count($inboxResponse->inbox->threads)."<br>";
+		echo "total pending: ".count($inboxResponse->pending_requests_users)."<br>";
+	}
+?>
+<br>
+Request :
+<?php
+	if (count($pendingInboxResponse->inbox->threads) > 0 ) {
+		foreach ($pendingInboxResponse->inbox->threads as $data_arr) {
+			echo $data_arr->users[0]->username." - ".$data_arr->users[0]->profile_pic_url."<br>";
+		}
+	}
+?>
+<br>
+Inbox Real : <br>
+<?php
+	if (count($inboxResponse->inbox->threads) > 0 ) {
+		foreach ($inboxResponse->inbox->threads as $data_arr) {
+			echo $data_arr->users[0]->username." - ".$data_arr->users[0]->profile_pic_url;
+			echo $data_arr->items[0]->text;
+			echo date("Y-m-d H:i:s", $data_arr->items[0]->timestamp);
+			echo '<a href="#" class="btn-open-message" data-setting-id="'.$settings->id.'" data-thread-id="'.$data_arr->thread_id.'">'.$data_arr->users[0]->username."</a><br>";
+		}
+	}
+?>
+
+</div>
+
+
+<div id="div-testing-email" class="div-mode">
+c
+</div>
+
+
+<div id="div-mode-mention" class="div-mode hide">
+d
+</div>
+
+
+<div id="div-mode-tagged" class="div-mode hide">
+e
+</div>
+
+<div id="div-mode-follow" class="div-mode hide">
+f
+</div>
 
 <div class="row">
   <div class="col-md-12">
