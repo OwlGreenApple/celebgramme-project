@@ -99,7 +99,7 @@ Route::group(['middleware' => 'auth'], function()
 	
 	
 	/*--------- New-dashboard ---------*/
-	Route::get('/', 'Member\NewDashboardController@index');
+	// Route::get('/', 'Member\NewDashboardController@index');
 	Route::get('home', 'Member\NewDashboardController@index');
 	Route::get('dashboard', 'Member\NewDashboardController@dashboard');
 	Route::get('load-account', 'Member\NewDashboardController@load_account');
