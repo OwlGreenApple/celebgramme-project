@@ -218,45 +218,6 @@ class Setting extends Model {
 		$setting->is_active = 0;
 		$setting->save();
     
-    //checking credential with API, hitung unseen_count DM
-    try {
-      $i = new Instagram(false,false,[
-        "storage"       => "mysql",
-        "dbhost"       => Config::get('automation.DB_HOST'),
-        "dbname"   => Config::get('automation.DB_DATABASE'),
-        "dbusername"   => Config::get('automation.DB_USERNAME'),
-        "dbpassword"   => Config::get('automation.DB_PASSWORD'),
-      ]);
-      
-      $i->setUser(strtolower($arr['insta_username']), $arr['insta_password']);
-      $proxy = Proxies::find($arr_proxy["proxy_id"]);
-      if (!is_null($proxy)) {
-        $i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
-      }
-      
-      $i->login(false,300);
-      $pendingInboxResponse = $i->getPendingInbox();
-      SettingMeta::createMeta("unseen_count",$pendingInboxResponse->inbox->unseen_count,$setting_id_temp);
-    }
-    catch (\InstagramAPI\Exception\IncorrectPasswordException $e) {
-      //klo error password
-      $is_error = 1 ;
-      $error_message = $e->getMessage();
-      $ret = $this->error_password($setting_id_temp); 
-    }
-    catch (\InstagramAPI\Exception\CheckpointRequiredException $e) {
-      //klo error email / phone verification 
-      $is_error = 1 ;
-      $error_message = $e->getMessage();
-      $ret = $this->error_notification($setting_id_temp); 
-    }
-    catch (Exception $e) {
-      $is_error = 1 ;
-      $error_message = $e->getMessage();
-    }
-		
-    
-		
 		return $setting_id_temp;
 	}
 	
