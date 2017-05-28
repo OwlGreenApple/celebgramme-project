@@ -986,14 +986,14 @@ use Celebgramme\Models\SettingHelper;
 										
                     <div class="row" id="target-categories" <?php if (!$settings->status_auto) echo "style='display:none;'"; ?>>
                       <div class="col-md-12 col-sm-12">
-                        <div class="panel panel-info ">
-                          <div class="panel-heading">
-                            <h3 class="panel-title">Full Auto: Target Categories
+												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
+													<div class="header">
+                            <h2 class="panel-title">Full Auto: Target Categories
                                 <span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Target Categories</div><div class='panel-content'>Silahkan Pilih Target Kategori (max 10)<br>yang akan anda Follow & Like<br>Fitur Full Auto Settings akan OTOMATIS<br>berjalan sesuai dengan target kategori yang anda pilih.</div>">
                                 </span>
-                            </h3>
+                            </h2>
                           </div>
-                          <div class="panel-body">
+													<div class="body" style="background:transparent;box-shadow:none;">
                             <div class="row">
                               <div class="col-md-12 col-sm-12 col-xs-12">
                                 <textarea class="selectize-target" id="textarea-target-categories" name="data[target_categories]">{{$target_categories}}</textarea>
