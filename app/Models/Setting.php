@@ -140,7 +140,6 @@ class Setting extends Model {
 		} else {
 			$setting_helper->server_automation = "AA6(automation-6)";
 		}
-		$setting_helper->server_automation = "AA12(automation-12)"; //buat beta testing
 		$setting_helper->is_need_relog_API = 1; 
 		$setting_helper->save();
 
