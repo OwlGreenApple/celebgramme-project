@@ -819,9 +819,9 @@ use Celebgramme\Models\SettingHelper;
 					</div>
 					<div class="col-md-2 col-sm-6 col-xs-6 padding-0">
 						<button class="btn btn-lg bg-grey btn-block btnMessage br-6"  style="font-size:inherit;"data-toggle="tab" href="#message" <?php if ( ($settings->error_cred) || ($settings->status<>"started") ) { echo "disabled"; } ?> id="button-direct-message"><i class="fa fa-envelope text-white"></i>&nbsp;Direct Message &nbsp 
-						<img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title="<div class='panel-heading'>Direct Message</div><div class='panel-content'>
+						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Direct Message</div><div class='panel-content'>
 						Direct Message hanya dapat digunakan, ketika status setting account dalam keadaan started
-															</div>">
+															</div>"></span>
 						</button>
 					</div>
 			</div>
