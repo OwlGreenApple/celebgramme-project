@@ -1196,9 +1196,7 @@ use Celebgramme\Models\SettingHelper;
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<div class="row">
 																	<div class="col-md-6 col-sm-12 col-xs-12">
-																		<label>Comments</label> &nbsp <span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Comments</div><div class='panel-content'>• <strong>Tambahkan : </strong><@owner> , untuk men-tag owner dari post tersebut<br>
-																		• <strong>Tambahkan : </strong><@followers> , untuk men-tag followers anda<br>
-																		• <strong>Tambahkan : </strong><@following> , untuk men-tag following anda<br>
+																		<label>Comments</label> &nbsp <span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Comments</div><div class='panel-content'>
 																		• <strong>Komentar akan dipilih secara acak </strong>dari daftar ini. <br>
 																		• <strong>Celebgramme hanya memberikan 1x komentar </strong>pada setiap posting <br>
 																		• <strong>Komentar jangan menggunakan Hashtags </strong><br>
@@ -1209,10 +1207,10 @@ use Celebgramme\Models\SettingHelper;
 																		</span>
 																	</div>
 																	<div class="col-md-6 col-sm-12 col-xs-12">
-																		<label>Copy contoh spin comment</label> &nbsp <span class="glyphicon glyphicon-menu-down tooltipPlugin" title='<div class="panel-content">								{asli|serius}, {nice|kerennn|cool|wow|keren|cooooolll|niceeeee} {sekaleee|sekali|banget|beneran|bener} {photo|foto|shot|poto|pic}{kamu|ini} <@owner>
+																		<label>Copy contoh spin comment</label> &nbsp <span class="glyphicon glyphicon-menu-down tooltipPlugin" title='<div class="panel-content">								{asli|serius}, {nice|kerennn|cool|wow|keren|cooooolll|niceeeee} {sekaleee|sekali|banget|beneran|bener} {photo|foto|shot|poto|pic}{kamu|ini} 
 																		<br> <br>
-																		{nice|kerennn|cool|wow|keren|cooooolll|niceeeee} {sekaleee|sekali|banget|beneran|bener} {photo|foto|shot|poto|pic}{kamu|ini} <@owner> <br> <br>
-																		{wow|amazing|incredible|whoa|seriously} {your|the|this} {photo|picture|photograph|image|foto} {is awesome|rocks !|very nice} <@owner> 
+																		{nice|kerennn|cool|wow|keren|cooooolll|niceeeee} {sekaleee|sekali|banget|beneran|bener} {photo|foto|shot|poto|pic}{kamu|ini} <br> <br>
+																		{wow|amazing|incredible|whoa|seriously} {your|the|this} {photo|picture|photograph|image|foto} {is awesome|rocks !|very nice} 
 																		</div>'>
 																		</span> 
 																	</div>
@@ -1462,8 +1460,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 				<p>
 				*PENTING : Ada update terbaru instagram yang menyaring comments spam.<br> 
 				Pastikan Comments yang anda buat: <br>
-				Benar-benar UNIK, di SPIN dengan Kombinasi RATUSAN comments, <br>
-				& gunakan juga <@owner> & <@followers> untuk menghindari comment yang sama. <br>
+				Benar-benar UNIK, di SPIN dengan Kombinasi RATUSAN comments. <br>
 				Apabila anda masih ragu, Cukup gunakan fitur LIKE & FOLLOW SAJA. <br>
 				Tidak perlu menggunakan Comment terlebih dahulu.<br>
 				<br>
