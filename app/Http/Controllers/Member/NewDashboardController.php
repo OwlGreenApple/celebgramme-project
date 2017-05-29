@@ -250,6 +250,13 @@ class NewDashboardController extends Controller
     if (is_null($link)) {
       return redirect('dashboard')->with( 'error', 'Not authorize to access page');
     } 
+		
+		$setting = Setting::find(Request::input("setting_id"));
+		if ($setting->status <> "started") {
+			$arr["type"] = "error";
+			$arr["message"] = "Setting account belum distart";
+      return $arr;
+		}
 							
 		if (!$link->error_cred) {
 			try {
@@ -302,6 +309,13 @@ class NewDashboardController extends Controller
     if (is_null($link)) {
       return redirect('dashboard')->with( 'error', 'Not authorize to access page');
     } 
+		
+		$setting = Setting::find(Request::input("setting_id"));
+		if ($setting->status <> "started") {
+			$arr["type"] = "error";
+			$arr["message"] = "Setting account belum distart";
+      return $arr;
+		}
 		
 		if (!$link->error_cred) {
 			try {
@@ -359,6 +373,13 @@ class NewDashboardController extends Controller
     if (is_null($link)) {
       return redirect('dashboard')->with( 'error', 'Not authorize to access page');
     } 
+		
+		$setting = Setting::find(Request::input("setting_id"));
+		if ($setting->status <> "started") {
+			$arr["type"] = "error";
+			$arr["message"] = "Setting account belum distart";
+      return $arr;
+		}
 							
 		if (!$link->error_cred) {
 			try {
@@ -406,6 +427,13 @@ class NewDashboardController extends Controller
     if (is_null($link)) {
       return redirect('dashboard')->with( 'error', 'Not authorize to access page');
     } 
+		
+		$setting = Setting::find(Request::input("setting_id"));
+		if ($setting->status <> "started") {
+			$arr["type"] = "error";
+			$arr["message"] = "Setting account belum distart";
+      return $arr;
+		}
 		
 		if (!$link->error_cred) {
 			try {
@@ -471,6 +499,13 @@ class NewDashboardController extends Controller
     if (is_null($link)) {
       return redirect('dashboard')->with( 'error', 'Not authorize to access page');
     } 
+		
+		$setting = Setting::find(Request::input("setting_id"));
+		if ($setting->status <> "started") {
+			$arr["type"] = "error";
+			$arr["message"] = "Setting account belum distart";
+      return $arr;
+		}
 							
 		if (!$link->error_cred) {
 			try {
@@ -527,6 +562,13 @@ class NewDashboardController extends Controller
 			return $arr;
     } 
 		
+		$setting = Setting::find(Request::input("setting_id"));
+		if ($setting->status <> "started") {
+			$arr["type"] = "error";
+			$arr["message"] = "Setting account belum distart";
+      return $arr;
+		}
+		
 		if ( (Request::input("message") == "") && (Request::input("is_auto_responder")) ) {
 			$arr["type"] = "error";
 			$arr["message"] = "Silahkan input welcome message auto responder";
@@ -561,6 +603,13 @@ class NewDashboardController extends Controller
 			$arr["message"] = "Not authorize to access page";
 			return $arr;
     } 
+		
+		$setting = Setting::find(Request::input("setting_id"));
+		if ($setting->status <> "started") {
+			$arr["type"] = "error";
+			$arr["message"] = "Setting account belum distart";
+      return $arr;
+		}
 		
 		//checking ga bole dalam hari yang sama, maximal 5
 		$auto_responder = AutoResponderSetting::where("setting_id",Request::input("setting_id"))->count();
@@ -610,7 +659,14 @@ class NewDashboardController extends Controller
     if (is_null($link)) {
       return redirect('dashboard')->with( 'error', 'Not authorize to access page');
     } 
-							
+			
+		$setting = Setting::find(Request::input("setting_id"));
+		if ($setting->status <> "started") {
+			$arr["type"] = "error";
+			$arr["message"] = "Setting account belum distart";
+      return $arr;
+		}
+			
 		$auto_responder_setting = AutoResponderSetting::where("setting_id",Request::input("setting_id"))
 															->orderBy('num_of_day', 'asc')
 															->get();
@@ -636,6 +692,11 @@ class NewDashboardController extends Controller
     if (is_null($link)) {
       return redirect('dashboard')->with( 'error', 'Not authorize to access page');
     } 
+		
+		$setting = Setting::find(Request::input("setting_id"));
+		if ($setting->status <> "started") {
+      return redirect('dashboard')->with( 'error', 'Setting account belum distart');
+		}
 							
 		$arr["message"] = "Proses delete berhasil dilakukan";
 		$auto_responder = AutoResponderSetting::find(Request::input("id"))->delete();

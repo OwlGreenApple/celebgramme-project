@@ -76,6 +76,7 @@ use Celebgramme\Models\SettingHelper;
 								$(".btn-"+data.id).removeClass("btn-success");
 								$(".btn-"+data.id).addClass("btn-danger");
 								$(".span-status-activity").html('<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> <span style="color:#5cb85c; font-weight:Bold;">Started</span>');
+								$("#button-direct-message").prop('disabled', false);								
 							}
 							if(data.action=='stop'){
 								$(".btn-"+data.id).html("<span class='glyphicon glyphicon-play'></span> Start");
@@ -84,6 +85,7 @@ use Celebgramme\Models\SettingHelper;
 								$(".btn-"+data.id).removeClass("btn-danger");
 								$(".btn-"+data.id).addClass("btn-success");
 								$(".span-status-activity").html('<span class="glyphicon glyphicon-stop" style="color:black;"></span> <span style="color:#c12e2a; font-weight:Bold;">Stopped</span>');
+								$("#button-direct-message").prop('disabled', true);								
 							}
 						}
 						else if(data.type=='error')
@@ -816,7 +818,7 @@ use Celebgramme\Models\SettingHelper;
 						<button class="btn btn-lg bg-cyan btn-block btnGeneral br-6" data-toggle="tab" href="#general"><i class="fa fa-cog"></i>&nbsp;General</button>
 					</div>
 					<div class="col-md-2 col-sm-6 col-xs-6 padding-0">
-						<button class="btn btn-lg bg-grey btn-block btnMessage br-6"  style="font-size:inherit;"data-toggle="tab" href="#message" <?php if ($settings->error_cred) { echo "disabled"; } ?>><i class="fa fa-envelope text-white"></i>&nbsp;Direct Message</button>
+						<button class="btn btn-lg bg-grey btn-block btnMessage br-6"  style="font-size:inherit;"data-toggle="tab" href="#message" <?php if ( ($settings->error_cred) || ($settings->status<>"started") ) { echo "disabled"; } ?> id="button-direct-message"><i class="fa fa-envelope text-white"></i>&nbsp;Direct Message</button>
 					</div>
 			</div>
 			<div class="clearfix"></div><br>
