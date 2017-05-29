@@ -895,10 +895,11 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row btnGroupOO">
 															<div class="col-md-6 col-sm-6 col-xs-6">
 																<b>Auto Like My Followers</b>
-																<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Like My Followers</div><div class='panel-content'>Berguna untuk melakukan like ke Followers anda sendiri<br>
+																<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Like My Followers</div><div class='panel-content'>Berguna untuk memberikan likes ke Followers anda sendiri<br>
 																tujuannya untuk meningkatkan engagements <br>
 																sehingga terlihat natural dan dapat mengingatkan mereka <br>
 																untuk berinteraksi dengan akun anda kembali. <br>
+																25% & 50% = likes yang diberikan ke followers anda dihitung dari total <br> likes/hari <br>
 																</div>">
 															</div>
 															<div class="col-md-6 col-sm-6 col-xs-6 padding-0">
@@ -1275,19 +1276,17 @@ use Celebgramme\Models\SettingHelper;
 								<div class="card m-b-0">
 									<div class="body bg-lightGrey margin-0 padding-0">
 										<div class="row">
-											<div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:-35px;">	
+											<div class="" style="margin-bottom:-35px;margin-left:20px;">	
 												<div class="btnTab">
-													<div class="col-md-6 col-sm-12 col-xs-12 padding-0">
-														<div class="col-md-4 col-sm-12 col-xs-12 padding-0">
-															<button class="btn btn-lg bg-cyan btn-block br-6 btnDmIn" data-toggle="tab" href="#DMInbox"><i class="fa fa-envelope"></i>&nbsp;<small class="text-white">DM Inbox</small></button>
+														<div class="col-md-2 col-sm-12 col-xs-12 padding-0">
+															<button class="btn btn-lg bg-cyan btn-block br-6 btnDmIn" data-toggle="tab" href="#DMInbox"><i class="fa fa-envelope"></i>&nbsp;<small class="text-white">DM Inbox</small> &nbsp <span class="badge br-6" id="badge-dm-inbox"></span></button>
 														</div>
-														<div class="col-md-4 col-sm-12 col-xs-12 padding-0">
-															<button class="btn btn-lg bg-grey btn-block br-6 btnDmRe"  style="font-size:inherit;"data-toggle="tab" href="#DMRequest"><i class="fa fa-envelope text-white"></i>&nbsp;<small class="text-white">DM Request</small></button>
+														<div class="col-md-2 col-sm-12 col-xs-12 padding-0">
+															<button class="btn btn-lg bg-grey btn-block br-6 btnDmRe"  style="font-size:inherit;"data-toggle="tab" href="#DMRequest"><i class="fa fa-envelope text-white"></i>&nbsp;<small class="text-white">DM Request</small> &nbsp <span class="badge br-6" id="badge-dm-request"></span></button>
 														</div>
-														<div class="col-md-4 col-sm-12 col-xs-12 padding-0">
+														<div class="col-md-3 col-sm-12 col-xs-12 padding-0">
 															<button class="btn btn-lg bg-grey btn-block br-6 btnDmAu"  style="font-size:inherit;"data-toggle="tab" href="#DMAuto"><i class="fa fa-envelope text-white"></i>&nbsp;<small class="text-white">DM Auto Responder</small></button>
 														</div>
-													</div>
 												</div>
 											</div>
 										</div>

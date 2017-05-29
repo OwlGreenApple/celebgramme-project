@@ -52,3 +52,10 @@
 														?>
 															
 														</div>
+<script>
+	$("#badge-dm-request").html("<?php 
+	if (count($pendingInboxResponse->inbox->threads) > 0 ) {
+		echo count($pendingInboxResponse->inbox->threads); 
+	}
+	?>");
+</script>

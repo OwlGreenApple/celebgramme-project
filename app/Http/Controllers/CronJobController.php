@@ -582,8 +582,8 @@ class CronJobController extends Controller
 				$data_meta = DB::connection('mysqlAffiliate')->select("select meta_value from wp_af1postmeta where meta_key='price' and post_id = ".$data->ID);		
 				$isi_form_kaos = false;
 				if (intval($data_meta[0]->meta_value) >550000 ) {
-					$package = Package::find(38);
-					$isi_form_kaos = true;
+					$package = Package::find(40);
+					// $isi_form_kaos = true;
 				} else if ( (intval($data_meta[0]->meta_value) <457000 ) && (intval($data_meta[0]->meta_value) >=455000 ) ) {
 					$package = Package::find(34);
 				} else if ( (intval($data_meta[0]->meta_value) <461000 ) && (intval($data_meta[0]->meta_value) >=459000 ) ) {

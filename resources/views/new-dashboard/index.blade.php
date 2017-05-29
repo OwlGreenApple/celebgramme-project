@@ -60,7 +60,7 @@
 									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
 								</div>
 								<div class="content">
-									<p class="text-white">Tutorial Celebgramme</p>
+									<p class="text-white">Tutorial</p>
 								</div>
 							</a>
 						</div>
@@ -71,7 +71,7 @@
 									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
 								</div>
 								<div class="content">
-									<p class="text-white">DM Auto Responder</p>
+									<p class="text-white">DM Setup</p>
 								</div>
 							</a>
 						</div>

@@ -1,6 +1,7 @@
 														<div class="col-md-12 col-sm-12 col-xs-12">
 															<div class="clearfix"></div><br/>
 															<?php
+																$counter =0;
 																if (count($inboxResponse->inbox->threads) > 0 ) {
 																	foreach ($inboxResponse->inbox->threads as $data_arr) {
 																		$date_message = substr($data_arr->items[0]->timestamp,0,10);
@@ -13,6 +14,7 @@
 																		$status_new_message = false;
 																		if ($data_arr->users[0]->pk == $data_arr->items[0]->user_id) {
 																			$status_new_message = true;
+																			$counter += 1;
 																		}
 															?>
 															<div class="row">
@@ -62,3 +64,15 @@
 															?>
 															
 														</div>
+<script>
+	$("#badge-dm-inbox").html("<?php 
+	if ($counter > 0 ) {
+		echo $counter;
+	}
+	?>");
+	$("#badge-dm-request").html("<?php 
+	if (count($pendingInboxResponse->inbox->threads) > 0 ) {
+		echo count($pendingInboxResponse->inbox->threads); 
+	}
+	?>");
+</script>
