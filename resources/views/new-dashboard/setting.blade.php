@@ -1310,14 +1310,31 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row">
 															<div class="clearfix"></div><br/>
 															<div class="col-md-12 col-sm-12 col-xs-12">
-																<span>Welcome Message New Followers</span>
-																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Welcome Message New Followers</div><div class='panel-content'>Fitur ini akan memberikan Direct Message (DM) kepada <br>
-																user yang pertama kali memfollow akun anda <br>
-																Gunakan fitur ini untuk menyapa mereka, sebagai welcome message <br>
+																<span>Welcome Message To New Followers (DM Auto Reply) </span>
+																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Welcome Message New Followers ( DM Auto Reply )</div><div class='panel-content'>Fitur ini mengirimkan Direct Message (DM) kepada <br>
+																New Users saat pertama kali Menjadi Followers anda <br>
+																- Gunakan fitur ini untuk menyapa mereka, sebagai WELCOME message <br>
+																- Gunakan fitur SPIN message, sehingga lebih banyak variasi DM Auto Reply
 																</div>">
 																</span>
 																
 															</div>
+															<div class="col-md-12 col-sm-12 col-xs-12">
+																<label>Penjelasan spin message</label> &nbsp <span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Penjelasan fitur spin message</div>								<div class="panel-content"><strong>Gunakan Feature "Spin Message" </strong>contoh : <br>
+																{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
+																	*contoh diatas akan menghasilkan <strong>4x3x3x6 = 216 kombinasi messages </strong> sekaligus <br>
+																	</div>'>
+																</span>
+															</div>
+															<div class="col-md-12 col-sm-12 col-xs-12">
+																<label>Petunjuk tanda spin message</label> &nbsp
+																<?php $tempurl = url("images/petunjuk-spin.jpg"); ?>
+																<span class="glyphicon glyphicon-search tooltipPlugin" title='<div class="panel-heading">Petunjuk tanda baca spin message</div><div class="panel-content"><img src="{{$tempurl}}" width="800" height="250">
+																</div>'>
+																</span>
+																
+															</div>
+															
 															<div class="col-md-5 col-sm-12 col-xs-12">
 																<button type="button" class="btn <?php if ($settings->is_auto_responder) echo 'btn-primary' ?>" id="AutoResponderOnButton" style="color:#fff;margin-left:0px;">ON</button>
 																<button type="button" class="btn <?php if (!$settings->is_auto_responder) echo 'btn-danger' ?>" id="AutoResponderOffButton" style="color:#fff;">OFF</button>
@@ -1326,11 +1343,11 @@ use Celebgramme\Models\SettingHelper;
 															<div class="col-md-2 col-sm-12 col-xs-12">
 																<button class="btn btn-md bg-cyan pull-left" data-toggle="modal" data-target="#add-autoresponder" id="button-create-auto-responder" style="margin-left:0px;">
 																<span class="glyphicon glyphicon-plus"></span> &nbsp Add Response</button>
-																<img class="cursorActive tooltipPlugin " src="{{asset('/new-dashboard/images/questionIcon.png')}}" title="<div class='panel-heading'>Add Responses</div><div class='panel-content'>Fitur DM Auto responder ini berguna untuk melakukan Follow up <br>
+																<span class="glyphicon glyphicon-question-sign tooltipPlugin"  title="<div class='panel-heading'>Add Responses</div><div class='panel-content'>Fitur DM Auto responder ini berguna untuk melakukan Follow up <br>
 																dengan followers baru anda. Anda dapat menambahkan up to 5 Auto DM <br>
 																dengan pilihan hari yang berbeda-beda ( dihitung sejak followers tersebut <br>
 																menjadi followers anda )
-																</div>" style="margin-top: 5px;margin-left: 5px;">
+																</div>" style="margin-top: 5px;margin-left: 5px;"></span>
 																
 																
 															</div>
@@ -1509,7 +1526,12 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 								<!-- form auto responder -->
 								<form enctype="multipart/form-data" id="form-auto-responder">
 									<div class="form-group form-group-sm row">
-										<label class="col-xs-12 col-sm-12 md-12 control-label" for="formGroupInputSmall">Message</label>
+										<label class="col-xs-12 col-sm-12 md-12 control-label" for="formGroupInputSmall">Message&nbsp <span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Penjelasan fitur spin message</div>								<div class="panel-content"><strong>Gunakan Feature "Spin Message" </strong>contoh : <br>
+																{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
+																	*contoh diatas akan menghasilkan <strong>4x3x3x6 = 216 kombinasi messages </strong> sekaligus <br>
+																	</div>'>
+																</span>
+										</label> 
 										<div class="col-sm-12 col-md-12 col-xs-12">
 											<!--<input type="text" class="form-control" placeholder="Isi Auto Respond Message" name="message" id="message">-->
 											<textarea class="form-control" id="message_responder" name="message_responder" style="height:70px;"></textarea>
