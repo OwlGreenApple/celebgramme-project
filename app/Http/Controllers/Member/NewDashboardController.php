@@ -540,11 +540,11 @@ class NewDashboardController extends Controller
 						}
 						
 						//input array data
-						$inboxResponse = array_merge($inboxResponse, $response);
+						$inboxResponse = (object) array_merge((array) $inboxResponse, (array) $response);
 					
 					} while ($has_next_page);
 				}
-dd($inboxResponse);				
+
         //save unseen_count
         $pendingInboxResponse = $i->getPendingInbox();
         SettingMeta::createMeta("unseen_count",$pendingInboxResponse->inbox->unseen_count,Request::input("setting_id"));
