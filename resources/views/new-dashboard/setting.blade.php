@@ -274,12 +274,13 @@ use Celebgramme\Models\SettingHelper;
 				}
 			})
 		});
-		$( "body" ).on( "click", ".btnDmIn, .btnMessage", function(e) {
+		$( "body" ).on( "change", "#sort-inbox-select", function(e) {
 			$.ajax({
 				type: 'GET',
 				url: "<?php echo url('get-dm-inbox'); ?>",
 				data: {
 					setting_id : setting_id,
+					is_sort : $(#sort-inbox-select).val(),
 				},
 				dataType: 'text',
 				beforeSend: function()
@@ -296,9 +297,41 @@ use Celebgramme\Models\SettingHelper;
 					{
 						$("#DMInbox").html(data.resultEmailData);
 					}
-					// else if(data.type=='error')
-					// {
-					// }
+					var max = -1;
+					$(".same-height").each(function() {
+							var h = $(this).height(); 
+							max = h > max ? h : max;
+					});
+					$(".same-height").each(function() {
+							$(this).height(max); 
+					});
+					
+				}
+			})
+		});
+		$( "body" ).on( "click", ".btnDmIn, .btnMessage", function(e) {
+			$.ajax({
+				type: 'GET',
+				url: "<?php echo url('get-dm-inbox'); ?>",
+				data: {
+					setting_id : setting_id,
+					is_sort : $(#sort-inbox-select).val(),
+				},
+				dataType: 'text',
+				beforeSend: function()
+				{
+					$("#div-loading").show();
+				},
+				success: function(result) {
+					$("#div-loading").hide();
+					var data = jQuery.parseJSON(result);
+					// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
+					// console.log(dataMessage);
+					
+					if(data.type=='success')
+					{
+						$("#DMInbox").html(data.resultEmailData);
+					}
 					var max = -1;
 					$(".same-height").each(function() {
 							var h = $(this).height(); 

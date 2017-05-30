@@ -1,3 +1,18 @@
+														<div class="row">
+															<div class="col-md-2 col-sm-12 col-xs-12">
+																<label>Sort by :</label>
+															</div>
+															<div class="col-md-2 col-sm-12 col-xs-12">
+																<select class="form-control" id="sort-inbox-select">
+																	<option value="0">
+																		All Responses
+																	</option>
+																	<option value="1">
+																		Waiting Responses
+																	</option>
+																</select>
+															</div>
+														</div>
 														<div class="col-md-12 col-sm-12 col-xs-12">
 															<div class="clearfix"></div><br/>
 															<?php

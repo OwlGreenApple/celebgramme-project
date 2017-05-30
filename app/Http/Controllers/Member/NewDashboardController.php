@@ -577,9 +577,11 @@ class NewDashboardController extends Controller
 					$counter += 1;
 				} while ($has_next_page);
 				
-				usort($arr_inbox, function($a, $b) {
+				if (Request::input("is_sort") == "1") {
+					usort($arr_inbox, function($a, $b) {
 						return $b['status_new_message'] - $a['status_new_message'];
-				});
+					});
+				}
 				
         //save unseen_count
         $pendingInboxResponse = $i->getPendingInbox();
