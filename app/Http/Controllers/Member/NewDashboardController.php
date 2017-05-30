@@ -561,6 +561,9 @@ class NewDashboardController extends Controller
 								continue;
 							}
 							$status_new_message = false;
+							if ($data_arr->users[0]->pk == $data_arr->items[0]->user_id) {
+								$status_new_message = true;
+							}
 							$arr_data["status_new_message"] = $status_new_message;
 							$arr_data["user_id"] = $data_arr->items[0]->user_id;
 							$arr_data["username"] = $data_arr->users[0]->username;
