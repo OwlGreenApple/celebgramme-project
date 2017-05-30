@@ -540,7 +540,7 @@ class NewDashboardController extends Controller
 						}
 						
 						//input array data
-						$inboxResponse = (object) array_merge((array) $inboxResponse, (array) $response);
+						$inboxResponse = array_merge((array) $inboxResponse, (array) $response);
 					
 					} while ($has_next_page);
 				}
@@ -550,7 +550,7 @@ class NewDashboardController extends Controller
         SettingMeta::createMeta("unseen_count",$pendingInboxResponse->inbox->unseen_count,Request::input("setting_id"));
 				
 				$arr["resultEmailData"] = view("new-dashboard.DM-inbox")->with(array(
-																			'inboxResponse'=>$inboxResponse,
+																			'inboxResponse'=>(object) $inboxResponse,
 																			'pendingInboxResponse'=>$pendingInboxResponse,
 																		))->render();
 			}
