@@ -11,8 +11,8 @@
 																		}
 																		
 																		//klo ga ada usernya di break
-																		if (is_null($data_arr->users)) {
-																			break;
+																		if ( (is_null($data_arr->users)) || (empty($data_arr->users)) ) {
+																			continue;
 																		}
 																		
 																		//checking new message or not
