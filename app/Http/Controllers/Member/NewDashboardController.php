@@ -525,6 +525,25 @@ class NewDashboardController extends Controller
 				
 				$i->login(false,300);
 				$inboxResponse = $i->getV2Inbox();
+				if (!is_null($inboxResponse->inbox->oldest_cursor)) {
+					$end_cursor = $inboxResponse->inbox->oldest_cursor;
+					do {
+						$has_next_page = true;
+						$response = $i->getV2Inbox($end_cursor);
+
+						if (!is_null($response->inbox->oldest_cursor)) {
+							$end_cursor = $response->inbox->oldest_cursor;
+						} else {
+							//klo null
+							$has_next_page = false;
+							$end_cursor = "";
+						}
+						
+						//input array data
+						$inboxResponse = array_merge($inboxResponse, $response);
+					
+					} while ($has_next_page);
+				}
 				
         //save unseen_count
         $pendingInboxResponse = $i->getPendingInbox();
