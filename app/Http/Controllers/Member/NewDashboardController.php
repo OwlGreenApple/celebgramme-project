@@ -577,9 +577,10 @@ class NewDashboardController extends Controller
 					$counter += 1;
 				} while ($has_next_page);
 				
-usort($arr_inbox, function($a, $b) {
-    return $a['status_new_message'] - $b['status_new_message'];
-});
+				usort($arr_inbox, function($a, $b) {
+						return $b['status_new_message'] - $a['status_new_message'];
+				});
+				
         //save unseen_count
         $pendingInboxResponse = $i->getPendingInbox();
         SettingMeta::createMeta("unseen_count",$pendingInboxResponse->inbox->unseen_count,Request::input("setting_id"));
