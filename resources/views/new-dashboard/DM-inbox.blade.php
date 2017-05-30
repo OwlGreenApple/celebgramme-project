@@ -10,6 +10,11 @@
 																			$text_message = substr($text_message,0,115)." ...";
 																		}
 																		
+																		//klo ga ada usernya di break
+																		if (is_null($data_arr->users)) {
+																			break;
+																		}
+																		
 																		//checking new message or not
 																		$status_new_message = false;
 																		if ($data_arr->users[0]->pk == $data_arr->items[0]->user_id) {
