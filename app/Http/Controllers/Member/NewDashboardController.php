@@ -544,7 +544,7 @@ class NewDashboardController extends Controller
 					
 					} while ($has_next_page);
 				}
-				
+dd($inboxResponse);				
         //save unseen_count
         $pendingInboxResponse = $i->getPendingInbox();
         SettingMeta::createMeta("unseen_count",$pendingInboxResponse->inbox->unseen_count,Request::input("setting_id"));
