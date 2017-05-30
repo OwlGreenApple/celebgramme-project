@@ -315,7 +315,7 @@ use Celebgramme\Models\SettingHelper;
 				url: "<?php echo url('get-dm-inbox'); ?>",
 				data: {
 					setting_id : setting_id,
-					is_sort : $(#sort-inbox-select).val(),
+					is_sort : $("#sort-inbox-select").val(),
 				},
 				dataType: 'text',
 				beforeSend: function()
