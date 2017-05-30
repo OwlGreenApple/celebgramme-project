@@ -56,7 +56,7 @@
 																	<div class="row">
 																		<div class="col-md-4 col-sm-12 col-xs-12 br-6" style="margin-right: -16px;">
 																			<div style="padding:5px;" class="bg-white br-6 text-center same-height">
-																				<b class="text-primary" style="margin-top:15px;display:block">{{date("l", (int)$data_arr['date_message1'])}}<br>{{date("Y-m-d", (int)$data_arr['date_message2'])}}</b>
+																				<b class="text-primary" style="margin-top:15px;display:block">{{$data_arr['date_message1']}}<br>{{$data_arr['date_message2']}}</b>
 																			</div>
 																		</div>
 																		<div class="col-md-4 col-sm-12 col-xs-12 br-6" style="">
