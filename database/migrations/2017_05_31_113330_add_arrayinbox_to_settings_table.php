@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddMessagesToSettingsTable extends Migration
+class AddArrayinboxToSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,8 @@ class AddMessagesToSettingsTable extends Migration
     public function up()
     {
         Schema::table('settings', function (Blueprint $table) {
-            $table->longText('messages');
+            $table->longText('array_inbox')->nullable();
+            $table->dateTime('last_update_inbox')->nullable();
         });
     }
 

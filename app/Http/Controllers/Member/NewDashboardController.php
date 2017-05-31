@@ -525,58 +525,78 @@ class NewDashboardController extends Controller
 				
 				$i->login(false,300);
 				
-				$arr_inbox = array(); $counter = 0;
-				// if (!is_null($inboxResponse->inbox->oldest_cursor)) {
-				$end_cursor = "";
-				do {
-					$has_next_page = true;
-					if ($counter==0) {
-						$inboxResponse = $i->getV2Inbox();
-					} else {
-						$inboxResponse = $i->getV2Inbox($end_cursor);
+				$need_update = false;
+				if (is_null($setting->last_update_inbox)) {
+					$need_update = true;
+				} else {
+					$dt1 = Carbon::createFromFormat('Y-m-d H:i:s', $setting->last_update_inbox);
+					$dt2 = Carbon::now()->addMinutes(30);
+					if ( $dt2->lte($dt1) ) { 
+						$need_update = true;
 					}
-
-					if (!is_null($inboxResponse->inbox->oldest_cursor)) {
-						$end_cursor = $inboxResponse->inbox->oldest_cursor;
-					} else {
-						//klo null
-						$has_next_page = false;
-						$end_cursor = "";
-					}
-					
-					//input array data
-					if (count($inboxResponse->inbox->threads) > 0 ) {
-						$counter_respond = 0;
-						foreach ($inboxResponse->inbox->threads as $data_arr) {
-							$date_message = substr($data_arr->items[0]->timestamp,0,10);
-							$arr_data["date_message1"] = date("l", $date_message);
-							$arr_data["date_message2"] = date("Y-m-d", $date_message);
-							$text_message = $data_arr->items[0]->text;
-							if (strlen($text_message)>=42) {
-								$text_message = substr($text_message,0,115)." ...";
-							}
-							$arr_data["text_message"] = $text_message;
-							//klo ga ada usernya di break
-							if ( (is_null($data_arr->users)) || (empty($data_arr->users)) ) {
-								continue;
-							}
-							$status_new_message = false;
-							if ($data_arr->users[0]->pk == $data_arr->items[0]->user_id) {
-								$status_new_message = true;
-							}
-							$arr_data["status_new_message"] = $status_new_message;
-							$arr_data["user_id"] = $data_arr->items[0]->user_id;
-							$arr_data["username"] = $data_arr->users[0]->username;
-							$arr_data["profile_pic_url"] = $data_arr->users[0]->profile_pic_url;
-							$arr_data["thread_id"] = $data_arr->thread_id;
-							$arr_data["pk"] = $data_arr->users[0]->pk;
-							
-							$arr_inbox[] = $arr_data;
-						}
-					}
-					$counter += 1;
-				} while ($has_next_page);
+				}
 				
+				if ($need_update) {
+					$arr_inbox = array(); $counter = 0;
+					// if (!is_null($inboxResponse->inbox->oldest_cursor)) {
+					$end_cursor = "";
+					do {
+						$has_next_page = true;
+						if ($counter==0) {
+							$inboxResponse = $i->getV2Inbox();
+						} else {
+							$inboxResponse = $i->getV2Inbox($end_cursor);
+						}
+
+						if (!is_null($inboxResponse->inbox->oldest_cursor)) {
+							$end_cursor = $inboxResponse->inbox->oldest_cursor;
+						} else {
+							//klo null
+							$has_next_page = false;
+							$end_cursor = "";
+						}
+						
+						//input array data
+						if (count($inboxResponse->inbox->threads) > 0 ) {
+							$counter_respond = 0;
+							foreach ($inboxResponse->inbox->threads as $data_arr) {
+								$date_message = substr($data_arr->items[0]->timestamp,0,10);
+								$arr_data["date_message1"] = date("l", $date_message);
+								$arr_data["date_message2"] = date("Y-m-d", $date_message);
+								$text_message = $data_arr->items[0]->text;
+								if (strlen($text_message)>=42) {
+									$text_message = substr($text_message,0,115)." ...";
+								}
+								$arr_data["text_message"] = $text_message;
+								//klo ga ada usernya di break
+								if ( (is_null($data_arr->users)) || (empty($data_arr->users)) ) {
+									continue;
+								}
+								$status_new_message = false;
+								if ($data_arr->users[0]->pk == $data_arr->items[0]->user_id) {
+									$status_new_message = true;
+								}
+								$arr_data["status_new_message"] = $status_new_message;
+								$arr_data["user_id"] = $data_arr->items[0]->user_id;
+								$arr_data["username"] = $data_arr->users[0]->username;
+								$arr_data["profile_pic_url"] = $data_arr->users[0]->profile_pic_url;
+								$arr_data["thread_id"] = $data_arr->thread_id;
+								$arr_data["pk"] = $data_arr->users[0]->pk;
+								
+								$arr_inbox[] = $arr_data;
+							}
+						}
+						$counter += 1;
+					} while ($has_next_page);
+					$dt = Carbon::now();
+					$setting->array_inbox = json_encode($arr_inbox);
+					$setting->last_update_inbox = $dt->toDateTimeString();
+					$setting->save(); 
+					$arr_inbox = json_decode(json_encode($arr_inbox));
+				} else {
+					$arr_inbox = json_decode($setting->array_inbox);
+				}
+
 				if (Request::input("is_sort") == "1") {
 					usort($arr_inbox, function($a, $b) {
 						return $b['status_new_message'] - $a['status_new_message'];
@@ -588,7 +608,7 @@ class NewDashboardController extends Controller
         SettingMeta::createMeta("unseen_count",$pendingInboxResponse->inbox->unseen_count,Request::input("setting_id"));
 				
 				$arr["resultEmailData"] = view("new-dashboard.DM-inbox")->with(array(
-																			'inboxResponse'=> $inboxResponse,
+																			// 'inboxResponse'=> $inboxResponse,
 																			'arr_inbox'=> $arr_inbox,
 																			'pendingInboxResponse'=>$pendingInboxResponse,
 																		))->render();
