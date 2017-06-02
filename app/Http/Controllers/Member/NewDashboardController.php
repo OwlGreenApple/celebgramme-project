@@ -592,11 +592,12 @@ class NewDashboardController extends Controller
 					$setting->array_inbox = json_encode($arr_inbox);
 					$setting->last_update_inbox = $dt->toDateTimeString();
 					$setting->save(); 
-					$arr_inbox = json_decode(json_encode($arr_inbox));
+					$arr_inbox = json_decode(json_encode($arr_inbox),true);
 				} else {
-					$arr_inbox = json_decode($setting->array_inbox);
+					$arr_inbox = json_decode($setting->array_inbox,true);
 				}
 
+				$arr_inbox = (array) $arr_inbox;
 				if (Request::input("is_sort") == "1") {
 					usort($arr_inbox, function($a, $b) {
 						return $b['status_new_message'] - $a['status_new_message'];
