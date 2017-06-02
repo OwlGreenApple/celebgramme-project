@@ -536,6 +536,10 @@ class NewDashboardController extends Controller
 					}
 				}
 				
+				if (Request::input("is_refresh")=="1") {
+						$need_update = true;
+				}
+				
 				if ($need_update) {
 					$arr_inbox = array(); $counter = 0;
 					// if (!is_null($inboxResponse->inbox->oldest_cursor)) {

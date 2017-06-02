@@ -309,13 +309,15 @@ use Celebgramme\Models\SettingHelper;
 				}
 			})
 		});
-		$( "body" ).on( "click", ".btnDmIn, .btnMessage", function(e) {
+		$( "body" ).on( "click", ".btnDmIn, .btnMessage, #button-refresh-DMInbox", function(e) {
+			e.preventDefault();
 			$.ajax({
 				type: 'GET',
 				url: "<?php echo url('get-dm-inbox'); ?>",
 				data: {
 					setting_id : setting_id,
 					is_sort : $("#sort-inbox-select").val(),
+					is_refresh : $(this).attr("data-is-refresh"),
 				},
 				dataType: 'text',
 				beforeSend: function()
@@ -851,7 +853,7 @@ use Celebgramme\Models\SettingHelper;
 						<button class="btn btn-lg bg-cyan btn-block btnGeneral br-6" data-toggle="tab" href="#general"><i class="fa fa-cog"></i>&nbsp;General</button>
 					</div>
 					<div class="col-md-2 col-sm-6 col-xs-6 padding-0">
-						<button class="btn btn-lg bg-grey btn-block btnMessage br-6"  style="font-size:inherit;"data-toggle="tab" href="#message" <?php if ( ($settings->error_cred) || ($settings->status<>"started") ) { echo "disabled"; } ?> id="button-direct-message"><i class="fa fa-envelope text-white"></i>&nbsp;Direct Message &nbsp 
+						<button class="btn btn-lg bg-grey btn-block btnMessage br-6"  style="font-size:inherit;"data-toggle="tab" href="#message" <?php if ( ($settings->error_cred) || ($settings->status<>"started") ) { echo "disabled"; } ?> id="button-direct-message" data-is-refresh="0"><i class="fa fa-envelope text-white"></i>&nbsp;Direct Message &nbsp 
 						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Direct Message</div><div class='panel-content'>
 						Direct Message hanya dapat digunakan, ketika status setting account dalam keadaan started
 															</div>"></span>
@@ -1316,7 +1318,7 @@ use Celebgramme\Models\SettingHelper;
 											<div class="" style="margin-bottom:-35px;margin-left:20px;">	
 												<div class="btnTab">
 														<div class="col-md-2 col-sm-12 col-xs-12 padding-0">
-															<button class="btn btn-lg bg-cyan btn-block br-6 btnDmIn" data-toggle="tab" href="#DMInbox"><i class="fa fa-envelope"></i>&nbsp;<small class="text-white">DM Inbox</small> &nbsp <span class="badge br-6" id="badge-dm-inbox"></span></button>
+															<button class="btn btn-lg bg-cyan btn-block br-6 btnDmIn" data-toggle="tab" href="#DMInbox" data-is-refresh="0"><i class="fa fa-envelope"></i>&nbsp;<small class="text-white">DM Inbox</small> &nbsp <span class="badge br-6" id="badge-dm-inbox"></span></button>
 														</div>
 														<div class="col-md-2 col-sm-12 col-xs-12 padding-0">
 															<button class="btn btn-lg bg-grey btn-block br-6 btnDmRe"  style="font-size:inherit;"data-toggle="tab" href="#DMRequest"><i class="fa fa-envelope text-white"></i>&nbsp;<small class="text-white">DM Request</small> &nbsp <span class="badge br-6" id="badge-dm-request"></span></button>

@@ -12,6 +12,9 @@
 																	</option>
 																</select>
 															</div>
+															<div class="col-md-3 col-sm-12 col-xs-12">
+																<button class="btn btn-lg br-6 bg-cyan" id="button-refresh-DMInbox" data-is-refresh="1">Refresh</button>
+															</div>
 														</div>
 														<div class="col-md-12 col-sm-12 col-xs-12">
 															<div class="clearfix"></div><br/>
