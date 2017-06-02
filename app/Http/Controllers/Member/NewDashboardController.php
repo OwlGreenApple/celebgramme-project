@@ -654,9 +654,9 @@ class NewDashboardController extends Controller
 		}
 		
 		if (!Request::input("is_auto_responder")) {
-			$arr["type"] = "error";
+			// $arr["type"] = "error";
 			$arr["message"] = "Status OFF, Auto Responder tidak dijalankan";
-			return $arr;
+			// return $arr;
 		}
 		
 		$setting = Setting::find(Request::input("setting_id"));
