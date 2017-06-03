@@ -529,8 +529,8 @@ class NewDashboardController extends Controller
 				if (is_null($setting->last_update_inbox)) {
 					$need_update = true;
 				} else {
-					$dt1 = Carbon::createFromFormat('Y-m-d H:i:s', $setting->last_update_inbox);
-					$dt2 = Carbon::now()->addMinutes(30);
+					$dt1 = Carbon::createFromFormat('Y-m-d H:i:s', $setting->last_update_inbox)->addMinutes(30);
+					$dt2 = Carbon::now();
 					if ( $dt2->lte($dt1) ) { 
 						$need_update = true;
 					}
