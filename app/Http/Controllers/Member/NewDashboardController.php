@@ -664,6 +664,12 @@ class NewDashboardController extends Controller
 			// return $arr;
 		}
 		
+		if ( ((strpos(Request::input("message"), '{') == false) || (strpos(Request::input("message"), '}')==false)) && (Request::input("is_auto_responder")) ) {
+			$arr["message"]= "Direct Message memerlukan spin message, sebaiknya spin message anda mengandung lebih dari 250 kombinasi message";
+			$arr["type"]= "error";
+			return $arr;
+		}
+		
 		$setting = Setting::find(Request::input("setting_id"));
 		$setting->messages = Request::input("message");
 		$setting->is_auto_responder = Request::input("is_auto_responder");
@@ -696,7 +702,7 @@ class NewDashboardController extends Controller
 		
 		//checking ga bole dalam hari yang sama, maximal 5
 		$auto_responder = AutoResponderSetting::where("setting_id",Request::input("setting_id"))->count();
-		if ($auto_responder >= 5) {
+		if ( ($auto_responder >= 5) && (Request::input("id-auto-responder")=="new") ) {
 			$arr["type"] = "error";
 			$arr["message"] = "Auto responder tidak boleh lebih dari 5";
 			return $arr;
@@ -711,6 +717,13 @@ class NewDashboardController extends Controller
 				}
 			}
 		}
+		
+		if ((strpos(Request::input("message_responder"), '{') == false) || (strpos(Request::input("message_responder"), '}')==false)) {
+			$arr["message"]= "Auto Responder memerlukan spin message, sebaiknya spin message anda mengandung lebih dari 250 kombinasi message";
+			$arr["type"]= "error";
+			return $arr;
+		}
+		
 			
     if (Request::input("id-auto-responder")=="new") {
       $arr["message"] = "Proses add berhasil dilakukan";
