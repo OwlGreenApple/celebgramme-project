@@ -565,7 +565,7 @@ class NewDashboardController extends Controller
 							$counter_respond = 0;
 							foreach ($inboxResponse->inbox->threads as $data_arr) {
 								$date_message = substr($data_arr->items[0]->timestamp,0,10);
-								$arr_data["date_message1"] = date("l", $date_message);
+								$arr_data["date_message1"] = date("l, H:i:s", $date_message);
 								$arr_data["date_message2"] = date("Y-m-d", $date_message);
 								$text_message = $data_arr->items[0]->text;
 								if (strlen($text_message)>=42) {
