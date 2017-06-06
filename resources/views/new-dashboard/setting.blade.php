@@ -311,9 +311,11 @@ use Celebgramme\Models\SettingHelper;
 			})
 		});
 		$( "body" ).on( "change", "#sort-inbox-select", function(e) {
+			e.preventDefault();
 			load_dm_inbox(1);
 		});
 		$( "body" ).on( "click", ".btnDmIn, .btnMessage, #button-refresh-DMInbox", function(e) {
+			e.preventDefault();
 			load_dm_inbox(1);
 		});
 		
