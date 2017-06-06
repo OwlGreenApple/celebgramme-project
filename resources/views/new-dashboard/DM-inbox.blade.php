@@ -80,7 +80,6 @@
 																}
 																$totalPage = floor(count($arr_inbox) / 20) +1;
 																
-																// dd($pagination);
 																$startPage = $currentPage - 4;
 																$endPage = $currentPage + 4;
 
@@ -124,6 +123,7 @@
 																<?php
 																}
 																?>
+																echo count($arr_inbox)." - ".$totalPage;
 																</ul>
 															</nav>  
 															
