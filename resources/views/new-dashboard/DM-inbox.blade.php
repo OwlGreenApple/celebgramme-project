@@ -1,22 +1,3 @@
-														<div class="row">
-															<div class="col-md-2 col-sm-12 col-xs-12">
-																<label>Sort by :</label>
-															</div>
-															<div class="col-md-3 col-sm-12 col-xs-12">
-																<select class="form-control" id="sort-inbox-select">
-																	<option value="0">
-																		All Responses
-																	</option>
-																	<option value="1">
-																		Waiting Responses
-																	</option>
-																</select>
-															</div>
-															<div class="col-md-3 col-sm-12 col-xs-12">
-																<button class="btn btn-lg br-6 bg-cyan" id="button-refresh-DMInbox" data-is-refresh="1">Refresh</button>
-															</div>
-														</div>
-														<div class="col-md-12 col-sm-12 col-xs-12">
 															<div class="clearfix"></div><br/>
 															<?php
 																$counter =0;
@@ -152,7 +133,6 @@
 															
 															
 															
-														</div>
 <script>
 	$("#badge-dm-inbox").html("<?php 
 	if ($counter > 0 ) {

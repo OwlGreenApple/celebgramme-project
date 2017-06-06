@@ -39,7 +39,7 @@ use Celebgramme\Models\SettingHelper;
 					
 					if(data.type=='success')
 					{
-						$("#DMInbox").html(data.resultEmailData);
+						$("#dm-inbox-content").html(data.resultEmailData);
 					}
 					var max = -1;
 					$(".same-height").each(function() {
@@ -1303,6 +1303,28 @@ use Celebgramme\Models\SettingHelper;
 											<div class="col-md-12 col-sm-12 col-xs-12">
 												<div class="tab-content">
 													<div id="DMInbox" class="tab-pane fade in active">
+														<div class="row">
+															<div class="col-md-2 col-sm-12 col-xs-12">
+																<label>Sort by :</label>
+															</div>
+															<div class="col-md-3 col-sm-12 col-xs-12">
+																<select class="form-control" id="sort-inbox-select">
+																	<option value="0">
+																		All Responses
+																	</option>
+																	<option value="1">
+																		Waiting Responses
+																	</option>
+																</select>
+															</div>
+															<div class="col-md-3 col-sm-12 col-xs-12">
+																<button class="btn btn-lg br-6 bg-cyan" id="button-refresh-DMInbox" data-is-refresh="1">Refresh</button>
+															</div>
+														</div>
+														<div class="col-md-12 col-sm-12 col-xs-12" id="dm-inbox-content">
+														</div>
+														
+													
 													</div>
 													<div id="DMRequest" class="tab-pane">
 													</div>
