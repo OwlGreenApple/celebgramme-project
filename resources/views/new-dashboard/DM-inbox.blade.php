@@ -122,8 +122,8 @@
 																	
 																<?php
 																}
-																?>
 																echo count($arr_inbox)." - ".$totalPage;
+																?>
 																</ul>
 															</nav>  
 															
