@@ -609,11 +609,13 @@ class NewDashboardController extends Controller
 						return $b['status_new_message'] - $a['status_new_message'];
 					});
 				}
+				$total_data = count($arr_inbox);
 				
 				//buat pagination
 				$page = Request::input('page'); // Get the current page or default to 1, this is what you miss!
 				$perPage = 20;
 				$offset = ($page * $perPage) - $perPage;
+				$totalPage = floor($total_data / $perPage) +1;
 				
 				$collection = collect($arr_inbox);
 				$chunk = $collection->forPage($page, $perPage);
@@ -637,6 +639,7 @@ class NewDashboardController extends Controller
 																			'arr_inbox'=> $arr_inbox,
 																			'pendingInboxResponse'=>$pendingInboxResponse,
 																			'page'=>$page,
+																			'totalPage'=>$totalPage,
 																		))->render();
 			}
 			catch (Exception $e) {

@@ -78,7 +78,7 @@
 																} else {
 																	$currentPage = $page;
 																}
-																$totalPage = floor(count($arr_inbox) / 20) +1;
+																// $totalPage = floor($total_data / 20) +1;
 																
 																$startPage = $currentPage - 4;
 																$endPage = $currentPage + 4;
@@ -122,7 +122,7 @@
 																	
 																<?php
 																}
-																echo count($arr_inbox)." - ".$totalPage;
+																// echo count($arr_inbox)." - ".$totalPage;
 																?>
 																</ul>
 															</nav>  
