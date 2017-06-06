@@ -17,6 +17,42 @@ use Celebgramme\Models\SettingHelper;
 ?>
 <script>
 	setting_id = <?php echo $settings->id; ?>;
+	function load_dm_inbox(page){
+			$.ajax({
+				type: 'GET',
+				url: "<?php echo url('get-dm-inbox'); ?>",
+				data: {
+					setting_id : setting_id,
+					is_sort : $("#sort-inbox-select").val(),
+					page : page,
+				},
+				dataType: 'text',
+				beforeSend: function()
+				{
+					$("#div-loading").show();
+				},
+				success: function(result) {
+					$("#div-loading").hide();
+					var data = jQuery.parseJSON(result);
+					// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
+					// console.log(dataMessage);
+					
+					if(data.type=='success')
+					{
+						$("#DMInbox").html(data.resultEmailData);
+					}
+					var max = -1;
+					$(".same-height").each(function() {
+							var h = $(this).height(); 
+							max = h > max ? h : max;
+					});
+					$(".same-height").each(function() {
+							$(this).height(max); 
+					});
+					
+				}
+			});			
+	}
 	function load_auto_responder(){
 		$.ajax({
 			type: 'GET',
@@ -275,76 +311,10 @@ use Celebgramme\Models\SettingHelper;
 			})
 		});
 		$( "body" ).on( "change", "#sort-inbox-select", function(e) {
-			$.ajax({
-				type: 'GET',
-				url: "<?php echo url('get-dm-inbox'); ?>",
-				data: {
-					setting_id : setting_id,
-					is_sort : $("#sort-inbox-select").val(),
-				},
-				dataType: 'text',
-				beforeSend: function()
-				{
-					$("#div-loading").show();
-				},
-				success: function(result) {
-					$("#div-loading").hide();
-					var data = jQuery.parseJSON(result);
-					// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
-					// console.log(dataMessage);
-					
-					if(data.type=='success')
-					{
-						$("#DMInbox").html(data.resultEmailData);
-					}
-					var max = -1;
-					$(".same-height").each(function() {
-							var h = $(this).height(); 
-							max = h > max ? h : max;
-					});
-					$(".same-height").each(function() {
-							$(this).height(max); 
-					});
-					
-				}
-			})
+			load_dm_inbox(1);
 		});
 		$( "body" ).on( "click", ".btnDmIn, .btnMessage, #button-refresh-DMInbox", function(e) {
-			e.preventDefault();
-			$.ajax({
-				type: 'GET',
-				url: "<?php echo url('get-dm-inbox'); ?>",
-				data: {
-					setting_id : setting_id,
-					is_sort : $("#sort-inbox-select").val(),
-					is_refresh : $(this).attr("data-is-refresh"),
-				},
-				dataType: 'text',
-				beforeSend: function()
-				{
-					$("#div-loading").show();
-				},
-				success: function(result) {
-					$("#div-loading").hide();
-					var data = jQuery.parseJSON(result);
-					// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
-					// console.log(dataMessage);
-					
-					if(data.type=='success')
-					{
-						$("#DMInbox").html(data.resultEmailData);
-					}
-					var max = -1;
-					$(".same-height").each(function() {
-							var h = $(this).height(); 
-							max = h > max ? h : max;
-					});
-					$(".same-height").each(function() {
-							$(this).height(max); 
-					});
-					
-				}
-			})
+			load_dm_inbox(1);
 		});
 		
 		$( "body" ).on( "click", ".button-reply", function(e) {

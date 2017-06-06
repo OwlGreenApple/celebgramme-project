@@ -85,6 +85,72 @@
 																	}
 																}
 															?>
+															<!--
+															PAGINATION
+															-->
+															
+															<nav>
+																<ul class="pagination" id="pagination">
+																<?php 
+																if ($page=="") {
+																	$currentPage = 1;
+																} else {
+																	$currentPage = $page;
+																}
+																$totalPage = floor(count($arr_inbox) / 20) +1;
+																
+																// dd($pagination);
+																$startPage = $currentPage - 4;
+																$endPage = $currentPage + 4;
+
+																if ($startPage <= 0) {
+																		$endPage -= ($startPage - 1);
+																		$startPage = 1;
+																}
+
+																if ($endPage > $totalPage)
+																		$endPage = $totalPage;
+
+																if ($startPage > 1) { 
+																?>
+																	<li>
+																		<a href="#">1</a>
+																	</li>
+																	<li>
+																		<a href="#" style="pointer-events: none;cursor: default;">..</a>
+																	</li>
+																<?php
+																}
+																
+																for($ii=$startPage; $ii<=$endPage; $ii++) {
+																?>
+																	<li>
+																		<a href="#">{{$ii}}</a>
+																	</li>
+																<?php 
+																} 
+																
+																
+																if ($endPage < $totalPage) { 
+																?>
+																	<li>
+																		<a href="#" style="pointer-events: none;cursor: default;">..</a>
+																	</li>
+																	<li>
+																		<a href="#">{{$totalPage}}</a>
+																	</li>
+																	
+																<?php
+																}
+																?>
+																</ul>
+															</nav>  
+															
+															
+															
+															
+															
+															
 															
 														</div>
 <script>
@@ -98,4 +164,20 @@
 		echo count($pendingInboxResponse->inbox->threads); 
 	}
 	?>");
+	
+	
+	$('#pagination a').click(function(e){
+		e.preventDefault();
+		e.stopPropagation();
+		if ($(this).html() == "«") {
+			page -= 1; 
+		} else 
+		if ($(this).html() == "»") {
+			page += 1; 
+		} else {
+			page = parseInt($(this).html());
+		}
+		load_dm_inbox(page);
+	});
+	
 </script>

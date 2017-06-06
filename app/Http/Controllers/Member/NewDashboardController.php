@@ -30,6 +30,8 @@ use Celebgramme\Models\ViewProxyUses;
 
 use Celebgramme\Helpers\GlobalHelper;
 
+use Illuminate\Pagination\LengthAwarePaginator;
+
 use \InstagramAPI\Instagram;
 
 use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, DB, Config;
@@ -608,6 +610,24 @@ class NewDashboardController extends Controller
 					});
 				}
 				
+				//buat pagination
+				$page = Request::input('page'); // Get the current page or default to 1, this is what you miss!
+				$perPage = 20;
+				$offset = ($page * $perPage) - $perPage;
+				
+				$collection = collect($arr_inbox);
+				$chunk = $collection->forPage($page, $perPage);
+				
+
+				// $itemsForCurrentPage = array_slice($chunk->all(), $offset, $perPage, true);
+				// $pagination= new LengthAwarePaginator($itemsForCurrentPage,  count($chunk), // Total items
+					// $perPage, // Items per page
+					// $page, // Current page
+					// ['path' => "", 'query' => ""]
+				// );
+				$arr_inbox = $chunk->toArray();
+
+				
         //save unseen_count
         $pendingInboxResponse = $i->getPendingInbox();
         SettingMeta::createMeta("unseen_count",$pendingInboxResponse->inbox->unseen_count,Request::input("setting_id"));
@@ -616,6 +636,7 @@ class NewDashboardController extends Controller
 																			// 'inboxResponse'=> $inboxResponse,
 																			'arr_inbox'=> $arr_inbox,
 																			'pendingInboxResponse'=>$pendingInboxResponse,
+																			'page'=>$page,
 																		))->render();
 			}
 			catch (Exception $e) {
