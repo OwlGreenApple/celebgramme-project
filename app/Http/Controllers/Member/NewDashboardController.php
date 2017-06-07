@@ -743,7 +743,8 @@ class NewDashboardController extends Controller
 			}
 		}
 		
-		if ((strpos(Request::input("message_responder"), '{') == false) || (strpos(Request::input("message_responder"), '}')==false)) {
+		if ((strpos(Request::input("message_responder"), '{') !== false) && (strpos(Request::input("message_responder"), '}')!==false)) {
+		} else {
 			$arr["message"]= "Auto Responder memerlukan spin message, sebaiknya spin message anda mengandung lebih dari 250 kombinasi message";
 			$arr["type"]= "error";
 			return $arr;
