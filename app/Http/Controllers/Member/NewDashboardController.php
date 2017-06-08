@@ -701,9 +701,11 @@ class NewDashboardController extends Controller
 		
 		if ( ((strpos(Request::input("message"), '{') !== false) && (strpos(Request::input("message"), '}')!==false)) && (Request::input("is_auto_responder")) ) {
 		} else {
-			$arr["message"]= "Direct Message memerlukan spin message, sebaiknya spin message anda mengandung lebih dari 250 kombinasi message";
-			$arr["type"]= "error";
-			return $arr;
+			if (Request::input("is_auto_responder")) {
+				$arr["message"]= "Direct Message memerlukan spin message, sebaiknya spin message anda mengandung lebih dari 250 kombinasi message";
+				$arr["type"]= "error";
+				return $arr;
+			}
 		}
 		
 		$setting = Setting::find(Request::input("setting_id"));
