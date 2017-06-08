@@ -646,6 +646,17 @@ class NewDashboardController extends Controller
 				$arr["type"]="error";
 				$arr["resultEmailData"] = $e->getMessage();
 			}
+			catch (\InstagramAPI\Exception\IncorrectPasswordException $e) {
+				//klo error password
+				$arr["type"]="error";
+				$arr["resultEmailData"] = $e->getMessage();
+			}
+			catch (\InstagramAPI\Exception\CheckpointRequiredException $e) {
+				//klo error email / phone verification 
+				$arr["type"]="error";
+				$arr["resultEmailData"] = $e->getMessage();
+			}
+			
 		}
 		
 		return $arr;
