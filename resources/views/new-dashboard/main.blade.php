@@ -194,7 +194,7 @@
                         </a>
                     </li>
 					<li id="tutorial">
-                        <a href="https://docs.google.com/document/d/1GWfW5kU5yvchCZlqPxEksK7NrMqgQGP0saqCG2VNGlQ" target="_blank" data-identity="tutorial" class="waves-light">
+                        <a href="https://drive.google.com/open?id=1uXCb2zKJdtq51j_dGkCYZvXe0R9XmnK_WMDyzgm1_PE" target="_blank" data-identity="tutorial" class="waves-light">
                             <i class="material-icons text-white">class</i>
                             <span>Tutorial</span>
                         </a>
@@ -274,7 +274,7 @@
                         </a>
                     </li>
 					<li id="tutorial">
-                        <a href="https://docs.google.com/document/d/1GWfW5kU5yvchCZlqPxEksK7NrMqgQGP0saqCG2VNGlQ" target="_blank" data-identity="tutorial" class="waves-light">
+                        <a href="https://drive.google.com/open?id=1uXCb2zKJdtq51j_dGkCYZvXe0R9XmnK_WMDyzgm1_PE" target="_blank" data-identity="tutorial" class="waves-light">
                             <i class="material-icons text-white">class</i>
                             <span>Tutorial</span>
                         </a>
