@@ -237,6 +237,7 @@ class AutoManageController extends Controller
 		//Instagram Login Valid or not
 		if ($user->test==0){
 			$setting = Setting::join("setting_helpers","setting_helpers.setting_id","=","settings.id")
+									->select("settings.id","settings.proxy_id")
 									->where("insta_username","=",Request::input("username"))
 									->where("type","=","temp")
 									// ->where("proxy_id","<>",0)
@@ -264,6 +265,7 @@ class AutoManageController extends Controller
 				
 			} 
 			else {
+				$arr_proxy = $this->get_proxy_id(Request::input("username")); 
 			}
 				
 			$data["arr_proxy"] = $arr_proxy; //
