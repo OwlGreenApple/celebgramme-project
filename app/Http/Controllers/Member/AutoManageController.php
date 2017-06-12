@@ -252,6 +252,8 @@ class AutoManageController extends Controller
 					$arr_proxy["cred"] = $full_proxy->cred;
 					$arr_proxy["proxy"] = $full_proxy->proxy;
 					$arr_proxy["auth"] = $full_proxy->auth;
+				} else {
+					$arr_proxy = $this->get_proxy_id(Request::input("username")); //
 				}
 			}
 				
@@ -316,6 +318,20 @@ class AutoManageController extends Controller
 				//active in
 				$setting->is_active = 1;
 				$setting->save();
+				
+				if ($setting->status=="deleted") {
+					$setting->status = 'stopped';
+					$setting->user_id = $user->id;
+					$setting->last_user = $user->id;
+					$setting->insta_password = Request::input("password");
+					$setting->error_cred = 0;
+					$setting->save();
+
+					$linkUserSetting = new LinkUserSetting;
+					$linkUserSetting->user_id = $user->id;
+					$linkUserSetting->setting_id = $setting->id;
+					$linkUserSetting->save();
+				}
 			}
     } 
 		else {
