@@ -239,25 +239,11 @@ class AutoManageController extends Controller
 			$setting = Setting::join("setting_helpers","setting_helpers.setting_id","=","settings.id")
 									->where("insta_username","=",Request::input("username"))
 									->where("type","=","temp")
-									->where("proxy_id","<>",0)
+									// ->where("proxy_id","<>",0)
 									->first();
-			if (is_null($setting)) {
+			if (!is_null($setting)) {
 				// $arr_proxy = $request->session()->get('arr_proxy');
-				$arr_proxy = $this->get_proxy_id(Request::input("username")); //
-				$update_setting_helper = SettingHelper::where("setting_id",$setting->id)->first();
-				if(!is_null($update_setting_helper)){
-					$update_setting_helper->proxy_id = $arr_proxy["id"];
-					$update_setting_helper->save();
-				}
-			} 
-			else {
-				$full_proxy =  Proxies::find($setting->proxy_id);
-				if (!is_null($full_proxy)) {
-					$arr_proxy["port"] = $full_proxy->port;
-					$arr_proxy["cred"] = $full_proxy->cred;
-					$arr_proxy["proxy"] = $full_proxy->proxy;
-					$arr_proxy["auth"] = $full_proxy->auth;
-				} else {
+				if ($setting->proxy_id== 0) {
 					$arr_proxy = $this->get_proxy_id(Request::input("username")); //
 					$update_setting_helper = SettingHelper::where("setting_id",$setting->id)->first();
 					if(!is_null($update_setting_helper)){
@@ -265,6 +251,19 @@ class AutoManageController extends Controller
 						$update_setting_helper->save();
 					}
 				}
+
+				if ($setting->proxy_id <> 0) {
+					$full_proxy =  Proxies::find($setting->proxy_id);
+					if (!is_null($full_proxy)) {
+						$arr_proxy["port"] = $full_proxy->port;
+						$arr_proxy["cred"] = $full_proxy->cred;
+						$arr_proxy["proxy"] = $full_proxy->proxy;
+						$arr_proxy["auth"] = $full_proxy->auth;
+					} 
+				} 
+				
+			} 
+			else {
 			}
 				
 			$data["arr_proxy"] = $arr_proxy; //
