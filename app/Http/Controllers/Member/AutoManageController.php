@@ -244,6 +244,11 @@ class AutoManageController extends Controller
 			if (is_null($setting)) {
 				// $arr_proxy = $request->session()->get('arr_proxy');
 				$arr_proxy = $this->get_proxy_id(Request::input("username")); //
+				$update_setting_helper = SettingHelper::where("setting_id",$setting->id)->first();
+				if(!is_null($update_setting_helper)){
+					$update_setting_helper->proxy_id = $arr_proxy["id"];
+					$update_setting_helper->save();
+				}
 			} 
 			else {
 				$full_proxy =  Proxies::find($setting->proxy_id);
@@ -254,6 +259,11 @@ class AutoManageController extends Controller
 					$arr_proxy["auth"] = $full_proxy->auth;
 				} else {
 					$arr_proxy = $this->get_proxy_id(Request::input("username")); //
+					$update_setting_helper = SettingHelper::where("setting_id",$setting->id)->first();
+					if(!is_null($update_setting_helper)){
+						$update_setting_helper->proxy_id = $arr_proxy["id"];
+						$update_setting_helper->save();
+					}
 				}
 			}
 				
@@ -1382,6 +1392,7 @@ class AutoManageController extends Controller
 			$arr["cred"] = $full_proxy->cred;
 			$arr["proxy"] = $full_proxy->proxy;
 			$arr["auth"] = $full_proxy->auth;
+			$arr["id"] = $full_proxy->id;
 		}
 	
 		return $arr;
