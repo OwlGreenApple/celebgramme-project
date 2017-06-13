@@ -553,6 +553,7 @@ class NewDashboardController extends Controller
 						} else {
 							$inboxResponse = $i->getV2Inbox($end_cursor);
 						}
+						sleep(3);
 
 						if (!is_null($inboxResponse->inbox->oldest_cursor)) {
 							$end_cursor = $inboxResponse->inbox->oldest_cursor;
