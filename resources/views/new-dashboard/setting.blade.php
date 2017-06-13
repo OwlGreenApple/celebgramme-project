@@ -17,7 +17,7 @@ use Celebgramme\Models\SettingHelper;
 ?>
 <script>
 	setting_id = <?php echo $settings->id; ?>;
-	function load_dm_inbox(page){
+	function load_dm_inbox(page,is_refresh){
 			$.ajax({
 				type: 'GET',
 				url: "<?php echo url('get-dm-inbox'); ?>",
@@ -25,6 +25,7 @@ use Celebgramme\Models\SettingHelper;
 					setting_id : setting_id,
 					is_sort : $("#sort-inbox-select").val(),
 					page : page,
+					is_refresh : is_refresh,
 				},
 				dataType: 'text',
 				beforeSend: function()
@@ -312,11 +313,15 @@ use Celebgramme\Models\SettingHelper;
 		});
 		$( "body" ).on( "change", "#sort-inbox-select", function(e) {
 			e.preventDefault();
-			load_dm_inbox(1);
+			load_dm_inbox(1,0);
 		});
-		$( "body" ).on( "click", ".btnDmIn, .btnMessage, #button-refresh-DMInbox", function(e) {
+		$( "body" ).on( "click", ".btnDmIn, .btnMessage", function(e) {
 			e.preventDefault();
-			load_dm_inbox(1);
+			load_dm_inbox(1,0);
+		});
+		$( "body" ).on( "click", "#button-refresh-DMInbox", function(e) {
+			e.preventDefault();
+			load_dm_inbox(1,"1");
 		});
 		
 		$( "body" ).on( "click", ".button-reply", function(e) {
