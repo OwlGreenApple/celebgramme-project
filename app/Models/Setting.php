@@ -57,7 +57,7 @@ class Setting extends Model {
 		$setting->status = 'stopped';
 		$setting->type = 'temp';
 		$setting->is_active = 0;
-		$setting->method = "CURL";
+		$setting->method = "API";
 		$setting->percent_like_followers = 25;
 		$setting->save();
     
