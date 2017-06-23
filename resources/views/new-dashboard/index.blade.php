@@ -133,7 +133,7 @@
 							</div>
 							<div class="">
 								<div style="padding:0;"class="card text-center margin-0 col-md-12 col-sm-12 col-xs-12">
-									<a href="https://celebpost.in" target="_blank"><img src="{{asset('/images/promo-1.jpg')}}"class="img-responsive" ></a>
+									<a href="http://celebfans.id/" target="_blank"><img src="{{asset('/images/promo-1.jpg')}}"class="img-responsive" ></a>
 								</div>
 								<div style="padding:0;" class="card text-center margin-0 col-md-6 col-sm-6 col-xs-6">
 									<a href="http://line.me/ti/p/@vyd1834h" target="_blank"><img src="{{asset('/images/promo-2.jpg')}}"class="img-responsive" ></a>
@@ -142,7 +142,7 @@
 									<a href="http://m.me/celebgramme" target="_blank"><img src="{{asset('/images/promo-3.jpg')}}"class="img-responsive" ></a>
 								</div>
 								<div style="padding:0;"  class="card text-center col-md-12 col-sm-12 col-xs-12 margin-0">
-									<a href="http://m.me/digimaru.id?ref=7%20Secret%20Ads" target="_blank"><img src="{{asset('/images/promo-4.jpg')}}"class="img-responsive" ></a>
+									<a href="https://celebpost.in" target="_blank"><img src="{{asset('/images/promo-4.jpg')}}"class="img-responsive" ></a>
 								</div>
 							</div>
 						</div>
