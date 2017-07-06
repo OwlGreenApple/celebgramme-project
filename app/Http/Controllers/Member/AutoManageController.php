@@ -360,7 +360,14 @@ class AutoManageController extends Controller
 					$arr["type"]= "error";
 					return $arr;
 				}
-      }
+      } 
+			else {
+        $linkUserSetting = new LinkUserSetting;
+        $linkUserSetting->user_id = $user->id;
+        $linkUserSetting->setting_id = $setting->id;
+        $linkUserSetting->save();
+			}
+			
       if ($setting->status=="deleted") {
         $setting->status = 'stopped';
         $setting->user_id = $user->id;
@@ -369,11 +376,6 @@ class AutoManageController extends Controller
         $setting->error_cred = 0;
         $setting->save();
 
-        $linkUserSetting = new LinkUserSetting;
-        $linkUserSetting->user_id = $user->id;
-        $linkUserSetting->setting_id = $setting->id;
-        $linkUserSetting->save();
-        
         
         // $setting_temp = Setting::post_info_admin($setting->id);
       }
