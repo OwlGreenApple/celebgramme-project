@@ -33,12 +33,55 @@ class LandingPageController extends Controller
 {
   
 	public function testing(){
-		$user = User::all();
-		dd($user);
-		$temp = Meta::createMeta("random_action_follow_turbo_min",3);
-		$temp = Meta::createMeta("random_action_follow_turbo_max",8);
-		$temp = Meta::createMeta("random_action_like_turbo_min",2);
-		$temp = Meta::createMeta("random_action_like_turbo_max",3);
+		$arr_proxys = array();
+		
+		/* EX ERROR */
+		$arr_proxys[] = [
+			"proxy"=>"185.152.131.111",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10822",
+			"no"=>"1",
+		];
+		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
+
+
+		if(App::environment() == "local"){
+			$cookiefile = base_path().'/../general/ig-cookies/cookies-celebpost-'.$arr_proxy["no"].'.txt';
+		} else{
+			$cookiefile = base_path().'/../public_html/general/ig-cookies/cookies-celebpost-'.$arr_proxy["no"].'.txt';
+		}
+		if (file_exists($cookiefile)) {
+			unlink($cookiefile);
+		}
+
+		
+		// if(is_null($cursor)){
+			$url = "https://www.instagram.com/explore/tags/kids/?__a=1";
+		// } else {
+			// $url = "https://www.instagram.com/explore/tags/kids/?__a=1&max_id=J0HWVsMpQAAAF0HWVsMdwAAAFiYA";
+		// }
+		
+		$c = curl_init();
+			curl_setopt($c, CURLOPT_PROXY, $arr_proxy["proxy"]);
+			curl_setopt($c, CURLOPT_PROXYPORT, $arr_proxy["port"]);
+			curl_setopt($c, CURLOPT_PROXYUSERPWD, $arr_proxy["cred"]);
+			curl_setopt($c, CURLOPT_PROXYTYPE, 'HTTP');
+			curl_setopt($c, CURLOPT_URL, $url);
+			curl_setopt($c, CURLOPT_REFERER, $url);
+			curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($c, CURLOPT_COOKIEFILE, $cookiefile);
+			curl_setopt($c, CURLOPT_COOKIEJAR, $cookiefile);
+			$page = curl_exec($c);
+			curl_close($c);
+
+		$arr_res = json_decode($page,true);
+		// $arr_res1 = json_decode($arr_res["tag"]);
+		// var_dump($arr_res);
+		// var_dump($arr_res["tag"]["media"]);
+		var_dump($arr_res["tag"]["media"]);
+
 	}
 	
 	/**
@@ -303,7 +346,9 @@ class LandingPageController extends Controller
 		
 	}
 		
-		
+	/*
+	* uda ga dipake lagi, karena cara curl berubah
+	*/
 	public function get_photo_hashtags($hashtags,$cursor=null){
     $user = Auth::user();
 
