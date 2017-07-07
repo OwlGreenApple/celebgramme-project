@@ -1373,7 +1373,8 @@ use Celebgramme\Models\SettingHelper;
 																<button type="button" class="btn <?php if ($settings->is_auto_responder) echo 'btn-primary' ?>" id="AutoResponderOnButton" style="color:#fff;margin-left:0px;">ON</button>
 																<button type="button" class="btn <?php if (!$settings->is_auto_responder) echo 'btn-danger' ?>" id="AutoResponderOffButton" style="color:#fff;">OFF</button>
 																<input type="hidden" value="<?php if (!is_null($settings->is_auto_responder)) { echo $settings->is_auto_responder; } else { echo "0"; } ?>" name="data[is_auto_responder]" id="is_auto_responder">
-																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Turn OFF selama sedang aktif mengirim DM</div>								<div class="panel-content"> Apabila anda sedang aktif mengirim Direct Message <br> sebaiknya matikan fitur DM Auto Responder, <br> Untuk mencegah terbanned DM dari Instagram. Karena Instagram mempunyai jumlah maximum Direct Message perjamnya.<br> Anda dapat menyalakan fitur ini kembali ketika anda sudah tidak aktif mengirim DM secara langsung.
+																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Turn OFF selama sedang aktif mengirim DM</div>								<div class="panel-content"> <span style="color:#fb483a">WARNING TURN OFF DM Auto Responder </span> Jika: <br> - Anda aktif mengirim Direct Message <br> - Membeli / menambah Followers dalam jumlah banyak <br> 
+																Untuk mencegah akun anda di ban Auto DM nya oleh Instagram. Karena Instagram mempunyai jumlah maximum Direct Message per-jamnya.<br> 
 																	</div>'>
 																</span>
 															</div>
