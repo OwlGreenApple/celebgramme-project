@@ -277,7 +277,8 @@ class NewDashboardController extends Controller
 				}
 				
 				$i->login(false,300);
-				$chatAll = $i->directThread(Request::input("data_thread_id"));
+				// $chatAll = $i->directThread(Request::input("data_thread_id"));
+				$chatAll = $i->direct->getThread(Request::input("data_thread_id"));
 				// $arr["chatAll"] = json_encode($chatAll);
 				
 				$arr["resultEmailData"] = view("new-dashboard.chat-all")->with(array(
@@ -337,13 +338,13 @@ class NewDashboardController extends Controller
 				
 				$i->login(false,300);
 				if ( Request::input("type") == "message" ) {
-					$i->directMessage(Request::input("pk_id"), Request::input("message"));
+					$i->direct->sendText(Request::input("pk_id"), Request::input("message"));
 				}
 				else if ( Request::input("type") == "like" ) {
-					$i->directMessage(Request::input("pk_id"), Request::input("message"));
+					$i->direct->sendText(Request::input("pk_id"), Request::input("message"));
 				}
 				
-				$chatAll = $i->directThread(Request::input("data_thread_id"));
+				$chatAll = $i->direct->getThread(Request::input("data_thread_id"));
 
 				$arr["resultEmailData"] = view("new-dashboard.chat-all")->with(array(
 																				'chatAll'=>$chatAll,
@@ -400,7 +401,7 @@ class NewDashboardController extends Controller
 				}
 				
 				$i->login(false,300);
-				$pendingInboxResponse = $i->getPendingInbox();
+				$pendingInboxResponse = $i->direct->getPendingInbox();
 				
 				$arr["resultEmailData"] = view("new-dashboard.DM-req")->with(array(
 																			'pendingInboxResponse'=>$pendingInboxResponse,

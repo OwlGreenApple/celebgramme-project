@@ -2,10 +2,10 @@
 															<div class="clearfix"></div><br/>
 															
 															<?php
-																if (count($pendingInboxResponse->inbox->threads) > 0 ) {
-																	foreach ($pendingInboxResponse->inbox->threads as $data_arr) {
-																		$date_message = substr($data_arr->items[0]->timestamp,0,10);
-																		$text_message = $data_arr->items[0]->text;
+																if (count($pendingInboxResponse->getInbox()->getThreads()) > 0 ) {
+																	foreach ($pendingInboxResponse->getInbox()->getThreads() as $data_arr) {
+																		$date_message = substr($data_arr->getItems()[0]->getTakenAt(),0,10);
+																		$text_message = $data_arr->getItems()[0]->getCaption()->getText();
 																		if (strlen($text_message)>=42) {
 																			$text_message = substr($text_message,0,115)." ...";
 																		}
@@ -54,8 +54,8 @@
 														</div>
 <script>
 	$("#badge-dm-request").html("<?php 
-	if (count($pendingInboxResponse->inbox->threads) > 0 ) {
-		echo count($pendingInboxResponse->inbox->threads); 
+	if (count($pendingInboxResponse->getInbox()->getThreads()) > 0 ) {
+		echo count($pendingInboxResponse->getInbox()->getThreads()); 
 	}
 	?>");
 </script>

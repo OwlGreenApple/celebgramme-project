@@ -13,15 +13,16 @@
 	</div>
   <div class="row" style="overflow: auto; max-height: 500px;">
 		<?php 
-			$items = array_reverse($chatAll->thread->items);
+			// $items = array_reverse($chatAll->thread->items);
+			$items = array_reverse($chatAll->getThread()->getItems());
 			foreach($items as $data) { ?>
 				<div style="min-height:50px;overflow:hidden;">
 				<div class="col-md-1 col-sm-1 col-xs-1">
 				&nbsp
 				</div>	
 				<div class="col-md-9 col-sm-9 col-xs-9">
-					<div class="<?php if ($chatAll->thread->users[0]->pk != $data->user_id ) { echo "fr"; } else { echo "fl"; } ?> well" style="padding:10px; <?php if ($chatAll->thread->users[0]->pk == $data->user_id ) { echo "background-color:#fff;"; }?>">
-						{{$data->text}}
+					<div class="<?php if ($chatAll->thread->getUsers()[0]->getPk() != $data->getUserId() ) { echo "fr"; } else { echo "fl"; } ?> well" style="padding:10px; <?php if ($chatAll->thread->getUsers()[0]->getPk() == $data->getUserId() ) { echo "background-color:#fff;"; }?>">
+						{{$data->getText()}}
 					</div>
 				</div>
 				<div class="col-md-2 col-sm-2 col-xs-2">
