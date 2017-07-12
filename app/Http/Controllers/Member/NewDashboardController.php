@@ -456,8 +456,9 @@ class NewDashboardController extends Controller
 				
 				$i->login(false,300);
 				if ( Request::input("type") == "approve" ) {
-					$i->directThreadAction(Request::input("data_thread_id"), "approve");
-					$chatAll = $i->directThread(Request::input("data_thread_id"));
+					// $i->directThreadAction(Request::input("data_thread_id"), "approve");
+					$i->approvePendingThreads( array (Request::input("data_thread_id")) );
+					$chatAll = $i->direct->getThread(Request::input("data_thread_id"));
 					// $arr["chatAll"] = json_encode($chatAll);
 					
 					$arr["resultEmailData"] = view("new-dashboard.chat-all")->with(array(
@@ -470,8 +471,9 @@ class NewDashboardController extends Controller
 					
 				}
 				else if ( Request::input("type") == "decline" ) {
-					$i->directThreadAction(Request::input("data_thread_id"), "decline");
-					$pendingInboxResponse = $i->getPendingInbox();
+					// $i->directThreadAction(Request::input("data_thread_id"), "decline");
+					$i->declinePendingThreads( array (Request::input("data_thread_id")) );
+					$pendingInboxResponse = $i->direct->getPendingInbox();
 
 					$arr["resultEmailData"] = view("new-dashboard.DM-req")->with(array(
 																				'pendingInboxResponse'=>$pendingInboxResponse,
@@ -550,14 +552,15 @@ class NewDashboardController extends Controller
 					do {
 						$has_next_page = true;
 						if ($counter==0) {
-							$inboxResponse = $i->getV2Inbox();
+							// $inboxResponse = $i->getV2Inbox();
+							$inboxResponse = $i->direct->getInbox();
 						} else {
-							$inboxResponse = $i->getV2Inbox($end_cursor);
+							$inboxResponse = $i->direct->getInbox($end_cursor);
 						}
 						sleep(3);
 
-						if (!is_null($inboxResponse->inbox->oldest_cursor)) {
-							$end_cursor = $inboxResponse->inbox->oldest_cursor;
+						if (!is_null($inboxResponse->getInbox()->getOldestCursor())) {
+							$end_cursor = $inboxResponse->getInbox()->getOldestCursor();
 						} else {
 							//klo null
 							$has_next_page = false;
@@ -565,31 +568,31 @@ class NewDashboardController extends Controller
 						}
 						
 						//input array data
-						if (count($inboxResponse->inbox->threads) > 0 ) {
+						if (count($inboxResponse->getInbox()->getThreads()) > 0 ) {
 							$counter_respond = 0;
-							foreach ($inboxResponse->inbox->threads as $data_arr) {
-								$date_message = substr($data_arr->items[0]->timestamp,0,10);
+							foreach ($inboxResponse->getInbox()->getThreads() as $data_arr) {
+								$date_message = substr($data_arr->getItems()[0]->getTimestamp(),0,10);
 								$arr_data["date_message1"] = date("l, H:i:s", $date_message);
 								$arr_data["date_message2"] = date("Y-m-d", $date_message);
-								$text_message = $data_arr->items[0]->text;
+								$text_message = $data_arr->getItems()[0]->getText();
 								if (strlen($text_message)>=42) {
 									$text_message = substr($text_message,0,115)." ...";
 								}
 								$arr_data["text_message"] = $text_message;
 								//klo ga ada usernya di break
-								if ( (is_null($data_arr->users)) || (empty($data_arr->users)) ) {
+								if ( (is_null($data_arr->getUsers())) || (empty($data_arr->getUsers())) ) {
 									continue;
 								}
 								$status_new_message = false;
-								if ($data_arr->users[0]->pk == $data_arr->items[0]->user_id) {
+								if ($data_arr->getUsers()[0]->getPk() == $data_arr->getItems()[0]->getUserId()) {
 									$status_new_message = true;
 								}
 								$arr_data["status_new_message"] = $status_new_message;
-								$arr_data["user_id"] = $data_arr->items[0]->user_id;
-								$arr_data["username"] = $data_arr->users[0]->username;
-								$arr_data["profile_pic_url"] = $data_arr->users[0]->profile_pic_url;
-								$arr_data["thread_id"] = $data_arr->thread_id;
-								$arr_data["pk"] = $data_arr->users[0]->pk;
+								$arr_data["user_id"] = $data_arr->getItems()[0]->getUserId();
+								$arr_data["username"] = $data_arr->getUsers()[0]->getUsername();
+								$arr_data["profile_pic_url"] = $data_arr->getUsers()[0]->getProfilePicUrl();
+								$arr_data["thread_id"] = $data_arr->getThreadId();
+								$arr_data["pk"] = $data_arr->getUsers()[0]->getPk();
 								
 								$arr_inbox[] = $arr_data;
 							}
@@ -633,8 +636,8 @@ class NewDashboardController extends Controller
 
 				
         //save unseen_count
-        $pendingInboxResponse = $i->getPendingInbox();
-        SettingMeta::createMeta("unseen_count",$pendingInboxResponse->inbox->unseen_count,Request::input("setting_id"));
+        $pendingInboxResponse = $i->direct->getPendingInbox();
+        SettingMeta::createMeta("unseen_count",$pendingInboxResponse->getInbox()->getUnseenCount(),Request::input("setting_id"));
 				
 				$arr["resultEmailData"] = view("new-dashboard.DM-inbox")->with(array(
 																			// 'inboxResponse'=> $inboxResponse,

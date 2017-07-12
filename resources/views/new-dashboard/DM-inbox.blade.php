@@ -140,8 +140,8 @@
 	}
 	?>");
 	$("#badge-dm-request").html("<?php 
-	if (count($pendingInboxResponse->inbox->threads) > 0 ) {
-		echo count($pendingInboxResponse->inbox->threads); 
+	if (count($pendingInboxResponse->getInbox()->getThreads()) > 0 ) {
+		echo count($pendingInboxResponse->getInbox()->getThreads()); 
 	}
 	?>");
 	
