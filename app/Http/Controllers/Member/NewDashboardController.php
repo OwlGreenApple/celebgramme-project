@@ -338,10 +338,10 @@ class NewDashboardController extends Controller
 				
 				$i->login(false,300);
 				if ( Request::input("type") == "message" ) {
-					$i->direct->sendText(array(Request::input("pk_id")), Request::input("message"));
+					$i->direct->sendText(array('users'=>Request::input("pk_id")), Request::input("message"));
 				}
 				else if ( Request::input("type") == "like" ) {
-					$i->direct->sendText(array(Request::input("pk_id")), Request::input("message"));
+					$i->direct->sendText(array('users'=>Request::input("pk_id")), Request::input("message"));
 				}
 				
 				$chatAll = $i->direct->getThread(Request::input("data_thread_id"));
