@@ -1071,9 +1071,9 @@ use Celebgramme\Models\SettingHelper;
 															<div class="col-md-4 col-sm-4 col-xs-4">
 																<b>Follow Source</b>
 																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Follow Source</div><div class='panel-content'>
-																Pilih 1 dari 3 Follow Sources ini (Hanya yang dipilih yang dijalankan) : <br>
+																Pilih 1 dari 2 Follow Sources ini (Hanya yang dipilih yang dijalankan) : <br>
 																<strong>Jika Follow Source</strong> : 'HASHTAGS' akan Follow sesuai Hashtags tsb.<br>
-																<strong>Jika Follow Source</strong> : 'USERNAMES' bisa pilih mau Follow siapa. 'Followersnya/Following' nya username tsb.</div>"></span>
+																<strong>Jika Follow Source</strong> : 'Followers of Usernames' akan Follow sesuai followers dari username yang dimasukkan tsb</div>"></span>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
 																<div class="row">
