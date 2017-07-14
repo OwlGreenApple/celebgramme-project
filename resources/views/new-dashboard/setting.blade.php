@@ -826,15 +826,20 @@ use Celebgramme\Models\SettingHelper;
 			<div class="clearfix"></div><br>
 			
 			<div class="row tabButton" style="margin-left:0px;">
-					<div class="col-md-2 col-sm-6 col-xs-6 padding-0">
+					<div class="col-md-2 col-sm-5 col-xs-5 padding-0">
 						<button class="btn btn-lg bg-cyan btn-block btnGeneral br-6" data-toggle="tab" href="#general"><i class="fa fa-cog"></i>&nbsp;General</button>
 					</div>
 					<div class="col-md-2 col-sm-6 col-xs-6 padding-0">
 						<button class="btn btn-lg bg-grey btn-block btnMessage br-6"  style="font-size:inherit;"data-toggle="tab" href="#message" <?php if ( ($settings->error_cred) || ($settings->status<>"started") ) { echo "disabled"; } ?> id="button-direct-message" data-is-refresh="0"><i class="fa fa-envelope text-white"></i>&nbsp;Direct Message &nbsp 
-						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Direct Message</div><div class='panel-content'>
-						Direct Message hanya dapat digunakan, ketika status setting account dalam keadaan started
-															</div>"></span>
+						
 						</button>
+					</div>
+					<div class="col-md-1 col-sm-1 col-xs-1 padding-0">
+						<h3 style="margin-top:5px;">
+						<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Direct Message</div><div class='panel-content'>
+							▲ Press START to Turn ON DM Tab Function
+																</div>"></span>
+						</h3>
 					</div>
 			</div>
 			<div class="clearfix"></div><br>
@@ -874,7 +879,7 @@ use Celebgramme\Models\SettingHelper;
 																<b>Activity Speed</b>
 																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="
 																<div class='panel-heading'>Activity speed</div><div class='panel-content'>Jika Akun anda BARU / Tdk aktif, START dgn SLOW/NORMAL speed utk 5 hari <br>• <strong>Slow</strong> = Melakukan 200-250 Likes, 50 comments, 100-150 follow/unfollow /hari <br>• <strong>Normal</strong> = Melakukan 250-300 likes, 50 comments, 150-200 follow/unfollows /hari. <br>• <strong>Fast</strong> = Melakukan 300-350 likes, 50 comments, 300-350 follow/unfollows /hari. <br>
-																• <strong>Turbo</strong> = Melakukan 600-750 likes, 50 comments, 600-750 follow/unfollows /hari. 
+																• <strong>Turbo</strong> = Melakukan 600-750 likes, 50 comments, 400-480 follow/unfollows /hari. 
 																</div>">
 																</span>
 															</div>
