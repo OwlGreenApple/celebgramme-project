@@ -285,7 +285,17 @@ class LandingPageController extends Controller
 			$order->no_order = $order_number;
 			$order->package_manage_id = 34;
 			$order->order_status = "cron dari affiliate";
-			$package = Package::find(34);
+			
+			if ( (intval($data_meta[0]->meta_value) <500000 ) && (intval($data_meta[0]->meta_value) >=495000 ) ) {
+				$package = Package::find(41);
+			}
+			else if ( (intval($data_meta[0]->meta_value) <600000 ) && (intval($data_meta[0]->meta_value) >=595000 ) ) {
+				$package = Package::find(43);
+			}
+			else if ( (intval($data_meta[0]->meta_value) <740000 ) && (intval($data_meta[0]->meta_value) >=735000 ) ) {
+				$package = Package::find(42);
+			}
+			
 			$order->total = $package->price;
 			$order->user_id = $user->id;
 			$order->save();
