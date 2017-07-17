@@ -54,8 +54,11 @@ class NewDashboardController extends Controller
     $order = Order::where("order_status","=","pending")->where("user_id","=",$user->id)->where("image",'=','')->first();
 		$status_server = Meta::where("meta_name","=","status_server")->first()->meta_value;
 		
+		$content = "";
 		$post = Post::where("type","=","home_page")->first();
-		$content = $post->description;
+		if (!is_null($post)) {
+			$content = $post->description;
+		}
 		
 		
     return view("new-dashboard.index")->with(array(

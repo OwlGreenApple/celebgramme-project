@@ -4,7 +4,7 @@
 															<?php
 																if (count($pendingInboxResponse->getInbox()->getThreads()) > 0 ) {
 																	foreach ($pendingInboxResponse->getInbox()->getThreads() as $data_arr) {
-																		$date_message = substr($data_arr->getItems()[0]->getTakenAt(),0,10);
+																		$date_message = substr($data_arr->getItems()[0]->getTimestamp(),0,10);
 																		$text_message = $data_arr->getItems()[0]->getCaption()->getText();
 																		if (strlen($text_message)>=42) {
 																			$text_message = substr($text_message,0,115)." ...";
