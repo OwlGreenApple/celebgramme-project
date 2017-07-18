@@ -753,7 +753,7 @@ class NewDashboardController extends Controller
 			$arr["message"] = "Auto responder tidak boleh lebih dari 5";
 			return $arr;
 		}
-		$auto_responder = AutoResponderSetting::where("setting_id",Request::input("setting_id"))->get();
+		/*$auto_responder = AutoResponderSetting::where("setting_id",Request::input("setting_id"))->get();
 		foreach($auto_responder as $data ) {
 			if ($data->num_of_day == Request::input("num_of_day")) {
 				if (Request::input("id-auto-responder")<>$data->id) {   
@@ -762,7 +762,7 @@ class NewDashboardController extends Controller
 					return $arr;
 				}
 			}
-		}
+		}*/
 		
 		if ((strpos(Request::input("message_responder"), '{') !== false) && (strpos(Request::input("message_responder"), '}')!==false)) {
 		} else {
