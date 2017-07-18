@@ -771,6 +771,12 @@ class NewDashboardController extends Controller
 			return $arr;
 		}
 		
+		if (Request::input("num_of_day") < 1){
+			$arr["message"]= "Next Messages harus minimum 1 hari sesudah auto reply pertama";
+			$arr["type"]= "error";
+			return $arr;
+		}
+		
 			
     if (Request::input("id-auto-responder")=="new") {
       $arr["message"] = "Proses add berhasil dilakukan";
