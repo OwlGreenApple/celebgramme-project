@@ -258,7 +258,7 @@ class LandingPageController extends Controller
 		$idaff->grand_total = Input::get("grand_total");
 		$idaff->save();
 		
-		if ( ($idaff->status == "SUCCESS") && (!$idaff->executed) ) {
+		if ( (strtolower($idaff->status) == "success") && (!$idaff->executed) ) {
 			$flag = false;
 			$user = User::where("email","=",$idaff->email)->first();
 			if (is_null($user)) {
