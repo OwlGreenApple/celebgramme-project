@@ -260,6 +260,7 @@ class LandingPageController extends Controller
 		
 		if ( (strtolower($idaff->status) == "success") && (!$idaff->executed) ) {
 			$flag = false;
+			$isi_form_kaos = false;
 			$user = User::where("email","=",$idaff->email)->first();
 			if (is_null($user)) {
 				$flag = true;
@@ -310,6 +311,7 @@ class LandingPageController extends Controller
 				$emaildata = [
 						'user' => $user,
 						'password' => $string,
+						'isi_form_kaos' => $isi_form_kaos,
 				];
 				Mail::queue('emails.create-user', $emaildata, function ($message) use ($user) {
 					$message->from('no-reply@celebgramme.com', 'Celebgramme');
@@ -339,6 +341,7 @@ class LandingPageController extends Controller
 				
 				$emaildata = [
 						'user' => $user,
+						'isi_form_kaos' => $isi_form_kaos,
 				];
 				Mail::queue('emails.adding-time-user', $emaildata, function ($message) use ($user) {
 					$message->from('no-reply@celebgramme.com', 'Celebgramme');
