@@ -284,16 +284,18 @@ class LandingPageController extends Controller
 			$str = 'OCLB'.$dt->format('ymdHi');
 			$order_number = GeneralHelper::autoGenerateID($order, 'no_order', $str, 3, '0');
 			$order->no_order = $order_number;
-			$order->package_manage_id = 34;
 			$order->order_status = "cron dari affiliate";
 			
 			if ( (intval(Input::get("grand_total")) <500000 ) && (intval(Input::get("grand_total")) >=495000 ) ) {
+				$order->package_manage_id = 41;
 				$package = Package::find(41);
 			}
 			else if ( (intval(Input::get("grand_total")) <600000 ) && (intval(Input::get("grand_total")) >=595000 ) ) {
+				$order->package_manage_id = 43;
 				$package = Package::find(43);
 			}
 			else if ( (intval(Input::get("grand_total")) <740000 ) && (intval(Input::get("grand_total")) >=735000 ) ) {
+				$order->package_manage_id = 42;
 				$package = Package::find(42);
 			}
 			
