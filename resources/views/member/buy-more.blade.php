@@ -93,6 +93,12 @@
 
 <div class="container-fluid">
 	<div class="row">
+		<div class="col-sm-12 col-md-12">            
+			<div class="alert btn-danger col-sm-18 col-md-18" id="alert">
+			</div>  
+		</div>          
+	</div>  
+	<div class="row">
 		<div class="col-sm-4 col-md-3">
 			<p>
 			<strong>TRANSFER Melalui : </strong>

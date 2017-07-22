@@ -136,6 +136,12 @@
 <div class="container-fluid">
   <form enctype="multipart/form-data" id="form-confirm">
     <div class="form-group form-group-sm row">
+			<div class="col-sm-12 col-md-12">            
+				<div class="alert btn-danger col-sm-18 col-md-18" id="alert">
+				</div>  
+			</div>          
+		</div>          
+    <div class="form-group form-group-sm row">
       <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">No. Order</label>
       <div class="col-sm-8 col-md-5">
         <input type="text" class="form-control" placeholder="No. Order" name="no_order" id="no_order">
