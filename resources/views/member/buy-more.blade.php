@@ -94,7 +94,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-12 col-md-12">            
-			<div class="alert btn-danger col-sm-18 col-md-18" id="alert">
+			<div class="alert btn-success col-sm-18 col-md-18" id="alert">
 			</div>  
 		</div>          
 	</div>  
