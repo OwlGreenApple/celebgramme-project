@@ -99,13 +99,14 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 								<div class="col-md-3 col-sm-3 col-xs-3">
 									<center>
 									<small style="font-size:80%;white-space: nowrap;"><b>DM Inbox</b></small>
+									<a href="{{url('setting/'.$data->id)}}">
 									<img src="<?php 
 															if ($unseen_count == 0) { 
 																echo asset('/new-dashboard/images/mailIcon-reg.png'); 
 															} else {
 																echo asset('/new-dashboard/images/mailIcon.png'); 
 															}
-														?>" class="img-responsive">
+														?>" class="img-responsive"> </a>
 										{{$unseen_count}}
 									</center>
 								</div>
