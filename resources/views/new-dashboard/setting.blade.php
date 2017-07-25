@@ -18,6 +18,7 @@ use Celebgramme\Models\SettingHelper;
 <script>
 	setting_id = <?php echo $settings->id; ?>;
 	function load_dm_inbox(page,is_refresh){
+		var timer;
 			$.ajax({
 				type: 'GET',
 				url: "<?php echo url('get-dm-inbox'); ?>",
@@ -30,10 +31,18 @@ use Celebgramme\Models\SettingHelper;
 				dataType: 'text',
 				beforeSend: function()
 				{
+					clearTimeout(timer);
+					timer = setTimeout(function()
+					{
+						$("#alert-heavy-load").modal("show");
+					},
+					10000);
 					$("#div-loading").show();
 				},
 				success: function(result) {
 					$("#div-loading").hide();
+					clearTimeout(timer);
+					$("#alert-heavy-load").modal("hide");
 					var data = jQuery.parseJSON(result);
 					// var dataMessage = jQuery.parseJSON(data.listMessageResponse);
 					// console.log(dataMessage);
@@ -826,12 +835,15 @@ use Celebgramme\Models\SettingHelper;
 			<div class="clearfix"></div><br>
 			
 			<div class="row tabButton" style="margin-left:0px;">
-					<div class="col-md-2 col-sm-5 col-xs-5 padding-0">
+					<div class="col-md-2 col-sm-12 col-xs-12 padding-0">
 						<button class="btn btn-lg bg-cyan btn-block btnGeneral br-6" data-toggle="tab" href="#general"><i class="fa fa-cog"></i>&nbsp;General</button>
 					</div>
-					<div class="col-md-2 col-sm-6 col-xs-6 padding-0">
+					<div class="col-md-2 col-sm-12 col-xs-12 padding-0">
+						<button class="btn btn-lg bg-grey btn-block br-6"  style="font-size:inherit;"data-toggle="tab" href="#DMAuto" id="button-direct-auto-responder" data-is-refresh="0"><i class="fa fa-envelope text-white"></i>&nbsp;Auto Responder &nbsp 
+						</button>
+					</div>
+					<div class="col-md-2 col-sm-12 col-xs-12 padding-0">
 						<button class="btn btn-lg bg-grey btn-block btnMessage br-6"  style="font-size:inherit;"data-toggle="tab" href="#message" <?php if ( ($settings->error_cred) || ($settings->status<>"started") ) { echo "disabled"; } ?> id="button-direct-message" data-is-refresh="0"><i class="fa fa-envelope text-white"></i>&nbsp;Direct Message &nbsp 
-						
 						</button>
 					</div>
 					<div class="col-md-1 col-sm-1 col-xs-1 padding-0">
@@ -1290,6 +1302,83 @@ use Celebgramme\Models\SettingHelper;
 					<input type="hidden" name="data[id]" value="{{$settings->id}}">
 </form>
 					
+					<div id="DMAuto" class="tab-pane fade">
+						<div class="clearfix"></div><br>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card m-b-0">
+									<div class="body bg-lightGrey margin-0 padding-0">
+										<div class="row">
+											<div class="col-md-12 col-sm-12 col-xs-12">
+												<div class="tab-content">									
+													<div class="row">
+														<div class="clearfix"></div><br/>
+														<div class="col-md-12 col-sm-12 col-xs-12">
+															<span>Welcome Message To New Followers (DM Auto Reply) </span>
+															<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Welcome Message New Followers ( DM Auto Reply )</div><div class='panel-content'>Fitur ini mengirimkan Direct Message (DM) kepada <br>
+															New Users saat pertama kali Menjadi Followers anda <br>
+															- Gunakan fitur ini untuk menyapa mereka, sebagai WELCOME message <br>
+															- Gunakan fitur SPIN message, sehingga lebih banyak variasi DM Auto Reply
+															</div>">
+															</span>
+															
+														</div>
+														<div class="col-md-12 col-sm-12 col-xs-12">
+															<label>Penjelasan spin message</label> &nbsp <span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Penjelasan fitur spin message</div>								<div class="panel-content"><strong>Gunakan Feature "Spin Message" </strong>contoh : <br>
+															{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
+																*contoh diatas akan menghasilkan <strong>4x3x3x6 = 216 kombinasi messages </strong> sekaligus <br>
+																</div>'>
+															</span>
+														</div>
+														<div class="col-md-12 col-sm-12 col-xs-12">
+															<label>Petunjuk tanda spin message</label> &nbsp
+															<?php $tempurl = url("images/petunjuk-spin.jpg"); ?>
+															<span class="glyphicon glyphicon-search tooltipPlugin" title='<div class="panel-heading">Petunjuk tanda baca spin message</div><div class="panel-content"><img src="{{$tempurl}}" width="800" height="250">
+															</div>'>
+															</span>
+															
+														</div>
+														
+														<div class="col-md-5 col-sm-12 col-xs-12">
+															<button type="button" class="btn <?php if ($settings->is_auto_responder) echo 'btn-primary' ?>" id="AutoResponderOnButton" style="color:#fff;margin-left:0px;">ON</button>
+															<button type="button" class="btn <?php if (!$settings->is_auto_responder) echo 'btn-danger' ?>" id="AutoResponderOffButton" style="color:#fff;">OFF</button>
+															<input type="hidden" value="<?php if (!is_null($settings->is_auto_responder)) { echo $settings->is_auto_responder; } else { echo "0"; } ?>" name="data[is_auto_responder]" id="is_auto_responder">
+															<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Turn OFF selama sedang aktif mengirim DM</div>								<div class="panel-content"> <span style="color:#fb483a">WARNING TURN OFF DM Auto Responder </span> Jika: <br> - Anda aktif mengirim Direct Message <br> - Membeli / menambah Followers dalam jumlah banyak <br> 
+															Untuk mencegah akun anda di ban Auto DM nya oleh Instagram. Karena Instagram mempunyai jumlah maximum Direct Message per-jamnya.<br> 
+																</div>'>
+															</span>
+														</div>
+														<div class="col-md-2 col-sm-12 col-xs-12">
+															<button class="btn btn-md bg-cyan pull-left" data-toggle="modal" data-target="#add-autoresponder" id="button-create-auto-responder" style="margin-left:0px;">
+															<span class="glyphicon glyphicon-plus"></span> &nbsp Add Response</button>
+															<span class="glyphicon glyphicon-question-sign tooltipPlugin"  title="<div class='panel-heading'>Add Responses</div><div class='panel-content'>Fitur DM Auto responder ini berguna untuk melakukan Follow up <br>
+															dengan followers baru anda. Anda dapat menambahkan up to 5 Auto DM <br>
+															dengan pilihan hari yang berbeda-beda ( dihitung sejak followers tersebut <br>
+															menjadi followers anda )
+															</div>" style="margin-top: 5px;margin-left: 5px;"></span>
+															
+															
+														</div>
+														<div class="col-md-12 col-sm-12 col-xs-12">
+															<textarea class="form-control" id="textarea-welcome-message" value="{{$settings->messages}}">{{$settings->messages}}</textarea>
+														</div>
+														<div class="col-md-2 col-sm-12 col-xs-12">
+															<button class="form-control btn btn-md bg-cyan pull-left" id="button-save-welcome-message" style="margin-left:0px;">Save</button>
+														</div>
+													</div>
+													
+													<div class="row" id="div-auto-responder">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
 					<div id="message" class="tab-pane fade">
 						<div class="clearfix"></div><br>
 						<div class="row">
@@ -1305,9 +1394,10 @@ use Celebgramme\Models\SettingHelper;
 														<div class="col-md-2 col-sm-12 col-xs-12 padding-0">
 															<button class="btn btn-lg bg-grey btn-block br-6 btnDmRe"  style="font-size:inherit;"data-toggle="tab" href="#DMRequest"><i class="fa fa-envelope text-white"></i>&nbsp;<small class="text-white">DM Request</small> &nbsp <span class="badge br-6" id="badge-dm-request"></span></button>
 														</div>
-														<div class="col-md-3 col-sm-12 col-xs-12 padding-0">
+														<!--<div class="col-md-3 col-sm-12 col-xs-12 padding-0">
 															<button class="btn btn-lg bg-grey btn-block br-6 btnDmAu"  style="font-size:inherit;"data-toggle="tab" href="#DMAuto"><i class="fa fa-envelope text-white"></i>&nbsp;<small class="text-white">DM Auto Responder</small></button>
 														</div>
+														-->
 												</div>
 											</div>
 										</div>
@@ -1345,66 +1435,6 @@ use Celebgramme\Models\SettingHelper;
 													</div>
 													
 													
-													<div id="DMAuto" class="tab-pane">
-														<div class="row">
-															<div class="clearfix"></div><br/>
-															<div class="col-md-12 col-sm-12 col-xs-12">
-																<span>Welcome Message To New Followers (DM Auto Reply) </span>
-																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Welcome Message New Followers ( DM Auto Reply )</div><div class='panel-content'>Fitur ini mengirimkan Direct Message (DM) kepada <br>
-																New Users saat pertama kali Menjadi Followers anda <br>
-																- Gunakan fitur ini untuk menyapa mereka, sebagai WELCOME message <br>
-																- Gunakan fitur SPIN message, sehingga lebih banyak variasi DM Auto Reply
-																</div>">
-																</span>
-																
-															</div>
-															<div class="col-md-12 col-sm-12 col-xs-12">
-																<label>Penjelasan spin message</label> &nbsp <span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Penjelasan fitur spin message</div>								<div class="panel-content"><strong>Gunakan Feature "Spin Message" </strong>contoh : <br>
-																{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
-																	*contoh diatas akan menghasilkan <strong>4x3x3x6 = 216 kombinasi messages </strong> sekaligus <br>
-																	</div>'>
-																</span>
-															</div>
-															<div class="col-md-12 col-sm-12 col-xs-12">
-																<label>Petunjuk tanda spin message</label> &nbsp
-																<?php $tempurl = url("images/petunjuk-spin.jpg"); ?>
-																<span class="glyphicon glyphicon-search tooltipPlugin" title='<div class="panel-heading">Petunjuk tanda baca spin message</div><div class="panel-content"><img src="{{$tempurl}}" width="800" height="250">
-																</div>'>
-																</span>
-																
-															</div>
-															
-															<div class="col-md-5 col-sm-12 col-xs-12">
-																<button type="button" class="btn <?php if ($settings->is_auto_responder) echo 'btn-primary' ?>" id="AutoResponderOnButton" style="color:#fff;margin-left:0px;">ON</button>
-																<button type="button" class="btn <?php if (!$settings->is_auto_responder) echo 'btn-danger' ?>" id="AutoResponderOffButton" style="color:#fff;">OFF</button>
-																<input type="hidden" value="<?php if (!is_null($settings->is_auto_responder)) { echo $settings->is_auto_responder; } else { echo "0"; } ?>" name="data[is_auto_responder]" id="is_auto_responder">
-																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Turn OFF selama sedang aktif mengirim DM</div>								<div class="panel-content"> <span style="color:#fb483a">WARNING TURN OFF DM Auto Responder </span> Jika: <br> - Anda aktif mengirim Direct Message <br> - Membeli / menambah Followers dalam jumlah banyak <br> 
-																Untuk mencegah akun anda di ban Auto DM nya oleh Instagram. Karena Instagram mempunyai jumlah maximum Direct Message per-jamnya.<br> 
-																	</div>'>
-																</span>
-															</div>
-															<div class="col-md-2 col-sm-12 col-xs-12">
-																<button class="btn btn-md bg-cyan pull-left" data-toggle="modal" data-target="#add-autoresponder" id="button-create-auto-responder" style="margin-left:0px;">
-																<span class="glyphicon glyphicon-plus"></span> &nbsp Add Response</button>
-																<span class="glyphicon glyphicon-question-sign tooltipPlugin"  title="<div class='panel-heading'>Add Responses</div><div class='panel-content'>Fitur DM Auto responder ini berguna untuk melakukan Follow up <br>
-																dengan followers baru anda. Anda dapat menambahkan up to 5 Auto DM <br>
-																dengan pilihan hari yang berbeda-beda ( dihitung sejak followers tersebut <br>
-																menjadi followers anda )
-																</div>" style="margin-top: 5px;margin-left: 5px;"></span>
-																
-																
-															</div>
-															<div class="col-md-12 col-sm-12 col-xs-12">
-																<textarea class="form-control" id="textarea-welcome-message" value="{{$settings->messages}}">{{$settings->messages}}</textarea>
-															</div>
-															<div class="col-md-2 col-sm-12 col-xs-12">
-																<button class="form-control btn btn-md bg-cyan pull-left" id="button-save-welcome-message" style="margin-left:0px;">Save</button>
-															</div>
-														</div>
-														
-														<div class="row" id="div-auto-responder">
-														</div>
-													</div>
 												</div>
 											</div>
 										</div>
@@ -1624,6 +1654,24 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 							<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 									<button type="button" class="btn btn-danger btn-ok" id="button-delete-auto-responder-setting" data-dismiss="modal">Delete</button>
+							</div>
+					</div>
+			</div>
+	</div>		
+	
+  <!-- Modal Show Alert Waiting with heavy load-->
+	<div class="modal fade" id="alert-heavy-load" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+					<div class="modal-content">
+							<div class="modal-header">
+									Please Wait
+							</div>
+							<div class="modal-body">
+									Hi {{$settings->insta_username}}, System kami sedang melakukan <br> proses loading messages di inbox anda. <br> Silahkan menunggu maximum 3-5 menit & <br> Terima kasih atas kesabarannya.
+							</div>
+							<input type="hidden" id="hidden-auto-responder-setting-id">
+							<div class="modal-footer">
+									<button type="button" class="btn btn-info btn-ok" id="" data-dismiss="modal">OK</button>
 							</div>
 					</div>
 			</div>

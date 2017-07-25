@@ -172,10 +172,17 @@ $(document).on('click','button',function(){
 		$(this).removeClass('bg-grey');
 		$(this).addClass('bg-cyan');
 		$(this).closest('.tabButton').find('.btnMessage').addClass('bg-grey');
+		$(this).closest('.tabButton').find('#button-direct-auto-responder').addClass('bg-grey');
 	}else if($(this).hasClass('btnMessage')){
 		$(this).removeClass('bg-grey');
 		$(this).addClass('bg-cyan');
 		$(this).closest('.tabButton').find('.btnGeneral').addClass('bg-grey');
+		$(this).closest('.tabButton').find('#button-direct-auto-responder').addClass('bg-grey');
+	}else if($(this).attr('id') == "button-direct-auto-responder"){
+		$(this).removeClass('bg-grey');
+		$(this).addClass('bg-cyan');
+		$(this).closest('.tabButton').find('.btnGeneral').addClass('bg-grey');
+		$(this).closest('.tabButton').find('.btnMessage').addClass('bg-grey');
 	}else if($(this).attr('id') == "btnToDashboard"){
 		// getPage('dashboard');
 		$('.list').find('li').removeClass('active');
