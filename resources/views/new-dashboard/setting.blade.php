@@ -1660,7 +1660,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 	</div>		
 	
   <!-- Modal Show Alert Waiting with heavy load-->
-	<div class="modal fade" id="alert-heavy-load" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="alert-heavy-load" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:1000000;">
 			<div class="modal-dialog">
 					<div class="modal-content">
 							<div class="modal-header">
