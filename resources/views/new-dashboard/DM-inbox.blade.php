@@ -93,7 +93,7 @@
 
 																if ($startPage > 1) { 
 																?>
-																	<li>
+																	<li <?php if ($currentPage==1) { echo 'class="active"'; } ?>>
 																		<a href="#">1</a>
 																	</li>
 																	<li>
@@ -104,7 +104,7 @@
 																
 																for($ii=$startPage; $ii<=$endPage; $ii++) {
 																?>
-																	<li>
+																	<li <?php if ($currentPage==$ii) { echo 'class="active"'; } ?>>
 																		<a href="#">{{$ii}}</a>
 																	</li>
 																<?php 
@@ -116,7 +116,7 @@
 																	<li>
 																		<a href="#" style="pointer-events: none;cursor: default;">..</a>
 																	</li>
-																	<li>
+																	<li <?php if ($currentPage==$totalPage) { echo 'class="active"'; } ?>>
 																		<a href="#">{{$totalPage}}</a>
 																	</li>
 																	
@@ -150,7 +150,7 @@
 		e.preventDefault();
 		e.stopPropagation();
 		$("#pagination li").removeClass("active");
-		$(this).parent().giveClass("active");
+		$(this).parent().addClass("active");
 		if ($(this).html() == "«") {
 			page -= 1; 
 		} else 
