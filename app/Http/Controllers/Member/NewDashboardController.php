@@ -619,7 +619,7 @@ class NewDashboardController extends Controller
 				if (Request::input("is_sort") == "1") {
 					usort($arr_inbox, function($a, $b) {
 						if ( ($a['status_new_message'] == $b['status_new_message']) && ($b['date_message1'] >= $a['date_message1']) ) {
-							return (int)"2".(string)($b['date_message1'] - $a['date_message1']);
+							return (int)"2".(string)($b['date_message1']);
 						}
 						return $b['status_new_message'] - $a['status_new_message'];
 					});
