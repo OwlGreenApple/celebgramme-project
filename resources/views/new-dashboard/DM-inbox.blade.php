@@ -149,6 +149,8 @@
 	$('#pagination a').click(function(e){
 		e.preventDefault();
 		e.stopPropagation();
+		$("#pagination li").removeClass("active");
+		$(this).parent().giveClass("active");
 		if ($(this).html() == "«") {
 			page -= 1; 
 		} else 
