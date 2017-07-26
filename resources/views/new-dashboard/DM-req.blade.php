@@ -32,7 +32,7 @@
 																			</div>
 																		</div>
 																		<div class="col-md-4 col-sm-4 col-xs-4 br-6">
-																			<div style="padding:10px;cursor:pointer;" class="bgGreenLight text-center button-accept-request same-height" data-thread-id="{{$data_arr->getThreadId()}}" data-pic="{{$data_arr->getUsers()[0]->getProfilePicId()}}" href="#chat-all" data-toggle="tab" >
+																			<div style="padding:10px;cursor:pointer;" class="bgGreenLight text-center button-accept-request same-height" data-thread-id="{{$data_arr->getThreadId()}}" data-pic="{{$data_arr->getUsers()[0]->getProfilePicId()}}" href="#chat-all" data-toggle="tab"  data-username="{{$data_arr->getUsers()[0]->getUsername()}}" >
 																				<i class="fa fa-check fa-2x" style="margin-top:25px;display:block"></i>
 																				<b class="text-white">Accept</b>
 																			</div>

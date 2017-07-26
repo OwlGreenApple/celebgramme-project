@@ -411,6 +411,7 @@ use Celebgramme\Models\SettingHelper;
 					setting_id : setting_id,
 					data_thread_id : $(this).attr("data-thread-id"),
 					data_pic : $(this).attr("data-pic"),
+					data_username : $(this).attr("data-username"),
 					type : 'approve',
 				},
 				dataType: 'text',

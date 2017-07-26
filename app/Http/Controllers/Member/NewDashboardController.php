@@ -473,7 +473,7 @@ class NewDashboardController extends Controller
 																			'chatAll'=>$chatAll,
 																			'setting_id'=>Request::input("setting_id"),
 																			'thread_id'=>Request::input("data_thread_id"),
-																			'username_user'=> $link->insta_username,
+																			'username_user'=> Request::input("data_username"),
 																			'data_pic'=> Request::input("data_pic"),
 																		))->render();
 					
