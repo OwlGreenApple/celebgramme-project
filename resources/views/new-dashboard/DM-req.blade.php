@@ -13,7 +13,7 @@
 															<div class="row">
 																<div style="padding:10px;" class="col-md-5 col-sm-12 col-xs-12 bg-white br-6 same-height">
 																	<div style="margin-top:10px;" class="col-md-2 col-sm-2 col-xs-2 ">
-																		<img src="{{$data_arr->getUsers()[0]->getProfilePicId()}}" class="img-circle" style="width:50px;height:50px;">
+																		<img src="{{$data_arr->getUsers()[0]->getProfilePicUrl()}}" class="img-circle" style="width:50px;height:50px;">
 																	</div>
 																	<div style="" class="col-md-10 col-sm-10 col-xs-10 ">
 																		<h3 style="color:#333;font-weight:200;">
