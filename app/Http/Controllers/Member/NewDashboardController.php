@@ -294,6 +294,7 @@ class NewDashboardController extends Controller
 																			'thread_id'=>Request::input("data_thread_id"),
 																			'username_user'=> Request::input("data_username"),
 																			'data_pic'=> Request::input("data_pic"),
+																			'i'=> $i,
 																		))->render();
 			}
 			catch (Exception $e) {
