@@ -1411,11 +1411,11 @@ use Celebgramme\Models\SettingHelper;
 															</div>
 															<div class="col-md-3 col-sm-12 col-xs-12">
 																<select class="form-control" id="sort-inbox-select">
-																	<option value="0">
-																		All Responses
-																	</option>
 																	<option value="1">
 																		Waiting Responses
+																	</option>
+																	<option value="0">
+																		All Responses
 																	</option>
 																</select>
 															</div>
