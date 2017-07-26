@@ -618,10 +618,25 @@ class NewDashboardController extends Controller
 				$arr_inbox = (array) $arr_inbox;
 				if (Request::input("is_sort") == "1") {
 					usort($arr_inbox, function($a, $b) {
-						if ( ($a['status_new_message'] == $b['status_new_message']) && ($b['date_message1'] >= $a['date_message1']) ) {
-							return (int)"2".(string)($b['date_message1']);
+						if ( ($b['status_new_message'] > $a['status_new_message']) && ($b['date_message1'] >= $a['date_message1']) ) {
+							return 6;
 						}
-						return $b['status_new_message'] - $a['status_new_message'];
+						if ( ($b['status_new_message'] > $a['status_new_message']) && ($b['date_message1'] < $a['date_message1']) ) {
+							return 5;
+						}
+						if ( ($b['status_new_message'] == $a['status_new_message']) && ($b['date_message1'] > $a['date_message1']) ) {
+							return 4;
+						}
+						if ( ($b['status_new_message'] == $a['status_new_message']) && ($b['date_message1'] < $a['date_message1']) ) {
+							return 3;
+						}
+						if ( ($b['status_new_message'] < $a['status_new_message']) && ($b['date_message1'] > $a['date_message1']) ) {
+							return 2;
+						}
+						if ( ($b['status_new_message'] < $a['status_new_message']) && ($b['date_message1'] < $a['date_message1']) ) {
+							return 1;
+						}
+						// return $b['status_new_message'] - $a['status_new_message'];
 					});
 				}
 				$total_data = count($arr_inbox);
