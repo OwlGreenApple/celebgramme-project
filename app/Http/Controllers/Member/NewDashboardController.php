@@ -617,27 +617,18 @@ class NewDashboardController extends Controller
 
 				$arr_inbox = (array) $arr_inbox;
 				if (Request::input("is_sort") == "1") {
-					usort($arr_inbox, function($a, $b) {
-						if ( ($b['status_new_message'] > $a['status_new_message']) && ($b['date_message1'] >= $a['date_message1']) ) {
-							return 6;
-						}
-						if ( ($b['status_new_message'] > $a['status_new_message']) && ($b['date_message1'] < $a['date_message1']) ) {
-							return 5;
-						}
-						if ( ($b['status_new_message'] == $a['status_new_message']) && ($b['date_message1'] > $a['date_message1']) ) {
-							return 4;
-						}
-						if ( ($b['status_new_message'] == $a['status_new_message']) && ($b['date_message1'] < $a['date_message1']) ) {
-							return 3;
-						}
-						if ( ($b['status_new_message'] < $a['status_new_message']) && ($b['date_message1'] > $a['date_message1']) ) {
-							return 2;
-						}
-						if ( ($b['status_new_message'] < $a['status_new_message']) && ($b['date_message1'] < $a['date_message1']) ) {
-							return 1;
-						}
+					// Obtain a list of columns
+					foreach ($arr_inbox as $key => $row) {
+							$status_new_message[$key]  = $row['status_new_message'];
+							$date_message1[$key] = $row['date_message1'];
+					}
+
+					// Sort the data with volume descending, edition ascending
+					// Add $data as the last parameter, to sort by the common key
+					array_multisort($status_new_message, SORT_DESC, $date_message1, SORT_DESC, $arr_inbox);
+					// usort($arr_inbox, function($a, $b) {
 						// return $b['status_new_message'] - $a['status_new_message'];
-					});
+					// });
 				}
 				$total_data = count($arr_inbox);
 				
