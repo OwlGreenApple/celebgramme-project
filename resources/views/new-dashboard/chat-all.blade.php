@@ -33,7 +33,7 @@
 								if (!is_null($res_url)) {
 									$url_img = $res_url;
 								}
-								echo '<img src="'.$url_img.'" style="width:200px;height:100%;"><br>'.$data->getReelShare()->getText();
+								echo '<img class="img-responsive" src="'.$url_img.'" style="width:200px;height:100%;"><br>'.$data->getReelShare()->getText();
 							}
 						?>
 					</div>
