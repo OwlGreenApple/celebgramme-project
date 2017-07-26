@@ -22,7 +22,20 @@
 				</div>	
 				<div class="col-md-9 col-sm-9 col-xs-9">
 					<div class="<?php if ($chatAll->thread->getUsers()[0]->getPk() != $data->getUserId() ) { echo "fr"; } else { echo "fl"; } ?> well" style="padding:10px; <?php if ($chatAll->thread->getUsers()[0]->getPk() == $data->getUserId() ) { echo "background-color:#fff;"; }?>">
-						{{$data->getText()}}
+						<?php 
+							if (strtolower($data->getItemType()) == "text" ) {
+								echo $data->getText();
+							}
+							else if (strtolower($data->getItemType()) == "reel_share" ) {
+								
+								$url_img = "";
+								$res_url = $i->media->getInfo($data->getReelShare()->getMedia()->getId())->getItems()[0]->getImageVersions2()->getCandidates()[0]->getUrl();
+								if (!is_null($res_url)) {
+									$url_img = $res_url;
+								}
+								echo '<img src="'.$url_img.'">'.$data->getReelShare()->getText();
+							}
+						?>
 					</div>
 				</div>
 				<div class="col-md-2 col-sm-2 col-xs-2">
