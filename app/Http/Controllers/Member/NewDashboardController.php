@@ -625,7 +625,7 @@ class NewDashboardController extends Controller
 
 					// Sort the data with volume descending, edition ascending
 					// Add $data as the last parameter, to sort by the common key
-					array_multisort($status_new_message, SORT_DESC, $date_message1, SORT_DESC, $arr_inbox);
+					array_multisort($status_new_message, SORT_DESC, $date_message1, SORT_DESC, SORT_NUMERIC, $arr_inbox);
 					// usort($arr_inbox, function($a, $b) {
 						// return $b['status_new_message'] - $a['status_new_message'];
 					// });
