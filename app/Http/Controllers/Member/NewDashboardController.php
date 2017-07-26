@@ -579,6 +579,7 @@ class NewDashboardController extends Controller
 							$counter_respond = 0;
 							foreach ($inboxResponse->getInbox()->getThreads() as $data_arr) {
 								$date_message = substr($data_arr->getItems()[0]->getTimestamp(),0,10);
+								$arr_data["pure_date"] = (int)$date_message;
 								$arr_data["date_message1"] = date("l, H:i:s", $date_message);
 								$arr_data["date_message2"] = date("Y-m-d", $date_message);
 								$text_message = $data_arr->getItems()[0]->getText();
@@ -620,12 +621,12 @@ class NewDashboardController extends Controller
 					// Obtain a list of columns
 					foreach ($arr_inbox as $key => $row) {
 							$status_new_message[$key]  = $row['status_new_message'];
-							$date_message1[$key] = $row['date_message1'];
+							$pure_date[$key] = $row['pure_date'];
 					}
 
 					// Sort the data with volume descending, edition ascending
 					// Add $data as the last parameter, to sort by the common key
-					array_multisort($status_new_message, SORT_DESC, $date_message1, SORT_DESC, SORT_NUMERIC, $arr_inbox);
+					array_multisort($status_new_message, SORT_DESC, $pure_date, SORT_DESC, $arr_inbox);
 					// usort($arr_inbox, function($a, $b) {
 						// return $b['status_new_message'] - $a['status_new_message'];
 					// });
