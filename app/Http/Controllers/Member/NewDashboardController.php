@@ -465,7 +465,7 @@ class NewDashboardController extends Controller
 				$i->login(false,300);
 				if ( Request::input("type") == "approve" ) {
 					// $i->directThreadAction(Request::input("data_thread_id"), "approve");
-					$i->approvePendingThreads( array (Request::input("data_thread_id")) );
+					$i->direct->approvePendingThreads( array (Request::input("data_thread_id")) );
 					$chatAll = $i->direct->getThread(Request::input("data_thread_id"));
 					// $arr["chatAll"] = json_encode($chatAll);
 					
@@ -480,7 +480,7 @@ class NewDashboardController extends Controller
 				}
 				else if ( Request::input("type") == "decline" ) {
 					// $i->directThreadAction(Request::input("data_thread_id"), "decline");
-					$i->declinePendingThreads( array (Request::input("data_thread_id")) );
+					$i->direct->declinePendingThreads( array (Request::input("data_thread_id")) );
 					$pendingInboxResponse = $i->direct->getPendingInbox();
 
 					$arr["resultEmailData"] = view("new-dashboard.DM-req")->with(array(
