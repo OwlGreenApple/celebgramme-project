@@ -647,7 +647,7 @@ class NewDashboardController extends Controller
 					
 					//cek klo ga ada di array_temp didelete
 					foreach ($arr_inbox as $key => $value){
-						if (!in_array($value["username"],$array_temp)) {
+						if (!in_array($value["username"],$result)) {
 							unset($arr_inbox[$key]);
 						}
 					}
