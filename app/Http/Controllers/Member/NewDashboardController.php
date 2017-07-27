@@ -627,12 +627,30 @@ class NewDashboardController extends Controller
 							$pure_date[$key] = $row['pure_date'];
 					}
 
-					// Sort the data with volume descending, edition ascending
 					// Add $data as the last parameter, to sort by the common key
 					array_multisort($status_new_message, SORT_DESC, $pure_date, SORT_DESC, $arr_inbox);
-					// usort($arr_inbox, function($a, $b) {
-						// return $b['status_new_message'] - $a['status_new_message'];
-					// });
+					/* old method
+					usort($arr_inbox, function($a, $b) {
+						return $b['status_new_message'] - $a['status_new_message'];
+					});*/
+				}
+				if (Request::input("search") <> "") {
+					//ditaruh di array_temp
+					$array_temp = array();
+					foreach ($arr_inbox as $data){
+						$array_temp[] = $data["username"];
+					}
+					
+					//search, grep array_temp
+					$input = preg_quote(Request::input("search"), '~'); // don't forget to quote input string!
+					$result = preg_grep('~' . $input . '~', $array_temp);
+					
+					//cek klo ga ada di array_temp didelete
+					foreach ($arr_inbox as $key => $value){
+						if (!in_array($value["username"],$array_temp)) {
+							unset($arr_inbox[$key]);
+						}
+					}
 				}
 				$total_data = count($arr_inbox);
 				

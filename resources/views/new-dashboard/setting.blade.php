@@ -27,6 +27,7 @@ use Celebgramme\Models\SettingHelper;
 					is_sort : $("#sort-inbox-select").val(),
 					page : page,
 					is_refresh : is_refresh,
+					search : $("#search-username-dminbox").val(),
 				},
 				dataType: 'text',
 				beforeSend: function()
@@ -331,6 +332,10 @@ use Celebgramme\Models\SettingHelper;
 		$( "body" ).on( "click", "#button-refresh-DMInbox", function(e) {
 			e.preventDefault();
 			load_dm_inbox(1,"1");
+		});
+		$( "#search-username-dminbox" ).keyup(function(e) {
+			e.preventDefault();
+			load_dm_inbox(1,0);
 		});
 		
 		$( "body" ).on( "click", ".button-reply", function(e) {
@@ -1448,6 +1453,11 @@ use Celebgramme\Models\SettingHelper;
 															</div>
 															<div class="col-md-3 col-sm-12 col-xs-12">
 																<button class="btn btn-lg br-6 bg-cyan" id="button-refresh-DMInbox" data-is-refresh="1">Refresh</button>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-md-2 col-sm-12 col-xs-12">
+																<input type="text" class="form-control" placeholder="search username" id="search-username-dminbox"> 
 															</div>
 														</div>
 														<div class="col-md-12 col-sm-12 col-xs-12" id="dm-inbox-content">
