@@ -643,7 +643,7 @@ class NewDashboardController extends Controller
 					
 					//search, grep array_temp
 					$input = preg_quote(Request::input("search"), '~'); // don't forget to quote input string!
-					$result = preg_filter('~' . $input . '~', $array_temp);
+					$result = preg_grep('~' . $input . '~', $array_temp);
 					
 					//cek klo ga ada di array_temp didelete
 					foreach ($arr_inbox as $key => $value){
