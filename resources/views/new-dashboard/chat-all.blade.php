@@ -33,9 +33,13 @@
 								$reelshareData = $data->getReelShare();
 								if (!is_null($reelshareData)) {
 									if (!is_null($reelshareData->getMedia())) {
-										$res_url = $i->media->getInfo($reelshareData->getMedia()->getId())->getItems()[0]->getImageVersions2()->getCandidates()[0]->getUrl();
-										if (!is_null($res_url)) {
-											$url_img = $res_url;
+										if (!is_null($reelshareData->getMedia()->getId())) {
+											if (!is_null($i->media->getInfo($reelshareData->getMedia()->getId())->getItems())) {
+												$res_url = $i->media->getInfo($reelshareData->getMedia()->getId())->getItems()[0]->getImageVersions2()->getCandidates()[0]->getUrl();
+												if (!is_null($res_url)) {
+													$url_img = $res_url;
+												}
+											}
 										}
 									}
 									$message = $reelshareData->getText();
