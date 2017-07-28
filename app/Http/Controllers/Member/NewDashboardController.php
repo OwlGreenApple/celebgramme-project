@@ -621,7 +621,7 @@ class NewDashboardController extends Controller
 								$arr_data["date_message2"] = date("Y-m-d", $date_message);
 								$text_message = $data_arr->getItems()[0]->getText();
 								if (strlen($text_message)>=42) {
-									$text_message = substr($text_message,0,115)." ...";
+									$text_message = substr($text_message,0,50)." ...";
 								}
 								$arr_data["text_message"] = $text_message;
 								//klo ga ada usernya di break
