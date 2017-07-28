@@ -364,6 +364,7 @@ class NewDashboardController extends Controller
 								$text_message = substr($text_message,0,115)." ...";
 							}
 							$arr_inbox[$key]["text_message"] = $text_message;
+							$arr_inbox[$key]["status_new_message"] = false;
 							
 						}
 					}
