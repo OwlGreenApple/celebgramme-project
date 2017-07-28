@@ -16,9 +16,9 @@
 																		<img src="{{$data_arr->getUsers()[0]->getProfilePicUrl()}}" class="img-circle" style="width:35px;height:35px;">
 																	</div>
 																	<div style="" class="col-md-10 col-sm-10 col-xs-10 ">
-																		<h3 style="color:#333;font-weight:200;">
+																		<h5 style="color:#333;font-weight:200;">
 																			{{$data_arr->getUsers()[0]->getUsername()}}
-																		</h3>
+																		</h5>
 																		<small style="color:#333;">{{$text_message}}</small>
 																	</div>
 																</div>
