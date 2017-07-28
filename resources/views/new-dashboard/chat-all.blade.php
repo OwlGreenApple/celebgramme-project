@@ -29,13 +29,18 @@
 							else if (strtolower($data->getItemType()) == "reel_share" ) {
 								
 								$url_img = "";
-								if (!is_null($i->media->getInfo($data->getReelShare()->getMedia()->getId()))) {
-									$res_url = $i->media->getInfo($data->getReelShare()->getMedia()->getId())->getItems()[0]->getImageVersions2()->getCandidates()[0]->getUrl();
-									if (!is_null($res_url)) {
-										$url_img = $res_url;
+								$message = "";
+								$reelshareData = $data->getReelShare();
+								if (!is_null($reelshareData)) {
+									if (!is_null($reelshareData->getMedia())) {
+										$res_url = $i->media->getInfo($reelshareData->getMedia()->getId())->getItems()[0]->getImageVersions2()->getCandidates()[0]->getUrl();
+										if (!is_null($res_url)) {
+											$url_img = $res_url;
+										}
 									}
+									$message = $reelshareData->getText();
 								}
-								echo '<img class="img-responsive" src="'.$url_img.'" style="width:200px;height:100%;"><br>'.$data->getReelShare()->getText();
+								echo '<img class="img-responsive" src="'.$url_img.'" style="width:200px;height:100%;"><br>'.$message;
 							}
 						?>
 					</div>
