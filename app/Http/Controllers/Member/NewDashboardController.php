@@ -347,6 +347,31 @@ class NewDashboardController extends Controller
 				$i->login(false,300);
 				if ( Request::input("type") == "message" ) {
 					$i->direct->sendText(array('users'=>array(Request::input("pk_id"))), Request::input("message"));
+					
+					//Grab database DM inboxnya
+					$arr_inbox = json_decode($setting->array_inbox,true);
+					$arr_inbox = (array) $arr_inbox;
+					// Obtain a list of columns
+					foreach ($arr_inbox as $key => $row) {
+						if ( strtolower($row['username']) == strtolower($setting->insta_username) ) {
+							$dt = Carbon::now();
+							$date_message = $dt->timestamp;
+							$row["pure_date"] = (int)$date_message;
+							$row["date_message1"] = date("l, H:i:s", $date_message);
+							$row["date_message2"] = date("Y-m-d", $date_message);
+							$text_message = Request::input("message");
+							if (strlen($text_message)>=42) {
+								$text_message = substr($text_message,0,115)." ...";
+							}
+							$row["text_message"] = $text_message;
+							
+						}
+					}
+					//Update database DM inboxnya
+					$dt = Carbon::now();
+					$setting->array_inbox = json_encode($arr_inbox);
+					$setting->last_update_inbox = $dt->toDateTimeString();
+					$setting->save(); 
 				}
 				else if ( Request::input("type") == "like" ) {
 					$i->direct->sendText(array('users'=>array(Request::input("pk_id"))), Request::input("message"));
