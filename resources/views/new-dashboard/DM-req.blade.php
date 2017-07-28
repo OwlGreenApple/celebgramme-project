@@ -7,7 +7,7 @@
 																		$date_message = substr($data_arr->getItems()[0]->getTimestamp(),0,10);
 																		$text_message = $data_arr->getItems()[0]->getText();
 																		if (strlen($text_message)>=42) {
-																			$text_message = substr($text_message,0,60)." ...";
+																			$text_message = substr($text_message,0,50)." ...";
 																		}
 															?>
 															<div class="row">
