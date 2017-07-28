@@ -514,9 +514,6 @@ use Celebgramme\Models\SettingHelper;
 		});
 		$( "body" ).on( "click", "#button-create-auto-responder", function(e) {
 			e.preventDefault();
-			$("#id-auto-responder").val("new");
-			$("#num_of_day").val("");
-			$("#message_responder").val("");
 		});
 		$( "body" ).on( "click", ".button-edit-auto-responder", function(e) {
 			e.preventDefault();
@@ -547,6 +544,10 @@ use Celebgramme\Models\SettingHelper;
 							load_auto_responder();
               $("#alert").addClass("alert-success");
               $("#alert").removeClass("alert-danger");
+							
+							$("#id-auto-responder").val("new");
+							$("#num_of_day").val("");
+							$("#message_responder").val("");
             } else if (data.type=='error') {
               $("#alert").addClass("alert-danger");
               $("#alert").removeClass("alert-success");
@@ -1321,6 +1322,24 @@ use Celebgramme\Models\SettingHelper;
 														<div class="clearfix"></div><br/>
 														<div class="header">
 															<h2>
+																Auto Responder &nbsp;
+															</h2>
+														</div>
+														<div class="body" style="background:transparent;box-shadow:none;">
+															<div class="row">
+																<div class="col-md-5 col-sm-12 col-xs-12">
+																	<button type="button" class="btn <?php if ($settings->is_auto_responder) echo 'btn-primary' ?>" id="AutoResponderOnButton" style="color:#fff;margin-left:0px;">ON</button>
+																	<button type="button" class="btn <?php if (!$settings->is_auto_responder) echo 'btn-danger' ?>" id="AutoResponderOffButton" style="color:#fff;">OFF</button>
+																	<input type="hidden" value="<?php if (!is_null($settings->is_auto_responder)) { echo $settings->is_auto_responder; } else { echo "0"; } ?>" name="data[is_auto_responder]" id="is_auto_responder">
+																	<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Turn OFF selama sedang aktif mengirim DM</div>								<div class="panel-content"> <span style="color:#fb483a">WARNING TURN OFF DM Auto Responder </span> Jika: <br> - Anda aktif mengirim Direct Message <br> - Membeli / menambah Followers dalam jumlah banyak <br> 
+																	Untuk mencegah akun anda di ban Auto DM nya oleh Instagram. Karena Instagram mempunyai jumlah maximum Direct Message per-jamnya.<br> 
+																		</div>'>
+																	</span>
+																</div>
+															</div>
+														</div>
+														<div class="header">
+															<h2>
 																Welcome Message To New Followers (DM Auto Reply) &nbsp;
 																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Welcome Message New Followers ( DM Auto Reply )</div><div class='panel-content'>Fitur ini mengirimkan Direct Message (DM) kepada <br>
 																New Users saat pertama kali Menjadi Followers anda <br>
@@ -1359,15 +1378,6 @@ use Celebgramme\Models\SettingHelper;
 																	
 																</div>
 																
-																<div class="col-md-5 col-sm-12 col-xs-12">
-																	<button type="button" class="btn <?php if ($settings->is_auto_responder) echo 'btn-primary' ?>" id="AutoResponderOnButton" style="color:#fff;margin-left:0px;">ON</button>
-																	<button type="button" class="btn <?php if (!$settings->is_auto_responder) echo 'btn-danger' ?>" id="AutoResponderOffButton" style="color:#fff;">OFF</button>
-																	<input type="hidden" value="<?php if (!is_null($settings->is_auto_responder)) { echo $settings->is_auto_responder; } else { echo "0"; } ?>" name="data[is_auto_responder]" id="is_auto_responder">
-																	<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Turn OFF selama sedang aktif mengirim DM</div>								<div class="panel-content"> <span style="color:#fb483a">WARNING TURN OFF DM Auto Responder </span> Jika: <br> - Anda aktif mengirim Direct Message <br> - Membeli / menambah Followers dalam jumlah banyak <br> 
-																	Untuk mencegah akun anda di ban Auto DM nya oleh Instagram. Karena Instagram mempunyai jumlah maximum Direct Message per-jamnya.<br> 
-																		</div>'>
-																	</span>
-																</div>
 																<div class="col-md-12 col-sm-12 col-xs-12">
 																	<textarea class="form-control" id="textarea-welcome-message" value="{{$settings->messages}}">{{$settings->messages}}</textarea>
 																</div>
@@ -1380,7 +1390,7 @@ use Celebgramme\Models\SettingHelper;
 													
 													<div class="header">
 														<h2>
-															Auto Responder &nbsp;
+															DM Auto Responder &nbsp;
 															<span class="glyphicon glyphicon-question-sign tooltipPlugin"  title="<div class='panel-heading'>Auto Responder</div><div class='panel-content'>Fitur DM Auto responder ini berguna untuk melakukan Follow up <br>
 															dengan followers baru anda. Anda dapat menambahkan up to 5 Auto DM <br>
 															dengan pilihan hari yang berbeda-beda ( dihitung sejak followers tersebut <br>
@@ -1701,10 +1711,11 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 			<div class="modal-dialog">
 					<div class="modal-content">
 							<div class="modal-header">
-									Please Wait
+									<h3>Please Wait</h3>
 							</div>
 							<div class="modal-body">
-									Hi {{$settings->insta_username}}, System kami sedang melakukan <br> proses loading messages di inbox anda. <br> Silahkan menunggu maximum 3-5 menit & <br> Terima kasih atas kesabarannya.
+									Hi {{$settings->insta_username}}, System kami sedang melakukan <br> proses loading messages di inbox anda. <br> Silahkan menunggu maximum 3-5 menit & <br> Terima kasih atas kesabarannya. <br> 
+									<span style="font-weight:Bold;color:#fb483a;">DO NOT CLOSE THIS WINDOWS PLEASE WAIT UNTIL ALL DM LOADING IS COMPLETED</span>
 							</div>
 							<input type="hidden" id="hidden-auto-responder-setting-id">
 							<div class="modal-footer">
