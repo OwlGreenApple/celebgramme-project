@@ -94,7 +94,7 @@
 																			</h5>
 																			<?php if ($data_arr['status_new_message']) { echo '<label class="label bgBlueGreen " style="position:absolute;top:0px;right:0px;">waiting response</label> '; } ?>
 																		</div>
-																		<small style="color:#333;<?php if ($data_arr['status_new_message']) { echo "font-weight:Bold;"; } ?>">{{$data_arr['text_message']}}</small>
+																		<small style="<?php if ($data_arr['status_new_message']) { echo "font-weight:Bold;color:#095c98;"; } else { echo "color:#333;"; } ?>">{{$data_arr['text_message']}}</small>
 																	</div>
 																</div>
 																<div style="margin-bottom:-5px;" class="col-md-7 col-sm-12 col-xs-12 ">
