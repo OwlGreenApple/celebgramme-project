@@ -11,7 +11,7 @@
 																		}
 															?>
 															<div class="row">
-																<div style="padding:5px;" class="col-md-5 col-sm-12 col-xs-12 bg-white br-6 same-height">
+																<div style="padding:5px;margin-bottom:-5px;" class="col-md-5 col-sm-12 col-xs-12 bg-white br-6 same-height">
 																	<div style="margin-top:7px;" class="col-md-2 col-sm-2 col-xs-2 ">
 																		<img src="{{$data_arr->getUsers()[0]->getProfilePicUrl()}}" class="img-circle" style="width:35px;height:35px;">
 																	</div>
@@ -22,7 +22,7 @@
 																		<small style="color:#333;">{{$text_message}}</small>
 																	</div>
 																</div>
-																<div style="" class="col-md-7 col-sm-12 col-xs-12">
+																<div style="margin-bottom:-5px;" class="col-md-7 col-sm-12 col-xs-12">
 																	<div class="row">
 																		<div class="col-md-4 col-sm-4 col-xs-4 br-6">
 																			<div style="padding:5px;" class="bg-white br-6 text-center same-height">
