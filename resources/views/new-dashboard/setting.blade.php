@@ -1715,7 +1715,7 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 							</div>
 							<div class="modal-body">
 									Hi {{$settings->insta_username}}, System kami sedang melakukan <br> proses loading messages di inbox anda. <br> Silahkan menunggu maximum 3-5 menit & <br> Terima kasih atas kesabarannya. <br> 
-									<span style="font-weight:Bold;color:#fb483a;">DO NOT CLOSE THIS WINDOWS PLEASE WAIT UNTIL ALL DM LOADING IS COMPLETED</span>
+									<span style="font-weight:Bold;color:#fb483a;">DO NOT CLOSE THIS WINDOWS <br>PLEASE WAIT UNTIL ALL DM LOADING IS COMPLETED</span>
 							</div>
 							<input type="hidden" id="hidden-auto-responder-setting-id">
 							<div class="modal-footer">

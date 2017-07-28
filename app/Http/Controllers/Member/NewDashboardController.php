@@ -354,18 +354,21 @@ class NewDashboardController extends Controller
 					// Obtain a list of columns
 					foreach ($arr_inbox as $key => $row) {
 						if ( strtolower($row['username']) == strtolower(Request::input("data_username")) ) {
+							unset($arr_inbox[$key]);
+							
 							$dt = Carbon::now();
 							$date_message = $dt->timestamp;
-							$arr_inbox[$key]["pure_date"] = (int)$date_message;
-							$arr_inbox[$key]["date_message1"] = date("l, H:i:s", $date_message);
-							$arr_inbox[$key]["date_message2"] = date("Y-m-d", $date_message);
+							$temp_arr_inbox[0]["pure_date"] = (int)$date_message;
+							$temp_arr_inbox[0]["date_message1"] = date("l, H:i:s", $date_message);
+							$temp_arr_inbox[0]["date_message2"] = date("Y-m-d", $date_message);
 							$text_message = Request::input("message");
 							if (strlen($text_message)>=42) {
 								$text_message = substr($text_message,0,115)." ...";
 							}
-							$arr_inbox[$key]["text_message"] = $text_message;
-							$arr_inbox[$key]["status_new_message"] = false;
+							$temp_arr_inbox[0]["text_message"] = $text_message;
+							$temp_arr_inbox[0]["status_new_message"] = false;
 							
+							array_unshift($arr_inbox, $temp_arr_inbox);
 						}
 					}
 					//Update database DM inboxnya
