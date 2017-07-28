@@ -84,8 +84,8 @@
 															?>
 															<div class="row">
 																<div style="padding:5px;margin-bottom:-5px;" class="col-md-5 col-sm-12 col-xs-12 bg-white br-6 same-height">
-																	<div style="margin-top:10px;" class="col-md-2 col-sm-2 col-xs-2 ">
-																		<img src="{{$data_arr['profile_pic_url']}}" class="img-circle" style="width:50px;height:50px;">
+																	<div style="margin-top:7px;" class="col-md-2 col-sm-2 col-xs-2 ">
+																		<img src="{{$data_arr['profile_pic_url']}}" class="img-circle" style="width:35px;height:35px;">
 																	</div>
 																	<div style="" class="col-md-10 col-sm-10 col-xs-10 ">
 																		<div>
@@ -101,12 +101,12 @@
 																	<div class="row">
 																		<div class="col-md-4 col-sm-6 col-xs-6 br-6" style="margin-right: -16px;">
 																			<div style="padding:5px;" class="bg-white br-6 text-center same-height">
-																				<b class="text-primary" style="margin-top:15px;display:block">{{$data_arr['date_message1']}}<br>{{$data_arr['date_message2']}}</b>
+																				<b class="text-primary" style="margin-top:7px;display:block">{{$data_arr['date_message1']}}<br>{{$data_arr['date_message2']}}</b>
 																			</div>
 																		</div>
 																		<div class="col-md-4 col-sm-6 col-xs-6 br-6" style="">
 																			<div style="padding:5px;cursor:pointer;" class="bg-cyan br-6 text-center button-reply same-height" data-thread-id="{{$data_arr['thread_id']}}" data-username="{{$data_arr['username']}}" data-pic="{{$data_arr['profile_pic_url']}}" href="#chat-all" data-toggle="tab" >
-																				<i class="fa fa-mail-reply fa-2x" style="margin-top:15px;display:block"></i>
+																				<i class="fa fa-mail-reply fa-2x" style="margin-top:7px;display:block"></i>
 																				<b class="text-white">Reply</b>
 																			</div>
 																		</div>

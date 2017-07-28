@@ -37,7 +37,7 @@ use Celebgramme\Models\SettingHelper;
 					{
 						$("#alert-heavy-load").modal("show");
 					},
-					10000);
+					15000);
 					$("#div-loading").show();
 				},
 				success: function(result) {
