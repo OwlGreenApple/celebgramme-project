@@ -354,8 +354,6 @@ class NewDashboardController extends Controller
 					// Obtain a list of columns
 					foreach ($arr_inbox as $key => $row) {
 						if ( strtolower($row['username']) == strtolower(Request::input("data_username")) ) {
-							unset($arr_inbox[$key]);
-							
 							$dt = Carbon::now();
 							$date_message = $dt->timestamp;
 							$temp_arr_inbox[0]["pure_date"] = (int)$date_message;
@@ -368,6 +366,13 @@ class NewDashboardController extends Controller
 							$temp_arr_inbox[0]["text_message"] = $text_message;
 							$temp_arr_inbox[0]["status_new_message"] = false;
 							
+							$temp_arr_inbox[0]["user_id"] = $row['user_id'];
+							$temp_arr_inbox[0]["username"] = $row['username'];
+							$temp_arr_inbox[0]["profile_pic_url"] = $row['profile_pic_url'];
+							$temp_arr_inbox[0]["thread_id"] = $row['thread_id'];
+							$temp_arr_inbox[0]["pk"] = $row['pk'];
+
+							unset($arr_inbox[$key]);
 							array_unshift($arr_inbox, $temp_arr_inbox);
 						}
 					}
