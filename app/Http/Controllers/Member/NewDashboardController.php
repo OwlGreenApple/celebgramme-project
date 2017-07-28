@@ -690,7 +690,7 @@ class NewDashboardController extends Controller
 				
 				//buat pagination
 				$page = Request::input('page'); // Get the current page or default to 1, this is what you miss!
-				$perPage = 20;
+				$perPage = 50;
 				$offset = ($page * $perPage) - $perPage;
 				$totalPage = floor($total_data / $perPage) +1;
 				
