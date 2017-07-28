@@ -654,35 +654,37 @@ class NewDashboardController extends Controller
 				}
 
 				$arr_inbox = (array) $arr_inbox;
-				if (Request::input("is_sort") == "1") {
-					// Obtain a list of columns
-					foreach ($arr_inbox as $key => $row) {
-							$status_new_message[$key]  = $row['status_new_message'];
-							$pure_date[$key] = $row['pure_date'];
-					}
+				if (count($arr_inbox)>0) {
+					if (Request::input("is_sort") == "1") {
+						// Obtain a list of columns
+						foreach ($arr_inbox as $key => $row) {
+								$status_new_message[$key]  = $row['status_new_message'];
+								$pure_date[$key] = $row['pure_date'];
+						}
 
-					// Add $data as the last parameter, to sort by the common key
-					array_multisort($status_new_message, SORT_DESC, $pure_date, SORT_DESC, $arr_inbox);
-					/* old method
-					usort($arr_inbox, function($a, $b) {
-						return $b['status_new_message'] - $a['status_new_message'];
-					});*/
-				}
-				if (Request::input("search") <> "") {
-					//ditaruh di array_temp
-					$array_temp = array();
-					foreach ($arr_inbox as $data){
-						$array_temp[] = $data["username"];
+						// Add $data as the last parameter, to sort by the common key
+						array_multisort($status_new_message, SORT_DESC, $pure_date, SORT_DESC, $arr_inbox);
+						/* old method
+						usort($arr_inbox, function($a, $b) {
+							return $b['status_new_message'] - $a['status_new_message'];
+						});*/
 					}
-					
-					//search, grep array_temp
-					$input = preg_quote(Request::input("search"), '~'); // don't forget to quote input string!
-					$result = preg_grep('~' . $input . '~', $array_temp);
-					
-					//cek klo ga ada di array_temp didelete
-					foreach ($arr_inbox as $key => $value){
-						if (!in_array($value["username"],$result)) {
-							unset($arr_inbox[$key]);
+					if (Request::input("search") <> "") {
+						//ditaruh di array_temp
+						$array_temp = array();
+						foreach ($arr_inbox as $data){
+							$array_temp[] = $data["username"];
+						}
+						
+						//search, grep array_temp
+						$input = preg_quote(Request::input("search"), '~'); // don't forget to quote input string!
+						$result = preg_grep('~' . $input . '~', $array_temp);
+						
+						//cek klo ga ada di array_temp didelete
+						foreach ($arr_inbox as $key => $value){
+							if (!in_array($value["username"],$result)) {
+								unset($arr_inbox[$key]);
+							}
 						}
 					}
 				}
