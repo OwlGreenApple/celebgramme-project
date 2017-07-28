@@ -4,6 +4,7 @@
 															<nav>
 																<ul class="pagination" id="pagination">
 																<?php 
+																$counter =0;
 																if (count($arr_inbox) > 0 ) {
 																if ($page=="") {
 																	$currentPage = 1;
@@ -62,7 +63,6 @@
 															
 															
 															<?php
-																$counter =0;
 																	foreach ($arr_inbox as $data_arr) {
 																		// $date_message = substr($data_arr->items[0]->timestamp,0,10);
 																		// $text_message = $data_arr->items[0]->text;
