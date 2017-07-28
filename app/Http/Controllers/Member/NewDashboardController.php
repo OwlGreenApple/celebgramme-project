@@ -356,21 +356,21 @@ class NewDashboardController extends Controller
 						if ( strtolower($row['username']) == strtolower(Request::input("data_username")) ) {
 							$dt = Carbon::now();
 							$date_message = $dt->timestamp;
-							$temp_arr_inbox[0]["pure_date"] = (int)$date_message;
-							$temp_arr_inbox[0]["date_message1"] = date("l, H:i:s", $date_message);
-							$temp_arr_inbox[0]["date_message2"] = date("Y-m-d", $date_message);
+							$temp_arr_inbox["pure_date"] = (int)$date_message;
+							$temp_arr_inbox["date_message1"] = date("l, H:i:s", $date_message);
+							$temp_arr_inbox["date_message2"] = date("Y-m-d", $date_message);
 							$text_message = Request::input("message");
 							if (strlen($text_message)>=42) {
 								$text_message = substr($text_message,0,115)." ...";
 							}
-							$temp_arr_inbox[0]["text_message"] = $text_message;
-							$temp_arr_inbox[0]["status_new_message"] = false;
+							$temp_arr_inbox["text_message"] = $text_message;
+							$temp_arr_inbox["status_new_message"] = false;
 							
-							$temp_arr_inbox[0]["user_id"] = $row['user_id'];
-							$temp_arr_inbox[0]["username"] = $row['username'];
-							$temp_arr_inbox[0]["profile_pic_url"] = $row['profile_pic_url'];
-							$temp_arr_inbox[0]["thread_id"] = $row['thread_id'];
-							$temp_arr_inbox[0]["pk"] = $row['pk'];
+							$temp_arr_inbox["user_id"] = $row['user_id'];
+							$temp_arr_inbox["username"] = $row['username'];
+							$temp_arr_inbox["profile_pic_url"] = $row['profile_pic_url'];
+							$temp_arr_inbox["thread_id"] = $row['thread_id'];
+							$temp_arr_inbox["pk"] = $row['pk'];
 
 							unset($arr_inbox[$key]);
 							array_unshift($arr_inbox, $temp_arr_inbox);
