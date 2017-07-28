@@ -353,7 +353,7 @@ class NewDashboardController extends Controller
 					$arr_inbox = (array) $arr_inbox;
 					// Obtain a list of columns
 					foreach ($arr_inbox as $key => $row) {
-						if ( strtolower($row['username']) == strtolower($setting->insta_username) ) {
+						if ( strtolower($row['username']) == strtolower(Request::input("data_username")) ) {
 							$dt = Carbon::now();
 							$date_message = $dt->timestamp;
 							$row["pure_date"] = (int)$date_message;
