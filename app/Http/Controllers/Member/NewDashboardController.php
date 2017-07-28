@@ -356,14 +356,14 @@ class NewDashboardController extends Controller
 						if ( strtolower($row['username']) == strtolower(Request::input("data_username")) ) {
 							$dt = Carbon::now();
 							$date_message = $dt->timestamp;
-							$row["pure_date"] = (int)$date_message;
-							$row["date_message1"] = date("l, H:i:s", $date_message);
-							$row["date_message2"] = date("Y-m-d", $date_message);
+							$arr_inbox[$key]["pure_date"] = (int)$date_message;
+							$arr_inbox[$key]["date_message1"] = date("l, H:i:s", $date_message);
+							$arr_inbox[$key]["date_message2"] = date("Y-m-d", $date_message);
 							$text_message = Request::input("message");
 							if (strlen($text_message)>=42) {
 								$text_message = substr($text_message,0,115)." ...";
 							}
-							$row["text_message"] = $text_message;
+							$arr_inbox[$key]["text_message"] = $text_message;
 							
 						}
 					}
