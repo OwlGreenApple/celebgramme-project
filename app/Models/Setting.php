@@ -186,7 +186,7 @@ class Setting extends Model {
 			}
 		}
 		
-		$setting = new Setting;
+		/*$setting = new Setting;
 		$setting->insta_username = $arr['insta_username'];
 		$setting->insta_password = $arr['insta_password'];
 		$setting->last_user = $arr['user_id'];
@@ -215,7 +215,7 @@ class Setting extends Model {
 		$setting->type = 'real';
 		$setting->insta_user_id = $id;
 		$setting->is_active = 0;
-		$setting->save();
+		$setting->save();*/
     
 		return $setting_id_temp;
 	}
@@ -224,10 +224,10 @@ class Setting extends Model {
 	protected function post_info_admin($setting_id,$type_message="[Celebgramme] Post Auto Manage",$auto=false) 
 	{
 			$setting_temp = Setting::find($setting_id);
-			$setting_real = Setting::where("insta_user_id","=",$setting_temp->insta_user_id)->where("type","=","real")->first();
+			//$setting_real = Setting::where("insta_user_id","=",$setting_temp->insta_user_id)->where("type","=","real")->first();//
 
 			$arr_temp = $setting_temp->toArray();
-			$arr_real = $setting_real->toArray();
+			// $arr_real = $setting_real->toArray();//
 			unset($arr_temp['id']);unset($arr_temp['type']);unset($arr_temp['last_user']);unset($arr_temp['user_id']);unset($arr_temp['start_time']);unset($arr_temp['running_time']);
 			unset($arr_real['id']);unset($arr_real['type']);unset($arr_real['last_user']);unset($arr_real['user_id']);unset($arr_real['start_time']);unset($arr_real['running_time']);
 			$diff = array_diff_assoc($arr_temp,$arr_real);
@@ -248,7 +248,8 @@ class Setting extends Model {
 			$post->status_admin = false;
 			
 			//klo ada diff baru diupdate, sama statusnya started
-			if ( ( ($setting_temp->status=="stopped") && ($setting_real->status=="stopped") )  ||  (count($diff)==0)  ) {
+			// if ( ( ($setting_temp->status=="stopped") && ($setting_real->status=="stopped") )  ||  (count($diff)==0)  ) {//
+			if ( ($setting_temp->status=="stopped")   ||  (count($diff)==0)  ) {
 				$post->type = "success";
 			} else {
 				$post->type = "pending";
