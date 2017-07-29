@@ -1390,7 +1390,7 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 																
 																<div class="col-md-12 col-sm-12 col-xs-12">
-																	<textarea class="form-control" id="textarea-welcome-message" value="{{$settings->messages}}">{{$settings->messages}}</textarea>
+																	<textarea class="form-control" placeholder="Input Your Welcome Message to New Followers" id="textarea-welcome-message" value="{{$settings->messages}}">{{$settings->messages}}</textarea>
 																</div>
 																<div class="col-md-2 col-sm-12 col-xs-12">
 																	<button class="form-control btn btn-md bg-cyan pull-left" id="button-save-welcome-message" style="margin-left:0px;">Save</button>

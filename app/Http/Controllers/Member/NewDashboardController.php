@@ -759,12 +759,12 @@ class NewDashboardController extends Controller
 			return $arr;
     } 
 		
-		$setting = Setting::find(Request::input("setting_id"));
+		/*$setting = Setting::find(Request::input("setting_id"));
 		if ($setting->status <> "started") {
 			$arr["type"] = "error";
 			$arr["message"] = "Setting account belum distart";
       return $arr;
-		}
+		}*/
 		
 		if ( (Request::input("message") == "") && (Request::input("is_auto_responder")) ) {
 			$arr["type"] = "error";
@@ -781,7 +781,7 @@ class NewDashboardController extends Controller
 		if ( ((strpos(Request::input("message"), '{') !== false) && (strpos(Request::input("message"), '}')!==false)) && (Request::input("is_auto_responder")) ) {
 		} else {
 			if (Request::input("is_auto_responder")) {
-				$arr["message"]= "Direct Message memerlukan spin message, sebaiknya spin message anda mengandung lebih dari 250 kombinasi message";
+				$arr["message"]= "Welcome Message to new followers memerlukan spin message, sebaiknya spin message anda mengandung lebih dari 250 kombinasi message";
 				$arr["type"]= "error";
 				return $arr;
 			}
