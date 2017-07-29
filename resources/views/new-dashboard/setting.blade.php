@@ -93,6 +93,39 @@ use Celebgramme\Models\SettingHelper;
 			}
 		})
 	}
+	function save_auto_responder(){
+			$.ajax({
+				type: 'get',
+				url: "<?php echo url('save-welcome-message'); ?>",
+				data: {
+					setting_id : setting_id,
+					message : $("#textarea-welcome-message").val(),
+					is_auto_responder : $("#is_auto_responder").val(),
+				},
+				dataType: 'text',
+				beforeSend: function()
+				{
+					$("#div-loading").show();
+				},
+				success: function(result) {
+					window.scrollTo(0, 0);
+					$("#div-loading").hide();
+					var data = jQuery.parseJSON(result);
+					$("#alert").show();
+					$("#alert").html(data.message);
+					if(data.type=='success')
+					{
+						$("#alert").addClass('alert-success');
+						$("#alert").removeClass('alert-danger');
+					}
+					else if(data.type=='error')
+					{
+						$("#alert").addClass('alert-danger');
+						$("#alert").removeClass('alert-success');
+					}
+				}
+			})
+	}
 	function call_action(action,id){
 		$.ajax({
 				type: 'GET',
@@ -480,37 +513,15 @@ use Celebgramme\Models\SettingHelper;
 		$( "body" ).on( "click", "#button-save-welcome-message", function(e) {
 			e.preventDefault();
 			//save welcome message
-			$.ajax({
-				type: 'get',
-				url: "<?php echo url('save-welcome-message'); ?>",
-				data: {
-					setting_id : setting_id,
-					message : $("#textarea-welcome-message").val(),
-					is_auto_responder : $("#is_auto_responder").val(),
-				},
-				dataType: 'text',
-				beforeSend: function()
-				{
-					$("#div-loading").show();
-				},
-				success: function(result) {
-					window.scrollTo(0, 0);
-					$("#div-loading").hide();
-					var data = jQuery.parseJSON(result);
-					$("#alert").show();
-					$("#alert").html(data.message);
-					if(data.type=='success')
-					{
-						$("#alert").addClass('alert-success');
-						$("#alert").removeClass('alert-danger');
-					}
-					else if(data.type=='error')
-					{
-						$("#alert").addClass('alert-danger');
-						$("#alert").removeClass('alert-success');
-					}
-				}
-			})
+			save_auto_responder();
+		});
+		$( "body" ).on( "click", "#AutoResponderOnButton", function(e) {
+			e.preventDefault();
+			save_auto_responder();
+		});
+		$( "body" ).on( "click", "#AutoResponderOffButton", function(e) {
+			e.preventDefault();
+			save_auto_responder();
 		});
 		$( "body" ).on( "click", "#button-create-auto-responder", function(e) {
 			e.preventDefault();
