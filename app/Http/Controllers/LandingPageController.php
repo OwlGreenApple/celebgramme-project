@@ -651,11 +651,11 @@ class LandingPageController extends Controller
 		$setting_temp->status = "stopped";
 		$setting_temp->save();
 
-		$setting_real = Setting::where('insta_user_id','=',$setting_temp->insta_user_id)->where('type','=','real')->first();
+		/*$setting_real = Setting::where('insta_user_id','=',$setting_temp->insta_user_id)->where('type','=','real')->first();
 		if (!is_null($setting_real)) {
 			$setting_real->status = "stopped cron";
 			$setting_real->save();
-		}
+		}*/
 
 		$setting_helper = SettingHelper::where("setting_id","=",$setting_temp->id)->first();
 		if (!is_null($setting_helper)) {
