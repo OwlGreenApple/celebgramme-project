@@ -881,12 +881,12 @@ class NewDashboardController extends Controller
       return redirect('dashboard')->with( 'error', 'Not authorize to access page');
     } 
 			
-		$setting = Setting::find(Request::input("setting_id"));
+		/*$setting = Setting::find(Request::input("setting_id"));
 		if ($setting->status <> "started") {
 			$arr["type"] = "error";
 			$arr["message"] = "Setting account belum distart";
       return $arr;
-		}
+		}*/
 			
 		$auto_responder_setting = AutoResponderSetting::where("setting_id",Request::input("setting_id"))
 															->orderBy('num_of_day', 'asc')
