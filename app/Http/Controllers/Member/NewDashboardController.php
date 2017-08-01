@@ -811,12 +811,12 @@ class NewDashboardController extends Controller
 			return $arr;
     } 
 		
-		$setting = Setting::find(Request::input("setting_id"));
+		/*$setting = Setting::find(Request::input("setting_id"));
 		if ($setting->status <> "started") {
 			$arr["type"] = "error";
 			$arr["message"] = "Setting account belum distart";
       return $arr;
-		}
+		}*/
 		
 		//checking ga bole dalam hari yang sama, maximal 5
 		$auto_responder = AutoResponderSetting::where("setting_id",Request::input("setting_id"))->count();

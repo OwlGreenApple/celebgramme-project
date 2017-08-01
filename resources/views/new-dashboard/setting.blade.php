@@ -525,6 +525,7 @@ use Celebgramme\Models\SettingHelper;
 		});
 		$( "body" ).on( "click", "#button-create-auto-responder", function(e) {
 			e.preventDefault();
+			$("#id-auto-responder").val("new");
 		});
 		$( "body" ).on( "click", ".button-edit-auto-responder", function(e) {
 			e.preventDefault();
