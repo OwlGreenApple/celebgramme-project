@@ -80,7 +80,8 @@ class NewDashboardController extends Controller
 							->join("setting_helpers","setting_helpers.setting_id","=","settings.id")
 							->select("settings.*","setting_helpers.proxy_id")
               ->where("link_users_settings.user_id","=",$user->id)
-              ->where("settings.id","=",$id)
+              // ->where("settings.id","=",$id)
+              ->where("settings.insta_username","=",$id)
               ->where("type","=","temp")
               ->first();
 

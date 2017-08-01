@@ -99,7 +99,7 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 								<div class="col-md-3 col-sm-3 col-xs-3">
 									<center>
 									<small style="font-size:80%;white-space: nowrap;"><b>DM Inbox</b></small>
-									<a href="{{url('setting/'.$data->id)}}">
+									<a href="{{url('setting/'.$data->insta_username)}}">
 									<img src="<?php 
 															if ($unseen_count == 0) { 
 																echo asset('/new-dashboard/images/mailIcon-reg.png'); 
@@ -146,7 +146,7 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 									
 								</div>
 								<div class="col-md-6 col-sm-6 col-xs-6">
-									<a href="{{url('setting/'.$data->id)}}">
+									<a href="{{url('setting/'.$data->insta_username)}}">
 										<button class="btn bgBlueGreen btn-block text-center text-white waves-effect br-6">
 											<span class='glyphicon glyphicon-cog'></span> Setting
 										</button>
