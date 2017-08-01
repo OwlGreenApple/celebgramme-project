@@ -914,10 +914,10 @@ class NewDashboardController extends Controller
       return redirect('dashboard')->with( 'error', 'Not authorize to access page');
     } 
 		
-		$setting = Setting::find(Request::input("setting_id"));
+		/*$setting = Setting::find(Request::input("setting_id"));
 		if ($setting->status <> "started") {
       return redirect('dashboard')->with( 'error', 'Setting account belum distart');
-		}
+		}*/
 							
 		$arr["message"] = "Proses delete berhasil dilakukan";
 		$auto_responder = AutoResponderSetting::find(Request::input("id"))->delete();
