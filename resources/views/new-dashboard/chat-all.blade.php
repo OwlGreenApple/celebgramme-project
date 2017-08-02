@@ -26,8 +26,8 @@
 							if (strtolower($data->getItemType()) == "text" ) {
 								echo $data->getText();
 							}
-							else if (strtolower($data->getItemType()) == "reel_share" ) {
-								
+							// else if (strtolower($data->getItemType()) == "reel_share" ) {
+							else {	
 								$url_img = "";
 								$message = "";
 								$reelshareData = $data->getReelShare();
