@@ -629,11 +629,11 @@ class NewDashboardController extends Controller
 								if ( (is_null($data_arr->getUsers())) || (empty($data_arr->getUsers())) ) {
 									continue;
 								}
-								$status_new_message = false;
+								$status_new_message_temp = false;
 								if ($data_arr->getUsers()[0]->getPk() == $data_arr->getItems()[0]->getUserId()) {
-									$status_new_message = true;
+									$status_new_message_temp = true;
 								}
-								$arr_data["status_new_message"] = $status_new_message;
+								$arr_data["status_new_message"] = $status_new_message_temp;
 								$arr_data["user_id"] = $data_arr->getItems()[0]->getUserId();
 								$arr_data["username"] = $data_arr->getUsers()[0]->getUsername();
 								$arr_data["profile_pic_url"] = $data_arr->getUsers()[0]->getProfilePicUrl();
