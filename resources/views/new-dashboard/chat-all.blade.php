@@ -30,19 +30,28 @@
 							else {	
 								$url_img = "";
 								$message = "";
-								$reelshareData = $data->getReelShare();
-								if (!is_null($reelshareData)) {
-									if (!is_null($reelshareData->getMedia())) {
-										if (!is_null($reelshareData->getMedia()->getId())) {
-											if (!is_null($i->media->getInfo($reelshareData->getMedia()->getId())->getItems())) {
-												$res_url = $i->media->getInfo($reelshareData->getMedia()->getId())->getItems()[0]->getImageVersions2()->getCandidates()[0]->getUrl();
+								if (strtolower($data->getItemType()) == "reel_share" ) {
+									$shareData = $data->getReelShare();
+								}
+								else if (strtolower($data->getItemType()) == "media_share" ) {
+									$shareData = $data->getMediaShare();
+								}
+								else if (strtolower($data->getItemType()) == "raven_media" ) {
+									$shareData = $data->getRavenMedia();
+								}
+								
+								if (!is_null($shareData)) {
+									if (!is_null($shareData->getMedia())) {
+										if (!is_null($shareData->getMedia()->getId())) {
+											if (!is_null($i->media->getInfo($shareData->getMedia()->getId())->getItems())) {
+												$res_url = $i->media->getInfo($shareData->getMedia()->getId())->getItems()[0]->getImageVersions2()->getCandidates()[0]->getUrl();
 												if (!is_null($res_url)) {
 													$url_img = $res_url;
 												}
 											}
 										}
 									}
-									$message = $reelshareData->getText();
+									$message = $shareData->getText();
 								}
 								
 								if ($url_img <> "") {
