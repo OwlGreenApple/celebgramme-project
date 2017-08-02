@@ -137,13 +137,10 @@
   <form enctype="multipart/form-data" id="form-confirm">
     <div class="form-group form-group-sm row">
 			<div class="col-sm-12 col-md-12">            
-				<div class="alert btn-success col-sm-18 col-md-18" id="alert">
+				<div class="alert btn-success col-sm-12 col-md-12" id="alert">
 				</div>  
 			</div>          
 		</div>          
-    <div class="form-group form-group-sm row">
-      <label class="col-xs-12 col-sm-12 col-md-12 control-label" style="font-size:11px;">Apabila terjadi masalah saat konfirmasi, silahkan lakukan konfirmasi pembayaran dengan mengirim data2 konfirmasi pembayaran ke email celebgramme@gmail.com (no order,nama bank, no rekening, nama pemilik rekening, bukti transfer(photo/screenshot), keterangan)</label>
-    </div>  
     <div class="form-group form-group-sm row">
       <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">No. Order</label>
       <div class="col-sm-8 col-md-5">
@@ -196,6 +193,11 @@
       <div class="col-sm-8 col-md-3">
         <input class="btn btn-default" type="button" value="Process" id="button-process">
       </div>
+    </div>  
+    <div class="form-group form-group-sm row">
+			<div class="col-sm-4 col-md-4" style="border-style: solid;border-width: 1px;"> 
+				Apabila terjadi masalah saat melakukan konfirmasi, <br>silahkan lakukan konfirmasi pembayaran manual<br>Kirim data2 konfirmasi pembayaran ke email <br><span style="color:#2db8dc;font-weight:bold;">celebgramme@gmail.com </span><br>( no order, nama bank, nama pemilik rekening,<br>no rekening, bukti transfer(photo) & keterangan<br>
+			</div>          
     </div>  
   </form>
 </div>  

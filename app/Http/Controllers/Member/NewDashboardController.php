@@ -624,7 +624,7 @@ class NewDashboardController extends Controller
 								if (strlen($text_message)>=42) {
 									$text_message = substr($text_message,0,50)." ...";
 								}
-								$arr_data["text_message"] = $text_message;
+								$arr_data["text_message"] = $this->removeEmoji($text_message);
 								//klo ga ada usernya di break
 								if ( (is_null($data_arr->getUsers())) || (empty($data_arr->getUsers())) ) {
 									continue;
@@ -924,6 +924,43 @@ class NewDashboardController extends Controller
 		
 		
 		return $arr;
+	}
+	
+	public static function removeEmoji($text) {
+
+    $clean_text = $text;
+
+/*    // Match Emoticons
+    $regexEmoticons = '/[\x{1F600}-\x{1F64F}]/u';
+    $clean_text = preg_replace($regexEmoticons, '', $text);
+
+    // Match Miscellaneous Symbols and Pictographs
+    $regexSymbols = '/[\x{1F300}-\x{1F5FF}]/u';
+    $clean_text = preg_replace($regexSymbols, '', $clean_text);
+
+    // Match Transport And Map Symbols
+    $regexTransport = '/[\x{1F680}-\x{1F6FF}]/u';
+    $clean_text = preg_replace($regexTransport, '', $clean_text);
+
+    // Match Miscellaneous Symbols
+    $regexMisc = '/[\x{2600}-\x{26FF}]/u';
+    $clean_text = preg_replace($regexMisc, '', $clean_text);
+
+    // Match Dingbats
+    $regexDingbats = '/[\x{2700}-\x{27BF}]/u';
+    $clean_text = preg_replace($regexDingbats, '', $clean_text);
+    
+		// Match IM TRYING
+    $regexDingbats = '/[\x{0000}-\x{FFFF}]/u';
+    $clean_text = preg_replace($regexDingbats, '', $clean_text);*/
+		
+		// $clean_text = preg_replace("/[^A-Za-z0-9 # \n]/", '', $text);		
+		// $clean_text = preg_replace("/[^A-Za-z0-9\d\w\D\W \n]/", '', $text);		
+		// $clean_text = preg_replace("/[A-Za-z0-9_~\-!@#\$%\^&\*\(\)]/", '', $text);		
+		$clean_text =  preg_replace('/([0-9#][\x{20E3}])|[\x{00ae}\x{00a9}\x{203C}\x{2047}\x{2048}\x{2049}\x{3030}\x{303D}\x{2139}\x{2122}\x{3297}\x{3299}][\x{FE00}-\x{FEFF}]?|[\x{2190}-\x{21FF}][\x{FE00}-\x{FEFF}]?|[\x{2300}-\x{23FF}][\x{FE00}-\x{FEFF}]?|[\x{2460}-\x{24FF}][\x{FE00}-\x{FEFF}]?|[\x{25A0}-\x{25FF}][\x{FE00}-\x{FEFF}]?|[\x{2600}-\x{27BF}][\x{FE00}-\x{FEFF}]?|[\x{2900}-\x{297F}][\x{FE00}-\x{FEFF}]?|[\x{2B00}-\x{2BF0}][\x{FE00}-\x{FEFF}]?|[\x{1F000}-\x{1F6FF}][\x{FE00}-\x{FEFF}]?/u', '', $text);
+
+		
+    return $clean_text;
 	}
 	
 	
