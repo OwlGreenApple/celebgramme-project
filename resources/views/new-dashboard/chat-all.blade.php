@@ -51,7 +51,10 @@
 											}
 										}
 									}
-									$message = $shareData->getText();
+									if (!is_null($data->getText())) {
+										$message = $data->getText();
+									}
+									// $message = $shareData->getText();
 								}
 								
 								if ($url_img <> "") {
