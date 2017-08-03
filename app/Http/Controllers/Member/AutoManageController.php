@@ -338,6 +338,12 @@ class AutoManageController extends Controller
 					$setting->error_cred = 0;
 					$setting->save();
 
+					$setting_helper = SettingHelper::where("setting_id","=",$setting->id)->first();
+					if (!is_null($setting_helper)) {
+						$setting_helper->cookies = "";
+						$setting_helper->save();
+					}
+					
 					$linkUserSetting = new LinkUserSetting;
 					$linkUserSetting->user_id = $user->id;
 					$linkUserSetting->setting_id = $setting->id;
@@ -388,6 +394,10 @@ class AutoManageController extends Controller
 				$setting_helper->setting_id = $setting->id;
 				$setting_helper->use_automation = 1;
 				$setting_helper->server_automation = "AA7(automation-7)";
+				$setting_helper->save();
+			} 
+			else {
+				$setting_helper->cookies = "";
 				$setting_helper->save();
 			}
 			
