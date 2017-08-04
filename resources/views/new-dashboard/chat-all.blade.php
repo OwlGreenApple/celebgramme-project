@@ -57,7 +57,7 @@
 										}
 									}
 									if (!is_null($data->getText())) {
-										$message = $data->getText();
+										$message .= $data->getText();
 									}
 									
 									//klo ada media_sharenya
