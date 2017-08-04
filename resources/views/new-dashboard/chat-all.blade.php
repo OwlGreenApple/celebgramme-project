@@ -88,7 +88,7 @@
 									
 								}
 								
-								if (!like) {
+								if (!$like) {
 									if ($url_img <> "") {
 										echo '<img class="img-responsive" src="'.$url_img.'" style="width:200px;height:100%;"><br>'.$message;
 									} else {
