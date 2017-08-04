@@ -32,6 +32,9 @@
 								$message = "";
 								if (strtolower($data->getItemType()) == "reel_share" ) {
 									$shareData = $data->getReelShare();
+									if (!is_null($shareData->getText())) {
+										$message = $shareData->getText();
+									}
 								}
 								else if (strtolower($data->getItemType()) == "media_share" ) {
 									$shareData = $data->getMediaShare();
@@ -55,9 +58,6 @@
 									}
 									if (!is_null($data->getText())) {
 										$message = $data->getText();
-									}
-									if (!is_null($shareData->getText())) {
-										$message = $shareData->getText();
 									}
 									
 									//klo ada media_sharenya
