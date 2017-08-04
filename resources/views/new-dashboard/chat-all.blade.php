@@ -40,6 +40,8 @@
 									$shareData = $data->getRavenMedia();
 								}
 								
+								//harus ada pengecekan klo carousel atau image biasa, klo carousel diambil gambar yang pertama
+								
 								if (!is_null($shareData)) {
 									if (!is_null($shareData->getMedia())) {
 										if (!is_null($shareData->getMedia()->getId())) {
@@ -55,6 +57,23 @@
 										$message = $data->getText();
 									}
 									// $message = $shareData->getText();
+									
+									//klo ada media_sharenya
+									$mediaShare = $data->getMediaShare();
+									if (!is_null($mediaShare)) {
+										//dari image biasa 
+										$res_url = $mediaShare->getImageVersions2()->getCandidates()[0]->getUrl();
+										if (!is_null($res_url)) {
+											$url_img = $res_url;
+										}
+										
+										//dari image carousel 
+										$res_url = $mediaShare->getCarouselMedia()[0]->getCandidates()[0]->getUrl();
+										if (!is_null($res_url)) {
+											$url_img = $res_url;
+										}
+									}
+									
 								}
 								
 								if ($url_img <> "") {
