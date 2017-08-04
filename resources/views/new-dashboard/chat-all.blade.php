@@ -30,6 +30,7 @@
 							else {	
 								$url_img = "";
 								$message = "";
+								$like = false;
 								if (strtolower($data->getItemType()) == "reel_share" ) {
 									$shareData = $data->getReelShare();
 									if (!is_null($shareData->getText())) {
@@ -42,10 +43,13 @@
 								else if (strtolower($data->getItemType()) == "raven_media" ) {
 									$shareData = $data->getRavenMedia();
 								}
+								else if (strtolower($data->getItemType()) == "like" ) {
+									$like = true;
+								}
 								
 								//harus ada pengecekan klo carousel atau image biasa, klo carousel diambil gambar yang pertama
 								
-								if (!is_null($shareData)) {
+								if ( (!is_null($shareData)) && (!$like) ) {
 									if (!is_null($shareData->getMedia())) {
 										if (!is_null($shareData->getMedia()->getId())) {
 											if (!is_null($i->media->getInfo($shareData->getMedia()->getId())->getItems())) {
@@ -84,10 +88,14 @@
 									
 								}
 								
-								if ($url_img <> "") {
-									echo '<img class="img-responsive" src="'.$url_img.'" style="width:200px;height:100%;"><br>'.$message;
+								if (!like) {
+									if ($url_img <> "") {
+										echo '<img class="img-responsive" src="'.$url_img.'" style="width:200px;height:100%;"><br>'.$message;
+									} else {
+										echo $message;
+									}
 								} else {
-									echo $message;
+									echo '<span class="glyphicon glyphicon-heart"></span>';
 								}
 							}
 						?>
