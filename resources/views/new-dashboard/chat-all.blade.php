@@ -30,25 +30,28 @@
 							else {	
 								$url_img = "";
 								$message = "";
+								$mode_message = ""; $caption = ""; $insta_username="";
 								$like = false;
 								if (strtolower($data->getItemType()) == "reel_share" ) {
 									$shareData = $data->getReelShare();
 									if (!is_null($shareData->getText())) {
 										$message = $shareData->getText();
 									}
+									$mode_message = "insta_stories";
 								}
 								else if (strtolower($data->getItemType()) == "media_share" ) {
 									$shareData = $data->getMediaShare();
+									$mode_message = "photo_share";
 								}
 								else if (strtolower($data->getItemType()) == "raven_media" ) {
-									$shareData = $data->getRavenMedia();
+									// $shareData = $data->getRavenMedia();
+									$shareData = null;
 								}
 								else if (strtolower($data->getItemType()) == "like" ) {
 									$like = true;
 								}
 								
-								//harus ada pengecekan klo carousel atau image biasa, klo carousel diambil gambar yang pertama
-								
+								//klo reel_share
 								if ( (!is_null($shareData)) && (!$like) ) {
 									if (!is_null($shareData->getMedia())) {
 										if (!is_null($shareData->getMedia()->getId())) {
@@ -57,6 +60,9 @@
 												if (!is_null($res_url)) {
 													$url_img = $res_url;
 												}
+												
+												$caption = "";
+												$insta_username = "";
 											}
 										}
 									}
@@ -64,7 +70,7 @@
 										$message .= $data->getText();
 									}
 									
-									//klo ada media_sharenya
+									//klo media_share
 									$mediaShare = $data->getMediaShare();
 									if (!is_null($mediaShare)) {
 										//dari image biasa 
@@ -84,13 +90,29 @@
 												}
 											}
 										}
+										
+										if (!is_null($mediaShare->getCaption())) {
+											$caption = $mediaShare->getCaption()->getText();
+										}
+										if (!is_null($mediaShare->getUser())) {
+											$insta_username = $mediaShare->getUser()->getUsername();
+										}
 									}
 									
 								}
 								
 								if (!$like) {
 									if ($url_img <> "") {
-										echo '<img class="img-responsive" src="'.$url_img.'" style="width:200px;height:100%;"><br>'.$message;
+										// echo '<img class="img-responsive" src="'.$url_img.'" style="width:200px;height:100%;"><br>'.$message;
+										if ($mode_message == "insta_stories" ) {
+											echo '<h5>Reply their stories</h5><img class="img-responsive" src="'.$url_img.'" style="width:200px;height:100%;"><br>'.$message;
+										}
+										if ($mode_message == "photo_share" ) {
+											if (strlen($caption)>=15) {
+												$caption = substr($caption,0,15)." ...";
+											}
+											echo '<a href="instagram.com/'.$insta_username.'" target="_blank"><h4 style="font-weight: bold;">'.$insta_username.'</h4></a> <img class="img-responsive" src="'.$url_img.'" style="width:200px;height:100%;"> <label>'.$caption.'</label> <br>'.$message;
+										}
 									} else {
 										echo $message;
 									}
