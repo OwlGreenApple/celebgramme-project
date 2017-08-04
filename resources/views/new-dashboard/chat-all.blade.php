@@ -62,9 +62,11 @@
 									$mediaShare = $data->getMediaShare();
 									if (!is_null($mediaShare)) {
 										//dari image biasa 
-										$res_url = $mediaShare->getImageVersions2()->getCandidates();
+										$res_url = $mediaShare->getImageVersions2();
 										if (!is_null($res_url)) {
-											$url_img = $res_url[0]->getUrl();
+											if (!is_null($res_url->getCandidates())) {
+												$url_img = $res_url->getCandidates()[0]->getUrl();
+											}
 										}
 										
 										//dari image carousel 
