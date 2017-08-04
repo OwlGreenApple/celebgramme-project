@@ -56,7 +56,9 @@
 									if (!is_null($data->getText())) {
 										$message = $data->getText();
 									}
-									// $message = $shareData->getText();
+									if (!is_null($shareData->getText())) {
+										$message = $shareData->getText();
+									}
 									
 									//klo ada media_sharenya
 									$mediaShare = $data->getMediaShare();
