@@ -72,8 +72,10 @@
 										//dari image carousel 
 										$res_url = $mediaShare->getCarouselMedia();
 										if (!is_null($res_url)) {
-											if (!is_null($res_url[0]->getCandidates())) {
-												$url_img = $res_url[0]->getCandidates()[0]->getUrl();
+											if (!is_null($res_url[0]->getImageVersions2())) {
+												if (!is_null($res_url[0]->getImageVersions2()->getCandidates())) {
+													$url_img = $res_url[0]->getImageVersions2()->getCandidates()[0]->getUrl();
+												}
 											}
 										}
 									}
