@@ -31,7 +31,7 @@
 								$url_img = "";
 								$message = "";
 								$mode_message = ""; $caption = ""; $insta_username="";
-								$like = false;
+								$like = false; $shareData = null;
 								if (strtolower($data->getItemType()) == "reel_share" ) {
 									$shareData = $data->getReelShare();
 									if (!is_null($shareData->getText())) {
@@ -45,7 +45,6 @@
 								}
 								else if (strtolower($data->getItemType()) == "raven_media" ) {
 									// $shareData = $data->getRavenMedia();
-									$shareData = null;
 								}
 								else if (strtolower($data->getItemType()) == "like" ) {
 									$like = true;
