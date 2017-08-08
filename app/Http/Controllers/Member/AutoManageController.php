@@ -57,55 +57,6 @@ class AutoManageController extends Controller
 		$post = Post::where("type","=","home_page")->first();
 		$content = $post->description;
 		
-		//buat proxy random saat load page
-		//default random proxy 
-		$arr_proxys = array();		
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.41",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10130",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.87",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10152",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.34",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10162",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.58",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10152",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.62",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10161",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.26",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10159",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.67",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10181",
-		];
-		// $arr_proxys[] = [
-			// "proxy"=>"185.152.129.123",
-			// "cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			// "port"=>"10203",
-		// ];
-		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
-		$request->session()->put('arr_proxy', $arr_proxy);
-		
-		
-		
-		
     return view("member.auto-manage.index")->with(array(
       'user'=>$user,
       'order'=>$order,
@@ -147,8 +98,7 @@ class AutoManageController extends Controller
 			return $arr;
 		}*/
 			
-		$arr_proxy = $request->session()->get('arr_proxy');
-		// $arr_proxy = $this->get_proxy_id(Request::input("hidden_username")); //
+		$arr_proxy = null;
 		if($this->checking_cred_instagram(Request::input("hidden_username"),Request::input("edit_password"),$arr_proxy,Request::input('setting_id') )) {
 		} else {
 			$arr["message"]= "Instagram Login tidak valid";
@@ -243,7 +193,6 @@ class AutoManageController extends Controller
 									// ->where("proxy_id","<>",0)
 									->first();
 			if (!is_null($setting)) {
-				// $arr_proxy = $request->session()->get('arr_proxy');
 				if ($setting->proxy_id== 0) {
 					$arr_proxy = $this->get_proxy_id(Request::input("username")); //
 					$update_setting_helper = SettingHelper::where("setting_id",$setting->id)->first();
@@ -1116,56 +1065,11 @@ class AutoManageController extends Controller
 	}
 
 	public function checking_cred_instagram($username,$password,$arr_proxy,$setting_id = 0){  
-/*
-		//default random proxy 
-		$arr_proxys = array();		
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.41",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10130",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.87",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10152",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.34",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10162",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.58",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10152",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.62",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10161",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.26",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10159",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.67",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10181",
-		];
-		// $arr_proxys[] = [
-			// "proxy"=>"185.152.129.123",
-			// "cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			// "port"=>"10203",
-		// ];
-		
-		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
-*/		
-		
-		$port = $arr_proxy["port"];
-		$cred = $arr_proxy["cred"];
-		$proxy = $arr_proxy["proxy"];
+	  if (!is_null($arr_proxy)) {
+			$port = $arr_proxy["port"];
+			$cred = $arr_proxy["cred"];
+			$proxy = $arr_proxy["proxy"];
+		}
 		$auth = true;
 
 		if ($setting_id <> 0) {

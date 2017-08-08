@@ -290,34 +290,35 @@ class Setting extends Model {
 		$following = 0;
 		$id = 0; $found = false;
 
-		$ports[] = "10201"; 
-		$ports[] = "10202";
-		$ports[] = "10203";
-		$ports[] = "10204";
-		$ports[] = "10205";
-		$port = $ports[array_rand($ports)];
-		$cred = "sugiarto:sugihproxy250";
-		$proxy = "45.79.212.85";//good proxy
 		$auth = true;
 		
-		$arr_proxys = array();
 		$arr_proxys[] = [
-			"proxy"=>$proxy,
-			"cred"=>$cred,
-			"port"=>$port,
-		];
-		/*$arr_proxys[] = [
-			"proxy"=>"185.152.128.7",
-			"cred"=>"141sugiarto:celebgramme963123",
-			"port"=>"10168",
+			"proxy"=>"185.152.129.80",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10482",
 		];
 		$arr_proxys[] = [
-			"proxy"=>"185.152.128.58",
-			"cred"=>"141sugiarto:celebgramme963123",
-			"port"=>"10037",
-		];*/
+			"proxy"=>"185.152.129.34",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10585",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.129.34",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10620",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.129.112",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10476",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.129.85",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10595",
+		];
 		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
-		
+
 		//use own proxy if have
 		if ($setting_id <> 0) {
 			$setting_helper = SettingHelper::where("setting_id","=",$setting_id)->first();

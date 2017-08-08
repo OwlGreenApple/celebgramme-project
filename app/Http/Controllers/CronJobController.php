@@ -950,6 +950,7 @@ class CronJobController extends Controller
 		}
 	}
 
+	//function sudah ga dipake cuman dipake buat backup
 	public function task_automation_like_backup(){
 		$dt = Carbon::now()->setTimezone('Asia/Jakarta');
 		$settings = Setting::select("settings.*","setting_helpers.number_likes","setting_helpers.identity")

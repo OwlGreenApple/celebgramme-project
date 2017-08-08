@@ -369,68 +369,65 @@ class LandingPageController extends Controller
 
 		$arr_proxys = array();
 		
-		/* EX ERROR */
 		$arr_proxys[] = [
-			"proxy"=>"185.152.131.111",
+			"proxy"=>"185.152.129.110",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10822",
+			"port"=>"10429",
 			"no"=>"1",
 		];
 		$arr_proxys[] = [
-			"proxy"=>"185.152.131.103",
+			"proxy"=>"185.152.129.59",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10765",
+			"port"=>"10474",
 			"no"=>"2",
 		];
 		$arr_proxys[] = [
-			"proxy"=>"185.152.129.75",
+			"proxy"=>"185.152.129.25",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10029",
-			"no"=>"6",
-		];
-		/* */
-		
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.82",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10173",
+			"port"=>"10478",
 			"no"=>"3",
 		];
 		$arr_proxys[] = [
-			"proxy"=>"185.152.129.81",
+			"proxy"=>"185.152.129.119",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10033",
+			"port"=>"10485",
+			"no"=>"4",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.129.4",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10585",
 			"no"=>"5",
 		];
 		$arr_proxys[] = [
-			"proxy"=>"185.152.129.112",
+			"proxy"=>"185.152.129.88",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10256",
+			"port"=>"10462",
+			"no"=>"6",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"185.152.129.85",
+			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
+			"port"=>"10592",
 			"no"=>"7",
 		];
 		$arr_proxys[] = [
-			"proxy"=>"185.152.129.5",
+			"proxy"=>"185.152.129.84",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10053",
+			"port"=>"10468",
 			"no"=>"8",
 		];
 		$arr_proxys[] = [
-			"proxy"=>"185.152.129.28",
+			"proxy"=>"185.152.129.132",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10157",
+			"port"=>"10484",
 			"no"=>"9",
 		];
 		$arr_proxys[] = [
-			"proxy"=>"185.152.129.30",
+			"proxy"=>"185.152.129.76",
 			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10165",
+			"port"=>"10471",
 			"no"=>"10",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.73",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10036",
-			"no"=>"11",
 		];
 		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
 
