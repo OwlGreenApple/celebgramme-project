@@ -789,7 +789,7 @@ class NewDashboardController extends Controller
 		}
 		
 		//spin combination
-		$spin_combination = $this->count_combination(Request::input("message_responder"));
+		$spin_combination = $this->count_combination(Request::input("message"));
 		if ( intval($spin_combination) <= 250 ) {
 			$arr["message"]= "Auto Responder memerlukan spin message, sebaiknya spin message anda mengandung lebih dari 250 kombinasi message. Spin message anda hanya menghasilkan ".intval($spin_combination)." kombinasi.";
 			$arr["type"]= "error";
