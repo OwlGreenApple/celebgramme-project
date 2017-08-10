@@ -788,6 +788,15 @@ class NewDashboardController extends Controller
 			}
 		}
 		
+		//spin combination
+		$spin_combination = $this->count_combination(Request::input("message_responder"));
+		if ( $spin_combination <= 250 ) {
+			$arr["message"]= "Auto Responder memerlukan spin message, sebaiknya spin message anda mengandung lebih dari 250 kombinasi message. Spin message anda hanya menghasilkan ".$spin_combination." kombinasi.";
+			$arr["type"]= "error";
+			return $arr;
+		}
+		
+		
 		$setting = Setting::find(Request::input("setting_id"));
 		$setting->messages = Request::input("message");
 		$setting->is_auto_responder = Request::input("is_auto_responder");
@@ -839,6 +848,14 @@ class NewDashboardController extends Controller
 		if ((strpos(Request::input("message_responder"), '{') !== false) && (strpos(Request::input("message_responder"), '}')!==false)) {
 		} else {
 			$arr["message"]= "Auto Responder memerlukan spin message, sebaiknya spin message anda mengandung lebih dari 250 kombinasi message";
+			$arr["type"]= "error";
+			return $arr;
+		}
+		
+		//spin combination
+		$spin_combination = $this->count_combination(Request::input("message_responder"));
+		if ( $spin_combination <= 250 ) {
+			$arr["message"]= "Auto Responder memerlukan spin message, sebaiknya spin message anda mengandung lebih dari 250 kombinasi message. Spin message anda hanya menghasilkan ".$spin_combination." kombinasi.";
 			$arr["type"]= "error";
 			return $arr;
 		}
@@ -963,5 +980,35 @@ class NewDashboardController extends Controller
     return $clean_text;
 	}
 	
-	
+	public static function count_combination($str) {
+		$status_grab = false;
+		$strlen = strlen( $str );
+		$temp_count_combination = 0;
+		for( $i = 0; $i <= $strlen; $i++ ) {
+			$char = substr( $str, $i, 1 );
+			if ($char=="{") {
+				$temp = "";
+				$status_grab = true;
+			} 
+			else if ($char=="}") {
+				//proses hitung array dari $temp tersebut 
+				$arr1 = explode("|",$temp);
+				if ($temp_count_combination==0){
+					$temp_count_combination = count($arr1);
+				}
+				else {
+					$temp_count_combination = $temp_count_combination * count($arr1);
+				}
+				$status_grab = false;
+			}
+			else if ($status_grab) {
+				$temp .= $char;
+			}
+		}
+		return $temp_count_combination;
+	}
+
+	public function test(){
+		echo $this->count_combination("{Culinary|Kuliner} of the day: {Hi|Hai|Hello|Helo|Alow|Allooo} {Just for|Untuk|Hanya untuk} yang {suka|suka makan|doyan} {Kremes Fried Chicken|Ayam Goreng Kremes}, {Check this out|ini ada} {Fried chicken|ayam goreng} {sedappp|nikmattt|enakkk|enak banget|tastyyy|ueeenak} to the bone, {wkwkwk|hahaha|hehehe}. Bisa {cek langsung|order|pesan|cobain} sendiri di @njaluksambal  - hati2 {nambah|ketagihan} yah ");
+	}
 }

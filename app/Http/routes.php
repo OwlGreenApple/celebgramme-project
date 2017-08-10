@@ -52,7 +52,7 @@ Route::group(['middleware' => 'auth'], function()
   Route::get('free-trial', 'Member\HomeController@free_trial');
   Route::get('resend-activation', 'Member\EmailController@resendEmailActivation');
 
-  Route::get('test', 'Member\HomeController@test');
+  // Route::get('test', 'Member\HomeController@test');
   // Route::get('home', 'Member\AutoManageController@index');
   // Route::get('/', 'Member\AutoManageController@index');
   Route::get('order', 'Member\HomeController@order');
@@ -110,6 +110,7 @@ Route::group(['middleware' => 'auth'], function()
 	Route::get('action-dm-req', 'Member\NewDashboardController@action_dm_req');
 	Route::get('get-dm-inbox', 'Member\NewDashboardController@get_dm_inbox');
 	Route::get('save-welcome-message', 'Member\NewDashboardController@save_welcome_message');
+	Route::get('test', 'Member\NewDashboardController@test');
 	
 	Route::post('submit-auto-responder', 'Member\NewDashboardController@submit_auto_responder');
 	Route::get('get-auto-responder', 'Member\NewDashboardController@get_auto_responder');
