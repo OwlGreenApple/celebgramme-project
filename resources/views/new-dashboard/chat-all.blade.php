@@ -39,7 +39,7 @@
 									}
 									$mode_message = "insta_stories";
 								}
-								else if (strtolower($data->getItemType()) == "media_share" ) {
+								else if ( (strtolower($data->getItemType()) == "media_share" ) || (strtolower($data->getItemType()) == "placeholder" ) ) {
 									$shareData = $data->getMediaShare();
 									$mode_message = "photo_share";
 								}
