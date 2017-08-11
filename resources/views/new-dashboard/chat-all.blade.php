@@ -123,8 +123,6 @@
 										}
 									} 
 									else if ($mode_message=="placeholder") {
-										$placeholder_title = "";
-										$placeholder_content = "";
 										echo '<h5>'.$placeholder_title.'</h5><br>'.$placeholder_content;
 									}
 									else {
