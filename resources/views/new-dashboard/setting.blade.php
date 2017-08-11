@@ -108,20 +108,21 @@ use Celebgramme\Models\SettingHelper;
 					$("#div-loading").show();
 				},
 				success: function(result) {
-					window.scrollTo(0, 0);
+					// window.scrollTo(0, 0);
 					$("#div-loading").hide();
 					var data = jQuery.parseJSON(result);
-					$("#alert").show();
-					$("#alert").html(data.message);
+					// $("#alert").show();
+					$("#server-response-alert p").html(data.message);
+					$('#server-respond').modal('show');
 					if(data.type=='success')
 					{
-						$("#alert").addClass('alert-success');
-						$("#alert").removeClass('alert-danger');
+						// $("#server-response-alert p").addClass('alert-success');
+						// $("#server-response-alert p").removeClass('alert-danger');
 					}
 					else if(data.type=='error')
 					{
-						$("#alert").addClass('alert-danger');
-						$("#alert").removeClass('alert-success');
+						// $("#server-response-alert p").addClass('alert-danger');
+						// $("#server-response-alert p").removeClass('alert-success');
 					}
 				}
 			})
@@ -549,22 +550,24 @@ use Celebgramme\Models\SettingHelper;
           success: function(result)
           {
             var data = jQuery.parseJSON(result);
-            $("#alert").show();
-            $("#alert").html(data.message);
+            // $("#alert").show();
+            // $("#alert").html(data.message);
+						$("#server-response-alert p").html(data.message);
+						$('#server-respond').modal('show');
             if(data.type=='success') {
               // refresh_autoresponder();
 							load_auto_responder();
-              $("#alert").addClass("alert-success");
-              $("#alert").removeClass("alert-danger");
+              // $("#alert").addClass("alert-success");
+              // $("#alert").removeClass("alert-danger");
 							
 							$("#id-auto-responder").val("new");
 							$("#num_of_day").val("");
 							$("#message_responder").val("");
             } else if (data.type=='error') {
-              $("#alert").addClass("alert-danger");
-              $("#alert").removeClass("alert-success");
+              // $("#alert").addClass("alert-danger");
+              // $("#alert").removeClass("alert-success");
             }
-						window.scrollTo(0, 0);
+						// window.scrollTo(0, 0);
 						$("#div-loading").hide();
           }
         });
@@ -1736,6 +1739,25 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 					</div>
 			</div>
 	</div>	
+	
+  <!-- Modal server respond for error or succes message display-->
+	<div class="modal fade" id="server-respond" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+					<div class="modal-content">
+							<div class="modal-header">
+									Server Response
+							</div>
+							<div class="modal-body" id="server-response-alert">
+								<p></p>
+							</div>
+							<input type="hidden" id="hidden-auto-responder-setting-id">
+							<div class="modal-footer">
+									<button type="button" class="btn btn-info btn-ok" id="" data-dismiss="modal">OK</button>
+							</div>
+					</div>
+			</div>
+	</div>		
+	
 	
 	
 	<link href="{{ asset('/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet">

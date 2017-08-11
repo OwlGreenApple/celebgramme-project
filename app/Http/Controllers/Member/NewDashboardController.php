@@ -791,7 +791,7 @@ class NewDashboardController extends Controller
 		//spin combination
 		$spin_combination = $this->count_combination(Request::input("message"));
 		if ( intval($spin_combination) <= 250 ) {
-			$arr["message"]= "Auto Responder memerlukan spin message, sebaiknya spin message anda mengandung lebih dari 250 kombinasi message. Spin message anda hanya menghasilkan ".intval($spin_combination)." kombinasi.";
+			$arr["message"]= "Auto Responder memerlukan Spin message <strong>MINIMUM 250 Kombinasi</strong>. <br>Spin message anda SEKARANG hanya = <span style='color:#F44336;font-weight:Bold;'>".intval($spin_combination)." Kombinasi</span>. <br><span style='color:#00b0e4;'>Silahkan TAMBAH Spin Message anda</span>";
 			$arr["type"]= "error";
 			return $arr;
 		}
@@ -855,7 +855,7 @@ class NewDashboardController extends Controller
 		//spin combination
 		$spin_combination = $this->count_combination(Request::input("message_responder"));
 		if ( intval($spin_combination) <= 250 ) {
-			$arr["message"]= "Auto Responder memerlukan spin message, sebaiknya spin message anda mengandung lebih dari 250 kombinasi message. Spin message anda hanya menghasilkan ".intval($spin_combination)." kombinasi.";
+			$arr["message"]= "Auto Responder memerlukan Spin message <strong>MINIMUM 250 Kombinasi</strong>. <br>Spin message anda SEKARANG hanya = <span style='color:#F44336;font-weight:Bold;'>".intval($spin_combination)." Kombinasi</span>. <br><span style='color:#00b0e4;'>Silahkan TAMBAH Spin Message anda</span>";
 			$arr["type"]= "error";
 			return $arr;
 		}
