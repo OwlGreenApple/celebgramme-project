@@ -52,7 +52,7 @@
 									$placeholder_content = "";
 									if (!is_null($data->getPlaceholder())) {
 										$placeholder_title = $data->getPlaceholder()->getTitle();
-										$placeholder_content = $data->getPlaceholder()->isMessage();
+										$placeholder_content = $data->getPlaceholder()->getMessage();
 									}
 								}
 								else if (strtolower($data->getItemType()) == "like" ) {
