@@ -39,12 +39,21 @@
 									}
 									$mode_message = "insta_stories";
 								}
-								else if ( (strtolower($data->getItemType()) == "media_share" ) || (strtolower($data->getItemType()) == "placeholder" ) ) {
+								else if (strtolower($data->getItemType()) == "media_share" ) {
 									$shareData = $data->getMediaShare();
 									$mode_message = "photo_share";
 								}
 								else if (strtolower($data->getItemType()) == "raven_media" ) {
 									// $shareData = $data->getRavenMedia();
+								}
+								else if (strtolower($data->getItemType()) == "placeholder" ) {
+									$mode_message = "placeholder";
+									$placeholder_title = "";
+									$placeholder_content = "";
+									if (!is_null($data->getPlaceholder())) {
+										$placeholder_title = $data->getPlaceholder()->getTitle();
+										$placeholder_content = $data->getPlaceholder()->isMessage();
+									}
 								}
 								else if (strtolower($data->getItemType()) == "like" ) {
 									$like = true;
@@ -112,9 +121,16 @@
 											}
 											echo '<a href="instagram.com/'.$insta_username.'" target="_blank"><h4 style="font-weight: bold;">'.$insta_username.'</h4></a> <img class="img-responsive" src="'.$url_img.'" style="width:200px;height:100%;"> <label>'.$caption.'</label> <br>'.$message;
 										}
-									} else {
+									} 
+									else if ($mode_message=="placeholder") {
+										$placeholder_title = "";
+										$placeholder_content = "";
+										echo '<h5>'.$placeholder_title.'</h5><br>'.$placeholder_content;
+									}
+									else {
 										echo $message;
 									}
+									
 								} else {
 									echo '<span class="glyphicon glyphicon-heart"></span>';
 								}
