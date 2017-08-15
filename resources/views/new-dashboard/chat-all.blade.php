@@ -38,33 +38,8 @@
 										$message = $shareData->getText();
 									}
 									$mode_message = "insta_stories";
-								}
-								else if (strtolower($data->getItemType()) == "media_share" ) {
-									$shareData = $data->getMediaShare();
-									$mode_message = "photo_share";
-								}
-								else if (strtolower($data->getItemType()) == "media" ) {
-									$shareData = $data;
-									$mode_message = "insta_stories";
-								}
-								else if (strtolower($data->getItemType()) == "raven_media" ) {
-									// $shareData = $data->getRavenMedia();
-								}
-								else if (strtolower($data->getItemType()) == "placeholder" ) {
-									$mode_message = "placeholder";
-									$placeholder_title = "";
-									$placeholder_content = "";
-									if (!is_null($data->getPlaceholder())) {
-										$placeholder_title = $data->getPlaceholder()->getTitle();
-										$placeholder_content = $data->getPlaceholder()->getMessage();
-									}
-								}
-								else if (strtolower($data->getItemType()) == "like" ) {
-									$like = true;
-								}
-								
-								//klo reel_share
-								if ( (!is_null($shareData)) && (!$like) ) {
+									
+									
 									if (!is_null($shareData->getMedia())) {
 										if (!is_null($shareData->getMedia()->getId())) {
 											if (!is_null($i->media->getInfo($shareData->getMedia()->getId())->getItems())) {
@@ -73,20 +48,15 @@
 													$url_img = $res_url;
 												}
 												
-												// $caption = "";
-												// $insta_username = "";
+												$caption = "";
+												$insta_username = "";
 											}
 										}
-										//klo media
-										if (!is_null($shareData->getMedia()->getImageVersions2()->getCandidates())) {
-											$url_img = $shareData->getMedia()->getImageVersions2()->getCandidates()[0]->getUrl();
-										}
-										$caption = "";
-										$insta_username = "";
 									}
-									if (!is_null($data->getText())) {
-										$message .= $data->getText();
-									}
+								}
+								else if (strtolower($data->getItemType()) == "media_share" ) {
+									$shareData = $data->getMediaShare();
+									$mode_message = "photo_share";
 									
 									//klo media_share
 									$mediaShare = $data->getMediaShare();
@@ -116,7 +86,35 @@
 											$insta_username = $mediaShare->getUser()->getUsername();
 										}
 									}
-									
+								}
+								else if (strtolower($data->getItemType()) == "media" ) {
+									$shareData = $data;
+									$mode_message = "insta_stories";
+									//klo media
+									if (!is_null($shareData->getMedia()->getImageVersions2()->getCandidates())) {
+										$url_img = $shareData->getMedia()->getImageVersions2()->getCandidates()[0]->getUrl();
+									}
+								}
+								/*else if (strtolower($data->getItemType()) == "raven_media" ) {
+									// $shareData = $data->getRavenMedia();
+								}*/
+								else if (strtolower($data->getItemType()) == "placeholder" ) {
+									$mode_message = "placeholder";
+									$placeholder_title = "";
+									$placeholder_content = "";
+									if (!is_null($data->getPlaceholder())) {
+										$placeholder_title = $data->getPlaceholder()->getTitle();
+										$placeholder_content = $data->getPlaceholder()->getMessage();
+									}
+								}
+								else if (strtolower($data->getItemType()) == "like" ) {
+									$like = true;
+								}
+								
+								if ( (!is_null($shareData)) && (!$like) ) {
+									if (!is_null($data->getText())) {
+										$message .= $data->getText();
+									}
 								}
 								
 								if (!$like) {
