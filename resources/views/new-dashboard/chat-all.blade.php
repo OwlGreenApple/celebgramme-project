@@ -142,7 +142,12 @@
 										}
 									} 
 									else if ($mode_message=="placeholder") {
-										echo '<h5>'.$placeholder_title.'</h5><br>'.$placeholder_content;
+										if ($placeholder_title<> "" ) {
+											echo '<h5>'.$placeholder_title.'</h5><br>'.$placeholder_content;
+										} 
+										else {
+											echo $placeholder_content;
+										}
 									}
 									else {
 										echo $message;
