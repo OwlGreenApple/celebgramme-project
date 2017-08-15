@@ -44,7 +44,7 @@
 									$mode_message = "photo_share";
 								}
 								else if (strtolower($data->getItemType()) == "media" ) {
-									$shareData = $data->getMedia();
+									$shareData = $data;
 									$mode_message = "insta_stories";
 								}
 								else if (strtolower($data->getItemType()) == "raven_media" ) {
