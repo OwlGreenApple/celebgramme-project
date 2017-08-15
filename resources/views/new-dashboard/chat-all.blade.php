@@ -93,6 +93,7 @@
 									}
 									
 									$caption = "";
+									$insta_username = "";
 									$insta_username = $i->people->getInfoById($data->getUserId())->getUser()->getUsername();
 								}
 								/*else if (strtolower($data->getItemType()) == "raven_media" ) {
