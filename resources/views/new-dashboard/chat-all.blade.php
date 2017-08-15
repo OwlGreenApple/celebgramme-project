@@ -47,9 +47,6 @@
 												if (!is_null($res_url)) {
 													$url_img = $res_url;
 												}
-												
-												$caption = "";
-												$insta_username = "";
 											}
 										}
 									}
@@ -89,11 +86,15 @@
 								}
 								else if (strtolower($data->getItemType()) == "media" ) {
 									$shareData = $data;
-									$mode_message = "insta_stories";
+									$mode_message = "photo_share";
 									//klo media
 									if (!is_null($shareData->getMedia()->getImageVersions2()->getCandidates())) {
 										$url_img = $shareData->getMedia()->getImageVersions2()->getCandidates()[0]->getUrl();
 									}
+									
+									$i->people->getInfoById($data->getUserId())->getUser()->getUsername();
+									$caption = "";
+									$insta_username = "";
 								}
 								/*else if (strtolower($data->getItemType()) == "raven_media" ) {
 									// $shareData = $data->getRavenMedia();
