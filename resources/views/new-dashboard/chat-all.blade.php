@@ -99,7 +99,7 @@
 								else if (strtolower($data->getItemType()) == "raven_media" ) {
 									$shareData = $data->getRavenMedia();
 									$mode_message = "photo_share";
-									if (!is_null($shareData->getImageVersions2()->getCandidates())) {
+									if (!is_null($shareData->getImageVersions2())) {
 										$url_img = $shareData->getImageVersions2()->getCandidates()[0]->getUrl();
 									}
 									else {
