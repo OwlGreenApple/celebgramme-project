@@ -26,7 +26,9 @@
 							if (strtolower($data->getItemType()) == "text" ) {
 								echo $data->getText();
 							}
-							// else if (strtolower($data->getItemType()) == "reel_share" ) {
+							else if (strtolower($data->getItemType()) == "live_video_share" ) {
+								echo "Live video return null result";
+							}
 							else {	
 								$url_img = "";
 								$message = "";
@@ -96,9 +98,16 @@
 									$insta_username = "";
 									// $insta_username = $i->people->getInfoById($data->getUserId())->getUser()->getUsername();
 								}
-								/*else if (strtolower($data->getItemType()) == "raven_media" ) {
-									// $shareData = $data->getRavenMedia();
-								}*/
+								else if (strtolower($data->getItemType()) == "raven_media" ) {
+									$shareData = $data->getRavenMedia();
+									$mode_message = "photo_share";
+									if (!is_null($shareData->getImageVersions2()->getCandidates())) {
+										$url_img = $shareData->getImageVersions2()->getCandidates()[0]->getUrl();
+									}
+									
+									$caption = "";
+									$insta_username = "";
+								}
 								else if (strtolower($data->getItemType()) == "placeholder" ) {
 									$mode_message = "placeholder";
 									$placeholder_title = "";
