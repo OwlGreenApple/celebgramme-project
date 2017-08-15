@@ -39,9 +39,13 @@
 									}
 									$mode_message = "insta_stories";
 								}
-								else if ( (strtolower($data->getItemType()) == "media_share" ) || (strtolower($data->getItemType()) == "media" ) ) {
+								else if (strtolower($data->getItemType()) == "media_share" ) {
 									$shareData = $data->getMediaShare();
 									$mode_message = "photo_share";
+								}
+								else if (strtolower($data->getItemType()) == "media" ) {
+									$shareData = $data->getMedia();
+									$mode_message = "insta_stories";
 								}
 								else if (strtolower($data->getItemType()) == "raven_media" ) {
 									// $shareData = $data->getRavenMedia();
