@@ -69,10 +69,16 @@
 													$url_img = $res_url;
 												}
 												
-												$caption = "";
-												$insta_username = "";
+												// $caption = "";
+												// $insta_username = "";
 											}
 										}
+										//klo media
+										if (!is_null($shareData->getMedia()->getImageVersions2()->getCandidates())) {
+											$url_img = $shareData->getMedia()->getImageVersions2()->getCandidates()[0]->getUrl();
+										}
+										$caption = "";
+										$insta_username = "";
 									}
 									if (!is_null($data->getText())) {
 										$message .= $data->getText();
