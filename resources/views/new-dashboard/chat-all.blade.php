@@ -94,8 +94,6 @@
 										$url_img = $shareData->getMedia()->getImageVersions2()->getCandidates()[0]->getUrl();
 									}
 									
-									$caption = "";
-									$insta_username = "";
 									// $insta_username = $i->people->getInfoById($data->getUserId())->getUser()->getUsername();
 								}
 								else if (strtolower($data->getItemType()) == "raven_media" ) {
@@ -104,9 +102,12 @@
 									if (!is_null($shareData->getImageVersions2()->getCandidates())) {
 										$url_img = $shareData->getImageVersions2()->getCandidates()[0]->getUrl();
 									}
+									else {
+										$mode_message = "placeholder";
+										$placeholder_title = "";
+										$placeholder_content = "Delivered";
+									}
 									
-									$caption = "";
-									$insta_username = "";
 								}
 								else if (strtolower($data->getItemType()) == "placeholder" ) {
 									$mode_message = "placeholder";
