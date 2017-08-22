@@ -1110,6 +1110,10 @@ class AutoManageController extends Controller
 			$cookiefile = base_path().'/../public_html/general/ig-cookies/'.$username.'-cookiess.txt';
 		}
 			
+		if (file_exists($cookiefile)) {
+			unlink($cookiefile);
+		}
+		
 		$c = curl_init();
 		if ($auth) {
 			curl_setopt($c, CURLOPT_PROXY, $proxy);
