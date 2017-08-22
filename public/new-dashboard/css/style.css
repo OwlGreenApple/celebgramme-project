@@ -71,7 +71,7 @@ ul,.menu,dir{
 	color:#fff;
 }
 .filmIcon{
-	margin-top:25px;
+	 margin-top:12px; 
 }
 #videoTabs div .active{
 	background-color:#199bba;
@@ -83,7 +83,7 @@ ul,.menu,dir{
 }
 #videoTabs div a .content h4{ font-weight:300;}
 #videoTabs div a .content{
-	padding-top:20px;
+	/* padding-top:20px; */
 }
 #videoTabs div a:hover{
 	text-decoration:none;
@@ -3177,22 +3177,24 @@ width:100% !important;
 /* Infobox ===================================== */
 .info-box {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  height: 80px;
+  height: 50px;
   display: flex;
   cursor: default;
   background-color: #fff;
   position: relative;
   overflow: hidden;
-  margin-bottom: 30px; }
+  margin-bottom: 12px; }
   .info-box .icon {
     display: inline-block;
     text-align: center;
     /* background-color: rgba(0, 0, 0, 0.12); */
-    width: 70px; }
+    width: 70px; 
+		}
     .info-box .icon i {
       color: #fff;
-      font-size: 50px;
-      line-height: 80px; }
+      font-size: 10px;
+      /* line-height: 80px;  */
+			}
     .info-box .icon .chart.chart-bar {
       height: 100%;
       line-height: 100px; }

@@ -212,7 +212,7 @@
             <div class="legal">
                 <div class="copyright">
                     &copy; 2017 <a href="{{url('')}}">Celebgramme</a>.
-                    <b>Version: </b> 3.2.9
+                    <b>Version: </b> 3.3.0
                 </div>
             </div>
             <!-- #Footer -->
@@ -292,7 +292,7 @@
             <div class="legal">
                 <div class="copyright">
                     &copy; 2017 <a href="{{url('')}}">Celebgramme</a>.
-                    <b>Version: </b> 3.2.9
+                    <b>Version: </b> 3.3.0
                 </div>
             </div>
             <!-- #Footer -->

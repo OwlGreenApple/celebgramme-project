@@ -1,6 +1,14 @@
 @extends('new-dashboard.main')
 
 @section('content')
+<script>
+	$(document).ready(function() {
+		$('.info-box').click(function(e){
+			$('.info-box').removeClass("active");
+			$(this).addClass("active");
+		});
+	});
+</script>
 		<div class="row">
 			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 				<div class="container-fluid">
@@ -31,7 +39,17 @@
 									</iframe>
 								</div>
 								-->
-<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX active" id="home_animation_1" role="tabpanel" >
+<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX active" id="digimaru_1" role="tabpanel" >
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/VwRsVBXt46E?rel=0&amp;showinfo=0;autoplay=1"></iframe>
+</div>								
+<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="digimaru_2" role="tabpanel" >
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/atNHdrv9HOk?rel=0&amp;showinfo=0"></iframe>
+</div>								
+<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="digimaru_3" role="tabpanel" >
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/bNhQUb365P8?rel=0&amp;showinfo=0"></iframe>
+</div>								
+
+<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="home_animation_1" role="tabpanel" >
   <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ubUwXDx3aGQ?rel=0&amp;showinfo=0"></iframe>
 </div>								
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="profile_animation_1" role="tabpanel" >
@@ -55,7 +73,38 @@
 					<div class="clearfix"></div><br/>
 					<div class="row" role="tablist" id="videoTabs">
 						<div class="col-md-4 col-sm-12 col-xs-12" role="presentation">
-							<a href="#home_animation_1" data-toggle="tab" aria-expanded="true" class="info-box waves-effect btn-video active">
+							<a href="#digimaru_1" data-toggle="tab" aria-expanded="true" class="info-box waves-effect btn-video active">
+								<div class="icon">
+									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
+								</div>
+								<div class="content">
+									<p class="text-white">Next Workshop</p>
+								</div>
+							</a>
+						</div>
+						<div class="col-md-4 col-sm-12 col-xs-12" role="presentation">
+							<a href="#digimaru_2" data-toggle="tab" aria-expanded="true" class="info-box waves-effect btn-video">
+								<div class="icon">
+									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
+								</div>
+								<div class="content">
+									<p class="text-white">Alumni Bali</p>
+								</div>
+							</a>
+						</div>
+						<div class="col-md-4 col-sm-12 col-xs-12" role="presentation">
+							<a href="#digimaru_3" data-toggle="tab" aria-expanded="true" class="info-box waves-effect btn-video">
+								<div class="icon">
+									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
+								</div>
+								<div class="content">
+									<p class="text-white">Alumni Jakarta</p>
+								</div>
+							</a>
+						</div>
+					
+						<div class="col-md-4 col-sm-12 col-xs-12" role="presentation">
+							<a href="#home_animation_1" data-toggle="tab" aria-expanded="true" class="info-box waves-effect btn-video">
 								<div class="icon">
 									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
 								</div>
@@ -66,7 +115,6 @@
 						</div>
 						<div class="col-md-4 col-sm-12 col-xs-12" role="presentation">
 							<a href="#profile_animation_1" data-toggle="tab" aria-expanded="false" class="info-box waves-effect btn-video">
-								
 								<div class="icon">
 									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
 								</div>
@@ -77,7 +125,6 @@
 						</div>
 						<div class="col-md-4 col-sm-12 col-xs-12" role="presentation">
 							<a href="#messages_animation_1" data-toggle="tab" aria-expanded="false" class="info-box waves-effect btn-video">
-								
 								<div class="icon">
 									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
 								</div>
@@ -142,7 +189,7 @@
 									<a href="http://m.me/celebgramme" target="_blank"><img src="{{asset('/images/promo-3.jpg')}}"class="img-responsive" ></a>
 								</div>
 								<div style="padding:0;"  class="card text-center col-md-12 col-sm-12 col-xs-12 margin-0">
-									<a href="https://celebpost.in" target="_blank"><img src="{{asset('/images/promo-4.jpg')}}"class="img-responsive" ></a>
+									<a href="https://celebpost.in" target="_blank"><img src="{{asset('/images/gif-promo.gif')}}"class="img-responsive" ></a>
 								</div>
 							</div>
 						</div>
