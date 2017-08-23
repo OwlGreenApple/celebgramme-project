@@ -173,14 +173,14 @@
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-8 col-xs-8" id="wrapCntentPromotion">
 				<div class="row clearfix">
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="max-width:290px;">
 						<div class="card margin-0 br-t-6">
 							<div class="header bg-themeDefault text-center br-t-6">
 								<h2>Promotions</h2>
 							</div>
 							<div class="">
 								<div style="padding:0;"class="card text-center margin-0 col-md-12 col-sm-12 col-xs-12">
-									<a href="http://celebfans.id/" target="_blank"><img src="{{asset('/images/promo-1.jpg')}}"class="img-responsive" ></a>
+									<a href="http://celebpost.in/" target="_blank"><img src="{{asset('/images/promo-1.jpg')}}"class="img-responsive" ></a>
 								</div>
 								<div style="padding:0;" class="card text-center margin-0 col-md-6 col-sm-6 col-xs-6">
 									<a href="http://line.me/ti/p/@vyd1834h" target="_blank"><img src="{{asset('/images/promo-2.jpg')}}"class="img-responsive" ></a>
