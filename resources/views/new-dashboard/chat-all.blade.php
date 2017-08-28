@@ -35,7 +35,7 @@
 								$mode_message = ""; $caption = ""; $insta_username="";
 								$like = false; $shareData = null;
 								if (strtolower($data->getItemType()) == "link" ) {
-									$mode_message = "insta_stories";
+									$mode_message = "link";
 									$shareData = $data->getLink();
 									
 									if (!is_null($shareData->getText())) {
@@ -144,6 +144,9 @@
 										// echo '<img class="img-responsive" src="'.$url_img.'" style="width:200px;height:100%;"><br>'.$message;
 										if ($mode_message == "insta_stories" ) {
 											echo '<h5>Reply their stories</h5><img class="img-responsive" src="'.$url_img.'" style="width:200px;height:100%;"><br>'.$message;
+										}
+										if ($mode_message == "link" ) {
+											echo '<img class="img-responsive" src="'.$url_img.'" style="width:200px;height:100%;"><br>'.$message;
 										}
 										if ($mode_message == "photo_share" ) {
 											if (strlen($caption)>=15) {
