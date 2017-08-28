@@ -146,7 +146,7 @@
 											echo '<h5>Reply their stories</h5><img class="img-responsive" src="'.$url_img.'" style="width:200px;height:100%;"><br>'.$message;
 										}
 										if ($mode_message == "link" ) {
-											echo '<img class="img-responsive" src="'.$url_img.'" style="width:200px;height:100%;"><br>'.$message;
+											echo $message.'<br><img class="img-responsive" src="'.$url_img.'" style="width:200px;height:100%;">';
 										}
 										if ($mode_message == "photo_share" ) {
 											if (strlen($caption)>=15) {
