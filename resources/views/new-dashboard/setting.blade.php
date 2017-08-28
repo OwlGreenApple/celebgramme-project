@@ -52,14 +52,7 @@ use Celebgramme\Models\SettingHelper;
 					{
 						$("#dm-inbox-content").html(data.resultEmailData);
 					}
-					var max = -1;
-					$(".same-height").each(function() {
-							var h = $(this).height(); 
-							max = h > max ? h : max;
-					});
-					$(".same-height").each(function() {
-							$(this).height(max); 
-					});
+					make_height_same();
 					
 				}
 			});			
@@ -179,6 +172,17 @@ use Celebgramme\Models\SettingHelper;
 		})
 		return false;
 	}
+	
+	function make_height_same(){
+		var max = -1;
+		$(".same-height").each(function() {
+				var h = $(this).height(); 
+				max = h > max ? h : max;
+		});
+		$(".same-height").each(function() {
+				$(this).height(max); 
+		});
+	}
 
 	$(document).ready(function() {
 		$(".demo-tagsinput-area").each(function(){
@@ -189,6 +193,9 @@ use Celebgramme\Models\SettingHelper;
 		activateNouislide();
 		load_auto_responder();
 		
+    $('#button-back-inbox').click(function(e){
+			make_height_same();
+		});
     $('#button-save,#button-save2').click(function(e){
 			e.preventDefault();
       $.ajax({
@@ -428,15 +435,7 @@ use Celebgramme\Models\SettingHelper;
 					// else if(data.type=='error')
 					// {
 					// }
-					var max = -1;
-					$(".same-height").each(function() {
-							var h = $(this).height(); 
-							max = h > max ? h : max;
-					});
-					$(".same-height").each(function() {
-							$(this).height(max); 
-					});
-					
+					make_height_same();
 					
 				}
 			})
@@ -1446,7 +1445,7 @@ use Celebgramme\Models\SettingHelper;
 											<div class="" style="margin-bottom:-35px;margin-left:20px;">	
 												<div class="btnTab">
 														<div class="col-md-2 col-sm-12 col-xs-12 padding-0">
-															<button class="btn btn-lg bg-cyan btn-block br-6 btnDmIn" data-toggle="tab" href="#DMInbox" data-is-refresh="0"><i class="fa fa-envelope"></i>&nbsp;<small class="text-white">DM Inbox</small> &nbsp <span class="badge br-6" id="badge-dm-inbox"></span></button>
+															<button class="btn btn-lg bg-cyan btn-block br-6 btnDmIn" data-toggle="tab" href="#DMInbox" data-is-refresh="0" id="button-back-inbox"><i class="fa fa-envelope"></i>&nbsp;<small class="text-white">DM Inbox</small> &nbsp <span class="badge br-6" id="badge-dm-inbox"></span></button>
 														</div>
 														<div class="col-md-2 col-sm-12 col-xs-12 padding-0">
 															<button class="btn btn-lg bg-grey btn-block br-6 btnDmRe"  style="font-size:inherit;"data-toggle="tab" href="#DMRequest"><i class="fa fa-envelope text-white"></i>&nbsp;<small class="text-white">DM Request</small> &nbsp <span class="badge br-6" id="badge-dm-request"></span></button>

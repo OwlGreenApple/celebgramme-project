@@ -34,6 +34,17 @@
 								$message = "";
 								$mode_message = ""; $caption = ""; $insta_username="";
 								$like = false; $shareData = null;
+								if (strtolower($data->getItemType()) == "link" ) {
+									$mode_message = "insta_stories";
+									$shareData = $data->getLink();
+									
+									if (!is_null($shareData->getText())) {
+										$message = $shareData->getText();
+									}
+									if (!is_null($shareData->getLinkContext())) {
+										$url_img = $shareData->getLinkContext()->getLinkImageUrl();
+									}
+								}
 								if (strtolower($data->getItemType()) == "reel_share" ) {
 									$shareData = $data->getReelShare();
 									if (!is_null($shareData->getText())) {
