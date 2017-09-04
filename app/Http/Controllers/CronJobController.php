@@ -584,12 +584,14 @@ class CronJobController extends Controller
 				if ( (intval($data_meta[0]->meta_value) <560000 ) && (intval($data_meta[0]->meta_value) >550000 ) ) {
 					$package = Package::find(40);
 					// $isi_form_kaos = true;
-				} else if ( (intval($data_meta[0]->meta_value) <457000 ) && (intval($data_meta[0]->meta_value) >=455000 ) ) {
+				} else if ( (intval($data_meta[0]->meta_value) >=455000 ) && (intval($data_meta[0]->meta_value) <457000 ) ) {
 					$package = Package::find(34);
-				} else if ( (intval($data_meta[0]->meta_value) <461000 ) && (intval($data_meta[0]->meta_value) >=459000 ) ) {
+				} else if ( (intval($data_meta[0]->meta_value) >=459000 ) && (intval($data_meta[0]->meta_value) <461000 ) ) {
 					$package = Package::find(39);
-				} else if ( (intval($data_meta[0]->meta_value) <600000 ) && (intval($data_meta[0]->meta_value) >=595000 ) ) {
+				} else if ( (intval($data_meta[0]->meta_value) >=595000 ) && (intval($data_meta[0]->meta_value) <600000 ) ) {
 					$package = Package::find(38);
+				} else if ( (intval($data_meta[0]->meta_value) >=695000 ) && (intval($data_meta[0]->meta_value) <700000 ) ) {
+					$package = Package::find(44);
 				} 
 				/*
 				$package = Package::select(DB::raw("ABS( price - CAST(".$data_meta[0]->meta_value." AS UNSIGNED) ) AS distance"))
@@ -650,6 +652,9 @@ class CronJobController extends Controller
 					
 					$adding_time += 1;
 					$user->active_auto_manage += $package->active_days * 86400;
+					if ($package->id == 44) {
+						$user->max_account += $package->max_account;
+					}
 					
 					//hapus affiliate link. Buy more jadi biasa, setelah pembelian pertama kali.
 					$user->link_affiliate = "";
