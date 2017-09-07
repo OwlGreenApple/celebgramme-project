@@ -374,10 +374,26 @@ use Celebgramme\Models\SettingHelper;
 			e.preventDefault();
 			load_dm_inbox(1,"1");
 		});
+
+		/*
+		Buat search username
+		*/
+		var typingTimer;                //timer identifier
+		var doneTypingInterval = 2000;  //time in ms, 2 second for example
 		$( "#search-username-dminbox" ).keyup(function(e) {
 			e.preventDefault();
-			load_dm_inbox(1,0);
+			// load_dm_inbox(1,0);
+			clearTimeout(typingTimer);
+			if ($('#search-username-dminbox').val()) {
+				typingTimer = setTimeout(doneTyping, doneTypingInterval);
+			}
 		});
+		//user is "finished typing," do something
+		function doneTyping () {
+			//do something
+			load_dm_inbox(1,0);
+		}		
+
 		
 		$( "body" ).on( "click", ".button-reply", function(e) {
 			$.ajax({
