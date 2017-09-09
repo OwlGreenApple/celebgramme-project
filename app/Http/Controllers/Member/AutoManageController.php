@@ -1076,14 +1076,17 @@ class AutoManageController extends Controller
 			//use own proxy if have
 			$setting_helper = SettingHelper::where("setting_id","=",$setting_id)->first();
 			if (!is_null($setting_helper)) {
-				if ($setting_helper->proxy_id <> 0) {
-					$full_proxy =  Proxies::find($setting_helper->proxy_id);
-					if (!is_null($full_proxy)) {
-						$port = $full_proxy->port;
-						$cred = $full_proxy->cred;
-						$proxy = $full_proxy->proxy;
-						$auth = $full_proxy->auth;
-					}
+				if ($setting_helper->proxy_id== 0) {
+					$arr_proxy = $this->get_proxy_id($username); 
+					$setting_helper->proxy_id = $arr_proxy["proxy_id"];
+					$setting_helper->save();
+				}
+				$full_proxy =  Proxies::find($setting_helper->proxy_id);
+				if (!is_null($full_proxy)) {
+					$port = $full_proxy->port;
+					$cred = $full_proxy->cred;
+					$proxy = $full_proxy->proxy;
+					$auth = $full_proxy->auth;
 				}
 			}
 		}
