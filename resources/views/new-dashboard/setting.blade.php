@@ -1185,7 +1185,10 @@ use Celebgramme\Models\SettingHelper;
 												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
 													<div class="header">
 														<h2>
-															Media Source &nbsp;: &nbsp; #Hashtags &nbsp;<img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title="<div class='panel-heading'>Media source : Hashtags</div><div class='panel-content'>• ADD <strong>MIN 10 Hashtags</strong> <br>
+															Media Source &nbsp;: &nbsp; #Hashtags &nbsp;<img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title="<div class='panel-heading'>Media source : Hashtags</div><div class='panel-content'>
+															Pastikan Hashtags yang anda input, <br>
+															mengandung minimal 1000 posts tiap hashtagsnya<br>
+															• ADD <strong>MIN 10 Hashtags</strong> <br>
 															• TIDAK PERLU ADD <strong>simbol # (tanda pagar) </strong><br>
 															• Anda dapat menambahkan <strong>MAX 50 Hashtags</strong>
 															</div>">
