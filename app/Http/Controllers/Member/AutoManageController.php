@@ -812,6 +812,10 @@ class AutoManageController extends Controller
     if (isset($data['dont_comment_su'])) { $data['dont_comment_su'] = 1; } else { $data['dont_comment_su'] = 0; }
     if (isset($data['unfollow_wdfm'])) { $data['unfollow_wdfm'] = 1; } else { $data['unfollow_wdfm'] = 0; }
 
+		//update supaya blacklist di scrape lagi username id nya
+		$data["array_id_blacklist"]="";
+		$data["array_id_whitelist"]="";
+		
     $setting_temp->update($data);
 
     

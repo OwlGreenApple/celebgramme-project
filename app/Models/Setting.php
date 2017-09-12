@@ -23,7 +23,7 @@ class Setting extends Model {
 	protected $fillable = ['activity_speed', 'media_source', 'media_age', 'media_type', 
 	'dont_comment_su', 'follow_source', 'dont_follow_su', 'dont_follow_pu', 'unfollow_source', 'unfollow_wdfm', 'comments', 'hashtags', 'locations', 
 	'insta_username', 'insta_password', 'insta_user_id', 'insta_access_token', 'last_user', 'start_time', 'running_time', 'user_id', 'status_blacklist', 'usernames_blacklist', 
-	'username', 'status', 'activity', 'status_whitelist','usernames_whitelist', 'status_follow_unfollow', 'status_like', 'status_comment', 'error_cred', "status_follow", "status_unfollow", "status_auto", "status_follow_auto", "status_unfollow_auto", "is_active", "is_like_followers", "percent_like_followers" ];
+	'username', 'status', 'activity', 'status_whitelist','usernames_whitelist', 'status_follow_unfollow', 'status_like', 'status_comment', 'error_cred', "status_follow", "status_unfollow", "status_auto", "status_follow_auto", "status_unfollow_auto", "is_active", "is_like_followers", "percent_like_followers", "array_id_blacklist", "array_id_whitelist" ];
 
 	protected function createSetting($arr)
 	{
