@@ -40,7 +40,7 @@
 								</div>
 								-->
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX active" id="digimaru_1" role="tabpanel" >
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/VwRsVBXt46E?rel=0&amp;showinfo=0"></iframe>
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/cpZwA7NGCe0?rel=0&amp;showinfo=0"></iframe>
 </div>								
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="digimaru_2" role="tabpanel" >
   <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/atNHdrv9HOk?rel=0&amp;showinfo=0"></iframe>
