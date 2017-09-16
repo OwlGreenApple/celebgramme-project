@@ -187,7 +187,7 @@
 			<input type="text" id="text-message-inbox" class="form-control">
 		</div>
 		<div class="col-md-2 col-sm-2 col-xs-2">
-			<input type="button" class="btn form-control button-message-inbox" value="Send" data-pk-id="{{$chatAll->thread->users[0]->pk}}" data-setting-id="{{$setting_id}}" data-thread-id="{{$thread_id}}" data-username="{{$username_user}}" data-pic="{{$data_pic}}">
+			<input type="button" class="btn form-control button-message-inbox" value="Send" data-pk-id="{{$chatAll->thread->users[0]->pk}}" data-setting-id="{{$setting_id}}" data-username="{{$username_user}}" data-pic="{{$data_pic}}">
 		</div>
 	</div>
 	<!--

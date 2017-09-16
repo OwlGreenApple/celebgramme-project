@@ -285,14 +285,13 @@ class NewDashboardController extends Controller
 				}
 				
 				$i->login(false,300);
-				// $chatAll = $i->directThread(Request::input("data_thread_id"));
 				$chatAll = $i->direct->getThread(Request::input("data_thread_id"));
 				// $arr["chatAll"] = json_encode($chatAll);
 				
 				$arr["resultEmailData"] = view("new-dashboard.chat-all")->with(array(
 																			'chatAll'=>$chatAll,
 																			'setting_id'=>Request::input("setting_id"),
-																			'thread_id'=>Request::input("data_thread_id"),
+																			// 'thread_id'=>Request::input("data_thread_id"),
 																			'username_user'=> Request::input("data_username"),
 																			'data_pic'=> Request::input("data_pic"),
 																			'i'=> $i,
@@ -347,7 +346,8 @@ class NewDashboardController extends Controller
 				
 				$i->login(false,300);
 				if ( Request::input("type") == "message" ) {
-					$i->direct->sendText(array('users'=>array(Request::input("pk_id"))), Request::input("message"));
+					$send_message = $i->direct->sendText(array('users'=>array(Request::input("pk_id"))), Request::input("message"));
+					$chat_user_threadId = $send_message->getPayload()->getThreadId();
 					
 					//Grab database DM inboxnya
 					$arr_inbox = json_decode($setting->array_inbox,true);
@@ -387,12 +387,13 @@ class NewDashboardController extends Controller
 					$i->direct->sendText(array('users'=>array(Request::input("pk_id"))), Request::input("message"));
 				}
 				
-				$chatAll = $i->direct->getThread(Request::input("data_thread_id"));
+				// $chatAll = $i->direct->getThread(Request::input("data_thread_id"));
+				$chatAll = $i->direct->getThread($chat_user_threadId);
 
 				$arr["resultEmailData"] = view("new-dashboard.chat-all")->with(array(
 																				'chatAll'=>$chatAll,
 																				'setting_id'=>Request::input("setting_id"),
-																				'thread_id'=>Request::input("data_thread_id"),
+																				// 'thread_id'=>Request::input("data_thread_id"),
 																				'username_user'=> Request::input("data_username"),
 																				'data_pic'=> Request::input("data_pic"),
 																				'i'=> $i,

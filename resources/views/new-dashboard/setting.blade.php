@@ -335,7 +335,7 @@ use Celebgramme\Models\SettingHelper;
 					pk_id : $(this).attr("data-pk-id"),
 					message : $("#text-message-inbox").val(),
 					setting_id : $(this).attr("data-setting-id"),
-					data_thread_id : $(this).attr("data-thread-id"),
+					// data_thread_id : $(this).attr("data-thread-id"),
 					data_username : $(this).attr("data-username"),
 					data_pic : $(this).attr("data-pic"),
 					type : 'message',
