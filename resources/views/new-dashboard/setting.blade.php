@@ -384,9 +384,9 @@ use Celebgramme\Models\SettingHelper;
 			e.preventDefault();
 			// load_dm_inbox(1,0);
 			clearTimeout(typingTimer);
-			if ($('#search-username-dminbox').val()) {
+			// if ($('#search-username-dminbox').val()) {
 				typingTimer = setTimeout(doneTyping, doneTypingInterval);
-			}
+			// }
 		});
 		//user is "finished typing," do something
 		function doneTyping () {
