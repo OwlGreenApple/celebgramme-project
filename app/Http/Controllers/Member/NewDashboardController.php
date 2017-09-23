@@ -278,13 +278,13 @@ class NewDashboardController extends Controller
 					"dbpassword"   => Config::get('automation.DB_PASSWORD'),
 				]);
 				
-				$i->setUser(strtolower($link->insta_username), $link->insta_password);
 				$proxy = Proxies::find($link->proxy_id);
 				if (!is_null($proxy)) {
 					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
 				}
 				
-				$i->login(false,300);
+				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
+				$i->login(strtolower($link->insta_username), $link->insta_password, false, 300);
 				$chatAll = $i->direct->getThread(Request::input("data_thread_id"));
 				// $arr["chatAll"] = json_encode($chatAll);
 				
@@ -338,13 +338,13 @@ class NewDashboardController extends Controller
 					"dbpassword"   => Config::get('automation.DB_PASSWORD'),
 				]);
 				
-				$i->setUser(strtolower($link->insta_username), $link->insta_password);
 				$proxy = Proxies::find($link->proxy_id);
 				if (!is_null($proxy)) {
 					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
 				}
 				
-				$i->login(false,300);
+				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
+				$i->login(strtolower($link->insta_username), $link->insta_password, false, 300);
 				if ( Request::input("type") == "message" ) {
 					$send_message = $i->direct->sendText(array('users'=>array(Request::input("pk_id"))), Request::input("message"));
 					$chat_user_threadId = $send_message->getPayload()->getThreadId();
@@ -439,13 +439,13 @@ class NewDashboardController extends Controller
 					"dbpassword"   => Config::get('automation.DB_PASSWORD'),
 				]);
 				
-				$i->setUser(strtolower($link->insta_username), $link->insta_password);
 				$proxy = Proxies::find($link->proxy_id);
 				if (!is_null($proxy)) {
 					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
 				}
 				
-				$i->login(false,300);
+				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
+				$i->login(strtolower($link->insta_username), $link->insta_password, false, 300);
 				$pendingInboxResponse = $i->direct->getPendingInbox();
 				
 				$arr["resultEmailData"] = view("new-dashboard.DM-req")->with(array(
@@ -493,13 +493,13 @@ class NewDashboardController extends Controller
 					"dbpassword"   => Config::get('automation.DB_PASSWORD'),
 				]);
 				
-				$i->setUser(strtolower($link->insta_username), $link->insta_password);
 				$proxy = Proxies::find($link->proxy_id);
 				if (!is_null($proxy)) {
 					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
 				}
 				
-				$i->login(false,300);
+				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
+				$i->login(strtolower($link->insta_username), $link->insta_password, false, 300);
 				if ( Request::input("type") == "approve" ) {
 					// $i->directThreadAction(Request::input("data_thread_id"), "approve");
 					$i->direct->approvePendingThreads( array (Request::input("data_thread_id")) );
@@ -568,13 +568,13 @@ class NewDashboardController extends Controller
 					"dbpassword"   => Config::get('automation.DB_PASSWORD'),
 				]);
 				
-				$i->setUser(strtolower($link->insta_username), $link->insta_password);
 				$proxy = Proxies::find($link->proxy_id);
 				if (!is_null($proxy)) {
 					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
 				}
 				
-				$i->login(false,300);
+				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
+				$i->login(strtolower($link->insta_username), $link->insta_password, false, 300);
 				
 				$need_update = false;
 				if (is_null($setting->last_update_inbox)) {
