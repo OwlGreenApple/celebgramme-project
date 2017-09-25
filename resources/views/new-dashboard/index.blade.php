@@ -40,13 +40,13 @@
 								</div>
 								-->
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX active" id="digimaru_1" role="tabpanel" >
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/EwtYq31vzhw?rel=0&amp;showinfo=0"></iframe>
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/wYh0UZfzKeQ?rel=0&amp;showinfo=0"></iframe>
 </div>								
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="digimaru_2" role="tabpanel" >
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/atNHdrv9HOk?rel=0&amp;showinfo=0"></iframe>
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/lGixFHdEMq0?rel=0&amp;showinfo=0"></iframe>
 </div>								
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="digimaru_3" role="tabpanel" >
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/bNhQUb365P8?rel=0&amp;showinfo=0"></iframe>
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/VWFvn2H1gP0?rel=0&amp;showinfo=0"></iframe>
 </div>								
 
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="home_animation_1" role="tabpanel" >
@@ -88,7 +88,7 @@
 									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
 								</div>
 								<div class="content">
-									<p class="text-white">Alumni Bali</p>
+									<p class="text-white">Alumni Bandung</p>
 								</div>
 							</a>
 						</div>
@@ -98,7 +98,7 @@
 									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
 								</div>
 								<div class="content">
-									<p class="text-white">Alumni Jakarta</p>
+									<p class="text-white">Alumni Surabaya</p>
 								</div>
 							</a>
 						</div>
