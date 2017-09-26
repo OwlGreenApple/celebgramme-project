@@ -404,7 +404,8 @@ class Setting extends Model {
 				$setting->status = "stopped";
 				$setting->error_cred = 1;
 				$setting->save();
-				SettingMeta::createMeta("error_message_cred","*Data login error silahkan input kembali password anda",$setting_id);
+				// SettingMeta::createMeta("error_message_cred","*Data login error silahkan input kembali password anda",$setting_id);
+				SettingMeta::createMeta("error_message_cred","*Error data login please input again your username password",$setting_id);
 				
 				//di 1 in supaya nanti di check cred lagi, abis edit password
 				$setting_helper = SettingHelper::where("setting_id","=",$setting_id)->first();
@@ -420,12 +421,56 @@ class Setting extends Model {
 						$emaildata = [
 							"user" => $user,
 							"username" => $setting->insta_username,
+							"appName" => Config::get('app.name'),
 						];
-						Mail::queue('emails.notif-error-3', $emaildata, function ($message) use ($user) {
-							$message->from('no-reply@celebgramme.com', 'Celebgramme');
+						Mail::queue('emails.notif-error-3', $emaildata, function ($message) use ($user,$emaildata) {
+							$message->from('no-reply@'.$emaildata["appName"].'.com', $emaildata["appName"]);
 							$message->to($user->email);
 							$message->bcc("celebgramme.dev@gmail.com");
-							$message->subject("[ Celebgramme ] Reset Password Instagram Anda.");
+							$message->subject("[ ".$emaildata["appName"]." ] Instagram Error Password.");
+						});
+					}
+				}
+			}
+			return "";
+		}
+		
+    /*
+		* action klo Account Disabled
+		* return 
+		* ONLY FOR AUTOMATION 
+		*/
+    protected function error_account_disabled($setting_id) 
+		{
+			$setting = Setting::find($setting_id);
+			if (!is_null($setting)) {
+				$setting->status = "stopped";
+				$setting->error_cred = 1;
+				$setting->save();
+				// SettingMeta::createMeta("error_message_cred","*Account DiDisable oleh instagram, Cek IG anda untuk merestore account",$setting_id);
+				SettingMeta::createMeta("error_message_cred","*Your account has been disabled by Instagram, check your IG to restore it again",$setting_id);
+				
+				//di 1 in supaya nanti di check cred lagi, abis edit password
+				$setting_helper = SettingHelper::where("setting_id","=",$setting_id)->first();
+				if (!is_null($setting_helper)) {
+					$setting_helper->is_need_relog_API = 1;
+					$setting_helper->save();
+				}
+			
+				$link = LinkUserSetting::where("setting_id","=",$setting->id)->first();
+				if (!is_null($link)) {
+					$user = User::find($link->user_id);
+					if (!is_null($user)) {
+						$emaildata = [
+							"user" => $user,
+							"username" => $setting->insta_username,
+							"appName" => Config::get('app.name'),
+						];
+						Mail::queue('emails.notif-error-4', $emaildata, function ($message) use ($user,$emaildata) {
+							$message->from('no-reply@'.$emaildata["appName"].'.com', $emaildata["appName"]);
+							$message->to($user->email);
+							$message->bcc("celebgramme.dev@gmail.com");
+							$message->subject("[ ".$emaildata["appName"]." ] Check your Instagram account.");
 						});
 					}
 				}
@@ -443,9 +488,10 @@ class Setting extends Model {
 			$setting = Setting::find($setting_id);
 			if (!is_null($setting)) {
 				$setting->status = "stopped";
-				$setting->error_cred = 1;
+				// $setting->error_cred = 1;
 				$setting->save();
-				SettingMeta::createMeta("error_message_cred","*Data login error  silahkan verifikasi account IG anda lewat HP / browser lalu input kembali password anda",$setting_id);
+				// SettingMeta::createMeta("error_message_cred","*Data login error  silahkan verifikasi account IG anda lewat HP / browser lalu input kembali password anda",$setting_id);
+				SettingMeta::createMeta("error_message_cred","*Please verify your account IG from phone / web browser.",$setting_id);
 				
 				//di 1 in supaya nanti di check cred lagi, abis edit password
 				$setting_helper = SettingHelper::where("setting_id","=",$setting_id)->first();
@@ -461,12 +507,13 @@ class Setting extends Model {
 						$emaildata = [
 							"user" => $user,
 							"username" => $setting->insta_username,
+							"appName" => Config::get('app.name'),
 						];
-						Mail::queue('emails.notif-error-2', $emaildata, function ($message) use ($user) {
-							$message->from('no-reply@celebgramme.com', 'Celebgramme');
+						Mail::queue('emails.notif-error-2', $emaildata, function ($message) use ($user,$emaildata) {
+							$message->from('no-reply@'.$emaildata["appName"].'.com', $emaildata["appName"]);
 							$message->to($user->email);
 							$message->bcc("celebgramme.dev@gmail.com");
-							$message->subject("[ Celebgramme ] Silahkan Login untuk Verifikasi Instagram.");
+							$message->subject("[ ".$emaildata["appName"]." ] Please verify your Instagram account.");
 						});
 					}
 				}

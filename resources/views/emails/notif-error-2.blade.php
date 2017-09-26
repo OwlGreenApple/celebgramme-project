@@ -1,32 +1,41 @@
 Hi {{$user['fullname']}}, <br>
 <br>
-Celebgramme memerlukan Verifikasi akun Instagram anda
+
+For security reasons Instagram requesting account confirmation "Is it you?" <br>
+This happened because our server use different IP address than your gadget's <br>
+It is a normal security check, and we need to confirm it. <br>
 <br>
-Akun anda : {{$username}}
+Please follow the instructions below to link & confirm your account with {{$appName}}. <br>
+<br>
+<br>
+Your Instagram registered username : {{$username}}
+<br>
+<br>
+You can do this verification in 2 ways: <br>
+<br>
+1. Using Instagram app from your gadget (Smartphone or Tablet) <br>
+   - Open the Instagram app <br>
+	 - Connect your account with {{$appName}} <br>
+	 - Instagram will notify that someone is trying to access your account  <br>
+	 - Click "it was me" <br>
+	 - Now your account is linked with {{$appName}} <br>
+<br>	 
+2. Using Internet Browser ( Chrome/Firefox/Safari) <br>
+	 - Open https://instagram.com <br>
+	 - Input username, password & Login to your account <br>
+	 - Connect your account with {{$appName}} <br>
+	 - the Internet Browser will show that Someone is trying to access your account <br>
+	 - Click "it was me" <br>
+	 - Now your account is linked with {{$appName}} <br>
 <br>
 
-Langkah yang perlu dilakukan adalah :<br>
-1. Login ke Instagram (lewat app HP anda)<br>
-2. Verifikasi Akses <br>
-3. ada beberapa alternatif (pilihan):<br>
-  - KLIK " It was me / ini adalah saya" ( paling umum )<br>
-  - Kirim Email<br>
-  - Kirim SMS<br>
-<br>
-4. Ikuti Langkah Verifikasi yang tertera di Instagram. <br>
-<br>
-   - Setelah selesai Verifikasi<br>
-   - Login kembali ke Celebgramme https://celebgramme.com/celebgramme/login <br>
-   - Masukkan kembali password anda <br>
-<br>
-Celebgramme akan siap berjalan kembali. <br>
-<br>
-
-
-Terima kasih atas perhatiannya, <br>
 <br>
 <br>
-Salam hangat,<br>
-Celebgramme.com 
+Regards,<br>
+<br>
+<br>
+{{$appName}}.com
+<br>
+<br>
 
 

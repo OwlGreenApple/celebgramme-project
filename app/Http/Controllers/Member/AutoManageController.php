@@ -185,7 +185,7 @@ class AutoManageController extends Controller
 		}
 			
 		//Instagram Login Valid or not
-		if ($user->test==0){
+		// if ($user->test==0){
 			$setting = Setting::join("setting_helpers","setting_helpers.setting_id","=","settings.id")
 									->select("settings.id","setting_helpers.proxy_id")
 									->where("insta_username","=",Request::input("username"))
@@ -219,6 +219,7 @@ class AutoManageController extends Controller
 				
 			$data["arr_proxy"] = $arr_proxy; //
 			//check login valid / invalid
+			/*
 			if($this->checking_cred_instagram(Request::input("username"),Request::input("password"),$arr_proxy)) {
 				//check klo uda ada gaa usa create lagi 
 				$setting = Setting::where("insta_username","=",Request::input("username"))
@@ -240,8 +241,107 @@ class AutoManageController extends Controller
 				$arr["message"]= "Instagram Login tidak valid";
 				$arr["type"]= "error";
 				return $arr;
+			} Old Checking password*/
+		 
+			//check klo uda ada gaa usa create lagi 
+			$setting = Setting::where("insta_username","=",Request::input("username"))
+									->where("type","=","temp")
+									->first();
+			if (is_null($setting)) {
+				$setting_id_temp = Setting::createSetting($data);
 			}
-		} else if ($user->test==2){
+			else {
+				$setting_id_temp = $setting->id;
+			}
+			
+			/* New Checking password*/
+			$is_error = 0 ;
+			$error_message = "";
+			// $response_error = "";
+			// $trace_string = "";
+			try {
+				$i = new Instagram(false,false,[
+					"storage"       => "mysql",
+					"dbhost"       => Config::get('automation.DB_HOST'),
+					"dbname"   => Config::get('automation.DB_DATABASE'),
+					"dbusername"   => Config::get('automation.DB_USERNAME'),
+					"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+				]);
+				
+				//proxy things
+				/*$proxy = Proxies::find($array_data["proxy_id"]);
+				if (!is_null($proxy)) {
+					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+				}*/
+				$i->setProxy("http://".$arr_proxy["cred"]."@".$arr_proxy["proxy"].":".$arr_proxy["port"]);
+				
+				// $i->setUser(strtolower($array_data["username"]), $array_data["password"]);
+				$i->login(Request::input("username"), Request::input("password"), false, 1800);
+
+			} 
+			catch (\InstagramAPI\Exception\IncorrectPasswordException $e) {
+				//klo error password
+				$is_error = 1 ;
+				$error_message = $e->getMessage();
+			}
+			catch (\InstagramAPI\Exception\AccountDisabledException $e) {
+				//klo error password
+				$is_error = 1 ;
+				$error_message = $e->getMessage();
+			}
+			catch (\InstagramAPI\Exception\CheckpointRequiredException $e) {
+				//klo error email / phone verification 
+				$is_error = 2 ;
+				$error_message = $e->getMessage();
+			}
+			catch (\InstagramAPI\Exception\ChallengeRequiredException $e) {
+				$is_error = 2 ;
+				$error_message = $e->getMessage();
+			}
+			catch (Exception $e) {
+				$error_message = $e->getMessage();
+				// $response_error = $e->getResponse();
+				// $trace_string = $e->getTraceAsString();
+				
+				// if ($error_message == "InstagramAPI\Response\LoginResponse: The password you entered is incorrect. Please try again.") {
+				if (strpos($error_message, 'InstagramAPI\Response\LoginResponse:') !== false) {
+					$is_error = 1 ;
+					$error_message = $e->getMessage();
+				} 
+				if ( ($error_message == "InstagramAPI\Response\LoginResponse: Challenge required.") || ( substr($error_message, 0, 18) == "challenge_required") || ($error_message == "InstagramAPI\Response\TimelineFeedResponse: Challenge required.") || ($error_message == "InstagramAPI\Response\LoginResponse: Sorry, there was a problem with your request.") ){
+					$is_error = 2 ;
+					$error_message = $e->getMessage();
+				}
+			}
+
+			
+		if ($is_error == 1) {
+			$arr["message"]= "Instagram Login tidak valid";
+			// $arr["error_message"]= $error_message;
+			// $arr["tracestring"]= $trace_string;
+			// $arr["response_error"]= $response_error;
+			$arr["type"]= "error";
+			return $arr;
+		}
+		else if ($is_error == 2) {
+			$arr["message"]= "Error Confirmation";
+			// $arr["error_message"]= $error_message;
+			// $arr["tracestring"]= $trace_string;
+			// $arr["response_error"]= $response_error;
+			$arr["type"]= "error2";
+			return $arr;
+		}
+		else if ($is_error == 0) {
+			$setting = Setting::find($setting_id_temp);
+			$setting->error_cred = 0;
+			$setting->save();
+			SettingMeta::createMeta("error_message_cred","",$setting_id_temp);
+		}
+
+		 
+		 
+		
+		/*} else if ($user->test==2){
 
 			$ig_data = Setting::get_ig_data(Request::input("username"));			
 			if (!$ig_data["found"]) {
@@ -250,7 +350,7 @@ class AutoManageController extends Controller
 				$arr["type"]= "error";
 				return $arr;
 			}
-		}
+		}*/
 		
 		if ( $user->link_affiliate<> "" ) {
 			$ig_data = Setting::get_ig_data(Request::input("username"));

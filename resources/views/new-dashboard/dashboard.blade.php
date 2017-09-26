@@ -298,14 +298,24 @@
 									$('#terms-add-account9').attr('checked', false); // Unchecks it
 									// $('#terms-add-account10').attr('checked', false); // Unchecks it
 									// $("#confirm_password").val("");
+									$('#myModal').modal('hide');
+									loadaccount();
                 }
                 else if(data.type=='error')
                 {
 									$('#terms-add-account9').attr('checked', false); // Unchecks it
                   $("#alert").addClass('btn-danger');
                   $("#alert").removeClass('alert-success');
+									$('#myModal').modal('hide');
                 }
-                loadaccount();
+                else if(data.type=='error2')
+                {
+                  $("#alert").addClass('btn-danger');
+                  $("#alert").removeClass('alert-success');
+									
+									//munculkan pop up it was me 
+									$('#confirm-itwasme').modal('show');
+                }
             }
         });
       }
@@ -653,7 +663,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" id="button-process">Submit</button>
+          <button type="button" class="btn btn-default" id="button-process">Submit</button>
         </div>
       </div>
       
@@ -695,7 +705,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" id="button-edit-password">Submit</button>
+          <button type="button" class="btn btn-default" id="button-edit-password">Submit</button>
         </div>
       </div>
       
@@ -722,4 +732,25 @@
 			</div>
 	</div>	
 
+  <!-- Modal confirm it was me-->
+	<div class="modal fade" id="confirm-itwasme" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+					<div class="modal-content">
+							<div class="modal-header">
+									Confirmation Account
+							</div>
+							<div class="modal-body">
+									<p>Attention : For security reasons Instagram may request account confirmation "Is it you?" or even Reset your account password. Therefore, Please make sure Before Connecting the account, you Knew the Email address linked to your Instagram account.</p>
+									<div class="col-xs-12 col-sm-12 col-md-12">
+										<img src="{{asset('/images/img_confirm2.png')}}" class="img-responsive">
+									</div>
+							</div>
+							<input type="hidden" id="id-setting">
+							<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+							</div>
+					</div>
+			</div>
+	</div>	
+	
 @endsection
