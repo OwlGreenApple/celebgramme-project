@@ -71,7 +71,7 @@
 										$("#id-setting").val($(this).attr("data-id"));
 									});
 							}, 1000);
-								
+							$(window).scrollTop(0);	
             }
         })
         return false;
@@ -223,7 +223,6 @@
             headers: {  
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-						async: false,
             type: 'POST',
             url: "<?php echo url('process-edit-password'); ?>",
             data: $("#form-edit-password").serialize(),
@@ -261,7 +260,6 @@
                 }
             }
         });
-				$(window).scrollTop(0);
       }
     });
     $('#button-process').click(function(e){
@@ -275,9 +273,7 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-						async: false,
             type: 'POST',
-						async: false,
             url: "<?php echo url('process-save-credential'); ?>",
             data: $("#form-credential").serialize(),
             dataType: 'text',
@@ -330,7 +326,6 @@
                 }
             }
         });
-				$(window).scrollTop(0);
       }
     });
 		
