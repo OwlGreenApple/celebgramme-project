@@ -70,8 +70,9 @@
 									$( "body" ).on( "click", ".delete-button", function() {
 										$("#id-setting").val($(this).attr("data-id"));
 									});
+									$(window).scrollTop(0);	
+									
 							}, 1000);
-							$(window).scrollTop(0);	
             }
         })
         return false;
