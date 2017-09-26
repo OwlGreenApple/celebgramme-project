@@ -111,7 +111,7 @@ class AutoManageController extends Controller
 		$setting_helper = SettingHelper::where("setting_id","=",Request::input('setting_id'))->first();
 		if (!is_null($setting_helper)) {
 			if ($setting_helper->proxy_id== 0) {
-				$arr_proxy = $this->get_proxy_id($username); 
+				$arr_proxy = $this->get_proxy_id(Request::input("hidden_username")); 
 				$setting_helper->proxy_id = $arr_proxy["proxy_id"];
 				$setting_helper->save();
 			}
