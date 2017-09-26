@@ -70,8 +70,6 @@
 									$( "body" ).on( "click", ".delete-button", function() {
 										$("#id-setting").val($(this).attr("data-id"));
 									});
-									$(window).scrollTop(0);	
-									
 							}, 1000);
             }
         })
@@ -242,6 +240,7 @@
                 {
                   $("#alert").addClass('alert-success');
                   $("#alert").removeClass('btn-danger');
+									$(window).scrollTop(0);	
 									$('#myModal-edit-password').modal('hide');
 									loadaccount();
                 }
@@ -249,6 +248,7 @@
                 {
                   $("#alert").addClass('btn-danger');
                   $("#alert").removeClass('alert-success');
+									$(window).scrollTop(0);	
 									$('#myModal-edit-password').modal('hide');
                 }
                 else if(data.type=='error2')
@@ -307,6 +307,7 @@
 									$('#terms-add-account9').attr('checked', false); // Unchecks it
 									// $('#terms-add-account10').attr('checked', false); // Unchecks it
 									// $("#confirm_password").val("");
+									$(window).scrollTop(0);	
 									$('#myModal').modal('hide');
 									loadaccount();
                 }
@@ -315,6 +316,7 @@
 									$('#terms-add-account9').attr('checked', false); // Unchecks it
                   $("#alert").addClass('btn-danger');
                   $("#alert").removeClass('alert-success');
+									$(window).scrollTop(0);	
 									$('#myModal').modal('hide');
                 }
                 else if(data.type=='error2')
