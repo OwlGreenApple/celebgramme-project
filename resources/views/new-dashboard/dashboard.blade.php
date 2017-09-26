@@ -288,6 +288,7 @@
                 var data = jQuery.parseJSON(result);
                 $("#alert").show();
                 $("#alert").html(data.message);
+								window.scrollTo(0, 0);
                 if(data.type=='success')
                 {
                   $("#alert").addClass('alert-success');
