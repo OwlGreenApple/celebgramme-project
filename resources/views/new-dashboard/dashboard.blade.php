@@ -241,15 +241,23 @@
                 {
                   $("#alert").addClass('alert-success');
                   $("#alert").removeClass('btn-danger');
+									$('#myModal-edit-password').modal('hide');
+									loadaccount();
                 }
                 else if(data.type=='error')
                 {
                   $("#alert").addClass('btn-danger');
                   $("#alert").removeClass('alert-success');
+									$('#myModal-edit-password').modal('hide');
                 }
-                $("#username").val("");
-                $("#password").val("");
-                loadaccount();
+                else if(data.type=='error2')
+                {
+                  $("#alert").addClass('btn-danger');
+                  $("#alert").removeClass('alert-success');
+									
+									//munculkan pop up it was me 
+									$('#confirm-itwasme').modal('show');
+                }
             }
         });
       }

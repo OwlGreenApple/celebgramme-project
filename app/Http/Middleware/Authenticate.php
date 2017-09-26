@@ -44,7 +44,10 @@ class Authenticate
             } else {
                 return redirect()->guest('/');
             }
-        }
+        } else {
+					$user = Auth::user();
+					$user->save();
+				}
 				
 				$dt = Carbon::now();
 				$user = Auth::user();

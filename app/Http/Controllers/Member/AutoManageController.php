@@ -98,12 +98,96 @@ class AutoManageController extends Controller
 			return $arr;
 		}*/
 			
-		$arr_proxy = null;
+		/*$arr_proxy = null;
 		if($this->checking_cred_instagram(Request::input("hidden_username"),Request::input("edit_password"),$arr_proxy,Request::input('setting_id') )) {
 		} else {
 			$arr["message"]= "Instagram Login tidak valid";
 			$arr["type"]= "error";
 			return $arr;
+		} Old ganti password*/
+		
+		//cari proxy dulu
+		//use own proxy if have
+		$setting_helper = SettingHelper::where("setting_id","=",Request::input('setting_id'))->first();
+		if (!is_null($setting_helper)) {
+			if ($setting_helper->proxy_id== 0) {
+				$arr_proxy = $this->get_proxy_id($username); 
+				$setting_helper->proxy_id = $arr_proxy["proxy_id"];
+				$setting_helper->save();
+			}
+			$full_proxy =  Proxies::find($setting_helper->proxy_id);
+			if (!is_null($full_proxy)) {
+				$port = $full_proxy->port;
+				$cred = $full_proxy->cred;
+				$proxy = $full_proxy->proxy;
+				$auth = $full_proxy->auth;
+			}
+		}
+			/* New Checking password*/
+			$is_error = 0 ;
+			$error_message = "";
+			try {
+				$i = new Instagram(false,false,[
+					"storage"       => "mysql",
+					"dbhost"       => Config::get('automation.DB_HOST'),
+					"dbname"   => Config::get('automation.DB_DATABASE'),
+					"dbusername"   => Config::get('automation.DB_USERNAME'),
+					"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+				]);
+				
+				//proxy things
+				$i->setProxy("http://".$cred."@".$proxy.":".$port);
+				
+				$i->login(Request::input("hidden_username"), Request::input("edit_password"), false, 1800);
+			} 
+			catch (\InstagramAPI\Exception\IncorrectPasswordException $e) {
+				//klo error password
+				$is_error = 1 ;
+				$error_message = $e->getMessage();
+			}
+			catch (\InstagramAPI\Exception\AccountDisabledException $e) {
+				//klo error password
+				$is_error = 1 ;
+				$error_message = $e->getMessage();
+			}
+			catch (\InstagramAPI\Exception\CheckpointRequiredException $e) {
+				//klo error email / phone verification 
+				$is_error = 2 ;
+				$error_message = $e->getMessage();
+			}
+			catch (\InstagramAPI\Exception\ChallengeRequiredException $e) {
+				$is_error = 2 ;
+				$error_message = $e->getMessage();
+			}
+			catch (Exception $e) {
+				$error_message = $e->getMessage();
+				
+				// if ($error_message == "InstagramAPI\Response\LoginResponse: The password you entered is incorrect. Please try again.") {
+				if (strpos($error_message, 'InstagramAPI\Response\LoginResponse:') !== false) {
+					$is_error = 1 ;
+					$error_message = $e->getMessage();
+				} 
+				if ( ($error_message == "InstagramAPI\Response\LoginResponse: Challenge required.") || ( substr($error_message, 0, 18) == "challenge_required") || ($error_message == "InstagramAPI\Response\TimelineFeedResponse: Challenge required.") || ($error_message == "InstagramAPI\Response\LoginResponse: Sorry, there was a problem with your request.") ){
+					$is_error = 2 ;
+					$error_message = $e->getMessage();
+				}
+			}
+
+			
+		if ($is_error == 1) {
+			$arr["message"]= "Instagram Login is not valid";
+			// $arr["error_message"]= $error_message;
+			$arr["type"]= "error";
+			return $arr;
+		}
+		else if ($is_error == 2) {
+			$arr["message"]= "Error Confirmation";
+			// $arr["error_message"]= $error_message;
+			$arr["type"]= "error2";
+			return $arr;
+		}
+		else if ($is_error == 0) {
+			SettingMeta::createMeta("error_message_cred","",Request::input('setting_id'));
 		}
 			
 			
@@ -316,7 +400,7 @@ class AutoManageController extends Controller
 
 			
 		if ($is_error == 1) {
-			$arr["message"]= "Instagram Login tidak valid";
+			$arr["message"]= "Instagram Login is not valid";
 			// $arr["error_message"]= $error_message;
 			// $arr["tracestring"]= $trace_string;
 			// $arr["response_error"]= $response_error;
