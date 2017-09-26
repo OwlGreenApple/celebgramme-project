@@ -258,7 +258,7 @@
 									//munculkan pop up it was me 
 									$('#confirm-itwasme').modal('show');
                 }
-								window.scrollTo(0, 0);
+								$(window).scrollTop(0);
             }
         });
       }
@@ -325,7 +325,7 @@
 									//munculkan pop up it was me 
 									$('#confirm-itwasme').modal('show');
                 }
-								window.scrollTo(0, 0);
+								$(window).scrollTop(0);
             }
         });
       }
