@@ -1548,7 +1548,15 @@ use Celebgramme\Models\SettingHelper;
 					</h4>
         </div>
         <div class="modal-body">
-					<textarea id="textarea-copy" class="form-control" style="min-height:100px;height:auto;"></textarea>
+					<!--<textarea id="textarea-copy" class="form-control" style="min-height:100px;height:auto;"></textarea>-->
+					<input type="hidden" id="hidden-textarea-copy">
+					<div id="textarea-copy">
+					</div>
+					<script>
+						textareaCopyEmoji = $("#textarea-copy").emojioneArea({
+							pickerPosition: "bottom",
+						});
+					</script>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" id="button-ok-copy">Copy All</button>
@@ -1556,6 +1564,7 @@ use Celebgramme\Models\SettingHelper;
       </div>
 <script>
 document.getElementById("button-ok-copy").addEventListener("click", function() {
+	$("#hidden-textarea-copy").val(textareaCopyEmoji[0].emojioneArea.getText());
     copyToClipboard(document.getElementById("textarea-copy"));
 });
 		function copyToClipboard(elem) {

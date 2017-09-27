@@ -13,74 +13,58 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-
     <!-- Bootstrap Core Css -->
 		<link href="{{ asset('/new-dashboard/plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
-	
 		<link href="{{ asset('/new-dashboard/css/font-awesome.css') }}" rel="stylesheet">
-
     <!-- Waves Effect Css -->
 		<link href="{{ asset('/new-dashboard/plugins/node-waves/waves.css') }}" rel="stylesheet">
-
     <!-- Animation Css -->
 		<link href="{{ asset('/new-dashboard/plugins/animate-css/animate.css') }}" rel="stylesheet">
-
     <!-- Morris Chart Css-->
 		<link href="{{ asset('/new-dashboard/plugins/morrisjs/morris.css') }}" rel="stylesheet">
-	
-	<!-- Noui css-->
+		<!-- Noui css-->
 		<link href="{{ asset('/new-dashboard/plugins/nouislider/nouislider.min.css') }}" rel="stylesheet">
-	
-	<!-- Bootstrap Tagsinput Css -->
+		<!-- Bootstrap Tagsinput Css -->
 		<link href="{{ asset('/new-dashboard/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet">
-
-   
-
     <!-- Css for hint -->
 		<link href="{{ asset('/css/tooltipster.css') }}" rel="stylesheet">
 		<link href="{{ asset('/css/tooltipster-noir.css') }}" rel="stylesheet">
-		
-		
-		
     <!-- Custom Css -->
 		<link href="{{ asset('/new-dashboard/css/style.css') }}" rel="stylesheet">
 		<link href="{{ asset('/new-dashboard/css/jquery-ui.min.css') }}" rel="stylesheet">
-
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 		<link href="{{ asset('/new-dashboard/css/themes/all-themes.css') }}" rel="stylesheet">
-
 		<link href="{{ asset('/css/main.css') }}" rel="stylesheet">
+		<!-- emoji -->
+		<link href="{{ asset('/emoji/css/emojionearea.min.css') }}" rel="stylesheet">	
 
 
 	
     <!-- Jquery Core Js -->
 		<script type="text/javascript" src="{{ asset('/new-dashboard/plugins/jquery/jquery.min.js') }}"></script>
-	
     <!-- Bootstrap Core Js -->
 		<script type="text/javascript" src="{{ asset('/new-dashboard/plugins/bootstrap/js/bootstrap.js') }}"></script>
-	
-	
-
     <!-- Slimscroll Plugin Js -->
 		<script type="text/javascript" src="{{ asset('/new-dashboard/plugins/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
-
     <!-- Waves Effect Plugin Js -->
 		<script type="text/javascript" src="{{ asset('/new-dashboard/plugins/node-waves/waves.js') }}"></script>
-
-
     <!-- Js for hint -->
 		<script type="text/javascript" src="{{ asset('/js/jquery.tooltipster.min.js') }}"></script>		
-		
     <!-- Custom Js -->
 		<script type="text/javascript" src="{{ asset('/new-dashboard/js/admin.js') }}"></script>
+		<!-- emoji -->
+		<script type="text/javascript">
+				mainPathFolder = "<?php echo asset(''); ?>";
+		</script>
+		<script type="text/javascript" src="{{ asset('/emoji/js/prettify.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('/emoji/js/emojionearea.js') }}"></script>
 
 		
-      <script>
-        $(document).ready(function(){
-          $("#div-loading").hide();
-        });
-        
-      </script>
+		<script>
+			$(document).ready(function(){
+				$("#div-loading").hide();
+			});
+		</script>
 </head>
 
 <body class="theme-default">
@@ -212,7 +196,7 @@
             <div class="legal">
                 <div class="copyright">
                     &copy; 2017 <a href="{{url('')}}">Celebgramme</a>.
-                    <b>Version: </b> 3.3.5
+                    <b>Version: </b> 3.5
                 </div>
             </div>
             <!-- #Footer -->
@@ -292,7 +276,7 @@
             <div class="legal">
                 <div class="copyright">
                     &copy; 2017 <a href="{{url('')}}">Celebgramme</a>.
-                    <b>Version: </b> 3.3.5
+                    <b>Version: </b> 3.5
                 </div>
             </div>
             <!-- #Footer -->
