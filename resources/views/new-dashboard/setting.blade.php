@@ -1422,7 +1422,7 @@ use Celebgramme\Models\SettingHelper;
 																		textareaWelcomeMessage = $("#textarea-welcome-message").emojioneArea({
 																			pickerPosition: "bottom",
 																		});
-																		// textareaWelcomeMessage[0].emojioneArea.getText();
+																		textareaWelcomeMessage[0].emojioneArea.setText("<?php echo $settings->messages; ?>");
 																	</script>
 																	
 																</div>
