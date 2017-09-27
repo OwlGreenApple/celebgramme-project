@@ -92,7 +92,8 @@ use Celebgramme\Models\SettingHelper;
 				url: "<?php echo url('save-welcome-message'); ?>",
 				data: {
 					setting_id : setting_id,
-					message : $("#textarea-welcome-message").val(),
+					// message : $("#textarea-welcome-message").val(),
+					message : textareaWelcomeMessage[0].emojioneArea.getText(),
 					is_auto_responder : $("#is_auto_responder").val(),
 				},
 				dataType: 'text',
@@ -547,9 +548,11 @@ use Celebgramme\Models\SettingHelper;
 			e.preventDefault();
 			$("#id-auto-responder").val($(this).attr("data-id"));
 			$("#num_of_day").val($(this).attr("data-num"));
-			$("#message_responder").val($(this).attr("data-message"));
+			// $("#message_responder").val($(this).attr("data-message"));
+			welcomeMessageResponder[0].emojioneArea.setText($(this).attr("data-message"));
 		});
 		$( "body" ).on( "click", "#button-submit-auto-responder", function(e) {
+			$("#message_responder").val(welcomeMessageResponder[0].emojioneArea.getText());
         $.ajax({                                      
           url: '<?php echo url('submit-auto-responder'); ?>',
           headers: {
@@ -577,7 +580,8 @@ use Celebgramme\Models\SettingHelper;
 							
 							$("#id-auto-responder").val("new");
 							$("#num_of_day").val("");
-							$("#message_responder").val("");
+							// $("#message_responder").val("");
+							welcomeMessageResponder[0].emojioneArea.setText("");
             } else if (data.type=='error') {
               // $("#alert").addClass("alert-danger");
               // $("#alert").removeClass("alert-success");
@@ -1412,7 +1416,15 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 																
 																<div class="col-md-12 col-sm-12 col-xs-12">
-																	<textarea class="form-control" placeholder="Input Your Welcome Message to New Followers" id="textarea-welcome-message" value="{{$settings->messages}}">{{$settings->messages}}</textarea>
+																	<!--<textarea class="form-control" placeholder="Input Your Welcome Message to New Followers" id="textarea-welcome-message" value="{{$settings->messages}}">{{$settings->messages}}</textarea> -->
+																	<div id="textarea-welcome-message"></div>
+																	<script>
+																		textareaWelcomeMessage = $("#textarea-welcome-message").emojioneArea({
+																			pickerPosition: "bottom",
+																		});
+																		// textareaWelcomeMessage[0].emojioneArea.getText();
+																	</script>
+																	
 																</div>
 																<div class="col-md-2 col-sm-12 col-xs-12">
 																	<button class="form-control btn btn-md bg-cyan pull-left" id="button-save-welcome-message" style="margin-left:0px;">Save</button>
@@ -1695,8 +1707,13 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 																</span>
 										</label> 
 										<div class="col-sm-12 col-md-12 col-xs-12">
-											<!--<input type="text" class="form-control" placeholder="Isi Auto Respond Message" name="message" id="message">-->
-											<textarea class="form-control" id="message_responder" name="message_responder" style="height:70px;"></textarea>
+											<!--<textarea class="form-control" id="message_responder" name="message_responder" style="height:70px;"></textarea>-->
+											<input type="hidden" id="message_responder" name="message_responder">
+											<div id="divInput-message-responder"></div>
+											<script>
+												welcomeMessageResponder = $("#divInput-message-responder").emojioneArea();
+												// welcomeMessageResponder[0].emojioneArea.setText("");
+											</script>
 											
 										</div>
 									</div>  
