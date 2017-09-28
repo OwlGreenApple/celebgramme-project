@@ -7,8 +7,10 @@
 																		<!--<textarea class="form-control" style="height:70px;" disabled value="{{$data_auto_responder->message}}">{{$data_auto_responder->message}}</textarea>-->
 																		<div id="divInput-showData-responder{{$data_auto_responder->id}}"></div>
 																		<script>
-																			showDataResponder<?php echo $data_auto_responder->id; ?> = $("#divInput-showData-responder<?php echo $data_auto_responder->id; ?>").emojioneArea();
-																			showDataResponder<?php echo $data_auto_responder->id; ?>[0].emojioneArea.setText("<?php echo $data_auto_responder->message; ?>");
+																			showDataResponder<?php echo $data_auto_responder->id; ?> = $("#divInput-showData-responder<?php echo $data_auto_responder->id; ?>").emojioneArea({
+																				pickerPosition: "bottom",
+																			});
+																			showDataResponder<?php echo $data_auto_responder->id; ?>[0].emojioneArea.setText(<?php echo json_encode($data_auto_responder->message); ?>);
 																			showDataResponder<?php echo $data_auto_responder->id; ?>[0].emojioneArea.disable();
 																		</script>
 																	</div>
