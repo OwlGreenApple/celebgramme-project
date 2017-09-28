@@ -302,7 +302,7 @@ use Celebgramme\Models\SettingHelper;
 				url: "<?php echo url('action-direct-message'); ?>",
 				data: {
 					pk_id : $(this).attr("data-pk-id"),
-					message : $("#text-message-inbox").val(),
+					// message : $("#text-message-inbox").val(),
 					setting_id : $(this).attr("data-setting-id"),
 					data_thread_id : $(this).attr("data-thread-id"),
 					type : 'like',
@@ -334,7 +334,8 @@ use Celebgramme\Models\SettingHelper;
 				url: "<?php echo url('action-direct-message'); ?>",
 				data: {
 					pk_id : $(this).attr("data-pk-id"),
-					message : $("#text-message-inbox").val(),
+					// message : $("#text-message-inbox").val(),
+					message : sendInboxData[0].emojioneArea.getText(),
 					setting_id : $(this).attr("data-setting-id"),
 					// data_thread_id : $(this).attr("data-thread-id"),
 					data_username : $(this).attr("data-username"),
@@ -1711,7 +1712,10 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 											<input type="hidden" id="message_responder" name="message_responder">
 											<div id="divInput-message-responder"></div>
 											<script>
-												welcomeMessageResponder = $("#divInput-message-responder").emojioneArea();
+											//auto responder, bukan welcome message
+												welcomeMessageResponder = $("#divInput-message-responder").emojioneArea({
+																				pickerPosition: "bottom",
+																			});
 												// welcomeMessageResponder[0].emojioneArea.setText("");
 											</script>
 											

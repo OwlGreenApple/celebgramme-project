@@ -184,7 +184,12 @@
 		<div class="col-md-1 col-sm-1 col-xs-1">
 		</div>	
 		<div class="col-md-9 col-sm-12 col-xs-12">
-			<input type="text" id="text-message-inbox" class="form-control">
+			<!--<input type="text" id="text-message-inbox" class="form-control">-->
+			<div id="divInput-send-inbox"></div>
+			<script>
+				sendInboxData = $("#divInput-send-inbox").emojioneArea();
+				sendInboxData[0].emojioneArea.setText("");
+			</script>
 		</div>
 		<div class="col-md-2 col-sm-12 col-xs-12">
 			<input type="button" class="btn form-control button-message-inbox" value="Send" data-pk-id="{{$chatAll->thread->users[0]->pk}}" data-setting-id="{{$setting_id}}" data-username="{{$username_user}}" data-pic="{{$data_pic}}">
