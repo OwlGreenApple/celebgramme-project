@@ -1099,4 +1099,70 @@ class NewDashboardController extends Controller
 	public function test(){
 		echo $this->count_combination("{Culinary|Kuliner} of the day: {Hi|Hai|Hello|Helo|Alow|Allooo} {Just for|Untuk|Hanya untuk} yang {suka|suka makan|doyan} {Kremes Fried Chicken|Ayam Goreng Kremes}, {Check this out|ini ada} {Fried chicken|ayam goreng} {sedappp|nikmattt|enakkk|enak banget|tastyyy|ueeenak} to the bone, {wkwkwk|hahaha|hehehe}. Bisa {cek langsung|order|pesan|cobain} sendiri di @njaluksambal  - hati2 {nambah|ketagihan} yah ");
 	}
+
+	public function check_availability_username(){
+		$arr["type"]="success";
+    $user = Auth::user();
+    $link = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
+							->join("setting_helpers","setting_helpers.setting_id","=","settings.id")
+							->select("settings.*","setting_helpers.proxy_id")
+              ->where("link_users_settings.user_id","=",$user->id)
+              ->where("settings.id","=",Request::input("setting_id"))
+              ->where("type","=","temp")
+              ->first();
+    if (is_null($link)) {
+      return redirect('dashboard')->with( 'error', 'Not authorize to access page');
+    } 
+		
+		$setting = Setting::find(Request::input("setting_id"));
+		if ($setting->status <> "started") {
+			$arr["type"] = "error";
+			$arr["message"] = "Please start your account first";
+      return $arr;
+		}
+							
+		if (!$link->error_cred) {
+			try {
+				$i = new Instagram(false,false,[
+					"storage"       => "mysql",
+					"dbhost"       => Config::get('automation.DB_HOST'),
+					"dbname"   => Config::get('automation.DB_DATABASE'),
+					"dbusername"   => Config::get('automation.DB_USERNAME'),
+					"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+				]);
+				
+				$proxy = Proxies::find($link->proxy_id);
+				if (!is_null($proxy)) {
+					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
+				}
+				
+				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
+				$i->login(strtolower($link->insta_username), $link->insta_password, false,300);
+				$searchUser = $i->people->search(Request::input("search"));
+				$number_username = $searchUser->getNumResults();
+				$pkid_user = 0;
+				$pp_user = "";
+				if ($number_username == 1) {
+					$pkid_user = $searchUser->getUsers()[0]->getPk();
+					$pp_user = $searchUser->getUsers()[0]->getProfilePicUrl();
+				}
+				$arr["resultEmailData"] = view("new-dashboard.new-message")->with(array(
+																			'setting_id'=>Request::input("setting_id"),
+																			'username_user'=> Request::input("search"),
+																			'pkid_user'=> $pkid_user,
+																			'data_pic'=> $pp_user,
+																			'i'=> $i,
+																		))->render();
+			}
+			catch (Exception $e) {
+				$arr["type"]="error";
+				$arr["resultEmailData"] = $e->getMessage();
+			}
+			
+			$arr["numberUsername"] = $number_username;
+		}
+		
+		return $arr;
+	}
+	
 }

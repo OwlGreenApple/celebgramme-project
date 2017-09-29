@@ -110,6 +110,7 @@ Route::group(['middleware' => 'auth'], function()
 	Route::get('action-dm-req', 'Member\NewDashboardController@action_dm_req');
 	Route::get('get-dm-inbox', 'Member\NewDashboardController@get_dm_inbox');
 	Route::get('save-welcome-message', 'Member\NewDashboardController@save_welcome_message');
+	Route::get('auto-complete-username', 'Member\NewDashboardController@get_username');
 	Route::get('test', 'Member\NewDashboardController@test');
 	
 	Route::post('submit-auto-responder', 'Member\NewDashboardController@submit_auto_responder');

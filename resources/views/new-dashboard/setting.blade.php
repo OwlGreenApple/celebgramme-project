@@ -643,6 +643,67 @@ use Celebgramme\Models\SettingHelper;
 			})
 		});
 		
+		$( "#input-username-blacklist" ).autocomplete({
+			source: function( request, response ) {
+				$.ajax( {
+					url: "<?php echo url('auto-complete-username'); ?>",
+					dataType: "json",
+					data: {
+						search : $('#input-username-blacklist').val(),
+						setting_id : setting_id,
+					},
+					beforeSend: function()
+					{
+						$("#div-loading").show();
+					},
+					success: function( data ) {
+						$("#div-loading").hide();
+						// console.log(data);
+						// response( data );
+						$(".ui-autocomplete").empty(); 
+						$.each(data , function (index, value){
+							// console.log(index + ':' + value); 
+							$('.ui-autocomplete').append('<li class="ui-menu-item"><div id="ui-id-'+index+'" tabindex="-1" class="ui-menu-item-wrapper">'+value+'</div></li>');
+							var position = $("#input-username-blacklist").offset(); // position = { left: 42, top: 567 }
+							$.each(position, function(key, element) {
+								if (key == "top") {
+									positionTop = element + $("#input-username-blacklist").height() + 12;
+								}
+								if (key == "left") {
+									positionLeft = element;
+								}
+							});							
+							$('.ui-autocomplete').css("position","absolute");
+							$('.ui-autocomplete').css("top",positionTop+"px");
+							$('.ui-autocomplete').css("left",positionLeft+"px");
+							$('.ui-autocomplete li').click(function(e) 
+							{ 
+								// alert($(this).find("span.t").text());
+								$( "#input-username-blacklist" ).val($(this).find("div").text());
+								$(".ui-autocomplete").hide();
+							});							
+						});						
+						$(".ui-autocomplete").show();
+					}
+				} );
+			},
+			minLength: 3,
+			// select: function( event, ui ) {
+				// console.log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+				// $( "#input-username-blacklist" ).val(ui.item.value);
+			// },
+			delay : 250 
+			// close: function() {
+			// }	,
+			// autoFocus: true
+		});
+		
+		$( "#input-username-blacklist" ).focus(function() {
+			$(".ui-autocomplete").show();
+		});
+		
+		
+		
 		
 	});	
 </script>
@@ -1046,6 +1107,16 @@ use Celebgramme\Models\SettingHelper;
 															</div>
 														</div>
 														<div class="row">
+															<div class="col-md-3 col-sm-12 col-xs-12">
+																<input type="text" class="form-control" placeholder="Username" id="input-username-blacklist"> 
+																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Search Username </div><div class='panel-content'>Fitur ini mempermudah untuk mencari username yang available <br>dan memasukkan kedaftar blacklist anda, sehingga anda memasukkan username IG yang valid. </div>">
+																</span>
+															</div>
+															<div class="col-md-3 col-sm-12 col-xs-12">
+																<button class="btn btn-lg br-6 bg-cyan" id="button-input-user">Enter</button>
+															</div>
+														</div>
+														<div class="row">
 																<p data-toggle="modal" data-target="#myModal" style="cursor:pointer;position: absolute;right: 35px;z-index: 10;" class="button-copy" data-text="textarea-unfollow-blacklist">copy</p>															
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<textarea class="selectize-default" id="textarea-unfollow-blacklist" name="data[usernames_blacklist]">{{$settings->usernames_blacklist}}</textarea>
@@ -1078,8 +1149,9 @@ use Celebgramme\Models\SettingHelper;
 																				delimiter: ';',
 																				persist: false,
 																				onChange: function(value) {
-																					var arr = value.split(';');
-																					console.log(arr[arr.length - 1]);
+																					// var current = selectizeWhitelist.getValue(); 
+																					/*var arr = value.split(';');
+																					console.log(arr[arr.length - 1]);*/
 																				},
 																				create: function(input) {
 																					return {
