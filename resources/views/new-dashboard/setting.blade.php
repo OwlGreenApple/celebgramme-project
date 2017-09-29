@@ -1081,6 +1081,8 @@ use Celebgramme\Models\SettingHelper;
 																								 // alert(value);
 																					console.log(value);
 																					console.log($(this).parent());
+      var test = selectize.getValue();
+      alert(test);																					
 																				},
 																				create: function(input) {
 																					return {
