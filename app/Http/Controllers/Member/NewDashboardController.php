@@ -199,7 +199,7 @@ class NewDashboardController extends Controller
 			
 		
 		
-		
+		echo json_encode($arr_user_whitelist);exit;
     return view("new-dashboard.setting")->with(array(
       'user'=>$user,
       'settings'=>$link,
