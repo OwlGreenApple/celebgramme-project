@@ -1054,7 +1054,31 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row">
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;position: absolute;right: 35px;z-index: 10;" class="button-copy" data-text="textarea-unfollow-whitelist">copy</p>
-																<textarea class="selectize-default" id="textarea-unfollow-whitelist" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>
+																<!--<textarea class="selectize-default" id="textarea-unfollow-whitelist" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>-->
+																<!--<select name="data[usernames_whitelist]" id="textarea-unfollow-whitelist">
+																</select>-->
+																<textarea class="" id="textarea-unfollow-whitelist" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>
+																<script>
+																	var $selectWhitelist = $('#textarea-unfollow-whitelist').selectize({
+																				plugins:['remove_button'],
+																				delimiter: ';',
+																				persist: false,
+																				onChange: function(value) {
+																								 // alert(value);
+																					// console.log($(this).parent());
+																				},
+																				create: function(input) {
+																					return {
+																						value: input,
+																						text: input
+																					}
+																				},
+																			});
+																	var selectizeWhitelist = $selectWhitelist[0].selectize;
+																	selectizeWhitelist.addOption({id: 1, label: 'whatever'});
+																	selectizeWhitelist.refreshOptions();		
+
+																</script>
 															</div>
 														</div>
 													</div>
