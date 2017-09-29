@@ -1081,7 +1081,7 @@ use Celebgramme\Models\SettingHelper;
 																								 // alert(value);
 																					console.log(value);
 																					console.log($(this).parent());
-      var test = selectize.getValue();
+      var test = selectizeWhitelist.getValue();
       alert(test);																					
 																				},
 																				create: function(input) {
