@@ -1078,10 +1078,8 @@ use Celebgramme\Models\SettingHelper;
 																				delimiter: ';',
 																				persist: false,
 																				onChange: function(value) {
-																								 // alert(value);
-																					console.log(value);
-																					var current = selectizeWhitelist.getValue(); 
-																					console.log(selectizeWhitelist.options[ current ]);
+																					var arr = value.split(';');
+																					console.log(arr[arr.length - 1]);
 																				},
 																				create: function(input) {
 																					return {
