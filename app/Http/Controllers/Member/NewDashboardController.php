@@ -154,6 +154,53 @@ class NewDashboardController extends Controller
 			$ads_content = $post->description;
 		}
 		
+		//check first punya proxy ga
+		
+		//buat list user following (for whitelist purpose)
+		$arr_user_whitelist = array();
+		$counter = 0; $end_cursor = "";
+		do {  //repeat until get 50 data scrape 
+			try {
+				if ($counter==0) {
+					$userFollowingResponse = $i->people->getSelfFollowing();
+				} else if ($counter>0) {
+					$userFollowingResponse = $i->people->getSelfFollowing(null,$end_cursor);
+				}
+			}
+			catch (Exception $e) {
+				break;
+			}
+			$counter += 1;
+			
+			$has_next_page = true;
+			if (!is_null($userFollowingResponse->getNextMaxId())) {
+				$end_cursor = $userFollowingResponse->getNextMaxId();
+			} else {
+				$end_cursor = "";
+				$has_next_page = false;
+			}
+			
+			if ( count($userFollowingResponse->getUsers()) > 0 ) {
+				//hasil scrape disimpan ke textfile
+				$dt = Carbon::now()->setTimezone('Asia/Jakarta');
+				foreach ($userFollowingResponse->getUsers() as $data) {
+					$arr_user_whitelist[] = array(
+						"text"=>$data->getUsername(),
+						"value"=>$data->getUsername(),
+					);
+
+				}
+
+				
+			} 
+			else if ( count($userFollowingResponse->getUsers()) == 0 ) {
+			}
+			usleep(500000);
+		} while ( ($has_next_page) );
+			
+		
+		
+		
     return view("new-dashboard.setting")->with(array(
       'user'=>$user,
       'settings'=>$link,
@@ -162,6 +209,7 @@ class NewDashboardController extends Controller
       'strCategory'=>$strCategory,
       'strClassCategory'=>$strClassCategory,
       'ads_content'=>$ads_content,
+      'arr_user_whitelist'=>json_encode($arr_user_whitelist),
 		));
 	}
 
