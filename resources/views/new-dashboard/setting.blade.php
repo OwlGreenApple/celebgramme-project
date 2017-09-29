@@ -1079,7 +1079,8 @@ use Celebgramme\Models\SettingHelper;
 																				persist: false,
 																				onChange: function(value) {
 																								 // alert(value);
-																					// console.log($(this).parent());
+																					console.log(value);
+																					console.log($(this).parent());
 																				},
 																				create: function(input) {
 																					return {

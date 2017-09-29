@@ -234,7 +234,8 @@ class NewDashboardController extends Controller
 			} 
 			else if ( count($userFollowingResponse->getUsers()) == 0 ) {
 			}
-			usleep(500000);
+			// usleep(500000); // 1/2 detik
+			usleep(120000); 
 		} while ( ($has_next_page) );
 			
 		
