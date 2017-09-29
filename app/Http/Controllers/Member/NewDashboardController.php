@@ -1100,7 +1100,7 @@ class NewDashboardController extends Controller
 		echo $this->count_combination("{Culinary|Kuliner} of the day: {Hi|Hai|Hello|Helo|Alow|Allooo} {Just for|Untuk|Hanya untuk} yang {suka|suka makan|doyan} {Kremes Fried Chicken|Ayam Goreng Kremes}, {Check this out|ini ada} {Fried chicken|ayam goreng} {sedappp|nikmattt|enakkk|enak banget|tastyyy|ueeenak} to the bone, {wkwkwk|hahaha|hehehe}. Bisa {cek langsung|order|pesan|cobain} sendiri di @njaluksambal  - hati2 {nambah|ketagihan} yah ");
 	}
 
-	public function check_availability_username(){
+	public function get_username(){
 		$arr["type"]="success";
     $user = Auth::user();
     $link = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
@@ -1114,12 +1114,12 @@ class NewDashboardController extends Controller
       return redirect('dashboard')->with( 'error', 'Not authorize to access page');
     } 
 		
-		$setting = Setting::find(Request::input("setting_id"));
+		/*$setting = Setting::find(Request::input("setting_id"));
 		if ($setting->status <> "started") {
 			$arr["type"] = "error";
 			$arr["message"] = "Please start your account first";
       return $arr;
-		}
+		}*/
 							
 		if (!$link->error_cred) {
 			try {
@@ -1138,31 +1138,26 @@ class NewDashboardController extends Controller
 				
 				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
 				$i->login(strtolower($link->insta_username), $link->insta_password, false,300);
-				$searchUser = $i->people->search(Request::input("search"));
-				$number_username = $searchUser->getNumResults();
-				$pkid_user = 0;
-				$pp_user = "";
-				if ($number_username == 1) {
-					$pkid_user = $searchUser->getUsers()[0]->getPk();
-					$pp_user = $searchUser->getUsers()[0]->getProfilePicUrl();
+				$usernames = $i->people->search(Request::input("search"))->getUsers();
+				$arr_usernames = array();
+				foreach ($usernames as $data) {
+					// $arr_data["username"] = $data->getUsername();
+					// $arr_data["id"] = $data->getUserId();
+					// $arr_usernames[] = $arr_data;
+					$arr_usernames[] = $data->getUsername();
 				}
-				$arr["resultEmailData"] = view("new-dashboard.new-message")->with(array(
-																			'setting_id'=>Request::input("setting_id"),
-																			'username_user'=> Request::input("search"),
-																			'pkid_user'=> $pkid_user,
-																			'data_pic'=> $pp_user,
-																			'i'=> $i,
-																		))->render();
 			}
 			catch (Exception $e) {
 				$arr["type"]="error";
 				$arr["resultEmailData"] = $e->getMessage();
 			}
 			
-			$arr["numberUsername"] = $number_username;
+			// $arr["arr_usernames"] = $arr_usernames;
+			return json_encode($arr_usernames);
 		}
 		
 		return $arr;
 	}
+
 	
 }
