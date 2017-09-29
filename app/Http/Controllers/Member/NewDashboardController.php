@@ -156,8 +156,11 @@ class NewDashboardController extends Controller
 		
 		//check first punya proxy ga
 		// ONLY for init assign proxy
-		if ($setting_helper->proxy_id == 0) {
+		if ($link->proxy_id == 0) {
 			$arr_proxy = GlobalHelper::clearProxy(serialize($link), "new");
+		}
+		else {
+			$arr_proxy['proxy_id'] = $link->proxy_id;
 		}
 		
 		//login dulu buat list following
@@ -170,7 +173,7 @@ class NewDashboardController extends Controller
 					"dbpassword"   => Config::get('automation.DB_PASSWORD'),
 				]);
 				
-				$proxy = Proxies::find($link->proxy_id);
+				$proxy = Proxies::find($arr_proxy['proxy_id']);
 				if (!is_null($proxy)) {
 					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
 				}
