@@ -1,6 +1,20 @@
 @extends('new-dashboard.main')
 
 @section('content')
+	<link href="{{ asset('/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet">
+
+
+	<section id="userSetScript">
+			<script type="text/javascript" src="{{ asset('/new-dashboard/js/jquery-ui.js') }}"></script>
+			<!-- Noui Js -->
+			<script type="text/javascript" src="{{ asset('/new-dashboard/plugins/nouislider/nouislider.js') }}"></script>
+			<!-- Input Mask Plugin Js -->
+			<script type="text/javascript" src="{{ asset('/new-dashboard/plugins/jquery-inputmask/jquery.inputmask.bundle.js') }}"></script>
+			<!-- Bootstrap Tags Input Plugin Js -->
+			<script type="text/javascript" src="{{ asset('/new-dashboard/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js') }}"></script>
+			<script type="text/javascript" src="{{ asset('/selectize/js/standalone/selectize.js') }}"></script>
+	</section>
+
 
 <?php 
 use Celebgramme\Models\SettingMeta; 
@@ -1075,7 +1089,7 @@ use Celebgramme\Models\SettingHelper;
 																				},
 																			});
 																	var selectizeWhitelist = $selectWhitelist[0].selectize;
-																	selectizeWhitelist.addOption({id: 1, label: 'whatever'});
+																	selectizeWhitelist.addOption({value: "whatever", text: 'whatever'});
 																	selectizeWhitelist.refreshOptions();		
 
 																</script>
@@ -1832,24 +1846,4 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 	
 	
 	
-	<link href="{{ asset('/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet">
-
-
-	<section id="userSetScript">
-			<script type="text/javascript" src="{{ asset('/new-dashboard/js/jquery-ui.js') }}"></script>
-
-			<!-- Noui Js -->
-			<script type="text/javascript" src="{{ asset('/new-dashboard/plugins/nouislider/nouislider.js') }}"></script>
-
-			<!-- Input Mask Plugin Js -->
-			<script type="text/javascript" src="{{ asset('/new-dashboard/plugins/jquery-inputmask/jquery.inputmask.bundle.js') }}"></script>
-
-
-			<!-- Bootstrap Tags Input Plugin Js -->
-			<script type="text/javascript" src="{{ asset('/new-dashboard/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js') }}"></script>
-
-			<script type="text/javascript" src="{{ asset('/selectize/js/standalone/selectize.js') }}"></script>
-
-	</section>
-
 @endsection
