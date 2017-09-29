@@ -157,6 +157,38 @@ class NewDashboardController extends Controller
 		//check first punya proxy ga
 		
 		//buat list user following (for whitelist purpose)
+		try {
+				$i = new Instagram(false,false,[
+					"storage"       => "mysql",
+					"dbhost"       => Config::get('automation.DB_HOST'),
+					"dbname"   => Config::get('automation.DB_DATABASE'),
+					"dbusername"   => Config::get('automation.DB_USERNAME'),
+					"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+				]);
+				
+				$proxy = Proxies::find($link->proxy_id);
+				if (!is_null($proxy)) {
+					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
+				}
+				
+				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
+				$i->login(strtolower($link->insta_username), $link->insta_password, false, 300);
+		} 
+		catch (Exception $e) {
+			$arr["type"]="error";
+			$arr["resultEmailData"] = $e->getMessage();
+		}
+		catch (\InstagramAPI\Exception\IncorrectPasswordException $e) {
+			//klo error password
+			$arr["type"]="error";
+			$arr["resultEmailData"] = $e->getMessage();
+		}
+		catch (\InstagramAPI\Exception\CheckpointRequiredException $e) {
+			//klo error email / phone verification 
+			$arr["type"]="error";
+			$arr["resultEmailData"] = $e->getMessage();
+		}
+		
 		$arr_user_whitelist = array();
 		$counter = 0; $end_cursor = "";
 		do {  //repeat until get 50 data scrape 
