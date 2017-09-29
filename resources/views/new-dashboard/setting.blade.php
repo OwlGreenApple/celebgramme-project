@@ -1090,8 +1090,8 @@ use Celebgramme\Models\SettingHelper;
 																			});
 																	var selectizeWhitelist = $selectWhitelist[0].selectize;
 																	// selectizeWhitelist.addOption({value: "whatever", text: 'whatever'});
-																	console.log("<?php echo $arr_user_whitelist; ?>");
-																	selectizeWhitelist.addOption("<?php echo $arr_user_whitelist; ?>");
+																	console.log(<?php echo $arr_user_whitelist; ?>);
+																	// selectizeWhitelist.addOption("<?php //echo $arr_user_whitelist; ?>");
 																	selectizeWhitelist.refreshOptions();		
 
 																</script>

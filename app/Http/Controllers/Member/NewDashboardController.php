@@ -182,7 +182,6 @@ class NewDashboardController extends Controller
 			
 			if ( count($userFollowingResponse->getUsers()) > 0 ) {
 				//hasil scrape disimpan ke textfile
-				$dt = Carbon::now()->setTimezone('Asia/Jakarta');
 				foreach ($userFollowingResponse->getUsers() as $data) {
 					$arr_user_whitelist[] = array(
 						"text"=>$data->getUsername(),
