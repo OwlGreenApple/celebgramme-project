@@ -162,6 +162,16 @@ class GlobalHelper {
 			
 		}
 		
+		$arr["proxy_id"] = $proxy_id;
+		$full_proxy =  Proxies::find($proxy_id);
+		if (!is_null($full_proxy)) {
+			$arr["port"] = $full_proxy->port;
+			$arr["cred"] = $full_proxy->cred;
+			$arr["proxy"] = $full_proxy->proxy;
+			$arr["auth"] = $full_proxy->auth;
+		}
+	
+		return $arr;
 		
 		/*
 		*

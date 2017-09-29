@@ -108,10 +108,12 @@ class AutoManageController extends Controller
 		
 		//cari proxy dulu
 		//use own proxy if have
+		$setting_temp = Setting::find(Request::input('setting_id'));
 		$setting_helper = SettingHelper::where("setting_id","=",Request::input('setting_id'))->first();
 		if (!is_null($setting_helper)) {
 			if ($setting_helper->proxy_id== 0) {
-				$arr_proxy = $this->get_proxy_id(Request::input("hidden_username")); 
+				// $arr_proxy = $this->get_proxy_id(Request::input("hidden_username")); 
+				$arr_proxy = GlobalHelper::clearProxy(serialize($setting_temp), "new");
 				$setting_helper->proxy_id = $arr_proxy["proxy_id"];
 				$setting_helper->save();
 			}
@@ -191,7 +193,7 @@ class AutoManageController extends Controller
 		}
 			
 			
-    $setting_temp = Setting::find(Request::input('setting_id'));
+    
     // $setting_temp->insta_username = Request::input('edit_username');
     $setting_temp->insta_password = Request::input('edit_password');
     $setting_temp->error_cred = false;

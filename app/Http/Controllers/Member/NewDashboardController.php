@@ -155,8 +155,12 @@ class NewDashboardController extends Controller
 		}
 		
 		//check first punya proxy ga
+		// ONLY for init assign proxy
+		if ($setting_helper->proxy_id == 0) {
+			$arr_proxy = GlobalHelper::clearProxy(serialize($link), "new");
+		}
 		
-		//buat list user following (for whitelist purpose)
+		//login dulu buat list following
 		try {
 				$i = new Instagram(false,false,[
 					"storage"       => "mysql",
@@ -189,6 +193,7 @@ class NewDashboardController extends Controller
 			$arr["resultEmailData"] = $e->getMessage();
 		}
 		
+		//buat list user following (for whitelist purpose)
 		$arr_user_whitelist = array();
 		$counter = 0; $end_cursor = "";
 		do {  //repeat until get 50 data scrape 
