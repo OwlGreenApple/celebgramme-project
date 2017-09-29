@@ -1081,7 +1081,7 @@ use Celebgramme\Models\SettingHelper;
 																								 // alert(value);
 																					console.log(value);
 																					var current = selectizeWhitelist.getValue(); 
-																					console.log(selectizeWhitelist.options[ current ];);
+																					console.log(selectizeWhitelist.options[ current ]);
 																				},
 																				create: function(input) {
 																					return {
