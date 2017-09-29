@@ -732,6 +732,13 @@ use Celebgramme\Models\SettingHelper;
     box-shadow: none!important;		
 	}
 	.selectize-input {min-height: 80px!important; }
+  .ui-autocomplete {
+    max-height: 250px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+	
 </style>
 <div class="row">
 	<div class="col-lg-12 col-md-12">
@@ -1108,7 +1115,7 @@ use Celebgramme\Models\SettingHelper;
 														</div>
 														<div class="row">
 															<div class="col-md-3 col-sm-12 col-xs-12">
-																<input type="text" class="form-control" placeholder="Username" id="input-username-blacklist"> 
+																<input type="text" class="" placeholder="Username" id="input-username-blacklist"> 
 																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Search Username </div><div class='panel-content'>Fitur ini mempermudah untuk mencari username yang available <br>dan memasukkan kedaftar blacklist anda, sehingga anda memasukkan username IG yang valid. </div>">
 																</span>
 															</div>
