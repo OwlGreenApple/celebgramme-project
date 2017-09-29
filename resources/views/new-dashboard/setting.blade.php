@@ -1080,9 +1080,8 @@ use Celebgramme\Models\SettingHelper;
 																				onChange: function(value) {
 																								 // alert(value);
 																					console.log(value);
-																					console.log($(this).parent());
-      var test = selectizeWhitelist.getValue();
-      alert(test);																					
+																					var current = selectizeWhitelist.getValue(); 
+																					console.log(selectizeWhitelist.options[ current ];);
 																				},
 																				create: function(input) {
 																					return {
