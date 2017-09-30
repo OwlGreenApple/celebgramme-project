@@ -1130,7 +1130,6 @@ use Celebgramme\Models\SettingHelper;
 																	var $selectBlacklist = $('#textarea-unfollow-blacklist').selectize({
 																				plugins:['remove_button'],
 																				delimiter: ';',
-																				persist: false,
 																				onChange: function(value) {
 																				},
 																				create: function(input) {
