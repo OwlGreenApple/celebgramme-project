@@ -1144,6 +1144,7 @@ use Celebgramme\Models\SettingHelper;
 																	// selectizeWhitelist.addOption({value: "whatever", text: 'whatever'});
 																	
 																	$("#button-input-user").click(function(e){
+																		e.preventDefault();
 																		selectizeBlacklist.addOption({value: $("#input-username-blacklist").val(), text: $("#input-username-blacklist").val()});
 																	});
 
