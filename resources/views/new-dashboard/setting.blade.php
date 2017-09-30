@@ -1125,7 +1125,7 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row">
 																<p data-toggle="modal" data-target="#myModal" style="cursor:pointer;position: absolute;right: 35px;z-index: 10;" class="button-copy" data-text="textarea-unfollow-blacklist">copy</p>															
 															<div class="col-md-12 col-sm-12 col-xs-12">
-																<textarea class="selectize-default" id="textarea-unfollow-blacklist" name="data[usernames_blacklist]">{{$settings->usernames_blacklist}}</textarea>
+																<textarea class="" id="textarea-unfollow-blacklist" name="data[usernames_blacklist]">{{$settings->usernames_blacklist}}</textarea>
 																<script>
 																	var $selectBlacklist = $('#textarea-unfollow-blacklist').selectize({
 																				plugins:['remove_button'],
@@ -1141,7 +1141,7 @@ use Celebgramme\Models\SettingHelper;
 																				},
 																			});
 																	var selectizeBlacklist = $selectBlacklist[0].selectize;
-																	// selectizeWhitelist.addOption({value: "whatever", text: 'whatever'});
+																	// selectizeBlacklist.addOption({value: "whatever", text: 'whatever'});
 																	
 																	$("#button-input-user").click(function(e){
 																		e.preventDefault();
