@@ -1141,12 +1141,13 @@ use Celebgramme\Models\SettingHelper;
 																				},
 																			});
 																	var selectizeBlacklist = $selectBlacklist[0].selectize;
-																	// selectizeBlacklist.addOption({value: "whatever", text: 'whatever'});
 																	
 																	$("#button-input-user").click(function(e){
 																		e.preventDefault();
 																		// selectizeBlacklist.addOption({value: $("#input-username-blacklist").val(), text: $("#input-username-blacklist").val()});
-																		selectizeBlacklist.setValue(selectizeBlacklist.getValue()+$("#input-username-blacklist").val());
+																		selectizeBlacklist.addOption({value: "whatever", text: 'whatever'});
+																		selectizeBlacklist.refreshOptions();
+																		selectizeBlacklist.addItem($("#input-username-blacklist").val(),false);
 																	});
 
 																</script>
