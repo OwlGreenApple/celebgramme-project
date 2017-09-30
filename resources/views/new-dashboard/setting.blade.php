@@ -1128,9 +1128,16 @@ use Celebgramme\Models\SettingHelper;
 																<textarea class="" id="textarea-unfollow-blacklist" name="data[usernames_blacklist]">{{$settings->usernames_blacklist}}</textarea>
 																<script>
 																	var $selectBlacklist = $('#textarea-unfollow-blacklist').selectize({
-
+																				plugins:['remove_button'],
 																				delimiter: ';',
+																				persist: false,
 																				onChange: function(value) {
+																				},
+																				create: function(input) {
+																					return {
+																						value: input,
+																						text: input
+																					}
 																				},
 																			});
 																	var selectizeBlacklist = $selectBlacklist[0].selectize;
