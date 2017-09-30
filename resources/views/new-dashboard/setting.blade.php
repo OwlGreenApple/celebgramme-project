@@ -1142,11 +1142,11 @@ use Celebgramme\Models\SettingHelper;
 																			});
 																	var selectizeBlacklist = $selectBlacklist[0].selectize;
 																	
-																	$("#button-input-user").click(function(e){
+																	$( "body" ).on( "click", "#button-input-user", function(e) {
 																		e.preventDefault();
 																		// selectizeBlacklist.addOption({value: $("#input-username-blacklist").val(), text: $("#input-username-blacklist").val()});
-																		selectizeBlacklist.addOption({value: "whatever", text: 'whatever'});
-																		selectizeBlacklist.refreshOptions();
+																		selectizeBlacklist.addOption({value: $("#input-username-blacklist").val(), text: $("#input-username-blacklist").val()});
+																		// selectizeBlacklist.refreshOptions();
 																		selectizeBlacklist.addItem($("#input-username-blacklist").val(),false);
 																	});
 
@@ -1195,7 +1195,7 @@ use Celebgramme\Models\SettingHelper;
 																	var selectizeWhitelist = $selectWhitelist[0].selectize;
 																	// selectizeWhitelist.addOption({value: "whatever", text: 'whatever'});
 																	selectizeWhitelist.addOption(<?php echo $arr_user_whitelist; ?>);
-																	selectizeWhitelist.refreshOptions();		
+																	// selectizeWhitelist.refreshOptions();		
 
 																</script>
 															</div>
