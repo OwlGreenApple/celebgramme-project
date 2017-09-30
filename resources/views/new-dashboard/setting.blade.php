@@ -1132,12 +1132,6 @@ use Celebgramme\Models\SettingHelper;
 																				delimiter: ';',
 																				onChange: function(value) {
 																				},
-																				create: function(input) {
-																					return {
-																						value: input,
-																						text: input
-																					}
-																				},
 																			});
 																	var selectizeBlacklist = $selectBlacklist[0].selectize;
 																	// selectizeBlacklist.addOption({value: "whatever", text: 'whatever'});
