@@ -1118,15 +1118,37 @@ use Celebgramme\Models\SettingHelper;
 																<input type="text" class="" placeholder="Username" id="input-username-blacklist"> 
 																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Search Username </div><div class='panel-content'>Fitur ini mempermudah untuk mencari username yang available <br>dan memasukkan kedaftar blacklist anda, sehingga anda memasukkan username IG yang valid. </div>">
 																</span>
-															</div>
-															<div class="col-md-3 col-sm-12 col-xs-12">
-																<button class="btn btn-lg br-6 bg-cyan" id="button-input-user">Enter</button>
+																&nbsp
+																<button class="btn btn-sm br-6 bg-cyan" id="button-input-user">Enter</button>
 															</div>
 														</div>
 														<div class="row">
 																<p data-toggle="modal" data-target="#myModal" style="cursor:pointer;position: absolute;right: 35px;z-index: 10;" class="button-copy" data-text="textarea-unfollow-blacklist">copy</p>															
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<textarea class="selectize-default" id="textarea-unfollow-blacklist" name="data[usernames_blacklist]">{{$settings->usernames_blacklist}}</textarea>
+																<script>
+																	var $selectBlacklist = $('#textarea-unfollow-blacklist').selectize({
+																				plugins:['remove_button'],
+																				delimiter: ';',
+																				persist: false,
+																				onChange: function(value) {
+																				},
+																				create: function(input) {
+																					return {
+																						value: input,
+																						text: input
+																					}
+																				},
+																			});
+																	var selectizeBlacklist = $selectBlacklist[0].selectize;
+																	// selectizeWhitelist.addOption({value: "whatever", text: 'whatever'});
+																	
+																	$("#button-input-user").click(function(e){
+																		selectizeBlacklist.addOption({value: $("#input-username-blacklist").val(), text: $("#input-username-blacklist").val()});
+																	});
+
+																</script>
+																
 															</div>
 														</div>
 														<div class="row">
