@@ -1410,6 +1410,47 @@ use Celebgramme\Models\SettingHelper;
 														</div>
 														
 														<div class="row" id="div-comment" <?php if ($settings->status_comment=="off")   { echo "style='display:none;'"; } ?>>
+<!-- Modal -->
+  <div class="modal fade" id="myModalCreateCommentEmoji" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Create your Emoji Comment 
+										<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Create your Emoji Comment</div><div class='panel-content'>• Fasilitas untuk mencreate emoji ke textbox comment. <br>• Text yang sama persis tidak dapat di paste ke textbox comment</div>">
+							
+					</span>
+
+					</h4>
+        </div>
+        <div class="modal-body">
+					<!--<textarea id="textarea-copy" class="form-control" style="min-height:100px;height:auto;"></textarea>-->
+					<div id="textarea-add-comment">
+					</div>
+					<script>
+						textareaAddComment = $("#textarea-add-comment").emojioneArea({
+							pickerPosition: "bottom",
+						});
+						textareaAddComment[0].emojioneArea.setText("");
+					</script>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" id="button-create-comment">Add comment</button>
+        </div>
+      </div>
+<script>
+document.getElementById("button-create-comment").addEventListener("click", function() {
+	selectizeComment.addOption({value: textareaAddComment[0].emojioneArea.getText(), text: textareaAddComment[0].emojioneArea.getText()});
+	selectizeComment.addItem(textareaAddComment[0].emojioneArea.getText(),false);
+	textareaAddComment[0].emojioneArea.setText("");
+});
+</script>
+      
+    </div>
+  </div>
+														
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<div class="row">
 																	<div class="col-md-6 col-sm-12 col-xs-12">
@@ -1800,46 +1841,6 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
   </div>
 
 
-<!-- Modal -->
-  <div class="modal fade" id="myModalCreateCommentEmoji" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Create your Emoji Comment 
-										<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Create your Emoji Comment</div><div class='panel-content'>• Fasilitas untuk mencreate emoji ke textbox comment. <br>• Text yang sama persis tidak dapat di paste ke textbox comment</div>">
-							
-					</span>
-
-					</h4>
-        </div>
-        <div class="modal-body">
-					<!--<textarea id="textarea-copy" class="form-control" style="min-height:100px;height:auto;"></textarea>-->
-					<div id="textarea-add-comment">
-					</div>
-					<script>
-						textareaAddComment = $("#textarea-add-comment").emojioneArea({
-							pickerPosition: "bottom",
-						});
-						textareaAddComment[0].emojioneArea.setText("");
-					</script>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" id="button-create-comment">Add comment</button>
-        </div>
-      </div>
-<script>
-document.getElementById("button-create-comment").addEventListener("click", function() {
-	selectizeComment.addOption({value: textareaAddComment[0].emojioneArea.getText(), text: textareaAddComment[0].emojioneArea.getText()});
-	selectizeComment.addItem(textareaAddComment[0].emojioneArea.getText(),false);
-	textareaAddComment[0].emojioneArea.setText("");
-});
-</script>
-      
-    </div>
-  </div>
 
 
 
