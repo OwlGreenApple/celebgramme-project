@@ -1458,7 +1458,7 @@ use Celebgramme\Models\SettingHelper;
 																	<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;position: absolute;right: 35px;z-index: 10;" class="button-copy" data-text="textarea-comments">copy</p>
 																	<input type="text" id="textarea-comments" class="" name="data[comments]" value="{{$settings->comments}}">
 																	<script>
-																	var $selectComment = $('#textarea-unfollow-blacklist').selectize({
+																	var $selectComment = $('#textarea-comments').selectize({
 																				plugins:['remove_button'],
 																				delimiter: ';',
 																				persist: false,
