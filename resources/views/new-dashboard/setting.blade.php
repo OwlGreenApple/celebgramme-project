@@ -1451,7 +1451,9 @@ use Celebgramme\Models\SettingHelper;
 																	</div>
 																</div>
 															<div class="row">
-																<p data-toggle="modal" data-target="#myModalCreateCommentEmoji" >Create Emoji</p>
+																<div class="col-md-6 col-sm-12 col-xs-12">
+																	<p data-toggle="modal" data-target="#myModalCreateCommentEmoji" >Create Emoji</p>
+																</div>
 															</div>
 															<div class="row">
 																<div class="col-md-12 col-sm-12 col-xs-12">
@@ -1821,18 +1823,19 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 						textareaAddComment = $("#textarea-add-comment").emojioneArea({
 							pickerPosition: "bottom",
 						});
+						textareaAddComment[0].emojioneArea.setText("");
 					</script>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" id="button-create-comment">Add comment</button>
+          <button type="button" class="btn btn-default" id="button-create-comment">Add comment</button>
         </div>
       </div>
 <script>
 document.getElementById("button-create-comment").addEventListener("click", function() {
 	selectizeComment.addOption({value: textareaAddComment[0].emojioneArea.getText(), text: textareaAddComment[0].emojioneArea.getText()});
 	selectizeComment.addItem(textareaAddComment[0].emojioneArea.getText(),false);
+	textareaAddComment[0].emojioneArea.setText("");
 });
-
 </script>
       
     </div>
