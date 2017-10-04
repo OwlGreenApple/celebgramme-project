@@ -1451,9 +1451,27 @@ use Celebgramme\Models\SettingHelper;
 																	</div>
 																</div>
 															<div class="row">
+																<p data-toggle="modal" data-target="#myModalCreateCommentEmoji" >Create Emoji</p>
+															</div>
+															<div class="row">
 																<div class="col-md-12 col-sm-12 col-xs-12">
 																	<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;position: absolute;right: 35px;z-index: 10;" class="button-copy" data-text="textarea-comments">copy</p>
-																	<input type="text" id="textarea-comments" class="selectize-default" name="data[comments]" value="{{$settings->comments}}">
+																	<input type="text" id="textarea-comments" class="" name="data[comments]" value="{{$settings->comments}}">
+																	var $selectComment = $('#textarea-unfollow-blacklist').selectize({
+																				plugins:['remove_button'],
+																				delimiter: ';',
+																				persist: false,
+																				onChange: function(value) {
+																				},
+																				create: function(input) {
+																					return {
+																						value: input,
+																						text: input
+																					}
+																				},
+																			});
+																	var selectizeComment = $selectComment[0].selectize;
+																	
 																</div>
 															</div>
 														</div>
@@ -1772,6 +1790,47 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 				}
 				return succeed;
 		}
+
+</script>
+      
+    </div>
+  </div>
+
+
+<!-- Modal -->
+  <div class="modal fade" id="myModalCreateCommentEmoji" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Create your Emoji Comment 
+										<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Create your Emoji Comment</div><div class='panel-content'>• Fasilitas untuk mencreate emoji ke textbox comment. <br>• Text yang sama persis tidak dapat di paste ke textbox comment</div>">
+							
+					</span>
+
+					</h4>
+        </div>
+        <div class="modal-body">
+					<!--<textarea id="textarea-copy" class="form-control" style="min-height:100px;height:auto;"></textarea>-->
+					<div id="textarea-add-comment">
+					</div>
+					<script>
+						textareaAddComment = $("#textarea-add-comment").emojioneArea({
+							pickerPosition: "bottom",
+						});
+					</script>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="button-create-comment">Add comment</button>
+        </div>
+      </div>
+<script>
+document.getElementById("button-create-comment").addEventListener("click", function() {
+	selectizeComment.addOption({value: textareaAddComment[0].emojioneArea.getText(), text: textareaAddComment[0].emojioneArea.getText()});
+	selectizeComment.addItem(textareaAddComment[0].emojioneArea.getText(),false);
+});
 
 </script>
       
