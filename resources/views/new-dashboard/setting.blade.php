@@ -1634,7 +1634,7 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 																		textareaWelcomeMessage = $("#textarea-welcome-message").emojioneArea({
 																			pickerPosition: "bottom",
 																		});
-																		textareaWelcomeMessage[0].emojioneArea.setText("<?php echo $settings->messages; ?>");
+																		textareaWelcomeMessage[0].emojioneArea.setText("<?php echo json_encode($settings->messages); ?>");
 																	</script>
 																	
 																</div>
