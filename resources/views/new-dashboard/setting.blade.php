@@ -1452,7 +1452,7 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 															<div class="row">
 																<div class="col-md-6 col-sm-12 col-xs-12">
-																	<p data-toggle="modal" data-target="#myModalCreateCommentEmoji" >Create Emoji</p>
+																	<p data-toggle="modal" data-target="#myModalCreateCommentEmoji" style="cursor:pointer;">Create Emoji</p>
 																</div>
 															</div>
 															<div class="row">
