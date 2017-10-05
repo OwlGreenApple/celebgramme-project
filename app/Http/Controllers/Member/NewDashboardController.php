@@ -182,23 +182,19 @@ class NewDashboardController extends Controller
 				$i->login(strtolower($link->insta_username), $link->insta_password, false, 300);
 		} 
 		catch (Exception $e) {
-			$arr["type"]="error";
-			$arr["resultEmailData"] = $e->getMessage();
+			return redirect('dashboard')->with( 'error', $e->getMessage());
 		}
 		catch (\InstagramAPI\Exception\IncorrectPasswordException $e) {
 			//klo error password
-			$arr["type"]="error";
-			$arr["resultEmailData"] = $e->getMessage();
+			return redirect('dashboard')->with( 'error', $e->getMessage());
 		}
 		catch (\InstagramAPI\Exception\CheckpointRequiredException $e) {
 			//klo error email / phone verification 
-			$arr["type"]="error";
-			$arr["resultEmailData"] = $e->getMessage();
+			return redirect('dashboard')->with( 'error', $e->getMessage());
 		}
 		catch (\InstagramAPI\Exception\LoginRequiredException $e) {
 			//klo error email / phone verification 
-			$arr["type"]="error";
-			$arr["resultEmailData"] = $e->getMessage();
+			return redirect('dashboard')->with( 'error', $e->getMessage());
 		}
 		
 		//buat list user following (for whitelist purpose)
