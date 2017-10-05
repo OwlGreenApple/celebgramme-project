@@ -195,6 +195,11 @@ class NewDashboardController extends Controller
 			$arr["type"]="error";
 			$arr["resultEmailData"] = $e->getMessage();
 		}
+		catch (\InstagramAPI\Exception\LoginRequiredException $e) {
+			//klo error email / phone verification 
+			$arr["type"]="error";
+			$arr["resultEmailData"] = $e->getMessage();
+		}
 		
 		//buat list user following (for whitelist purpose)
 		$arr_user_whitelist = array();
