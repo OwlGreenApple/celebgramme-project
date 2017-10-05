@@ -182,18 +182,38 @@ class NewDashboardController extends Controller
 				$i->login(strtolower($link->insta_username), $link->insta_password, false, 300);
 		} 
 		catch (Exception $e) {
+			$error_message = $e->getMessage();
+			if (strpos($error_message, 'InstagramAPI\Response\LoginResponse:') !== false) {
+				$ret = Setting::error_password($setting->id); 
+			} 
+			if ( ($error_message == "InstagramAPI\Response\LoginResponse: Challenge required.") || ( substr($error_message, 0, 18) == "challenge_required") || ($error_message == "InstagramAPI\Response\TimelineFeedResponse: Challenge required.") || ($error_message == "InstagramAPI\Response\LoginResponse: Sorry, there was a problem with your request.") ){
+				$ret = Setting::error_notification($setting->id); 
+			}
 			return redirect('dashboard')->with( 'error', $e->getMessage());
 		}
 		catch (\InstagramAPI\Exception\IncorrectPasswordException $e) {
 			//klo error password
+			$ret = Setting::error_password($link->id);
 			return redirect('dashboard')->with( 'error', $e->getMessage());
 		}
 		catch (\InstagramAPI\Exception\CheckpointRequiredException $e) {
 			//klo error email / phone verification 
+			$ret = Setting::error_notification($link->id); 
+			return redirect('dashboard')->with( 'error', $e->getMessage());
+		}
+		catch (\InstagramAPI\Exception\ChallengeRequiredException $e) {
+			//klo error email / phone verification 
+			$ret = Setting::error_notification($link->id); 
 			return redirect('dashboard')->with( 'error', $e->getMessage());
 		}
 		catch (\InstagramAPI\Exception\LoginRequiredException $e) {
 			//klo error email / phone verification 
+			$ret = Setting::error_password($link->id);
+			return redirect('dashboard')->with( 'error', $e->getMessage());
+		}
+		catch (\InstagramAPI\Exception\AccountDisabledException $e) {
+			//klo error password
+			$ret = Setting::error_account_disabled($link->id); 
 			return redirect('dashboard')->with( 'error', $e->getMessage());
 		}
 		
