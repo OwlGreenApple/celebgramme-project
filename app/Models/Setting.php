@@ -33,8 +33,15 @@ class Setting extends Model {
 		$setting->insta_username = $arr['insta_username'];
 		$setting->insta_password = $arr['insta_password'];
 		$setting->last_user = $arr['user_id'];
+		
 		//default data
-		$setting->comments = "{wow|waduh|walah|really|seriously|ga nyangka|masak sih} {kool|kueren|topdah|oklah|finee nice};{supper|vantastis|ketje|gaol} {voto|photo|foto|post|capturean} {hahaha|hehehe|hohoho} {kak|mas|bro|gan|sis};{masak|beneran|serius|ga boong|seriusan} {nih|nah|nich|barang ini} {wkwk|wkwkwk|ahahaha};{oh|oo|OMG|oh wow|hah} {kak|mas|bro|gan|sis};{gila|heboh|ga masuk akal} {banget|barang|ini};{haha|wkwkwkkkk|lols} {niceee|cool|pro|smile}";
+		// grab comment for emoji
+		$comment= "";
+		$setting_default_comment = Setting::find(7);
+		if (!is_null($setting_default_comment)) {
+			$comment= $setting_default_comment->comments;
+		}
+		$setting->comments = $comment;
 		$setting->hashtags = "websugih;jajankulinersurabaya;tacoelrico;jakarta;surabaya;digimaru;olshop;kuliner;latepost;startup;travel;foodie";
 		$setting->locations = "";
 		$setting->activity = "follow";

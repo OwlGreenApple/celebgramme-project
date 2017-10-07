@@ -1593,7 +1593,12 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Welcome Message New Followers ( DM Auto Reply )</div><div class='panel-content'>Fitur ini mengirimkan Direct Message (DM) kepada <br>
 																New Users saat pertama kali Menjadi Followers anda <br>
 																- Gunakan fitur ini untuk menyapa mereka, sebagai WELCOME message <br>
-																- Gunakan fitur SPIN message, sehingga lebih banyak variasi DM Auto Reply
+																- Gunakan fitur SPIN message, sehingga lebih banyak variasi DM Auto Reply <br>
+																- Gunakan minimal 5 suku kata tiap spin messagenya. ex : <br>
+																{hai|halo|hello|moshi2|hari ini, } <br>
+																- Anda dapat meletakkan spasi (" ") didalam spin comment, seperti contoh spin comment diatas <br>
+																- Anda juga dapat meletakkan spasi (" ") setelah atau antar spin comment. <br>
+																ex : {hai|halo|hello|moshi2|hari ini,} {kamu|anda|kk|gan|you}
 																</div>">
 																</span>
 															</h2>
@@ -1613,8 +1618,10 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 														
 																<div class="col-md-12 col-sm-12 col-xs-12">
 																	<label>Penjelasan spin message</label> &nbsp <span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Penjelasan fitur spin message</div>								<div class="panel-content"><strong>Gunakan Feature "Spin Message" </strong>contoh : <br>
-																	{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
-																		*contoh diatas akan menghasilkan <strong>4x3x3x6 = 216 kombinasi messages </strong> sekaligus <br>
+																	{wihh|wow|beneran,|asli|masak sih} {foto|image|photo|your post|postingan} {kamu|anda|nya|kk|gan}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
+																		*contoh diatas akan menghasilkan <strong>5x5x5x6 = 750 kombinasi messages </strong> sekaligus <br>
+																	Gunakan minimal 5 suku kata tiap spin messagenya. ex : <br>
+																	{hai|halo|hello|moshi2|hari ini, } <br>
 																		</div>'>
 																	</span>
 																</div>
@@ -1915,8 +1922,10 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
 								<form enctype="multipart/form-data" id="form-auto-responder">
 									<div class="form-group form-group-sm row">
 										<label class="col-xs-12 col-sm-12 md-12 control-label" for="formGroupInputSmall">Message&nbsp <span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Penjelasan fitur spin message</div>								<div class="panel-content"><strong>Gunakan Feature "Spin Message" </strong>contoh : <br>
-																{wihh|wow|beneran,|asli}{foto|image|photo}{kamu|anda|nya}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
-																	*contoh diatas akan menghasilkan <strong>4x3x3x6 = 216 kombinasi messages </strong> sekaligus <br>
+																	{wihh|wow|beneran,|asli|masak sih} {foto|image|photo|your post|postingan} {kamu|anda|nya|kk|gan}{keren|cool|mantappp|sipp|amazing|beautiful} <br>
+																		*contoh diatas akan menghasilkan <strong>5x5x5x6 = 750 kombinasi messages </strong> sekaligus <br>
+																	Gunakan minimal 5 suku kata tiap spin messagenya. ex : <br>
+																	{hai|halo|hello|moshi2|hari ini, } <br>
 																	</div>'>
 																</span>
 										</label> 
