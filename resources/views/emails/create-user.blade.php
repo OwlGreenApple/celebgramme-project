@@ -5,7 +5,7 @@ Berikut ini adalah user credentials anda : <br>
 <strong>Email :</strong> {{$user->email}}<br>
 <strong>Password :</strong> {{$password}}<br>
 <br>
-<strong>Link to login </strong><a href="http://celebgramme.com/celebgramme">-----> Click Link Login Disini <----- </a><br>
+<strong>Link to login </strong><a href="https://celebgramme.com/celebgramme">-----> Click Link Login Disini <----- </a><br>
 <br>
 Silahkan klik Link di atas untuk Login <br>
 dan masukkan username & password anda seperti yg tertulis di atas. <br>

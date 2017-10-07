@@ -9,7 +9,7 @@ Berikut ini adalah Email yang anda daftarkan : <br>
 <strong>Email :</strong> {{$user->email}}<br>
 
 <br>
-<strong>Link to login </strong><a href="http://celebgramme.com/celebgramme">-----> Click Link Login Disini <----- </a><br>
+<strong>Link to login </strong><a href="https://celebgramme.com/celebgramme">-----> Click Link Login Disini <----- </a><br>
 <br>
 Silahkan klik Link di atas untuk Login <br>
 dan masukkan Email & Password anda seperti biasa. <br>
