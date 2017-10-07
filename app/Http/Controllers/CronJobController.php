@@ -589,7 +589,7 @@ class CronJobController extends Controller
 				} else if ( (intval($data_meta[0]->meta_value) >=459000 ) && (intval($data_meta[0]->meta_value) <461000 ) ) {
 					$package = Package::find(39);
 				} else if ( (intval($data_meta[0]->meta_value) >=595000 ) && (intval($data_meta[0]->meta_value) <600000 ) ) {
-					$package = Package::find(38);
+					$package = Package::find(45);
 				} else if ( (intval($data_meta[0]->meta_value) >=695000 ) && (intval($data_meta[0]->meta_value) <700000 ) ) {
 					$package = Package::find(44);
 				} 
