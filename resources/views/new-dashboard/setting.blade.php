@@ -1595,9 +1595,9 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 																- Gunakan fitur ini untuk menyapa mereka, sebagai WELCOME message <br>
 																- Gunakan fitur SPIN message, sehingga lebih banyak variasi DM Auto Reply <br>
 																- Gunakan minimal 5 suku kata tiap spin messagenya. ex : <br>
-																{hai|halo|hello|moshi2|hari ini, } <br>
+																{hai |halo |hello |moshi2 |hari ini, } <br>
 																- Anda dapat meletakkan spasi (' ') didalam spin comment, seperti contoh spin comment diatas <br>
-																- Anda juga dapat meletakkan spasi (' ') setelah atau antar spin comment. <br>
+																- Atau anda juga dapat meletakkan spasi (' ') setelah atau antar spin comment. <br>
 																ex : {hai|halo|hello|moshi2|hari ini,} {kamu|anda|kk|gan|you}
 																</div>">
 																</span>
