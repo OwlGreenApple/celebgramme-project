@@ -36,11 +36,13 @@ class Setting extends Model {
 		
 		//default data
 		// grab comment for emoji
-		$comment= "";
+		$comment = ""; $message = "";
 		$setting_default_comment = Setting::find(7);
 		if (!is_null($setting_default_comment)) {
-			$comment= $setting_default_comment->comments;
+			$comment = $setting_default_comment->comments;
+			$message = $setting_default_comment->messages;
 		}
+		$setting->messages = $message;
 		$setting->comments = $comment;
 		$setting->hashtags = "websugih;jajankulinersurabaya;tacoelrico;jakarta;surabaya;digimaru;olshop;kuliner;latepost;startup;travel;foodie";
 		$setting->locations = "";
