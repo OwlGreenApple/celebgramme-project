@@ -578,7 +578,7 @@ class CronJobController extends Controller
 				// $order->package_manage_id = 34;
 				$order->order_status = "cron dari affiliate";
 				// $package = Package::find(31);
-				$package = Package::find(36);
+				$package = Package::find(45);
 				$data_meta = DB::connection('mysqlAffiliate')->select("select meta_value from wp_af1postmeta where meta_key='price' and post_id = ".$data->ID);		
 				$isi_form_kaos = false;
 				if ( (intval($data_meta[0]->meta_value) <560000 ) && (intval($data_meta[0]->meta_value) >550000 ) ) {
