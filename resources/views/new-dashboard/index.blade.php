@@ -189,7 +189,7 @@
 									<a href="http://m.me/celebgramme" target="_blank"><img src="{{asset('/images/promo-3.jpg')}}"class="img-responsive" ></a>
 								</div>
 								<div style="padding:0;"  class="card text-center col-md-12 col-sm-12 col-xs-12 margin-0">
-									<a href="https://digimaru.org" target="_blank"><img src="{{asset('/images/gif-promo.gif')}}"class="img-responsive" ></a>
+									<a href="https://celebgramme.com/celebgramme/buy-more" target="_blank"><img src="{{asset('/images/gif-promo.gif')}}"class="img-responsive" ></a>
 								</div>
 							</div>
 						</div>
