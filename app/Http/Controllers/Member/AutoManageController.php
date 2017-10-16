@@ -26,6 +26,7 @@ use Celebgramme\Models\SettingLog;
 use Celebgramme\Models\TimeLog;
 use Celebgramme\Models\Account;
 use Celebgramme\Models\Message;
+use Celebgramme\Models\UserSetting;
 
 use Celebgramme\Veritrans\Veritrans;
 use Celebgramme\Models\ViewProxyUses;
@@ -1202,6 +1203,9 @@ class AutoManageController extends Controller
 			if (!is_null($setting_helper)) {
 				$setting_helper->proxy_id = 0 ; 
 				$setting_helper->save();
+				
+				//new code, supaya klo password ganti bisa di add (next stepnya)
+				$user_setting = UserSetting::where("username",$account->insta_username)->delete();
 			}
 					
 			//slug delete 
