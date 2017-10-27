@@ -198,6 +198,7 @@
 				</div>
 			</div>
 		</div>
+    <br>
 		<div class="row">
 			<div class="col-md-11 col-sm-11">
 				<div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
