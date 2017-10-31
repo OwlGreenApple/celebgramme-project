@@ -26,19 +26,6 @@
 						<div class="col-md-12">
 							<div class="tab-content">
 							<!--
-								<div role="tabpanel" class="tab-pane animated flipInX active" id="home_animation_1">
-									<iframe src="//www.youtube.com/embed/ePbKGoIGAXY" style="width:100%;border:0px;">
-									</iframe>
-								</div>
-								<div role="tabpanel" class="tab-pane animated flipInX" id="profile_animation_1">
-									<iframe src="https://www.youtube.com/embed/dXoCVy43AIM" style="width:100%;border:0px;">
-									</iframe>
-								</div>
-								<div role="tabpanel" class="tab-pane animated flipInX" id="messages_animation_1">
-									<iframe src="https://www.youtube.com/embed/6vrUD1Uo1xE" style="width:100%;border:0px;">
-									</iframe>
-								</div>
-								-->
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="digimaru_1" role="tabpanel" >
   <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/wYh0UZfzKeQ?rel=0&amp;showinfo=0"></iframe>
 </div>								
@@ -48,8 +35,13 @@
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="digimaru_3" role="tabpanel" >
   <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/VWFvn2H1gP0?rel=0&amp;showinfo=0"></iframe>
 </div>								
+								-->
 
-<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX active" id="home_animation_1" role="tabpanel" >
+<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX active" id="digimaru_3" role="tabpanel" >
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/mqBkuxKPRCc?rel=0&amp;showinfo=0"></iframe>
+</div>								
+
+<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="home_animation_1" role="tabpanel" >
   <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ubUwXDx3aGQ?rel=0&amp;showinfo=0"></iframe>
 </div>								
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="profile_animation_1" role="tabpanel" >
