@@ -37,11 +37,8 @@
 </div>								
 								-->
 
-<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX active" id="digimaru_3" role="tabpanel" >
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/mqBkuxKPRCc?rel=0&amp;showinfo=0"></iframe>
-</div>								
 
-<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="home_animation_1" role="tabpanel" >
+<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX active" id="home_animation_1" role="tabpanel" >
   <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ubUwXDx3aGQ?rel=0&amp;showinfo=0"></iframe>
 </div>								
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="profile_animation_1" role="tabpanel" >
