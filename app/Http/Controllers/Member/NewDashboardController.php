@@ -179,7 +179,7 @@ class NewDashboardController extends Controller
 				}
 				
 				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
-				$i->login(strtolower($link->insta_username), $link->insta_password, 300);
+				$i->login(strtolower($link->insta_username), $link->insta_password, false, 300);
 		} 
 		catch (Exception $e) {
 			$error_message = $e->getMessage();
@@ -392,7 +392,7 @@ class NewDashboardController extends Controller
 				}
 				
 				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
-				$i->login(strtolower($link->insta_username), $link->insta_password, 300);
+				$i->login(strtolower($link->insta_username), $link->insta_password, false, 300);
 				$chatAll = $i->direct->getThread(Request::input("data_thread_id"));
 				// $arr["chatAll"] = json_encode($chatAll);
 				
@@ -452,7 +452,7 @@ class NewDashboardController extends Controller
 				}
 				
 				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
-				$i->login(strtolower($link->insta_username), $link->insta_password, 300);
+				$i->login(strtolower($link->insta_username), $link->insta_password, false, 300);
 				if ( Request::input("type") == "message" ) {
 					$send_message = $i->direct->sendText(array('users'=>array(Request::input("pk_id"))), Request::input("message"));
 					$chat_user_threadId = $send_message->getPayload()->getThreadId();
@@ -553,7 +553,7 @@ class NewDashboardController extends Controller
 				}
 				
 				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
-				$i->login(strtolower($link->insta_username), $link->insta_password, 300);
+				$i->login(strtolower($link->insta_username), $link->insta_password, false, 300);
 				$pendingInboxResponse = $i->direct->getPendingInbox();
 				
 				$arr["resultEmailData"] = view("new-dashboard.DM-req")->with(array(
@@ -607,7 +607,7 @@ class NewDashboardController extends Controller
 				}
 				
 				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
-				$i->login(strtolower($link->insta_username), $link->insta_password, 300);
+				$i->login(strtolower($link->insta_username), $link->insta_password, false, 300);
 				if ( Request::input("type") == "approve" ) {
 					// $i->directThreadAction(Request::input("data_thread_id"), "approve");
 					$i->direct->approvePendingThreads( array (Request::input("data_thread_id")) );
@@ -682,7 +682,7 @@ class NewDashboardController extends Controller
 				}
 				
 				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
-				$i->login(strtolower($link->insta_username), $link->insta_password, 300);
+				$i->login(strtolower($link->insta_username), $link->insta_password, false, 300);
 				
 				$need_update = false;
 				if (is_null($setting->last_update_inbox)) {
@@ -1158,7 +1158,7 @@ class NewDashboardController extends Controller
 				}
 				
 				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
-				$i->login(strtolower($link->insta_username), $link->insta_password, 300);
+				$i->login(strtolower($link->insta_username), $link->insta_password, false, 300);
 				$usernames = $i->people->search(Request::input("search"))->getUsers();
 				$arr_usernames = array();
 				foreach ($usernames as $data) {
