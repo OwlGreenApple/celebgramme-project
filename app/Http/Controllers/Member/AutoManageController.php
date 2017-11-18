@@ -141,7 +141,7 @@ class AutoManageController extends Controller
 				//proxy things
 				$i->setProxy("http://".$cred."@".$proxy.":".$port);
 				
-				$i->login(Request::input("hidden_username"), Request::input("edit_password"), false, 1800);
+				$i->login(Request::input("hidden_username"), Request::input("edit_password"), true, 1800);
 			} 
 			catch (\InstagramAPI\Exception\IncorrectPasswordException $e) {
 				//klo error password
