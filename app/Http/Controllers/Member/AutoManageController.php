@@ -141,7 +141,7 @@ class AutoManageController extends Controller
 				//proxy things
 				$i->setProxy("http://".$cred."@".$proxy.":".$port);
 				
-				$i->login(Request::input("hidden_username"), Request::input("edit_password"), true, 1800);
+				$i->login(Request::input("hidden_username"), Request::input("edit_password"), 1800);
 			} 
 			catch (\InstagramAPI\Exception\IncorrectPasswordException $e) {
 				//klo error password
@@ -363,7 +363,7 @@ class AutoManageController extends Controller
 				$i->setProxy("http://".$arr_proxy["cred"]."@".$arr_proxy["proxy"].":".$arr_proxy["port"]);
 				
 				// $i->setUser(strtolower($array_data["username"]), $array_data["password"]);
-				$i->login(Request::input("username"), Request::input("password"), false, 1800);
+				$i->login(Request::input("username"), Request::input("password"), 1800);
 
 			} 
 			catch (\InstagramAPI\Exception\IncorrectPasswordException $e) {
@@ -705,7 +705,7 @@ class AutoManageController extends Controller
 			
 			//ga dipake 
 			// $i->login();
-			$i->login(strtolower($link->insta_username), $link->insta_password, false,1800);
+			$i->login(strtolower($link->insta_username), $link->insta_password, 1800);
 			$inboxResponse = $i->getV2Inbox();
 			$pendingInboxResponse = $i->getPendingInbox();
 		}
@@ -759,7 +759,7 @@ class AutoManageController extends Controller
 			
 			//ga dipake
 			// $i->login();
-			$i->login(strtolower($setting->insta_username), $setting->insta_password, false, 1800);
+			$i->login(strtolower($setting->insta_username), $setting->insta_password, 1800);
 			if ( Request::input("type") == "message" ) {
 				$i->directMessage(Request::input("pk_id"), Request::input("message"));
 			}
@@ -804,7 +804,7 @@ class AutoManageController extends Controller
 			
 			//ga dipake
 			// $i->login(false,300);
-			$i->login(strtolower($setting->insta_username), $setting->insta_password, false, 300);
+			$i->login(strtolower($setting->insta_username), $setting->insta_password, 300);
 			$listMessageResponse = $i->directThread(Request::input("thread_id"));
 			// $arr["listMessageResponse"] = json_encode($listMessageResponse);
 			$arr["resultEmailData"] = view("member.auto-manage.message-inbox")->with(array(
