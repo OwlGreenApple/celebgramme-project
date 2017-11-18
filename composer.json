@@ -14,7 +14,7 @@
 				"predis/predis": "~1.0",
         "genealabs/laravel-caffeine": "~0.2",
 				"pda/pheanstalk": "^3.1",
-        "mgp25/instagram-php": "dev-master#43a81748b211072ffe1b3f0393d937f2672b0dab"
+        "mgp25/instagram-php": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
