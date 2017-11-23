@@ -385,6 +385,16 @@ class AutoManageController extends Controller
 				$is_error = 2 ;
 				$error_message = $e->getMessage();
 			}
+			catch (\InstagramAPI\Exception\BadRequestException $e) {
+				$arr["message"]= "Silahkan turn off, 2 Factor Authentication";
+				$arr["type"]= "error";
+				return $arr;
+			}
+			catch (\InstagramAPI\Exception\ThrottledException $e) {
+				$arr["message"]= "Server is busy now, silahkan coba lagi 5 menit kemudian.";
+				$arr["type"]= "error";
+				return $arr;
+			}
 			catch (Exception $e) {
 				$error_message = $e->getMessage();
 				// $response_error = $e->getResponse();
