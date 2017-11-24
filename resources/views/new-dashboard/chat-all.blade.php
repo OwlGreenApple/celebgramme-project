@@ -192,7 +192,7 @@
 			</script>
 		</div>
 		<div class="col-md-2 col-sm-12 col-xs-12">
-			<input type="button" class="btn form-control button-message-inbox" value="Send" data-pk-id="{{$chatAll->getThread()->getUsers()[0]->pk}}" data-setting-id="{{$setting_id}}" data-username="{{$username_user}}" data-pic="{{$data_pic}}">
+			<input type="button" class="btn form-control button-message-inbox" value="Send" data-pk-id="{{$chatAll->getThread()->getUsers()[0]->getPk()}}" data-setting-id="{{$setting_id}}" data-username="{{$username_user}}" data-pic="{{$data_pic}}">
 		</div>
 	</div>
 	<!--
