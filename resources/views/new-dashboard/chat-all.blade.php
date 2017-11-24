@@ -21,7 +21,7 @@
 				&nbsp
 				</div>	
 				<div class="col-md-9 col-sm-9 col-xs-9">
-					<div class="<?php if ($chatAll->thread->getUsers()[0]->getPk() != $data->getUserId() ) { echo "fr"; } else { echo "fl"; } ?> well" style="padding:10px; <?php if ($chatAll->thread->getUsers()[0]->getPk() == $data->getUserId() ) { echo "background-color:#fff;"; }?>">
+					<div class="<?php if ($chatAll->getThread()->getUsers()[0]->getPk() != $data->getUserId() ) { echo "fr"; } else { echo "fl"; } ?> well" style="padding:10px; <?php if ($chatAll->getThread()->getUsers()[0]->getPk() == $data->getUserId() ) { echo "background-color:#fff;"; }?>">
 						<?php 
 							if (strtolower($data->getItemType()) == "text" ) {
 								echo $data->getText();
@@ -192,7 +192,7 @@
 			</script>
 		</div>
 		<div class="col-md-2 col-sm-12 col-xs-12">
-			<input type="button" class="btn form-control button-message-inbox" value="Send" data-pk-id="{{$chatAll->thread->users[0]->pk}}" data-setting-id="{{$setting_id}}" data-username="{{$username_user}}" data-pic="{{$data_pic}}">
+			<input type="button" class="btn form-control button-message-inbox" value="Send" data-pk-id="{{$chatAll->getThread()->getUsers()[0]->pk}}" data-setting-id="{{$setting_id}}" data-username="{{$username_user}}" data-pic="{{$data_pic}}">
 		</div>
 	</div>
 	<!--
