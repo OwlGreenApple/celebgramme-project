@@ -357,7 +357,7 @@ class CronJobController extends Controller
 		$myfile = file_put_contents(base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow-logs.txt', $txt.PHP_EOL , FILE_APPEND);
 				
 		if ($insta_username == "") {
-			$settings = Setting::select("settings.*")
+			$settings = Setting::select("settings.*","setting_helpers.proxy_id")
 								->join("users","users.id","=","settings.last_user")
 								->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 								->where("settings.type",'=','temp')
@@ -367,7 +367,7 @@ class CronJobController extends Controller
 								// ->where("setting_helpers.server_automation","=",$server_automation)
 								->get();
 		} else {
-			$settings = Setting::select("settings.*")
+			$settings = Setting::select("settings.*","setting_helpers.proxy_id")
 								->join("users","users.id","=","settings.last_user")
 								->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 								->where("settings.type",'=','temp')
@@ -411,7 +411,7 @@ class CronJobController extends Controller
 								"dbpassword"   => Config::get('automation.DB_PASSWORD'),
 							]);
 							
-							$proxy = Proxies::find($arr_proxy['proxy_id']);
+							$proxy = Proxies::find($setting->proxy_id);
 							if (!is_null($proxy)) {
 								$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
 							}
