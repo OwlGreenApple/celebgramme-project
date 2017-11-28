@@ -321,11 +321,19 @@ class Setting extends Model {
 			"cred"=>"141sugiartolasjim:qjubRKUjxvHf",
 			"port"=>"10476",
 		];
+		/* error 28 nov 2017 
 		$arr_proxys[] = [
 			"proxy"=>"185.152.129.85",
 			"cred"=>"141sugiartolasjim:qjubRKUjxvHf",
 			"port"=>"10595",
 		];
+		*/
+		$arr_proxys[] = [
+			"proxy"=>"185.152.129.34",
+			"cred"=>"141sugiartolasjim:qjubRKUjxvHf",
+			"port"=>"10625",
+		];
+
 		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
 
 		//use own proxy if have

@@ -39,7 +39,9 @@ use Celebgramme\Models\Account;
 use Celebgramme\Helpers\GeneralHelper;
 use Celebgramme\Helpers\GlobalHelper;
 
-use View, Input, Mail, Request, App, Hash, Validator, Carbon, DB;
+use \InstagramAPI\Instagram;
+
+use View, Input, Mail, Request, App, Hash, Validator, Carbon, DB, Config;
 
 class CronJobController extends Controller
 {
@@ -394,8 +396,37 @@ class CronJobController extends Controller
 					$following = $ig_data["following"];
 					$followers = $ig_data["followers"];
 				} 
-				SettingMeta::createMeta("followers",$followers,$setting->id);
-				SettingMeta::createMeta("following",$following,$setting->id);
+				if ($found) {
+					SettingMeta::createMeta("followers",$followers,$setting->id);
+					SettingMeta::createMeta("following",$following,$setting->id);
+				}
+				else if (!$found)  {
+					// pake cara API baru, klo dengan cara lama ada error proxy
+					try {
+							$i = new Instagram(false,false,[
+								"storage"       => "mysql",
+								"dbhost"       => Config::get('automation.DB_HOST'),
+								"dbname"   => Config::get('automation.DB_DATABASE'),
+								"dbusername"   => Config::get('automation.DB_USERNAME'),
+								"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+							]);
+							
+							$proxy = Proxies::find($arr_proxy['proxy_id']);
+							if (!is_null($proxy)) {
+								$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
+							}
+							
+							$i->login(strtolower($setting->insta_username), $setting->insta_password, 300);
+							$self_info = $i->account->getCurrentUser()->getUser();
+							$id = $self_info->getPk();
+							$pp_url = $self_info->getProfilePicUrl();
+							$following = $self_info->getFollowingCount();
+							$followers = $self_info->getFollowerCount();
+					} 
+					catch (Exception $e) {
+						$error_message = $e->getMessage();
+					}
+				}
 				
 				//create logs following followers 
 				$setting_log = new SettingLog;
@@ -417,9 +448,6 @@ class CronJobController extends Controller
 					$setting_temp->save();
 				}
 				
-				if (!$found)  {
-					//
-				}
 				//saveimage url to meta
 				if ($pp_url<>"") {
 					
@@ -471,7 +499,7 @@ class CronJobController extends Controller
 					$setting_temp->save();
 				}
 
-				
+				usleep(120000); 
 		}
 		
 		if(App::environment() == "local"){		
