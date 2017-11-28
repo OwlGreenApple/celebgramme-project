@@ -424,7 +424,9 @@ class CronJobController extends Controller
 							$followers = $self_info->getFollowerCount();
 					} 
 					catch (Exception $e) {
-						$error_message = $e->getMessage();
+						if ( (strpos($e->getMessage(), 'Network: CURL error') !== false) || (strpos($e->getMessage(), 'No response from server') !== false) ) {
+							continue;
+						}
 					}
 				}
 				
