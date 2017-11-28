@@ -402,7 +402,7 @@ class CronJobController extends Controller
 				}
 				else if (!$found)  {
 					// pake cara API baru, klo dengan cara lama ada error proxy
-					try {
+					/*try {
 							$i = new Instagram(false,false,[
 								"storage"       => "mysql",
 								"dbhost"       => Config::get('automation.DB_HOST'),
@@ -427,7 +427,7 @@ class CronJobController extends Controller
 						if ( (strpos($e->getMessage(), 'Network: CURL error') !== false) || (strpos($e->getMessage(), 'No response from server') !== false) ) {
 							continue;
 						}
-					}
+					}*/
 				}
 				
 				//create logs following followers 
