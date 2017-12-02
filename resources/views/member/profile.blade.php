@@ -78,6 +78,12 @@
   });
 </script>
 <div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12 col-md-12">            
+			<div class="alert btn-success col-sm-18 col-md-18" id="alert">
+			</div>  
+		</div>          
+	</div>  
   <form enctype="multipart/form-data" id="form-confirm">
     <div class="form-group form-group-sm row">
       <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">Password Lama</label>
