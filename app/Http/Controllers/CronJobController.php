@@ -1207,7 +1207,8 @@ class CronJobController extends Controller
 			}
 			$update_proxy->save();
 
-		
+			//0.12 detik
+			usleep(120000);
 		}
 		echo $logs;
 	}
