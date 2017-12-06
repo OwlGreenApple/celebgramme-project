@@ -621,7 +621,7 @@ class CronJobController extends Controller
 				} else if ( (intval($data_meta[0]->meta_value) >=595000 ) && (intval($data_meta[0]->meta_value) <600000 ) ) {
 					$package = Package::find(45);
 				} else if ( (intval($data_meta[0]->meta_value) >=695000 ) && (intval($data_meta[0]->meta_value) <700000 ) ) {
-					$package = Package::find(44);
+					$package = Package::find(46);
 				} 
 				/*
 				$package = Package::select(DB::raw("ABS( price - CAST(".$data_meta[0]->meta_value." AS UNSIGNED) ) AS distance"))
