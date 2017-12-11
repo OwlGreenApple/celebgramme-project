@@ -13,6 +13,7 @@ use Celebgramme\Models\Invoice;
 use Celebgramme\Models\Order;
 use Celebgramme\Models\OrderMeta;
 use Celebgramme\Models\User;
+use Celebgramme\Models\UserLog;
 use Celebgramme\Models\Setting;
 use Celebgramme\Models\SettingMeta;
 use Celebgramme\Models\LinkUserSetting;
@@ -425,6 +426,13 @@ class AutoManageController extends Controller
 			// $arr["error_message"]= $error_message;
 			// $arr["tracestring"]= $trace_string;
 			// $arr["response_error"]= $response_error;
+      $dt = Carbon::now();
+			$user_log = new UserLog;
+			$user_log->email = $user->email;
+			$user_log->admin = "";
+			$user_log->description = "Error Proxy : ".$arr_proxy["proxy"].":".$arr_proxy["port"].":".$arr_proxy["cred"];
+			$user_log->created = $dt->toDateTimeString();
+			$user_log->save();
 			$arr["type"]= "error2";
 			return $arr;
 		}
