@@ -1530,7 +1530,7 @@ class AutoManageController extends Controller
 	
 		// $full_proxy =  Proxies::find($arr["proxy_id"]);
     if ($arr["proxy_id"]<350) {
-      $full_proxy =  Proxies::find(1453);
+      $full_proxy =  Proxies::find(1455);
     }
     else {
       $full_proxy =  Proxies::find(1454);
