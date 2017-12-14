@@ -1528,13 +1528,13 @@ class AutoManageController extends Controller
 			
 		}
 	
-		// $full_proxy =  Proxies::find($arr["proxy_id"]);
-    if ($arr["proxy_id"]<350) {
-      $full_proxy =  Proxies::find(1453);
-    }
-    else {
-      $full_proxy =  Proxies::find(1454);
-    }
+		$full_proxy =  Proxies::find($arr["proxy_id"]);
+    // if ($arr["proxy_id"]<350) {
+      // $full_proxy =  Proxies::find(1453);
+    // }
+    // else {
+      // $full_proxy =  Proxies::find(1454);
+    // }
 		if (!is_null($full_proxy)) {
 			$arr["port"] = $full_proxy->port;
 			$arr["cred"] = $full_proxy->cred;
