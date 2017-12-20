@@ -1081,50 +1081,57 @@ class AutoManageController extends Controller
                 ->get();
       foreach ($links as $link) {
         $setting_temp = Setting::find($link->setting_id);
-				if ($setting_temp->error_cred==1) {
-					$url = url('dashboard');
-					$arr["message"]= "Anda tidak dapat menjalankan program, silahkan update login credential account anda <a href='".$url."'>disini</a>";
-					$arr["type"]= "error";
-					return $arr;
-				}
-        if (Request::input('action')=='start') {
-					if ( (!$setting_temp->status_auto)&&($setting_temp->status_follow_unfollow=="off")&&($setting_temp->status_like=="off")&&($setting_temp->status_comment=="off") ) {
-						$arr["message"]= "Pastikan anda telah melakukan Settings & silahkan tekan tombol SAVE terlebih dahulu. Kemudian START kembali".$setting_temp->insta_username;
+				if ($setting_temp->is_active) {
+					if ($setting_temp->error_cred==1) {
+						$url = url('dashboard');
+						$arr["message"]= "Anda tidak dapat menjalankan program, silahkan update login credential account anda <a href='".$url."'>disini</a>";
 						$arr["type"]= "error";
 						return $arr;
 					}
-          $setting_temp->status = "started";
-          $setting_temp->start_time = $dt->toDateTimeString();
-          $setting_temp->running_time = $dt->toDateTimeString();
-					
-					//for automation purpose
-					$setting_helper = SettingHelper::where("setting_id","=",$setting_temp->id)->first();
-					if (!is_null($setting_helper)) {
-						$setting_helper->cookies = "";
-						$setting_helper->save();
+					if (Request::input('action')=='start') {
+						if ( (!$setting_temp->status_auto)&&($setting_temp->status_follow_unfollow=="off")&&($setting_temp->status_like=="off")&&($setting_temp->status_comment=="off") ) {
+							$arr["message"]= "Pastikan anda telah melakukan Settings & silahkan tekan tombol SAVE terlebih dahulu. Kemudian START kembali ".$setting_temp->insta_username;
+							$arr["type"]= "error";
+							return $arr;
+						}
+						$setting_temp->status = "started";
+						$setting_temp->start_time = $dt->toDateTimeString();
+						$setting_temp->running_time = $dt->toDateTimeString();
+						
+						//for automation purpose
+						$setting_helper = SettingHelper::where("setting_id","=",$setting_temp->id)->first();
+						if (!is_null($setting_helper)) {
+							$setting_helper->cookies = "";
+							$setting_helper->save();
 
-						// ONLY for init assign proxy
-						if ($setting_helper->proxy_id == 0) {
-							GlobalHelper::clearProxy(serialize($setting_temp), "new");
+							// ONLY for init assign proxy
+							if ($setting_helper->proxy_id == 0) {
+								GlobalHelper::clearProxy(serialize($setting_temp), "new");
+							}
 						}
 					}
-        }
 
-        if (Request::input('action')=='stop') {
-          $setting_temp->status = "stopped";
-        }
-        $setting_temp->save();
+					if (Request::input('action')=='stop') {
+						$setting_temp->status = "stopped";
+					}
+					$setting_temp->save();
 
-				//create log 
-				$dt = Carbon::now()->setTimezone('Asia/Jakarta');
-				$settingLog = new SettingLog;
-				$settingLog->setting_id = $setting_temp->id;
-				$settingLog->status = Request::input('action')." all setting";
-				$settingLog->description = "settings log";
-				$settingLog->created = $dt->toDateTimeString();
-				$settingLog->save();
+					//create log 
+					$dt = Carbon::now()->setTimezone('Asia/Jakarta');
+					$settingLog = new SettingLog;
+					$settingLog->setting_id = $setting_temp->id;
+					$settingLog->status = Request::input('action')." all setting";
+					$settingLog->description = "settings log";
+					$settingLog->created = $dt->toDateTimeString();
+					$settingLog->save();
 
-        // $setting_temp = Setting::post_info_admin($setting_temp->id);
+					// $setting_temp = Setting::post_info_admin($setting_temp->id);
+				}
+				else {
+					$arr["message"]= "Pastikan anda telah menambahkan IG account anda terlebih dahulu. Kemudian START kembali ".$setting_temp->insta_username;
+					$arr["type"]= "error";
+					return $arr;
+				}
       }
     } else {
       $link = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
@@ -1135,52 +1142,59 @@ class AutoManageController extends Controller
                 ->first();
       if (!is_null($link)){
         $setting_temp = Setting::find($link->setting_id);
-				if ($setting_temp->error_cred==1) {
-					$url = url('dashboard');
-					$arr["message"]= "Anda tidak dapat menjalankan program, silahkan update login credential account anda <a href='".$url."'>disini</a>";
-					$arr["type"]= "error";
-					return $arr;
-				}
-        if (Request::input('action')=='start') {
-					if ( (!$setting_temp->status_auto)&&($setting_temp->status_follow_unfollow=="off")&&($setting_temp->status_like=="off")&&($setting_temp->status_comment=="off") ) {
-						$arr["message"]= "Anda tidak dapat menjalankan program, silahkan pilih aktifitas yang akan dilakukan (follow/like/comment). Jangan lupa di SAVE sesudahnya. ";
+				if ($setting_temp->is_active) {
+					if ($setting_temp->error_cred==1) {
+						$url = url('dashboard');
+						$arr["message"]= "Anda tidak dapat menjalankan program, silahkan update login credential account anda <a href='".$url."'>disini</a>";
 						$arr["type"]= "error";
 						return $arr;
 					}
-          $setting_temp->status = "started";
-          $setting_temp->start_time = $dt->toDateTimeString();
-          $setting_temp->running_time = $dt->toDateTimeString();
+					if (Request::input('action')=='start') {
+						if ( (!$setting_temp->status_auto)&&($setting_temp->status_follow_unfollow=="off")&&($setting_temp->status_like=="off")&&($setting_temp->status_comment=="off") ) {
+							$arr["message"]= "Anda tidak dapat menjalankan program, silahkan pilih aktifitas yang akan dilakukan (follow/like/comment). Jangan lupa di SAVE sesudahnya. ";
+							$arr["type"]= "error";
+							return $arr;
+						}
+						$setting_temp->status = "started";
+						$setting_temp->start_time = $dt->toDateTimeString();
+						$setting_temp->running_time = $dt->toDateTimeString();
 
-					//for automation purpose
-					$setting_helper = SettingHelper::where("setting_id","=",$setting_temp->id)->first();
-					if (!is_null($setting_helper)) {
-						// $setting_helper->cookies = "";
-						// $setting_helper->save();
+						//for automation purpose
+						$setting_helper = SettingHelper::where("setting_id","=",$setting_temp->id)->first();
+						if (!is_null($setting_helper)) {
+							// $setting_helper->cookies = "";
+							// $setting_helper->save();
 
-						// ONLY for init assign proxy
-						if ($setting_helper->proxy_id == 0) {
-							$setting_helper->cookies = ""; //trying to fixing error "ubah setting instagram anda"
-							$setting_helper->save();
-							GlobalHelper::clearProxy(serialize($setting_temp),"new");
+							// ONLY for init assign proxy
+							if ($setting_helper->proxy_id == 0) {
+								$setting_helper->cookies = ""; //trying to fixing error "ubah setting instagram anda"
+								$setting_helper->save();
+								GlobalHelper::clearProxy(serialize($setting_temp),"new");
+							}
 						}
 					}
-        }
 
-        if (Request::input('action')=='stop') {
-          $setting_temp->status = "stopped";
-        }
-        $setting_temp->save();
+					if (Request::input('action')=='stop') {
+						$setting_temp->status = "stopped";
+					}
+					$setting_temp->save();
 
-				//create log 
-				$dt = Carbon::now()->setTimezone('Asia/Jakarta');
-				$settingLog = new SettingLog;
-				$settingLog->setting_id = $setting_temp->id;
-				$settingLog->status = Request::input('action')." setting";
-				$settingLog->description = "settings log";
-				$settingLog->created = $dt->toDateTimeString();
-				$settingLog->save();
-					
-        // $setting_temp = Setting::post_info_admin($setting_temp->id);
+					//create log 
+					$dt = Carbon::now()->setTimezone('Asia/Jakarta');
+					$settingLog = new SettingLog;
+					$settingLog->setting_id = $setting_temp->id;
+					$settingLog->status = Request::input('action')." setting";
+					$settingLog->description = "settings log";
+					$settingLog->created = $dt->toDateTimeString();
+					$settingLog->save();
+						
+					// $setting_temp = Setting::post_info_admin($setting_temp->id);
+				}
+				else {
+					$arr["message"]= "Pastikan anda telah menambahkan IG account anda terlebih dahulu. Kemudian START kembali ".$setting_temp->insta_username;
+					$arr["type"]= "error";
+					return $arr;
+				}
       }
     }
 
