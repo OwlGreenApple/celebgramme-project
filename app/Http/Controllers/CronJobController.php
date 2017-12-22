@@ -1131,7 +1131,9 @@ class CronJobController extends Controller
 	}
 
 	public function check_all_proxy(){
-		$proxies = Proxies::all();
+		$proxies = Proxies::
+								where("auth",1)
+								->get();
 		$logs = "";
 		
 		foreach($proxies as $data) {
