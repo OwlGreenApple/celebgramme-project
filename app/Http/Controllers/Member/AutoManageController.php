@@ -140,7 +140,12 @@ class AutoManageController extends Controller
 				]);
 				
 				//proxy things
-				$i->setProxy("http://".$cred."@".$proxy.":".$port);
+				if($cred==""){
+					$i->setProxy("http://".$proxy.":".$port);
+				}
+				else {
+					$i->setProxy("http://".$cred."@".$proxy.":".$port);
+				}
 				
 				$i->login(Request::input("hidden_username"), Request::input("edit_password"), 1800);
 			} 
@@ -361,7 +366,12 @@ class AutoManageController extends Controller
 				if (!is_null($proxy)) {
 					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
 				}*/
-				$i->setProxy("http://".$arr_proxy["cred"]."@".$arr_proxy["proxy"].":".$arr_proxy["port"]);
+				if($arr_proxy["cred"]==""){
+					$i->setProxy("http://".$arr_proxy["proxy"].":".$arr_proxy["port"]);
+				}
+				else {
+					$i->setProxy("http://".$arr_proxy["cred"]."@".$arr_proxy["proxy"].":".$arr_proxy["port"]);
+				}
 				
 				// $i->setUser(strtolower($array_data["username"]), $array_data["password"]);
 				$i->login(Request::input("username"), Request::input("password"), 1800);
@@ -718,7 +728,12 @@ class AutoManageController extends Controller
 			$i->setUser(strtolower($link->insta_username), $link->insta_password);
 			$proxy = Proxies::find($link->proxy_id);
 			if (!is_null($proxy)) {
-				$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+				if($proxy->cred==""){
+					$i->setProxy("http://".$proxy->proxy.":".$proxy->port);					
+				}
+				else {
+					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+				}
 			}
 			
 			//ga dipake 
@@ -772,7 +787,12 @@ class AutoManageController extends Controller
 			$i->setUser(strtolower($setting->insta_username), $setting->insta_password);
 			$proxy = Proxies::find($setting->proxy_id);
 			if (!is_null($proxy)) {
-				$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+				if($proxy->cred==""){
+					$i->setProxy("http://".$proxy->proxy.":".$proxy->port);					
+				}
+				else {
+					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+				}
 			}
 			
 			//ga dipake
@@ -817,7 +837,12 @@ class AutoManageController extends Controller
 			$i->setUser(strtolower($setting->insta_username), $setting->insta_password);
 			$proxy = Proxies::find($setting->proxy_id);
 			if (!is_null($proxy)) {
-				$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+				if($proxy->cred==""){
+					$i->setProxy("http://".$proxy->proxy.":".$proxy->port);					
+				}
+				else {
+					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+				}
 			}
 			
 			//ga dipake

@@ -175,7 +175,12 @@ class NewDashboardController extends Controller
 				
 				$proxy = Proxies::find($arr_proxy['proxy_id']);
 				if (!is_null($proxy)) {
-					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
+					if($proxy->cred==""){
+						$i->setProxy("http://".$proxy->proxy.":".$proxy->port);					
+					}
+					else {
+						$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
+					}
 				}
 				
 				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
@@ -388,7 +393,12 @@ class NewDashboardController extends Controller
 				
 				$proxy = Proxies::find($link->proxy_id);
 				if (!is_null($proxy)) {
-					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
+					if($proxy->cred==""){
+						$i->setProxy("http://".$proxy->proxy.":".$proxy->port);					
+					}
+					else {
+						$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
+					}
 				}
 				
 				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
@@ -448,7 +458,12 @@ class NewDashboardController extends Controller
 				
 				$proxy = Proxies::find($link->proxy_id);
 				if (!is_null($proxy)) {
-					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+					if($proxy->cred==""){
+						$i->setProxy("http://".$proxy->proxy.":".$proxy->port);					
+					}
+					else {
+						$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+					}
 				}
 				
 				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
@@ -549,7 +564,12 @@ class NewDashboardController extends Controller
 				
 				$proxy = Proxies::find($link->proxy_id);
 				if (!is_null($proxy)) {
-					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
+					if($proxy->cred==""){
+						$i->setProxy("http://".$proxy->proxy.":".$proxy->port);					
+					}
+					else {
+						$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
+					}
 				}
 				
 				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
@@ -603,7 +623,12 @@ class NewDashboardController extends Controller
 				
 				$proxy = Proxies::find($link->proxy_id);
 				if (!is_null($proxy)) {
-					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+					if($proxy->cred==""){
+						$i->setProxy("http://".$proxy->proxy.":".$proxy->port);					
+					}
+					else {
+						$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
+					}
 				}
 				
 				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
@@ -678,7 +703,12 @@ class NewDashboardController extends Controller
 				
 				$proxy = Proxies::find($link->proxy_id);
 				if (!is_null($proxy)) {
-					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
+					if($proxy->cred==""){
+						$i->setProxy("http://".$proxy->proxy.":".$proxy->port);					
+					}
+					else {
+						$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
+					}
 				}
 				
 				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
@@ -1154,7 +1184,12 @@ class NewDashboardController extends Controller
 				
 				$proxy = Proxies::find($link->proxy_id);
 				if (!is_null($proxy)) {
-					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
+					if($proxy->cred==""){
+						$i->setProxy("http://".$proxy->proxy.":".$proxy->port);					
+					}
+					else {
+						$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
+					}
 				}
 				
 				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
