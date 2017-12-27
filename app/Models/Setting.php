@@ -302,36 +302,34 @@ class Setting extends Model {
 		$auth = true;
 		
 		$arr_proxys[] = [
-			"proxy"=>"185.152.128.23",
-			"cred"=>"141sugiartolasjim:qjubRKUjxvHf",
-			"port"=>"10269",
+			"proxy"=>"103.236.201.58",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"1945",
 		];
 		$arr_proxys[] = [
-			"proxy"=>"185.152.129.34",
-			"cred"=>"141sugiartolasjim:qjubRKUjxvHf",
-			"port"=>"10585",
+			"proxy"=>"103.236.201.58",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"3128",
 		];
 		$arr_proxys[] = [
-			"proxy"=>"185.152.129.34",
-			"cred"=>"141sugiartolasjim:qjubRKUjxvHf",
-			"port"=>"10620",
+			"proxy"=>"103.236.201.58",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2015",
 		];
 		$arr_proxys[] = [
-			"proxy"=>"185.152.129.112",
-			"cred"=>"141sugiartolasjim:qjubRKUjxvHf",
-			"port"=>"10476",
+			"proxy"=>"103.236.201.58",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2503",
 		];
-		/* error 28 nov 2017 
 		$arr_proxys[] = [
-			"proxy"=>"185.152.129.85",
-			"cred"=>"141sugiartolasjim:qjubRKUjxvHf",
-			"port"=>"10595",
+			"proxy"=>"103.236.201.58",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"3103",
 		];
-		*/
 		$arr_proxys[] = [
-			"proxy"=>"185.152.129.34",
-			"cred"=>"141sugiartolasjim:qjubRKUjxvHf",
-			"port"=>"10625",
+			"proxy"=>"103.236.201.58",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2017",
 		];
 
 		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
