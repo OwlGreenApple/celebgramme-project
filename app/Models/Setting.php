@@ -363,6 +363,99 @@ class Setting extends Model {
 			"port"=>"2017",
 		];
 
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.251",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"1945",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.251",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"3128",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.251",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2015",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.251",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2503",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.251",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"3103",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.251",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2017",
+		];
+
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.48",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"1945",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.48",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"3128",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.48",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2015",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.48",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2503",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.48",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"3103",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.48",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2017",
+		];
+
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.72",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"1945",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.72",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"3128",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.72",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2015",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.72",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2503",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.72",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"3103",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.72",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2017",
+		];
+
 		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
 
 		//use own proxy if have
