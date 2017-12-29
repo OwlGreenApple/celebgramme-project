@@ -1464,12 +1464,15 @@ class AutoManageController extends Controller
 	public function check_private_user($username){
 		$is_private = false;
 		
-		$ports[] = "10201"; 
-		$ports[] = "10202";
-		$ports[] = "10203";
+		$ports[] = "1945"; 
+		$ports[] = "3128"; 
+		$ports[] = "2015"; 
+		$ports[] = "2503"; 
+		$ports[] = "3103"; 
+		$ports[] = "2017"; 
 		$port = $ports[array_rand($ports)];
-		$cred = "sugiarto:sugihproxy250";
-		$proxy = "45.79.212.85";//good proxy
+		$cred = "sugiarto123:678flazz";
+		$proxy = "103.236.201.60";//good proxy
 		$auth = true;
 
 		if(App::environment() == "local"){

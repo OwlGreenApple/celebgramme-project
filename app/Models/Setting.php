@@ -331,6 +331,37 @@ class Setting extends Model {
 			"cred"=>"sugiarto123:678flazz",
 			"port"=>"2017",
 		];
+		
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.36",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"1945",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.36",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"3128",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.36",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2015",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.36",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2503",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.36",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"3103",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.36",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2017",
+		];
 
 		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
 

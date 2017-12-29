@@ -876,12 +876,11 @@ class CronJobController extends Controller
 			//check if media id sudah di autolike atau belum
 			//klo belum add ke post_target_like
 			
-			$ports[] = "10201";
-			$ports[] = "10202";
-			$ports[] = "10203";
-			$port = $ports[array_rand($ports)];
-			$cred = "sugiarto:sugihproxy250";
-			$proxy = "45.79.212.85";//good proxy
+			/* proxy dihapus, klo mau panggil function ini harus isi proxy dibawah
+			$port = "";
+			$cred = "";
+			$proxy = "";//good proxy
+			*/
 
 			if(App::environment() == "local"){
 				$cookiefile = base_path().'/../general/ig-cookies/'.$setting->insta_username.'-cookies-auto-like.txt';

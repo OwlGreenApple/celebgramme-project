@@ -35,12 +35,11 @@ class LandingPageController extends Controller
 	public function testing(){
 		$arr_proxys = array();
 		
-		/* EX ERROR */
 		$arr_proxys[] = [
-			"proxy"=>"185.152.131.111",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10822",
-			"no"=>"1",
+			"proxy"=>"",
+			"cred"=>"",
+			"port"=>"",
+			"no"=>"",
 		];
 		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
 
@@ -369,65 +368,12 @@ class LandingPageController extends Controller
 
 		$arr_proxys = array();
 		
+		// klo mau dipake ini harus diisi
 		$arr_proxys[] = [
-			"proxy"=>"185.152.129.110",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10429",
+			"proxy"=>"",
+			"cred"=>"",
+			"port"=>"",
 			"no"=>"1",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.59",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10474",
-			"no"=>"2",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.25",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10478",
-			"no"=>"3",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.119",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10485",
-			"no"=>"4",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.4",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10585",
-			"no"=>"5",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.88",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10462",
-			"no"=>"6",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.85",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10592",
-			"no"=>"7",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.84",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10468",
-			"no"=>"8",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.132",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10484",
-			"no"=>"9",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"185.152.129.76",
-			"cred"=>"141sugiartolasjim:qjubrkujxvhf",
-			"port"=>"10471",
-			"no"=>"10",
 		];
 		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
 
