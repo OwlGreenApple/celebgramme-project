@@ -225,12 +225,15 @@ class NewDashboardController extends Controller
 		//buat list user following (for whitelist purpose)
 		$arr_user_whitelist = array();
 		$counter = 0; $end_cursor = "";
+    $rankToken = \InstagramAPI\Signatures::generateUUID();
 		do {  //repeat until get 50 data scrape 
 			try {
 				if ($counter==0) {
-					$userFollowingResponse = $i->people->getSelfFollowing();
+					// $userFollowingResponse = $i->people->getSelfFollowing();
+					$userFollowingResponse = $i->people->getSelfFollowing($rankToken);
 				} else if ($counter>0) {
-					$userFollowingResponse = $i->people->getSelfFollowing(null,$end_cursor);
+					// $userFollowingResponse = $i->people->getSelfFollowing(null,$end_cursor);
+          $userFollowingResponse = $i->people->getSelfFollowing($rankToken, null, $end_cursor);
 				}
 			}
 			catch (Exception $e) {
