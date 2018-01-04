@@ -140,11 +140,105 @@ class AutoManageController extends Controller
 				]);
 				
 				//proxy things
-				if($cred==""){
-					$i->setProxy("http://".$proxy.":".$port);
+				$arr_proxys[] = [
+					"proxy"=>"103.236.201.251",
+					"cred"=>"sugiarto123:678flazz",
+					"port"=>"1945",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.236.201.251",
+					"cred"=>"sugiarto123:678flazz",
+					"port"=>"3128",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.236.201.251",
+					"cred"=>"sugiarto123:678flazz",
+					"port"=>"2015",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.236.201.251",
+					"cred"=>"sugiarto123:678flazz",
+					"port"=>"2503",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.236.201.251",
+					"cred"=>"sugiarto123:678flazz",
+					"port"=>"3103",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.236.201.251",
+					"cred"=>"sugiarto123:678flazz",
+					"port"=>"2017",
+				];
+
+				$arr_proxys[] = [
+					"proxy"=>"103.236.201.48",
+					"cred"=>"sugiarto123:678flazz",
+					"port"=>"1945",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.236.201.48",
+					"cred"=>"sugiarto123:678flazz",
+					"port"=>"3128",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.236.201.48",
+					"cred"=>"sugiarto123:678flazz",
+					"port"=>"2015",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.236.201.48",
+					"cred"=>"sugiarto123:678flazz",
+					"port"=>"2503",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.236.201.48",
+					"cred"=>"sugiarto123:678flazz",
+					"port"=>"3103",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.236.201.48",
+					"cred"=>"sugiarto123:678flazz",
+					"port"=>"2017",
+				];
+
+				$arr_proxys[] = [
+					"proxy"=>"103.236.201.72",
+					"cred"=>"sugiarto123:678flazz",
+					"port"=>"1945",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.236.201.72",
+					"cred"=>"sugiarto123:678flazz",
+					"port"=>"3128",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.236.201.72",
+					"cred"=>"sugiarto123:678flazz",
+					"port"=>"2015",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.236.201.72",
+					"cred"=>"sugiarto123:678flazz",
+					"port"=>"2503",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.236.201.72",
+					"cred"=>"sugiarto123:678flazz",
+					"port"=>"3103",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.236.201.72",
+					"cred"=>"sugiarto123:678flazz",
+					"port"=>"2017",
+				];
+
+				$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
+				if($arr_proxy['cred']==""){
+					$i->setProxy("http://".$arr_proxy['proxy'].":".$arr_proxy['port']);
 				}
 				else {
-					$i->setProxy("http://".$cred."@".$proxy.":".$port);
+					$i->setProxy("http://".$arr_proxy['cred']."@".$arr_proxy['proxy'].":".$arr_proxy['port']);
 				}
 				
 				$i->login(Request::input("hidden_username"), Request::input("edit_password"), 1800);
