@@ -235,7 +235,7 @@ class AutoManageController extends Controller
 					];
 
 					$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
-					session(['proxy' => $arr_proxy]);
+					session(['proxy' => collect($arr_proxy)]);
 				}
 				else {
 					$arr_proxy = session('proxy');
@@ -561,7 +561,7 @@ class AutoManageController extends Controller
 					];
 
 					$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
-					session(['proxy' => $arr_proxy]);
+					session(['proxy' => collect($arr_proxy)]);
 				}
 				else {
 					$arr_proxy = session('proxy');
