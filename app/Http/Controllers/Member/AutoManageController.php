@@ -468,6 +468,7 @@ class AutoManageController extends Controller
 				}*/
 				if (session()->has('proxy')) {
 					$arr_proxy = session('proxy');
+					dd($arr_proxy);
 				}
 				else {
 					$arr_proxys[] = [
