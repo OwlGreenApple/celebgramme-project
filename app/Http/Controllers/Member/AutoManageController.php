@@ -140,7 +140,7 @@ class AutoManageController extends Controller
 				]);
 				
 				//proxy things
-				if (session()->has('proxy')) {
+				/*if (session()->has('proxy')) {
 					$arr_proxy = session('proxy');
 				}
 				else {
@@ -332,7 +332,7 @@ class AutoManageController extends Controller
 
 					$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
 					session(['proxy' => collect($arr_proxy)]);
-				}
+				}*/
 				if($arr_proxy['cred']==""){
 					$i->setProxy("http://".$arr_proxy['proxy'].":".$arr_proxy['port']);
 				}
@@ -555,11 +555,7 @@ class AutoManageController extends Controller
 				]);
 				
 				//proxy things
-				/*$proxy = Proxies::find($array_data["proxy_id"]);
-				if (!is_null($proxy)) {
-					$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);					
-				}*/
-				if (session()->has('proxy')) {
+				/*if (session()->has('proxy')) {
 					$arr_proxy = session('proxy');
 				}
 				else {
@@ -751,8 +747,7 @@ class AutoManageController extends Controller
 
 					$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
 					session(['proxy' => collect($arr_proxy)]);
-				}
-				
+				}*/
 				if($arr_proxy["cred"]==""){
 					$i->setProxy("http://".$arr_proxy["proxy"].":".$arr_proxy["port"]);
 				}
