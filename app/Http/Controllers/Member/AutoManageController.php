@@ -145,37 +145,6 @@ class AutoManageController extends Controller
 				}
 				else {
 					$arr_proxys[] = [
-						"proxy"=>"103.236.201.58",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"1945",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.58",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"3128",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.58",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2015",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.58",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2503",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.58",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"3103",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.58",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2017",
-					];
-
-					$arr_proxys[] = [
 						"proxy"=>"103.236.201.254",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"1945",
@@ -238,37 +207,6 @@ class AutoManageController extends Controller
 					];
 
 					$arr_proxys[] = [
-						"proxy"=>"103.236.201.32",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"1945",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.32",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"3128",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.32",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2015",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.32",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2503",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.32",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"3103",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.32",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2017",
-					];
-					
-					$arr_proxys[] = [
 						"proxy"=>"103.236.201.187",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"1945",
@@ -326,68 +264,6 @@ class AutoManageController extends Controller
 					];
 					$arr_proxys[] = [
 						"proxy"=>"103.236.201.148",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2017",
-					];
-
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.56",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"1945",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.56",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"3128",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.56",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2015",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.56",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2503",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.56",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"3103",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.56",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2017",
-					];
-
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.34",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"1945",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.34",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"3128",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.34",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2015",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.34",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2503",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.34",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"3103",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.34",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2017",
 					];
@@ -637,37 +513,6 @@ class AutoManageController extends Controller
 					$arr_proxy = session('proxy');
 				}
 				else {
-					/*$arr_proxys[] = [
-						"proxy"=>"103.236.201.58",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"1945",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.58",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"3128",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.58",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2015",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.58",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2503",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.58",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"3103",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.58",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2017",
-					];
-
 					$arr_proxys[] = [
 						"proxy"=>"103.236.201.254",
 						"cred"=>"sugiarto123:678flazz",
@@ -731,37 +576,6 @@ class AutoManageController extends Controller
 					];
 
 					$arr_proxys[] = [
-						"proxy"=>"103.236.201.32",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"1945",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.32",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"3128",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.32",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2015",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.32",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2503",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.32",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"3103",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.32",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2017",
-					];
-					
-					$arr_proxys[] = [
 						"proxy"=>"103.236.201.187",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"1945",
@@ -821,71 +635,9 @@ class AutoManageController extends Controller
 						"proxy"=>"103.236.201.148",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2017",
-					];*/
+					];
 					
 					$arr_proxys[] = [
-						"proxy"=>"103.236.201.56",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"1945",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.56",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"3128",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.56",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2015",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.56",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2503",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.56",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"3103",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.56",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2017",
-					];
-
-					/*$arr_proxys[] = [
-						"proxy"=>"103.236.201.34",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"1945",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.34",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"3128",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.34",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2015",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.34",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2503",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.34",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"3103",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.236.201.34",
-						"cred"=>"sugiarto123:678flazz",
-						"port"=>"2017",
-					];*/
-
-					/*$arr_proxys[] = [
 						"proxy"=>"103.31.251.171",
 						"cred"=>"rizky12:proxyrizky",
 						"port"=>"8080",
@@ -899,7 +651,7 @@ class AutoManageController extends Controller
 						"proxy"=>"103.31.251.171",
 						"cred"=>"rizky12:proxyrizky",
 						"port"=>"3128",
-					];*/
+					];
 
 					$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
 					session(['proxy' => collect($arr_proxy)]);
