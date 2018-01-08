@@ -145,187 +145,249 @@ class AutoManageController extends Controller
 				}
 				else {
 					$arr_proxys[] = [
-						"proxy"=>"128.199.136.124",
+						"proxy"=>"103.236.201.58",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"1945",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.136.124",
+						"proxy"=>"103.236.201.58",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3128",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.136.124",
+						"proxy"=>"103.236.201.58",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2015",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.136.124",
+						"proxy"=>"103.236.201.58",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2503",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.136.124",
+						"proxy"=>"103.236.201.58",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3103",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.136.124",
+						"proxy"=>"103.236.201.58",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2017",
 					];
 
 					$arr_proxys[] = [
-						"proxy"=>"188.166.218.30",
+						"proxy"=>"103.236.201.254",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"1945",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"188.166.218.30",
+						"proxy"=>"103.236.201.254",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3128",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"188.166.218.30",
+						"proxy"=>"103.236.201.254",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2015",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"188.166.218.30",
+						"proxy"=>"103.236.201.254",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2503",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"188.166.218.30",
+						"proxy"=>"103.236.201.254",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3103",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"188.166.218.30",
+						"proxy"=>"103.236.201.254",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2017",
 					];
 					
 					$arr_proxys[] = [
-						"proxy"=>"139.59.229.54",
+						"proxy"=>"103.236.201.245",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"1945",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.229.54",
+						"proxy"=>"103.236.201.245",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3128",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.229.54",
+						"proxy"=>"103.236.201.245",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2015",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.229.54",
+						"proxy"=>"103.236.201.245",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2503",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.229.54",
+						"proxy"=>"103.236.201.245",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3103",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.229.54",
+						"proxy"=>"103.236.201.245",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2017",
 					];
 
 					$arr_proxys[] = [
-						"proxy"=>"128.199.214.94",
+						"proxy"=>"103.236.201.32",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"1945",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.214.94",
+						"proxy"=>"103.236.201.32",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3128",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.214.94",
+						"proxy"=>"103.236.201.32",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2015",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.214.94",
+						"proxy"=>"103.236.201.32",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2503",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.214.94",
+						"proxy"=>"103.236.201.32",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3103",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.214.94",
+						"proxy"=>"103.236.201.32",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2017",
 					];
 					
 					$arr_proxys[] = [
-						"proxy"=>"128.199.89.42",
+						"proxy"=>"103.236.201.187",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"1945",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.89.42",
+						"proxy"=>"103.236.201.187",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3128",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.89.42",
+						"proxy"=>"103.236.201.187",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2015",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.89.42",
+						"proxy"=>"103.236.201.187",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2503",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.89.42",
+						"proxy"=>"103.236.201.187",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3103",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.89.42",
+						"proxy"=>"103.236.201.187",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2017",
 					];
 					
 					$arr_proxys[] = [
-						"proxy"=>"139.59.228.209",
+						"proxy"=>"103.236.201.148",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"1945",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.228.209",
+						"proxy"=>"103.236.201.148",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3128",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.228.209",
+						"proxy"=>"103.236.201.148",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2015",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.228.209",
+						"proxy"=>"103.236.201.148",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2503",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.228.209",
+						"proxy"=>"103.236.201.148",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3103",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.228.209",
+						"proxy"=>"103.236.201.148",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"2017",
+					];
+
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.56",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"1945",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.56",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"3128",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.56",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"2015",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.56",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"2503",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.56",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"3103",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.56",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"2017",
+					];
+
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.34",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"1945",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.34",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"3128",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.34",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"2015",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.34",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"2503",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.34",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"3103",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.34",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2017",
 					];
@@ -576,187 +638,249 @@ class AutoManageController extends Controller
 				}
 				else {
 					$arr_proxys[] = [
-						"proxy"=>"128.199.136.124",
+						"proxy"=>"103.236.201.58",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"1945",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.136.124",
+						"proxy"=>"103.236.201.58",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3128",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.136.124",
+						"proxy"=>"103.236.201.58",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2015",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.136.124",
+						"proxy"=>"103.236.201.58",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2503",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.136.124",
+						"proxy"=>"103.236.201.58",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3103",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.136.124",
+						"proxy"=>"103.236.201.58",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2017",
 					];
 
 					$arr_proxys[] = [
-						"proxy"=>"188.166.218.30",
+						"proxy"=>"103.236.201.254",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"1945",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"188.166.218.30",
+						"proxy"=>"103.236.201.254",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3128",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"188.166.218.30",
+						"proxy"=>"103.236.201.254",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2015",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"188.166.218.30",
+						"proxy"=>"103.236.201.254",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2503",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"188.166.218.30",
+						"proxy"=>"103.236.201.254",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3103",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"188.166.218.30",
+						"proxy"=>"103.236.201.254",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2017",
 					];
 					
 					$arr_proxys[] = [
-						"proxy"=>"139.59.229.54",
+						"proxy"=>"103.236.201.245",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"1945",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.229.54",
+						"proxy"=>"103.236.201.245",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3128",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.229.54",
+						"proxy"=>"103.236.201.245",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2015",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.229.54",
+						"proxy"=>"103.236.201.245",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2503",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.229.54",
+						"proxy"=>"103.236.201.245",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3103",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.229.54",
+						"proxy"=>"103.236.201.245",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2017",
 					];
 
 					$arr_proxys[] = [
-						"proxy"=>"128.199.214.94",
+						"proxy"=>"103.236.201.32",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"1945",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.214.94",
+						"proxy"=>"103.236.201.32",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3128",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.214.94",
+						"proxy"=>"103.236.201.32",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2015",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.214.94",
+						"proxy"=>"103.236.201.32",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2503",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.214.94",
+						"proxy"=>"103.236.201.32",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3103",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.214.94",
+						"proxy"=>"103.236.201.32",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2017",
 					];
 					
 					$arr_proxys[] = [
-						"proxy"=>"128.199.89.42",
+						"proxy"=>"103.236.201.187",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"1945",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.89.42",
+						"proxy"=>"103.236.201.187",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3128",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.89.42",
+						"proxy"=>"103.236.201.187",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2015",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.89.42",
+						"proxy"=>"103.236.201.187",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2503",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.89.42",
+						"proxy"=>"103.236.201.187",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3103",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"128.199.89.42",
+						"proxy"=>"103.236.201.187",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2017",
 					];
 					
 					$arr_proxys[] = [
-						"proxy"=>"139.59.228.209",
+						"proxy"=>"103.236.201.148",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"1945",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.228.209",
+						"proxy"=>"103.236.201.148",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3128",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.228.209",
+						"proxy"=>"103.236.201.148",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2015",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.228.209",
+						"proxy"=>"103.236.201.148",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2503",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.228.209",
+						"proxy"=>"103.236.201.148",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"3103",
 					];
 					$arr_proxys[] = [
-						"proxy"=>"139.59.228.209",
+						"proxy"=>"103.236.201.148",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"2017",
+					];
+					
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.56",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"1945",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.56",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"3128",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.56",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"2015",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.56",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"2503",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.56",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"3103",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.56",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"2017",
+					];
+
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.34",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"1945",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.34",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"3128",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.34",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"2015",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.34",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"2503",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.34",
+						"cred"=>"sugiarto123:678flazz",
+						"port"=>"3103",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.236.201.34",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2017",
 					];
