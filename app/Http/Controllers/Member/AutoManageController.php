@@ -637,7 +637,7 @@ class AutoManageController extends Controller
 					$arr_proxy = session('proxy');
 				}
 				else {
-					$arr_proxys[] = [
+					/*$arr_proxys[] = [
 						"proxy"=>"103.236.201.58",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"1945",
@@ -852,7 +852,7 @@ class AutoManageController extends Controller
 						"proxy"=>"103.236.201.56",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2017",
-					];
+					];*/
 
 					$arr_proxys[] = [
 						"proxy"=>"103.236.201.34",
@@ -885,7 +885,7 @@ class AutoManageController extends Controller
 						"port"=>"2017",
 					];
 
-					$arr_proxys[] = [
+					/*$arr_proxys[] = [
 						"proxy"=>"103.31.251.171",
 						"cred"=>"rizky12:proxyrizky",
 						"port"=>"8080",
@@ -899,7 +899,7 @@ class AutoManageController extends Controller
 						"proxy"=>"103.31.251.171",
 						"cred"=>"rizky12:proxyrizky",
 						"port"=>"3128",
-					];
+					];*/
 
 					$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
 					session(['proxy' => collect($arr_proxy)]);
