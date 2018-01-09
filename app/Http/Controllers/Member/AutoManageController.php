@@ -681,8 +681,13 @@ class AutoManageController extends Controller
 			SettingMeta::createMeta("error_message_cred","",$setting_id_temp);
 		}
 
-		 
-		 
+      $dt = Carbon::now();
+			$user_log = new UserLog;
+			$user_log->email = $user->email;
+			$user_log->admin = "";
+			$user_log->description = "Success add Proxy : ".$arr_proxy["proxy"].":".$arr_proxy["port"].":".$arr_proxy["cred"];
+			$user_log->created = $dt->toDateTimeString();
+			$user_log->save();
 		
 		/*} else if ($user->test==2){
 
