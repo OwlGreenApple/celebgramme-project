@@ -121,10 +121,10 @@ class AutoManageController extends Controller
 			}
 			$full_proxy =  Proxies::find($setting_helper->proxy_id);
 			if (!is_null($full_proxy)) {
-				$port = $full_proxy->port;
-				$cred = $full_proxy->cred;
-				$proxy = $full_proxy->proxy;
-				$auth = $full_proxy->auth;
+				$arr_proxy["port"] = $full_proxy->port;
+				$arr_proxy["cred"] = $full_proxy->cred;
+				$arr_proxy["proxy"] = $full_proxy->proxy;
+				$arr_proxy["auth"] = $full_proxy->auth;
 			}
 		}
 			/* New Checking password*/
