@@ -235,7 +235,7 @@ class AutoManageController extends Controller
 						"proxy"=>"103.236.201.148",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2017",
-					];
+					];*/
 
 					$arr_proxys[] = [
 						"proxy"=>"103.31.251.171",
@@ -254,8 +254,8 @@ class AutoManageController extends Controller
 					];
 					
 					$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
-					session(['proxy' => collect($arr_proxy)]);
-				}*/
+					// session(['proxy' => collect($arr_proxy)]);
+				// }
 				if($arr_proxy['cred']==""){
 					$i->setProxy("http://".$arr_proxy['proxy'].":".$arr_proxy['port']);
 				}
