@@ -175,7 +175,7 @@ class AutoManageController extends Controller
 						"port"=>"2017",
 					];
 
-					$arr_proxys[] = [
+					/*$arr_proxys[] = [
 						"proxy"=>"103.236.201.187",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"1945",
@@ -204,7 +204,7 @@ class AutoManageController extends Controller
 						"proxy"=>"103.236.201.187",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2017",
-					];
+					];*/
 					
 					$arr_proxys[] = [
 						"proxy"=>"103.236.201.148",
@@ -577,7 +577,7 @@ class AutoManageController extends Controller
 						"port"=>"2017",
 					];
 
-					$arr_proxys[] = [
+					/*$arr_proxys[] = [
 						"proxy"=>"103.236.201.187",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"1945",
@@ -606,7 +606,7 @@ class AutoManageController extends Controller
 						"proxy"=>"103.236.201.187",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2017",
-					];
+					];*/
 					
 					$arr_proxys[] = [
 						"proxy"=>"103.236.201.148",
