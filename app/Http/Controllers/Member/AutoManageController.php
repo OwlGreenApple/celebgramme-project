@@ -140,7 +140,7 @@ class AutoManageController extends Controller
 				]);
 				
 				//proxy things
-				/*if (session()->has('proxy')) {
+				if (session()->has('proxy')) {
 					$arr_proxy = session('proxy');
 				}
 				else {
@@ -235,7 +235,7 @@ class AutoManageController extends Controller
 						"proxy"=>"103.236.201.148",
 						"cred"=>"sugiarto123:678flazz",
 						"port"=>"2017",
-					];*/
+					];
 
 					$arr_proxys[] = [
 						"proxy"=>"103.31.251.171",
@@ -253,9 +253,73 @@ class AutoManageController extends Controller
 						"port"=>"3128",
 					];
 					
+					$arr_proxys[] = [
+						"proxy"=>"103.31.250.62",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"8080",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.31.250.62",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"9700",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.31.250.62",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"3128",
+					];
+					
+					$arr_proxys[] = [
+						"proxy"=>"103.31.250.170",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"8080",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.31.250.170",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"9700",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.31.250.170",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"3128",
+					];
+					
+					$arr_proxys[] = [
+						"proxy"=>"103.31.251.67",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"8080",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.31.251.67",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"9700",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.31.251.67",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"3128",
+					];
+					
+					$arr_proxys[] = [
+						"proxy"=>"103.28.148.251",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"8080",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.28.148.251",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"9700",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.28.148.251",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"3128",
+					];
+					
 					$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
-					// session(['proxy' => collect($arr_proxy)]);
-				// }
+					session(['proxy' => collect($arr_proxy)]);
+				}
 				if($arr_proxy['cred']==""){
 					$i->setProxy("http://".$arr_proxy['proxy'].":".$arr_proxy['port']);
 				}
@@ -591,6 +655,70 @@ class AutoManageController extends Controller
 						"port"=>"3128",
 					];
 
+					$arr_proxys[] = [
+						"proxy"=>"103.31.250.62",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"8080",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.31.250.62",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"9700",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.31.250.62",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"3128",
+					];
+					
+					$arr_proxys[] = [
+						"proxy"=>"103.31.250.170",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"8080",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.31.250.170",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"9700",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.31.250.170",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"3128",
+					];
+					
+					$arr_proxys[] = [
+						"proxy"=>"103.31.251.67",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"8080",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.31.251.67",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"9700",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.31.251.67",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"3128",
+					];
+					
+					$arr_proxys[] = [
+						"proxy"=>"103.28.148.251",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"8080",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.28.148.251",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"9700",
+					];
+					$arr_proxys[] = [
+						"proxy"=>"103.28.148.251",
+						"cred"=>"rizky12:proxyrizky",
+						"port"=>"3128",
+					];
+					
 					$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
 					session(['proxy' => collect($arr_proxy)]);
 				}
