@@ -226,14 +226,14 @@ class AutoManageController extends Controller
 					];
 					
 					//get proxy login from database
-					/*$proxy_logins = ProxyLogin::all();
+					$proxy_logins = ProxyLogin::all();
 					foreach($proxy_logins as $proxy_login){
 						$arr_proxys[] = [
 							"proxy"=>$proxy_login->proxy,
 							"cred"=>$proxy_login->cred,
 							"port"=>$proxy_login->port,
 						];
-					}*/
+					}
 					
 					$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
 					session(['proxy' => collect($arr_proxy)]);
@@ -545,14 +545,14 @@ class AutoManageController extends Controller
 					];
 					
 					//get proxy login from database
-					/*$proxy_logins = ProxyLogin::all();
+					$proxy_logins = ProxyLogin::all();
 					foreach($proxy_logins as $proxy_login){
 						$arr_proxys[] = [
 							"proxy"=>$proxy_login->proxy,
 							"cred"=>$proxy_login->cred,
 							"port"=>$proxy_login->port,
 						];
-					}*/
+					}
 					
 					$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
 					session(['proxy' => collect($arr_proxy)]);
