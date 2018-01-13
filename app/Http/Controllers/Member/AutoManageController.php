@@ -22,6 +22,7 @@ use Celebgramme\Models\Meta;
 use Celebgramme\Models\Client;
 use Celebgramme\Models\SettingHelper;
 use Celebgramme\Models\Proxies;
+use Celebgramme\Models\ProxyLogin;
 use Celebgramme\Models\Category;
 use Celebgramme\Models\SettingLog;
 use Celebgramme\Models\TimeLog;
@@ -223,6 +224,16 @@ class AutoManageController extends Controller
 						"cred"=>"rizky12:proxyrizky",
 						"port"=>"3128",
 					];
+					
+					//get proxy login from database
+					$proxy_logins = ProxyLogin::all();
+					foreach($proxy_logins as $proxy_login){
+						$arr_proxys[] = [
+							"proxy"=>$proxy_login->proxy,
+							"cred"=>$proxy_login->cred,
+							"port"=>$proxy_login->port,
+						];
+					}
 					
 					$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
 					session(['proxy' => collect($arr_proxy)]);
@@ -532,6 +543,16 @@ class AutoManageController extends Controller
 						"cred"=>"rizky12:proxyrizky",
 						"port"=>"3128",
 					];
+					
+					//get proxy login from database
+					$proxy_logins = ProxyLogin::all();
+					foreach($proxy_logins as $proxy_login){
+						$arr_proxys[] = [
+							"proxy"=>$proxy_login->proxy,
+							"cred"=>$proxy_login->cred,
+							"port"=>$proxy_login->port,
+						];
+					}
 					
 					$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
 					session(['proxy' => collect($arr_proxy)]);
