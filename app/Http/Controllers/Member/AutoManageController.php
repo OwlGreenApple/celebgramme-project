@@ -291,6 +291,13 @@ class AutoManageController extends Controller
 			$arr["message"]= "Error Confirmation";
 			// $arr["error_message"]= $error_message;
 			$arr["type"]= "error2";
+      $dt = Carbon::now();
+			$user_log = new UserLog;
+			$user_log->email = $user->email;
+			$user_log->admin = "";
+			$user_log->description = "Error Proxy : ".$arr_proxy["proxy"].":".$arr_proxy["port"].":".$arr_proxy["cred"]." ".Request::input("hidden_username");
+			$user_log->created = $dt->toDateTimeString();
+			$user_log->save();
 			return $arr;
 		}
 		else if ($is_error == 0) {
@@ -298,6 +305,13 @@ class AutoManageController extends Controller
 		}
 			
 			
+      $dt = Carbon::now();
+			$user_log = new UserLog;
+			$user_log->email = $user->email;
+			$user_log->admin = "";
+			$user_log->description = "Success add Proxy : ".$arr_proxy["proxy"].":".$arr_proxy["port"].":".$arr_proxy["cred"]." ".Request::input("hidden_username");
+			$user_log->created = $dt->toDateTimeString();
+			$user_log->save();
     
     // $setting_temp->insta_username = Request::input('edit_username');
     $setting_temp->insta_password = Request::input('edit_password');
@@ -631,7 +645,7 @@ class AutoManageController extends Controller
 			$user_log = new UserLog;
 			$user_log->email = $user->email;
 			$user_log->admin = "";
-			$user_log->description = "Error Proxy : ".$arr_proxy["proxy"].":".$arr_proxy["port"].":".$arr_proxy["cred"];
+			$user_log->description = "Error Proxy : ".$arr_proxy["proxy"].":".$arr_proxy["port"].":".$arr_proxy["cred"]." ".Request::input("username");
 			$user_log->created = $dt->toDateTimeString();
 			$user_log->save();
 			$arr["type"]= "error2";
@@ -648,7 +662,7 @@ class AutoManageController extends Controller
 			$user_log = new UserLog;
 			$user_log->email = $user->email;
 			$user_log->admin = "";
-			$user_log->description = "Success add Proxy : ".$arr_proxy["proxy"].":".$arr_proxy["port"].":".$arr_proxy["cred"];
+			$user_log->description = "Success add Proxy : ".$arr_proxy["proxy"].":".$arr_proxy["port"].":".$arr_proxy["cred"]." ".Request::input("username");
 			$user_log->created = $dt->toDateTimeString();
 			$user_log->save();
 		
