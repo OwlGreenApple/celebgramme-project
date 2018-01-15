@@ -51,7 +51,8 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 				<div class="col-md-4 col-sm-12 col-xs-12">
 					<div class="card same-height">
                         <div class="header bg-cyan br-t-6">
-													<span data-id="{{$data->id}}" class="delete-button glyphicon glyphicon-remove" style="cursor:pointer;" aria-hidden="true" data-toggle="modal" data-target="#confirm-delete" ></span> 
+													<!--<span data-id="{{$data->id}}" class="delete-button glyphicon glyphicon-remove" style="cursor:pointer;" aria-hidden="true" data-toggle="modal" data-target="#confirm-delete" ></span>
+													-->
 													<a href="https://instagram.com/{{$data->insta_username}}" target="_blank">
                             <h2>
 															<img src="{{$photo}}" class="img-circle" style="width:70px;height:70px;">
