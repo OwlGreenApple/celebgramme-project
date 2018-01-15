@@ -842,7 +842,7 @@ class CronJobController extends Controller
 								->where("settings.type",'=','temp')
 								->where("proxy_id","!=",0)
 								->where("settings.running_time","<",$dt->toDateTimeString())
-								->where("settings.start_time","<>","0000-00-00 00:00:00")
+								// ->where("settings.start_time","<>","0000-00-00 00:00:00")
 								->where(function ($query) {
 									$query->where("settings.status","=","stopped")
 												->orWhere("settings.status","=","deleted")
