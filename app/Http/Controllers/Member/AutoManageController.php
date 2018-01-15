@@ -143,100 +143,37 @@ class AutoManageController extends Controller
 				//proxy things
 				if (session()->has('proxy')) {
 					$arr_proxy = session('proxy');
-				}
-				else {
-					$arr_proxys[] = [
-						"proxy"=>"103.31.251.171",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"8080",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.31.251.171",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"9700",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.31.251.171",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"3128",
-					];
-					
-					$arr_proxys[] = [
-						"proxy"=>"103.31.250.62",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"8080",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.31.250.62",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"9700",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.31.250.62",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"3128",
-					];
-					
-					$arr_proxys[] = [
-						"proxy"=>"103.31.250.170",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"8080",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.31.250.170",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"9700",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.31.250.170",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"3128",
-					];
-					
-					$arr_proxys[] = [
-						"proxy"=>"103.31.251.67",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"8080",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.31.251.67",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"9700",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.31.251.67",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"3128",
-					];
-					
-					$arr_proxys[] = [
-						"proxy"=>"103.28.148.251",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"8080",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.28.148.251",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"9700",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.28.148.251",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"3128",
-					];
-					
-					//get proxy login from database
-					$proxy_logins = ProxyLogin::all();
-					foreach($proxy_logins as $proxy_login){
-						$arr_proxys[] = [
-							"proxy"=>$proxy_login->proxy,
-							"cred"=>$proxy_login->cred,
-							"port"=>$proxy_login->port,
-						];
+					if ( intval(session('attempt_count')) == 1 ) {
+						//flag proxy supaya ga dipake lagi hari itu
+						$proxy_login = ProxyLogin::where("proxy",$arr_proxy["proxy"])
+														->where("port",$arr_proxy["port"])
+														->where("cred",$arr_proxy["cred"])
+														->first();
+						if(!is_null($proxy_login)){
+							$proxy_login->is_error = 1;
+							$proxy_login->save();
+						}
+						
+						//random dengan proxy yang lain
+						$arr_proxy = $this->random_proxy();
+					}
+					else if ( intval(session('attempt_count')) == 3 ) {
+						$arr["message"] = "Mohon maaf, Anda telah melebihi batas login attempt 2x untuk menghindari akun anda di flag oleh Instagram Silahkan coba kembali setelah 3 x 24 jam";
+						$arr["type"] = "error";
+						return $arr;
 					}
 					
-					$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
-					session(['proxy' => collect($arr_proxy)]);
+					session([
+						'proxy' => collect($arr_proxy),
+						'attempt_count' => intval(session('attempt_count')) + 1 ,
+					]);
+				}
+				else {
+					$arr_proxy = $this->random_proxy();
+					session([
+						'proxy' => collect($arr_proxy),
+						'attempt_count' => 0,
+					]);
 				}
 				if($arr_proxy['cred']==""){
 					$i->setProxy("http://".$arr_proxy['proxy'].":".$arr_proxy['port']);
@@ -313,6 +250,11 @@ class AutoManageController extends Controller
 			$user_log->created = $dt->toDateTimeString();
 			$user_log->save();
     
+			session([
+				'proxy' => collect($arr_proxy),
+				'attempt_count' => 0 ,
+			]);
+			
     // $setting_temp->insta_username = Request::input('edit_username');
     $setting_temp->insta_password = Request::input('edit_password');
     $setting_temp->error_cred = false;
@@ -476,100 +418,37 @@ class AutoManageController extends Controller
 				//proxy things
 				if (session()->has('proxy')) {
 					$arr_proxy = session('proxy');
-				}
-				else {
-					$arr_proxys[] = [
-						"proxy"=>"103.31.251.171",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"8080",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.31.251.171",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"9700",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.31.251.171",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"3128",
-					];
-
-					$arr_proxys[] = [
-						"proxy"=>"103.31.250.62",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"8080",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.31.250.62",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"9700",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.31.250.62",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"3128",
-					];
-					
-					$arr_proxys[] = [
-						"proxy"=>"103.31.250.170",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"8080",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.31.250.170",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"9700",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.31.250.170",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"3128",
-					];
-					
-					$arr_proxys[] = [
-						"proxy"=>"103.31.251.67",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"8080",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.31.251.67",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"9700",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.31.251.67",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"3128",
-					];
-					
-					$arr_proxys[] = [
-						"proxy"=>"103.28.148.251",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"8080",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.28.148.251",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"9700",
-					];
-					$arr_proxys[] = [
-						"proxy"=>"103.28.148.251",
-						"cred"=>"rizky12:proxyrizky",
-						"port"=>"3128",
-					];
-					
-					//get proxy login from database
-					$proxy_logins = ProxyLogin::all();
-					foreach($proxy_logins as $proxy_login){
-						$arr_proxys[] = [
-							"proxy"=>$proxy_login->proxy,
-							"cred"=>$proxy_login->cred,
-							"port"=>$proxy_login->port,
-						];
+					if ( intval(session('attempt_count')) == 1 ) {
+						//flag proxy supaya ga dipake lagi hari itu
+						$proxy_login = ProxyLogin::where("proxy",$arr_proxy["proxy"])
+														->where("port",$arr_proxy["port"])
+														->where("cred",$arr_proxy["cred"])
+														->first();
+						if(!is_null($proxy_login)){
+							$proxy_login->is_error = 1;
+							$proxy_login->save();
+						}
+						
+						//random dengan proxy yang lain
+						$arr_proxy = $this->random_proxy();
+					}
+					else if ( intval(session('attempt_count')) == 3 ) {
+						$arr["message"] = "Mohon maaf, Anda telah melebihi batas login attempt 2x untuk menghindari akun anda di flag oleh Instagram Silahkan coba kembali setelah 3 x 24 jam";
+						$arr["type"] = "error";
+						return $arr;
 					}
 					
-					$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
-					session(['proxy' => collect($arr_proxy)]);
+					session([
+						'proxy' => collect($arr_proxy),
+						'attempt_count' => intval(session('attempt_count')) + 1 ,
+					]);
+				}
+				else {
+					$arr_proxy = $this->random_proxy();
+					session([
+						'proxy' => collect($arr_proxy),
+						'attempt_count' => 0,
+					]);
 				}
 				if($arr_proxy["cred"]==""){
 					$i->setProxy("http://".$arr_proxy["proxy"].":".$arr_proxy["port"]);
@@ -665,6 +544,11 @@ class AutoManageController extends Controller
 			$user_log->description = "Success add Proxy : ".$arr_proxy["proxy"].":".$arr_proxy["port"].":".$arr_proxy["cred"]." ".Request::input("username");
 			$user_log->created = $dt->toDateTimeString();
 			$user_log->save();
+			
+			session([
+				'proxy' => collect($arr_proxy),
+				'attempt_count' => 0 ,
+			]);
 		
 		/*} else if ($user->test==2){
 
@@ -1797,4 +1681,102 @@ class AutoManageController extends Controller
 		return $arr;
 	}
 	
+	public function random_proxy(){
+		$arr_proxys[] = [
+			"proxy"=>"103.31.251.171",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"8080",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.31.251.171",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"9700",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.31.251.171",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"3128",
+		];
+
+		$arr_proxys[] = [
+			"proxy"=>"103.31.250.62",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"8080",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.31.250.62",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"9700",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.31.250.62",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"3128",
+		];
+		
+		$arr_proxys[] = [
+			"proxy"=>"103.31.250.170",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"8080",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.31.250.170",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"9700",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.31.250.170",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"3128",
+		];
+		
+		$arr_proxys[] = [
+			"proxy"=>"103.31.251.67",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"8080",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.31.251.67",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"9700",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.31.251.67",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"3128",
+		];
+		
+		$arr_proxys[] = [
+			"proxy"=>"103.28.148.251",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"8080",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.28.148.251",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"9700",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.28.148.251",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"3128",
+		];
+		
+		//get proxy login from database
+		$proxy_logins = ProxyLogin::
+										where("is_error",0)
+										->get();
+		foreach($proxy_logins as $proxy_login){
+			$arr_proxys[] = [
+				"proxy"=>$proxy_login->proxy,
+				"cred"=>$proxy_login->cred,
+				"port"=>$proxy_login->port,
+			];
+		}
+		
+		
+		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
+
+		return $arr_proxy;
+	}
 }
