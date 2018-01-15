@@ -793,11 +793,12 @@ class CronJobController extends Controller
 	*/
 	public function task_daily_automation_cron(){
 		//reset IP pool login (for include in random)
-		$proxy_logins = ProxyLogin::all();
+		/*$proxy_logins = ProxyLogin::all();
 		foreach ($proxy_logins as $proxy_login) {
 			$proxy_login->is_error = 0;
 			$proxy_login->save();
-		}
+		}*/
+		$affected = DB::table('proxy_logins')->update(array('is_error' => 0));
 		
 		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(1);
 		//delete failed job 
