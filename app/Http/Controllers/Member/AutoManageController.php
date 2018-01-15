@@ -157,7 +157,17 @@ class AutoManageController extends Controller
 						//random dengan proxy yang lain
 						$arr_proxy = $this->random_proxy();
 					}
-					else if ( intval(session('attempt_count')) == 3 ) {
+					else if ( intval(session('attempt_count')) >= 3 ) {
+						//flag proxy supaya ga dipake lagi hari itu
+						$proxy_login = ProxyLogin::where("proxy",$arr_proxy["proxy"])
+														->where("port",$arr_proxy["port"])
+														->where("cred",$arr_proxy["cred"])
+														->first();
+						if(!is_null($proxy_login)){
+							$proxy_login->is_error = 1;
+							$proxy_login->save();
+						}
+						
 						$arr["message"] = "Mohon maaf, Anda telah melebihi batas login attempt 2x untuk menghindari akun anda di flag oleh Instagram Silahkan coba kembali setelah 3 x 24 jam";
 						$arr["type"] = "error";
 						return $arr;
