@@ -1783,7 +1783,7 @@ class AutoManageController extends Controller
 		];
 		
 		//get proxy login from database
-		$proxy_logins = ProxyLogin::
+		/*$proxy_logins = ProxyLogin::
 										where("is_error",0)
 										->get();
 		foreach($proxy_logins as $proxy_login){
@@ -1792,7 +1792,7 @@ class AutoManageController extends Controller
 				"cred"=>$proxy_login->cred,
 				"port"=>$proxy_login->port,
 			];
-		}
+		}*/
 		
 		
 		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
