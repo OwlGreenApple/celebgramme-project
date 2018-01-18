@@ -1702,7 +1702,7 @@ class AutoManageController extends Controller
 	}
 	
 	public function random_proxy(){
-		$arr_proxys[] = [
+		/*$arr_proxys[] = [
 			"proxy"=>"103.31.251.171",
 			"cred"=>"rizky12:proxyrizky",
 			"port"=>"8080",
@@ -1780,6 +1780,99 @@ class AutoManageController extends Controller
 			"proxy"=>"103.28.148.251",
 			"cred"=>"rizky12:proxyrizky",
 			"port"=>"3128",
+		];*/
+		
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.32",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"1945",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.32",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"3128",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.32",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2015",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.32",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2503",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.32",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"3103",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.32",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2017",
+		];
+		
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.56",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"1945",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.56",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"3128",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.56",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2015",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.56",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2503",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.56",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"3103",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.56",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2017",
+		];
+		
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.38",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"1945",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.38",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"3128",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.38",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2015",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.38",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2503",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.38",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"3103",
+		];
+		$arr_proxys[] = [
+			"proxy"=>"103.236.201.38",
+			"cred"=>"sugiarto123:678flazz",
+			"port"=>"2017",
 		];
 		
 		//get proxy login from database
