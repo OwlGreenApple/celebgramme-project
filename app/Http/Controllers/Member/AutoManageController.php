@@ -1703,86 +1703,6 @@ class AutoManageController extends Controller
 	
 	public function random_proxy(){
 		$arr_proxys[] = [
-			"proxy"=>"103.31.251.171",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"8080",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.31.251.171",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"9700",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.31.251.171",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"3128",
-		];
-
-		$arr_proxys[] = [
-			"proxy"=>"103.31.250.62",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"8080",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.31.250.62",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"9700",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.31.250.62",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"3128",
-		];
-		
-		$arr_proxys[] = [
-			"proxy"=>"103.31.250.170",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"8080",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.31.250.170",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"9700",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.31.250.170",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"3128",
-		];
-		
-		$arr_proxys[] = [
-			"proxy"=>"103.31.251.67",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"8080",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.31.251.67",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"9700",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.31.251.67",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"3128",
-		];
-		
-		$arr_proxys[] = [
-			"proxy"=>"103.28.148.251",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"8080",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.28.148.251",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"9700",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.28.148.251",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"3128",
-		];
-		
-		/*$arr_proxys[] = [
 			"proxy"=>"103.236.201.32",
 			"cred"=>"sugiarto123:678flazz",
 			"port"=>"1945",
@@ -1873,10 +1793,10 @@ class AutoManageController extends Controller
 			"proxy"=>"103.236.201.38",
 			"cred"=>"sugiarto123:678flazz",
 			"port"=>"2017",
-		];*/
+		];
 		
 		//get proxy login from database
-		/*$proxy_logins = ProxyLogin::
+		$proxy_logins = ProxyLogin::
 										where("is_error",0)
 										->get();
 		foreach($proxy_logins as $proxy_login){
@@ -1885,7 +1805,7 @@ class AutoManageController extends Controller
 				"cred"=>$proxy_login->cred,
 				"port"=>$proxy_login->port,
 			];
-		}*/
+		}
 		
 		
 		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
