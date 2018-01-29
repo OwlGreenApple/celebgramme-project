@@ -225,6 +225,27 @@ class AutoManageController extends Controller
 					$is_error = 2 ;
 					$error_message = $e->getMessage();
 				}
+				if ( (strpos($e->getMessage(), 'Network: CURL error') !== false) || (strpos($e->getMessage(), 'No response from server') !== false) ) {
+					//proxy ga bisa, flag proxy supaya ga dipake lagi hari itu
+					$proxy_login = ProxyLogin::where("proxy",$arr_proxy["proxy"])
+													->where("port",$arr_proxy["port"])
+													->where("cred",$arr_proxy["cred"])
+													->first();
+					if(!is_null($proxy_login)){
+						$proxy_login->is_error = 2;
+						$proxy_login->save();
+					}
+					
+					$arr_proxy = $this->random_proxy();
+					session([
+						'proxy' => collect($arr_proxy),
+						'attempt_count' => 0,
+					]);
+					
+					$arr["message"] = "Network error, silahkan coba lagi";
+					$arr["type"] = "error";
+					return $arr;
+				}
 			}
 
 			
@@ -523,6 +544,27 @@ class AutoManageController extends Controller
 				if ( ($error_message == "InstagramAPI\Response\LoginResponse: Challenge required.") || ( substr($error_message, 0, 18) == "challenge_required") || ($error_message == "InstagramAPI\Response\TimelineFeedResponse: Challenge required.") || ($error_message == "InstagramAPI\Response\LoginResponse: Sorry, there was a problem with your request.") ){
 					$is_error = 2 ;
 					$error_message = $e->getMessage();
+				}
+				if ( (strpos($e->getMessage(), 'Network: CURL error') !== false) || (strpos($e->getMessage(), 'No response from server') !== false) ) {
+					//proxy ga bisa, flag proxy supaya ga dipake lagi hari itu
+					$proxy_login = ProxyLogin::where("proxy",$arr_proxy["proxy"])
+													->where("port",$arr_proxy["port"])
+													->where("cred",$arr_proxy["cred"])
+													->first();
+					if(!is_null($proxy_login)){
+						$proxy_login->is_error = 2;
+						$proxy_login->save();
+					}
+					
+					$arr_proxy = $this->random_proxy();
+					session([
+						'proxy' => collect($arr_proxy),
+						'attempt_count' => 0,
+					]);
+					
+					$arr["message"] = "Network error, silahkan coba lagi";
+					$arr["type"] = "error";
+					return $arr;
 				}
 			}
 
