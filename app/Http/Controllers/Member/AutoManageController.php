@@ -581,12 +581,12 @@ class AutoManageController extends Controller
 			}
 		}*/
 		
-		if ( $user->link_affiliate<> "" ) {
+		if ($user->link_affiliate<> "") {
 			$ig_data = Setting::get_ig_data(Request::input("username"));
 			if ($ig_data["found"]) {
 				$setting = Setting::where("insta_user_id","=",$ig_data["id"])->where("type","=","temp")->first();
 				if ( !is_null($setting) ) {
-					if ($setting->is_active == 1) {
+					if ( ($setting->is_active == 1) && ($user->id <> $setting->last_user) ) {
 						$arr["message"]= "Account sudah pernah terdaftar sebelumnya, untuk MELANJUTKAN silahkan BERLANGGANAN terlebih dahulu";
 						$arr["type"]= "error";
 						return $arr;
