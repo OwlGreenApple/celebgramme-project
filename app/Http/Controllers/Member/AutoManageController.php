@@ -1276,7 +1276,7 @@ class AutoManageController extends Controller
 					}
 					if (Request::input('action')=='start') {
 						if ( (!$setting_temp->status_auto)&&($setting_temp->status_follow_unfollow=="off")&&($setting_temp->status_like=="off")&&($setting_temp->status_comment=="off") ) {
-							$arr["message"]= "Pastikan anda telah melakukan Settings & silahkan tekan tombol SAVE terlebih dahulu. Kemudian START kembali ".$setting_temp->insta_username;
+							$arr["message"]= "Follow, Like, Comments anda sudah OFF, silahkan di set ON kembali untuk melanjutkan aktifitas ".$setting_temp->insta_username;
 							$arr["type"]= "error";
 							return $arr;
 						}
