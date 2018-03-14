@@ -301,117 +301,132 @@ class Setting extends Model {
 
 		$auth = true;
 		
-		$arr_proxys[] = [
-			"proxy"=>"103.31.251.171",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"8080",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.31.251.171",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"9700",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.31.251.171",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"3128",
-		];
-
-		$arr_proxys[] = [
-			"proxy"=>"103.31.250.62",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"8080",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.31.250.62",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"9700",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.31.250.62",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"3128",
-		];
-
-		$arr_proxys[] = [
-			"proxy"=>"103.31.250.170",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"8080",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.31.250.170",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"9700",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.31.250.170",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"3128",
-		];
-
-		$arr_proxys[] = [
-			"proxy"=>"103.31.251.67",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"8080",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.31.251.67",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"9700",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.31.251.67",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"3128",
-		];
-
-		$arr_proxys[] = [
-			"proxy"=>"103.28.148.251",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"8080",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.28.148.251",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"9700",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.28.148.251",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"3128",
-		];
-
-		$arr_proxys[] = [
-			"proxy"=>"103.28.148.218",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"8080",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.28.148.218",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"9700",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.28.148.218",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"3128",
-		];
-
-		$arr_proxys[] = [
-			"proxy"=>"103.31.251.179",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"8080",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.31.251.179",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"9700",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.31.251.179",
-			"cred"=>"rizky12:proxyrizky",
-			"port"=>"3128",
-		];
+				//new nata
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.11",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"3128",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.11",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"2017",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.11",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"1945",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.11",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"2503",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.11",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"3103",
+				];			
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.12",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"3128",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.12",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"2017",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.12",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"1945",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.12",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"2503",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.12",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"3103",
+				];			
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.13",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"3128",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.13",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"2017",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.13",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"1945",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.13",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"2503",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.13",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"3103",
+				];			
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.54",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"3128",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.54",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"2017",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.54",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"1945",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.54",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"2503",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.54",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"3103",
+				];			
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.55",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"3128",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.55",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"2017",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.55",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"1945",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.55",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"2503",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.56.206.55",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"3103",
+				];			
 
 		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
 
