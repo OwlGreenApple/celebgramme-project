@@ -479,10 +479,10 @@ class Setting extends Model {
 		dd($arr_json);
 		if (count($arr_json)>0) {
 			$found = true;
-			$id = $arr_json["user"]["id"];
-			$pp_url = $arr_json["user"]["profile_pic_url"];
-			$following = $arr_json["user"]["follows"]["count"];
-			$followers = $arr_json["user"]["followed_by"]["count"];
+			$id = $arr_json["graphql"]["user"]["id"];
+			$pp_url = $arr_json["graphql"]["user"]["profile_pic_url"];
+			$following = $arr_json["graphql"]["user"]["edge_follow"]["count"];
+			$followers = $arr_json["graphql"]["user"]["edge_followed_by"]["count"];
 			
 		} else {
 			// echo "username not found";
