@@ -476,6 +476,7 @@ class Setting extends Model {
 		curl_close($c);
 		
 		$arr_json = json_decode($page,true);
+		dd($arr_json);
 		if (count($arr_json)>0) {
 			$found = true;
 			$id = $arr_json["user"]["id"];
