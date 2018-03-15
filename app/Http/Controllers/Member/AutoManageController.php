@@ -1667,10 +1667,10 @@ class AutoManageController extends Controller
 		$arr = json_decode($page,true);
 		// var_dump(json_decode($page,true));
 		if (count($arr)>0) {
-			if ($arr["user"]["is_private"]) {
+			if ($arr["graphql"]["user"]["is_private"]) {
 				$is_private = true;
 			}
-			else if (!$arr["user"]["is_private"]) {
+			else if (!$arr["graphql"]["user"]["is_private"]) {
 				$is_private = false;
 			}
 			
