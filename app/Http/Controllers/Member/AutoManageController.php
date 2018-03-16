@@ -1625,7 +1625,7 @@ class AutoManageController extends Controller
 	public function check_private_user($username){
 		$is_private = false;
 		
-		$ports[] = "1945"; 
+		/*$ports[] = "1945"; 
 		$ports[] = "3128"; 
 		$ports[] = "2015"; 
 		$ports[] = "2503"; 
@@ -1634,7 +1634,41 @@ class AutoManageController extends Controller
 		$port = $ports[array_rand($ports)];
 		$cred = "sugiarto123:678flazz";
 		$proxy = "103.236.201.60";//good proxy
-		$auth = true;
+		$auth = true;*/
+		$arr_proxys[] = [
+			"proxy"=>"103.31.251.171",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"8080",
+		];			
+		$arr_proxys[] = [
+			"proxy"=>"103.31.251.171",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"9700",
+		];			
+		$arr_proxys[] = [
+			"proxy"=>"103.31.251.171",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"3128",
+		];			
+
+		$arr_proxys[] = [
+			"proxy"=>"103.31.250.62",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"8080",
+		];			
+		$arr_proxys[] = [
+			"proxy"=>"103.31.250.62",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"9700",
+		];			
+		$arr_proxys[] = [
+			"proxy"=>"103.31.250.62",
+			"cred"=>"rizky12:proxyrizky",
+			"port"=>"3128",
+		];			
+
+		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
+		
 
 		if(App::environment() == "local"){
 			$cookiefile = base_path().'/../general/ig-cookies/'.$username.'-cookies-grab.txt';
@@ -1646,13 +1680,13 @@ class AutoManageController extends Controller
 		$c = curl_init();
 
 
-		if ($auth) {
-			curl_setopt($c, CURLOPT_PROXY, $proxy);
-			curl_setopt($c, CURLOPT_PROXYPORT, $port);
-			curl_setopt($c, CURLOPT_PROXYUSERPWD, $cred);
-		} else if (!$auth) {
-			curl_setopt($c, CURLOPT_PROXY, $proxy.":".$port);
-		}
+		// if ($auth) {
+			curl_setopt($c, CURLOPT_PROXY, $arr_proxy["proxy"]);
+			curl_setopt($c, CURLOPT_PROXYPORT, $arr_proxy["port"]);
+			curl_setopt($c, CURLOPT_PROXYUSERPWD, $arr_proxy["cred"]);
+		// } else if (!$auth) {
+			// curl_setopt($c, CURLOPT_PROXY, $proxy.":".$port);
+		// }
 		curl_setopt($c, CURLOPT_PROXYTYPE, 'HTTP');
 		curl_setopt($c, CURLOPT_URL, $url);
 		curl_setopt($c, CURLOPT_REFERER, $url);
