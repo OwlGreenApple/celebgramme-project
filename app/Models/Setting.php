@@ -158,6 +158,8 @@ class Setting extends Model {
 		$following_join = 0;
 		$id = 0;
 
+		SettingMeta::createMeta("fl_filename","-",$setting->id);
+		
 		if ( ($user->test==0) || ($user->test==2) ){
 			$ig_data = $this->get_ig_data($arr['insta_username']);
 			$id = $ig_data["id"];
@@ -170,7 +172,6 @@ class Setting extends Model {
 		SettingMeta::createMeta("following_join",$following_join,$setting->id);
 		SettingMeta::createMeta("followers",$followers_join,$setting->id);
 		SettingMeta::createMeta("following",$following_join,$setting->id);
-		SettingMeta::createMeta("fl_filename","-",$setting->id);
 		$setting->insta_user_id = $id;
 		$setting->save();
 		
