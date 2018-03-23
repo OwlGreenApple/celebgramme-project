@@ -196,7 +196,7 @@
             <div class="legal">
                 <div class="copyright">
                     &copy; 2017 <a href="{{url('')}}">Celebgramme</a>.
-                    <b>Version: </b> 3.6.1
+                    <b>Version: </b> 3.6.2
                 </div>
             </div>
             <!-- #Footer -->
@@ -234,7 +234,7 @@
                         </a>
                     </li>
 					<li id="confirmPayment" @if(Request::is('confirm-payment')) class="active" @endif>
-                        <a href="{{url('confirm-payment')}};" data-identity="confirmPayment"  class="waves-light">
+                        <a href="{{url('confirm-payment')}}" data-identity="confirmPayment"  class="waves-light">
                             <i class="material-icons text-white">event_available</i>
                             <span>Confirm Payment</span>
                         </a>
@@ -276,7 +276,7 @@
             <div class="legal">
                 <div class="copyright">
                     &copy; 2017 <a href="{{url('')}}">Celebgramme</a>.
-                    <b>Version: </b> 3.6.1
+                    <b>Version: </b> 3.6.2
                 </div>
             </div>
             <!-- #Footer -->
