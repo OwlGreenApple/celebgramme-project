@@ -304,6 +304,31 @@ class Setting extends Model {
 		
 				//new nata
 				$arr_proxys[] = [
+					"proxy"=>"103.215.72.213",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"3128",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.215.72.213",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"2017",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.215.72.213",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"1945",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.215.72.213",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"2503",
+				];
+				$arr_proxys[] = [
+					"proxy"=>"103.215.72.213",
+					"cred"=>"sugiarto:q1w2e3r4",
+					"port"=>"3103",
+				];			
+				$arr_proxys[] = [
 					"proxy"=>"103.56.206.11",
 					"cred"=>"sugiarto:q1w2e3r4",
 					"port"=>"3128",
@@ -375,31 +400,6 @@ class Setting extends Model {
 				];
 				$arr_proxys[] = [
 					"proxy"=>"103.56.206.13",
-					"cred"=>"sugiarto:q1w2e3r4",
-					"port"=>"3103",
-				];			
-				$arr_proxys[] = [
-					"proxy"=>"103.56.206.54",
-					"cred"=>"sugiarto:q1w2e3r4",
-					"port"=>"3128",
-				];
-				$arr_proxys[] = [
-					"proxy"=>"103.56.206.54",
-					"cred"=>"sugiarto:q1w2e3r4",
-					"port"=>"2017",
-				];
-				$arr_proxys[] = [
-					"proxy"=>"103.56.206.54",
-					"cred"=>"sugiarto:q1w2e3r4",
-					"port"=>"1945",
-				];
-				$arr_proxys[] = [
-					"proxy"=>"103.56.206.54",
-					"cred"=>"sugiarto:q1w2e3r4",
-					"port"=>"2503",
-				];
-				$arr_proxys[] = [
-					"proxy"=>"103.56.206.54",
 					"cred"=>"sugiarto:q1w2e3r4",
 					"port"=>"3103",
 				];			
