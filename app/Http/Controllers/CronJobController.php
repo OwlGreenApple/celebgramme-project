@@ -369,11 +369,11 @@ class CronJobController extends Controller
 								->get();
 		} else {
 			$settings = Setting::select("settings.*","setting_helpers.proxy_id")
-								->join("users","users.id","=","settings.last_user")
+								// ->join("users","users.id","=","settings.last_user")
 								->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 								->where("settings.type",'=','temp')
 								->where('settings.error_cred','=',0)
-								->where("users.active_auto_manage",">",0)
+								// ->where("users.active_auto_manage",">",0)
 								->where("insta_username","=",$insta_username)
 								// ->where("setting_helpers.server_automation","=",$server_automation)
 								->get();
