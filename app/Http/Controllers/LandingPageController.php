@@ -22,7 +22,7 @@ use Celebgramme\Models\UserLog;
 use Celebgramme\Models\Proxies;
 use Celebgramme\Models\Meta;
 use Celebgramme\Models\ViewProxyUses;
-// use Celebgramme\Models\Survey;
+use Celebgramme\Models\Survey;
 
 use Celebgramme\Helpers\GeneralHelper;
 
