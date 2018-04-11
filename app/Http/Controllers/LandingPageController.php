@@ -55,12 +55,13 @@ class LandingPageController extends Controller
     $arr["message"] = "Survey berhasil disubmit";
     
     $emaildata = [
-      'url' => "",
-      'no_undian' => "",
+      'no_undian' => $no_undian,
+      'email' => $request->email,
+      'nama' => $request->fullname,
     ];
-    Mail::queue('emails.submit-survey', $emaildata, function ($message) use ($request) {
+    Mail::queue('emails.submit-survey', $emaildata, function ($message) use ($emaildata) {
       $message->from('no-reply@celebgramme.com', 'Celebgramme');
-      $message->to($request->email);
+      $message->to($emaildata["email"]);
       $message->subject('[Celebgramme] Submit Survey');
     });
     
