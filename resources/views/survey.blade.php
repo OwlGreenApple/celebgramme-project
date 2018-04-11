@@ -63,8 +63,10 @@
           <form class="form-horizontal" id="form-survey">
             
             <div class="form-group">
-                <div id="alert">
+              <div class="col-md-12">
+                <div id="alert" class="alert">
                 </div>
+              </div>
             </div>
             <div class="form-group">
                 <label for="name" class="col-md-12 control-label" style="text-align:left;">Nama lengkap</label>

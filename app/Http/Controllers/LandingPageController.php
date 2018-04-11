@@ -36,10 +36,33 @@ class LandingPageController extends Controller
   }
   
 	public function submit_survey(req $request){
-    Survey::create($request->all());
+    $survey= Survey::where("email",$request->email)->first();
+    if (!is_null($survey)) {
+      $arr["type"] = "error";
+      $arr["message"] = "Email anda sudah terdaftar";
+      return $arr;
+    }
+    
+    $count_survey = Survey::all()->count();
+    
+    $no_undian = 100+$count_survey;
+    
+    $survey = Survey::create($request->all());
+    $survey->no_undian = $no_undian;
+    $survey->save();
     // dd($survey);
     $arr["type"] = "success";
     $arr["message"] = "Survey berhasil disubmit";
+    
+    $emaildata = [
+      'url' => "",
+      'no_undian' => "",
+    ];
+    Mail::queue('emails.submit-survey', $emaildata, function ($message) use ($request) {
+      $message->from('no-reply@celebgramme.com', 'Celebgramme');
+      $message->to($request->email);
+      $message->subject('[Celebgramme] Submit Survey');
+    });
     
 		return $arr;
   }
