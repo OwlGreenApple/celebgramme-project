@@ -43,7 +43,7 @@ class LandingPageController extends Controller
       return $arr;
     }
     
-    $count_survey = Survey::all()->count();
+    $count_survey = Survey::count();
     
     $no_undian = 100+$count_survey;
     
