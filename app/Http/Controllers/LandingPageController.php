@@ -53,6 +53,7 @@ class LandingPageController extends Controller
     // dd($survey);
     $arr["type"] = "success";
     $arr["message"] = "Survey berhasil disubmit";
+    $arr["noundian"] = $no_undian;
     
     $emaildata = [
       'no_undian' => $no_undian,

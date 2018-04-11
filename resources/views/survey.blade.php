@@ -34,6 +34,10 @@
                 if(data.type=='success') {
                   $("#alert").addClass("alert-success");
                   $("#alert").removeClass("alert-danger");
+                  
+                  $("#thank-you").show();
+                  $("#no-undian").html(data.noundian);
+                  $("#form-survey").hide();
                 } else if (data.type=='error') {
                   $("#alert").addClass("alert-danger");
                   $("#alert").removeClass("alert-success");
@@ -138,6 +142,47 @@
                 </div>
             </div>
           </form>
+          
+          <div id="thank-you" style="display:none;">
+            Terima kasih sudah berpartisipasi dalam "Survey Berhadiah Celebgramme" <br>
+            Ini adalah NO UNDIAN Anda: <br>
+            <br>
+            <b><span id="no-undian" style="font-size:25px;">101</span></b> <br>
+            <br>
+            Pastikan anda melihat Video Pengundian Pemenang pada hari: <br>
+            <b>Senin, 16 April 2018, Jam 12 siang - Pengundian ke-1</b> <br>
+            <b>Senin, 23 April 2018, Jam 12 siang - Pengundian ke-2</b> <br>
+            <br>
+            Selamat, Anda juga mendapatkan KUPON DISKON CELEBGRAMME 15% <br>
+            Berlaku untuk semua paket Celebgramme <br>
+            <br>
+            Kupon Diskon Celebgramme : xp7sr12 <br>
+            <br>
+            Order di ► <a href="https://celebgramme.com/celebgramme/prices">https://celebgramme.com/celebgramme/prices</a> <br>
+            <br>
+            Kami juga memberikan Potongan Rp 75,000 untuk Seminar Digimaru  <br>
+            <br>
+            "Online sales explosion" <br>
+            Jakarta, 28 April 2018 <br>
+            Aruba room, Kota Kasablanka Lt 4 <br>
+            <br>
+            Kupon Diskon Digimaru : survey2018 <br>
+            <br>
+            Pesan Tiket ► <a href="http://digimaru.org">http://digimaru.org</a> <br>
+            *Kupon BOLEH Digunakan berulang untuk pembelian lebih dari 1 tiket <br>
+            <br>
+            Gunakan Kupon sebaik-baiknya <br>
+            Dan semoga anda terpilih menjadi salah satu pemenang Survey Berhadiah Celebgramme <br>
+            <br>
+            Salam hangat, <br>
+            <br>
+            <br>
+            Michael Sugiharto <br>
+            Celebgramme.com <br>
+            <br>
+            <br>
+            *PS: Video akan diupload di https://celebgramme.com/surveywinner
+          </div>
 
         </div>
         <div class="col-sm-2 col-md-2">
