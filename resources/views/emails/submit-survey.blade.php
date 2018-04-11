@@ -12,10 +12,9 @@ Senin, 23 April 2018, Jam 12 siang - Pengundian ke-2 <br>
 Selamat, Anda juga mendapatkan KUPON DISKON CELEBGRAMME 15% <br>
 Berlaku untuk semua paket Celebgramme <br>
 <br>
-Kupon Diskon Celebgramme : xty5847 <br>
+Kupon Diskon Celebgramme : survey2018 <br>
 <br>
 Order di ► https://celebgramme.com/celebgramme/prices <br>
-*Kupon berlaku selama 7 hari kedepan saja <br>
 <br>
 Kami juga memberikan Potongan Rp 75,000 untuk Seminar Digimaru  <br>
 <br>
