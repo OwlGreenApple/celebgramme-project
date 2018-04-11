@@ -12,7 +12,7 @@ Senin, 23 April 2018, Jam 12 siang - Pengundian ke-2 <br>
 Selamat, Anda juga mendapatkan KUPON DISKON CELEBGRAMME 15% <br>
 Berlaku untuk semua paket Celebgramme <br>
 <br>
-Kupon Diskon Celebgramme : survey2018 <br>
+Kupon Diskon Celebgramme : xp7sr12 <br>
 <br>
 Order di ► https://celebgramme.com/celebgramme/prices <br>
 <br>
