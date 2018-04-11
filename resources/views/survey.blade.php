@@ -17,7 +17,7 @@
       <script src="{{ asset('js/jquery-1.11.3.js') }}"></script>
       <script>
         $(document).ready(function(){
-          $('#button-add').click(function(e){
+          $('#button-submit').click(function(e){
             $.ajax({                                      
               url: '<?php echo url('submit-survey'); ?>',
               headers: {
@@ -130,12 +130,12 @@
                 </div>
             </div>
           
-          </form>
             <div class="form-group">
                 <div class="col-md-2 col-xs-12 col-md-offset-5 col-xs-offset-0">
-                    <input type="button" class="btn btn-primary form-control" value="add" id="button-add">
+                    <input type="button" class="btn btn-primary form-control" value="Submit" id="button-submit">
                 </div>
             </div>
+          </form>
 
         </div>
         <div class="col-sm-2 col-md-2">
