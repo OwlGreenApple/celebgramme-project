@@ -24,8 +24,6 @@ use Celebgramme\Models\Meta;
 use Celebgramme\Models\ViewProxyUses;
 // use Celebgramme\Models\Survey;
 
-use Celebgramme\Veritrans\Veritrans;
-
 use Celebgramme\Helpers\GeneralHelper;
 
 use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, DB;
@@ -37,7 +35,7 @@ class LandingPageController extends Controller
     return view('survey');
   }
   
-	public function submit_survey(){
+	public function submit_survey(req $request){
     Survey::create($request->all());
     // dd($survey);
     $arr["type"] = "success";

@@ -454,8 +454,10 @@ class CronJobController extends Controller
 				//saveimage url to meta
 				if ($pp_url<>"") {
 					
-					$file_headers = get_headers($pp_url,1);					
-					if(strpos($file_headers[0], '404') !== false){
+					$file_headers = get_headers($pp_url,1);
+          
+					if(!$this->is_url_exist($pp_url)){
+					// if(strpos($file_headers[0], '404') !== false){
 					// echo "File Doesn't Exists!";
 					} else {
 						// echo "File Exists!";
@@ -516,6 +518,21 @@ class CronJobController extends Controller
 		
 		
 	}
+  
+  public function is_url_exist($url){
+    $ch = curl_init($url);    
+    curl_setopt($ch, CURLOPT_NOBODY, true);
+    curl_exec($ch);
+    $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    if($code == 200){
+       $status = true;
+    }else{
+      $status = false;
+    }
+    curl_close($ch);
+    return $status;
+  }
 	
 	public function update_insta_user_id(){
 		$settings = Setting::all();
