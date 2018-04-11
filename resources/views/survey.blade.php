@@ -149,16 +149,16 @@
             Terima kasih sudah berpartisipasi dalam "Survey Berhadiah Celebgramme" <br>
             Ini adalah NO UNDIAN Anda: <br>
             <br>
-            <b><span id="no-undian" style="font-size:25px;">101</span></b> <br>
+            <b><span id="no-undian" style="font-size:100px;">101</span></b> <br>
             <br>
             Pastikan anda melihat Video Pengundian Pemenang pada hari: <br>
             <b>Senin, 16 April 2018, Jam 12 siang - Pengundian ke-1</b> <br>
             <b>Senin, 23 April 2018, Jam 12 siang - Pengundian ke-2</b> <br>
             <br>
-            Selamat, Anda juga mendapatkan KUPON DISKON CELEBGRAMME 15% <br>
+            Selamat, Anda juga mendapatkan <b>KUPON DISKON CELEBGRAMME 15%</b> <br>
             Berlaku untuk semua paket Celebgramme <br>
             <br>
-            Kupon Diskon Celebgramme : xp7sr12 <br>
+            Kupon Diskon Celebgramme : <b>xp7sr12</b> <br>
             <br>
             Order di ► <a href="https://celebgramme.com/celebgramme/prices">https://celebgramme.com/celebgramme/prices</a> <br>
             <br>
@@ -168,7 +168,7 @@
             Jakarta, 28 April 2018 <br>
             Aruba room, Kota Kasablanka Lt 4 <br>
             <br>
-            Kupon Diskon Digimaru : survey2018 <br>
+            Kupon Diskon Digimaru : <b>survey2018</b> <br>
             <br>
             Pesan Tiket ► <a href="http://digimaru.org">http://digimaru.org</a> <br>
             *Kupon BOLEH Digunakan berulang untuk pembelian lebih dari 1 tiket <br>
