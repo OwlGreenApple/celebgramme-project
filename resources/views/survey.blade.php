@@ -18,6 +18,8 @@
       <script>
         $(document).ready(function(){
           $('#button-submit').click(function(e){
+            $(this).val("Please wait");
+            $(this).prop('disabled', true);;
             $.ajax({                                      
               url: '<?php echo url('submit-survey'); ?>',
               headers: {
@@ -182,6 +184,9 @@
             <br>
             <br>
             *PS: Video akan diupload di https://celebgramme.com/surveywinner
+            <br>
+            <br>
+            
           </div>
 
         </div>
