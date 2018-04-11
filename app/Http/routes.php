@@ -11,6 +11,10 @@
 | its version 2.
 */
 
+/* Survey */
+Route::get('survey', 'LandingPageController@survey');
+Route::post('submit-survey', 'LandingPageController@submit_survey');
+
 /* register package */
 Route::get('testing', 'LandingPageController@testing');
 Route::get('package', 'LandingPageController@package');

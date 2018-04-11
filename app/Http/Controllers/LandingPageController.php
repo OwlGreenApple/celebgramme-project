@@ -22,6 +22,7 @@ use Celebgramme\Models\UserLog;
 use Celebgramme\Models\Proxies;
 use Celebgramme\Models\Meta;
 use Celebgramme\Models\ViewProxyUses;
+// use Celebgramme\Models\Survey;
 
 use Celebgramme\Veritrans\Veritrans;
 
@@ -31,6 +32,19 @@ use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, DB;
 
 class LandingPageController extends Controller
 {
+  
+	public function survey(){
+    return view('survey');
+  }
+  
+	public function submit_survey(){
+    Survey::create($request->all());
+    // dd($survey);
+    $arr["type"] = "success";
+    $arr["message"] = "Survey berhasil disubmit";
+    
+		return $arr;
+  }
   
 	public function testing(){
 		$arr_proxys = array();
