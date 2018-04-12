@@ -120,7 +120,7 @@
                 <label for="name" class="col-md-12 control-label" style="text-align:left;">Sebutkan 5 toko online IG terpopuler menurut anda?</label>
 
                 <div class="col-md-12">
-                    <input id="kota" type="text" class="form-control" name="kota" >
+                    <textarea id="popular-olshop" class="form-control" name="popular_olshop" rows="3"></textarea>
                 </div>
             </div>
 
@@ -128,7 +128,7 @@
                 <label for="name" class="col-md-12 control-label" style="text-align:left;">Sebutkan 5 selebgram terpopuler versi anda?</label>
 
                 <div class="col-md-12">
-                    <input id="kota" type="text" class="form-control" name="selebgram" >
+                    <textarea id="selebgram" class="form-control" name="selebgram" rows="3"></textarea>
                 </div>
             </div>
 
@@ -183,7 +183,7 @@
             Celebgramme.com <br>
             <br>
             <br>
-            *PS: Video akan diupload di https://celebgramme.com/surveywinner
+            *PS: Video pengundian dan pengumuman pemenang akan diupload di https://celebgramme.com/surveywinner
             <br>
             <br>
             

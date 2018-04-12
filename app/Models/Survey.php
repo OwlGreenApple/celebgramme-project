@@ -16,7 +16,7 @@ class Survey extends Model {
 													"city",
 													"is_bisnis",
 													"is_selebgram",
-													"kota",
+													"popular_olshop",
 													"selebgram",
 												];
 

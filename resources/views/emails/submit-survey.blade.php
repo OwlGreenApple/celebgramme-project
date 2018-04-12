@@ -37,7 +37,7 @@ Michael Sugiharto <br>
 Celebgramme.com <br>
 <br>
 <br>
-*PS: Video akan diupload di https://celebgramme.com/surveywinner
+*PS: Video pengundian dan pengumuman pemenang akan diupload di https://celebgramme.com/surveywinner
 
 
 
