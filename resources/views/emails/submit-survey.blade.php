@@ -18,9 +18,11 @@ Order di ► https://celebgramme.com/celebgramme/prices <br>
 <br>
 Kami juga memberikan Potongan Rp 75,000 untuk Seminar Digimaru  <br>
 <br>
+<b>
 "Online sales explosion" <br>
 Jakarta, 28 April 2018 <br>
 Aruba room, Kota Kasablanka Lt 4 <br>
+</b>
 <br>
 Kupon Diskon Digimaru : <b>survey2018</b> <br>
 <br>
