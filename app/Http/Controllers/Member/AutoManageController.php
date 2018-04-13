@@ -728,7 +728,8 @@ class AutoManageController extends Controller
 			
 			//update user-id 
 			if ($setting->insta_user_id == "0"){
-				$ig_data = Setting::get_ig_data($setting->insta_username,$setting->id);
+				// $ig_data = Setting::get_ig_data($setting->insta_username,$setting->id);
+				$ig_data = Setting::get_ig_data($setting->insta_username);
 				$id = $ig_data["id"];
 				
 				$setting->insta_user_id = $id;

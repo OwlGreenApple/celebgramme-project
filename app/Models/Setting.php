@@ -289,11 +289,83 @@ class Setting extends Model {
 			return $setting_temp;
   }
 
+	protected function get_ig_data($username) 
+	{
+		$pp_url = "";
+		$followers = 0;
+		$following = 0;
+		$id = 0; $found = false;
+		$is_private = 0;
+		$followed_by_viewer = 0;
+		
+			
+			$port = "10889";
+			$cred = "";
+			$proxy = "208.115.112.98";
+			
+			
+			
+			
+			$i = new Instagram(false,false,[
+				"storage"       => "mysql",
+				"dbhost"       => Config::get('automation.DB_HOST'),
+				"dbname"   => Config::get('automation.DB_DATABASE'),
+				"dbusername"   => Config::get('automation.DB_USERNAME'),
+				"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+			]);
+			if($cred==""){
+				$i->setProxy("http://".$proxy.":".$port);
+			}
+			else {
+				$i->setProxy("http://".$cred."@".$proxy.":".$port);
+			}
+			try {
+				$i->login("naningtyasa", "qwerty12345", 300);
+				$username = str_replace("@", "", $username);
+				$userData = $i->people->getInfoByName($username)->getUser();
+				if (!is_null($userData)) {
+					$found = true;
+					$id = $userData->getPk();
+					$pp_url = $userData->getProfilePicUrl();
+					$following = $userData->getFollowingCount();
+					$followers = $userData->getFollowerCount();
+					
+					//new
+					$is_private = (int) $userData->getIsPrivate();
+					$followData = $i->people->getFriendship($id);
+					if (!is_null($followData)) {
+						// $is_followedBy = $followData->getFollowedBy();
+						$is_following = $followData->getFollowing();						
+						$followed_by_viewer = (int) $is_following;
+					}
+				}
+			}
+			catch (Exception $e) {
+				$found = false;
+			}
+		
+		
+		$arr = array(
+			"id"=>$id,
+			"pp_url"=>$pp_url,
+			"following"=>$following,
+			"followers"=>$followers,
+			"found"=>$found,
+			
+			//new
+			"is_private"=>$is_private,
+			"followed_by_viewer"=>$followed_by_viewer,
+		);
+		
+		return $arr;
+		
+	}
+		
 	/*
 	* get instagram data
 	* return num of followers & following, id ig, pp url
 	*/
-	protected function get_ig_data($username,$setting_id = 0) 
+	protected function backup_get_ig_data($username,$setting_id = 0) 
 	{
 		$pp_url = "";
 		$followers = 0;

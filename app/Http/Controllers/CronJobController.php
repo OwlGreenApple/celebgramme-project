@@ -390,7 +390,8 @@ class CronJobController extends Controller
 					continue;
 				}
 				if ( ($user->test==0) || ($user->test==2) ) {
-					$ig_data = Setting::get_ig_data($setting->insta_username,$setting->id);
+					// $ig_data = Setting::get_ig_data($setting->insta_username,$setting->id);
+					$ig_data = Setting::get_ig_data($setting->insta_username);
 					$found = $ig_data["found"];
 					$id = $ig_data["id"];
 					$pp_url = $ig_data["pp_url"];
