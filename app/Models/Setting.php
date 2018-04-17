@@ -387,21 +387,23 @@ class Setting extends Model {
 			try {
 				$i->login($arr_user["username"], $arr_user["password"], 300);
 				$username = str_replace("@", "", $username);
-				$userData = $i->people->getInfoByName($username)->getUser();
-				if (!is_null($userData)) {
-					$found = true;
-					$id = $userData->getPk();
-					$pp_url = $userData->getProfilePicUrl();
-					$following = $userData->getFollowingCount();
-					$followers = $userData->getFollowerCount();
-					
-					//new
-					$is_private = (int) $userData->getIsPrivate();
-					$followData = $i->people->getFriendship($id);
-					if (!is_null($followData)) {
-						// $is_followedBy = $followData->getFollowedBy();
-						$is_following = $followData->getFollowing();						
-						$followed_by_viewer = (int) $is_following;
+				if (!$i->account->checkUsername($username)->getAvailable()) {
+					$userData = $i->people->getInfoByName($username)->getUser();
+					if (!is_null($userData)) {
+						$found = true;
+						$id = $userData->getPk();
+						$pp_url = $userData->getProfilePicUrl();
+						$following = $userData->getFollowingCount();
+						$followers = $userData->getFollowerCount();
+						
+						//new
+						$is_private = (int) $userData->getIsPrivate();
+						$followData = $i->people->getFriendship($id);
+						if (!is_null($followData)) {
+							// $is_followedBy = $followData->getFollowedBy();
+							$is_following = $followData->getFollowing();						
+							$followed_by_viewer = (int) $is_following;
+						}
 					}
 				}
 			}
