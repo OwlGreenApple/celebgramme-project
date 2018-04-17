@@ -135,7 +135,6 @@ Route::get('count-instagram-data-369', 'CronJobController@count_instagram_data')
 Route::get('check-create-affiliate-369', 'CronJobController@create_user_from_affiliate');
 Route::get('task-daily-automation-cron-369', 'CronJobController@task_daily_automation_cron');
 Route::get('check-all-proxy-369', 'CronJobController@check_all_proxy');
-// Route::get('task-automation-like-369', 'CronJobController@task_automation_like');
 
 //instant changing 
 Route::get('fixing-error-cred', 'CronJobController@fixing_error_cred');

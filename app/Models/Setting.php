@@ -299,9 +299,79 @@ class Setting extends Model {
 		$followed_by_viewer = 0;
 		
 			
-			$port = "10889";
-			$cred = "";
-			$proxy = "208.115.112.98";
+			//
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10880",
+				"username"=>"melodianaelisa",
+				"password"=>"qazwsx123",
+			];			
+			
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10881",
+				"username"=>"dessiarumi",
+				"password"=>"abcde12345",
+			];			
+			
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10882",
+				"username"=>"renawilliams222",
+				"password"=>"abcde12345",
+			];			
+			
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10883",
+				"username"=>"mayyyvitri",
+				"password"=>"qwerty12345",
+			];			
+			
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10884",
+				"username"=>"marianalaskmi",
+				"password"=>"qwerty12345",
+			];			
+			
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10885",
+				"username"=>"magdalenapeter96",
+				"password"=>"qazwsx123",
+			];			
+			
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10886",
+				"username"=>"felysamora",
+				"password"=>"abcde12345",
+			];			
+			
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10887",
+				"username"=>"nithaasyari",
+				"password"=>"qweasdzxc123",
+			];			
+			
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10888",
+				"username"=>"thalianasarifernand",
+				"password"=>"987456321qwerty",
+			];			
+			
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10889",
+				"username"=>"naningtyasa",
+				"password"=>"qwerty12345",
+			];			
+			
+			$arr_user = $arr_users[array_rand($arr_users)];
+			
 			
 			
 			
@@ -313,14 +383,9 @@ class Setting extends Model {
 				"dbusername"   => Config::get('automation.DB_USERNAME'),
 				"dbpassword"   => Config::get('automation.DB_PASSWORD'),
 			]);
-			if($cred==""){
-				$i->setProxy("http://".$proxy.":".$port);
-			}
-			else {
-				$i->setProxy("http://".$cred."@".$proxy.":".$port);
-			}
+			$i->setProxy("http://".$arr_user['proxy'].":".$arr_user['port']);
 			try {
-				$i->login("naningtyasa", "qwerty12345", 300);
+				$i->login($arr_user["username"], $arr_user["password"], 300);
 				$username = str_replace("@", "", $username);
 				$userData = $i->people->getInfoByName($username)->getUser();
 				if (!is_null($userData)) {
