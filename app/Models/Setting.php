@@ -410,7 +410,11 @@ class Setting extends Model {
 			catch (Exception $e) {
 				$found = false;
 			}
-		
+			catch (\InstagramAPI\Exception\NotFoundException $e) {
+				
+			} catch (\InstagramAPI\Exception\EmptyResponseException $e) {
+				$this->get_ig_data($username);
+			}
 		
 		$arr = array(
 			"id"=>$id,
