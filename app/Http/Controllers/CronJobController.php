@@ -505,7 +505,7 @@ class CronJobController extends Controller
 					$setting_temp->save();
 				}
 
-				usleep(300000); 
+				usleep(120000); 
 		}
 		
 		if(App::environment() == "local"){		
