@@ -42,7 +42,7 @@ use Celebgramme\Helpers\GlobalHelper;
 
 use \InstagramAPI\Instagram;
 
-use View, Input, Mail, Request, App, Hash, Validator, Carbon, DB, Config;
+use View, Input, Mail, Request, App, Hash, Validator, Carbon, DB, Config, Exception;
 
 class CronJobController extends Controller
 {
@@ -455,7 +455,12 @@ class CronJobController extends Controller
 				//saveimage url to meta
 				if ($pp_url<>"") {
 					
-					$file_headers = get_headers($pp_url,1);
+					/*try {
+						$file_headers = get_headers($pp_url,1);
+					}
+					catch (Exception $e) {
+						continue;
+					}*/
           
 					if(!$this->is_url_exist($pp_url)){
 					// if(strpos($file_headers[0], '404') !== false){
