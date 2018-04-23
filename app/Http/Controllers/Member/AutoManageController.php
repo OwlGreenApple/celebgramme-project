@@ -1109,11 +1109,11 @@ class AutoManageController extends Controller
 		
 		if ( ($data["is_auto_get_likes"]) || ($data["status_auto"]) ) {
 			//cek private, untuk yang full auto atau advanced manual tapi auto get like dipilih
-			if ($this->check_private_user($setting_temp->insta_username)) {
+			/*if ($this->check_private_user($setting_temp->insta_username)) {
 				$arr["message"]= "Profile account instagram tidak boleh di Private, untuk fitur auto get like";
 				$arr["type"]= "error";
 				return $arr;
-			}
+			}*/
 			
 			$data["is_auto_get_likes"] = 1;
 			
