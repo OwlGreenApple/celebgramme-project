@@ -37,7 +37,7 @@ use Celebgramme\Helpers\GlobalHelper;
 
 use \InstagramAPI\Instagram;
 
-use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, DB, Config;
+use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, DB, Config, Exception;
 
 class AutoManageController extends Controller
 {
@@ -1109,11 +1109,11 @@ class AutoManageController extends Controller
 		
 		if ( ($data["is_auto_get_likes"]) || ($data["status_auto"]) ) {
 			//cek private, untuk yang full auto atau advanced manual tapi auto get like dipilih
-			/*if ($this->check_private_user($setting_temp->insta_username)) {
+			if ($this->check_private_user($setting_temp->insta_username)) {
 				$arr["message"]= "Profile account instagram tidak boleh di Private, untuk fitur auto get like";
 				$arr["type"]= "error";
 				return $arr;
-			}*/
+			}
 			
 			$data["is_auto_get_likes"] = 1;
 			
@@ -1624,6 +1624,120 @@ class AutoManageController extends Controller
 	}
 
 	public function check_private_user($username){
+		$is_private = false;
+		
+
+			//
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10880",
+				"username"=>"melodianaelisa",
+				"password"=>"qazwsx123",
+			];			
+			
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10881",
+				"username"=>"dessiarumi",
+				"password"=>"abcde12345",
+			];			
+			
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10882",
+				"username"=>"renawilliams222",
+				"password"=>"abcde12345",
+			];			
+			
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10883",
+				"username"=>"mayyyvitri",
+				"password"=>"qwerty12345",
+			];			
+			
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10884",
+				"username"=>"marianalaskmi",
+				"password"=>"qwerty12345",
+			];			
+			
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10885",
+				"username"=>"magdalenapeter96",
+				"password"=>"qazwsx123",
+			];			
+			
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10886",
+				"username"=>"felysamora",
+				"password"=>"abcde12345",
+			];			
+			
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10887",
+				"username"=>"nithaasyari",
+				"password"=>"qweasdzxc123",
+			];			
+			
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10888",
+				"username"=>"thalianasarifernand",
+				"password"=>"987456321qwerty",
+			];			
+			
+			$arr_users[] = [
+				"proxy"=>"208.115.112.98",
+				"port"=>"10889",
+				"username"=>"naningtyasa",
+				"password"=>"qwerty12345",
+			];			
+			
+			$arr_user = $arr_users[array_rand($arr_users)];
+			
+			
+			
+			
+			
+			$i = new Instagram(false,false,[
+				"storage"       => "mysql",
+				"dbhost"       => Config::get('automation.DB_HOST'),
+				"dbname"   => Config::get('automation.DB_DATABASE'),
+				"dbusername"   => Config::get('automation.DB_USERNAME'),
+				"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+			]);
+			$i->setProxy("http://".$arr_user['proxy'].":".$arr_user['port']);
+			try {
+				$i->login($arr_user["username"], $arr_user["password"], 300);
+				$username = str_replace("@", "", $username);
+				if (!$i->account->checkUsername($username)->getAvailable()) {
+					$userData = $i->people->getInfoByName($username)->getUser();
+					if (!is_null($userData)) {
+						//new
+						$is_private = (int) $userData->getIsPrivate();
+					}
+				}
+			}
+			catch (Exception $e) {
+			}
+			catch (\InstagramAPI\Exception\NotFoundException $e) {
+				
+			} catch (\InstagramAPI\Exception\EmptyResponseException $e) {
+				$this->check_private_user($username);
+			} catch (\InstagramAPI\Exception\NetworkException $e) {
+				usleep(120000); 
+				$this->check_private_user($username);
+			}
+		
+		return $is_private;
+	}
+
+	public function backup_check_private_user($username){
 		$is_private = false;
 		
 		/*$ports[] = "1945"; 

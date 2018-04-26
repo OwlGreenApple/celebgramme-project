@@ -172,7 +172,7 @@ class LandingPageController extends Controller
 		} else {
 			$valid = false;
 		}
-			
+
 		if ($valid) {
 			if ($coupon->coupon_percent == 0 ) {
 				$arr['show']=number_format($coupon->coupon_value,0,'','.');
