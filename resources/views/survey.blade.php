@@ -186,7 +186,7 @@
             <br>
             <b><span id="no-undian" style="font-size:100px;">101</span></b> <br>
             <br>
-            Pastikan anda melihat Video Pengundian Pemenang pada hari: <br>
+            Pastikan anda melihat <a href="https://celebgramme.com/surveywinner">disini</a> Pengundian Pemenang pada hari: <br>
             <b>Sabtu, 12 Mei 2018, Jam 12 siang - Pengundian ke-1</b> <br>
             <b>Sabtu, 19 Mei 2018, Jam 12 siang - Pengundian ke-2</b> <br>
             <br>
@@ -207,10 +207,7 @@
             Celebgramme.com <br>
             <br>
             <br>
-            *PS: Video pengundian dan pengumuman pemenang akan diupload di https://celebgramme.com/surveywinner
-            <br>
-            <br>
-            *PSS: Kupon Celebgramme berlaku sampai tanggal 31 Mei 2018
+            *PS: Kupon Celebgramme berlaku sampai tanggal 31 Mei 2018
             <br>
             <br>
           </div>
