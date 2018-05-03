@@ -15,6 +15,7 @@
       </style>
       <!-- Jquery Core Js -->
       <script src="{{ asset('js/jquery-1.11.3.js') }}"></script>
+      <script type="text/javascript" src="{{ asset('/selectize/js/standalone/selectize.js') }}"></script>
       <script>
         $(document).ready(function(){
           $('#button-submit').click(function(e){
@@ -121,6 +122,22 @@
 
                 <div class="col-md-12">
                     <textarea id="popular-olshop" class="form-control" name="popular_olshop" rows="3"></textarea>
+                    <script>
+                      var selectOlshop = $('#popular-olshop').selectize({
+                        plugins:['remove_button'],
+                        delimiter: ';',
+                        persist: false,
+                        create: function(input) {
+                          return {
+                            value: input,
+                            text: input
+                          }
+                        },
+                      });
+                      
+                      var selectizeOlshop = selectOlshop[0].selectize;
+
+                    </script>
                 </div>
             </div>
 
@@ -129,6 +146,23 @@
 
                 <div class="col-md-12">
                     <textarea id="selebgram" class="form-control" name="selebgram" rows="3"></textarea>
+                    <script>
+                      var selectSelebgram = $('#selebgram').selectize({
+                        plugins:['remove_button'],
+                        delimiter: ';',
+                        persist: false,
+                        create: function(input) {
+                          return {
+                            value: input,
+                            text: input
+                          }
+                        },
+                      });
+                      
+                      var selectizeSelebgram = selectSelebgram[0].selectize;
+
+                    </script>
+                    
                 </div>
             </div>
 
