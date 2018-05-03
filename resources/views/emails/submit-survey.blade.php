@@ -6,8 +6,8 @@ Ini adalah NO UNDIAN Anda: <br>
 <b><span id="no-undian" style="font-size:100px;">{{$no_undian}}</span></b> <br>
 <br>
 Pastikan anda melihat Video Pengundian Pemenang pada hari: <br>
-<b>Senin, 12 Mei 2018, Jam 12 siang - Pengundian ke-1</b> <br>
-<b>Senin, 29 Mei 2018, Jam 12 siang - Pengundian ke-2</b> <br>
+<b>Sabtu, 12 Mei 2018, Jam 12 siang - Pengundian ke-1</b> <br>
+<b>Sabtu, 19 Mei 2018, Jam 12 siang - Pengundian ke-2</b> <br>
 <br>
 Selamat, Anda juga mendapatkan <b>KUPON DISKON CELEBGRAMME 15%</b> <br>
 Berlaku untuk semua paket Celebgramme <br>
