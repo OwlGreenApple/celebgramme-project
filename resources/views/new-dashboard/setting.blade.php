@@ -199,6 +199,15 @@ use Celebgramme\Models\SettingHelper;
 		});
 	}
 
+	
+	function push_all_following(){
+		<?php 
+		foreach($arr_user_whitelist as $data_whitelist) { 
+		?>
+			selectizeWhitelist.addItem("<?php echo $data_whitelist['value']; ?>");
+		<?php } ?>
+	}
+	
 	$(document).ready(function() {
 		$(".demo-tagsinput-area").each(function(){
 			$(this).resizable({
@@ -703,6 +712,10 @@ use Celebgramme\Models\SettingHelper;
 		});
 		
 		
+		$( "body" ).on( "click", "#button-whitelist-user-all-following", function(e) {
+			e.preventDefault();
+			push_all_following();
+		});
 		
 		
 	});	
@@ -1169,6 +1182,11 @@ use Celebgramme\Models\SettingHelper;
 															</div>
 														</div>
 														<div class="row">
+															<div class="col-md-3 col-sm-3 col-xs-3">
+																<button class="btn btn-sm br-6 bg-cyan" id="button-whitelist-user-all-following">Add All Following</button>
+															</div>
+														</div>
+														<div class="row">
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;position: absolute;right: 35px;z-index: 10;" class="button-copy" data-text="textarea-unfollow-whitelist">copy</p>
 																<!--<textarea class="selectize-default" id="textarea-unfollow-whitelist" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>-->
@@ -1194,7 +1212,7 @@ use Celebgramme\Models\SettingHelper;
 																			});
 																	var selectizeWhitelist = $selectWhitelist[0].selectize;
 																	// selectizeWhitelist.addOption({value: "whatever", text: 'whatever'});
-																	selectizeWhitelist.addOption(<?php echo $arr_user_whitelist; ?>);
+																	selectizeWhitelist.addOption(<?php echo $j_arr_user_whitelist; ?>);
 																	// selectizeWhitelist.refreshOptions();		
 
 																</script>
@@ -1380,7 +1398,7 @@ use Celebgramme\Models\SettingHelper;
 												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
 													<div class="header">
 														<h2>
-															Like &nbsp; & &nbsp; Comment &nbsp;<img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title='<div class="panel-heading">Like & Comment</div><div class="panel-content">Wajib mengisi <strong>min 10 "Hashtags" </strong>jika memakai Fitur "Like & Comments"</div>'>
+															Like &nbsp; <img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title='<div class="panel-heading">Like</div><div class="panel-content">Wajib mengisi <strong>min 10 "Hashtags" </strong>jika memakai Fitur "Like"</div>'>
 														</h2>
 													</div>
 													<div class="body" style="background:transparent;box-shadow:none;">
@@ -1396,6 +1414,7 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 															</div>
 														</div>
+														<!--
 														<div class="row">
 															<div class="col-md-4 col-sm-4 col-xs-5">
 																<b>Comment</b>
@@ -1478,11 +1497,9 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 																
 																
-<!-- Modal -->
   <div class="modal fade" id="myModalCreateCommentEmoji" role="dialog">
     <div class="modal-dialog">
     
-      <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1494,7 +1511,6 @@ use Celebgramme\Models\SettingHelper;
 					</h4>
         </div>
         <div class="modal-body">
-					<!--<textarea id="textarea-copy" class="form-control" style="min-height:100px;height:auto;"></textarea>-->
 					<div id="textarea-add-comment">
 					</div>
 					<script>
@@ -1526,6 +1542,7 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 															</div>
 														</div>
 													</div>
+													-->
 													</div>
 												</div>
 
@@ -1651,7 +1668,7 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 															</div>
 														</div>
 													</div>
-													
+													<!--
 													<div class="header">
 														<h2>
 															DM Auto Responder &nbsp;
@@ -1675,6 +1692,7 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 															</div>
 														</div>
 													</div>
+													-->
 												</div>
 											</div>
 										</div>
