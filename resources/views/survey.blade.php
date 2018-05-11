@@ -96,7 +96,7 @@
                 <label for="name" class="col-md-12 control-label" style="text-align:left;">Sebutkan kota tempat tinggal anda?</label>
 
                 <div class="col-md-12">
-                    <input id="kota" type="text" class="form-control" name="kota">
+                    <input id="kota" type="text" class="form-control" name="city">
                 </div>
             </div>
 

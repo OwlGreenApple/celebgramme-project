@@ -43,6 +43,11 @@ class LandingPageController extends Controller
       return $arr;
     }
 		
+    if ($request->city == "") {
+      $arr["type"] = "error";
+      $arr["message"] = "Silahkan input kota anda tinggal dulu";
+      return $arr;
+    }
     if ($request->popular_olshop == "") {
       $arr["type"] = "error";
       $arr["message"] = "Silahkan input toko online IG terpopuler dulu";
