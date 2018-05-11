@@ -20,6 +20,7 @@
       <script>
         $(document).ready(function(){
           $('#button-submit').click(function(e){
+						temp = $(this);
             $(this).val("Please wait");
             $(this).prop('disabled', true);;
             $.ajax({                                      
@@ -32,8 +33,8 @@
               dataType: 'text',
               success: function(result)
               {
-								$(this).val("Submit");
-								$(this).prop('disabled', false);;
+								temp.val("Submit");
+								temp.prop('disabled', false);;
                 var data = jQuery.parseJSON(result);
                 $("#alert").show();
                 $("#alert").html(data.message);
