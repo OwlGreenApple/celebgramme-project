@@ -42,6 +42,16 @@ class LandingPageController extends Controller
       $arr["message"] = "Email anda sudah terdaftar";
       return $arr;
     }
+    if ($request->popular_olshop == "") {
+      $arr["type"] = "error";
+      $arr["message"] = "Silahkan input toko online IG terpopuler dulu";
+      return $arr;
+    }
+    if ($request->selebgram == "") {
+      $arr["type"] = "error";
+      $arr["message"] = "Silahkan input selebgram terpopuler versi anda dulu";
+      return $arr;
+    }
     
     $count_survey = Survey::count();
     
