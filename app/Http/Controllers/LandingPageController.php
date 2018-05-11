@@ -42,13 +42,13 @@ class LandingPageController extends Controller
       $arr["message"] = "Email anda sudah terdaftar";
       return $arr;
     }
-		$data = $request->all();
-    if ($data->popular_olshop == "") {
+		
+    if ($request->popular_olshop == "") {
       $arr["type"] = "error";
       $arr["message"] = "Silahkan input toko online IG terpopuler dulu";
       return $arr;
     }
-    if ($data->selebgram == "") {
+    if ($request->selebgram == "") {
       $arr["type"] = "error";
       $arr["message"] = "Silahkan input selebgram terpopuler versi anda dulu";
       return $arr;
