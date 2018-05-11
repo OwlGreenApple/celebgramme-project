@@ -32,6 +32,8 @@
               dataType: 'text',
               success: function(result)
               {
+								$(this).val("Submit");
+								$(this).prop('disabled', false);;
                 var data = jQuery.parseJSON(result);
                 $("#alert").show();
                 $("#alert").html(data.message);
