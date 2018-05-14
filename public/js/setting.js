@@ -88,6 +88,40 @@
 		});
 		
 
+		$( "#max_follow" ).keyup(function(){
+			if ($(this).val()>7500) {
+				$("#alert").show();
+				$("#alert").html("Max follow tidak boleh lebih dari 7500");
+				$("#alert").addClass('alert-danger');
+				$("#alert").removeClass('alert-success');
+				$('html, body').animate({ scrollTop: 0 }, 'slow', function () {
+							// alert("reached top");
+				});				
+			}
+			if ($(this).val()<0) {
+				$("#alert").show();
+				$("#alert").html("Max follow tidak boleh lebih dari 0");
+				$("#alert").addClass('alert-danger');
+				$("#alert").removeClass('alert-success');
+				$('html, body').animate({ scrollTop: 0 }, 'slow', function () {
+							// alert("reached top");
+				});				
+			}
+		});
+		
+		/*status auto follow */
+		$('#statusAutoFollowOnButton').click(function(e){
+			$("#status_auto_follow").val("1");
+			$('#statusAutoFollowOnButton').addClass('btn-primary');
+			$('#statusAutoFollowOffButton').removeClass('btn-danger');
+			
+		});
+		$('#statusAutoFollowOffButton').click(function(e){
+			$("#status_auto_follow").val("0");
+			$('#statusAutoFollowOnButton').removeClass('btn-primary');
+			$('#statusAutoFollowOffButton').addClass('btn-danger');
+		});
+
 
 		
 		/*status follow like comment (on off nya) */
@@ -147,6 +181,8 @@
 			$('#statusLikeOnButton').addClass('btn-primary');
 			$('#statusLikeOffButton').removeClass('btn-danger');
 			$("#div-hashtags").fadeIn(500);
+			
+			$(".like-day-activity").prop('disabled', false);
 		});
 		$('#statusLikeOffButton').click(function(e){
 			$("#status_like").val("off");
@@ -158,6 +194,7 @@
 			{
 				$('#div-hashtags').fadeOut(500);
 			}
+			$(".like-day-activity").prop('disabled', true);
 		});
 
 		$('#statusCommentOnButton').click(function(e){

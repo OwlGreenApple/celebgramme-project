@@ -1305,6 +1305,39 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 															</div>
 														</div>
+
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4">
+																<b>Auto Follow</b>
+																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Follow</div><div class='panel-content'><strong>Status ON </strong>akan melakukan 'Follow/Unfollow' <br>
+																										<strong>Status OFF </strong>Tidak akan melakukan 'Follow/Unfollow' <br>
+																										<i>*PS: Status OFF berguna apabila anda hanya mau melakukan Aktifitas lain (Like & Comment) saja</i></div>">
+																	</span>
+															</div>
+															<div class="col-md-3 col-sm-8 col-xs-8">
+																<div class="row btnGroupOO">
+																	<button type="button" class="btn <?php if ($settings->is_auto_follow) echo 'btn-primary' ?>" id="statusAutoFollowOnButton" style="color:#fff;">ON</button>
+																	<button type="button" class="btn <?php if (!$settings->is_auto_follow) echo 'btn-danger' ?>" id="statusAutoFollowOffButton" style="color:#fff;">OFF</button>
+																	<input type="hidden" value="{{$settings->is_auto_follow}}" name="data[is_auto_follow]" id="status_auto_follow">
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4">
+																<b>Max Follow</b>
+																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Follow</div><div class='panel-content'><strong>Status ON </strong>akan melakukan 'Follow/Unfollow' <br>
+																										<strong>Status OFF </strong>Tidak akan melakukan 'Follow/Unfollow' <br>
+																										<i>*PS: Status OFF berguna apabila anda hanya mau melakukan Aktifitas lain (Like & Comment) saja</i></div>">
+																	</span>
+															</div>
+															<div class="col-md-3 col-sm-8 col-xs-8">
+																<div class="row">
+																	<input type="number" value="{{$settings->max_follow}}" name="data[max_follow]" id="max_follow" class="form-control" style="margin-left:-5px;">
+																</div>
+															</div>
+														</div>
+
+														
 														<div class="row status-follow status-unfollow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<div class="row">
@@ -1549,7 +1582,115 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 											</div>
 											
 										</div>
-                    <div class="row">
+                    
+										
+										<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo "hide"; ?>">
+											<div class="col-md-12 col-sm-12 col-xs-12">
+												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
+													<div class="header">
+														<h2>
+															Custom Days Activity &nbsp; <img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title='<div class="panel-heading">Like</div><div class="panel-content">Wajib mengisi <strong>min 10 "Hashtags" </strong>jika memakai Fitur "Like"</div>'>
+														</h2>
+													</div>
+													<div class="body" style="background:transparent;box-shadow:none;">
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4">
+																<b>Sunday</b>
+															</div>
+															<div class="col-md-3 col-sm-8 col-xs-8">
+																	<input type="checkbox" <?php if ($settings->is_sunday_follow) { echo "checked"; } ?> name="data[is_sunday_follow]" id="is_sunday_follow">
+																	<label for="is_sunday_follow">Follow</label>
+																	&nbsp &nbsp
+																	<input type="checkbox" <?php if ($settings->is_sunday_like) { echo "checked"; } ?> name="data[is_sunday_like]" id="is_sunday_like" class="like-day-activity">
+																	<label for="is_sunday_like">Like</label>
+															</div>
+														</div>
+														
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4">
+																<b>Monday</b>
+															</div>
+															<div class="col-md-3 col-sm-8 col-xs-8">
+																	<input type="checkbox" <?php if ($settings->is_monday_follow) { echo "checked"; } ?> name="data[is_monday_follow]" id="is_monday_follow">
+																	<label for="is_monday_follow">Follow</label>
+																	&nbsp &nbsp
+																	<input type="checkbox" <?php if ($settings->is_monday_like) { echo "checked"; } ?> name="data[is_monday_like]" id="is_monday_like" class="like-day-activity">
+																	<label for="is_monday_like">Like</label>
+															</div>
+														</div>
+														
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4">
+																<b>Tuesday</b>
+															</div>
+															<div class="col-md-3 col-sm-8 col-xs-8">
+																	<input type="checkbox" <?php if ($settings->is_tuesday_follow) { echo "checked"; } ?> name="data[is_tuesday_follow]" id="is_tuesday_follow">
+																	<label for="is_tuesday_follow">Follow</label>
+																	&nbsp &nbsp
+																	<input type="checkbox" <?php if ($settings->is_tuesday_like) { echo "checked"; } ?> name="data[is_tuesday_like]" id="is_tuesday_like" class="like-day-activity">
+																	<label for="is_tuesday_like">Like</label>
+															</div>
+														</div>
+														
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4">
+																<b>Wednesday</b>
+															</div>
+															<div class="col-md-3 col-sm-8 col-xs-8">
+																	<input type="checkbox" <?php if ($settings->is_wednesday_follow) { echo "checked"; } ?> name="data[is_wednesday_follow]" id="is_wednesday_follow">
+																	<label for="is_wednesday_follow">Follow</label>
+																	&nbsp &nbsp
+																	<input type="checkbox" <?php if ($settings->is_wednesday_like) { echo "checked"; } ?> name="data[is_wednesday_like]" id="is_wednesday_like" class="like-day-activity">
+																	<label for="is_wednesday_like">Like</label>
+															</div>
+														</div>
+														
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4">
+																<b>Thursday</b>
+															</div>
+															<div class="col-md-3 col-sm-8 col-xs-8">
+																	<input type="checkbox" <?php if ($settings->is_thursday_follow) { echo "checked"; } ?> name="data[is_thursday_follow]" id="is_thursday_follow">
+																	<label for="is_thursday_follow">Follow</label>
+																	&nbsp &nbsp
+																	<input type="checkbox" <?php if ($settings->is_thursday_like) { echo "checked"; } ?> name="data[is_thursday_like]" id="is_thursday_like" class="like-day-activity">
+																	<label for="is_thursday_like">Like</label>
+															</div>
+														</div>
+														
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4">
+																<b>Friday</b>
+															</div>
+															<div class="col-md-3 col-sm-8 col-xs-8">
+																	<input type="checkbox" <?php if ($settings->is_friday_follow) { echo "checked"; } ?> name="data[is_friday_follow]" id="is_friday_follow">
+																	<label for="is_friday_follow">Follow</label>
+																	&nbsp &nbsp
+																	<input type="checkbox" <?php if ($settings->is_friday_like) { echo "checked"; } ?> name="data[is_friday_like]" id="is_friday_like" class="like-day-activity">
+																	<label for="is_friday_like">Like</label>
+															</div>
+														</div>
+														
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4">
+																<b>Saturday</b>
+															</div>
+															<div class="col-md-3 col-sm-8 col-xs-8">
+																	<input type="checkbox" <?php if ($settings->is_saturday_follow) { echo "checked"; } ?> name="data[is_saturday_follow]" id="is_saturday_follow">
+																	<label for="is_saturday_follow">Follow</label>
+																	&nbsp &nbsp
+																	<input type="checkbox" <?php if ($settings->is_saturday_like) { echo "checked"; } ?> name="data[is_saturday_like]" id="is_saturday_like" class="like-day-activity">
+																	<label for="is_saturday_like">Like</label>
+															</div>
+														</div>
+														
+													</div>
+												</div>
+											</div>
+										</div>
+                    
+										
+										<div class="row">
                       <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="row">
                           <div class="col-md-6 col-sm-6 col-xs-6">
