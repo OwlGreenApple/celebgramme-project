@@ -1225,22 +1225,31 @@ class AutoManageController extends Controller
     if (isset($data['dont_comment_su'])) { $data['dont_comment_su'] = 1; } else { $data['dont_comment_su'] = 0; }
     if (isset($data['unfollow_wdfm'])) { $data['unfollow_wdfm'] = 1; } else { $data['unfollow_wdfm'] = 0; }
 		
-		// NEW -> is do activity on that day
-    if (isset($data['is_sunday_follow'])) { $data['is_sunday_follow'] = 1; } else { $data['is_sunday_follow'] = 0; }
-    if (isset($data['is_sunday_like'])) { $data['is_sunday_like'] = 1; } else { $data['is_sunday_like'] = 0; }
-    if (isset($data['is_monday_follow'])) { $data['is_monday_follow'] = 1; } else { $data['is_monday_follow'] = 0; }
-    if (isset($data['is_monday_like'])) { $data['is_monday_like'] = 1; } else { $data['is_monday_like'] = 0; }
-    if (isset($data['is_tuesday_follow'])) { $data['is_tuesday_follow'] = 1; } else { $data['is_tuesday_follow'] = 0; }
-    if (isset($data['is_tuesday_like'])) { $data['is_tuesday_like'] = 1; } else { $data['is_tuesday_like'] = 0; }
-    if (isset($data['is_wednesday_follow'])) { $data['is_wednesday_follow'] = 1; } else { $data['is_wednesday_follow'] = 0; }
-    if (isset($data['is_wednesday_like'])) { $data['is_wednesday_like'] = 1; } else { $data['is_wednesday_like'] = 0; }
-    if (isset($data['is_thursday_follow'])) { $data['is_thursday_follow'] = 1; } else { $data['is_thursday_follow'] = 0; }
-    if (isset($data['is_thursday_like'])) { $data['is_thursday_like'] = 1; } else { $data['is_thursday_like'] = 0; }
-    if (isset($data['is_friday_follow'])) { $data['is_friday_follow'] = 1; } else { $data['is_friday_follow'] = 0; }
-    if (isset($data['is_friday_like'])) { $data['is_friday_like'] = 1; } else { $data['is_friday_like'] = 0; }
-    if (isset($data['is_saturday_follow'])) { $data['is_saturday_follow'] = 1; } else { $data['is_saturday_follow'] = 0; }
-    if (isset($data['is_saturday_like'])) { $data['is_saturday_like'] = 1; } else { $data['is_saturday_like'] = 0; }
 		
+		/* 
+		* NEW -> is do activity on that day
+		* klo ngga follow, like maka ambil dari data yang sebelumnya
+		*
+		*/
+		// if ($data['status_follow_unfollow']=="on") {
+			if (isset($data['is_sunday_follow'])) { $data['is_sunday_follow'] = 1; } else { $data['is_sunday_follow'] = 0; }
+			if (isset($data['is_monday_follow'])) { $data['is_monday_follow'] = 1; } else { $data['is_monday_follow'] = 0; }
+			if (isset($data['is_tuesday_follow'])) { $data['is_tuesday_follow'] = 1; } else { $data['is_tuesday_follow'] = 0; }
+			if (isset($data['is_wednesday_follow'])) { $data['is_wednesday_follow'] = 1; } else { $data['is_wednesday_follow'] = 0; }
+			if (isset($data['is_thursday_follow'])) { $data['is_thursday_follow'] = 1; } else { $data['is_thursday_follow'] = 0; }
+			if (isset($data['is_friday_follow'])) { $data['is_friday_follow'] = 1; } else { $data['is_friday_follow'] = 0; }
+			if (isset($data['is_saturday_follow'])) { $data['is_saturday_follow'] = 1; } else { $data['is_saturday_follow'] = 0; }
+		// }
+		
+		// if ($data['status_like']=="on") {
+			if (isset($data['is_sunday_like'])) { $data['is_sunday_like'] = 1; } else { $data['is_sunday_like'] = 0; }
+			if (isset($data['is_monday_like'])) { $data['is_monday_like'] = 1; } else { $data['is_monday_like'] = 0; }
+			if (isset($data['is_tuesday_like'])) { $data['is_tuesday_like'] = 1; } else { $data['is_tuesday_like'] = 0; }
+			if (isset($data['is_wednesday_like'])) { $data['is_wednesday_like'] = 1; } else { $data['is_wednesday_like'] = 0; }
+			if (isset($data['is_thursday_like'])) { $data['is_thursday_like'] = 1; } else { $data['is_thursday_like'] = 0; }
+			if (isset($data['is_friday_like'])) { $data['is_friday_like'] = 1; } else { $data['is_friday_like'] = 0; }
+			if (isset($data['is_saturday_like'])) { $data['is_saturday_like'] = 1; } else { $data['is_saturday_like'] = 0; }
+		// }
 		
 
 		//update supaya blacklist di scrape lagi username id nya

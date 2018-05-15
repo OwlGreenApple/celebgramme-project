@@ -1598,10 +1598,10 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 																<b>Sunday</b>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
-																	<input type="checkbox" <?php if ($settings->is_sunday_follow) { echo "checked"; } ?> name="data[is_sunday_follow]" id="is_sunday_follow">
+																	<input type="checkbox" <?php if ($settings->is_sunday_follow) { echo "checked"; } ?> name="data[is_sunday_follow]" id="is_sunday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
 																	<label for="is_sunday_follow">Follow</label>
 																	&nbsp &nbsp
-																	<input type="checkbox" <?php if ($settings->is_sunday_like) { echo "checked"; } ?> name="data[is_sunday_like]" id="is_sunday_like" class="like-day-activity">
+																	<input type="checkbox" <?php if ($settings->is_sunday_like) { echo "checked"; } ?> name="data[is_sunday_like]" id="is_sunday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
 																	<label for="is_sunday_like">Like</label>
 															</div>
 														</div>
@@ -1611,10 +1611,10 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 																<b>Monday</b>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
-																	<input type="checkbox" <?php if ($settings->is_monday_follow) { echo "checked"; } ?> name="data[is_monday_follow]" id="is_monday_follow">
+																	<input type="checkbox" <?php if ($settings->is_monday_follow) { echo "checked"; } ?> name="data[is_monday_follow]" id="is_monday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
 																	<label for="is_monday_follow">Follow</label>
 																	&nbsp &nbsp
-																	<input type="checkbox" <?php if ($settings->is_monday_like) { echo "checked"; } ?> name="data[is_monday_like]" id="is_monday_like" class="like-day-activity">
+																	<input type="checkbox" <?php if ($settings->is_monday_like) { echo "checked"; } ?> name="data[is_monday_like]" id="is_monday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
 																	<label for="is_monday_like">Like</label>
 															</div>
 														</div>
@@ -1624,10 +1624,10 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 																<b>Tuesday</b>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
-																	<input type="checkbox" <?php if ($settings->is_tuesday_follow) { echo "checked"; } ?> name="data[is_tuesday_follow]" id="is_tuesday_follow">
+																	<input type="checkbox" <?php if ($settings->is_tuesday_follow) { echo "checked"; } ?> name="data[is_tuesday_follow]" id="is_tuesday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
 																	<label for="is_tuesday_follow">Follow</label>
 																	&nbsp &nbsp
-																	<input type="checkbox" <?php if ($settings->is_tuesday_like) { echo "checked"; } ?> name="data[is_tuesday_like]" id="is_tuesday_like" class="like-day-activity">
+																	<input type="checkbox" <?php if ($settings->is_tuesday_like) { echo "checked"; } ?> name="data[is_tuesday_like]" id="is_tuesday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
 																	<label for="is_tuesday_like">Like</label>
 															</div>
 														</div>
@@ -1637,10 +1637,10 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 																<b>Wednesday</b>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
-																	<input type="checkbox" <?php if ($settings->is_wednesday_follow) { echo "checked"; } ?> name="data[is_wednesday_follow]" id="is_wednesday_follow">
+																	<input type="checkbox" <?php if ($settings->is_wednesday_follow) { echo "checked"; } ?> name="data[is_wednesday_follow]" id="is_wednesday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
 																	<label for="is_wednesday_follow">Follow</label>
 																	&nbsp &nbsp
-																	<input type="checkbox" <?php if ($settings->is_wednesday_like) { echo "checked"; } ?> name="data[is_wednesday_like]" id="is_wednesday_like" class="like-day-activity">
+																	<input type="checkbox" <?php if ($settings->is_wednesday_like) { echo "checked"; } ?> name="data[is_wednesday_like]" id="is_wednesday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
 																	<label for="is_wednesday_like">Like</label>
 															</div>
 														</div>
@@ -1650,10 +1650,10 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 																<b>Thursday</b>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
-																	<input type="checkbox" <?php if ($settings->is_thursday_follow) { echo "checked"; } ?> name="data[is_thursday_follow]" id="is_thursday_follow">
+																	<input type="checkbox" <?php if ($settings->is_thursday_follow) { echo "checked"; } ?> name="data[is_thursday_follow]" id="is_thursday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
 																	<label for="is_thursday_follow">Follow</label>
 																	&nbsp &nbsp
-																	<input type="checkbox" <?php if ($settings->is_thursday_like) { echo "checked"; } ?> name="data[is_thursday_like]" id="is_thursday_like" class="like-day-activity">
+																	<input type="checkbox" <?php if ($settings->is_thursday_like) { echo "checked"; } ?> name="data[is_thursday_like]" id="is_thursday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
 																	<label for="is_thursday_like">Like</label>
 															</div>
 														</div>
@@ -1663,10 +1663,10 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 																<b>Friday</b>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
-																	<input type="checkbox" <?php if ($settings->is_friday_follow) { echo "checked"; } ?> name="data[is_friday_follow]" id="is_friday_follow">
+																	<input type="checkbox" <?php if ($settings->is_friday_follow) { echo "checked"; } ?> name="data[is_friday_follow]" id="is_friday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
 																	<label for="is_friday_follow">Follow</label>
 																	&nbsp &nbsp
-																	<input type="checkbox" <?php if ($settings->is_friday_like) { echo "checked"; } ?> name="data[is_friday_like]" id="is_friday_like" class="like-day-activity">
+																	<input type="checkbox" <?php if ($settings->is_friday_like) { echo "checked"; } ?> name="data[is_friday_like]" id="is_friday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
 																	<label for="is_friday_like">Like</label>
 															</div>
 														</div>
@@ -1676,10 +1676,10 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 																<b>Saturday</b>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
-																	<input type="checkbox" <?php if ($settings->is_saturday_follow) { echo "checked"; } ?> name="data[is_saturday_follow]" id="is_saturday_follow">
+																	<input type="checkbox" <?php if ($settings->is_saturday_follow) { echo "checked"; } ?> name="data[is_saturday_follow]" id="is_saturday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
 																	<label for="is_saturday_follow">Follow</label>
 																	&nbsp &nbsp
-																	<input type="checkbox" <?php if ($settings->is_saturday_like) { echo "checked"; } ?> name="data[is_saturday_like]" id="is_saturday_like" class="like-day-activity">
+																	<input type="checkbox" <?php if ($settings->is_saturday_like) { echo "checked"; } ?> name="data[is_saturday_like]" id="is_saturday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
 																	<label for="is_saturday_like">Like</label>
 															</div>
 														</div>

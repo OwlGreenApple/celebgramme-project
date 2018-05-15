@@ -155,6 +155,8 @@
 					$('#div-hashtags').fadeOut(500);
 				}
 			}
+			
+			$(".follow-day-activity").prop('readonly', false);
 		});
 		$('#statusFollowOffButton').click(function(e){
 			$("#status_follow").val("off");
@@ -174,6 +176,8 @@
 			{
 				$('#div-hashtags').fadeOut(500);
 			}
+			
+			$(".follow-day-activity").prop('readonly', true);
 		});
 
 		$('#statusLikeOnButton').click(function(e){
@@ -182,7 +186,7 @@
 			$('#statusLikeOffButton').removeClass('btn-danger');
 			$("#div-hashtags").fadeIn(500);
 			
-			$(".like-day-activity").prop('disabled', false);
+			$(".like-day-activity").prop('readonly', false);
 		});
 		$('#statusLikeOffButton').click(function(e){
 			$("#status_like").val("off");
@@ -194,7 +198,7 @@
 			{
 				$('#div-hashtags').fadeOut(500);
 			}
-			$(".like-day-activity").prop('disabled', true);
+			$(".like-day-activity").prop('readonly', true);
 		});
 
 		$('#statusCommentOnButton').click(function(e){
