@@ -68,6 +68,24 @@ class Setting extends Model {
 		$setting->is_active = 0;
 		$setting->method = "API";
 		$setting->percent_like_followers = 25;
+		//new versi 5.0
+		$setting->is_auto_follow = 0;
+		$setting->is_monday_follow = 1;
+		$setting->is_tuesday_follow = 1;
+		$setting->is_wednesday_follow = 1;
+		$setting->is_thursday_follow = 1;
+		$setting->is_friday_follow = 1;
+		$setting->is_saturday_follow = 1;
+		$setting->is_sunday_follow = 1;
+		$setting->is_monday_like = 1;
+		$setting->is_tuesday_like = 1;
+		$setting->is_wednesday_like = 1;
+		$setting->is_thursday_like = 1;
+		$setting->is_friday_like = 1;
+		$setting->is_saturday_like = 1;
+		$setting->is_sunday_like = 1;
+		$setting->max_follow = 7000;
+		$setting->delay_dm = 3;
 		$setting->save();
     
 		$setting_id_temp = $setting->id;

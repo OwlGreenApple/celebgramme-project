@@ -944,6 +944,7 @@ class NewDashboardController extends Controller
 		$setting = Setting::find(Request::input("setting_id"));
 		$setting->messages = Request::input("message");
 		$setting->is_auto_responder = Request::input("is_auto_responder");
+		$setting->delay_dm = Request::input("delay_dm");
 		$setting->save();
 		
 		return $arr;

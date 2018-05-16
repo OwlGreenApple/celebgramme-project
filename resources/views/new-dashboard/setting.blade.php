@@ -109,6 +109,7 @@ use Celebgramme\Models\SettingHelper;
 					// message : $("#textarea-welcome-message").val(),
 					message : textareaWelcomeMessage[0].emojioneArea.getText(),
 					is_auto_responder : $("#is_auto_responder").val(),
+					delay_dm : $("#delay_dm").val(),
 				},
 				dataType: 'text',
 				beforeSend: function()
@@ -1771,8 +1772,25 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 															</span>
 															
 														</div>-->
+														
 														<div class="body" style="background:transparent;box-shadow:none;">
 															<div class="row">
+																<div class="col-md-3 col-sm-3 col-xs-3">
+																	<b>Delay Minimum Auto Responder</b>
+																		<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Delay Minimum Auto Responder</div><div class='panel-content'><strong>Status ON </strong>akan melakukan 'Follow/Unfollow' <br>
+																											<strong>Status OFF </strong>Tidak akan melakukan 'Follow/Unfollow' <br>
+																											<i>*PS: Status OFF berguna apabila anda hanya mau melakukan Aktifitas lain (Like & Comment) saja</i></div>">
+																		</span>
+																</div>
+																<div class="col-md-3 col-sm-8 col-xs-8">
+																	<div class="row">
+																		<select class="form-control" style="margin-left:-5px;" name="data[delay_dm]" id="delay_dm">
+																			<option value="3" <?php if ($settings->is_friday_like) { echo "selected"; } ?>>3 Menit<option>
+																			<option value="5" <?php if ($settings->is_friday_like) { echo "selected"; } ?>>5 Menit<option>
+																			<option value="15" <?php if ($settings->is_friday_like) { echo "selected"; } ?>>15 Menit<option>
+																		</select>
+																	</div>
+																</div>
 														
 																<div class="col-md-12 col-sm-12 col-xs-12">
 																	<label>Penjelasan spin message</label> &nbsp <span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Penjelasan fitur spin message</div>								<div class="panel-content"><strong>Gunakan Feature "Spin Message" </strong>contoh : <br>
