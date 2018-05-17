@@ -120,6 +120,20 @@
                 $("#alert").removeClass('alert-danger');
                 $("#balance").val(data.balance);
                 $("#span-balance").html(data.balance);
+								
+								<!-- Facebook Pixel Code celebpost purchased thank you page-->
+								!function(f,b,e,v,n,t,s)
+								{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+								n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+								if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+								n.queue=[];t=b.createElement(e);t.async=!0;
+								t.src=v;s=b.getElementsByTagName(e)[0];
+								s.parentNode.insertBefore(t,s)}(window, document,'script',
+								'https://connect.facebook.net/en_US/fbevents.js');
+								fbq('init', '298054080641651');
+								fbq('track', 'PageView');
+								fbq('track', 'Purchase');
+								<!-- End Facebook Pixel Code -->
               }
               else if(data.type=='error')
               {
@@ -132,6 +146,11 @@
     });
   });
 </script>
+<!-- Facebook Pixel Code celebpost purchased thank you page-->
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=298054080641651&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
 
 <div class="container-fluid">
   <form enctype="multipart/form-data" id="form-confirm">
