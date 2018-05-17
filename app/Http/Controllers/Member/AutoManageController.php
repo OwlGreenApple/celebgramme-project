@@ -1058,14 +1058,14 @@ class AutoManageController extends Controller
 				}
 			}
 			
-			if ($data['max_follow']>7500){
-				$arr["message"]= "Max follow tidak boleh lebih besar 7500";
+			if ($data['max_follow']>7000){
+				$arr["message"]= "Max follow tidak boleh lebih besar 7000";
 				$arr["type"]= "error";
 				return $arr;
 			}
 				
-			if ($data['max_follow']<0){
-				$arr["message"]= "Max follow tidak boleh lebih kecil 0";
+			if ($data['max_follow']<1000){
+				$arr["message"]= "Max follow tidak boleh lebih kecil 1000";
 				$arr["type"]= "error";
 				return $arr;
 			}

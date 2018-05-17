@@ -977,7 +977,7 @@ use Celebgramme\Models\SettingHelper;
 						<button class="btn btn-lg bg-cyan btn-block btnGeneral br-6" data-toggle="tab" href="#general"><i class="fa fa-cog"></i>&nbsp;General</button>
 					</div>
 					<div class="col-md-2 col-sm-12 col-xs-12 padding-0">
-						<button class="btn btn-lg bg-grey btn-block br-6"  style="font-size:inherit;"data-toggle="tab" href="#DMAuto" id="button-direct-auto-responder" data-is-refresh="0"><i class="fa fa-envelope text-white"></i>&nbsp;Auto Responder &nbsp 
+						<button class="btn btn-lg bg-grey btn-block br-6"  style="font-size:inherit;"data-toggle="tab" href="#DMAuto" id="button-direct-auto-responder" data-is-refresh="0"><i class="fa fa-envelope text-white"></i>&nbsp;DM Auto Reply &nbsp 
 						</button>
 					</div>
 					<div class="col-md-2 col-sm-12 col-xs-12 padding-0">
@@ -1012,8 +1012,8 @@ use Celebgramme\Models\SettingHelper;
 													<div class="body" style="background:transparent;box-shadow:none;">
 														<div class="row btnGroupOO">
 															<div class="col-md-6 col-sm-4 col-xs-4">
-																<b>Choose Settings</b>
-																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Choose Settings</div><div class='panel-content'>Pilih salah satu : FULL AUTO atau Manual settings.<br> FULL AUTO = Fast Settings, Pilih kategori Target anda & Start,<br> FULL AUTO hanya untuk Follow, Like & Auto Like My Posts ( tidak termasuk Comment ). <br>Manual = Setting manual customized semua fitur Celebgramme. <br> <i>*PS: Settings yang AKTIF adalah yang TERAKHIR dipilih</i></div>">
+																<b>Settings</b>
+																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Choose Settings</div><div class='panel-content'><b>FULL AUTO</b> = Pilih kategori Target anda & Start <br><b>MANUAL</b> = Bebas atur sendiri fitur Celebgramme. <br></div>">
 																	</span>																
 															</div>
 																<!--<button class="btn btn-block bg-grey btnOff">Full Auto</button>-->
@@ -1026,11 +1026,8 @@ use Celebgramme\Models\SettingHelper;
 														</div>
 														<div class="row">
 															<div class="col-md-6 col-sm-6 col-xs-6">
-																<b>Activity Speed</b>
-																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="
-																<div class='panel-heading'>Activity speed</div><div class='panel-content'>Jika Akun anda BARU / Tdk aktif, START dgn SLOW/NORMAL speed utk 5 hari <br>• <strong>Slow</strong> = Melakukan 200-250 Likes, 50 comments, 100-150 follow/unfollow /hari <br>• <strong>Normal</strong> = Melakukan 250-300 likes, 50 comments, 150-200 follow/unfollows /hari. <br>• <strong>Fast</strong> = Melakukan 300-350 likes, 50 comments, 300-350 follow/unfollows /hari. <br>
-																• <strong>Turbo</strong> = Melakukan 600-750 likes, 50 comments, 400-480 follow/unfollows /hari. 
-																</div>">
+																<b>Speed</b>
+																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Activity speed</div><div class='panel-content'>• <b>Slow</b> = 200-250 Likes, 100-150 follow/unfollow <br>• <b>Normal</b> = 250-300 likes, 150-200 follow/unfollows <br>• <b>Fast</b> = 300-350 likes, 300-350 follow/unfollows <br>• <b>Turbo</b> = 600-750 likes, 400-480 follow/unfollows <br><i>*Proses aktifitas harian</i> <br></div>">
 																</span>
 															</div>
 															<div class="col-md-6 col-sm-6 col-xs-6 padding-0">
@@ -1056,7 +1053,7 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row btnGroupOO">
 															<div class="col-md-6 col-sm-6 col-xs-6">
 																<b>Auto Like My Posts</b>
-																<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Like My Post ALMP</div><div class='panel-content'>Fitur Keren ini akan membuat POST anda terlihat POPULER<br>SETIAP POST Terbaru anda akan MENDAPATKAN LIKES secara OTOMATIS<br> Max 24 jam = 30 Likes / 3 post / Hari TERAKHIR<br> <i>*PS: artinya HANYA 3 Post Terakhir per HARI <br>yang akan mendapatkan 30 Likes / masing-masing post</i>  </div>">
+																<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Like My Post</div><div class='panel-content'><b>ON</b> - 30 Likes Otomatis untuk 3 Post terakhir anda/hari <br><b>OFF</b> - Tidak dapat Likes <br></div>">
 																</span>
 															</div>
 															<div class="col-md-6 col-sm-6 col-xs-6 padding-0">
@@ -1068,12 +1065,7 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row btnGroupOO">
 															<div class="col-md-6 col-sm-6 col-xs-6">
 																<b>Auto Like My Followers</b>
-																<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Like My Followers</div><div class='panel-content'>Berguna untuk memberikan likes ke Followers anda sendiri<br>
-																tujuannya untuk meningkatkan engagements <br>
-																sehingga terlihat natural dan dapat mengingatkan mereka <br>
-																untuk berinteraksi dengan akun anda kembali. <br>
-																25% & 50% = likes yang diberikan ke followers anda dihitung dari total <br> likes/hari <br>
-																</div>">
+																<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Like My Followers</div><div class='panel-content'><b>Likes Followers anda sendiri</b> <br>Likes dihitung dari total likes/hari <br></div>">
 															</div>
 															<div class="col-md-6 col-sm-6 col-xs-6 padding-0">
 																<button type="button" class="btn <?php if ($settings->is_like_followers) echo 'btn-primary' ?>" id="AutoLikesFollowersOnButton" style="color:#fff;">ON</button>
@@ -1113,9 +1105,7 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row">
 															<div class="col-md-3 col-sm-3 col-xs-3">
 																<b>Black List</b>
-																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Blacklist </div><div class='panel-content'>List Username yang TIDAK akan di FLC (Follow, Like & Comment)<br>
-																Masukkan usernames SAJA disini (tanpa @), contoh: darthvader, hitler, kimjongil, dsbnya<br>
-																<i>*PS: berguna sekali untuk TIDAK follow, like, comment 'mantan' & 'kompetitor' anda</i><br></div>">
+																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Blacklist </div><div class='panel-content'><b>List dari akun yang tidak akan anda 'Follow/Likes'</b> <br>Berguna untuk tidak memfollow/likes : mantan, kompetitor & akun yang anda tidak suka. <br></div>">
 																</span>
 																
 															</div>
@@ -1171,8 +1161,7 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row">
 															<div class="col-md-3 col-sm-3 col-xs-3">
 																<b>White List</b>
-																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Usernames whitelist</div><div class="panel-content">• Saat anda UNFOLLOW. <strong>Usernames di "Whitelist" ini akan diabaikan / tidak akan di "UNFOLLOW"</strong><br>
-																	• <strong>Usulan penggunaan : </strong>teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW</div>'></span>
+																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Usernames whitelist</div><div class="panel-content"><b>List yang tidak akan di "UNFOLLOW"</b> <br>Ex : Pasangan, teman, boss & akun yang anda suka <br></div>'></span>
 															</div>
 															<div class="col-md-4 col-sm-9 col-xs-9">
 																<div class="row btnGroupOO">
@@ -1258,9 +1247,7 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row">
 															<div class="col-md-4 col-sm-4 col-xs-4">
 																<b>Status</b>
-																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Follow Status</div><div class='panel-content'><strong>Status ON </strong>akan melakukan 'Follow/Unfollow' <br>
-																										<strong>Status OFF </strong>Tidak akan melakukan 'Follow/Unfollow' <br>
-																										<i>*PS: Status OFF berguna apabila anda hanya mau melakukan Aktifitas lain (Like & Comment) saja</i></div>">
+																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Follow Status</div><div class='panel-content'><strong>Status ON </strong>akan melakukan 'Follow/Unfollow' <br> <strong>Status OFF </strong>Tidak akan melakukan 'Follow/Unfollow' <br></div>">
 																	</span>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
@@ -1309,10 +1296,8 @@ use Celebgramme\Models\SettingHelper;
 
 														<div class="row">
 															<div class="col-md-4 col-sm-4 col-xs-4">
-																<b>Auto Follow</b>
-																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Follow</div><div class='panel-content'><strong>Status ON </strong>akan melakukan 'Follow/Unfollow' <br>
-																										<strong>Status OFF </strong>Tidak akan melakukan 'Follow/Unfollow' <br>
-																										<i>*PS: Status OFF berguna apabila anda hanya mau melakukan Aktifitas lain (Like & Comment) saja</i></div>">
+																<b>Auto Switch Follow-Unfollow</b>
+																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Switch Follow-Unfollow</div><div class='panel-content'><b>ON</b> - Setelah follow/unfollow selesai, akan otomatis melakukan kebalikannya.<br><b>OFF</b> - Setelah follow selesai, hanya akan unfollow 1x saja.<br></div>">
 																	</span>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
@@ -1326,9 +1311,7 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row">
 															<div class="col-md-4 col-sm-4 col-xs-4">
 																<b>Max Follow</b>
-																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Follow</div><div class='panel-content'><strong>Status ON </strong>akan melakukan 'Follow/Unfollow' <br>
-																										<strong>Status OFF </strong>Tidak akan melakukan 'Follow/Unfollow' <br>
-																										<i>*PS: Status OFF berguna apabila anda hanya mau melakukan Aktifitas lain (Like & Comment) saja</i></div>">
+																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Max Follow</div><div class='panel-content'>Angka maximum yang akan difollow. <br>Sesudah angka ini tercapai, celebgramme akan otomatis melakukan Unfollow. <br>Pilih angka antara 1000 s/d 7000, lebih besar lebih efektif.<br></div>">
 																	</span>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
@@ -1432,7 +1415,7 @@ use Celebgramme\Models\SettingHelper;
 												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
 													<div class="header">
 														<h2>
-															Like &nbsp; <img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title='<div class="panel-heading">Like</div><div class="panel-content">Wajib mengisi <strong>min 10 "Hashtags" </strong>jika memakai Fitur "Like"</div>'>
+															Like &nbsp; <img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title='<div class="panel-heading">Like</div><div class="panel-content"><b>ON</b> - Aktifitas mengelike akun target dijalankan<br><b>OFF</b> - Aktifitas mengelike di STOP<br></div>'>
 														</h2>
 													</div>
 													<div class="body" style="background:transparent;box-shadow:none;">
@@ -1590,7 +1573,7 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
 													<div class="header">
 														<h2>
-															Custom Days Activity &nbsp; <img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title='<div class="panel-heading">Like</div><div class="panel-content">Wajib mengisi <strong>min 10 "Hashtags" </strong>jika memakai Fitur "Like"</div>'>
+															Custom Days Activity &nbsp; <img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title='<div class="panel-heading">Custom Days Activity</div><div class="panel-content"><b>Bebas pilih Follow-Like</b> di hari yang anda inginkan, <br>agar aktifitas terlihat lebih natural.<br></div>'>
 														</h2>
 													</div>
 													<div class="body" style="background:transparent;box-shadow:none;">
@@ -1730,7 +1713,7 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 														<div class="clearfix"></div><br/>
 														<div class="header">
 															<h2>
-																Auto Responder &nbsp;
+																DM Auto Reply &nbsp;
 															</h2>
 														</div>
 														<div class="body" style="background:transparent;box-shadow:none;">
@@ -1776,10 +1759,8 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 														<div class="body" style="background:transparent;box-shadow:none;">
 															<div class="row">
 																<div class="col-md-3 col-sm-3 col-xs-3">
-																	<b>Delay Minimum Auto Responder</b>
-																		<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Delay Minimum Auto Responder</div><div class='panel-content'><strong>Status ON </strong>akan melakukan 'Follow/Unfollow' <br>
-																											<strong>Status OFF </strong>Tidak akan melakukan 'Follow/Unfollow' <br>
-																											<i>*PS: Status OFF berguna apabila anda hanya mau melakukan Aktifitas lain (Like & Comment) saja</i></div>">
+																	<b>Delay DM Auto reply</b>
+																		<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Delay DM Auto reply</div><div class='panel-content'><b>Waktu minimum DM Auto reply dikirimkan</b> <br>setelah user baru memfollow akun anda.<br></div>">
 																		</span>
 																</div>
 																<div class="col-md-3 col-sm-8 col-xs-8">
