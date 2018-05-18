@@ -23,7 +23,7 @@ class Setting extends Model {
 	protected $fillable = ['activity_speed', 'media_source', 'media_age', 'media_type', 
 	'dont_comment_su', 'follow_source', 'dont_follow_su', 'dont_follow_pu', 'unfollow_source', 'unfollow_wdfm', 'comments', 'hashtags', 'locations', 
 	'insta_username', 'insta_password', 'insta_user_id', 'insta_access_token', 'last_user', 'start_time', 'running_time', 'user_id', 'status_blacklist', 'usernames_blacklist', 
-	'username', 'status', 'activity', 'status_whitelist','usernames_whitelist', 'status_follow_unfollow', 'status_like', 'status_comment', 'error_cred', "status_follow", "status_unfollow", "status_auto", "status_follow_auto", "status_unfollow_auto", "is_active", "is_like_followers", "percent_like_followers", "array_id_blacklist", "array_id_whitelist" ];
+	'username', 'status', 'activity', 'status_whitelist','usernames_whitelist', 'status_follow_unfollow', 'status_like', 'status_comment', 'error_cred', "status_follow", "status_unfollow", "status_auto", "status_follow_auto", "status_unfollow_auto", "is_active", "is_like_followers", "percent_like_followers", "array_id_blacklist", "array_id_whitelist", "is_auto_follow","is_monday_follow", "is_tuesday_follow", "is_wednesday_follow", "is_thursday_follow", "is_friday_follow", "is_saturday_follow", "is_sunday_follow", "is_monday_like", "is_tuesday_like", "is_wednesday_like","is_thursday_like", "is_friday_like", "is_saturday_like", "is_sunday_like", "max_follow", "delay_dm", ];
 
 	protected function createSetting($arr)
 	{
@@ -68,6 +68,24 @@ class Setting extends Model {
 		$setting->is_active = 0;
 		$setting->method = "API";
 		$setting->percent_like_followers = 25;
+		//new versi 5.0
+		$setting->is_auto_follow = 0;
+		$setting->is_monday_follow = 1;
+		$setting->is_tuesday_follow = 1;
+		$setting->is_wednesday_follow = 1;
+		$setting->is_thursday_follow = 1;
+		$setting->is_friday_follow = 1;
+		$setting->is_saturday_follow = 1;
+		$setting->is_sunday_follow = 1;
+		$setting->is_monday_like = 1;
+		$setting->is_tuesday_like = 1;
+		$setting->is_wednesday_like = 1;
+		$setting->is_thursday_like = 1;
+		$setting->is_friday_like = 1;
+		$setting->is_saturday_like = 1;
+		$setting->is_sunday_like = 1;
+		$setting->max_follow = 7000;
+		$setting->delay_dm = 3;
 		$setting->save();
     
 		$setting_id_temp = $setting->id;

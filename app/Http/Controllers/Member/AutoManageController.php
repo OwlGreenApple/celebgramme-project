@@ -1043,7 +1043,8 @@ class AutoManageController extends Controller
     $setting_temp = Setting::find($data['id']);
 
 		if (!$data["status_auto"]) {
-			if ( ( ($data['status_comment']=="on") || ($data['status_like']=="on") ) || (($data["follow_source"]=="hashtags") && ($data['status_follow_unfollow']=="on") ) ) {
+			// deleted comment if ( ( ($data['status_comment']=="on") || ($data['status_like']=="on") ) || (($data["follow_source"]=="hashtags") && ($data['status_follow_unfollow']=="on") ) ) {
+			if ( ($data['status_like']=="on")  || (($data["follow_source"]=="hashtags") && ($data['status_follow_unfollow']=="on") ) ) {
 				$pieces = explode(";",$data["hashtags"]);
 				if (count($pieces)<10) {
 					$arr["message"]= "Hashtags minimal harus ada 10";
@@ -1057,6 +1058,18 @@ class AutoManageController extends Controller
 				}
 			}
 			
+			if ($data['max_follow']>7000){
+				$arr["message"]= "Max follow tidak boleh lebih besar 7000";
+				$arr["type"]= "error";
+				return $arr;
+			}
+				
+			if ($data['max_follow']<1000){
+				$arr["message"]= "Max follow tidak boleh lebih kecil 1000";
+				$arr["type"]= "error";
+				return $arr;
+			}
+				
 			if ( ( ($data["follow_source"]=="followers of username") || ($data["follow_source"]=="following of username") ) && ($data['status_follow_unfollow']=="on") ) {
 				$pieces = explode(";",$data["username"]);
 				if (count($pieces)<10) {
@@ -1073,6 +1086,7 @@ class AutoManageController extends Controller
 				}
 			}
 			
+			/*deleted comment
 			if ($data['status_comment']=="on") {
 				// if ( (strpos($data['comments'], '<@owner>') !== false) && (strpos($data['comments'], '{') !== false) && (strpos($data['comments'], '}')!==false) ) {
 				if ( (strpos($data['comments'], '{') !== false) && (strpos($data['comments'], '}')!==false) ) {
@@ -1088,7 +1102,7 @@ class AutoManageController extends Controller
 					return $arr;
 				}
 				
-			}
+			}*/
 			
 			//blacklist & whitelist
 			if ($data["status_blacklist"])   {
@@ -1190,7 +1204,8 @@ class AutoManageController extends Controller
 			}
 		}
 		
-		if ( ($setting_temp->status=="started") && ($data['status_follow_unfollow']=="off") && ($data['status_like']=="off") && ($data['status_comment']=="off") ) {
+		//deleted comment if ( ($setting_temp->status=="started") && ($data['status_follow_unfollow']=="off") && ($data['status_like']=="off") && ($data['status_comment']=="off") ) {
+		if ( ($setting_temp->status=="started") && ($data['status_follow_unfollow']=="off") && ($data['status_like']=="off") ) {
       $arr["message"]= "Silahkan pilih activity follow / like / comment";
       $arr["type"]= "error";
       return $arr;
@@ -1209,6 +1224,33 @@ class AutoManageController extends Controller
 	
     if (isset($data['dont_comment_su'])) { $data['dont_comment_su'] = 1; } else { $data['dont_comment_su'] = 0; }
     if (isset($data['unfollow_wdfm'])) { $data['unfollow_wdfm'] = 1; } else { $data['unfollow_wdfm'] = 0; }
+		
+		
+		/* 
+		* NEW -> is do activity on that day
+		* klo ngga follow, like maka ambil dari data yang sebelumnya
+		*
+		*/
+		// if ($data['status_follow_unfollow']=="on") {
+			if (isset($data['is_sunday_follow'])) { $data['is_sunday_follow'] = 1; } else { $data['is_sunday_follow'] = 0; }
+			if (isset($data['is_monday_follow'])) { $data['is_monday_follow'] = 1; } else { $data['is_monday_follow'] = 0; }
+			if (isset($data['is_tuesday_follow'])) { $data['is_tuesday_follow'] = 1; } else { $data['is_tuesday_follow'] = 0; }
+			if (isset($data['is_wednesday_follow'])) { $data['is_wednesday_follow'] = 1; } else { $data['is_wednesday_follow'] = 0; }
+			if (isset($data['is_thursday_follow'])) { $data['is_thursday_follow'] = 1; } else { $data['is_thursday_follow'] = 0; }
+			if (isset($data['is_friday_follow'])) { $data['is_friday_follow'] = 1; } else { $data['is_friday_follow'] = 0; }
+			if (isset($data['is_saturday_follow'])) { $data['is_saturday_follow'] = 1; } else { $data['is_saturday_follow'] = 0; }
+		// }
+		
+		// if ($data['status_like']=="on") {
+			if (isset($data['is_sunday_like'])) { $data['is_sunday_like'] = 1; } else { $data['is_sunday_like'] = 0; }
+			if (isset($data['is_monday_like'])) { $data['is_monday_like'] = 1; } else { $data['is_monday_like'] = 0; }
+			if (isset($data['is_tuesday_like'])) { $data['is_tuesday_like'] = 1; } else { $data['is_tuesday_like'] = 0; }
+			if (isset($data['is_wednesday_like'])) { $data['is_wednesday_like'] = 1; } else { $data['is_wednesday_like'] = 0; }
+			if (isset($data['is_thursday_like'])) { $data['is_thursday_like'] = 1; } else { $data['is_thursday_like'] = 0; }
+			if (isset($data['is_friday_like'])) { $data['is_friday_like'] = 1; } else { $data['is_friday_like'] = 0; }
+			if (isset($data['is_saturday_like'])) { $data['is_saturday_like'] = 1; } else { $data['is_saturday_like'] = 0; }
+		// }
+		
 
 		//update supaya blacklist di scrape lagi username id nya
 		$data["array_id_blacklist"]="";
@@ -1276,7 +1318,8 @@ class AutoManageController extends Controller
 						return $arr;
 					}
 					if (Request::input('action')=='start') {
-						if ( (!$setting_temp->status_auto)&&($setting_temp->status_follow_unfollow=="off")&&($setting_temp->status_like=="off")&&($setting_temp->status_comment=="off") ) {
+						// deleted comment if ( (!$setting_temp->status_auto)&&($setting_temp->status_follow_unfollow=="off")&&($setting_temp->status_like=="off")&&($setting_temp->status_comment=="off") ) {
+						if ( (!$setting_temp->status_auto)&&($setting_temp->status_follow_unfollow=="off")&&($setting_temp->status_like=="off") ) {
 							$arr["message"]= "Follow, Like, Comments anda sudah OFF, silahkan di set ON kembali untuk melanjutkan aktifitas ".$setting_temp->insta_username;
 							$arr["type"]= "error";
 							return $arr;
@@ -1337,7 +1380,8 @@ class AutoManageController extends Controller
 						return $arr;
 					}
 					if (Request::input('action')=='start') {
-						if ( (!$setting_temp->status_auto)&&($setting_temp->status_follow_unfollow=="off")&&($setting_temp->status_like=="off")&&($setting_temp->status_comment=="off") ) {
+						// deleted comment if ( (!$setting_temp->status_auto)&&($setting_temp->status_follow_unfollow=="off")&&($setting_temp->status_like=="off")&&($setting_temp->status_comment=="off") ) {
+						if ( (!$setting_temp->status_auto)&&($setting_temp->status_follow_unfollow=="off")&&($setting_temp->status_like=="off") ) {
 							$arr["message"]= "Anda tidak dapat menjalankan program, silahkan pilih aktifitas yang akan dilakukan (follow/like/comment). Jangan lupa di SAVE sesudahnya. ";
 							$arr["type"]= "error";
 							return $arr;

@@ -109,6 +109,7 @@ use Celebgramme\Models\SettingHelper;
 					// message : $("#textarea-welcome-message").val(),
 					message : textareaWelcomeMessage[0].emojioneArea.getText(),
 					is_auto_responder : $("#is_auto_responder").val(),
+					delay_dm : $("#delay_dm").val(),
 				},
 				dataType: 'text',
 				beforeSend: function()
@@ -199,6 +200,15 @@ use Celebgramme\Models\SettingHelper;
 		});
 	}
 
+	
+	function push_all_following(){
+		<?php 
+		foreach($arr_user_whitelist as $data_whitelist) { 
+		?>
+			selectizeWhitelist.addItem("<?php echo $data_whitelist['value']; ?>");
+		<?php } ?>
+	}
+	
 	$(document).ready(function() {
 		$(".demo-tagsinput-area").each(function(){
 			$(this).resizable({
@@ -703,6 +713,10 @@ use Celebgramme\Models\SettingHelper;
 		});
 		
 		
+		$( "body" ).on( "click", "#button-whitelist-user-all-following", function(e) {
+			e.preventDefault();
+			push_all_following();
+		});
 		
 		
 	});	
@@ -963,7 +977,7 @@ use Celebgramme\Models\SettingHelper;
 						<button class="btn btn-lg bg-cyan btn-block btnGeneral br-6" data-toggle="tab" href="#general"><i class="fa fa-cog"></i>&nbsp;General</button>
 					</div>
 					<div class="col-md-2 col-sm-12 col-xs-12 padding-0">
-						<button class="btn btn-lg bg-grey btn-block br-6"  style="font-size:inherit;"data-toggle="tab" href="#DMAuto" id="button-direct-auto-responder" data-is-refresh="0"><i class="fa fa-envelope text-white"></i>&nbsp;Auto Responder &nbsp 
+						<button class="btn btn-lg bg-grey btn-block br-6"  style="font-size:inherit;"data-toggle="tab" href="#DMAuto" id="button-direct-auto-responder" data-is-refresh="0"><i class="fa fa-envelope text-white"></i>&nbsp;DM Auto Reply &nbsp 
 						</button>
 					</div>
 					<div class="col-md-2 col-sm-12 col-xs-12 padding-0">
@@ -998,8 +1012,8 @@ use Celebgramme\Models\SettingHelper;
 													<div class="body" style="background:transparent;box-shadow:none;">
 														<div class="row btnGroupOO">
 															<div class="col-md-6 col-sm-4 col-xs-4">
-																<b>Choose Settings</b>
-																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Choose Settings</div><div class='panel-content'>Pilih salah satu : FULL AUTO atau Manual settings.<br> FULL AUTO = Fast Settings, Pilih kategori Target anda & Start,<br> FULL AUTO hanya untuk Follow, Like & Auto Like My Posts ( tidak termasuk Comment ). <br>Manual = Setting manual customized semua fitur Celebgramme. <br> <i>*PS: Settings yang AKTIF adalah yang TERAKHIR dipilih</i></div>">
+																<b>Settings</b>
+																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Choose Settings</div><div class='panel-content'><b>FULL AUTO</b> = Pilih kategori Target anda & Start <br><b>MANUAL</b> = Bebas atur sendiri fitur Celebgramme. <br></div>">
 																	</span>																
 															</div>
 																<!--<button class="btn btn-block bg-grey btnOff">Full Auto</button>-->
@@ -1012,11 +1026,8 @@ use Celebgramme\Models\SettingHelper;
 														</div>
 														<div class="row">
 															<div class="col-md-6 col-sm-6 col-xs-6">
-																<b>Activity Speed</b>
-																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="
-																<div class='panel-heading'>Activity speed</div><div class='panel-content'>Jika Akun anda BARU / Tdk aktif, START dgn SLOW/NORMAL speed utk 5 hari <br>• <strong>Slow</strong> = Melakukan 200-250 Likes, 50 comments, 100-150 follow/unfollow /hari <br>• <strong>Normal</strong> = Melakukan 250-300 likes, 50 comments, 150-200 follow/unfollows /hari. <br>• <strong>Fast</strong> = Melakukan 300-350 likes, 50 comments, 300-350 follow/unfollows /hari. <br>
-																• <strong>Turbo</strong> = Melakukan 600-750 likes, 50 comments, 400-480 follow/unfollows /hari. 
-																</div>">
+																<b>Speed</b>
+																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Activity speed</div><div class='panel-content'>• <b>Slow</b> = 200-250 Likes, 100-150 follow/unfollow <br>• <b>Normal</b> = 250-300 likes, 150-200 follow/unfollows <br>• <b>Fast</b> = 300-350 likes, 300-350 follow/unfollows <br>• <b>Turbo</b> = 600-750 likes, 400-480 follow/unfollows <br><i>*Proses aktifitas harian</i> <br></div>">
 																</span>
 															</div>
 															<div class="col-md-6 col-sm-6 col-xs-6 padding-0">
@@ -1042,7 +1053,7 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row btnGroupOO">
 															<div class="col-md-6 col-sm-6 col-xs-6">
 																<b>Auto Like My Posts</b>
-																<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Like My Post ALMP</div><div class='panel-content'>Fitur Keren ini akan membuat POST anda terlihat POPULER<br>SETIAP POST Terbaru anda akan MENDAPATKAN LIKES secara OTOMATIS<br> Max 24 jam = 30 Likes / 3 post / Hari TERAKHIR<br> <i>*PS: artinya HANYA 3 Post Terakhir per HARI <br>yang akan mendapatkan 30 Likes / masing-masing post</i>  </div>">
+																<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Like My Post</div><div class='panel-content'><b>ON</b> - 30 Likes Otomatis untuk 3 Post terakhir anda/hari <br><b>OFF</b> - Tidak dapat Likes <br></div>">
 																</span>
 															</div>
 															<div class="col-md-6 col-sm-6 col-xs-6 padding-0">
@@ -1054,12 +1065,7 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row btnGroupOO">
 															<div class="col-md-6 col-sm-6 col-xs-6">
 																<b>Auto Like My Followers</b>
-																<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Like My Followers</div><div class='panel-content'>Berguna untuk memberikan likes ke Followers anda sendiri<br>
-																tujuannya untuk meningkatkan engagements <br>
-																sehingga terlihat natural dan dapat mengingatkan mereka <br>
-																untuk berinteraksi dengan akun anda kembali. <br>
-																25% & 50% = likes yang diberikan ke followers anda dihitung dari total <br> likes/hari <br>
-																</div>">
+																<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Like My Followers</div><div class='panel-content'><b>Likes Followers anda sendiri</b> <br>Likes dihitung dari total likes/hari <br></div>">
 															</div>
 															<div class="col-md-6 col-sm-6 col-xs-6 padding-0">
 																<button type="button" class="btn <?php if ($settings->is_like_followers) echo 'btn-primary' ?>" id="AutoLikesFollowersOnButton" style="color:#fff;">ON</button>
@@ -1099,9 +1105,7 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row">
 															<div class="col-md-3 col-sm-3 col-xs-3">
 																<b>Black List</b>
-																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Blacklist </div><div class='panel-content'>List Username yang TIDAK akan di FLC (Follow, Like & Comment)<br>
-																Masukkan usernames SAJA disini (tanpa @), contoh: darthvader, hitler, kimjongil, dsbnya<br>
-																<i>*PS: berguna sekali untuk TIDAK follow, like, comment 'mantan' & 'kompetitor' anda</i><br></div>">
+																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Blacklist </div><div class='panel-content'><b>List dari akun yang tidak akan anda 'Follow/Likes'</b> <br>Berguna untuk tidak memfollow/likes : mantan, kompetitor & akun yang anda tidak suka. <br></div>">
 																</span>
 																
 															</div>
@@ -1157,8 +1161,7 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row">
 															<div class="col-md-3 col-sm-3 col-xs-3">
 																<b>White List</b>
-																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Usernames whitelist</div><div class="panel-content">• Saat anda UNFOLLOW. <strong>Usernames di "Whitelist" ini akan diabaikan / tidak akan di "UNFOLLOW"</strong><br>
-																	• <strong>Usulan penggunaan : </strong>teman, pasangan, rekan sekerja & siapapun yang anda mau KEEP FOLLOW</div>'></span>
+																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Usernames whitelist</div><div class="panel-content"><b>List yang tidak akan di "UNFOLLOW"</b> <br>Ex : Pasangan, teman, boss & akun yang anda suka <br></div>'></span>
 															</div>
 															<div class="col-md-4 col-sm-9 col-xs-9">
 																<div class="row btnGroupOO">
@@ -1166,6 +1169,11 @@ use Celebgramme\Models\SettingHelper;
 																	<button type="button" class="btn <?php if (!$settings->status_whitelist) {echo'black-blacklist';} ?>" id="WhitelistOffButton" style="color:#fff;">OFF</button>
 																	<input type="hidden" value="{{$settings->status_whitelist}}" name="data[status_whitelist]" id="status_whitelist">
 																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-md-3 col-sm-3 col-xs-3">
+																<button class="btn btn-sm br-6 bg-cyan" id="button-whitelist-user-all-following">Add All Following</button>
 															</div>
 														</div>
 														<div class="row">
@@ -1194,7 +1202,7 @@ use Celebgramme\Models\SettingHelper;
 																			});
 																	var selectizeWhitelist = $selectWhitelist[0].selectize;
 																	// selectizeWhitelist.addOption({value: "whatever", text: 'whatever'});
-																	selectizeWhitelist.addOption(<?php echo $arr_user_whitelist; ?>);
+																	selectizeWhitelist.addOption(<?php echo $j_arr_user_whitelist; ?>);
 																	// selectizeWhitelist.refreshOptions();		
 
 																</script>
@@ -1239,9 +1247,7 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row">
 															<div class="col-md-4 col-sm-4 col-xs-4">
 																<b>Status</b>
-																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Follow Status</div><div class='panel-content'><strong>Status ON </strong>akan melakukan 'Follow/Unfollow' <br>
-																										<strong>Status OFF </strong>Tidak akan melakukan 'Follow/Unfollow' <br>
-																										<i>*PS: Status OFF berguna apabila anda hanya mau melakukan Aktifitas lain (Like & Comment) saja</i></div>">
+																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Follow Status</div><div class='panel-content'><strong>Status ON </strong>akan melakukan 'Follow/Unfollow' <br> <strong>Status OFF </strong>Tidak akan melakukan 'Follow/Unfollow' <br></div>">
 																	</span>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
@@ -1287,6 +1293,35 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 															</div>
 														</div>
+
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4">
+																<b>Auto Switch Follow-Unfollow</b>
+																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Switch Follow-Unfollow</div><div class='panel-content'><b>ON</b> - Setelah follow/unfollow selesai, akan otomatis melakukan kebalikannya.<br><b>OFF</b> - Setelah follow selesai, hanya akan unfollow 1x saja.<br></div>">
+																	</span>
+															</div>
+															<div class="col-md-3 col-sm-8 col-xs-8">
+																<div class="row btnGroupOO">
+																	<button type="button" class="btn <?php if ($settings->is_auto_follow) echo 'btn-primary' ?>" id="statusAutoFollowOnButton" style="color:#fff;">ON</button>
+																	<button type="button" class="btn <?php if (!$settings->is_auto_follow) echo 'btn-danger' ?>" id="statusAutoFollowOffButton" style="color:#fff;">OFF</button>
+																	<input type="hidden" value="{{$settings->is_auto_follow}}" name="data[is_auto_follow]" id="status_auto_follow">
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4">
+																<b>Max Follow</b>
+																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Max Follow</div><div class='panel-content'>Angka maximum yang akan difollow. <br>Sesudah angka ini tercapai, celebgramme akan otomatis melakukan Unfollow. <br>Pilih angka antara 1000 s/d 7000, lebih besar lebih efektif.<br></div>">
+																	</span>
+															</div>
+															<div class="col-md-3 col-sm-8 col-xs-8">
+																<div class="row">
+																	<input type="number" value="{{$settings->max_follow}}" name="data[max_follow]" id="max_follow" class="form-control" style="margin-left:-5px;">
+																</div>
+															</div>
+														</div>
+
+														
 														<div class="row status-follow status-unfollow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<div class="row">
@@ -1380,7 +1415,7 @@ use Celebgramme\Models\SettingHelper;
 												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
 													<div class="header">
 														<h2>
-															Like &nbsp; & &nbsp; Comment &nbsp;<img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title='<div class="panel-heading">Like & Comment</div><div class="panel-content">Wajib mengisi <strong>min 10 "Hashtags" </strong>jika memakai Fitur "Like & Comments"</div>'>
+															Like &nbsp; <img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title='<div class="panel-heading">Like</div><div class="panel-content"><b>ON</b> - Aktifitas mengelike akun target dijalankan<br><b>OFF</b> - Aktifitas mengelike di STOP<br></div>'>
 														</h2>
 													</div>
 													<div class="body" style="background:transparent;box-shadow:none;">
@@ -1396,6 +1431,7 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 															</div>
 														</div>
+														<!--
 														<div class="row">
 															<div class="col-md-4 col-sm-4 col-xs-5">
 																<b>Comment</b>
@@ -1478,11 +1514,9 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 																
 																
-<!-- Modal -->
   <div class="modal fade" id="myModalCreateCommentEmoji" role="dialog">
     <div class="modal-dialog">
     
-      <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1494,7 +1528,6 @@ use Celebgramme\Models\SettingHelper;
 					</h4>
         </div>
         <div class="modal-body">
-					<!--<textarea id="textarea-copy" class="form-control" style="min-height:100px;height:auto;"></textarea>-->
 					<div id="textarea-add-comment">
 					</div>
 					<script>
@@ -1526,13 +1559,122 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 															</div>
 														</div>
 													</div>
+													-->
 													</div>
 												</div>
 
 											</div>
 											
 										</div>
-                    <div class="row">
+                    
+										
+										<div class="row advanced-manual-setting <?php if ($settings->status_auto) echo "hide"; ?>">
+											<div class="col-md-12 col-sm-12 col-xs-12">
+												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
+													<div class="header">
+														<h2>
+															Custom Days Activity &nbsp; <img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title='<div class="panel-heading">Custom Days Activity</div><div class="panel-content"><b>Bebas pilih Follow-Like</b> di hari yang anda inginkan, <br>agar aktifitas terlihat lebih natural.<br></div>'>
+														</h2>
+													</div>
+													<div class="body" style="background:transparent;box-shadow:none;">
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4">
+																<b>Sunday</b>
+															</div>
+															<div class="col-md-3 col-sm-8 col-xs-8">
+																	<input type="checkbox" <?php if ($settings->is_sunday_follow) { echo "checked"; } ?> name="data[is_sunday_follow]" id="is_sunday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
+																	<label for="is_sunday_follow">Follow</label>
+																	&nbsp &nbsp
+																	<input type="checkbox" <?php if ($settings->is_sunday_like) { echo "checked"; } ?> name="data[is_sunday_like]" id="is_sunday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
+																	<label for="is_sunday_like">Like</label>
+															</div>
+														</div>
+														
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4">
+																<b>Monday</b>
+															</div>
+															<div class="col-md-3 col-sm-8 col-xs-8">
+																	<input type="checkbox" <?php if ($settings->is_monday_follow) { echo "checked"; } ?> name="data[is_monday_follow]" id="is_monday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
+																	<label for="is_monday_follow">Follow</label>
+																	&nbsp &nbsp
+																	<input type="checkbox" <?php if ($settings->is_monday_like) { echo "checked"; } ?> name="data[is_monday_like]" id="is_monday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
+																	<label for="is_monday_like">Like</label>
+															</div>
+														</div>
+														
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4">
+																<b>Tuesday</b>
+															</div>
+															<div class="col-md-3 col-sm-8 col-xs-8">
+																	<input type="checkbox" <?php if ($settings->is_tuesday_follow) { echo "checked"; } ?> name="data[is_tuesday_follow]" id="is_tuesday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
+																	<label for="is_tuesday_follow">Follow</label>
+																	&nbsp &nbsp
+																	<input type="checkbox" <?php if ($settings->is_tuesday_like) { echo "checked"; } ?> name="data[is_tuesday_like]" id="is_tuesday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
+																	<label for="is_tuesday_like">Like</label>
+															</div>
+														</div>
+														
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4">
+																<b>Wednesday</b>
+															</div>
+															<div class="col-md-3 col-sm-8 col-xs-8">
+																	<input type="checkbox" <?php if ($settings->is_wednesday_follow) { echo "checked"; } ?> name="data[is_wednesday_follow]" id="is_wednesday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
+																	<label for="is_wednesday_follow">Follow</label>
+																	&nbsp &nbsp
+																	<input type="checkbox" <?php if ($settings->is_wednesday_like) { echo "checked"; } ?> name="data[is_wednesday_like]" id="is_wednesday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
+																	<label for="is_wednesday_like">Like</label>
+															</div>
+														</div>
+														
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4">
+																<b>Thursday</b>
+															</div>
+															<div class="col-md-3 col-sm-8 col-xs-8">
+																	<input type="checkbox" <?php if ($settings->is_thursday_follow) { echo "checked"; } ?> name="data[is_thursday_follow]" id="is_thursday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
+																	<label for="is_thursday_follow">Follow</label>
+																	&nbsp &nbsp
+																	<input type="checkbox" <?php if ($settings->is_thursday_like) { echo "checked"; } ?> name="data[is_thursday_like]" id="is_thursday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
+																	<label for="is_thursday_like">Like</label>
+															</div>
+														</div>
+														
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4">
+																<b>Friday</b>
+															</div>
+															<div class="col-md-3 col-sm-8 col-xs-8">
+																	<input type="checkbox" <?php if ($settings->is_friday_follow) { echo "checked"; } ?> name="data[is_friday_follow]" id="is_friday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
+																	<label for="is_friday_follow">Follow</label>
+																	&nbsp &nbsp
+																	<input type="checkbox" <?php if ($settings->is_friday_like) { echo "checked"; } ?> name="data[is_friday_like]" id="is_friday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
+																	<label for="is_friday_like">Like</label>
+															</div>
+														</div>
+														
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4">
+																<b>Saturday</b>
+															</div>
+															<div class="col-md-3 col-sm-8 col-xs-8">
+																	<input type="checkbox" <?php if ($settings->is_saturday_follow) { echo "checked"; } ?> name="data[is_saturday_follow]" id="is_saturday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
+																	<label for="is_saturday_follow">Follow</label>
+																	&nbsp &nbsp
+																	<input type="checkbox" <?php if ($settings->is_saturday_like) { echo "checked"; } ?> name="data[is_saturday_like]" id="is_saturday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
+																	<label for="is_saturday_like">Like</label>
+															</div>
+														</div>
+														
+													</div>
+												</div>
+											</div>
+										</div>
+                    
+										
+										<div class="row">
                       <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="row">
                           <div class="col-md-6 col-sm-6 col-xs-6">
@@ -1571,7 +1713,7 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 														<div class="clearfix"></div><br/>
 														<div class="header">
 															<h2>
-																Auto Responder &nbsp;
+																DM Auto Reply &nbsp;
 															</h2>
 														</div>
 														<div class="body" style="background:transparent;box-shadow:none;">
@@ -1613,8 +1755,23 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 															</span>
 															
 														</div>-->
+														
 														<div class="body" style="background:transparent;box-shadow:none;">
 															<div class="row">
+																<div class="col-md-3 col-sm-3 col-xs-3">
+																	<b>Delay DM Auto reply</b>
+																		<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Delay DM Auto reply</div><div class='panel-content'><b>Waktu minimum DM Auto reply dikirimkan</b> <br>setelah user baru memfollow akun anda.<br></div>">
+																		</span>
+																</div>
+																<div class="col-md-3 col-sm-8 col-xs-8">
+																	<div class="row">
+																		<select class="form-control" style="margin-left:-5px;" name="data[delay_dm]" id="delay_dm">
+																			<option value="3" <?php if ($settings->is_friday_like) { echo "selected"; } ?>>3 Menit<option>
+																			<option value="5" <?php if ($settings->is_friday_like) { echo "selected"; } ?>>5 Menit<option>
+																			<option value="15" <?php if ($settings->is_friday_like) { echo "selected"; } ?>>15 Menit<option>
+																		</select>
+																	</div>
+																</div>
 														
 																<div class="col-md-12 col-sm-12 col-xs-12">
 																	<label>Penjelasan spin message</label> &nbsp <span class="glyphicon glyphicon-question-sign tooltipPlugin" title='<div class="panel-heading">Penjelasan fitur spin message</div>								<div class="panel-content"><strong>Gunakan Feature "Spin Message" </strong>contoh : <br>
@@ -1651,7 +1808,7 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 															</div>
 														</div>
 													</div>
-													
+													<!--
 													<div class="header">
 														<h2>
 															DM Auto Responder &nbsp;
@@ -1675,6 +1832,7 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 															</div>
 														</div>
 													</div>
+													-->
 												</div>
 											</div>
 										</div>

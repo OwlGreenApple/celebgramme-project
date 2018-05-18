@@ -156,118 +156,119 @@ class NewDashboardController extends Controller
 		
 		//check first punya proxy ga
 		// ONLY for init assign proxy
-		if ($link->proxy_id == 0) {
-			$arr_proxy = GlobalHelper::clearProxy(serialize($link), "new");
-		}
-		else {
-			$arr_proxy['proxy_id'] = $link->proxy_id;
-		}
-		
-		//login dulu buat list following
-		try {
-				$i = new Instagram(false,false,[
-					"storage"       => "mysql",
-					"dbhost"       => Config::get('automation.DB_HOST'),
-					"dbname"   => Config::get('automation.DB_DATABASE'),
-					"dbusername"   => Config::get('automation.DB_USERNAME'),
-					"dbpassword"   => Config::get('automation.DB_PASSWORD'),
-				]);
-				
-				$proxy = Proxies::find($arr_proxy['proxy_id']);
-				if (!is_null($proxy)) {
-					if($proxy->cred==""){
-						$i->setProxy("http://".$proxy->proxy.":".$proxy->port);					
-					}
-					else {
-						$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
-					}
-				}
-				
-				// $i->setUser(strtolower($link->insta_username), $link->insta_password);
-				$i->login(strtolower($link->insta_username), $link->insta_password, 300);
-		} 
-		catch (Exception $e) {
-			$error_message = $e->getMessage();
-			if (strpos($error_message, 'InstagramAPI\Response\LoginResponse:') !== false) {
-				$ret = Setting::error_password($setting->id); 
-			} 
-			if ( ($error_message == "InstagramAPI\Response\LoginResponse: Challenge required.") || ( substr($error_message, 0, 18) == "challenge_required") || ($error_message == "InstagramAPI\Response\TimelineFeedResponse: Challenge required.") || ($error_message == "InstagramAPI\Response\LoginResponse: Sorry, there was a problem with your request.") ){
-				$ret = Setting::error_notification($setting->id); 
-			}
-			return redirect('dashboard')->with( 'error', $e->getMessage());
-		}
-		catch (\InstagramAPI\Exception\IncorrectPasswordException $e) {
-			//klo error password
-			$ret = Setting::error_password($link->id);
-			return redirect('dashboard')->with( 'error', $e->getMessage());
-		}
-		catch (\InstagramAPI\Exception\CheckpointRequiredException $e) {
-			//klo error email / phone verification 
-			$ret = Setting::error_notification($link->id); 
-			return redirect('dashboard')->with( 'error', $e->getMessage());
-		}
-		catch (\InstagramAPI\Exception\ChallengeRequiredException $e) {
-			//klo error email / phone verification 
-			$ret = Setting::error_notification($link->id); 
-			return redirect('dashboard')->with( 'error', $e->getMessage());
-		}
-		catch (\InstagramAPI\Exception\LoginRequiredException $e) {
-			//klo error email / phone verification 
-			$ret = Setting::error_password($link->id);
-			return redirect('dashboard')->with( 'error', $e->getMessage());
-		}
-		catch (\InstagramAPI\Exception\AccountDisabledException $e) {
-			//klo error password
-			$ret = Setting::error_account_disabled($link->id); 
-			return redirect('dashboard')->with( 'error', $e->getMessage());
-		}
-		
-		//buat list user following (for whitelist purpose)
 		$arr_user_whitelist = array();
 		$counter = 0; $end_cursor = "";
-    $rankToken = \InstagramAPI\Signatures::generateUUID();
-		do {  //repeat until get 50 data scrape 
+		if(App::environment() == "production"){
+			if ($link->proxy_id == 0) {
+				$arr_proxy = GlobalHelper::clearProxy(serialize($link), "new");
+			}
+			else {
+				$arr_proxy['proxy_id'] = $link->proxy_id;
+			}
+			
+			//login dulu buat list following
 			try {
-				if ($counter==0) {
-					// $userFollowingResponse = $i->people->getSelfFollowing();
-					$userFollowingResponse = $i->people->getSelfFollowing($rankToken);
-				} else if ($counter>0) {
-					// $userFollowingResponse = $i->people->getSelfFollowing(null,$end_cursor);
-          $userFollowingResponse = $i->people->getSelfFollowing($rankToken, null, $end_cursor);
-				}
-			}
-			catch (Exception $e) {
-				break;
-			}
-			$counter += 1;
-			
-			$has_next_page = true;
-			if (!is_null($userFollowingResponse->getNextMaxId())) {
-				$end_cursor = $userFollowingResponse->getNextMaxId();
-			} else {
-				$end_cursor = "";
-				$has_next_page = false;
-			}
-			
-			if ( count($userFollowingResponse->getUsers()) > 0 ) {
-				//hasil scrape disimpan ke textfile
-				foreach ($userFollowingResponse->getUsers() as $data) {
-					$arr_user_whitelist[] = array(
-						"text"=>$data->getUsername(),
-						"value"=>$data->getUsername(),
-					);
-
-				}
-
-				
+					$i = new Instagram(false,false,[
+						"storage"       => "mysql",
+						"dbhost"       => Config::get('automation.DB_HOST'),
+						"dbname"   => Config::get('automation.DB_DATABASE'),
+						"dbusername"   => Config::get('automation.DB_USERNAME'),
+						"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+					]);
+					
+					$proxy = Proxies::find($arr_proxy['proxy_id']);
+					if (!is_null($proxy)) {
+						if($proxy->cred==""){
+							$i->setProxy("http://".$proxy->proxy.":".$proxy->port);					
+						}
+						else {
+							$i->setProxy("http://".$proxy->cred."@".$proxy->proxy.":".$proxy->port);
+						}
+					}
+					
+					// $i->setUser(strtolower($link->insta_username), $link->insta_password);
+					$i->login(strtolower($link->insta_username), $link->insta_password, 300);
 			} 
-			else if ( count($userFollowingResponse->getUsers()) == 0 ) {
+			catch (Exception $e) {
+				$error_message = $e->getMessage();
+				if (strpos($error_message, 'InstagramAPI\Response\LoginResponse:') !== false) {
+					$ret = Setting::error_password($setting->id); 
+				} 
+				if ( ($error_message == "InstagramAPI\Response\LoginResponse: Challenge required.") || ( substr($error_message, 0, 18) == "challenge_required") || ($error_message == "InstagramAPI\Response\TimelineFeedResponse: Challenge required.") || ($error_message == "InstagramAPI\Response\LoginResponse: Sorry, there was a problem with your request.") ){
+					$ret = Setting::error_notification($setting->id); 
+				}
+				return redirect('dashboard')->with( 'error', $e->getMessage());
 			}
-			// usleep(500000); // 1/2 detik
-			usleep(120000); 
-		} while ( ($has_next_page) );
+			catch (\InstagramAPI\Exception\IncorrectPasswordException $e) {
+				//klo error password
+				$ret = Setting::error_password($link->id);
+				return redirect('dashboard')->with( 'error', $e->getMessage());
+			}
+			catch (\InstagramAPI\Exception\CheckpointRequiredException $e) {
+				//klo error email / phone verification 
+				$ret = Setting::error_notification($link->id); 
+				return redirect('dashboard')->with( 'error', $e->getMessage());
+			}
+			catch (\InstagramAPI\Exception\ChallengeRequiredException $e) {
+				//klo error email / phone verification 
+				$ret = Setting::error_notification($link->id); 
+				return redirect('dashboard')->with( 'error', $e->getMessage());
+			}
+			catch (\InstagramAPI\Exception\LoginRequiredException $e) {
+				//klo error email / phone verification 
+				$ret = Setting::error_password($link->id);
+				return redirect('dashboard')->with( 'error', $e->getMessage());
+			}
+			catch (\InstagramAPI\Exception\AccountDisabledException $e) {
+				//klo error password
+				$ret = Setting::error_account_disabled($link->id); 
+				return redirect('dashboard')->with( 'error', $e->getMessage());
+			}
 			
-		
+			//buat list user following (for whitelist purpose)
+			$rankToken = \InstagramAPI\Signatures::generateUUID();
+			do {  //repeat until get 50 data scrape 
+				try {
+					if ($counter==0) {
+						// $userFollowingResponse = $i->people->getSelfFollowing();
+						$userFollowingResponse = $i->people->getSelfFollowing($rankToken);
+					} else if ($counter>0) {
+						// $userFollowingResponse = $i->people->getSelfFollowing(null,$end_cursor);
+						$userFollowingResponse = $i->people->getSelfFollowing($rankToken, null, $end_cursor);
+					}
+				}
+				catch (Exception $e) {
+					break;
+				}
+				$counter += 1;
+				
+				$has_next_page = true;
+				if (!is_null($userFollowingResponse->getNextMaxId())) {
+					$end_cursor = $userFollowingResponse->getNextMaxId();
+				} else {
+					$end_cursor = "";
+					$has_next_page = false;
+				}
+				
+				if ( count($userFollowingResponse->getUsers()) > 0 ) {
+					//hasil scrape disimpan ke textfile
+					foreach ($userFollowingResponse->getUsers() as $data) {
+						$arr_user_whitelist[] = array(
+							"text"=>$data->getUsername(),
+							"value"=>$data->getUsername(),
+						);
+
+					}
+
+					
+				} 
+				else if ( count($userFollowingResponse->getUsers()) == 0 ) {
+				}
+				// usleep(500000); // 1/2 detik
+				usleep(120000); 
+			} while ( ($has_next_page) );
+				
+		}
 		
     return view("new-dashboard.setting")->with(array(
       'user'=>$user,
@@ -277,7 +278,8 @@ class NewDashboardController extends Controller
       'strCategory'=>$strCategory,
       'strClassCategory'=>$strClassCategory,
       'ads_content'=>$ads_content,
-      'arr_user_whitelist'=>json_encode($arr_user_whitelist),
+      'j_arr_user_whitelist'=>json_encode($arr_user_whitelist),
+      'arr_user_whitelist'=>$arr_user_whitelist,
 		));
 	}
 
@@ -942,6 +944,7 @@ class NewDashboardController extends Controller
 		$setting = Setting::find(Request::input("setting_id"));
 		$setting->messages = Request::input("message");
 		$setting->is_auto_responder = Request::input("is_auto_responder");
+		$setting->delay_dm = Request::input("delay_dm");
 		$setting->save();
 		
 		return $arr;

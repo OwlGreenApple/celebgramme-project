@@ -137,55 +137,55 @@
                 <ul class="list">
                     <li id="home" @if(Request::is('home')) class="active" @endif>
                         <a href="{{url('home')}}" data-identity="home" class="waves-light">
-                            <i class="material-icons text-white">home</i>
+                            <i class="navigation-icon home-icon"></i>
                             <span>Home</span>
                         </a>
                     </li>
                     <li id="dashboad" @if(Request::is('dashboard')) class="active" @endif>
                         <a href="{{url('dashboard')}}" data-identity="dashboard" class="waves-light">
-                            <i class="material-icons text-white">input</i>
+                            <i class="navigation-icon dashboard-icon"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
                     <li id="buyMore" @if(Request::is('buy-more')) class="active" @endif>
                         <a href="{{url('buy-more')}}" data-identity="buyMore"  class="waves-light">
-                            <i class="material-icons text-white">shopping_cart</i>
+                            <i class="navigation-icon buy-icon"></i>
                             <span>Buy More</span>
                         </a>
                     </li>
 					<li id="confirmPayment" @if(Request::is('confirm-payment')) class="active" @endif>
                         <a href="{{url('confirm-payment')}}" data-identity="confirmPayment"  class="waves-light">
-                            <i class="material-icons text-white">event_available</i>
+                            <i class="navigation-icon confirm-icon"></i>
                             <span>Confirm Payment</span>
                         </a>
                     </li>
 					<li id="orderHistory" @if(Request::is('order')) class="active" @endif>
                         <a href="{{url('order')}}" data-identity="orderHistory"  class="waves-light">
-                            <img src="{{asset('/new-dashboard/images/orderHistory.png')}}" >
+                            <i class="navigation-icon history-icon"></i>
                             <span>Order History</span>
                         </a>
                     </li>
 					<li id="changePassword" @if(Request::is('edit-profile')) class="active" @endif>
                         <a href="{{url('edit-profile')}}" data-identity="changePassword" class="waves-light">
-                            <i class="material-icons text-white">lock</i>
+                            <i class="navigation-icon settings-icon"></i>
                             <span>Change Password</span>
                         </a>
                     </li>
 					<li id="faq">
                         <a href="http://celebgramme.freshdesk.com" target="_blank" data-identity="faq" class="waves-light">
-                            <img src="{{asset('/new-dashboard/images/faq.png')}}" >
+                            <i class="navigation-icon FAQ-icon"></i>
                             <span>Faq & Support</span>
                         </a>
                     </li>
 					<li id="tutorial">
                         <a href="https://docs.google.com/document/d/1h0dYy_U_8p0KBo_tVVdvCs9aY25yLfx6QsAbSIkAf70/edit?usp=sharing" target="_blank" data-identity="tutorial" class="waves-light">
-                            <i class="material-icons text-white">class</i>
+                            <i class="navigation-icon tutorial-icon"></i>
                             <span>Tutorial</span>
                         </a>
                     </li>
 					<li id="logout">
                         <a href="{{url('logout')}}" data-identity="logout" class="waves-light">
-                            <i class="material-icons text-white">power_settings_new</i>
+                            <i class="navigation-icon logout-icon"></i>
                             <span>Logout</span>
                         </a>
                     </li>
@@ -195,8 +195,8 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2017 <a href="{{url('')}}">Celebgramme</a>.
-                    <b>Version: </b> 3.6.2
+                    &copy; 2018 <a href="{{url('')}}">Celebgramme</a>.
+                    <b>Version: </b> 5.0
                 </div>
             </div>
             <!-- #Footer -->
@@ -217,55 +217,55 @@
                 <ul class="list ">
                     <li @if(Request::is('home')) class="active" @endif id="home">
                         <a href="{{url('home')}}" data-identity="home" class="waves-light">
-                            <i class="material-icons text-white">home</i>
+                            <i class="navigation-icon home-icon"></i>
                             <span>Home</span>
                         </a>
                     </li>
                     <li @if(Request::is('dashboard')) class="active" @endif id="dashboad">
                         <a href="{{url('dashboard')}}" data-identity="dashboard" class="waves-light">
-                            <i class="material-icons text-white">input</i>
+                            <i class="navigation-icon dashboard-icon"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
                     <li id="buyMore" @if(Request::is('buy-more')) class="active" @endif>
                         <a href="{{url('buy-more')}}" data-identity="buyMore"  class="waves-light">
-                            <i class="material-icons text-white">shopping_cart</i>
+                            <i class="navigation-icon buy-icon"></i>
                             <span>Buy More</span>
                         </a>
                     </li>
 					<li id="confirmPayment" @if(Request::is('confirm-payment')) class="active" @endif>
                         <a href="{{url('confirm-payment')}}" data-identity="confirmPayment"  class="waves-light">
-                            <i class="material-icons text-white">event_available</i>
+                            <i class="navigation-icon confirm-icon"></i>
                             <span>Confirm Payment</span>
                         </a>
                     </li>
 					<li id="orderHistory" @if(Request::is('order')) class="active" @endif>
                         <a href="{{url('order')}}" data-identity="orderHistory"  class="waves-light">
-                            <img src="{{asset('/new-dashboard/images/orderHistory.png')}}" >
+                            <i class="navigation-icon history-icon"></i>
                             <span>Order History</span>
                         </a>
                     </li>
 					<li id="changePassword" @if(Request::is('edit-profile')) class="active" @endif>
                         <a href="{{url('edit-profile')}}" data-identity="changePassword" class="waves-light">
-                            <i class="material-icons text-white">lock</i>
+                            <i class="navigation-icon settings-icon"></i>
                             <span>Change Password</span>
                         </a>
                     </li>
 					<li id="faq">
                         <a href="http://celebgramme.freshdesk.com" target="_blank" data-identity="faq" class="waves-light">
-                            <img src="{{asset('/new-dashboard/images/faq.png')}}" >
+                            <i class="navigation-icon FAQ-icon"></i>
                             <span>Faq & Support</span>
                         </a>
                     </li>
 					<li id="tutorial">
                         <a href="https://drive.google.com/open?id=1uXCb2zKJdtq51j_dGkCYZvXe0R9XmnK_WMDyzgm1_PE" target="_blank" data-identity="tutorial" class="waves-light">
-                            <i class="material-icons text-white">class</i>
+                            <i class="navigation-icon tutorial-icon"></i>
                             <span>Tutorial</span>
                         </a>
                     </li>
 					<li id="logout">
                         <a href="{{url('logout')}}" target="_blank" data-identity="logout" class="waves-light">
-                            <i class="material-icons text-white">power_settings_new</i>
+                            <i class="navigation-icon logout-icon"></i>
                             <span>Logout</span>
                         </a>
                     </li>
@@ -275,8 +275,8 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2017 <a href="{{url('')}}">Celebgramme</a>.
-                    <b>Version: </b> 3.6.2
+                    &copy; 2018 <a href="{{url('')}}">Celebgramme</a>.
+                    <b>Version: </b> 5.0
                 </div>
             </div>
             <!-- #Footer -->

@@ -8184,3 +8184,41 @@ html.ie11 .bs-searchbox .form-control {
 	/* line-height:1; */
 	/* background-image: url("../images/x-button-normal.png"); */
 }
+.navigation-icon{
+	background-repeat: no-repeat;
+	background-size: 25px 25px;
+	width:25px;
+	height:25px;
+	display:inline-block;
+	margin-top : 2px;
+}
+
+.buy-icon{
+	background-image: url(../images/navigation-icon/buy-white.png);
+}
+.confirm-icon{
+	background-image: url(../images/navigation-icon/confirm-white.png);
+}
+.dashboard-icon{
+	background-image: url(../images/navigation-icon/dashboard-white.png);
+}
+.FAQ-icon{
+	background-image: url(../images/navigation-icon/FAQ-white.png);
+}
+.history-icon{
+	background-image: url(../images/navigation-icon/history-white.png);
+}
+.home-icon{
+	background-image: url(../images/navigation-icon/home-white.png);
+}
+.logout-icon{
+	background-image: url(../images/navigation-icon/logout-white.png);
+}
+.settings-icon{
+	background-image: url(../images/navigation-icon/settings-white.png);
+}
+.tutorial-icon{
+	background-image: url(../images/navigation-icon/tutorial-white.png);
+}
+
+
