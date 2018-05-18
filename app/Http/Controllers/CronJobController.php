@@ -470,7 +470,8 @@ class CronJobController extends Controller
 
 						$extension = pathinfo($pp_url, PATHINFO_EXTENSION);
 						// $filename = str_random(4)."-".str_slug($setting->insta_username).".".$extension;
-						$filename = $setting->id.".".$extension;
+						// $filename = $setting->id.".".$extension;
+						$filename = $setting->id.".jpg";
 						
 						//get file content
 						$arrContextOptions=array(
