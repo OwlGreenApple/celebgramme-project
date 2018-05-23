@@ -258,26 +258,30 @@
             </div>
 
                 <div class="description">
-                  <div class="col-md-6 col-xs-6">
-                    <!--
-                    <div class="image-description center-block img-responsive">
-                    </div>
-                  -->
-                    <img src="{{url('images/laptop-landingpage.png')}}" width="525" height="275" class="img-responsive">
-                  </div>
-                  <div class="content-description col-md-6 col-xs-6">
-                    <h3>Cara Pembayaran</h3>
-                    <p> 
-                      1. Silahkan cek harga paket <!--Daily Likes & -->Auto Manage yang telah tersedia di halaman prices, klik lanjutkan <br>
-                      2. Anda akan masuk ke halaman checkout, pilih paket yang anda inginkan. (jika anda tidak memilih salah satu paket, silahkan biarkan default) <br>
-                      3. Masukkan kode kupon potongan harga jika ada <br>
-                      4. Pilih opsi pembayaran anda kemudian klik order <br>
-                      5. Silahkan lakukan pembayaran <br>
-                      6. Untuk proses pemesanan selanjutnya, mohon konfirmasi pembayaran anda dengan mengisi form konfirmasi pembayaran. Silahkan cek email dari kami, kemudian klik link konfirmasi pembayaran <br>
-                      7. Silahkan log in, paket anda telah aktif <br>
-                      <strong>Selamat menggunakan Celebgramme!</strong>
-                    </p>
-                  </div>
+									<div class="row">
+										<div class="col-md-6 col-xs-12 col-md-offset-3">
+											<!--
+											<div class="image-description center-block img-responsive">
+											</div>
+										-->
+											<img src="{{url('images/laptop-landingpage.png')}}" width="525" height="275" class="img-responsive">
+										</div>
+									</div>
+									<div class="row">
+										<div class="content-description col-md-8 col-xs-12 col-md-offset-2">
+											<h3>Cara Pembayaran</h3>
+											<p> 
+												1. Silahkan cek harga paket <!--Daily Likes & -->Auto Manage yang telah tersedia di halaman prices, klik lanjutkan <br>
+												2. Anda akan masuk ke halaman checkout, pilih paket yang anda inginkan. (jika anda tidak memilih salah satu paket, silahkan biarkan default) <br>
+												3. Masukkan kode kupon potongan harga jika ada <br>
+												4. Pilih opsi pembayaran anda kemudian klik order <br>
+												5. Silahkan lakukan pembayaran <br>
+												6. Untuk proses pemesanan selanjutnya, mohon konfirmasi pembayaran anda dengan mengisi form konfirmasi pembayaran. Silahkan cek email dari kami, kemudian klik link konfirmasi pembayaran <br>
+												7. Silahkan log in, paket anda telah aktif <br>
+												<strong>Selamat menggunakan Celebgramme!</strong>
+											</p>
+										</div>
+									</div>
                 </div>
 
 
@@ -295,7 +299,7 @@
       <div class="footer-package row container">
         <div class="footer-center container row">
           <div class="copyright col-md-6 col-sm-6">
-            Celebgramme.com © 2015-2016
+            Celebgramme.com © 2015-2018
           </div>
 					<div class="col-md-2 col-sm-2">
           </div>

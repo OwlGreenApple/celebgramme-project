@@ -178,7 +178,7 @@
                         </a>
                     </li>
 					<li id="tutorial">
-                        <a href="https://docs.google.com/document/d/1h0dYy_U_8p0KBo_tVVdvCs9aY25yLfx6QsAbSIkAf70/edit?usp=sharing" target="_blank" data-identity="tutorial" class="waves-light">
+                        <a href="https://docs.google.com/document/u/1/d/1m9CuqNL-2-8g_g4UPHNtMXdH3lcwSjest-9z0xsUyNE/edit?usp=sharing" target="_blank" data-identity="tutorial" class="waves-light">
                             <i class="navigation-icon tutorial-icon"></i>
                             <span>Tutorial</span>
                         </a>
@@ -258,7 +258,7 @@
                         </a>
                     </li>
 					<li id="tutorial">
-                        <a href="https://drive.google.com/open?id=1uXCb2zKJdtq51j_dGkCYZvXe0R9XmnK_WMDyzgm1_PE" target="_blank" data-identity="tutorial" class="waves-light">
+                        <a href="https://docs.google.com/document/u/1/d/1m9CuqNL-2-8g_g4UPHNtMXdH3lcwSjest-9z0xsUyNE/edit?usp=sharing" target="_blank" data-identity="tutorial" class="waves-light">
                             <i class="navigation-icon tutorial-icon"></i>
                             <span>Tutorial</span>
                         </a>
