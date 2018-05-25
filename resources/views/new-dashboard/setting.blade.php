@@ -1203,12 +1203,15 @@ use Celebgramme\Models\SettingHelper;
 																		e.preventDefault();
 																		$("#div-loading").show();
 																		// push_all_following();
+																		strSelectValue = "";
 																		<?php 
 																		foreach($arr_user_whitelist as $data_whitelist) { 
 																		?>
-																			selectizeWhitelist.addItem("<?php echo $data_whitelist['value']; ?>",1);
+																			// selectizeWhitelist.addItem("<?php echo $data_whitelist['value']; ?>");
+																			strSelectValue += "<?php echo $data_whitelist['value']; ?>;";
 																		<?php } ?>
 																		
+																		selectizeWhitelist.setTextboxValue(strSelectValue);
 																		$("#div-loading").hide();
 																	});
 		
