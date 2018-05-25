@@ -1177,7 +1177,7 @@ use Celebgramme\Models\SettingHelper;
 																<!--<select name="data[usernames_whitelist]" id="textarea-unfollow-whitelist">
 																</select>-->
 																<textarea class="" id="textarea-unfollow-whitelist" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>
-																<script>
+																<script async>
 																	var $selectWhitelist = $('#textarea-unfollow-whitelist').selectize({
 																				plugins:['remove_button'],
 																				delimiter: ';',
@@ -1205,13 +1205,12 @@ use Celebgramme\Models\SettingHelper;
 																		// push_all_following();
 																		strSelectValue = "";
 																		<?php 
+																		$lastElement = end($arr_user_whitelist);
 																		foreach($arr_user_whitelist as $data_whitelist) { 
 																		?>
-																			// selectizeWhitelist.addItem("<?php echo $data_whitelist['value']; ?>");
-																			strSelectValue += "<?php echo $data_whitelist['value']; ?>;";
+																			selectizeWhitelist.addItem("<?php echo $data_whitelist['value']; ?>");
 																		<?php } ?>
 																		
-																		selectizeWhitelist.setTextboxValue(strSelectValue);
 																		$("#div-loading").hide();
 																	});
 		
