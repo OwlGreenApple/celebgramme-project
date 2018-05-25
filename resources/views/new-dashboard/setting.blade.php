@@ -1214,8 +1214,8 @@ use Celebgramme\Models\SettingHelper;
 																			<?php } ?>
 																			$("#div-loading").hide();
 																			
-																			
-																		}, 3000);
+																			console.log("test");
+																		}, 1000);
 																	});
 		
 		
