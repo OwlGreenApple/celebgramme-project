@@ -1202,17 +1202,20 @@ use Celebgramme\Models\SettingHelper;
 																	$( "body" ).on( "click", "#button-whitelist-user-all-following", function(e) {
 																		e.preventDefault();
 																		$("#div-loading").show();
-																		console.log("a");
-																		// push_all_following();
-																		<?php 
-																		$lastElement = end($arr_user_whitelist);
-																		foreach($arr_user_whitelist as $data_whitelist) { 
-																		?>
-																			$("#div-loading").show();
-																			selectizeWhitelist.addItem("<?php echo $data_whitelist['value']; ?>");
-																		<?php } ?>
-																		console.log("b");
-																		$("#div-loading").hide();
+																		setInterval(function(){
+																			
+																			// push_all_following();
+																			<?php 
+																			$lastElement = end($arr_user_whitelist);
+																			foreach($arr_user_whitelist as $data_whitelist) { 
+																			?>
+																				$("#div-loading").show();
+																				selectizeWhitelist.addItem("<?php echo $data_whitelist['value']; ?>");
+																			<?php } ?>
+																			$("#div-loading").hide();
+																			
+																			
+																		}, 3000);
 																	});
 		
 		
