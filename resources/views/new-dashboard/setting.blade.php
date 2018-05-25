@@ -202,11 +202,13 @@ use Celebgramme\Models\SettingHelper;
 
 	
 	function push_all_following(){
+		$("#div-loading").show();
 		<?php 
 		foreach($arr_user_whitelist as $data_whitelist) { 
 		?>
 			selectizeWhitelist.addItem("<?php echo $data_whitelist['value']; ?>");
 		<?php } ?>
+		$("#div-loading").hide();
 	}
 	
 	$(document).ready(function() {
