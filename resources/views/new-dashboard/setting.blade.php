@@ -1187,6 +1187,9 @@ use Celebgramme\Models\SettingHelper;
 																					/*var arr = value.split(';');
 																					console.log(arr[arr.length - 1]);*/
 																				},
+																				onItemAdd(value, $item){
+																					$("#div-loading").show();
+																				},
 																				create: function(input) {
 																					return {
 																						value: input,
@@ -1201,9 +1204,8 @@ use Celebgramme\Models\SettingHelper;
 
 																	$( "body" ).on( "click", "#button-whitelist-user-all-following", function(e) {
 																		e.preventDefault();
-																		$("#div-loading").show();
+																		
 																		// push_all_following();
-																		strSelectValue = "";
 																		<?php 
 																		$lastElement = end($arr_user_whitelist);
 																		foreach($arr_user_whitelist as $data_whitelist) { 
