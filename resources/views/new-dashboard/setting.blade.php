@@ -200,7 +200,7 @@ use Celebgramme\Models\SettingHelper;
 		});
 	}
 
-	
+	var selectizeWhitelist; 	
 	function push_all_following(){
 		<?php 
 		foreach($arr_user_whitelist as $data_whitelist) { 
@@ -713,20 +713,6 @@ use Celebgramme\Models\SettingHelper;
 		});
 		
 		
-		$( "body" ).on( "click", "#button-whitelist-user-all-following", function(e) {
-			e.preventDefault();
-			$("#div-loading").show();
-			// push_all_following();
-			<?php 
-			foreach($arr_user_whitelist as $data_whitelist) { 
-			?>
-				selectizeWhitelist.addItem("<?php echo $data_whitelist['value']; ?>");
-			<?php } ?>
-			
-			$("#div-loading").hide();
-		});
-		
-		
 	});	
 </script>
 <script type="text/javascript" src="{{ asset('/js/setting.js') }}"></script>
@@ -1208,11 +1194,26 @@ use Celebgramme\Models\SettingHelper;
 																					}
 																				},
 																			});
-																	var selectizeWhitelist = $selectWhitelist[0].selectize;
+																	selectizeWhitelist = $selectWhitelist[0].selectize;
 																	// selectizeWhitelist.addOption({value: "whatever", text: 'whatever'});
 																	selectizeWhitelist.addOption(<?php echo $j_arr_user_whitelist; ?>);
 																	// selectizeWhitelist.refreshOptions();		
 
+																	$( "body" ).on( "click", "#button-whitelist-user-all-following", function(e) {
+																		e.preventDefault();
+																		$("#div-loading").show();
+																		// push_all_following();
+																		<?php 
+																		foreach($arr_user_whitelist as $data_whitelist) { 
+																		?>
+																			selectizeWhitelist.addItem("<?php echo $data_whitelist['value']; ?>");
+																		<?php } ?>
+																		
+																		$("#div-loading").hide();
+																	});
+		
+		
+																	
 																</script>
 															</div>
 														</div>
