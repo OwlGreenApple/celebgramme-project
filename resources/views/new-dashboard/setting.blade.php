@@ -202,13 +202,11 @@ use Celebgramme\Models\SettingHelper;
 
 	
 	function push_all_following(){
-		$("#div-loading").show();
 		<?php 
 		foreach($arr_user_whitelist as $data_whitelist) { 
 		?>
 			selectizeWhitelist.addItem("<?php echo $data_whitelist['value']; ?>");
 		<?php } ?>
-		$("#div-loading").hide();
 	}
 	
 	$(document).ready(function() {
@@ -717,7 +715,9 @@ use Celebgramme\Models\SettingHelper;
 		
 		$( "body" ).on( "click", "#button-whitelist-user-all-following", function(e) {
 			e.preventDefault();
+			$("#div-loading").show();
 			push_all_following();
+			$("#div-loading").hide();
 		});
 		
 		
