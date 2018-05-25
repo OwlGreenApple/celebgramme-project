@@ -1187,9 +1187,6 @@ use Celebgramme\Models\SettingHelper;
 																					/*var arr = value.split(';');
 																					console.log(arr[arr.length - 1]);*/
 																				},
-																				onLoad(data){
-																					$("#div-loading").show();
-																				},
 																				create: function(input) {
 																					return {
 																						value: input,
@@ -1204,7 +1201,8 @@ use Celebgramme\Models\SettingHelper;
 
 																	$( "body" ).on( "click", "#button-whitelist-user-all-following", function(e) {
 																		e.preventDefault();
-																		
+																		$("#div-loading").show();
+																		console.log("a");
 																		// push_all_following();
 																		<?php 
 																		$lastElement = end($arr_user_whitelist);
@@ -1212,7 +1210,7 @@ use Celebgramme\Models\SettingHelper;
 																		?>
 																			selectizeWhitelist.addItem("<?php echo $data_whitelist['value']; ?>");
 																		<?php } ?>
-																		
+																		console.log("b");
 																		$("#div-loading").hide();
 																	});
 		
