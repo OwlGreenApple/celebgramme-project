@@ -1208,6 +1208,7 @@ use Celebgramme\Models\SettingHelper;
 																		$lastElement = end($arr_user_whitelist);
 																		foreach($arr_user_whitelist as $data_whitelist) { 
 																		?>
+																			$("#div-loading").show();
 																			selectizeWhitelist.addItem("<?php echo $data_whitelist['value']; ?>");
 																		<?php } ?>
 																		console.log("b");
