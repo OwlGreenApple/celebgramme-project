@@ -1187,7 +1187,7 @@ use Celebgramme\Models\SettingHelper;
 																					/*var arr = value.split(';');
 																					console.log(arr[arr.length - 1]);*/
 																				},
-																				onChange(value){
+																				onLoad(data){
 																					$("#div-loading").show();
 																				},
 																				create: function(input) {
