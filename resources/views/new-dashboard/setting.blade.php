@@ -1168,7 +1168,7 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row">
 															<div class="col-md-3 col-sm-3 col-xs-3">
 																<button class="btn btn-sm br-6 bg-cyan" id="button-whitelist-user-all-following">Add All Following</button>
-																<button class="btn btn-sm br-6 bg-cyan" id="button-whitelist-user-clear-all" style="margin-left:10px;">Clear All</button>
+																<button class="btn btn-sm br-6" id="button-whitelist-user-clear-all" style="margin-left:10px;">Clear All</button>
 															</div>
 														</div>
 														<div class="row">
@@ -1201,6 +1201,7 @@ use Celebgramme\Models\SettingHelper;
 																	// selectizeWhitelist.refreshOptions();		
 
 																	$( "body" ).on( "click", "#button-whitelist-user-clear-all", function(e) {
+																		e.preventDefault();
 																		selectizeWhitelist.clear();
 																	});
 
