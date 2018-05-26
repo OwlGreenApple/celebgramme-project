@@ -1202,7 +1202,7 @@ use Celebgramme\Models\SettingHelper;
 																	$( "body" ).on( "click", "#button-whitelist-user-all-following", function(e) {
 																		e.preventDefault();
 																		$("#div-loading").show();
-																		setInterval(function(){
+																		var interval = setInterval(function(){
 																			
 																			// push_all_following();
 																			<?php 
@@ -1215,6 +1215,7 @@ use Celebgramme\Models\SettingHelper;
 																			$("#div-loading").hide();
 																			
 																			console.log("test");
+																			clearInterval(interval); 
 																		}, 1000);
 																	});
 		
