@@ -25,28 +25,30 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="tab-content">
-							<!--
-<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="digimaru_1" role="tabpanel" >
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/wYh0UZfzKeQ?rel=0&amp;showinfo=0"></iframe>
-</div>								
-<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="digimaru_2" role="tabpanel" >
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/lGixFHdEMq0?rel=0&amp;showinfo=0"></iframe>
-</div>								
-<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="digimaru_3" role="tabpanel" >
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/VWFvn2H1gP0?rel=0&amp;showinfo=0"></iframe>
-</div>								
-								-->
-
-
+							
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX active" id="home_animation_1" role="tabpanel" >
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ubUwXDx3aGQ?rel=0&amp;showinfo=0"></iframe>
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/QRgXvwbTo0A?rel=0&amp;showinfo=0"></iframe>
 </div>								
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="profile_animation_1" role="tabpanel" >
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TEzV1YXFBUQ?rel=0&amp;showinfo=0"></iframe>
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/W7u-bL-Bdsk?rel=0&amp;showinfo=0"></iframe>
 </div>								
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="messages_animation_1" role="tabpanel" >
   <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DWhDVq5WB8s?rel=0&amp;showinfo=0"></iframe>
+</div>
+
+<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="teknobie_1" role="tabpanel" >
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/3P2C5gx3900?rel=0&amp;showinfo=0"></iframe>
 </div>								
+<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="teknobie_2" role="tabpanel" >
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/A7FZl7mGa5c?rel=0&amp;showinfo=0"></iframe>
+</div>								
+<div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="teknobie_3" role="tabpanel" >
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/5C-yu4JKQNU?rel=0&amp;showinfo=0"></iframe>
+</div>								
+								
+
+
+
 								<div role="tabpanel" class="tab-pane animated flipInX" id="settings_animation_1">
 									<b>Settings Content</b>
 									<p>
@@ -61,38 +63,7 @@
 					</div>
 					<div class="clearfix"></div><br/>
 					<div class="row" role="tablist" id="videoTabs">
-          <!--
-						<div class="col-md-4 col-sm-12 col-xs-12" role="presentation">
-							<a href="#digimaru_1" data-toggle="tab" aria-expanded="true" class="info-box waves-effect btn-video active">
-								<div class="icon">
-									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
-								</div>
-								<div class="content">
-									<p class="text-white">Next Workshop</p>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-4 col-sm-12 col-xs-12" role="presentation">
-							<a href="#digimaru_2" data-toggle="tab" aria-expanded="true" class="info-box waves-effect btn-video">
-								<div class="icon">
-									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
-								</div>
-								<div class="content">
-									<p class="text-white">Alumni Bandung</p>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-4 col-sm-12 col-xs-12" role="presentation">
-							<a href="#digimaru_3" data-toggle="tab" aria-expanded="true" class="info-box waves-effect btn-video">
-								<div class="icon">
-									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
-								</div>
-								<div class="content">
-									<p class="text-white">Alumni Surabaya</p>
-								</div>
-							</a>
-						</div>
-					-->
+
 						<div class="col-md-4 col-sm-12 col-xs-12" role="presentation">
 							<a href="#home_animation_1" data-toggle="tab" aria-expanded="true" class="info-box waves-effect btn-video">
 								<div class="icon">
@@ -124,40 +95,37 @@
 							</a>
 						</div>
 						
-						<!--
-						<div class="col-md-4 col-sm-6 col-xs-6" role="presentation">
-							<a href="#settings_animation_1" data-toggle="tab" aria-expanded="false" class="info-box waves-effect btn-video">
+						<div class="col-md-4 col-sm-12 col-xs-12" role="presentation">
+							<a href="#teknobie_1" data-toggle="tab" aria-expanded="true" class="info-box waves-effect btn-video">
 								<div class="icon">
 									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
 								</div>
 								<div class="content">
-									<p class="text-white">Tutorial Video</p>
+									<p class="text-white">Teknobie 1</p>
 								</div>
 							</a>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-6" role="presentation">
-							<a href="#messages_animation_1" data-toggle="tab" aria-expanded="false" class="info-box waves-effect btn-video">
-								
+						<div class="col-md-4 col-sm-12 col-xs-12" role="presentation">
+							<a href="#teknobie_2" data-toggle="tab" aria-expanded="true" class="info-box waves-effect btn-video">
 								<div class="icon">
 									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
 								</div>
 								<div class="content">
-									<p class="text-white">Tutorial Video</p>
+									<p class="text-white">Teknobie 2</p>
 								</div>
 							</a>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-6" role="presentation">
-							<a href="#settings_animation_1" data-toggle="tab" aria-expanded="false" class="info-box waves-effect btn-video">
-								
+						<div class="col-md-4 col-sm-12 col-xs-12" role="presentation">
+							<a href="#teknobie_3" data-toggle="tab" aria-expanded="true" class="info-box waves-effect btn-video">
 								<div class="icon">
 									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
 								</div>
 								<div class="content">
-									<p class="text-white">Tutorial Video</p>
+									<p class="text-white">Teknobie 3</p>
 								</div>
 							</a>
 						</div>
-						-->
+
 					</div>
 				</div>
 			</div>
