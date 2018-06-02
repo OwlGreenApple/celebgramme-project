@@ -36,6 +36,7 @@ use Celebgramme\Models\ProxyLogin;
 
 /* Celebpost model */
 use Celebgramme\Models\Account;
+use Celebgramme\Models\UserCelebpost;
 
 use Celebgramme\Helpers\GeneralHelper;
 use Celebgramme\Helpers\GlobalHelper;
@@ -887,6 +888,19 @@ class CronJobController extends Controller
 			}
 			
 			$update_setting_helper->save();
+		}
+		
+		//pengecekan klo celebpost uda waktu habis atau, stopped maka proxy akan dicabut
+		$user_celebpost = UserCelebpost::where("active_time",0)
+											->orWhere("is_started",0)
+											->get();
+		foreach($user_celebpost as $data) {
+			$accounts = Account::where("user_id",$data->id)
+									->get();
+			foreach($accounts as $account){
+				$account->proxy_id = 0;
+				$account->save();
+			}
 		}
 		// }
 		
