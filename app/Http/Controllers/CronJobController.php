@@ -829,7 +829,7 @@ class CronJobController extends Controller
 		//delete failed job 
 		$failed_job = FailedJob::
 								/*where("failed_at","<=",$dt->toDateTimeString())
-								->*/delete();
+								->*/truncate();
 								
 		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(5);
 		//delete post target like 
