@@ -1058,13 +1058,13 @@ class AutoManageController extends Controller
 				}
 			}
 			
-			if ($data['max_follow']>7000){
+			if ( ($data['max_follow']>7000) && ($data['status_follow_unfollow']=="on") ){
 				$arr["message"]= "Max follow tidak boleh lebih besar 7000";
 				$arr["type"]= "error";
 				return $arr;
 			}
 				
-			if ($data['max_follow']<1000){
+			if ( ($data['max_follow']<1000)&& ($data['status_follow_unfollow']=="on") ){
 				$arr["message"]= "Max follow tidak boleh lebih kecil 1000";
 				$arr["type"]= "error";
 				return $arr;
@@ -1206,7 +1206,7 @@ class AutoManageController extends Controller
 		
 		//deleted comment if ( ($setting_temp->status=="started") && ($data['status_follow_unfollow']=="off") && ($data['status_like']=="off") && ($data['status_comment']=="off") ) {
 		if ( ($setting_temp->status=="started") && ($data['status_follow_unfollow']=="off") && ($data['status_like']=="off") ) {
-      $arr["message"]= "Silahkan pilih activity follow / like / comment";
+      $arr["message"]= "Silahkan pilih activity follow / like ";
       $arr["type"]= "error";
       return $arr;
 		}
@@ -1320,7 +1320,7 @@ class AutoManageController extends Controller
 					if (Request::input('action')=='start') {
 						// deleted comment if ( (!$setting_temp->status_auto)&&($setting_temp->status_follow_unfollow=="off")&&($setting_temp->status_like=="off")&&($setting_temp->status_comment=="off") ) {
 						if ( (!$setting_temp->status_auto)&&($setting_temp->status_follow_unfollow=="off")&&($setting_temp->status_like=="off") ) {
-							$arr["message"]= "Follow, Like, Comments anda sudah OFF, silahkan di set ON kembali untuk melanjutkan aktifitas ".$setting_temp->insta_username;
+							$arr["message"]= "Follow, Like anda sudah OFF, silahkan di set ON kembali untuk melanjutkan aktifitas ".$setting_temp->insta_username;
 							$arr["type"]= "error";
 							return $arr;
 						}
@@ -1382,7 +1382,7 @@ class AutoManageController extends Controller
 					if (Request::input('action')=='start') {
 						// deleted comment if ( (!$setting_temp->status_auto)&&($setting_temp->status_follow_unfollow=="off")&&($setting_temp->status_like=="off")&&($setting_temp->status_comment=="off") ) {
 						if ( (!$setting_temp->status_auto)&&($setting_temp->status_follow_unfollow=="off")&&($setting_temp->status_like=="off") ) {
-							$arr["message"]= "Anda tidak dapat menjalankan program, silahkan pilih aktifitas yang akan dilakukan (follow/like/comment). Jangan lupa di SAVE sesudahnya. ";
+							$arr["message"]= "Anda tidak dapat menjalankan program, silahkan pilih aktifitas yang akan dilakukan (follow/like). Jangan lupa di SAVE sesudahnya. ";
 							$arr["type"]= "error";
 							return $arr;
 						}

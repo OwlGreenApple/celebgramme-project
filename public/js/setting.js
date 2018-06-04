@@ -185,6 +185,7 @@
 			$('#statusLikeOnButton').addClass('btn-primary');
 			$('#statusLikeOffButton').removeClass('btn-danger');
 			$("#div-hashtags").fadeIn(500);
+			$(".status-like").fadeIn(500);
 			
 			$(".like-day-activity").prop('readonly', false);
 		});
@@ -198,6 +199,7 @@
 			{
 				$('#div-hashtags').fadeOut(500);
 			}
+			$(".status-like").fadeOut(500);
 			$(".like-day-activity").prop('readonly', true);
 		});
 

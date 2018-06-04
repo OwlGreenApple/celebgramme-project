@@ -1111,45 +1111,47 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 															</div>
 														</div>
-														<div class="row">
-															<div class="col-md-3 col-sm-12 col-xs-12">
-																<input type="text" class="" placeholder="Username" id="input-username-blacklist"> 
-																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Search Username </div><div class='panel-content'>Fitur ini mempermudah untuk mencari username yang available <br>dan memasukkan kedaftar blacklist anda, sehingga anda memasukkan username IG yang valid. </div>">
-																</span>
-																&nbsp
-																<button class="btn btn-sm br-6 bg-cyan" id="button-input-user">Enter</button>
+														<div id="div-blacklist" <?php if (!$settings->status_blacklist) echo 'style="display:none;"'; ?>>
+															<div class="row">
+																<div class="col-md-3 col-sm-12 col-xs-12">
+																	<input type="text" class="" placeholder="Username" id="input-username-blacklist"> 
+																	<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Search Username </div><div class='panel-content'>Fitur ini mempermudah untuk mencari username yang available <br>dan memasukkan kedaftar blacklist anda, sehingga anda memasukkan username IG yang valid. </div>">
+																	</span>
+																	&nbsp
+																	<button class="btn btn-sm br-6 bg-cyan" id="button-input-user">Enter</button>
+																</div>
 															</div>
-														</div>
-														<div class="row">
-																<p data-toggle="modal" data-target="#myModal" style="cursor:pointer;position: absolute;right: 35px;z-index: 10;" class="button-copy" data-text="textarea-unfollow-blacklist">copy</p>															
-															<div class="col-md-12 col-sm-12 col-xs-12">
-																<textarea class="" id="textarea-unfollow-blacklist" name="data[usernames_blacklist]">{{$settings->usernames_blacklist}}</textarea>
-																<script>
-																	var $selectBlacklist = $('#textarea-unfollow-blacklist').selectize({
-																				plugins:['remove_button'],
-																				delimiter: ';',
-																				persist: false,
-																				onChange: function(value) {
-																				},
-																				create: function(input) {
-																					return {
-																						value: input,
-																						text: input
-																					}
-																				},
-																			});
-																	var selectizeBlacklist = $selectBlacklist[0].selectize;
-																	
-																	$( "body" ).on( "click", "#button-input-user", function(e) {
-																		e.preventDefault();
-																		// selectizeBlacklist.addOption({value: $("#input-username-blacklist").val(), text: $("#input-username-blacklist").val()});
-																		selectizeBlacklist.addOption({value: $("#input-username-blacklist").val(), text: $("#input-username-blacklist").val()});
-																		// selectizeBlacklist.refreshOptions();
-																		selectizeBlacklist.addItem($("#input-username-blacklist").val(),false);
-																	});
+															<div class="row">
+																	<p data-toggle="modal" data-target="#myModal" style="cursor:pointer;position: absolute;right: 35px;z-index: 10;" class="button-copy" data-text="textarea-unfollow-blacklist">copy</p>															
+																<div class="col-md-12 col-sm-12 col-xs-12">
+																	<textarea class="" id="textarea-unfollow-blacklist" name="data[usernames_blacklist]">{{$settings->usernames_blacklist}}</textarea>
+																	<script>
+																		var $selectBlacklist = $('#textarea-unfollow-blacklist').selectize({
+																					plugins:['remove_button'],
+																					delimiter: ';',
+																					persist: false,
+																					onChange: function(value) {
+																					},
+																					create: function(input) {
+																						return {
+																							value: input,
+																							text: input
+																						}
+																					},
+																				});
+																		var selectizeBlacklist = $selectBlacklist[0].selectize;
+																		
+																		$( "body" ).on( "click", "#button-input-user", function(e) {
+																			e.preventDefault();
+																			// selectizeBlacklist.addOption({value: $("#input-username-blacklist").val(), text: $("#input-username-blacklist").val()});
+																			selectizeBlacklist.addOption({value: $("#input-username-blacklist").val(), text: $("#input-username-blacklist").val()});
+																			// selectizeBlacklist.refreshOptions();
+																			selectizeBlacklist.addItem($("#input-username-blacklist").val(),false);
+																		});
 
-																</script>
-																
+																	</script>
+																	
+																</div>
 															</div>
 														</div>
 														<div class="row">
@@ -1165,68 +1167,70 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 															</div>
 														</div>
-														<div class="row">
-															<div class="col-md-3 col-sm-3 col-xs-3">
-																<button class="btn btn-sm br-6 bg-cyan" id="button-whitelist-user-all-following">Add All Following</button>
-																<button class="btn btn-sm br-6" id="button-whitelist-user-clear-all" style="margin-left:10px;">Clear All</button>
+														<div id="div-unfollow-whitelist" <?php if (!$settings->status_whitelist) echo 'style="display:none;"'; ?>>
+															<div class="row">
+																<div class="col-md-3 col-sm-3 col-xs-3">
+																	<button class="btn btn-sm br-6 bg-cyan" id="button-whitelist-user-all-following">Add All Following</button>
+																	<button class="btn btn-sm br-6" id="button-whitelist-user-clear-all" style="margin-left:10px;">Clear All</button>
+																</div>
 															</div>
-														</div>
-														<div class="row">
-															<div class="col-md-12 col-sm-12 col-xs-12">
-																<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;position: absolute;right: 35px;z-index: 10;" class="button-copy" data-text="textarea-unfollow-whitelist">copy</p>
-																<!--<textarea class="selectize-default" id="textarea-unfollow-whitelist" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>-->
-																<!--<select name="data[usernames_whitelist]" id="textarea-unfollow-whitelist">
-																</select>-->
-																<textarea class="" id="textarea-unfollow-whitelist" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>
-																<script async>
-																	var $selectWhitelist = $('#textarea-unfollow-whitelist').selectize({
-																				plugins:['remove_button'],
-																				delimiter: ';',
-																				persist: false,
-																				onChange: function(value) {
-																					// var current = selectizeWhitelist.getValue(); 
-																					/*var arr = value.split(';');
-																					console.log(arr[arr.length - 1]);*/
-																				},
-																				create: function(input) {
-																					return {
-																						value: input,
-																						text: input
-																					}
-																				},
-																			});
-																	selectizeWhitelist = $selectWhitelist[0].selectize;
-																	// selectizeWhitelist.addOption({value: "whatever", text: 'whatever'});
-																	selectizeWhitelist.addOption(<?php echo $j_arr_user_whitelist; ?>);
-																	// selectizeWhitelist.refreshOptions();		
+															<div class="row">
+																<div class="col-md-12 col-sm-12 col-xs-12">
+																	<p align="right" data-toggle="modal" data-target="#myModal" style="cursor:pointer;position: absolute;right: 35px;z-index: 10;" class="button-copy" data-text="textarea-unfollow-whitelist">copy</p>
+																	<!--<textarea class="selectize-default" id="textarea-unfollow-whitelist" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>-->
+																	<!--<select name="data[usernames_whitelist]" id="textarea-unfollow-whitelist">
+																	</select>-->
+																	<textarea class="" id="textarea-unfollow-whitelist" name="data[usernames_whitelist]">{{$settings->usernames_whitelist}}</textarea>
+																	<script async>
+																		var $selectWhitelist = $('#textarea-unfollow-whitelist').selectize({
+																					plugins:['remove_button'],
+																					delimiter: ';',
+																					persist: false,
+																					onChange: function(value) {
+																						// var current = selectizeWhitelist.getValue(); 
+																						/*var arr = value.split(';');
+																						console.log(arr[arr.length - 1]);*/
+																					},
+																					create: function(input) {
+																						return {
+																							value: input,
+																							text: input
+																						}
+																					},
+																				});
+																		selectizeWhitelist = $selectWhitelist[0].selectize;
+																		// selectizeWhitelist.addOption({value: "whatever", text: 'whatever'});
+																		selectizeWhitelist.addOption(<?php echo $j_arr_user_whitelist; ?>);
+																		// selectizeWhitelist.refreshOptions();		
 
-																	$( "body" ).on( "click", "#button-whitelist-user-clear-all", function(e) {
-																		e.preventDefault();
-																		selectizeWhitelist.clear();
-																	});
+																		$( "body" ).on( "click", "#button-whitelist-user-clear-all", function(e) {
+																			e.preventDefault();
+																			selectizeWhitelist.clear();
+																		});
 
-																	$( "body" ).on( "click", "#button-whitelist-user-all-following", function(e) {
-																		e.preventDefault();
-																		$("#div-loading").show();
-																		var interval = setInterval(function(){
-																			
-																			// push_all_following();
-																			<?php 
-																			$lastElement = end($arr_user_whitelist);
-																			foreach($arr_user_whitelist as $data_whitelist) { 
-																			?>
-																				$("#div-loading").show();
-																				selectizeWhitelist.addItem("<?php echo $data_whitelist['value']; ?>");
-																			<?php } ?>
-																			$("#div-loading").hide();
-																			
-																			clearInterval(interval); 
-																		}, 1000);
-																	});
-		
-		
-																	
-																</script>
+																		$( "body" ).on( "click", "#button-whitelist-user-all-following", function(e) {
+																			e.preventDefault();
+																			$("#div-loading").show();
+																			var interval = setInterval(function(){
+																				
+																				// push_all_following();
+																				<?php 
+																				$lastElement = end($arr_user_whitelist);
+																				foreach($arr_user_whitelist as $data_whitelist) { 
+																				?>
+																					$("#div-loading").show();
+																					selectizeWhitelist.addItem("<?php echo $data_whitelist['value']; ?>");
+																				<?php } ?>
+																				$("#div-loading").hide();
+																				
+																				clearInterval(interval); 
+																			}, 1000);
+																		});
+			
+			
+																		
+																	</script>
+																</div>
 															</div>
 														</div>
 													</div>
@@ -1315,7 +1319,7 @@ use Celebgramme\Models\SettingHelper;
 															</div>
 														</div>
 
-														<div class="row">
+														<div class="row status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 															<div class="col-md-4 col-sm-4 col-xs-4">
 																<b>Auto Switch Follow-Unfollow</b>
 																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Auto Switch Follow-Unfollow</div><div class='panel-content'><b>ON</b> - Setelah follow/unfollow selesai, akan otomatis melakukan kebalikannya.<br><b>OFF</b> - Setelah follow selesai, hanya akan unfollow 1x saja.<br></div>">
@@ -1329,7 +1333,7 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 															</div>
 														</div>
-														<div class="row">
+														<div class="row status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 															<div class="col-md-4 col-sm-4 col-xs-4">
 																<b>Max Follow</b>
 																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Max Follow</div><div class='panel-content'>Angka maximum yang akan difollow. <br>Sesudah angka ini tercapai, celebgramme akan otomatis melakukan Unfollow. <br>Pilih angka antara 1000 s/d 7000, lebih besar lebih efektif.<br></div>">
@@ -1603,9 +1607,12 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 																<b>Sunday</b>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
+																<span class="status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_sunday_follow) { echo "checked"; } ?> name="data[is_sunday_follow]" id="is_sunday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
 																	<label for="is_sunday_follow">Follow</label>
 																	&nbsp &nbsp
+																</span>
+																<span class="status-like" <?php if ($settings->status_like=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_sunday_like) { echo "checked"; } ?> name="data[is_sunday_like]" id="is_sunday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
 																	<label for="is_sunday_like">Like</label>
 															</div>
@@ -1616,11 +1623,15 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 																<b>Monday</b>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
+																<span class="status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_monday_follow) { echo "checked"; } ?> name="data[is_monday_follow]" id="is_monday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
 																	<label for="is_monday_follow">Follow</label>
 																	&nbsp &nbsp
+																</span>
+																<span class="status-like" <?php if ($settings->status_like=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_monday_like) { echo "checked"; } ?> name="data[is_monday_like]" id="is_monday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
 																	<label for="is_monday_like">Like</label>
+																</span>
 															</div>
 														</div>
 														
@@ -1629,11 +1640,15 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 																<b>Tuesday</b>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
+																<span class="status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_tuesday_follow) { echo "checked"; } ?> name="data[is_tuesday_follow]" id="is_tuesday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
 																	<label for="is_tuesday_follow">Follow</label>
 																	&nbsp &nbsp
+																</span>
+																<span class="status-like" <?php if ($settings->status_like=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_tuesday_like) { echo "checked"; } ?> name="data[is_tuesday_like]" id="is_tuesday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
 																	<label for="is_tuesday_like">Like</label>
+																</span>
 															</div>
 														</div>
 														
@@ -1642,11 +1657,15 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 																<b>Wednesday</b>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
+																<span class="status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_wednesday_follow) { echo "checked"; } ?> name="data[is_wednesday_follow]" id="is_wednesday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
 																	<label for="is_wednesday_follow">Follow</label>
 																	&nbsp &nbsp
+																</span>
+																<span class="status-like" <?php if ($settings->status_like=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_wednesday_like) { echo "checked"; } ?> name="data[is_wednesday_like]" id="is_wednesday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
 																	<label for="is_wednesday_like">Like</label>
+																</span>
 															</div>
 														</div>
 														
@@ -1655,11 +1674,15 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 																<b>Thursday</b>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
+																<span class="status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_thursday_follow) { echo "checked"; } ?> name="data[is_thursday_follow]" id="is_thursday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
 																	<label for="is_thursday_follow">Follow</label>
 																	&nbsp &nbsp
+																</span>
+																<span class="status-like" <?php if ($settings->status_like=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_thursday_like) { echo "checked"; } ?> name="data[is_thursday_like]" id="is_thursday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
 																	<label for="is_thursday_like">Like</label>
+																</span>
 															</div>
 														</div>
 														
@@ -1668,11 +1691,15 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 																<b>Friday</b>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
+																<span class="status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_friday_follow) { echo "checked"; } ?> name="data[is_friday_follow]" id="is_friday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
 																	<label for="is_friday_follow">Follow</label>
 																	&nbsp &nbsp
+																</span>
+																<span class="status-like" <?php if ($settings->status_like=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_friday_like) { echo "checked"; } ?> name="data[is_friday_like]" id="is_friday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
 																	<label for="is_friday_like">Like</label>
+																</span>
 															</div>
 														</div>
 														
@@ -1681,11 +1708,15 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 																<b>Saturday</b>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
+																<span class="status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_saturday_follow) { echo "checked"; } ?> name="data[is_saturday_follow]" id="is_saturday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
 																	<label for="is_saturday_follow">Follow</label>
 																	&nbsp &nbsp
+																</span>
+																<span class="status-like" <?php if ($settings->status_like=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_saturday_like) { echo "checked"; } ?> name="data[is_saturday_like]" id="is_saturday_like" class="like-day-activity" <?php if ($settings->status_like=="off") { echo "readonly"; } ?>>
 																	<label for="is_saturday_like">Like</label>
+																</span>
 															</div>
 														</div>
 														
