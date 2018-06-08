@@ -667,7 +667,7 @@ class CronJobController extends Controller
 				if ($flag) {
 					$new_user += 1;
 					$user->active_auto_manage = $package->active_days * 86400;
-					$user->max_account = $package->max_account;
+					$user->max_account = 3;
 					$user->save();
 					
 					$affected = DB::connection('mysqlAffiliate')->update('update wp_af1posts set post_content = "registered" where id="'.$data->ID.'"');
@@ -828,8 +828,8 @@ class CronJobController extends Controller
 		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(1);
 		//delete failed job 
 		$failed_job = FailedJob::
-								/*where("failed_at","<=",$dt->toDateTimeString())
-								->*/truncate();
+								// where("failed_at","<=",$dt->toDateTimeString())->
+								truncate();
 								
 		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(5);
 		//delete post target like 
@@ -839,7 +839,7 @@ class CronJobController extends Controller
 								->update(['status' => 2]);
 
 		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(5);
-		/*delete post target like */
+		// delete post target like 
 		$postTargetLike = PostTargetLike::
 								where("created","<=",$dt->toDateTimeString())
 								->where("status","=",1)
@@ -905,6 +905,36 @@ class CronJobController extends Controller
 		// }
 		
 		
+		//buat kirim email ke order yang belum success 
+		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subdays(2); 
+		$dt1 = Carbon::now()->setTimezone('Asia/Jakarta')->subdays(7); 
+		$orders = Order::where("is_remind_email",0)
+							->where("order_status","pending")
+							->where("created_at","<=",$dt->toDateTimeString())
+							->where("created_at",">=",$dt1->toDateTimeString())
+							->get();
+		foreach($orders as $order){
+			$user = User::find($order->user_id);
+			$package = Package::find($order->package_manage_id);
+			$shortcode = str_replace('OCLB', '', $order->no_order);
+			$date_order = Carbon::createFromFormat('Y-m-d H:i:s', $order->created_at);
+			//send email order
+			$emaildata = [
+					'order' => $order,
+					'user' => $user,
+					'package' => $package,
+					'no_order' => $shortcode,
+					'tanggal_order' => $date_order->format('d-m-Y'),
+			];
+			Mail::queue('emails.reminder', $emaildata, function ($message) use ($user,$shortcode) {
+				$message->from('no-reply@celebgramme.com', 'Celebgramme');
+				$message->to($user->email);
+				$message->subject('[Celebgramme] Jangan lupa ada order yang belum terbayar');
+			});
+			
+			$order->is_remind_email = 1;
+			$order->save();
+		}
 		
 		$setting_counter = null; $failed_job = null; $postTargetLike = null;
 	}

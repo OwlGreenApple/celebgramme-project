@@ -25,7 +25,16 @@
 							echo $shortcode;
 						?>
 						</td>
-            <td> {{$arr->package_name}} </td>
+            <td> 
+						<?php 
+						  if ($arr->type == "daily-activity") {
+								echo $arr->package_name;
+							}
+							else if ($arr->type == "max-account") {
+								echo $arr->added_account." Akun";
+							}
+						?>
+						</td>
             <td> {{"Rp. ".number_format($arr->total-$arr->discount,0,'','.')}} </td>
             <td> 
 							<?php 

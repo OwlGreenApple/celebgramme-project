@@ -171,11 +171,25 @@
                             <span>Change Password</span>
                         </a>
                     </li>
+										<!--
 					<li id="faq">
                         <a href="http://celebgramme.freshdesk.com" target="_blank" data-identity="faq" class="waves-light">
                             <i class="navigation-icon FAQ-icon"></i>
                             <span>Faq & Support</span>
                         </a>
+                    </li>
+										-->
+					<li id="faq">
+                        <a href="https://celebgramme.com/faq" target="_blank" data-identity="faq" class="waves-light">
+                            <i class="navigation-icon FAQ-icon"></i>
+                            <span>FAQ</span>
+                        </a>
+                    </li>
+					<li id="faq">
+												<a href="https://celebgramme.com/support-contact" data-identity="faq" class="waves-light">
+                            <i class="navigation-icon support-icon"></i>
+                            <span>Support</span>
+												</a>
                     </li>
 					<li id="tutorial">
                         <a href="https://docs.google.com/document/u/1/d/1m9CuqNL-2-8g_g4UPHNtMXdH3lcwSjest-9z0xsUyNE/edit?usp=sharing" target="_blank" data-identity="tutorial" class="waves-light">
@@ -196,7 +210,7 @@
             <div class="legal">
                 <div class="copyright">
                     &copy; 2018 <a href="{{url('')}}">Celebgramme</a>.
-                    <b>Version: </b> 5.0.2
+                    <b>Version: </b> 5.0.3
                 </div>
             </div>
             <!-- #Footer -->
@@ -252,10 +266,16 @@
                         </a>
                     </li>
 					<li id="faq">
-                        <a href="http://celebgramme.freshdesk.com" target="_blank" data-identity="faq" class="waves-light">
+                        <a href="https://celebgramme.com/faq" target="_blank" data-identity="faq" class="waves-light">
                             <i class="navigation-icon FAQ-icon"></i>
-                            <span>Faq & Support</span>
+                            <span>FAQ</span>
                         </a>
+                    </li>
+					<li id="faq">
+												<a href="https://celebgramme.com/support-contact" data-identity="faq" class="waves-light">
+                            <i class="navigation-icon support-icon"></i>
+                            <span>Support</span>
+												</a>
                     </li>
 					<li id="tutorial">
                         <a href="https://docs.google.com/document/u/1/d/1m9CuqNL-2-8g_g4UPHNtMXdH3lcwSjest-9z0xsUyNE/edit?usp=sharing" target="_blank" data-identity="tutorial" class="waves-light">
@@ -276,7 +296,7 @@
             <div class="legal">
                 <div class="copyright">
                     &copy; 2018 <a href="{{url('')}}">Celebgramme</a>.
-                    <b>Version: </b> 5.0.2
+                    <b>Version: </b> 5.0.3
                 </div>
             </div>
             <!-- #Footer -->

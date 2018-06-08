@@ -8220,5 +8220,11 @@ html.ie11 .bs-searchbox .form-control {
 .tutorial-icon{
 	background-image: url(../images/navigation-icon/tutorial-white.png);
 }
+.support-icon{
+	background-image: url(../images/navigation-icon/support-icon.png);
+}
 
 
+#wrapCntentPromotion a:hover img, #wrapCntentPromotion a:focus img{
+	opacity : 0.6;
+}

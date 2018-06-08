@@ -4,7 +4,23 @@ Info Order anda adalah sebagai berikut <br>
 <strong>No Order :</strong> {{$no_order}} <br>
 <strong>Nama :</strong> {{$user->fullname}} <br>
 <strong>Status Order :</strong> {{$status}} <br>
-Anda telah memesan paket {{$package->package_name}} = <strong>Rp. {{number_format($order->total - $order->discount,0,'','.')}} </strong><br>
+Anda telah memesan paket 
+<?php 
+	if ($order->type=="daily-activity") {
+?>
+
+{{$package->package_name}} = <strong>Rp. {{number_format($order->total - $order->discount,0,'','.')}} </strong><br>
+
+<?php 		
+	}
+	else if ($order->type=="max-account") {
+?>
+
+{{$order->added_account}} akun = <strong>Rp. {{number_format($order->total - $order->discount,0,'','.')}} </strong><br>
+
+<?php 		
+	}
+?>
 <br>
 <?php if ( $status == "Belum lunas" ) { ?>
 	Harap SEGERA melakukan pembayaran,<br> 

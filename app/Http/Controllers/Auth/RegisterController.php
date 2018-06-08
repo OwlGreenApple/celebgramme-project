@@ -121,6 +121,7 @@ class RegisterController extends Controller
       
       if ($checkout_data["payment_method"]== 1) {
         $data = array (
+          "type" => "daily-activity",
           "order_type" => "transfer_bank",
           "order_status" => "pending",
           "user_id" => $user->id,

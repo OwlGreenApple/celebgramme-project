@@ -47,7 +47,13 @@
             price_coupon = parseInt(data.real);
 						
 						
-						total = price_daily_like + price_auto_manage - price_coupon;
+						if($('#daily-activity').is(':checked')) { 
+							total = price_daily_like + price_auto_manage - price_coupon;
+						}
+						else if($('#max-account').is(':checked')) { 
+							total = price_daily_like + price_max_account - price_coupon;
+						}
+						
 						if (total<0) { total = 0; }
 						$("#price-total").html(commaSeparateNumber(total));
 						
@@ -59,7 +65,7 @@
     $("#alert").hide();
 
 
-    price_daily_like = 0; price_auto_manage = 0; price_coupon = 0;
+    price_daily_like = 0; price_auto_manage = 0; price_max_account = 100000; price_coupon = 0;
     $( "#select-daily-like" ).change(function() {
       //$("#price-daily-package").html($(this).find("option:selected").attr("data-price"));
       price_daily_like = parseInt($(this).find("option:selected").attr("data-real"));
@@ -70,6 +76,12 @@
       price_auto_manage = parseInt($(this).find("option:selected").attr("data-real"));
       count_total();
     });          
+    $( "#select-maximum-account" ).change(function() {
+      //$("#price-auto-manage").html($(this).find("option:selected").attr("data-price"));
+			price_max_account = parseInt($(this).find("option:selected").attr("data-real"));
+      count_total();
+    });          
+		
 
     $( "#text-coupon-code" ).keydown(function(e) {
 			var key = e.which;
@@ -81,12 +93,11 @@
 			}
     });          
 
-		$('#button-apply').click(function(e){
+		$('#button-apply,#daily-activity,#max-account').click(function(e){
 			count_total();
 		});          
 
     $('#button-process').click(function(e){
-      // if ( ($("#select-daily-like").find("option:selected").attr("data-real")=="0") && ($("#select-auto-manage").find("option:selected").attr("data-real")=="0") )
       if ($("#select-auto-manage").find("option:selected").attr("data-real")=="0") 
       {
         alert("Silahkan pilih paket yang anda gunakan");
@@ -105,6 +116,16 @@
 
     $( "#select-auto-manage" ).change();
 
+		$('#daily-activity').click(function(e){
+			$("#div-auto-manage").fadeIn(500);
+			$('#div-maximum-account').fadeOut(500);
+    });          
+		
+		$('#max-account').click(function(e){
+			$("#div-maximum-account").fadeIn(500);
+			$('#div-auto-manage').fadeOut(500);
+    });          
+		
   });
 </script>
  
@@ -137,6 +158,14 @@
 	</div>  
 
   <div class="form-group form-group-sm row">
+    <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">Order Tipe</label>
+    <div class="col-sm-8 col-md-5">
+		<input type="radio" value="daily-activity" name="type" id="daily-activity" checked> <label for="daily-activity">Aktifitas harian</label> 
+		<input type="radio" value="max-account" name="type" id="max-account"> <label for="max-account">Maksimum Akun</label> 
+    </div>
+  </div>  
+
+  <div class="form-group form-group-sm row" id="div-auto-manage">
     <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">Paket Auto Manage</label>
     <div class="col-sm-8 col-md-5">
       <select class="form-control" name="package-auto-manage" id="select-auto-manage">
@@ -144,6 +173,17 @@
 					<option data-real="{{$package->price}}" data-price="{{number_format($package->price,0,'','.')}}" value="{{$package->id}}" <?php if ($id==$package->id) echo "selected"; ?>>
 					Paket {{$package->package_name}}</option>
 				<?php } ?>
+      </select>
+    </div>
+  </div>  
+
+  <div class="form-group form-group-sm row" style="display:none;" id="div-maximum-account">
+    <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">Paket Maksimum Akun</label>
+    <div class="col-sm-8 col-md-5">
+      <select class="form-control" name="maximum-account" id="select-maximum-account">
+					<option value="3" data-real="100000">Paket 3 Akun</option>
+					<option value="6" data-real="200000">Paket 6 Akun</option>
+					<option value="9" data-real="300000">Paket 9 Akun</option>
       </select>
     </div>
   </div>  

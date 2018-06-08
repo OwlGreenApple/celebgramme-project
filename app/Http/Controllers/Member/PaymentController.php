@@ -33,30 +33,41 @@ class PaymentController extends Controller
 	 */
 	public function process(Request $request){
     $user = Auth::user();
-    //$package = Package::find(Input::get("package-daily-likes"));
 
     //hitung total
 		$total = 0;
-		// $package = Package::find(Input::get("package-daily-likes"));
-		// if (!is_null($package)) {
-			// $total += $package->price;
-		// }
-		$package = Package::find(Input::get("package-auto-manage"));
-		if (!is_null($package)) {
-			$total += $package->price;
+		
+		if (Input::get("type") == "daily-activity" ) {
+			$package = Package::find(Input::get("package-auto-manage"));
+			if (!is_null($package)) {
+				$total += $package->price;
+			}
 		}
-		$dt = Carbon::now();
+		else if (Input::get("type") == "max-account" ) {
+			if (Input::get("maximum-account") == "3" ) {
+				$total += 100000;
+			}
+			else if (Input::get("maximum-account") == "6" ) {
+				$total += 200000;
+			}
+			else if (Input::get("maximum-account") == "9" ) {
+				$total += 300000;
+			}
+		}
+		/*$dt = Carbon::now();
 		$coupon = Coupon::where("coupon_code","=",Input::get("coupon-code"))
 					->where("valid_until",">=",$dt->toDateTimeString())->first();
 		if (!is_null($coupon)) {
 			$total -= $coupon->coupon_value;
 			if ($total<0) { $total =0; }
-		}
+		}*/
 
     
     //transfer bank
     if (Input::get("payment-method") == 1) {
       $data = array (
+        "type" => Input::get("type"),
+        "maximum_account" => Input::get("maximum-account"),
         "order_type" => "transfer_bank",
         "order_status" => "pending",
         "user_id" => $user->id,

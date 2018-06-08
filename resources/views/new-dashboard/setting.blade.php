@@ -1021,7 +1021,7 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row">
 															<div class="col-md-6 col-sm-6 col-xs-6">
 																<b>Speed</b>
-																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Activity speed</div><div class='panel-content'>• <b>Slow</b> = 200-250 Likes, 100-150 follow/unfollow <br>• <b>Normal</b> = 250-300 likes, 150-200 follow/unfollows <br>• <b>Fast</b> = 300-350 likes, 300-350 follow/unfollows <br>• <b>Turbo</b> = 600-750 likes, 400-480 follow/unfollows <br><i>*Proses aktifitas harian</i> <br></div>">
+																<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Activity speed</div><div class='panel-content'>• <b>Slow</b> = 200-250 Likes, 100-150 follow/unfollow <br>• <b>Normal</b> = 250-300 likes, 150-200 follow/unfollows <br>• <b>Fast</b> = 300-350 likes, 300-350 follow/unfollows <br>• <b>Turbo</b> = 350-500 likes, 350-400 follow/unfollows <br><i>*Proses aktifitas harian</i> <br></div>">
 																</span>
 															</div>
 															<div class="col-md-6 col-sm-6 col-xs-6 padding-0">

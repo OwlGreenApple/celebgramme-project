@@ -29,18 +29,21 @@ class Order extends Model {
 					if ($coupon->coupon_percent == 0 ) {
 						$order_discount = $coupon->coupon_value;
 					} else if ($coupon->coupon_value == 0 ) {
-						$package = Package::find($cdata["package_manage_id"]);
-						$val = floor ( $coupon->coupon_percent / 100 * $package->price );
-						$order_discount = $val;
+						if ($cdata["type"] == "daily-activity" ) {
+							$val = floor ( $coupon->coupon_percent / 100 * $cdata["order_total"] );
+							$order_discount = $val;
+						}
+						else if ($cdata["type"] == "max-account" ) {
+						}
 					}
 						
         }
+				
+				
 
 				//unique code 
 				$unique_code = mt_rand(1, 1000);
-
         $order = new Order;
-    		
     		$str = 'OCLB'.$dt->format('ymdHi');
         $order_number = GeneralHelper::autoGenerateID($order, 'no_order', $str, 3, '0');
         $order->no_order = $order_number;
@@ -49,10 +52,19 @@ class Order extends Model {
         $order->user_id = $cdata["user_id"];
         $order->total = $cdata["order_total"] + $unique_code;
         $order->discount = $order_discount;
-        // $order->package_id = $cdata["package_id"];
         $order->package_id = 0;
         $order->package_manage_id = $cdata["package_manage_id"];
         $order->coupon_id = $coupon_id;
+				
+				$order->type = $cdata["type"];
+				$order->is_remind_email = 0;
+				
+				if ($cdata["type"] == "daily-activity" ) {
+					$order->added_account = 0;
+				}
+				else if ($cdata["type"] == "max-account" ) {
+					$order->added_account = $cdata["maximum_account"];
+				}
         $order->save();
 				
 				OrderMeta::createMeta("logs","create order by ".$cdata["logs"],$order->id);
