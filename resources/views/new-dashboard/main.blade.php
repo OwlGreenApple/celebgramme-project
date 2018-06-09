@@ -199,8 +199,8 @@
                             <span>FAQ</span>
                         </a>
                     </li>
-					<li id="faq">
-												<a href="https://celebgramme.com/support-contact" data-identity="faq" class="waves-light">
+					<li id="support">
+												<a href="https://celebgramme.com/support-contact" data-identity="support" class="waves-light">
                             <i class="navigation-icon support-icon"></i>
                             <span>Support</span>
 												</a>
@@ -285,8 +285,8 @@
                             <span>FAQ</span>
                         </a>
                     </li>
-					<li id="faq">
-												<a href="https://celebgramme.com/support-contact" data-identity="faq" class="waves-light">
+					<li id="support">
+												<a href="https://celebgramme.com/support-contact" data-identity="support" class="waves-light">
                             <i class="navigation-icon support-icon"></i>
                             <span>Support</span>
 												</a>

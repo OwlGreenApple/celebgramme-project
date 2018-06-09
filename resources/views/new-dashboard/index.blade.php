@@ -134,7 +134,7 @@
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="max-width:290px;">
 						<div class="card margin-0 br-t-6">
 							<div class="header bg-themeDefault text-center br-t-6">
-								<h2>Promotions</h2>
+								<h2>CS & Promotions</h2>
 							</div>
 							<div class="">
 								<div style="padding:0;"class="card text-center margin-0 col-md-12 col-sm-12 col-xs-12">
