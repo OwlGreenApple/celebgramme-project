@@ -2,6 +2,21 @@
 <html>
 
 <head>
+		<script>
+(function (u, s, e, r, g) { 
+    u[r] = u[r] || [];
+    u[r].push({
+      'ug.start': new Date().getTime(), event: 'embed.js',
+    });
+    var f = s.getElementsByTagName(e)[0],
+        j = s.createElement(e);
+    j.async = true;
+    j.src = 'https://static.userguiding.com/media/user-guiding-'
+     + g + '-embedded.js';
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'userGuidingLayer', '30185054ID');
+		</script>
+
     <meta charset="UTF-8">
 		<meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -60,20 +75,7 @@
 		<script type="text/javascript" src="{{ asset('/emoji/js/emojionearea.js') }}"></script>
 
 		
-		<script>
-(function (u, s, e, r, g) { 
-    u[r] = u[r] || [];
-    u[r].push({
-      'ug.start': new Date().getTime(), event: 'embed.js',
-    });
-    var f = s.getElementsByTagName(e)[0],
-        j = s.createElement(e);
-    j.async = true;
-    j.src = 'https://static.userguiding.com/media/user-guiding-'
-     + g + '-embedded.js';
-    f.parentNode.insertBefore(j, f);
-})(window, document, 'script', 'userGuidingLayer', '30185054ID');
-		</script>
+
 		<script>
 			$(document).ready(function(){
 				$("#div-loading").hide();
