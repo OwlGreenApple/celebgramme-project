@@ -75,7 +75,7 @@
     j.src = 'https://static.userguiding.com/media/user-guiding-'
      + g + '-embedded.js';
     f.parentNode.insertBefore(j, f);
-})(window, document, 'script', 'userGuidingLayer', '84184911ID');
+})(window, document, 'script', 'userGuidingLayer', '30185054ID');
 		</script>
 		
 </head>
