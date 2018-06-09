@@ -61,9 +61,6 @@
 
 		
 		<script>
-			$(document).ready(function(){
-				$("#div-loading").hide();
-			});
 (function (u, s, e, r, g) { 
     u[r] = u[r] || [];
     u[r].push({
@@ -76,6 +73,11 @@
      + g + '-embedded.js';
     f.parentNode.insertBefore(j, f);
 })(window, document, 'script', 'userGuidingLayer', '30185054ID');
+		</script>
+		<script>
+			$(document).ready(function(){
+				$("#div-loading").hide();
+			});
 		</script>
 		
 </head>
