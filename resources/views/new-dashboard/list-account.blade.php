@@ -129,7 +129,7 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 							<div class="row">
 								<?php if (SettingMeta::getMeta($data->id,"auto_unfollow") == "yes" )  { ?>
 								<div class="col-md-12 col-sm-12 col-xs-12">
-									<p class="text-center">*Proses auto unfollow akan dijalankan karena jumlah following anda telah mencapai 7250</p>
+									<p class="text-center">*Proses auto unfollow akan dijalankan karena jumlah following anda telah mencapai {{$data->max_account}}</p>
 								</div>
 								<?php } ?>
 							</div>
