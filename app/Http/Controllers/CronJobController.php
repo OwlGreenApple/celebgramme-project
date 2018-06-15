@@ -859,14 +859,14 @@ class CronJobController extends Controller
 		}
 
 		//klo IG account stop or deleted or waktu nya habis(TIMED out) lebih dari 8 hari, maka proxy akan dicabut, klo ada di celebpost maka table accounts di celebpost is_on_celebgramme di 0 kan
-		//new $dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(8);
+		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(8);
 		// $users = User::where("active_auto_manage","=",0)->get();
 		// foreach ($users as $user){
 		$settings = Setting::join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 								->join("users","users.id","=","settings.last_user")
 								->where("settings.type",'=','temp')
 								->where("proxy_id","!=",0)
-								//new ->where("settings.running_time","<",$dt->toDateTimeString())
+								->where("settings.running_time","<",$dt->toDateTimeString())
 								// ->where("settings.start_time","<>","0000-00-00 00:00:00")
 								->where(function ($query) {
 									$query->where("settings.status","=","stopped")
@@ -897,9 +897,9 @@ class CronJobController extends Controller
 		foreach($user_celebpost as $data) {
 			$accounts = Account::where("user_id",$data->id)
 									->get();
-			foreach($accounts as $account){
-				$account->proxy_id = 0;
-				$account->save();
+			foreach($accounts as $account_celebpost){
+				$account_celebpost->proxy_id = 0;
+				$account_celebpost->save();
 			}
 		}
 		// }
