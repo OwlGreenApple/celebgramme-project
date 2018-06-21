@@ -86,6 +86,7 @@ class LandingPageController extends Controller
   }
   
 	public function testing(){
+		exit;
 		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(8);
 		$settings = Setting::join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 								->join("users","users.id","=","settings.last_user")
@@ -609,16 +610,32 @@ class LandingPageController extends Controller
 	* FUNCTION CUMAN JALAN DI PRODUCTION, KARENA VIEW DATABASE
 	*/
 	public function get_proxy_id($insta_username){	
+		$arr["is_on_celebgramme"] = 0;
+		$setting_id = 0;
 		//check insta_username ada di celebgramme 
 		$check = Setting::join("setting_helpers","setting_helpers.setting_id","=","settings.id")
 							->where("type","=","temp")
-							->where("proxy_id","!=",0)
 							->where("insta_username","=",$insta_username)
 							->first();
 		if (!is_null($check)) {
-			$arr["proxy_id"] = $check->proxy_id;
 			$arr["is_on_celebgramme"] = 1;
+			$setting_id = $check->setting_id;
 		} else {
+			$arr["is_on_celebgramme"] = 0;
+		}
+		
+
+		//check insta_username yang di celebgramme ada proxy ?
+		$proxy_id = 0;
+		$check = Setting::join("setting_helpers","setting_helpers.setting_id","=","settings.id")
+							->where("type","=","temp")
+							->where("proxy_id","<>",0)
+							->where("insta_username","=",$insta_username)
+							->first();
+		if (!is_null($check)) {
+			$proxy_id = $check->proxy_id;
+		}
+		else {
 			//carikan proxy baru, yang available 
 			$availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
 												->groupBy("id","proxy","cred","port","auth")
@@ -645,11 +662,17 @@ class LandingPageController extends Controller
 					$proxy_id = $availableProxy->id;
 				}
 			}
-			$arr["proxy_id"] = $proxy_id;
-			$arr["is_on_celebgramme"] = 0;
-			
+
+			$setting_helper = SettingHelper::where("setting_id","=",$setting_id)->first();
+			if (!is_null($setting_helper)) {
+				$setting_helper->proxy_id = $proxy_id;
+				$setting_helper->save();
+			}
+
 		}
+		
 	
+		$arr["proxy_id"] = $proxy_id;
 	
 		return response()->json($arr);
 	}
