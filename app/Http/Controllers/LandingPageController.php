@@ -86,6 +86,14 @@ class LandingPageController extends Controller
   }
   
 	public function testing(){
+		$settings = Setting::join("setting_helpers","settings.id","=","setting_helpers.setting_id")
+								->join("users","users.id","=","settings.last_user")
+								->where("settings.type",'=','temp')
+								->where("proxy_id","!=",0)
+								->get();
+		dd($settings);
+		
+		
 		$arr_proxys = array();
 		
 		$arr_proxys[] = [
