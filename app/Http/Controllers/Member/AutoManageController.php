@@ -1470,8 +1470,9 @@ class AutoManageController extends Controller
 			//for automation purpose
 			$setting_helper = SettingHelper::where("setting_id","=",$account->id)->first();
 			if (!is_null($setting_helper)) {
-				$setting_helper->proxy_id = 0 ; 
-				$setting_helper->save();
+				//new karena banyak yang error account2 saat didelete
+				// $setting_helper->proxy_id = 0 ; 
+				// $setting_helper->save();
 				
 				//new code, supaya klo password ganti bisa di add (next stepnya)
 				$user_setting = UserSetting::where("username",$account->insta_username)->delete();
