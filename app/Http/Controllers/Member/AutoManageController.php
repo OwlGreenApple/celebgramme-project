@@ -142,12 +142,12 @@ class AutoManageController extends Controller
 				
 				//proxy things
 				if (session()->has('proxy')) {
-					$arr_proxy = session('proxy');
+					$arr_proxy_login = session('proxy');
 					if ( intval(session('attempt_count')) == 1 ) {
 						//flag proxy supaya ga dipake lagi hari itu
-						$proxy_login = ProxyLogin::where("proxy",$arr_proxy["proxy"])
-														->where("port",$arr_proxy["port"])
-														->where("cred",$arr_proxy["cred"])
+						$proxy_login = ProxyLogin::where("proxy",$arr_proxy_login["proxy"])
+														->where("port",$arr_proxy_login["port"])
+														->where("cred",$arr_proxy_login["cred"])
 														->first();
 						if(!is_null($proxy_login)){
 							$proxy_login->is_error = 1;
@@ -155,13 +155,13 @@ class AutoManageController extends Controller
 						}
 						
 						//random dengan proxy yang lain
-						$arr_proxy = $this->random_proxy();
+						$arr_proxy_login = $this->random_proxy();
 					}
 					else if ( intval(session('attempt_count')) >= 3 ) {
 						//flag proxy supaya ga dipake lagi hari itu
-						$proxy_login = ProxyLogin::where("proxy",$arr_proxy["proxy"])
-														->where("port",$arr_proxy["port"])
-														->where("cred",$arr_proxy["cred"])
+						$proxy_login = ProxyLogin::where("proxy",$arr_proxy_login["proxy"])
+														->where("port",$arr_proxy_login["port"])
+														->where("cred",$arr_proxy_login["cred"])
 														->first();
 						if(!is_null($proxy_login)){
 							$proxy_login->is_error = 1;
@@ -174,22 +174,22 @@ class AutoManageController extends Controller
 					}
 					
 					session([
-						'proxy' => collect($arr_proxy),
+						'proxy' => collect($arr_proxy_login),
 						'attempt_count' => intval(session('attempt_count')) + 1 ,
 					]);
 				}
 				else {
-					$arr_proxy = $this->random_proxy();
+					$arr_proxy_login = $this->random_proxy();
 					session([
-						'proxy' => collect($arr_proxy),
+						'proxy' => collect($arr_proxy_login),
 						'attempt_count' => 0,
 					]);
 				}
-				if($arr_proxy['cred']==""){
-					$i->setProxy("http://".$arr_proxy['proxy'].":".$arr_proxy['port']);
+				if($arr_proxy_login['cred']==""){
+					$i->setProxy("http://".$arr_proxy_login['proxy'].":".$arr_proxy_login['port']);
 				}
 				else {
-					$i->setProxy("http://".$arr_proxy['cred']."@".$arr_proxy['proxy'].":".$arr_proxy['port']);
+					$i->setProxy("http://".$arr_proxy_login['cred']."@".$arr_proxy_login['proxy'].":".$arr_proxy_login['port']);
 				}
 				
 				$i->login(Request::input("hidden_username"), Request::input("edit_password"), 1800);
@@ -227,18 +227,18 @@ class AutoManageController extends Controller
 				}
 				if ( (strpos($e->getMessage(), 'Network: CURL error') !== false) || (strpos($e->getMessage(), 'No response from server') !== false) ) {
 					//proxy ga bisa, flag proxy supaya ga dipake lagi hari itu
-					$proxy_login = ProxyLogin::where("proxy",$arr_proxy["proxy"])
-													->where("port",$arr_proxy["port"])
-													->where("cred",$arr_proxy["cred"])
+					$proxy_login = ProxyLogin::where("proxy",$arr_proxy_login["proxy"])
+													->where("port",$arr_proxy_login["port"])
+													->where("cred",$arr_proxy_login["cred"])
 													->first();
 					if(!is_null($proxy_login)){
 						$proxy_login->is_error = 2;
 						$proxy_login->save();
 					}
 					
-					$arr_proxy = $this->random_proxy();
+					$arr_proxy_login = $this->random_proxy();
 					session([
-						'proxy' => collect($arr_proxy),
+						'proxy' => collect($arr_proxy_login),
 						'attempt_count' => 0,
 					]);
 					
@@ -263,7 +263,7 @@ class AutoManageController extends Controller
 			$user_log = new UserLog;
 			$user_log->email = $user->email;
 			$user_log->admin = "";
-			$user_log->description = "Error Proxy : ".$arr_proxy["proxy"].":".$arr_proxy["port"].":".$arr_proxy["cred"]." ".Request::input("hidden_username");
+			$user_log->description = "Error Proxy : ".$arr_proxy_login["proxy"].":".$arr_proxy_login["port"].":".$arr_proxy_login["cred"]." ".Request::input("hidden_username");
 			$user_log->created = $dt->toDateTimeString();
 			$user_log->save();
 			return $arr;
@@ -277,12 +277,12 @@ class AutoManageController extends Controller
 			$user_log = new UserLog;
 			$user_log->email = $user->email;
 			$user_log->admin = "";
-			$user_log->description = "Success add Proxy : ".$arr_proxy["proxy"].":".$arr_proxy["port"].":".$arr_proxy["cred"]." ".Request::input("hidden_username");
+			$user_log->description = "Success add Proxy : ".$arr_proxy_login["proxy"].":".$arr_proxy_login["port"].":".$arr_proxy_login["cred"]." ".Request::input("hidden_username");
 			$user_log->created = $dt->toDateTimeString();
 			$user_log->save();
     
 			session([
-				'proxy' => collect($arr_proxy),
+				'proxy' => collect($arr_proxy_login),
 				'attempt_count' => 0 ,
 			]);
 			
@@ -448,12 +448,12 @@ class AutoManageController extends Controller
 				
 				//proxy things
 				if (session()->has('proxy')) {
-					$arr_proxy = session('proxy');
+					$arr_proxy_login = session('proxy');
 					if ( intval(session('attempt_count')) == 1 ) {
 						//flag proxy supaya ga dipake lagi hari itu
-						$proxy_login = ProxyLogin::where("proxy",$arr_proxy["proxy"])
-														->where("port",$arr_proxy["port"])
-														->where("cred",$arr_proxy["cred"])
+						$proxy_login = ProxyLogin::where("proxy",$arr_proxy_login["proxy"])
+														->where("port",$arr_proxy_login["port"])
+														->where("cred",$arr_proxy_login["cred"])
 														->first();
 						if(!is_null($proxy_login)){
 							$proxy_login->is_error = 1;
@@ -461,13 +461,13 @@ class AutoManageController extends Controller
 						}
 						
 						//random dengan proxy yang lain
-						$arr_proxy = $this->random_proxy();
+						$arr_proxy_login = $this->random_proxy();
 					}
 					else if ( intval(session('attempt_count')) >= 3 ) {
 						//flag proxy supaya ga dipake lagi hari itu
-						$proxy_login = ProxyLogin::where("proxy",$arr_proxy["proxy"])
-														->where("port",$arr_proxy["port"])
-														->where("cred",$arr_proxy["cred"])
+						$proxy_login = ProxyLogin::where("proxy",$arr_proxy_login["proxy"])
+														->where("port",$arr_proxy_login["port"])
+														->where("cred",$arr_proxy_login["cred"])
 														->first();
 						if(!is_null($proxy_login)){
 							$proxy_login->is_error = 1;
@@ -480,22 +480,22 @@ class AutoManageController extends Controller
 					}
 					
 					session([
-						'proxy' => collect($arr_proxy),
+						'proxy' => collect($arr_proxy_login),
 						'attempt_count' => intval(session('attempt_count')) + 1 ,
 					]);
 				}
 				else {
-					$arr_proxy = $this->random_proxy();
+					$arr_proxy_login = $this->random_proxy();
 					session([
-						'proxy' => collect($arr_proxy),
+						'proxy' => collect($arr_proxy_login),
 						'attempt_count' => 0,
 					]);
 				}
-				if($arr_proxy["cred"]==""){
-					$i->setProxy("http://".$arr_proxy["proxy"].":".$arr_proxy["port"]);
+				if($arr_proxy_login["cred"]==""){
+					$i->setProxy("http://".$arr_proxy_login["proxy"].":".$arr_proxy_login["port"]);
 				}
 				else {
-					$i->setProxy("http://".$arr_proxy["cred"]."@".$arr_proxy["proxy"].":".$arr_proxy["port"]);
+					$i->setProxy("http://".$arr_proxy_login["cred"]."@".$arr_proxy_login["proxy"].":".$arr_proxy_login["port"]);
 				}
 				
 				// $i->setUser(strtolower($array_data["username"]), $array_data["password"]);
@@ -547,18 +547,18 @@ class AutoManageController extends Controller
 				}
 				if ( (strpos($e->getMessage(), 'Network: CURL error') !== false) || (strpos($e->getMessage(), 'No response from server') !== false) ) {
 					//proxy ga bisa, flag proxy supaya ga dipake lagi hari itu
-					$proxy_login = ProxyLogin::where("proxy",$arr_proxy["proxy"])
-													->where("port",$arr_proxy["port"])
-													->where("cred",$arr_proxy["cred"])
+					$proxy_login = ProxyLogin::where("proxy",$arr_proxy_login["proxy"])
+													->where("port",$arr_proxy_login["port"])
+													->where("cred",$arr_proxy_login["cred"])
 													->first();
 					if(!is_null($proxy_login)){
 						$proxy_login->is_error = 2;
 						$proxy_login->save();
 					}
 					
-					$arr_proxy = $this->random_proxy();
+					$arr_proxy_login = $this->random_proxy();
 					session([
-						'proxy' => collect($arr_proxy),
+						'proxy' => collect($arr_proxy_login),
 						'attempt_count' => 0,
 					]);
 					
@@ -586,7 +586,7 @@ class AutoManageController extends Controller
 			$user_log = new UserLog;
 			$user_log->email = $user->email;
 			$user_log->admin = "";
-			$user_log->description = "Error Proxy : ".$arr_proxy["proxy"].":".$arr_proxy["port"].":".$arr_proxy["cred"]." ".Request::input("username");
+			$user_log->description = "Error Proxy : ".$arr_proxy_login["proxy"].":".$arr_proxy_login["port"].":".$arr_proxy_login["cred"]." ".Request::input("username");
 			$user_log->created = $dt->toDateTimeString();
 			$user_log->save();
 			$arr["type"]= "error2";
@@ -603,12 +603,12 @@ class AutoManageController extends Controller
 			$user_log = new UserLog;
 			$user_log->email = $user->email;
 			$user_log->admin = "";
-			$user_log->description = "Success add Proxy : ".$arr_proxy["proxy"].":".$arr_proxy["port"].":".$arr_proxy["cred"]." ".Request::input("username");
+			$user_log->description = "Success add Proxy : ".$arr_proxy_login["proxy"].":".$arr_proxy_login["port"].":".$arr_proxy_login["cred"]." ".Request::input("username");
 			$user_log->created = $dt->toDateTimeString();
 			$user_log->save();
 			
 			session([
-				'proxy' => collect($arr_proxy),
+				'proxy' => collect($arr_proxy_login),
 				'attempt_count' => 0 ,
 			]);
 		
