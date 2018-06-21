@@ -89,7 +89,7 @@ class LandingPageController extends Controller
 		$settings = Setting::join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 								->join("users","users.id","=","settings.last_user")
 								->where("settings.type",'=','temp')
-								->where("proxy_id","!=",0)
+								->where("proxy_id","<>",0)
 								->get();
 		dd($settings);
 		
