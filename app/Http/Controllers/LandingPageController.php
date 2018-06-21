@@ -86,10 +86,17 @@ class LandingPageController extends Controller
   }
   
 	public function testing(){
+		$dt = Carbon::now()->setTimezone('Asia/Jakarta')->subDays(8);
 		$settings = Setting::join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 								->join("users","users.id","=","settings.last_user")
 								->where("settings.type",'=','temp')
 								->where("proxy_id","<>",0)
+								->where("settings.running_time","<",$dt->toDateTimeString())
+								->where(function ($query) {
+									$query->where("settings.status","=","stopped")
+												->orWhere("settings.status","=","deleted")
+												->orWhere("users.active_auto_manage","=",0);
+								})
 								->get();
 		dd($settings);
 		
