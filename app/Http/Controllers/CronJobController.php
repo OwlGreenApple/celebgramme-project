@@ -865,7 +865,7 @@ class CronJobController extends Controller
 		$settings = Setting::join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 								->join("users","users.id","=","settings.last_user")
 								->where("settings.type",'=','temp')
-								->where("proxy_id","!=",0)
+								->where("proxy_id","<>",0)
 								->where("settings.running_time","<",$dt->toDateTimeString())
 								// ->where("settings.start_time","<>","0000-00-00 00:00:00")
 								->where(function ($query) {
@@ -876,8 +876,6 @@ class CronJobController extends Controller
 								->get();
 		foreach($settings as $setting) {
 			$update_setting_helper = SettingHelper::where("setting_id","=",$setting->setting_id)->first();
-			$update_setting_helper->cookies = "";
-			$update_setting_helper->proxy_id = 0;
 			
 			$account = Account::where("proxy_id","=",$update_setting_helper->proxy_id)
 									->where("username","=",$setting->insta_username)
@@ -887,6 +885,8 @@ class CronJobController extends Controller
 				$account->save();
 			}
 			
+			$update_setting_helper->cookies = "";
+			$update_setting_helper->proxy_id = 0;
 			$update_setting_helper->save();
 		}
 		
