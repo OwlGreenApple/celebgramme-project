@@ -277,7 +277,7 @@ class AutoManageController extends Controller
 			$user_log = new UserLog;
 			$user_log->email = $user->email;
 			$user_log->admin = "";
-			$user_log->description = "Success add Proxy : ".$arr_proxy_login["proxy"].":".$arr_proxy_login["port"].":".$arr_proxy_login["cred"]." ".Request::input("hidden_username");
+			$user_log->description = "Success add Proxy : ".$arr_proxy_login["proxy"].":".$arr_proxy_login["port"].":".$arr_proxy_login["cred"]." ".Request::input("hidden_username")." Proxy activity : ".$arr_proxy["proxy"].":".$arr_proxy["port"].":".$arr_proxy["cred"];
 			$user_log->created = $dt->toDateTimeString();
 			$user_log->save();
     
@@ -614,7 +614,7 @@ class AutoManageController extends Controller
 			$user_log = new UserLog;
 			$user_log->email = $user->email;
 			$user_log->admin = "";
-			$user_log->description = "Success add Proxy : ".$arr_proxy_login["proxy"].":".$arr_proxy_login["port"].":".$arr_proxy_login["cred"]." ".Request::input("username");
+			$user_log->description = "Success add Proxy : ".$arr_proxy_login["proxy"].":".$arr_proxy_login["port"].":".$arr_proxy_login["cred"]." ".Request::input("username")." Proxy activity : ".$arr_proxy["proxy"].":".$arr_proxy["port"].":".$arr_proxy["cred"];
 			$user_log->created = $dt->toDateTimeString();
 			$user_log->save();
 			
