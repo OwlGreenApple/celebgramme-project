@@ -169,11 +169,12 @@ class HomeController extends Controller
       ));
 	}
   
-	public function confirm_payment(){
+	public function confirm_payment($no_order=""){
     $user = Auth::user();
 		return view('member.confirm-payment')
       ->with(array(
         'user'=>$user,
+        'no_order'=>$no_order,
       ));
 	}
   

@@ -13,6 +13,7 @@
       <td> Total </td>
       <td> Status </td>
       <td> Created </td>
+      <td> </td>
     </tr>
     <?php 
       if ($orders->count() >0) {
@@ -50,6 +51,7 @@
 							?>
 						</td>
             <td> {{$arr->created_at}} </td>
+            <td> <a href="{{url('confirm-payment').'/'.$arr->no_order}}"><input type="button" class="btn btn-info" value="Konfirmasi"></a> </td>
           </tr>
     <?php } } else { ?> 
     <tr>

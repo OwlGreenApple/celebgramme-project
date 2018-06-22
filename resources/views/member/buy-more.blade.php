@@ -178,12 +178,12 @@
   </div>  
 
   <div class="form-group form-group-sm row" style="display:none;" id="div-maximum-account">
-    <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">Paket Maksimum Akun</label>
+    <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">Tambah Max Akun</label>
     <div class="col-sm-8 col-md-5">
       <select class="form-control" name="maximum-account" id="select-maximum-account">
-					<option value="3" data-real="100000">Paket 3 Akun</option>
-					<option value="6" data-real="200000">Paket 6 Akun</option>
-					<option value="9" data-real="300000">Paket 9 Akun</option>
+					<option value="3" data-real="100000">Tambah 3 Akun</option>
+					<option value="6" data-real="200000">Tambah 6 Akun</option>
+					<option value="9" data-real="300000">Tambah 9 Akun</option>
       </select>
     </div>
   </div>  

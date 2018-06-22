@@ -90,6 +90,7 @@
 
 		
 		});
+		$('#no_order').keyup();
     $('#button-process').click(function(e){
       var uf = $('#form-confirm');
       var fd = new FormData(uf[0]);
@@ -163,7 +164,7 @@
     <div class="form-group form-group-sm row">
       <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall">No. Order</label>
       <div class="col-sm-8 col-md-5">
-        <input type="text" class="form-control" placeholder="No. Order" name="no_order" id="no_order">
+        <input type="text" class="form-control" placeholder="No. Order" name="no_order" id="no_order" value="{{$no_order}}">
       </div>
     </div>  
     <div class="form-group form-group-sm row">
