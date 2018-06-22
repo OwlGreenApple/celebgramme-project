@@ -1943,99 +1943,6 @@ class AutoManageController extends Controller
 	}
 	
 	public function random_proxy(){
-		/*$arr_proxys[] = [
-			"proxy"=>"103.236.201.32",
-			"cred"=>"sugiarto123:678flazz",
-			"port"=>"1945",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.236.201.32",
-			"cred"=>"sugiarto123:678flazz",
-			"port"=>"3128",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.236.201.32",
-			"cred"=>"sugiarto123:678flazz",
-			"port"=>"2015",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.236.201.32",
-			"cred"=>"sugiarto123:678flazz",
-			"port"=>"2503",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.236.201.32",
-			"cred"=>"sugiarto123:678flazz",
-			"port"=>"3103",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.236.201.32",
-			"cred"=>"sugiarto123:678flazz",
-			"port"=>"2017",
-		];
-		
-		$arr_proxys[] = [
-			"proxy"=>"103.236.201.56",
-			"cred"=>"sugiarto123:678flazz",
-			"port"=>"1945",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.236.201.56",
-			"cred"=>"sugiarto123:678flazz",
-			"port"=>"3128",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.236.201.56",
-			"cred"=>"sugiarto123:678flazz",
-			"port"=>"2015",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.236.201.56",
-			"cred"=>"sugiarto123:678flazz",
-			"port"=>"2503",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.236.201.56",
-			"cred"=>"sugiarto123:678flazz",
-			"port"=>"3103",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.236.201.56",
-			"cred"=>"sugiarto123:678flazz",
-			"port"=>"2017",
-		];
-		
-		$arr_proxys[] = [
-			"proxy"=>"103.236.201.38",
-			"cred"=>"sugiarto123:678flazz",
-			"port"=>"1945",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.236.201.38",
-			"cred"=>"sugiarto123:678flazz",
-			"port"=>"3128",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.236.201.38",
-			"cred"=>"sugiarto123:678flazz",
-			"port"=>"2015",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.236.201.38",
-			"cred"=>"sugiarto123:678flazz",
-			"port"=>"2503",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.236.201.38",
-			"cred"=>"sugiarto123:678flazz",
-			"port"=>"3103",
-		];
-		$arr_proxys[] = [
-			"proxy"=>"103.236.201.38",
-			"cred"=>"sugiarto123:678flazz",
-			"port"=>"2017",
-		];*/
-		
 		//get proxy login from database
 		$proxy_logins = ProxyLogin::
 										where("is_error",0)
@@ -2048,6 +1955,19 @@ class AutoManageController extends Controller
 			];
 		}
 		
+		if (ProxyLogin::where("is_error",0)->count() <= 2) {
+			//notif KALO proxy login uda mau abis
+			Mail::queue('emails.pool-proxy-login', $emaildata, function ($message) use ($type_message) {
+				$message->from('no-reply@celebgramme.com', 'Celebgramme');
+				$message->to(array(
+					"michaelsugih@gmail.com",
+				));
+				$message->cc(array(
+					"celebgramme.dev@gmail.com",
+				));
+				$message->subject("[Celebgramme] Pool Proxy Login mau habis");
+			});
+		}
 		
 		$arr_proxy = $arr_proxys[array_rand($arr_proxys)];
 
