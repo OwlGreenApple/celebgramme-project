@@ -51,7 +51,7 @@
 							?>
 						</td>
             <td> {{$arr->created_at}} </td>
-            <td> <a href="{{url('confirm-payment').'/'.$arr->no_order}}"><input type="button" class="btn btn-info" value="Konfirmasi"></a> </td>
+            <td> <a href="{{url('confirm-payment').'/'.$shortcode}}"><input type="button" class="btn btn-info" value="Konfirmasi"></a> </td>
           </tr>
     <?php } } else { ?> 
     <tr>
