@@ -387,7 +387,18 @@ class AutoManageController extends Controller
 						$arr_proxy["cred"] = $full_proxy->cred;
 						$arr_proxy["proxy"] = $full_proxy->proxy;
 						$arr_proxy["auth"] = $full_proxy->auth;
-					} 
+					}
+					else {
+						// codingan tambal an buat cover proxy id yang sudah dihapus
+						// dicariin proxy
+						$arr_proxy = $this->get_proxy_id(Request::input("username")); //
+						$update_setting_helper = SettingHelper::where("setting_id",$setting->id)->first();
+						if(!is_null($update_setting_helper)){
+							$update_setting_helper->proxy_id = $arr_proxy["proxy_id"];
+							$update_setting_helper->save();
+						}
+						
+					}
 				} 
 				
 			} 
