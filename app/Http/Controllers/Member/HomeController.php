@@ -182,7 +182,7 @@ class HomeController extends Controller
 	{
 		$user = Auth::user();
 		$order = Order::where("no_order","=","OCLB".Request::input("no_order"))
-							where("user_id",$user->id)
+							->where("user_id",$user->id)
 							->first();
 		if (!is_null($order)) {
 			$total = $order->total - $order->discount ; 
