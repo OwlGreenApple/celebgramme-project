@@ -180,7 +180,10 @@ class HomeController extends Controller
   
 	public function get_payment_total()
 	{
-		$order = Order::where("no_order","=","OCLB".Request::input("no_order"))->first();
+		$user = Auth::user();
+		$order = Order::where("no_order","=","OCLB".Request::input("no_order"))
+							where("user_id",$user->id)
+							->first();
 		if (!is_null($order)) {
 			$total = $order->total - $order->discount ; 
 			return "Rp. ".number_format($total,0,'','.');
