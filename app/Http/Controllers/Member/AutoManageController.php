@@ -127,6 +127,16 @@ class AutoManageController extends Controller
 				$arr_proxy["proxy"] = $full_proxy->proxy;
 				$arr_proxy["auth"] = $full_proxy->auth;
 			}
+			else {
+				// codingan tambal an buat cover proxy id yang sudah dihapus
+				// dicariin proxy
+				$arr_proxy = $this->get_proxy_id(Request::input("hidden_username")); //
+				$update_setting_helper = SettingHelper::where("setting_id",Request::input('setting_id'))->first();
+				if(!is_null($update_setting_helper)){
+					$update_setting_helper->proxy_id = $arr_proxy["proxy_id"];
+					$update_setting_helper->save();
+				}
+			}
 		}
 			/* New Checking password*/
 			$is_error = 0 ;
@@ -1349,7 +1359,18 @@ class AutoManageController extends Controller
 							if ($setting_helper->proxy_id == 0) {
 								GlobalHelper::clearProxy(serialize($setting_temp), "new");
 							}
+							
+							// codingan tambal an buat cover proxy id yang sudah dihapus
+							// dicariin proxy
+							$full_proxy =  Proxies::find($setting_helper->proxy_id);
+							if (is_null($full_proxy)) {
+								$arr_proxy = $this->get_proxy_id($setting_temp->insta_username); //
+								$setting_helper->proxy_id = $arr_proxy["proxy_id"];
+								$setting_helper->save();
+							}
+							
 						}
+						
 					}
 
 					if (Request::input('action')=='stop') {
@@ -1414,6 +1435,16 @@ class AutoManageController extends Controller
 								GlobalHelper::clearProxy(serialize($setting_temp),"new");
 							}
 						}
+						
+						// codingan tambal an buat cover proxy id yang sudah dihapus
+						// dicariin proxy
+						$full_proxy =  Proxies::find($setting_helper->proxy_id);
+						if (is_null($full_proxy)) {
+							$arr_proxy = $this->get_proxy_id($setting_temp->insta_username); //
+							$setting_helper->proxy_id = $arr_proxy["proxy_id"];
+							$setting_helper->save();
+						}
+							
 					}
 
 					if (Request::input('action')=='stop') {
