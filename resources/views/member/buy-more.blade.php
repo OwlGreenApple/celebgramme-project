@@ -216,6 +216,12 @@
       <p id="price-total">0</p>
     </div>
   </div>  
+  <div class="form-group form-group-sm row">
+    <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall"></label>
+    <div class="col-sm-1 col-md-1">
+      <p>*Untuk mempermudah proses konfirmasi silahkan transfer sesuai dengan kode unik</p>
+    </div>
+  </div>  
 
   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
   <input class="btn btn-default" type="submit" value="Process" id="button-process">
