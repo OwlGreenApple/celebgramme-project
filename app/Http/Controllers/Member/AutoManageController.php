@@ -189,6 +189,9 @@ class AutoManageController extends Controller
 					]);
 				}
 				else {
+					//new code, supaya klo sentry block bisa aktif lagi 
+					$user_setting = UserSetting::where("username",$setting_temp->insta_username)->delete();
+					
 					$arr_proxy_login = $this->random_proxy();
 					session([
 						'proxy' => collect($arr_proxy_login),
