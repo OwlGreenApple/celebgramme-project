@@ -240,6 +240,9 @@ class NewDashboardController extends Controller
 				catch (Exception $e) {
 					break;
 				}
+				catch (\InstagramAPI\Response\FollowerAndFollowingResponse $e) {
+					break;
+				}
 				$counter += 1;
 				
 				$has_next_page = true;
