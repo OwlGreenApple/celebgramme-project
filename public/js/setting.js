@@ -305,7 +305,9 @@
 	});
 	
 	$('.button-copy').click(function(e){
-		$("#textarea-copy").val($("#"+$(this).attr("data-text")).val());
+		// $("#textarea-copy").val($("#"+$(this).attr("data-text")).val());
+		textareaCopyEmoji[0].emojioneArea.setText($("#"+$(this).attr("data-text")).val());
+		
 	});
 		
 	// $('#button-ok-copy').click(function(e){

@@ -1598,7 +1598,7 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 												<div class="card m-b-0 m-t--50" style="background:transparent;box-shadow:none;">
 													<div class="header">
 														<h2>
-															Custom Days Activity &nbsp; <img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title='<div class="panel-heading">Custom Days Activity</div><div class="panel-content"><b>Bebas pilih Follow-Like</b> di hari yang anda inginkan, <br>agar aktifitas terlihat lebih natural.<br></div>'>
+															Custom Days Activity &nbsp; <img class="cursorActive tooltipPlugin" src="{{asset('/new-dashboard/images/questionIcon.png')}}" title='<div class="panel-heading">Custom Days Activity</div><div class="panel-content"><b>Bebas pilih Follow/Unfollow-Like</b> di hari yang anda inginkan, <br>agar aktifitas terlihat lebih natural.<br></div>'>
 														</h2>
 													</div>
 													<div class="body" style="background:transparent;box-shadow:none;">
@@ -1609,7 +1609,7 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 															<div class="col-md-3 col-sm-8 col-xs-8">
 																<span class="status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_sunday_follow) { echo "checked"; } ?> name="data[is_sunday_follow]" id="is_sunday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
-																	<label for="is_sunday_follow">Follow</label>
+																	<label for="is_sunday_follow">Follow/Unfollow</label>
 																	&nbsp &nbsp
 																</span>
 																<span class="status-like" <?php if ($settings->status_like=="off") echo "style='display:none;'" ?>>
@@ -1625,7 +1625,7 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 															<div class="col-md-3 col-sm-8 col-xs-8">
 																<span class="status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_monday_follow) { echo "checked"; } ?> name="data[is_monday_follow]" id="is_monday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
-																	<label for="is_monday_follow">Follow</label>
+																	<label for="is_monday_follow">Follow/Unfollow</label>
 																	&nbsp &nbsp
 																</span>
 																<span class="status-like" <?php if ($settings->status_like=="off") echo "style='display:none;'" ?>>
@@ -1642,7 +1642,7 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 															<div class="col-md-3 col-sm-8 col-xs-8">
 																<span class="status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_tuesday_follow) { echo "checked"; } ?> name="data[is_tuesday_follow]" id="is_tuesday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
-																	<label for="is_tuesday_follow">Follow</label>
+																	<label for="is_tuesday_follow">Follow/Unfollow</label>
 																	&nbsp &nbsp
 																</span>
 																<span class="status-like" <?php if ($settings->status_like=="off") echo "style='display:none;'" ?>>
@@ -1659,7 +1659,7 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 															<div class="col-md-3 col-sm-8 col-xs-8">
 																<span class="status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_wednesday_follow) { echo "checked"; } ?> name="data[is_wednesday_follow]" id="is_wednesday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
-																	<label for="is_wednesday_follow">Follow</label>
+																	<label for="is_wednesday_follow">Follow/Unfollow</label>
 																	&nbsp &nbsp
 																</span>
 																<span class="status-like" <?php if ($settings->status_like=="off") echo "style='display:none;'" ?>>
@@ -1676,7 +1676,7 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 															<div class="col-md-3 col-sm-8 col-xs-8">
 																<span class="status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_thursday_follow) { echo "checked"; } ?> name="data[is_thursday_follow]" id="is_thursday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
-																	<label for="is_thursday_follow">Follow</label>
+																	<label for="is_thursday_follow">Follow/Unfollow</label>
 																	&nbsp &nbsp
 																</span>
 																<span class="status-like" <?php if ($settings->status_like=="off") echo "style='display:none;'" ?>>
@@ -1693,7 +1693,7 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 															<div class="col-md-3 col-sm-8 col-xs-8">
 																<span class="status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_friday_follow) { echo "checked"; } ?> name="data[is_friday_follow]" id="is_friday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
-																	<label for="is_friday_follow">Follow</label>
+																	<label for="is_friday_follow">Follow/Unfollow</label>
 																	&nbsp &nbsp
 																</span>
 																<span class="status-like" <?php if ($settings->status_like=="off") echo "style='display:none;'" ?>>
@@ -1710,7 +1710,7 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 															<div class="col-md-3 col-sm-8 col-xs-8">
 																<span class="status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 																	<input type="checkbox" <?php if ($settings->is_saturday_follow) { echo "checked"; } ?> name="data[is_saturday_follow]" id="is_saturday_follow" class="follow-day-activity" <?php if ($settings->status_follow_unfollow=="off") { echo "readonly"; } ?>>
-																	<label for="is_saturday_follow">Follow</label>
+																	<label for="is_saturday_follow">Follow/Unfollow</label>
 																	&nbsp &nbsp
 																</span>
 																<span class="status-like" <?php if ($settings->status_like=="off") echo "style='display:none;'" ?>>
