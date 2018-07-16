@@ -1818,9 +1818,9 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 																<div class="col-md-3 col-sm-8 col-xs-8">
 																	<div class="row">
 																		<select class="form-control" style="margin-left:-5px;" name="data[delay_dm]" id="delay_dm">
-																			<option value="3" <?php if ($settings->is_friday_like) { echo "selected"; } ?>>3 Menit<option>
-																			<option value="5" <?php if ($settings->is_friday_like) { echo "selected"; } ?>>5 Menit<option>
-																			<option value="15" <?php if ($settings->is_friday_like) { echo "selected"; } ?>>15 Menit<option>
+																			<option value="3" <?php if ($settings->delay_dm==3) { echo "selected"; } ?>>3 Menit<option>
+																			<option value="5" <?php if ($settings->delay_dm==5) { echo "selected"; } ?>>5 Menit<option>
+																			<option value="15" <?php if ($settings->delay_dm==15) { echo "selected"; } ?>>15 Menit<option>
 																		</select>
 																	</div>
 																</div>
