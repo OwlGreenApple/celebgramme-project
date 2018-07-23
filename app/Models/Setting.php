@@ -211,10 +211,14 @@ class Setting extends Model {
 			$followers_join = $ig_data["followers"];
 		} 
 		
-		SettingMeta::createMeta("followers_join",$followers_join,$setting->id);
+		/*SettingMeta::createMeta("followers_join",$followers_join,$setting->id);
 		SettingMeta::createMeta("following_join",$following_join,$setting->id);
 		SettingMeta::createMeta("followers",$followers_join,$setting->id);
-		SettingMeta::createMeta("following",$following_join,$setting->id);
+		SettingMeta::createMeta("following",$following_join,$setting->id);*/
+		$setting->followers_join = $followers_join;
+		$setting->following_join = $following_join;
+		$setting->num_of_followers = $followers_join;
+		$setting->num_of_following = $following_join;
 		$setting->insta_user_id = $id;
 		$setting->save();
 		
