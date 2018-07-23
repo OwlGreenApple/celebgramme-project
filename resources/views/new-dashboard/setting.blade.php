@@ -793,7 +793,7 @@ use Celebgramme\Models\SettingHelper;
 									<div class="col-md-3 col-sm-7 col-xs-8">
 										<?php 
 											$photo = url('images/profile-default.png');
-											if ($settings->photo_filename<>"") {
+											if ($settings->photo_filename<>"0") {
 												$photo = url("images/pp/". $settings->photo_filename);
 											}
 											// if (SettingMeta::getMeta($settings->id,"photo_filename") == "0") {

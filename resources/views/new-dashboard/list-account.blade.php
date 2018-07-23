@@ -15,7 +15,7 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 				if (isset($datas)) { 
 					foreach ($datas as $data ) {
 						$photo = url('images/profile-default.png');
-						if ($data->photo_filename<>"") {
+						if ($data->photo_filename<>"0") {
 							$photo = url("images/pp/". $data->photo_filename);
 						}
 						// if (SettingMeta::getMeta($data->id,"photo_filename") == "0") {
