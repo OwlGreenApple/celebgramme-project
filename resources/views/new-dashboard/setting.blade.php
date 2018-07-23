@@ -841,7 +841,7 @@ use Celebgramme\Models\SettingHelper;
 									<div class="col-md-3 col-sm-3 col-xs-3 text-right">
 										<?php 
 										// echo number_format(intval (SettingMeta::getMeta($settings->id,"followers_join")),0,'','.'); 
-											echo $data->followers_join;
+											echo $settings->followers_join;
 										?>
 									</div>
 									<div class="col-md-3 col-sm-9 col-xs-9">
@@ -850,15 +850,15 @@ use Celebgramme\Models\SettingHelper;
 									<div class="col-md-3 col-sm-3 col-xs-3 text-right">
 										<?php 
 										// echo number_format(intval (SettingMeta::getMeta($settings->id,"following_join")),0,'','.'); 
-											echo $data->following_join;
+											echo $settings->following_join;
 										?>
 									</div>
 								</div>
 								<?php 
 									// $followers = intval (SettingMeta::getMeta($settings->id,"followers"));
 									// $following = intval (SettingMeta::getMeta($settings->id,"following"));
-									$followers = $data->num_of_followers;
-									$following = $data->num_of_following;
+									$followers = $settings->num_of_followers;
+									$following = $settings->num_of_following;
 								?>
 								<div class="row">
 									<div class="col-md-3 col-sm-9 col-xs-9">
