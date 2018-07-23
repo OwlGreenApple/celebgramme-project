@@ -400,8 +400,15 @@ class CronJobController extends Controller
 					$followers = $ig_data["followers"];
 				} 
 				if ($found) {
-					SettingMeta::createMeta("followers",$followers,$setting->id);
-					SettingMeta::createMeta("following",$following,$setting->id);
+					// SettingMeta::createMeta("followers",$followers,$setting->id);
+					// SettingMeta::createMeta("following",$following,$setting->id);
+					$update_setting = Setting::find($setting->id);
+					if(!is_null($update_setting)){
+						$update_setting->num_of_following = $following;
+						$update_setting->num_of_followers = $followers;
+						$update_setting->save();
+					}
+					
 				}
 				else if (!$found)  {
 					// pake cara API baru, klo dengan cara lama ada error proxy
@@ -485,7 +492,13 @@ class CronJobController extends Controller
 						if($file == TRUE) {
 							$save = file_put_contents("images/pp/".$filename, $file);
 							if ($save) {
-								SettingMeta::createMeta("photo_filename",$filename,$setting->id);
+								// SettingMeta::createMeta("photo_filename",$filename,$setting->id);
+								$update_setting = Setting::find($setting->id);
+								if(!is_null($update_setting)){
+									$update_setting->photo_filename = $filename;
+									$update_setting->save();
+								}
+								
 							}
 						}
 						
@@ -495,7 +508,12 @@ class CronJobController extends Controller
 				}
 				
 				if ( ($following > $setting->max_follow ) && ($setting->activity == "follow") && (!$setting->status_auto) ) {
-					SettingMeta::createMeta("auto_unfollow","yes",$setting->id);
+					// SettingMeta::createMeta("auto_unfollow","yes",$setting->id);
+					$update_setting = Setting::find($setting->id);
+					if(!is_null($update_setting)){
+						$update_setting->auto_unfollow = 1;
+						$update_setting->save();
+					}
 
 					$setting_temp = Setting::find($setting->id);
 					$setting_temp->activity = "unfollow";
@@ -504,7 +522,12 @@ class CronJobController extends Controller
 					$setting_temp->save();
 				}
 				if ( ($setting->status_auto) && ($following > $setting->max_follow ) ) {
-					SettingMeta::createMeta("auto_unfollow","yes",$setting->id);
+					// SettingMeta::createMeta("auto_unfollow","yes",$setting->id);
+					$update_setting = Setting::find($setting->id);
+					if(!is_null($update_setting)){
+						$update_setting->auto_unfollow = 1;
+						$update_setting->save();
+					}
 					
 					$setting_temp = Setting::find($setting->id);
 					$setting_temp->status_follow_auto = 0;
