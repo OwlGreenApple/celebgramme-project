@@ -1210,7 +1210,8 @@ class AutoManageController extends Controller
 			$setting_helper->save();
 		}
 		
-		$following = intval (SettingMeta::getMeta($setting_temp->id,"following"));
+		// $following = intval (SettingMeta::getMeta($setting_temp->id,"following"));
+		$following = $setting_temp->num_of_following;
 		if (($following>7000 ) && ($data["activity"]=="follow") ) {
 			if (!$data["status_auto"]) {
 				$arr["message"]= "Tidak dapat melakukan activity following";
@@ -1236,7 +1237,9 @@ class AutoManageController extends Controller
 		}
 		
 		//hapus pesan auto unfollow 
-		SettingMeta::createMeta("auto_unfollow","no",$setting_temp->id);
+		// SettingMeta::createMeta("auto_unfollow","no",$setting_temp->id);
+		$setting_temp->is_auto_unfollow = 0;
+		$setting_temp->save();
 		
 		//hapus space di hashtags
 		$data["hashtags"] = str_replace(" ","",$data["hashtags"]);

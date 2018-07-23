@@ -14,14 +14,19 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 				
 				if (isset($datas)) { 
 					foreach ($datas as $data ) {
-					if (SettingMeta::getMeta($data->id,"photo_filename") == "0") {
 						$photo = url('images/profile-default.png');
-					} else {
-						$photo = url("images/pp/". SettingMeta::getMeta($data->id,"photo_filename"));
-					}
+						if ($data->photo_filename<>"") {
+							$photo = url("images/pp/". $data->photo_filename);
+						}
+						// if (SettingMeta::getMeta($data->id,"photo_filename") == "0") {
+							// $photo = url('images/profile-default.png');
+						// } else {
+							// $photo = url("images/pp/". SettingMeta::getMeta($data->id,"photo_filename"));
+						// }
 					
 					//hitung unseen_count DM
-					$unseen_count = SettingMeta::getMeta($data->id,"unseen_count");
+					// $unseen_count = SettingMeta::getMeta($data->id,"unseen_count");
+					$unseen_count = $data->unseen_count;
 					// if (!$data->error_cred) {
 						// try {
 							// $i = new Instagram(false,false,[
@@ -86,14 +91,20 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 									<center>
 									<small><b>Following</b></small>
 									<img src="{{asset('/new-dashboard/images/followingIcon.png')}}"class="img-responsive">
-									<?php echo number_format(intval (SettingMeta::getMeta($data->id,"following")),0,'','.'); ?>
+									<?php 
+										// echo number_format(intval (SettingMeta::getMeta($data->id,"following")),0,'','.'); 
+										echo $data->num_of_following;
+									?>
 									</center>
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-3 text=center">
 									<center>
 									<small><b>Followers</b></small>
 									<img src="{{asset('/new-dashboard/images/followersIcon.png')}}"class="img-responsive">
-									<?php echo number_format(intval (SettingMeta::getMeta($data->id,"followers")),0,'','.'); ?>
+									<?php 
+										// echo number_format(intval (SettingMeta::getMeta($data->id,"followers")),0,'','.'); 
+										echo $data->num_of_followers;
+									?>
 									</center>
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-3">
@@ -115,19 +126,24 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 							<div class="row im-centered"> 
 								<p class="text-danger" style="font-size:12px;"> <strong>
 								<?php 
-									if ( SettingMeta::getMeta($data->id,"error_message_cred") == "0"  ) {
+									// if ( SettingMeta::getMeta($data->id,"error_message_cred") == "0"  ) {
+									if ( $data->error_message_cred == "0"  ) {
 								?>
 									*Data login error <br>
 									silahkan input kembali password anda 
 									<?php } else { 
-										echo SettingMeta::getMeta($data->id,"error_message_cred");
+										// echo SettingMeta::getMeta($data->id,"error_message_cred");
+										echo $data->error_message_cred;
 									} ?>
 									---> <a href="#" data-id="{{$data->id}}" data-username="{{$data->insta_username}}" class="edit-cred" data-toggle="modal" data-target="#myModal-edit-password">CLICK disini</a> <--- </strong></p>
 							</div>
 							<?php } ?>
 							
 							<div class="row">
-								<?php if (SettingMeta::getMeta($data->id,"auto_unfollow") == "yes" )  { ?>
+								<?php 
+								// if (SettingMeta::getMeta($data->id,"auto_unfollow") == "yes" )  { 
+								if ($data->is_auto_unfollow)  { 
+								?>
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<p class="text-center">*Proses auto unfollow akan dijalankan karena jumlah following anda telah mencapai {{$data->max_follow}}</p>
 								</div>

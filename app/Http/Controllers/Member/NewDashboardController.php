@@ -859,7 +859,13 @@ class NewDashboardController extends Controller
 				
         //save unseen_count
         $pendingInboxResponse = $i->direct->getPendingInbox();
-        SettingMeta::createMeta("unseen_count",$pendingInboxResponse->getInbox()->getUnseenCount(),Request::input("setting_id"));
+        // SettingMeta::createMeta("unseen_count",$pendingInboxResponse->getInbox()->getUnseenCount(),Request::input("setting_id"));
+				$update_setting = Setting::find(Request::input("setting_id"));
+				if(!is_null($update_setting)){
+					$update_setting->unseen_count = $pendingInboxResponse->getInbox()->getUnseenCount();
+					$update_setting->save();
+				}
+				
 				
 				$arr["resultEmailData"] = view("new-dashboard.DM-inbox")->with(array(
 																			// 'inboxResponse'=> $inboxResponse,

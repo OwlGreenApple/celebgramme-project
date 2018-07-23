@@ -767,12 +767,14 @@ use Celebgramme\Models\SettingHelper;
   <div class="col-sm-12 col-md-12">            
     <div class="alert alert-danger col-sm-18 col-md-18">
 			<?php 
-				if ( SettingMeta::getMeta($settings->id,"error_message_cred") == "0"  ) {
+				// if ( SettingMeta::getMeta($settings->id,"error_message_cred") == "0"  ) {
+				if ( $settings->error_message_cred == "0"  ) {
 			?>
 				*Data login error <br>
 				Silahkan input kembali password anda 
 				<?php } else { 
-					echo SettingMeta::getMeta($settings->id,"error_message_cred");
+					// echo SettingMeta::getMeta($settings->id,"error_message_cred");
+					echo $settings->error_message_cred;
 				} ?>
 			
     </div>  
@@ -790,11 +792,15 @@ use Celebgramme\Models\SettingHelper;
 									<div class="col-md-2 col-sm-5 col-xs-4"></div>								
 									<div class="col-md-3 col-sm-7 col-xs-8">
 										<?php 
-											if (SettingMeta::getMeta($settings->id,"photo_filename") == "0") {
-												$photo = url('images/profile-default.png');
-											} else {
-												$photo = url("images/pp/". SettingMeta::getMeta($settings->id,"photo_filename"));
+											$photo = url('images/profile-default.png');
+											if ($settings->photo_filename<>"") {
+												$photo = url("images/pp/". $settings->photo_filename);
 											}
+											// if (SettingMeta::getMeta($settings->id,"photo_filename") == "0") {
+												// $photo = url('images/profile-default.png');
+											// } else {
+												// $photo = url("images/pp/". SettingMeta::getMeta($settings->id,"photo_filename"));
+											// }
 										?>	
 										<img src="{{$photo}}" class="m-t-20 img-circle" style="width:87px;height:87px;">
 									</div>
@@ -833,18 +839,26 @@ use Celebgramme\Models\SettingHelper;
 										<small style="font-size:11px;white-space:nowrap;">Followers Saat Join&nbsp;:&nbsp;</small>
 									</div>
 									<div class="col-md-3 col-sm-3 col-xs-3 text-right">
-										<?php echo number_format(intval (SettingMeta::getMeta($settings->id,"followers_join")),0,'','.'); ?>
+										<?php 
+										// echo number_format(intval (SettingMeta::getMeta($settings->id,"followers_join")),0,'','.'); 
+											echo $data->followers_join;
+										?>
 									</div>
 									<div class="col-md-3 col-sm-9 col-xs-9">
 										<small style="font-size:11px;white-space:nowrap;">Following Saat Join&nbsp;:&nbsp;</small>
 									</div>
 									<div class="col-md-3 col-sm-3 col-xs-3 text-right">
-										<?php echo number_format(intval (SettingMeta::getMeta($settings->id,"following_join")),0,'','.'); ?>
+										<?php 
+										// echo number_format(intval (SettingMeta::getMeta($settings->id,"following_join")),0,'','.'); 
+											echo $data->following_join;
+										?>
 									</div>
 								</div>
 								<?php 
-									$followers = intval (SettingMeta::getMeta($settings->id,"followers"));
-									$following = intval (SettingMeta::getMeta($settings->id,"following"));
+									// $followers = intval (SettingMeta::getMeta($settings->id,"followers"));
+									// $following = intval (SettingMeta::getMeta($settings->id,"following"));
+									$followers = $data->num_of_followers;
+									$following = $data->num_of_following;
 								?>
 								<div class="row">
 									<div class="col-md-3 col-sm-9 col-xs-9">
