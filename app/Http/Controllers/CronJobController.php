@@ -359,9 +359,9 @@ class CronJobController extends Controller
 		$myfile = file_put_contents(base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow-logs.txt', $txt.PHP_EOL , FILE_APPEND);
 				
 		if ($insta_username == "") {
-			$settings = Setting::select("settings.*","setting_helpers.proxy_id")
+			$settings = Setting::select("settings.*"/*,"setting_helpers.proxy_id"*/)
 								->join("users","users.id","=","settings.last_user")
-								->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
+								// ->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 								->where("settings.type",'=','temp')
 								->where('settings.error_cred','=',0)
 								->where('settings.status','=',"started")
@@ -369,9 +369,9 @@ class CronJobController extends Controller
 								// ->where("setting_helpers.server_automation","=",$server_automation)
 								->get();
 		} else {
-			$settings = Setting::select("settings.*","setting_helpers.proxy_id")
+			$settings = Setting::select("settings.*"/*,"setting_helpers.proxy_id"*/)
 								// ->join("users","users.id","=","settings.last_user")
-								->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
+								// ->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 								->where("settings.type",'=','temp')
 								->where('settings.error_cred','=',0)
 								// ->where("users.active_auto_manage",">",0)
