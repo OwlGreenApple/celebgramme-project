@@ -511,7 +511,7 @@ class CronJobController extends Controller
 					// SettingMeta::createMeta("auto_unfollow","yes",$setting->id);
 					$update_setting = Setting::find($setting->id);
 					if(!is_null($update_setting)){
-						$update_setting->auto_unfollow = 1;
+						$update_setting->is_auto_unfollow = 1;
 						$update_setting->save();
 					}
 
@@ -525,7 +525,7 @@ class CronJobController extends Controller
 					// SettingMeta::createMeta("auto_unfollow","yes",$setting->id);
 					$update_setting = Setting::find($setting->id);
 					if(!is_null($update_setting)){
-						$update_setting->auto_unfollow = 1;
+						$update_setting->is_auto_unfollow = 1;
 						$update_setting->save();
 					}
 					
