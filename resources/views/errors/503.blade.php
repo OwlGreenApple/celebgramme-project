@@ -38,10 +38,13 @@
         </style>
     </head>
     <body>
+		<!--
         <div class="container">
             <div class="content">
                 <div class="title">We are Upgrading. Will be back shortly</div>
             </div>
         </div>
+				-->
+				<img src="{{url('images/maintenance.jpg')}}" width="1024" height="720" >
     </body>
 </html>
