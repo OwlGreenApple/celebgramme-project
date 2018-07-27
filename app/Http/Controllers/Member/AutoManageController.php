@@ -1128,6 +1128,13 @@ class AutoManageController extends Controller
 				
 			}*/
 			
+			//deleted comment if ( ($setting_temp->status=="started") && ($data['status_follow_unfollow']=="off") && ($data['status_like']=="off") && ($data['status_comment']=="off") ) {
+			if ( ($setting_temp->status=="started") && ($data['status_follow_unfollow']=="off") && ($data['status_like']=="off") ) {
+				$arr["message"]= "Silahkan pilih activity follow / like ";
+				$arr["type"]= "error";
+				return $arr;
+			}
+
 			//blacklist & whitelist
 			if ($data["status_blacklist"])   {
 				if ($data["usernames_blacklist"]=="") {
@@ -1229,12 +1236,6 @@ class AutoManageController extends Controller
 			}
 		}
 		
-		//deleted comment if ( ($setting_temp->status=="started") && ($data['status_follow_unfollow']=="off") && ($data['status_like']=="off") && ($data['status_comment']=="off") ) {
-		if ( ($setting_temp->status=="started") && ($data['status_follow_unfollow']=="off") && ($data['status_like']=="off") ) {
-      $arr["message"]= "Silahkan pilih activity follow / like ";
-      $arr["type"]= "error";
-      return $arr;
-		}
 		
 		//hapus pesan auto unfollow 
 		// SettingMeta::createMeta("auto_unfollow","no",$setting_temp->id);
