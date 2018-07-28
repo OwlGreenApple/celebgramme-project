@@ -24,6 +24,9 @@ use Celebgramme\Models\Meta;
 use Celebgramme\Models\ViewProxyUses;
 use Celebgramme\Models\Survey;
 
+/* Celebpost model */
+use Celebgramme\Models\Account;
+
 use Celebgramme\Helpers\GeneralHelper;
 
 use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, DB;
@@ -636,31 +639,56 @@ class LandingPageController extends Controller
 			$proxy_id = $check->proxy_id;
 		}
 		else {
+			//data id yang pake proxy di celebgramme
+			$array_clb = array();
+			$data_setting_helper = SettingHelper::select('proxy_id')
+														 ->where('proxy_id','<>',0)->get();
+			foreach($data_setting_helper as $data) {
+				$array_clb[] = $data->proxy_id;
+			}
+
+			//data id yang pake proxy di celebpost
+			$array_clp = array();
+			$accounts = Account::select('proxy_id')
+									->where('proxy_id','<>',0)->get();
+			foreach($accounts as $data) {
+				$array_clp[] = $data->proxy_id;
+			}
+
+			
 			//carikan proxy baru, yang available 
-			$availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
+			/*error migration $availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
 												->groupBy("id","proxy","cred","port","auth")
 												->orderBy("countP","asc")
 												->having('countP', '<', 1)
-												->get();
+												->get();*/
+			$availableProxy = Proxies::
+											select('id')
+											->whereNotIn('id',$array_clb)
+											->whereNotIn('id',$array_clp)
+											->get();
 			$arrAvailableProxy = array();
 			foreach($availableProxy as $data) {
-				$check_proxy = Proxies::find($data->id);
+				/*error migration $check_proxy = Proxies::find($data->id);
 				if ($check_proxy->is_error == 0){
 					$dataNew = array();
 					$dataNew["id"] = $data->id;
 					$arrAvailableProxy[] = $dataNew;	
-				}
+				}*/
+				$dataNew = array();
+				$dataNew["id"] = $data->id;
+				$arrAvailableProxy[] = $dataNew;	
 			}
 			if (count($arrAvailableProxy)>0) {
 				$proxy_id = $arrAvailableProxy[array_rand($arrAvailableProxy)]["id"];
 			} else {
-				$availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
+				/*error migration $availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
 													->groupBy("id","proxy","cred","port","auth")
 													->orderBy("countP","asc")
 													->first();
 				if (!is_null($availableProxy)) {
 					$proxy_id = $availableProxy->id;
-				}
+				}*/
 			}
 
 			$setting_helper = SettingHelper::where("setting_id","=",$setting_id)->first();
