@@ -11,6 +11,9 @@
 | its version 2.
 */
 
+/*API connect dengan admin*/
+Route::get('get-username-available/{username}', 'LandingPageController@get_username_available');
+
 /* Survey */
 Route::get('survey', 'LandingPageController@survey');
 Route::post('submit-survey', 'LandingPageController@submit_survey');

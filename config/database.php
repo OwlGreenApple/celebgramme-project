@@ -68,10 +68,10 @@ return [
 
         'mysqlAffiliate' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', 'localhost'),
-            'database'  => "celebgra_af1",
-            'username'  => env('DB_USERNAME', ''),
-            'password'  => env('DB_PASSWORD', ''),
+            'host'      => env('DB_HOST_AFFILIATE', 'localhost'),
+            'database'  => env('DB_DATABASE_AFFILIATE', 'localhost'),
+            'username'  => env('DB_USERNAME_AFFILIATE', ''),
+            'password'  => env('DB_PASSWORD_AFFILIATE', ''),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',

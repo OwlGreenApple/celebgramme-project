@@ -15,7 +15,7 @@ use Mail;
 class Order extends Model {
 
 	protected $table = 'orders';
-	use SoftDeletes;
+	// use SoftDeletes;
   
 	protected function createOrder($cdata,$flag)
 	{

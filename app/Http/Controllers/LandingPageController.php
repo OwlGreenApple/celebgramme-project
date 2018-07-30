@@ -24,9 +24,14 @@ use Celebgramme\Models\Meta;
 use Celebgramme\Models\ViewProxyUses;
 use Celebgramme\Models\Survey;
 
+use \InstagramAPI\Instagram;
+
+/* Celebpost model */
+use Celebgramme\Models\Account;
+
 use Celebgramme\Helpers\GeneralHelper;
 
-use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, DB;
+use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, DB, Config;
 
 class LandingPageController extends Controller
 {
@@ -636,31 +641,56 @@ class LandingPageController extends Controller
 			$proxy_id = $check->proxy_id;
 		}
 		else {
+			//data id yang pake proxy di celebgramme
+			$array_clb = array();
+			$data_setting_helper = SettingHelper::select('proxy_id')
+														 ->where('proxy_id','<>',0)->get();
+			foreach($data_setting_helper as $data) {
+				$array_clb[] = $data->proxy_id;
+			}
+
+			//data id yang pake proxy di celebpost
+			$array_clp = array();
+			$accounts = Account::select('proxy_id')
+									->where('proxy_id','<>',0)->get();
+			foreach($accounts as $data) {
+				$array_clp[] = $data->proxy_id;
+			}
+
+			
 			//carikan proxy baru, yang available 
-			$availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
+			/*error migration $availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
 												->groupBy("id","proxy","cred","port","auth")
 												->orderBy("countP","asc")
 												->having('countP', '<', 1)
-												->get();
+												->get();*/
+			$availableProxy = Proxies::
+											select('id')
+											->whereNotIn('id',$array_clb)
+											->whereNotIn('id',$array_clp)
+											->get();
 			$arrAvailableProxy = array();
 			foreach($availableProxy as $data) {
-				$check_proxy = Proxies::find($data->id);
+				/*error migration $check_proxy = Proxies::find($data->id);
 				if ($check_proxy->is_error == 0){
 					$dataNew = array();
 					$dataNew["id"] = $data->id;
 					$arrAvailableProxy[] = $dataNew;	
-				}
+				}*/
+				$dataNew = array();
+				$dataNew["id"] = $data->id;
+				$arrAvailableProxy[] = $dataNew;	
 			}
 			if (count($arrAvailableProxy)>0) {
 				$proxy_id = $arrAvailableProxy[array_rand($arrAvailableProxy)]["id"];
 			} else {
-				$availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
+				/*error migration $availableProxy = ViewProxyUses::select("id","proxy","cred","port","auth",DB::raw(									"sum(count_proxy) as countP"))
 													->groupBy("id","proxy","cred","port","auth")
 													->orderBy("countP","asc")
 													->first();
 				if (!is_null($availableProxy)) {
 					$proxy_id = $availableProxy->id;
-				}
+				}*/
 			}
 
 			$setting_helper = SettingHelper::where("setting_id","=",$setting_id)->first();
@@ -712,6 +742,68 @@ class LandingPageController extends Controller
 		}
 		
 	}
+	
+	
+	public function get_username_available($username){
+		try {
+			$error_message="";
+			$i = new Instagram(false,false,[
+				"storage"       => "mysql",
+				"dbhost"       => Config::get('automation.DB_HOST'),
+				"dbname"   => Config::get('automation.DB_DATABASE'),
+				"dbusername"   => Config::get('automation.DB_USERNAME'),
+				"dbpassword"   => Config::get('automation.DB_PASSWORD'),
+			]);	
+			
+					// $i->setProxy('http://sugiarto:sugiarto12@196.18.172.66:57159');
+					// JANGAN LUPA DILOGIN TERLEBIH DAHULU
+					$i->setProxy('http://208.115.112.98:10865');
+					
+					
+					$i->login("mayymayyaa", "qwerty12345", 300);
+					$usernames = $i->people->search($username)->getUsers();
+
+					return $usernames;
+
+		}  	
+		catch (\InstagramAPI\Exception\IncorrectPasswordException $e) {
+			//klo error password
+			$error_message = $e->getMessage();
+		}
+		catch (\InstagramAPI\Exception\AccountDisabledException $e) {
+			//klo error password
+			$error_message = $e->getMessage();
+		}
+		catch (\InstagramAPI\Exception\CheckpointRequiredException $e) {
+			//klo error email / phone verification 
+			$error_message = $e->getMessage();
+		}
+		catch (\InstagramAPI\Exception\InstagramException $e) {
+			$is_error = true;
+			// if ($e->hasResponse() && $e->getResponse()->isTwoFactorRequired()) {
+				// echo "2 Factor perlu dioffkan";
+			// } 
+			// else {
+					// all other login errors would get caught here...
+				echo $e->getMessage();
+			// }
+		}	
+		catch (NotFoundException $e) {
+			// echo $e->getMessage();
+			echo "asd";
+		}					
+		catch (Exception $e) {
+			$error_message = $e->getMessage();
+			if ($error_message == "InstagramAPI\Response\LoginResponse: The password you entered is incorrect. Please try again.") {
+				$error_message = $e->getMessage();
+			} 
+			if ( ($error_message == "InstagramAPI\Response\LoginResponse: Challenge required.") || ( substr($error_message, 0, 18) == "challenge_required") || ($error_message == "InstagramAPI\Response\TimelineFeedResponse: Challenge required.") || ($error_message == "InstagramAPI\Response\LoginResponse: Sorry, there was a problem with your request.") ){
+				$error_message = $e->getMessage();
+			}
+		}
+		return $error_message;
+	}
+
 	
 	
 }
