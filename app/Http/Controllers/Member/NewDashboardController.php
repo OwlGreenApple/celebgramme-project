@@ -289,7 +289,11 @@ class NewDashboardController extends Controller
 	public function dashboard(){
     $user = Auth::user();
 		
-		$status_server = Meta::where("meta_name","=","status_server")->first()->meta_value;
+    $status_server = '';
+    if(!App::environment('local')){
+      $status_server = Meta::where("meta_name","=","status_server")->first()->meta_value;
+    }
+		
 		
 		$account_active = LinkUserSetting::join("settings","settings.id","=","link_users_settings.setting_id")
               ->select("settings.*")

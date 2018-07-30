@@ -1,6 +1,7 @@
   <!DOCTYPE html>
 <html>
     <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Celebgramme</title>
       <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/images/celebgramme-favicon.png') }}">
       <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
@@ -108,110 +109,112 @@
         });
       </script>
     </head>
+
     <body>
       <div class="header-package row container">
         <div class="div-black">
           <div class="div-logo">
             <a href="http://celebgramme.com"><div class="logo"></div></a>
           </div>
-          <h1 class="h1-package">Checkout</h1>
+          <h1 class="h1-package">Order Page</h1>
         </div>
       </div>
 
-      <div class="row content-all">
-        <div class="col-sm-2 col-md-2">
+      <div class="container">
+        <div class="row content-all">
+        <div class="col-md-2">
         </div>
-        <div class="content-package container col-sm-8 col-md-8">  
+        <div class="content-package container col-xs-12 col-md-8">  
 
-          <h3 class="price-list"> Invoice Payment </h3>
+          <h3 class="price-list"> Order Package </h3>
           <form action="{{url('process-package')}}" method="POST" class="form-signin">
             <div class="div-opsi-pembayaran">
-              <div class="col-sm-2 col-md-2">
+              <div class="col-md-1">
               </div>
-              <div class="col-sm-8 col-md-8">
-                <label class="col-xs-4 col-sm-4 control-label" for="formGroupInputSmall">Paket Auto Manage</label>
-                <div class="col-sm-5 col-md-5">
+              <div class="col-sm-offset-1 col-md-offset-0 col-sm-10 col-md-10 col-xs-12">
+                <label class="col-xs-12 col-sm-12 col-md-4 control-label" for="formGroupInputSmall">Paket Auto Manage</label>
+                <div class="col-xs-12 col-sm-9 col-md-5">
                   <select class="form-control" name="select-auto-manage" id="select-auto-manage">
-										<?php foreach($packages as $package) { ?>
-											<option data-real="{{$package->price}}" data-price="{{number_format($package->price,0,'','.')}}" value="{{$package->id}}" <?php if ($id==$package->id) echo "selected"; ?>>Paket {{$package->package_name}}</option>
-										<?php } ?>
+                    <?php foreach($packages as $package) { ?>
+                      <option data-real="{{$package->price}}" data-price="{{number_format($package->price,0,'','.')}}" value="{{$package->id}}" <?php if ($id==$package->id) echo "selected"; ?>>Paket {{$package->package_name}}</option>
+                    <?php } ?>
                   </select>
                 </div>
-                <div class="col-sm-1 col-md-1">
+                <div class="col-xs-3 col-sm-1 col-md-1">
                   <p> Rp. </p>
                 </div>
-                <div class="col-sm-2 col-md-2">
+                <div class="col-xs-9 col-sm-2 col-md-2">
                   <p class="price-checkout" id="price-auto-manage"> 0</p>
                 </div>
               </div>  
-              <div class="col-sm-2 col-md-2">
+              <div class="col-md-1">
               </div>
             </div>  
 
             <div class="div-opsi-pembayaran">
-              <div class="col-sm-2 col-md-2">
+              <div class="col-md-1">
               </div>
-              <div class="col-sm-8 col-md-8">
-                <label class="col-xs-4 col-sm-4 control-label" for="formGroupInputSmall">Kode kupon (optional)</label>
-                <div class="col-sm-3 col-md-3">
+              <div class="col-sm-offset-1 col-md-offset-0 col-sm-10 col-md-10 col-xs-12">
+                <label class="col-xs-12 col-sm-12 col-md-4 control-label" for="formGroupInputSmall">Kode kupon (optional)</label>
+                <div class="col-xs-12 col-sm-7 col-md-3">
                   <input type="text" class="form-control" placeholder="Kode kupon" id="text-coupon-code" name="coupon-code">
                 </div>
-                <div class="col-sm-2 col-md-2">
-									<input class="btn btn-default" type="button" value="Apply" id="button-apply">
+                <div class="col-xs-12 col-sm-2 col-md-2">
+                  <input class="btn btn-default" type="button" value="Apply" id="button-apply">
                 </div>
-                <div class="col-sm-1 col-md-1">
+                <div class="col-xs-3 col-sm-1 col-md-1">
                   <p> Rp. </p>
                 </div>
-                <div class="col-sm-2 col-md-2">
+                <div class="col-xs-9 col-sm-2 col-md-2">
                   <p class="price-checkout" id="price-coupon">0</p>
                 </div>
               </div>  
-              <div class="col-sm-2 col-md-2">
+              <div class="col-md-1">
               </div>             
             </div>  
 
             <div class="div-opsi-pembayaran">
-              <div class="col-sm-2 col-md-2">
+              <div class="col-sm-1 col-md-1">
               </div>
-              <div class="col-sm-8 col-md-8">
+              <div class="col-xs-12 col-sm-10 col-md-10">
                 <hr>
               </div>  
-              <div class="col-sm-2 col-md-2">
+              <div class="col-sm-1 col-md-1">
               </div>             
             </div>  
 
             <div class="div-opsi-pembayaran">
-              <div class="col-sm-2 col-md-2">
+              <div class="col-md-1">
               </div>
-              <div class="col-sm-8 col-md-8">
-                <div class="col-xs-5 col-sm-5"></div>
-                <div class="col-sm-4 col-md-4">
+              <div class="col-sm-offset-1 col-md-offset-0 col-sm-10 col-md-10 col-xs-12">
+                <div class="col-sm-5 col-md-5"></div>
+                <div class="col-xs-12 col-sm-4 col-md-4">
                   <label>Total</label>
                 </div>
-                <div class="col-sm-1 col-md-1">
+                <div class="col-xs-3 col-sm-1 col-md-1">
                   <p> Rp. </p>
                 </div>
-                <div class="col-sm-2 col-md-2">
+                <div class="col-xs-9 col-sm-2 col-md-2">
                   <p class="price-checkout" id="price-total">0</p>
                 </div>
               </div>  
-              <div class="col-sm-2 col-md-2">
+              <div class="col-md-1">
               </div>             
             </div>  
 
             <div class="div-opsi-pembayaran">
-              <div class="col-sm-2 col-md-2">
+              <div class="col-md-1">
               </div>
-              <div class="col-sm-8 col-md-8">
-                <label class="col-xs-4 col-sm-4 control-label" for="formGroupInputSmall">Pilih Opsi Pembayaran Anda</label>
-                <div class="col-sm-5 col-md-5">
+              <div class="col-sm-offset-1 col-md-offset-0 col-sm-10 col-md-10 col-xs-12">
+                <label class="col-xs-12 col-sm-12 col-md-4 control-label" for="formGroupInputSmall">Pilih Opsi Pembayaran Anda</label>
+                <div class="col-xs-12 col-sm-9 col-md-5">
                   <select class="form-control" name="payment-method">
                     <option value="1">Bank transfer</option>
                     <!--<option value="2">Veritrans</option>-->
                   </select>
                 </div>
               </div>  
-              <div class="col-sm-2 col-md-2">
+              <div class="col-md-1">
               </div>             
             </div>  
 
@@ -226,17 +229,19 @@
         </div>
         <div class="col-sm-2 col-md-2">
         </div>
+      </div>  
       </div>
+      
 
 
       <div class="footer-package row container">
         <div class="footer-center container row">
-          <div class="copyright col-md-6 col-sm-6">
-            Celebgramme.com © 2015-2016
+          <div class="copyright col-xs-12 col-md-6 col-sm-6">
+            Celebgramme.com © 2018
           </div>
 					<div class="col-md-2 col-sm-2">
           </div>
-          <div class="col-md-4 col-sm-4 footer-helper ">
+          <div class="col-xs-12 col-md-4 col-sm-4 footer-helper ">
             <a href="http://celebgramme.com/blog">Blog </a>| 
             <a href="http://celebgramme.com/support">Support  </a>|  
             <a href="http://celebgramme.com/faq">FAQ  </a>| 
@@ -246,7 +251,7 @@
           <div class="fn">
           </div>
         </div>
-
       </div>
+
     </body>
 </html>
