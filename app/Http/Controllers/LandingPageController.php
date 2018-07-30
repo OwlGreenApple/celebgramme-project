@@ -31,7 +31,7 @@ use Celebgramme\Models\Account;
 
 use Celebgramme\Helpers\GeneralHelper;
 
-use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, DB;
+use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, DB, Config;
 
 class LandingPageController extends Controller
 {
