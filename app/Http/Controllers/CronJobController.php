@@ -78,7 +78,7 @@ class CronJobController extends Controller
 		$count_log = 0;
 		
 		//kurangin detik, buat auto manage
-		$now = Carbon::now();
+		$now = Carbon::now()->setTimezone('Asia/Jakarta');
 		// $users = User::/*where("active_auto_manage",">",0)->*/all();
 		// foreach ($users as $user){
 			$settings = Setting::select("settings.*")
