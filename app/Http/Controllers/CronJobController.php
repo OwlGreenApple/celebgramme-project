@@ -81,7 +81,8 @@ class CronJobController extends Controller
 		$now = Carbon::now()->setTimezone('Asia/Jakarta');
 		// $users = User::/*where("active_auto_manage",">",0)->*/all();
 		// foreach ($users as $user){
-			$settings = Setting::select("settings.*")
+			$settings = Setting::
+									select("settings.id","settings.last_user","settings.running_time")
 									->join("users","users.id","=","settings.last_user")
 									->where("settings.type",'=','temp')
 									->where('settings.status','=',"started")
