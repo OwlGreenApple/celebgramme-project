@@ -97,29 +97,14 @@ class CronJobController extends Controller
 					$update_user->active_auto_manage = 0;
 					$update_setting->status = 'stopped';
 					
-					//post info ke admin
-					$post = Post::where('setting_id', '=', $setting->id)->first();
-					if (is_null($post)) {
-							$post = new Post;
-							$post->description = "description: source_update = cron(timeout) ~ status = stopped ~";
-							$post->setting_id = $setting->id;
-					} else {
-						if ($post->type == "pending") {
-							$post->description = $post->description." source_update = cron(timeout) ~ status = stopped ~";
-						} else {
-							$post->description = "description: source_update = cron(timeout) ~ status = stopped ~";
-						}
-					}
-					$post->status_admin = false;
-					$post->type = "pending";
-					$post->save();
+					$description = "description: source_update = cron(timeout) ~ status = stopped ~";
 
 					//send email to admin
 					$type_message="[Celebgramme] Post Auto Manage";
 					$type_message .= "IG ACCOUNT(TIME OUT): ".$setting->insta_username;
 					$emaildata = [
 						"setting_temp" => $setting,
-						"post" => $post,
+						"description" => $description,
 					];
 					Mail::queue('emails.info-post-admin', $emaildata, function ($message) use ($type_message) {
 						$message->from('no-reply@celebgramme.com', 'Celebgramme');
