@@ -132,7 +132,7 @@ Route::post('payment/vtnotification', ['as' => 'vt.notif', 'uses' => 'Member\Pay
 /*Active cron*/
 Route::get('generate-balance', 'CronJobController@generate_balance'); // unused
 Route::get('reset-client-used', 'CronJobController@reset_client_used'); // unused
-Route::get('cron-auto-manage-0312', 'CronJobController@auto_manage');
+Route::get('cron-auto-manage-369', 'CronJobController@auto_manage');
 Route::get('cron-notif-member-369', 'CronJobController@notif_member');
 Route::get('count-instagram-data-369/{insta_username}', 'CronJobController@count_instagram_data');
 Route::get('count-instagram-data-369', 'CronJobController@count_instagram_data');
