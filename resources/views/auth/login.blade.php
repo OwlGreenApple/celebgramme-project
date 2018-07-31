@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Celebgramme</title>
       <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/images/celebgramme-favicon.png') }}">
       <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
@@ -12,7 +13,7 @@
       <div class="div-black">
       </div>
       <div class="container">  
-        <div class="container2" >  
+        <div class="container2 col-xs-12">  
           <div class="div-logo">
             <a href="http://celebgramme.com"><div class="logo"></div></a>
           </div>

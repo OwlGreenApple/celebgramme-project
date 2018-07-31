@@ -48,22 +48,36 @@ label {
   width: 100%;height:100%;
 }
 .container2{
-    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 430px;
     background-color: white;
 }
+
+@media only screen and (min-width : 480px) {
+  .container2{
+    position: absolute;
+    width: 430px;
+  }
+}
+
 .div-logo{
   display:block;
-  width : 430px;
   height : 85px;
   background-color: #2db8dc;
--moz-box-sizing: border-box;
--webkit-box-sizing: border-box;
-box-sizing: border-box; padding-top: 10px; padding-bottom: 20px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; padding-top: 10px; padding-bottom: 20px;
+  margin-left: -15px;
+  width: calc(100% + 30px);
 }
+
+@media only screen and (min-width : 480px) {
+  .div-logo{
+    width: 430px;
+  }
+}
+
 .logo{
   background-image : url("../images/logo-celebgramme-landing.png");
   background-repeat: no-repeat;
@@ -71,8 +85,15 @@ box-sizing: border-box; padding-top: 10px; padding-bottom: 20px;
   width:308px; height:100%;
   overflow:hidden;
   margin:0 auto;
-
 }
+
+@media only screen and (max-width : 480px) {
+  .logo{
+    background-size: contain;
+    width:250px;
+  }
+}
+
 .login-link-forgot{
   position: absolute;
     top: 330px;
