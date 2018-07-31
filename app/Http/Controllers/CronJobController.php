@@ -97,7 +97,7 @@ class CronJobController extends Controller
 					$update_user->active_auto_manage = 0;
 					$update_setting->status = 'stopped';
 					
-					$description = "description: source_update = cron(timeout) ~ status = stopped ~";
+					/*$description = "description: source_update = cron(timeout) ~ status = stopped ~";
 
 					//send email to admin
 					$type_message="[Celebgramme] Post Auto Manage";
@@ -115,7 +115,7 @@ class CronJobController extends Controller
 							// "celebgramme.dev@gmail.com",
 						// ));
 						$message->subject($type_message);
-					});
+					});*/
 				}
 				else{
 						$update_setting->running_time = $now->toDateTimeString();
