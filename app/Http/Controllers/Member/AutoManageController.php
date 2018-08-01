@@ -255,7 +255,7 @@ class AutoManageController extends Controller
 						'attempt_count' => 0,
 					]);
 					
-					$arr["message"] = "Network error, silahkan coba lagi";
+					$arr["message"] = "Code:399 Network busy, silahkan coba lagi";
 					$arr["type"] = "error";
 					return $arr;
 				}
@@ -547,7 +547,7 @@ class AutoManageController extends Controller
 			}
 			catch (\InstagramAPI\Exception\BadRequestException $e) {
 				// $arr["message"]= "Silahkan turn off, 2 Factor Authentication";
-				$arr["message"]= "400 Bad Request, Please try again";
+				$arr["message"]= "Code:400 request busy, Please try again";
 				$arr["type"]= "error";
 				return $arr;
 			}
@@ -587,7 +587,7 @@ class AutoManageController extends Controller
 						'attempt_count' => 0,
 					]);
 					
-					$arr["message"] = "Network error, silahkan coba lagi";
+					$arr["message"] = "Code:399 Network busy, silahkan coba lagi";
 					$arr["type"] = "error";
 					return $arr;
 				}

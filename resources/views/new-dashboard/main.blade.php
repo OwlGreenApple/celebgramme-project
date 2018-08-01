@@ -150,7 +150,7 @@
                         </a>
                     </li>
                     <li id="buyMore" @if(Request::is('buy-more')) class="active" @endif>
-                        <a href="{{url('buy-more')}}" data-identity="buyMore"  class="waves-light">
+                        <a href="<?php if (Auth::user()->is_member_rico) { echo "http://amelia.id"; } else { echo url('buy-more'); } ?>" data-identity="buyMore"  class="waves-light">
                             <i class="navigation-icon buy-icon"></i>
                             <span>Buy More</span>
                         </a>
@@ -244,7 +244,7 @@
                         </a>
                     </li>
                     <li id="buyMore" @if(Request::is('buy-more')) class="active" @endif>
-                        <a href="{{url('buy-more')}}" data-identity="buyMore"  class="waves-light">
+                        <a href="<?php if (Auth::user()->is_member_rico) { echo "http://amelia.id"; } else { echo url('buy-more'); } ?>" data-identity="buyMore"  class="waves-light">
                             <i class="navigation-icon buy-icon"></i>
                             <span>Buy More</span>
                         </a>
@@ -298,7 +298,7 @@
             <div class="legal">
                 <div class="copyright">
                     &copy; 2018 <a href="{{url('')}}">Celebgramme</a>.
-                    <b>Version: </b> 5.0.3
+                    <b>Version: </b> 5.1
                 </div>
             </div>
             <!-- #Footer -->
