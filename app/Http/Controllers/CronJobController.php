@@ -146,6 +146,7 @@ class CronJobController extends Controller
 		$users = User::where("active_auto_manage","<=",453600)
 							->where("active_auto_manage",">",0)
 							->where("link_affiliate","=","")
+							->where("is_member_rico ","=",0)
 							->get();
 		foreach ($users as $user){
 				if ( ($user->active_auto_manage>=367200) && ($user->active_auto_manage<=453600) && (UserMeta::getMeta($user->id,"email5days")<>"yes") ) {
