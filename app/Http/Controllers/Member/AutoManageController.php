@@ -546,7 +546,8 @@ class AutoManageController extends Controller
 				$error_message = $e->getMessage();
 			}
 			catch (\InstagramAPI\Exception\BadRequestException $e) {
-				$arr["message"]= "Silahkan turn off, 2 Factor Authentication";
+				// $arr["message"]= "Silahkan turn off, 2 Factor Authentication";
+				$arr["message"]= "400 Bad Request, Please try again";
 				$arr["type"]= "error";
 				return $arr;
 			}
