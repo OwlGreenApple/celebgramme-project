@@ -150,7 +150,7 @@
                         </a>
                     </li>
                     <li id="buyMore" @if(Request::is('buy-more')) class="active" @endif>
-                        <a href="<?php if (Auth::user()->is_member_rico) { echo "http://amelia.id"; } else { echo url('buy-more'); } ?>" data-identity="buyMore"  class="waves-light">
+                        <a href="<?php if (Auth::user()->is_member_rico) { echo "http://amelia.id"; } else { echo url('buy-more'); } ?>" data-identity="buyMore"  class="waves-light" target="_blank">
                             <i class="navigation-icon buy-icon"></i>
                             <span>Buy More</span>
                         </a>
@@ -244,7 +244,7 @@
                         </a>
                     </li>
                     <li id="buyMore" @if(Request::is('buy-more')) class="active" @endif>
-                        <a href="<?php if (Auth::user()->is_member_rico) { echo "http://amelia.id"; } else { echo url('buy-more'); } ?>" data-identity="buyMore"  class="waves-light">
+                        <a href="<?php if (Auth::user()->is_member_rico) { echo "http://amelia.id"; } else { echo url('buy-more'); } ?>" data-identity="buyMore"  class="waves-light" target="_blank">
                             <i class="navigation-icon buy-icon"></i>
                             <span>Buy More</span>
                         </a>
