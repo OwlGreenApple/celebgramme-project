@@ -372,6 +372,9 @@ class CronJobController extends Controller
 				$following = 0;
 				$followers = 0;
 				$id = 0; $found = false;
+				
+			$update_setting = Setting::find($setting->id);
+				
 
 				$user = User::find($setting->last_user);
 				if (is_null($user)) {
@@ -389,7 +392,6 @@ class CronJobController extends Controller
 				if ($found) {
 					// SettingMeta::createMeta("followers",$followers,$setting->id);
 					// SettingMeta::createMeta("following",$following,$setting->id);
-					$update_setting = Setting::find($setting->id);
 					if(!is_null($update_setting)){
 						$update_setting->num_of_following = $following;
 						$update_setting->num_of_followers = $followers;
@@ -442,9 +444,8 @@ class CronJobController extends Controller
 				
 				//klo insta_user_id == 0
 				if ($setting->insta_user_id == "0"){
-					$setting_temp = Setting::find($setting->id);
-					$setting_temp->insta_user_id = $id;
-					$setting_temp->save();
+					$update_setting->insta_user_id = $id;
+					$update_setting->save();
 				}
 				
 				//saveimage url to meta
@@ -480,7 +481,6 @@ class CronJobController extends Controller
 							$save = file_put_contents("images/pp/".$filename, $file);
 							if ($save) {
 								// SettingMeta::createMeta("photo_filename",$filename,$setting->id);
-								$update_setting = Setting::find($setting->id);
 								if(!is_null($update_setting)){
 									$update_setting->photo_filename = $filename;
 									$update_setting->save();
@@ -496,33 +496,27 @@ class CronJobController extends Controller
 				
 				if ( ($following > $setting->max_follow ) && ($setting->activity == "follow") && (!$setting->status_auto) ) {
 					// SettingMeta::createMeta("auto_unfollow","yes",$setting->id);
-					$update_setting = Setting::find($setting->id);
 					if(!is_null($update_setting)){
 						$update_setting->is_auto_unfollow = 1;
+
+						$update_setting->activity = "unfollow";
+						$update_setting->status_follow = "off";
+						$update_setting->status_unfollow = "on";
 						$update_setting->save();
 					}
-
-					$setting_temp = Setting::find($setting->id);
-					$setting_temp->activity = "unfollow";
-					$setting_temp->status_follow = "off";
-					$setting_temp->status_unfollow = "on";
-					$setting_temp->save();
 				}
 				if ( ($setting->status_auto) && ($following > $setting->max_follow ) ) {
 					// SettingMeta::createMeta("auto_unfollow","yes",$setting->id);
-					$update_setting = Setting::find($setting->id);
 					if(!is_null($update_setting)){
 						$update_setting->is_auto_unfollow = 1;
+					
+						$update_setting->status_follow_auto = 0;
+						$update_setting->status_unfollow_auto = 1;
 						$update_setting->save();
 					}
-					
-					$setting_temp = Setting::find($setting->id);
-					$setting_temp->status_follow_auto = 0;
-					$setting_temp->status_unfollow_auto = 1;
-					$setting_temp->save();
 				}
 
-				usleep(120000); 
+				// usleep(120000); 
 		}
 		
 		if(App::environment() == "local"){		
