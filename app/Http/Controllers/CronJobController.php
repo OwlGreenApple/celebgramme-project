@@ -395,7 +395,6 @@ class CronJobController extends Controller
 					if(!is_null($update_setting)){
 						$update_setting->num_of_following = $following;
 						$update_setting->num_of_followers = $followers;
-						$update_setting->save();
 					}
 					
 				}
@@ -445,7 +444,6 @@ class CronJobController extends Controller
 				//klo insta_user_id == 0
 				if ($setting->insta_user_id == "0"){
 					$update_setting->insta_user_id = $id;
-					$update_setting->save();
 				}
 				
 				//saveimage url to meta
@@ -483,7 +481,6 @@ class CronJobController extends Controller
 								// SettingMeta::createMeta("photo_filename",$filename,$setting->id);
 								if(!is_null($update_setting)){
 									$update_setting->photo_filename = $filename;
-									$update_setting->save();
 								}
 								
 							}
@@ -502,7 +499,6 @@ class CronJobController extends Controller
 						$update_setting->activity = "unfollow";
 						$update_setting->status_follow = "off";
 						$update_setting->status_unfollow = "on";
-						$update_setting->save();
 					}
 				}
 				if ( ($setting->status_auto) && ($following > $setting->max_follow ) ) {
@@ -512,11 +508,13 @@ class CronJobController extends Controller
 					
 						$update_setting->status_follow_auto = 0;
 						$update_setting->status_unfollow_auto = 1;
-						$update_setting->save();
 					}
 				}
 
 				// usleep(120000); 
+				if(!is_null($update_setting)){
+					$update_setting->save();
+				}
 		}
 		
 		if(App::environment() == "local"){		
