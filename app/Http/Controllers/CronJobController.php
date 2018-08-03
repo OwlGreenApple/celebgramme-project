@@ -328,21 +328,54 @@ class CronJobController extends Controller
 		include('simple_html_dom.php'); 
 		$dt = Carbon::now()->setTimezone('Asia/Jakarta'); 
 		
-		// $server_automation = "";
-		// if ($dt->hour == 2) {
-			// $server_automation = "A1(automation-1)";
-		// }
-		// if ($dt->hour == 3) {
-			// $server_automation = "A2(automation-2)";
-		// }
-		// if ($dt->hour == 4) {
-			// $server_automation = "A3(automation-3)";
-		// }
+		$server_automation = "";
+		if ($dt->hour == 18) {
+			$server_automation = "AA1(automation-1)";
+		}
+		if ($dt->hour == 19) {
+			$server_automation = "AA2(automation-2)";
+		}
+		if ($dt->hour == 20) {
+			$server_automation = "AA3(automation-3)";
+		}
+		if ($dt->hour == 21) {
+			$server_automation = "AA4(automation-4)";
+		}
+		if ($dt->hour == 22) {
+			$server_automation = "AA5(automation-5)";
+		}
+		if ($dt->hour == 23) {
+			$server_automation = "AA6(automation-6)";
+		}
+		if ($dt->hour == 0) {
+			$server_automation = "AA7(automation-7)";
+		}
+		if ($dt->hour == 1) {
+			$server_automation = "AA8(automation-8)";
+		}
+		if ($dt->hour == 2) {
+			$server_automation = "AA9(automation-9)";
+		}
+		if ($dt->hour == 3) {
+			$server_automation = "AA10(automation-10)";
+		}
+		if ($dt->hour == 4) {
+			$server_automation = "AA12(automation-12)";
+		}
+		if ($dt->hour == 5) {
+			$server_automation = "AA13(automation-13)";
+		}
+		if ($dt->hour == 6) {
+			$server_automation = "AA14(automation-14)";
+		}
+		if ($dt->hour == 7) {
+			$server_automation = "AA15(automation-15)";
+		}
 		$count_log = 0;
 		
 		// $file = base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow/logs.txt';
 		// $txt = date("F j, Y, g:i a")." total rec : ".$count_log." ".$server_automation." IN";
-		$txt = date("F j, Y, g:i a")." total rec : ".$count_log." ".$insta_username." IN";
+		$txt = date("F j, Y, g:i a")." total rec : ".$count_log." ".$insta_username." ".$server_automation." IN";
 		$myfile = file_put_contents(base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow-logs.txt', $txt.PHP_EOL , FILE_APPEND);
 				
 		if ($insta_username == "") {
@@ -353,7 +386,7 @@ class CronJobController extends Controller
 								->where('settings.error_cred','=',0)
 								->where('settings.status','=',"started")
 								->where("users.active_auto_manage",">",0)
-								// ->where("setting_helpers.server_automation","=",$server_automation)
+								->where("setting_helpers.server_automation","=",$server_automation)
 								->get();
 		} else {
 			$settings = Setting::select("settings.*"/*,"setting_helpers.proxy_id"*/)
