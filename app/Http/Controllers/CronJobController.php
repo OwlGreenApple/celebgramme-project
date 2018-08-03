@@ -381,7 +381,7 @@ class CronJobController extends Controller
 		if ($insta_username == "") {
 			$settings = Setting::select("settings.*"/*,"setting_helpers.proxy_id"*/)
 								->join("users","users.id","=","settings.last_user")
-								// ->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
+								->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 								->where("settings.type",'=','temp')
 								->where('settings.error_cred','=',0)
 								->where('settings.status','=',"started")
