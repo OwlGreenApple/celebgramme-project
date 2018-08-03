@@ -329,7 +329,7 @@ class CronJobController extends Controller
 		$dt = Carbon::now()->setTimezone('Asia/Jakarta'); 
 		
 		$server_automation = "";
-		if ($dt->hour == 17) {
+		if ($dt->hour == 18) {
 			$server_automation = "AA1(automation-1)";
 		}
 		if ($dt->hour == 19) {
