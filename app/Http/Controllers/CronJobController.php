@@ -481,7 +481,7 @@ class CronJobController extends Controller
 				
 				//saveimage url to meta
 				if ($pp_url<>"") {
-					
+					$update_setting->photo_filename_url = $pp_url;
 					/*try {
 						$file_headers = get_headers($pp_url,1);
 					}
