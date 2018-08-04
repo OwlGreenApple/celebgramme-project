@@ -167,7 +167,7 @@ class AutoManageController extends Controller
 						//random dengan proxy yang lain
 						$arr_proxy_login = $this->random_proxy();
 					}
-					else if ( intval(session('attempt_count')) >= 3 ) {
+					else if ( intval(session('attempt_count')) >= 5 ) {
 						//flag proxy supaya ga dipake lagi hari itu
 						$proxy_login = ProxyLogin::where("proxy",$arr_proxy_login["proxy"])
 														->where("port",$arr_proxy_login["port"])
@@ -263,13 +263,13 @@ class AutoManageController extends Controller
 
 			
 		if ($is_error == 1) {
-			$arr["message"]= "Instagram Login is not valid";
+			$arr["message"]= "Code:398 Instagram Login is not valid";
 			// $arr["error_message"]= $error_message;
 			$arr["type"]= "error";
 			return $arr;
 		}
 		else if ($is_error == 2) {
-			$arr["message"]= "Error Confirmation";
+			$arr["message"]= "Code:397 Error Confirmation";
 			// $arr["error_message"]= $error_message;
 			$arr["type"]= "error2";
       $dt = Carbon::now();
@@ -487,7 +487,7 @@ class AutoManageController extends Controller
 						//random dengan proxy yang lain
 						$arr_proxy_login = $this->random_proxy();
 					}
-					else if ( intval(session('attempt_count')) >= 3 ) {
+					else if ( intval(session('attempt_count')) >= 5 ) {
 						//flag proxy supaya ga dipake lagi hari itu
 						$proxy_login = ProxyLogin::where("proxy",$arr_proxy_login["proxy"])
 														->where("port",$arr_proxy_login["port"])
@@ -552,7 +552,7 @@ class AutoManageController extends Controller
 				return $arr;
 			}
 			catch (\InstagramAPI\Exception\ThrottledException $e) {
-				$arr["message"]= "Server is busy now, silahkan coba lagi 5 menit kemudian.";
+				$arr["message"]= "Code:399 Server is busy now, silahkan coba lagi 5 menit kemudian.";
 				$arr["type"]= "error";
 				return $arr;
 			}
@@ -595,7 +595,7 @@ class AutoManageController extends Controller
 
 			
 		if ($is_error == 1) {
-			$arr["message"]= "Instagram Login is not valid";
+			$arr["message"]= "Code:398 Instagram Login is not valid";
 			// $arr["error_message"]= $error_message;
 			// $arr["tracestring"]= $trace_string;
 			// $arr["response_error"]= $response_error;
@@ -603,7 +603,7 @@ class AutoManageController extends Controller
 			return $arr;
 		}
 		else if ($is_error == 2) {
-			$arr["message"]= "Error Confirmation";
+			$arr["message"]= "Code:397 Error Confirmation";
 			// $arr["error_message"]= $error_message;
 			// $arr["tracestring"]= $trace_string;
 			// $arr["response_error"]= $response_error;
