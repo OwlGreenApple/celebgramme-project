@@ -489,10 +489,12 @@ class Setting extends Model {
 			catch (\InstagramAPI\Exception\NotFoundException $e) {
 				
 			} catch (\InstagramAPI\Exception\EmptyResponseException $e) {
-				$this->get_ig_data($username);
+				// $this->get_ig_data($username);
+				$found = false;
 			} catch (\InstagramAPI\Exception\NetworkException $e) {
-				usleep(120000); 
-				$this->get_ig_data($username);
+				// usleep(120000); 
+				// $this->get_ig_data($username);
+				$found = false;
 			}
 		
 		$arr = array(
