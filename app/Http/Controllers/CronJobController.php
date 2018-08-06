@@ -329,7 +329,7 @@ class CronJobController extends Controller
 		$dt = Carbon::now()->setTimezone('Asia/Jakarta'); 
 		
 		$server_automation = "";
-		if ($dt->hour == 18) {
+		/*if ($dt->hour == 18) {
 			$server_automation = "AA1(automation-1)";
 		}
 		if ($dt->hour == 19) {
@@ -370,7 +370,7 @@ class CronJobController extends Controller
 		}
 		if ($dt->hour == 7) {
 			$server_automation = "AA15(automation-15)";
-		}
+		}*/
 		$count_log = 0;
 		
 		// $file = base_path().'/../public_html/general/cron-job-logs/auto-follow-unfollow/logs.txt';
@@ -381,12 +381,12 @@ class CronJobController extends Controller
 		if ($insta_username == "") {
 			$settings = Setting::select("settings.*"/*,"setting_helpers.proxy_id"*/)
 								->join("users","users.id","=","settings.last_user")
-								->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
+								// ->join("setting_helpers","settings.id","=","setting_helpers.setting_id")
 								->where("settings.type",'=','temp')
 								->where('settings.error_cred','=',0)
 								->where('settings.status','=',"started")
 								->where("users.active_auto_manage",">",0)
-								->where("setting_helpers.server_automation","=",$server_automation)
+								// ->where("setting_helpers.server_automation","=",$server_automation)
 								->get();
 		} else {
 			$settings = Setting::select("settings.*"/*,"setting_helpers.proxy_id"*/)
