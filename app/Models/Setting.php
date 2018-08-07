@@ -181,12 +181,21 @@ class Setting extends Model {
 																	->where("server_automation","like","AA15(automation-15)%")
 																	->where("settings.status","=","started")
 																	->count();
+		$count_IG_account_server_AA16 = SettingHelper::
+																	join("settings","settings.id","=","setting_helpers.setting_id")
+																	->where("cookies","=","success")
+																	->where("server_automation","like","AA16(automation-16)%")
+																	->where("settings.status","=","started")
+																	->count();
 		$setting_helper = new SettingHelper;
 		$setting_helper->setting_id = $setting->id;
 		$setting_helper->use_automation = 1;
 		$setting_helper->proxy_id = $arr_proxy["proxy_id"]; //
 		// $setting_helper->proxy_id = $arr_proxy["proxy_id"]; //
-		if ($count_IG_account_server_AA15<= $count_IG_account_server_AA14 ) {
+		if ($count_IG_account_server_AA16<= $count_IG_account_server_AA15 ) {
+			$setting_helper->server_automation = "AA16(automation-16)";
+		}
+		else if ($count_IG_account_server_AA15<= $count_IG_account_server_AA14 ) {
 			$setting_helper->server_automation = "AA15(automation-15)";
 		}
 		else if ($count_IG_account_server_AA14<= $count_IG_account_server_AA13 ) {
