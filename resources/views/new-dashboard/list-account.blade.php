@@ -15,8 +15,11 @@ input[type="text"]:disabled,input[type="password"]:disabled {
 				if (isset($datas)) { 
 					foreach ($datas as $data ) {
 						$photo = url('images/profile-default.png');
-						if ($data->photo_filename<>"0") {
-							$photo = url("images/pp/". $data->photo_filename);
+						if ($data->photo_filename<>"") {
+							// $photo = url("images/pp/". $data->photo_filename);
+							$photo = "images/pp/". $data->photo_filename;
+						} else {
+							$photo = $data->photo_filename_url;
 						}
 						// if (SettingMeta::getMeta($data->id,"photo_filename") == "0") {
 							// $photo = url('images/profile-default.png');
