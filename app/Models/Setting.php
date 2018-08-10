@@ -174,7 +174,7 @@ class Setting extends Model {
 		$setting_helper->use_automation = 1;
 		$setting_helper->proxy_id = $arr_proxy["proxy_id"]; //
 		// $setting_helper->proxy_id = $arr_proxy["proxy_id"]; //
-		if ($count_IG_account_server_AA16<= $count_IG_account_server_AA12 + 1000 ) {
+		if ($count_IG_account_server_AA16<= $count_IG_account_server_AA12 + 1500 ) {
 			$setting_helper->server_automation = "AA16(automation-16)";
 		}
 		else if ($count_IG_account_server_AA12<=$count_IG_account_server_AA2 - 10) {
