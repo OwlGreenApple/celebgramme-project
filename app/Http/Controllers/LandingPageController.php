@@ -324,6 +324,9 @@ class LandingPageController extends Controller
 			$idaff = Idaff::where("invoice","=",Input::get("invoice"))->first();
 		}
 		
+    if($idaff->executed){
+			exit;
+    }
 		$idaff->name = Input::get("cname");
 		$idaff->email = Input::get("cemail");
 		$idaff->phone = Input::get("cmphone");
@@ -359,6 +362,7 @@ class LandingPageController extends Controller
 			$order->no_order = $order_number;
 			$order->order_status = "cron dari affiliate";
 			
+			$package = null;
 			if ( (intval(Input::get("grand_total")) <500000 ) && (intval(Input::get("grand_total")) >=495000 ) ) {
 				$order->package_manage_id = 41;
 				$package = Package::find(41);
@@ -372,6 +376,9 @@ class LandingPageController extends Controller
 				$package = Package::find(42);
 			}
 			
+      if(is_null($package)){
+				exit;
+      }
 			$order->total = $package->price;
 			$order->user_id = $user->id;
 			$order->save();
