@@ -367,7 +367,7 @@ class LandingPageController extends Controller
 				$order->package_manage_id = 43;
 				$package = Package::find(43);
 			}
-			else if ( (intval(Input::get("grand_total")) <740000 ) && (intval(Input::get("grand_total")) >=735000 ) ) {
+			else if ( (intval(Input::get("grand_total")) <700000 ) && (intval(Input::get("grand_total")) >=695000 ) ) {
 				$order->package_manage_id = 42;
 				$package = Package::find(42);
 			}
