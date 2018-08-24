@@ -169,6 +169,15 @@ class HomeController extends Controller
       ));
 	}
   
+  public function delete_order(){
+    $order = Order::find(Request::input("id"))->delete();
+
+    $arr['type'] = 'success';
+    $arr['message'] = 'Delete order berhasil';
+
+    return $arr;
+  }
+
 	public function confirm_payment($no_order=""){
     $user = Auth::user();
 		return view('member.confirm-payment')

@@ -17,6 +17,7 @@ use Celebgramme\Veritrans\Veritrans;
 use Celebgramme\Models\Setting;
 use Celebgramme\Models\LinkUserSetting;
 use Celebgramme\Models\UserLog;
+use Celebgramme\Models\AdminLog;
 
 use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, Redirect;
 
@@ -46,12 +47,17 @@ class AdminController extends Controller
 			}
 			$dt = Carbon::now();
 			$user = User::find($id);
-			$user_log = new UserLog;
+			/*$user_log = new UserLog;
 			$user_log->email = $user->email;
 			$user_log->admin = $admin->fullname;
 			$user_log->description = "admin (".$admin->fullname.") using super admin to access (".$user->email.")";
 			$user_log->created = $dt->toDateTimeString();
-			$user_log->save();
+			$user_log->save();*/
+
+      $adminlog = new AdminLog;
+      $adminlog->user_id = Auth::user()->id;
+      $adminlog->description = "admin (".$admin->fullname.") using super admin to access (".$user->email.")";
+      $adminlog->save();
 			
 			Auth::loginUsingId($id);
 			return redirect("home");

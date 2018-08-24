@@ -72,6 +72,7 @@ Route::group(['middleware' => 'auth'], function()
 
   Route::get('confirm-payment', 'Member\HomeController@confirm_payment');
   Route::get('confirm-payment/{no_order}', 'Member\HomeController@confirm_payment');
+  Route::post('delete-order', 'Member\HomeController@delete_order');
   Route::get('get-payment-total', 'Member\HomeController@get_payment_total');
   Route::post('process-payment', 'Member\HomeController@process_payment');
 
