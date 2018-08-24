@@ -1470,7 +1470,7 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 															</div>
 														</div>
-														<!--
+														<!-- remark comment -->
 														<div class="row">
 															<div class="col-md-4 col-sm-4 col-xs-5">
 																<b>Comment</b>
@@ -1598,7 +1598,9 @@ document.getElementById("button-create-comment").addEventListener("click", funct
 															</div>
 														</div>
 													</div>
-													-->
+													<!-- remark comment -->
+													
+													
 													</div>
 												</div>
 
@@ -2089,16 +2091,23 @@ document.getElementById("button-ok-copy").addEventListener("click", function() {
       <div class="modal-content">
         <div class="modal-header">
           <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
-          <h4 class="modal-title">BACA DAHULU, Jika anda akan menggunakan fitur COMMENT : 
+          <h4 class="modal-title">BACA DAHULU, SEBELUM menggunakan fitur COMMENT : 
 					</h4>
         </div>
         <div class="modal-body">
 				<p>
-				*PENTING : Ada update terbaru instagram yang menyaring comments spam.<br> 
+				*PENTING : Algoritma Instagram SANGAT SENSITIF menyaring comments spam.<br> 
 				Pastikan Comments yang anda buat: <br>
-				Benar-benar UNIK, di SPIN dengan Kombinasi RATUSAN comments. <br>
+				- TIDAK Berjualan / Hard sell<br>
+				- Relevan dengan target post anda<br>
+				- Benar-benar UNIK, di SPIN dengan Kombinasi RATUSAN comments. <br>
 				Apabila anda masih ragu, Cukup gunakan fitur LIKE & FOLLOW SAJA. <br>
 				Tidak perlu menggunakan Comment terlebih dahulu.<br>
+				Karena jika salah membuat comments, akan MENINGKATKAN RESIKO akun anda di FLAG<br>
+				& terkena shadow ban dari Instagram<br>
+				*PS: Jika anda memilih menggunakan fitur comment, berarti anda menyadari sepenuhnya<br>
+				bahwa segala Resiko ada di tangan anda sendiri<br>
+				
 				<br>
 				Terima kasih atas perhatiannya<br>
 

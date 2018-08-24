@@ -1068,8 +1068,8 @@ class AutoManageController extends Controller
     $setting_temp = Setting::find($data['id']);
 
 		if (!$data["status_auto"]) {
-			// deleted comment if ( ( ($data['status_comment']=="on") || ($data['status_like']=="on") ) || (($data["follow_source"]=="hashtags") && ($data['status_follow_unfollow']=="on") ) ) {
-			if ( ($data['status_like']=="on")  || (($data["follow_source"]=="hashtags") && ($data['status_follow_unfollow']=="on") ) ) {
+			if ( ( ($data['status_comment']=="on") || ($data['status_like']=="on") ) || (($data["follow_source"]=="hashtags") && ($data['status_follow_unfollow']=="on") ) ) {
+			// deleted comment dibuka if ( ($data['status_like']=="on")  || (($data["follow_source"]=="hashtags") && ($data['status_follow_unfollow']=="on") ) ) {
 				$pieces = explode(";",$data["hashtags"]);
 				if (count($pieces)<10) {
 					$arr["message"]= "Hashtags minimal harus ada 10";
@@ -1111,7 +1111,7 @@ class AutoManageController extends Controller
 				}
 			}
 			
-			/*deleted comment
+			/*deleted comment dibuka*/
 			if ($data['status_comment']=="on") {
 				// if ( (strpos($data['comments'], '<@owner>') !== false) && (strpos($data['comments'], '{') !== false) && (strpos($data['comments'], '}')!==false) ) {
 				if ( (strpos($data['comments'], '{') !== false) && (strpos($data['comments'], '}')!==false) ) {
@@ -1127,10 +1127,10 @@ class AutoManageController extends Controller
 					return $arr;
 				}
 				
-			}*/
+			}
 			
-			//deleted comment if ( ($setting_temp->status=="started") && ($data['status_follow_unfollow']=="off") && ($data['status_like']=="off") && ($data['status_comment']=="off") ) {
-			if ( ($setting_temp->status=="started") && ($data['status_follow_unfollow']=="off") && ($data['status_like']=="off") ) {
+			if ( ($setting_temp->status=="started") && ($data['status_follow_unfollow']=="off") && ($data['status_like']=="off") && ($data['status_comment']=="off") ) {
+			//deleted comment dibuka if ( ($setting_temp->status=="started") && ($data['status_follow_unfollow']=="off") && ($data['status_like']=="off") ) {
 				$arr["message"]= "Silahkan pilih activity follow / like ";
 				$arr["type"]= "error";
 				return $arr;
