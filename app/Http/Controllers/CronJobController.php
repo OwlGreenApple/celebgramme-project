@@ -33,6 +33,9 @@ use Celebgramme\Models\TimeLog;
 use Celebgramme\Models\Affiliate;
 use Celebgramme\Models\Proxies;
 use Celebgramme\Models\ProxyLogin;
+use Celebgramme\Models\OrderAffiliate;
+use Celebgramme\Models\OrderUserAffiliate;
+use Celebgramme\Models\UserAffiliate;
 
 /* Celebpost model */
 use Celebgramme\Models\Account;
@@ -719,6 +722,28 @@ class CronJobController extends Controller
 					});
 				
 				} else {
+          if($user->is_member_rico==1){
+            $useraff = UserAffiliate::where('user_id_celebgramme',$user->id)->first();
+            if(!is_null($useraff)){
+              $orderaff = new OrderAffiliate;
+              $orderaff->no_order = $order->no_order;
+              $orderaff->type = 'extend';
+              $orderaff->owner_id = 1;
+              $orderaff->total = $order->total;
+
+              $owner = UserAffiliate::where('is_admin',2)->first();
+
+              $orderaff->tagihan = $order->total*$owner->komisi_new/100;
+              $orderaff->save();
+
+              $order_user = new OrderUserAffiliate;
+              $order_user->order_id = $order->id;
+              $order_user->user_id = $useraff->id;
+              $order_user->paket_id = 0;
+              $order->save();
+            }
+          }
+
 					$t = $package->active_days * 86400;
 					$days = floor($t / (60*60*24));
 					$hours = floor(($t / (60*60)) % 24);
