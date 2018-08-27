@@ -887,12 +887,14 @@ use Celebgramme\Models\SettingHelper;
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<b>Tambah waktu langganan </b>
 							</div>
+							<?php if (!$user->is_member_rico) { ?>
 							<div class="col-md-3 col-sm-3 col-xs-6 ">
 								<a class="btn btn-link btn-block bg-cyan br-6 text-white text-center" data-toggle="tab" id="button-package-normal">Normal</a>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-6 text-white">
 								<a class="btn btn-link btn-block bgBlueGreen text-white br-6 text-center" data-toggle="tab"  id="button-package-extra">Extra</a>
 							</div>
+							<?php }?>
 						</div>
 						<div class="row">
 							<div class="col-md-12 col-sm-12 col-xs-12">
@@ -902,9 +904,13 @@ use Celebgramme\Models\SettingHelper;
 										<div class="col-md-4 col-sm-4 col-xs-12">
 											<div class="card resposiveText br-6">
 												<div class="body bgBlueGreen text-center br-6">
-													<h3 class="text-white" style="margin-top:0px;">30<br><small class="text-white">Days</small></h3>
-													<h4 class="text-white" style="white-space:nowrap;">Rp. 195.000,-</h4>
-													<a href="{{url('buy-more/16')}}">
+													<h3 class="text-white" style="margin-top:0px;"><?php if (!$user->is_member_rico) { echo "30"; } else {echo "90";}?><br><small class="text-white">Days</small></h3>
+													<h4 class="text-white" style="white-space:nowrap;"><?php if (!$user->is_member_rico) { echo "Rp. 195.000,-"; } else {echo "Rp. 395.000,-";}?></h4>
+													<?php if (!$user->is_member_rico) { ?>
+														<a href="{{url('buy-more/16')}}">
+													<?php } else {?>
+														<a href="http://amelia.id">
+													<?php } ?>
 														<button class="btn btn-lg bgGreenLight text-white br-6">Buy Now</button>
 													</a>
 												</div>
@@ -913,9 +919,13 @@ use Celebgramme\Models\SettingHelper;
 										<div class="col-md-4 col-sm-4 col-xs-12">
 											<div class="card resposiveText br-6">
 												<div class="body bgBlueGreen text-center br-6">
-													<h3 class="text-white" style="margin-top:0px;">60<br><small class="text-white">Days</small></h3>
-													<h4 class="text-white" style="white-space:nowrap;">Rp. 295.000,-</h4>
-													<a href="{{url('buy-more/17')}}">
+													<h3 class="text-white" style="margin-top:0px;"><?php if (!$user->is_member_rico) { echo "60"; } else {echo "180";}?><br><small class="text-white">Days</small></h3>
+													<h4 class="text-white" style="white-space:nowrap;"><?php if (!$user->is_member_rico) { echo "Rp. 295.000,-"; } else {echo "Rp. 695.000,-";}?></h4>
+													<?php if (!$user->is_member_rico) { ?>
+														<a href="{{url('buy-more/17')}}">
+													<?php } else {?>
+														<a href="http://amelia.id">
+													<?php } ?>
 														<button class="btn btn-lg bgGreenLight text-white br-6">Buy Now</button>
 													</a>
 												</div>
@@ -924,9 +934,13 @@ use Celebgramme\Models\SettingHelper;
 										<div class="col-md-4 col-sm-4 col-xs-12">
 											<div class="card resposiveText br-6">
 												<div class="body bgBlueGreen text-center br-6">
-													<h3 class="text-white" style="margin-top:0px;">90<br><small class="text-white">Days</small></h3>
-													<h4 class="text-white" style="white-space:nowrap;">Rp. 395.000,-</h4>
-													<a href="{{url('buy-more/18')}}">
+													<h3 class="text-white" style="margin-top:0px;"><?php if (!$user->is_member_rico) { echo "90"; } else {echo "360";}?><br><small class="text-white">Days</small></h3>
+													<h4 class="text-white" style="white-space:nowrap;"><?php if (!$user->is_member_rico) { echo "Rp. 395.000,-"; } else {echo "Rp. 1285.000,-";}?></h4>
+													<?php if (!$user->is_member_rico) { ?>
+														<a href="{{url('buy-more/18')}}">
+													<?php } else {?>
+														<a href="http://amelia.id">
+													<?php } ?>
 														<button class="btn btn-lg bgGreenLight text-white br-6">Buy Now</button>
 													</a>
 												</div>
