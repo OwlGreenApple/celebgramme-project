@@ -952,7 +952,7 @@ class CronJobController extends Controller
 		
 		//pengecekan klo celebpost uda waktu habis atau, stopped maka proxy akan dicabut
 		$user_celebpost = UserCelebpost::where("active_time",0)
-											->orWhere("is_started",0)
+											// ->orWhere("is_started",0)
 											->get();
 		foreach($user_celebpost as $data) {
 			$accounts = Account::where("user_id",$data->id)
@@ -961,6 +961,12 @@ class CronJobController extends Controller
 				$account_celebpost->proxy_id = 0;
 				$account_celebpost->save();
 			}
+		}
+		$accounts = Account::where("is_started",0)
+								->get();
+		foreach($accounts as $account_celebpost){
+			$account_celebpost->proxy_id = 0;
+			$account_celebpost->save();
 		}
 		// }
 		
