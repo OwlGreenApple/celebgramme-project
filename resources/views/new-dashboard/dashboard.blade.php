@@ -144,14 +144,14 @@
 		$('#btn-add-account').click(function(e){
 			$("#username").prop('disabled', true);
 			$("#password").prop('disabled', true);
-			$("#confirm_password").prop('disabled', true);
+			//$("#confirm_password").prop('disabled', true);
 			$("#button-process").prop('disabled', true);
 		});
 		$('.checkbox-term').click(function(){
 			if( ($("#terms-add-account1").prop("checked") == true) && ($("#terms-add-account2").prop("checked") == true) && ($("#terms-add-account3").prop("checked") == true) && ($("#terms-add-account4").prop("checked") == true) && ($("#terms-add-account5").prop("checked") == true) && ($("#terms-add-account6").prop("checked") == true) && ($("#terms-add-account7").prop("checked") == true) && ($("#terms-add-account8").prop("checked") == true) && ($("#terms-add-account9").prop("checked") == true) ){
 				$("#username").prop('disabled', false);
 				$("#password").prop('disabled', false);
-				$("#confirm_password").prop('disabled', false);
+				//$("#confirm_password").prop('disabled', false);
 				$("#button-process").prop('disabled', false);
 			}
 		});
@@ -189,7 +189,7 @@
 							}
 							$("#username").val("");
 							$("#password").val("");
-							$("#confirm_password").val("");
+							//$("#confirm_password").val("");
 							loadaccount();
 					}
 			});
@@ -263,13 +263,35 @@
         });
       }
     });
+
+    $( "body" ).on( "click", "#icon-pass", function() {
+      if ($('#password').attr('type') === "password") {
+        $('#password').attr('type','text');
+        $(this).removeClass('glyphicon-eye-open');
+        $(this).addClass('glyphicon-eye-close');
+      } else {
+        $('#password').attr('type','password');
+        $(this).removeClass('glyphicon-eye-close');
+        $(this).addClass('glyphicon-eye-open');
+      }
+    });
+
+    $('#password + .glyphicon').on('click', function() {
+      $(this).toggleClass('glyphicon-eye-close').toggleClass('glyphicon-eye-open'); // toggle our classes for the eye icon
+      if ($('#password').attr('type') === "password") {
+        $('#password').attr('type','text');
+      } else {
+        $('#password').attr('type','password');
+      }
+    });
+
     $('#button-process').click(function(e){
-      if ($("#password").val() != $("#confirm_password").val()) {
+      /*if ($("#password").val() != $("#confirm_password").val()) {
         $("#alert").addClass('btn-danger');
         $("#alert").removeClass('alert-success');
         $("#alert").show();
         $("#alert").html("password anda tidak sesuai");
-      } else {
+      } else {*/
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -295,7 +317,7 @@
 
 									$("#username").val("");
 									$("#password").val("");
-									$("#confirm_password").val("");
+									//$("#confirm_password").val("");
 									$('#terms-add-account1').attr('checked', false); // Unchecks it
 									$('#terms-add-account2').attr('checked', false); // Unchecks it
 									$('#terms-add-account3').attr('checked', false); // Unchecks it
@@ -329,13 +351,18 @@
                 }
             }
         });
-      }
+      //}
     });
 		
 		
   });
 </script>
-
+<style type="text/css">
+   #password + .glyphicon {
+   cursor: pointer;
+   pointer-events: all;
+ }
+</style>
 <div class="row">
 	<div class="col-lg-12 col-md-12">
 		<div class="container-fluid">
@@ -658,19 +685,34 @@
               <div class="col-sm-8 col-md-6">
                 <input type="text" class="form-control" placeholder="Your username" name="username" id="username">
               </div>
-            </div>  
-            <div class="form-group form-group-sm row">
+            </div>
+
+            <div class="form-horizontal">
+              <div class="form-group form-group-sm row has-feedback">
+                <label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Password</label>
+
+                <div class="col-sm-8 col-md-6">
+                  <input type="password" class="form-control" placeholder="Your password" name="password" id="password">
+                  <span class="glyphicon glyphicon-eye-open form-control-feedback"></span>
+                </div>
+              </div>  
+            </div>
+            
+
+            <!--<div class="form-group form-group-sm row">
               <label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Password</label>
               <div class="col-sm-8 col-md-6">
                 <input type="password" class="form-control" placeholder="Your password" name="password" id="password">
               </div>
-            </div>  
-            <div class="form-group form-group-sm row">
+              <span class='glyphicon glyphicon-eye-open' id="icon-pass">
+              </span>
+            </div>-->
+            <!--<div class="form-group form-group-sm row">
               <label class="col-xs-8 col-sm-2 control-label" for="formGroupInputSmall">Confirm Password</label>
               <div class="col-sm-8 col-md-6">
                 <input type="password" class="form-control" placeholder="Confirm your password" name="confirm_password" id="confirm_password">
               </div>
-            </div>  
+            </div>-->
           </form>
         </div>
         <div class="modal-footer">

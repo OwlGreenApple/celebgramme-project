@@ -722,7 +722,7 @@ class CronJobController extends Controller
 					});
 				
 				} else {
-          if($user->is_member_rico==1){
+          /*if($user->is_member_rico==1){
             $useraff = UserAffiliate::where('user_id_celebgramme',$user->id)->first();
             if(!is_null($useraff)){
               $orderaff = new OrderAffiliate;
@@ -742,7 +742,7 @@ class CronJobController extends Controller
               $order_user->paket_id = 0;
               $order->save();
             }
-          }
+          }*/
 
 					$t = $package->active_days * 86400;
 					$days = floor($t / (60*60*24));
