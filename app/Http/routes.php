@@ -136,7 +136,7 @@ Route::get('reset-client-used', 'CronJobController@reset_client_used'); // unuse
 Route::get('cron-auto-manage-369', 'CronJobController@auto_manage');
 Route::get('cron-notif-member-369', 'CronJobController@notif_member');
 Route::get('count-instagram-data-369/{insta_username}', 'CronJobController@count_instagram_data');
-Route::get('count-instagram-data-369', 'CronJobController@count_instagram_data');
+// ganti di automation Route::get('count-instagram-data-369', 'CronJobController@count_instagram_data');
 Route::get('check-create-affiliate-369', 'CronJobController@create_user_from_affiliate');
 Route::get('task-daily-automation-cron-369', 'CronJobController@task_daily_automation_cron');
 Route::get('check-all-proxy-369', 'CronJobController@check_all_proxy');
