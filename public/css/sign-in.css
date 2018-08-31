@@ -11,11 +11,13 @@ html {
 	overflow-y: hidden;
 }
 body {
-  background : url("../images/bg-landing.jpg") no-repeat center center fixed; 
+  background : url("../images/bg-landing-login.jpg") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: auto,cover;	
+  /*background-size: auto,cover;*/
+  background-attachment: fixed;
+  background-size: cover;	
 	/*
   padding-bottom: 40px;
   background-image : url("../images/bg-landing.jpg");
@@ -25,6 +27,25 @@ body {
 	*/
 }
 
+/*@media only screen and (max-width: 1350px) {
+  body {
+    background : url("../images/bg-landing1350p.jpg") no-repeat center center fixed; 
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  body {
+    background : url("../images/bg-landing1024p.jpg") no-repeat center center fixed; 
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  body {
+    background : url("../images/bg-landing640p.jpg") no-repeat center center fixed; 
+    background-attachment: fixed;
+    background-size: cover;
+  }
+}*/
 .div-black{
 /*  background-color: black;
   opacity: 0.1;*/
