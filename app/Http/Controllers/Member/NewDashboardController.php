@@ -795,6 +795,9 @@ class NewDashboardController extends Controller
 							}
 						}
 						$counter += 1;
+						if($counter>=3) {
+							break;
+						}
 					} while ($has_next_page);
 					$dt = Carbon::now();
 					$setting->array_inbox = json_encode($arr_inbox);
