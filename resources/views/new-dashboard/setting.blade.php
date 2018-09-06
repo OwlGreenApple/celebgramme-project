@@ -909,7 +909,7 @@ use Celebgramme\Models\SettingHelper;
 													<?php if (!$user->is_member_rico) { ?>
 														<a href="{{url('buy-more/16')}}">
 													<?php } else {?>
-														<a href="http://amelia.id">
+														<a href="https://amelia.id/order.php">
 													<?php } ?>
 														<button class="btn btn-lg bgGreenLight text-white br-6">Buy Now</button>
 													</a>
@@ -924,7 +924,7 @@ use Celebgramme\Models\SettingHelper;
 													<?php if (!$user->is_member_rico) { ?>
 														<a href="{{url('buy-more/17')}}">
 													<?php } else {?>
-														<a href="http://amelia.id">
+														<a href="https://amelia.id/order.php">
 													<?php } ?>
 														<button class="btn btn-lg bgGreenLight text-white br-6">Buy Now</button>
 													</a>
@@ -939,7 +939,7 @@ use Celebgramme\Models\SettingHelper;
 													<?php if (!$user->is_member_rico) { ?>
 														<a href="{{url('buy-more/18')}}">
 													<?php } else {?>
-														<a href="http://amelia.id">
+														<a href="https://amelia.id/order.php">
 													<?php } ?>
 														<button class="btn btn-lg bgGreenLight text-white br-6">Buy Now</button>
 													</a>
