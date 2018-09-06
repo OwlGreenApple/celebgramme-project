@@ -349,6 +349,13 @@ class AutoManageController extends Controller
 			return $arr;
 		}
 		
+		//tidak boleh numeric
+		if (is_numeric(Request::input("username"))){
+			$arr["message"]= "Instagram username tidak boleh nomor Handphone";
+			$arr["type"]= "error";
+			return $arr;
+		}
+		
 		//tidak boleh mengandung "@", " "
 		if (strpos(Request::input("username"), '@') !== false) {
 			$arr["message"]= "Instagram username tidak boleh mengandung @";
