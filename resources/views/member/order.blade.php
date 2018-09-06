@@ -121,8 +121,8 @@
 						</td>
             <td> {{$arr->created_at}} </td>
             <td> 
-              <?php if($arr->order_status!='success' && $arr->image=="") { ?>
-                <a href="{{url('confirm-payment').'/'.$shortcode}}">
+              <?php if( $arr->order_status=='pending' && $arr->image=="") { ?>
+                <a href="{{url('confirm-payment').'/'.$shortcode}}" style="text-decoration: none">
                   <input type="button" class="btn btn-info" value="Konfirmasi">
                 </a> 
               <?php } ?>
