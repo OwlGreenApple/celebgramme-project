@@ -67,7 +67,7 @@
 			});
 		</script>
 		
-		<?php if (Auth::user()->is_member_rico) { ?>
+		<?php if ( (Auth::user()->is_member_rico) || (Auth::user()->type=="admin") ) { ?>
 			<script src="https://wchat.freshchat.com/js/widget.js"></script>
 			<script>
 				// Make sure fcWidget.init is included before setting these values
@@ -338,7 +338,7 @@
 		</section>
 	
 	
-		<?php if (Auth::user()->is_member_rico) { ?>
+		<?php if ( (Auth::user()->is_member_rico) || (Auth::user()->type=="admin") ) { ?>
 			<script>
 				window.fcWidget.init({
 					token: "660fa27c-cfa6-4fa3-b6c9-cd41aad6ab87",
