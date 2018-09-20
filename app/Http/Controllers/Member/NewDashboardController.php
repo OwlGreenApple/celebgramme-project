@@ -212,7 +212,7 @@ class NewDashboardController extends Controller
 			catch (\InstagramAPI\Exception\ChallengeRequiredException $e) {
 				//klo error email / phone verification 
 				$ret = Setting::error_notification($link->id); 
-				return redirect('dashboard')->with( 'error', $e->getMessage());
+				return redirect('dashboard')->with( 'error', "Code:397 Error Confirmation");
 			}
 			catch (\InstagramAPI\Exception\LoginRequiredException $e) {
 				//klo error email / phone verification 
@@ -223,6 +223,9 @@ class NewDashboardController extends Controller
 				//klo error password
 				$ret = Setting::error_account_disabled($link->id); 
 				return redirect('dashboard')->with( 'error', $e->getMessage());
+			}
+			catch (\InstagramAPI\Exception\BadRequestException $e) {
+				return redirect('dashboard')->with( 'error', "Code:400 request busy, Please try again");
 			}
 			
 			//buat list user following (for whitelist purpose)
@@ -894,7 +897,11 @@ class NewDashboardController extends Controller
 			catch (\InstagramAPI\Exception\CheckpointRequiredException $e) {
 				//klo error email / phone verification 
 				$arr["type"]="error";
-				$arr["resultEmailData"] = $e->getMessage();
+				$arr["resultEmailData"] = "Code:397 Error Confirmation";
+			}
+			catch (\InstagramAPI\Exception\BadRequestException $e) {
+				$arr["type"]="error";
+				$arr["resultEmailData"] = "Code:400 request busy, Please try again";
 			}
 			
 		}
