@@ -147,9 +147,7 @@ return [
         Celebgramme\Providers\RouteServiceProvider::class,
         
         Anouar\Paypalpayment\PaypalpaymentServiceProvider::class,
-				// GeneaLabs\LaravelCaffeine\LaravelCaffeineServiceProvider::class,
-				GeneaLabs\LaravelCaffeine\Providers\Service::class,
-				Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+				GeneaLabs\LaravelCaffeine\LaravelCaffeineServiceProvider::class,
 
     ],
 

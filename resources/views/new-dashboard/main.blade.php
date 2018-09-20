@@ -71,21 +71,12 @@
 			<script src="https://wchat.freshchat.com/js/widget.js"></script>
 			<script>
 				// Make sure fcWidget.init is included before setting these values
-
 				// To set unique user id in your system when it is available
 				window.fcWidget.setExternalId("<?php echo Auth::user()->id; ?>");
-
 				// To set user name
 				window.fcWidget.user.setFirstName("<?php echo Auth::user()->fullname; ?>");
-
 				// To set user email
 				window.fcWidget.user.setEmail("<?php echo Auth::user()->email; ?>");
-
-				// To set user properties
-				window.fcWidget.user.setProperties({
-					plan: "Estate",                 // meta property 1
-					status: "Active"                // meta property 2
-				});
 			</script>
 		<?php } ?>
 
