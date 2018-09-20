@@ -148,6 +148,7 @@ return [
         
         Anouar\Paypalpayment\PaypalpaymentServiceProvider::class,
 				GeneaLabs\LaravelCaffeine\LaravelCaffeineServiceProvider::class,
+				Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 
     ],
 

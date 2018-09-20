@@ -46,6 +46,8 @@ Route::get('redirect-auth/{cryptedcode}', 'LandingPageController@redirect_auth')
 Route::post('auth/forgot', ['as'=>'auth.forgot', 'uses'=> 'LandingPageController@auth_forgot']);
 Route::post('change-password', ['as'=>'change.password', 'uses'=> 'LandingPageController@change_password']);
 
+Route::get('logs-731', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
 /*--------- Must Login Routes ---------*/
 Route::group(['middleware' => 'auth'], function()
 {
