@@ -774,7 +774,10 @@
 									Delete Account
 							</div>
 							<div class="modal-body">
-									Are you sure want to delete ?
+									Are you sure want to delete ? <br>
+									Silahkan Stop akun Celebpost terlebih dulu apabila anda akan melakukan <br>
+									delete & add akun ulang(refresh Session IG akun). <br>
+									*Abaikan pesan diatas apabila akun ini tidak sedang aktif memakai Celebpost
 							</div>
 							<input type="hidden" id="id-setting">
 							<div class="modal-footer">
