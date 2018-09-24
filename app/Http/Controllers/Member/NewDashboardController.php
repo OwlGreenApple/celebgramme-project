@@ -64,13 +64,12 @@ class NewDashboardController extends Controller
 			$content = $post->description;
 		}
 		
-		
-    return view("new-dashboard.index")->with(array(
-      'user'=>$user,
-      'order'=>$order,
-      'status_server'=>$status_server,
-      'content'=>$content,
-      ));
+		return view("new-dashboard.index")->with(array(
+          'user'=>$user,
+          'order'=>$order,
+          'status_server'=>$status_server,
+          'content'=>$content,
+        ));
 	}
 
 	public function setting_index($id){
@@ -321,11 +320,11 @@ class NewDashboardController extends Controller
     $order = Order::where("order_status","=","pending")->where("user_id","=",$user->id)->where("image",'=','')->first();
 		
     return view("new-dashboard.dashboard")->with(array(
-      'user'=>$user,
-      'status_server'=>$status_server,
-      'timeperaccount'=>$timeperaccount,
-      'order'=>$order,
-    ));
+          'user'=>$user,
+          'status_server'=>$status_server,
+          'timeperaccount'=>$timeperaccount,
+          'order'=>$order,
+        ));
 	}
 	
   public function load_account(){  

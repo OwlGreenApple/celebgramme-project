@@ -30,10 +30,18 @@
 		<link href="{{ asset('/css/tooltipster.css') }}" rel="stylesheet">
 		<link href="{{ asset('/css/tooltipster-noir.css') }}" rel="stylesheet">
     <!-- Custom Css -->
-		<link href="{{ asset('/new-dashboard/css/style.css') }}" rel="stylesheet">
+    <?php if(env("APP_PROJECT") == 'Celebgramme') { ?>
+		  <link href="{{ asset('/new-dashboard/css/style.css') }}" rel="stylesheet">
+    <?php } else { ?>
+      <link href="{{ asset('/css/amelia/style.css') }}" rel="stylesheet">
+    <?php } ?>
 		<link href="{{ asset('/new-dashboard/css/jquery-ui.min.css') }}" rel="stylesheet">
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-		<link href="{{ asset('/new-dashboard/css/themes/all-themes.css') }}" rel="stylesheet">
+    <?php if(env("APP_PROJECT") == 'Celebgramme') { ?>
+		  <link href="{{ asset('/new-dashboard/css/themes/all-themes.css') }}" rel="stylesheet">
+    <?php } else { ?>
+      <link href="{{ asset('/css/amelia/themes/all-themes.css') }}" rel="stylesheet">
+    <?php } ?>
 		<link href="{{ asset('/css/main.css') }}" rel="stylesheet">
 		<!-- emoji -->
 		<link href="{{ asset('/emoji/css/emojionearea.min.css') }}" rel="stylesheet">	
@@ -113,7 +121,13 @@
             <div class="navbar-header">
                 <!-- <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a> -->
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="index.html"><img id="mainImgLogo" class="img-responsive"src="{{asset('/new-dashboard/images/logo.png')}}"></a>
+                <a class="navbar-brand" href="index.html">
+                  <?php if(env("APP_PROJECT") == 'Celebgramme') { ?>
+                    <img id="mainImgLogo" class="img-responsive"src="{{asset('/new-dashboard/images/logo.png')}}">
+                  <?php } else { ?>
+                    <img id="mainImgLogo" class="img-responsive"src="{{asset('/new-dashboard/images/logo-amelia.png')}}">
+                  <?php } ?>
+                </a>
 			</div>
             <!-- <div class="collapse navbar-collapse" id="navbar-collapse"> -->
                 <!-- <ul  class="nav navbar-nav navbar-right" > -->

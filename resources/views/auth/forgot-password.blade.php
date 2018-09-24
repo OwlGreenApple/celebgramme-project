@@ -6,7 +6,11 @@
       <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
       <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/bootstrap-theme.min.css') }}" rel="stylesheet">
-      <link href="{{ asset('/css/sign-in.css') }}" rel="stylesheet">
+      <?php if(env("APP_PROJECT") == 'Celebgramme') { ?>
+        <link href="{{ asset('/css/sign-in.css') }}" rel="stylesheet">
+      <?php } else { ?>
+        <link href="{{ asset('/css/amelia/sign-in.css') }}" rel="stylesheet">
+      <?php } ?>
     </head>
     <body>
       <div class="div-black">

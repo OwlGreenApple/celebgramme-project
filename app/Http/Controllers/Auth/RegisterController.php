@@ -53,10 +53,11 @@ class RegisterController extends Controller
 			];
 		}
 		// dd($user_data);
-		return view('auth/register')->with([
-			'user_data' => $user_data,
-			'grecaptcha_key' => env('GOOGLE_RECAPTCHA_KEY'),
-		]);
+
+    return view('auth/register')->with([
+          'user_data' => $user_data,
+          'grecaptcha_key' => env('GOOGLE_RECAPTCHA_KEY'),
+        ]);
 	}
 	
 	/**

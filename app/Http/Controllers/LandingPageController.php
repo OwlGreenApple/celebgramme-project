@@ -258,7 +258,7 @@ class LandingPageController extends Controller
 	}
 
 	public function forgot_password() {
-		return view('auth.forgot-password');
+    return view('auth.forgot-password');
 	}
 	
 	public function auth_forgot() {
@@ -296,7 +296,9 @@ class LandingPageController extends Controller
 			$user = User::where("email","=",$data->email)->first();
 			if (!is_null($user)) {
 				$request->session()->put('email', $data->email);
-				return view('auth.new-password');
+
+        return view('auth.new-password');
+				
 			} else{
 				return redirect("http://celebgramme.com/error-page/");
 			}

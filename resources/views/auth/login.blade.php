@@ -7,14 +7,18 @@
       <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
       <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/bootstrap-theme.min.css') }}" rel="stylesheet">
-      <link href="{{ asset('/css/sign-in.css') }}" rel="stylesheet">
+      <?php if(env("APP_PROJECT") == 'Celebgramme') { ?>
+        <link href="{{ asset('/css/sign-in.css') }}" rel="stylesheet">
+      <?php } else { ?>
+        <link href="{{ asset('/css/amelia/sign-in.css') }}" rel="stylesheet">
+      <?php } ?>
     </head>
     <body>
       <div class="div-black">
       </div>
       <div class="container">  
         <div class="container2 col-xs-12">  
-          <div class="div-logo">
+          <div class="div-logo login">
             <a href="http://celebgramme.com"><div class="logo"></div></a>
           </div>
           {!! Form::open(array('url'=>URL::ROUTE('auth.login'),'method'=>'post','class'=>"form-signin",)) !!}

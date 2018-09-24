@@ -41,9 +41,10 @@ class LoginController extends Controller
 			if (!is_null($post)) {
 				$content = $post->description;
 			}
-			return view("auth.login")->with(array(
-				'content'=>$content,
-				));
+
+      return view("auth.login")->with(array(
+          'content'=>$content,
+          ));
 		}
 	}
 	
