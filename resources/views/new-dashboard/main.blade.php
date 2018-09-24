@@ -75,6 +75,19 @@
 			});
 		</script>
 		
+		<?php if ( (Auth::user()->is_member_rico) || (Auth::user()->type=="admin") ) { ?>
+			<script src="https://wchat.freshchat.com/js/widget.js"></script>
+			<script>
+				// Make sure fcWidget.init is included before setting these values
+				// To set unique user id in your system when it is available
+				window.fcWidget.setExternalId("<?php echo Auth::user()->id; ?>");
+				// To set user name
+				window.fcWidget.user.setFirstName("<?php echo Auth::user()->fullname; ?>");
+				// To set user email
+				window.fcWidget.user.setEmail("<?php echo Auth::user()->email; ?>");
+			</script>
+		<?php } ?>
+
 </head>
 
 <body class="theme-default">
@@ -164,13 +177,13 @@
                         </a>
                     </li>
                     <li id="buyMore" @if(Request::is('buy-more')) class="active" @endif>
-                        <a href="<?php if (Auth::user()->is_member_rico) { echo "https://amelia.id/order.php"; } else { echo url('buy-more'); } ?>" data-identity="buyMore"  class="waves-light" target="_blank">
+                        <a href="<?php if (Auth::user()->is_member_rico) { echo 'https://amelia.id/order.php'; } else { echo url('buy-more'); } ?>" data-identity="buyMore"  class="waves-light" target="_blank">
                             <i class="navigation-icon buy-icon"></i>
                             <span>Buy More</span>
                         </a>
                     </li>
 					<li id="confirmPayment" @if(Request::is('confirm-payment')) class="active" @endif>
-                        <a href="<?php if (Auth::user()->is_member_rico) { echo "https://amelia.id/order.php"; } else { echo url('confirm-payment'); } ?>" data-identity="confirmPayment"  class="waves-light">
+                        <a href="<?php if (Auth::user()->is_member_rico) { echo 'https://amelia.id/order.php'; } else { echo url('confirm-payment'); } ?>" data-identity="confirmPayment"  class="waves-light">
                             <i class="navigation-icon confirm-icon"></i>
                             <span>Confirm Payment</span>
                         </a>
@@ -196,17 +209,19 @@
                     </li>
 										-->
 					<li id="faq">
-                        <a href="https://celebgramme.com/faq" target="_blank" data-identity="faq" class="waves-light">
+                        <a href="<?php if (Auth::user()->is_member_rico) { echo 'http://bit.ly/faq-amelia-tool'; } else { echo 'https://celebgramme.com/faq'; } ?>" target="_blank" data-identity="faq" class="waves-light">
                             <i class="navigation-icon FAQ-icon"></i>
                             <span>FAQ</span>
                         </a>
                     </li>
+					<?php if (!Auth::user()->is_member_rico) { ?>
 					<li id="support">
 												<a href="https://celebgramme.com/support-contact" data-identity="support" class="waves-light">
                             <i class="navigation-icon support-icon"></i>
                             <span>Support</span>
 												</a>
                     </li>
+					<?php } ?> 
 					<li id="tutorial">
                         <a href="https://docs.google.com/document/u/1/d/1m9CuqNL-2-8g_g4UPHNtMXdH3lcwSjest-9z0xsUyNE/edit?usp=sharing" target="_blank" data-identity="tutorial" class="waves-light">
                             <i class="navigation-icon tutorial-icon"></i>
@@ -258,13 +273,13 @@
                         </a>
                     </li>
                     <li id="buyMore" @if(Request::is('buy-more')) class="active" @endif>
-                        <a href="<?php if (Auth::user()->is_member_rico) { echo "https://amelia.id/order.php"; } else { echo url('buy-more'); } ?>" data-identity="buyMore"  class="waves-light" target="_blank">
+                        <a href="<?php if (Auth::user()->is_member_rico) { echo 'https://amelia.id/order.php'; } else { echo url('buy-more'); } ?>" data-identity="buyMore"  class="waves-light" target="_blank">
                             <i class="navigation-icon buy-icon"></i>
                             <span>Buy More</span>
                         </a>
                     </li>
 					<li id="confirmPayment" @if(Request::is('confirm-payment')) class="active" @endif>
-                        <a href="<?php if (Auth::user()->is_member_rico) { echo "https://amelia.id/order.php"; } else { echo url('confirm-payment'); } ?>" data-identity="confirmPayment"  class="waves-light">
+                        <a href="<?php if (Auth::user()->is_member_rico) { echo 'https://amelia.id/order.php'; } else { echo url('confirm-payment'); } ?>" data-identity="confirmPayment"  class="waves-light">
                             <i class="navigation-icon confirm-icon"></i>
                             <span>Confirm Payment</span>
                         </a>
@@ -282,17 +297,19 @@
                         </a>
                     </li>
 					<li id="faq">
-                        <a href="https://celebgramme.com/faq" target="_blank" data-identity="faq" class="waves-light">
+                        <a href="<?php if (Auth::user()->is_member_rico) { echo 'http://bit.ly/faq-amelia-tool'; } else { echo 'https://celebgramme.com/faq'; } ?>" target="_blank" data-identity="faq" class="waves-light">
                             <i class="navigation-icon FAQ-icon"></i>
                             <span>FAQ</span>
                         </a>
                     </li>
+					<?php if (!Auth::user()->is_member_rico) { ?>
 					<li id="support">
 												<a href="https://celebgramme.com/support-contact" data-identity="support" class="waves-light">
                             <i class="navigation-icon support-icon"></i>
                             <span>Support</span>
 												</a>
                     </li>
+					<?php } ?>
 					<li id="tutorial">
                         <a href="https://docs.google.com/document/u/1/d/1m9CuqNL-2-8g_g4UPHNtMXdH3lcwSjest-9z0xsUyNE/edit?usp=sharing" target="_blank" data-identity="tutorial" class="waves-light">
                             <i class="navigation-icon tutorial-icon"></i>
@@ -326,8 +343,14 @@
 		</section>
 	
 	
-
-	
+		<?php if ( (Auth::user()->is_member_rico) || (Auth::user()->type=="admin") ) { ?>
+			<script>
+				window.fcWidget.init({
+					token: "660fa27c-cfa6-4fa3-b6c9-cd41aad6ab87",
+					host: "https://wchat.freshchat.com"
+				});
+			</script>
+		<?php } ?>
 </body>
 
 </html> 
