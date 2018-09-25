@@ -28,7 +28,15 @@ Route::get('calculate-coupon', 'LandingPageController@calculate_coupon');
 Route::post('process-package', 'LandingPageController@process_package');
 
 /* LOGIN / LOGOUT */
-Route::get('/', 'Auth\LoginController@getLogin');
+Route::group(['prefix' => '/'], function()
+{
+  if(env("APP_PROJECT") == 'Celebgramme') {
+    Route::get('/', 'Auth\LoginController@getLogin');
+  } else {
+    Route::get('/', 'Auth\LoginController@choose_tool');
+  }
+});
+
 Route::get('login', 'Auth\LoginController@getLogin');
 Route::post('auth/login', ['as'=>'auth.login', 'uses'=> 'Auth\LoginController@postLogin']);
 Route::get('logout', 'Auth\LoginController@getLogout');

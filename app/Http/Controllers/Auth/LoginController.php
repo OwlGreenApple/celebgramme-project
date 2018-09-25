@@ -48,6 +48,9 @@ class LoginController extends Controller
 		}
 	}
 	
+  public function choose_tool(){
+    return view("auth.choose-tools");
+  }
 	/**
 	 * login kedalam aplikasi
 	 *
@@ -59,6 +62,16 @@ class LoginController extends Controller
 	{
 		$remember = (Input::has('remember')) ? true : false;
 		$field = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+    if(env('APP_PROJECT')=='Amelia'){
+      $user = User::where('email',$request->username)->first();
+
+      if($user->is_member_rico==0){
+        return Redirect::to('/login')
+        ->with(array("error"=>"Anda tidak terdaftar sebagai member amelia"));
+      }
+    }
+
 		if (Auth::attempt([$field => $request->username, 'password' => $request->password], $remember)) {
 			if (isset($request->r)){
 				return redirect($request->r);
@@ -67,7 +80,7 @@ class LoginController extends Controller
 				return redirect('/home');
 			}
 		} else {
-			return Redirect::to('/')
+			return Redirect::to('/login')
 				->with(array("error"=>"Login anda salah"));
 		}
 	}

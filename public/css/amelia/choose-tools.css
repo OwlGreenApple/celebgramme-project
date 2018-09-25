@@ -1,0 +1,241 @@
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("../../fonts/Poppins-Regular.ttf");
+}
+
+html, body {
+	height: 100%;
+}
+html {
+	overflow-y: hidden;
+}
+body {
+  background : white; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  /*background-size: auto,cover;*/
+  background-attachment: fixed;
+  background-size: cover;
+  overflow: scroll;	
+	/*
+  padding-bottom: 40px;
+  background-image : url("../images/bg-landing.jpg");
+  background-size: cover;
+  background-size: 1725px 1150px;
+  background-repeat: no-repeat right top;
+	*/
+}
+
+/*@media only screen and (max-width: 1350px) {
+  body {
+    background : url("../images/bg-landing1350p.jpg") no-repeat center center fixed; 
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  body {
+    background : url("../images/bg-landing1024p.jpg") no-repeat center center fixed; 
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  body {
+    background : url("../images/bg-landing640p.jpg") no-repeat center center fixed; 
+    background-attachment: fixed;
+    background-size: cover;
+  }
+}*/
+.btn-tools {
+  max-width: 200px;
+}
+.div-btn-tools{
+  padding-bottom: 40px;
+}
+h3 {
+  font-family: "Open Sans";
+}
+.navbar {
+  background-color: #3a3a3a;
+  text-align: center;
+}
+.footer {
+  padding:20px;
+  background-color: #3a3a3a;
+  color: #f5941e;
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+#mainImgLogo {
+  padding: 10px 7px;
+  width: 190px;
+}
+
+.div-black{
+/*  background-color: black;
+  opacity: 0.1;*/
+  width:100%; height:100%;position: absolute;
+}
+label {
+  font-family: "Open Sans";
+  font-weight: normal;
+  font-size: 18px;
+}
+.btn{
+  background-color: #f5941e;
+  color: black;  
+  margin-bottom:20px;
+}
+.btn:hover{
+  color: #908e8c !important;
+  color: white;  
+}
+.container{
+  width: 100%;height:100%;
+}
+.container2{
+    top: 50%;
+    left: 50%;
+    background-color: white;
+}
+
+@media only screen and (min-width : 992px) {
+  .container2{
+    position: absolute;
+    width: 100%;
+    transform: translate(-50%, -50%);
+  }
+
+  .btn-tools{
+    max-width: 250px;
+  }
+
+  .footer {
+    position: absolute;
+    top: 91%;
+  }
+}
+
+.div-logo{
+  display:block;
+  height : 85px;
+  background-color: #3a3a3a;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; padding-top: 10px; padding-bottom: 20px;
+  width: calc(100% + 30px);
+}
+
+.div-logo.login{
+  margin-left: -15px;
+}
+
+@media only screen and (min-width : 480px) {
+  .div-logo{
+    width: 430px;
+  }
+}
+
+.logo{
+  background-image : url("../../images/logo-amelia.png");
+  background-repeat: no-repeat;
+  /*background-size: cover;*/
+  background-size: 210px;
+  background-position: center;
+  width:308px; height:100%;
+  overflow:hidden;
+  margin:0 auto;
+}
+
+@media only screen and (max-width : 480px) {
+  .logo{
+    background-size: contain;
+    width:250px;
+  }
+}
+
+.login-link-forgot{
+  position: absolute;
+    top: 330px;
+    left: 285px;
+    color: black;
+    font-size: 17.5px;
+    font-family: "Open Sans";  
+}
+.login-link-landing{
+  position: absolute;
+    top: 575px;
+    left: 38px;
+    color: black;
+    font-size: 17.5px;
+    font-family: "Open Sans";  
+}
+.register-link-landing{
+  position: absolute;
+    top: 430px;
+    left: 270px;
+    color: white;
+    font-size: 17.5px;
+    font-family: "Open Sans";  
+}
+.register-link-landing:hover, .login-link-landing:hover { 
+    color: #908e8c;
+    text-decoration: none;
+}
+.forgot-link-landing{
+  position: absolute;
+    top: 430px;
+    left: 0px;
+    color: #000;
+    font-size: 17.5px;
+    font-family: "Open Sans";  
+}
+.forgot-link-landing:hover, .login-link-landing:hover { 
+    color: #908e8c;
+    text-decoration: none;
+}
+.notif-user{
+  position: absolute;
+	top: -70px;
+	left: 0px;
+	width:100%;
+}
+.form-signin {
+  max-width: 380px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"], .form-signin input[type="password"], .form-signin input[type="text"] {
+  margin-bottom: 10px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+
+.register-p{
+  text-align: center;
+  font-family: "Open Sans";
+  font-size:11.5px;
+}
+a:hover { text-decoration: none;}
