@@ -66,7 +66,7 @@ class LoginController extends Controller
     if(env('APP_PROJECT')=='Amelia'){
       $user = User::where('email',$request->username)->first();
 
-      if($user->is_member_rico==0){
+      if($user->is_member_rico==0 && $user->type!='admin'){
         return Redirect::to('/login')
         ->with(array("error"=>"Anda tidak terdaftar sebagai member amelia"));
       }
