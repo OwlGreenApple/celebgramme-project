@@ -39,10 +39,12 @@
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <?php if(env("APP_PROJECT") == 'Celebgramme') { ?>
 		  <link href="{{ asset('/new-dashboard/css/themes/all-themes.css') }}" rel="stylesheet">
+      <link href="{{ asset('/css/main.css') }}" rel="stylesheet">
     <?php } else { ?>
       <link href="{{ asset('/css/amelia/themes/all-themes.css') }}" rel="stylesheet">
+      <link href="{{ asset('/css/amelia/main.css') }}" rel="stylesheet">
     <?php } ?>
-		<link href="{{ asset('/css/main.css') }}" rel="stylesheet">
+		
 		<!-- emoji -->
 		<link href="{{ asset('/emoji/css/emojionearea.min.css') }}" rel="stylesheet">	
 

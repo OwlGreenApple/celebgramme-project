@@ -275,17 +275,32 @@ class NewDashboardController extends Controller
 				
 		}
 		
-    return view("new-dashboard.setting")->with(array(
-      'user'=>$user,
-      'settings'=>$link,
-      'view_timeperaccount'=>$view_timeperaccount,
-      'view_totaltime'=>$view_totaltime,
-      'strCategory'=>$strCategory,
-      'strClassCategory'=>$strClassCategory,
-      'ads_content'=>$ads_content,
-      'j_arr_user_whitelist'=>json_encode($arr_user_whitelist),
-      'arr_user_whitelist'=>$arr_user_whitelist,
-		));
+    if(env('APP_PROJECT')=='Celebgramme'){
+      return view("new-dashboard.setting")->with(array(
+        'user'=>$user,
+        'settings'=>$link,
+        'view_timeperaccount'=>$view_timeperaccount,
+        'view_totaltime'=>$view_totaltime,
+        'strCategory'=>$strCategory,
+        'strClassCategory'=>$strClassCategory,
+        'ads_content'=>$ads_content,
+        'j_arr_user_whitelist'=>json_encode($arr_user_whitelist),
+        'arr_user_whitelist'=>$arr_user_whitelist,
+      ));  
+    } else {
+      return view("amelia.new-dashboard.setting")->with(array(
+        'user'=>$user,
+        'settings'=>$link,
+        'view_timeperaccount'=>$view_timeperaccount,
+        'view_totaltime'=>$view_totaltime,
+        'strCategory'=>$strCategory,
+        'strClassCategory'=>$strClassCategory,
+        'ads_content'=>$ads_content,
+        'j_arr_user_whitelist'=>json_encode($arr_user_whitelist),
+        'arr_user_whitelist'=>$arr_user_whitelist,
+      ));  
+    }
+    
 	}
 
 	public function dashboard(){
