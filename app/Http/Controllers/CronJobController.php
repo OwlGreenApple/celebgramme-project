@@ -963,6 +963,7 @@ class CronJobController extends Controller
 			}
 		}
 		$accounts = Account::where("is_started",0)
+								->orWhereNull('is_started')
 								->get();
 		foreach($accounts as $account_celebpost){
 			$account_celebpost->proxy_id = 0;
