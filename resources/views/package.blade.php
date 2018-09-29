@@ -2,7 +2,7 @@
 <html>
     <head>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Celebgramme</title>
+      <title>Activfans</title>
       <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/images/celebgramme-favicon.png') }}">
       <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
       <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -57,7 +57,7 @@
       <div class="header-package row container">
         <div class="div-black">
           <div class="div-logo">
-            <a href="http://celebgramme.com"><div class="logo"></div></a>
+            <a href="http://activfans.com"><div class="logo"></div></a>
           </div>
           <h1 class="h1-package-price">Pilih Paket <strong>Auto Manage</strong></h1>
         </div>
@@ -280,7 +280,7 @@
                           5. Silahkan lakukan pembayaran <br>
                           6. Untuk proses pemesanan selanjutnya, mohon konfirmasi pembayaran anda dengan mengisi form konfirmasi pembayaran. Silahkan cek email dari kami, kemudian klik link konfirmasi pembayaran <br>
                           7. Silahkan log in, paket anda telah aktif <br>
-                          <strong>Selamat menggunakan Celebgramme!</strong>
+                          <strong>Selamat menggunakan Activfans!</strong>
                         </p>
                       </div>
                     </div>
@@ -301,15 +301,15 @@
       <div class="footer-package row container">
         <div class="footer-center container row">
           <div class="copyright col-xs-12 col-md-6 col-sm-6">
-            Celebgramme.com © 2018
+            Activfans.com © 2018
           </div>
 					<div class="col-md-2 col-sm-2">
           </div>
           <div class="col-xs-12 col-md-4 col-sm-4 footer-helper ">
-            <a href="http://celebgramme.com/blog">Blog </a>| 
-            <a href="http://celebgramme.com/support">Support  </a>|  
-            <a href="http://celebgramme.com/faq">FAQ  </a>| 
-            <a href="http://celebgramme.com/prices">Prices </a>| 
+            <a href="http://activfans.com/blog">Blog </a>| 
+            <a href="http://activfans.com/support">Support  </a>|  
+            <a href="http://activfans.com/faq">FAQ  </a>| 
+            <a href="http://activfans.com/prices">Prices </a>| 
             <a href="{{url('login')}}">Log in</a>
           </div>
           <div class="fn">

@@ -2,7 +2,7 @@
 <html>
     <head>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Celebgramme</title>
+      <title>Activfans</title>
       <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/images/celebgramme-favicon.png') }}">
       <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
       <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -19,7 +19,7 @@
       <div class="container">  
         <div class="container2 col-xs-12">  
           <div class="div-logo login">
-            <a href="http://celebgramme.com"><div class="logo"></div></a>
+            <a href="http://activfans.com"><div class="logo"></div></a>
           </div>
           {!! Form::open(array('url'=>URL::ROUTE('auth.login'),'method'=>'post','class'=>"form-signin",)) !!}
             {!! csrf_field() !!}
@@ -35,7 +35,7 @@
               </div>      
             <button class="btn btn-lg btn-block" type="submit">Sign in</button>
 						<p style="font-size:10px;">Dengan mengklik tombol sign-in berarti anda telah menyetujui<br>
-						 <a href="">Terms & Conditions </a>pemakaian aplikasi celebgramme.com</p>
+						 <a href="">Terms & Conditions </a>pemakaian aplikasi activfans.com</p>
           {!! Form::close() !!}
           <a href="{{url('forgot-password')}}" class="forgot-link-landing"> Forgot password </a>
           <!--<a href="{{url('package')}}" class="register-link-landing"> Need an account ? </a>-->

@@ -2,7 +2,7 @@
 <html>
     <head>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Celebgramme</title>
+      <title>Activfans</title>
       <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/images/celebgramme-favicon.png') }}">
       <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
       <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -68,7 +68,7 @@
       <div class="header-package row container">
         <div class="div-black">
           <div class="div-logo">
-            <a href="http://celebgramme.com"><div class="logo"></div></a>
+            <a href="http://activfans.com"><div class="logo"></div></a>
           </div>
           <h1 class="h1-package">Register</h1>
         </div>
@@ -141,7 +141,7 @@
                 <div class="col-md-1">
                 </div>
                 <div class="col-xs-12 col-sm-offset-1 col-md-offset-0 col-sm-10 col-md-10">
-                    <p class="col-sm-12 col-md-10" style="text-align:center; font-size:11px;" > *Dengan mengklik "Register", anda menyetujui <a href="http://celebgramme.com/terms-conditions">Kebijakan Privasi dan Persyaratan Layanan </a></p>
+                    <p class="col-sm-12 col-md-10" style="text-align:center; font-size:11px;" > *Dengan mengklik "Register", anda menyetujui <a href="http://activfans.com/terms-conditions">Kebijakan Privasi dan Persyaratan Layanan </a></p>
                 </div>  
                 <div class="col-md-1">
                 </div>
@@ -164,15 +164,15 @@
       <div class="footer-package row container">
         <div class="footer-center container row">
           <div class="copyright col-md-6 col-sm-6 col-xs-12">
-            Celebgramme.com © 2018
+            Activfans.com © 2018
           </div>
 					<div class="col-md-2 col-sm-2">
           </div>
           <div class="col-md-4 col-sm-4 col-xs-12 footer-helper ">
-            <a href="http://celebgramme.com/blog">Blog </a>| 
-            <a href="http://celebgramme.com/support">Support  </a>|  
-            <a href="http://celebgramme.com/faq">FAQ  </a>| 
-            <a href="http://celebgramme.com/prices">Prices </a>| 
+            <a href="http://activfans.com/blog">Blog </a>| 
+            <a href="http://activfans.com/support">Support  </a>|  
+            <a href="http://activfans.com/faq">FAQ  </a>| 
+            <a href="http://activfans.com/prices">Prices </a>| 
             <a href="{{url('login')}}">Log in</a>
           </div>
           <div class="fn">

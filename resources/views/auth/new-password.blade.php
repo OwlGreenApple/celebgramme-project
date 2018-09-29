@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Celebgramme</title>
+      <title>Activfans</title>
       <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/images/celebgramme-favicon.png') }}">
       <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
       <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -42,7 +42,7 @@
       <div class="container">  
         <div class="container2">  
           <div class="div-logo">
-            <a href="http://celebgramme.com"><div class="logo"></div></a>
+            <a href="http://activfans.com"><div class="logo"></div></a>
           </div>
           {!! Form::open(array('url'=>URL::ROUTE('change.password'),'method'=>'post','class'=>"form-signin",)) !!}
             {!! csrf_field() !!}
