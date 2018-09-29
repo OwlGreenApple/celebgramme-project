@@ -1,5 +1,5 @@
 Terima kasih,<br> 
-anda telah mensubmit KONFIRMASI PEMBAYARAN ORDER Celebgramme service <br>
+anda telah mensubmit KONFIRMASI PEMBAYARAN ORDER Activfans service <br>
 
 Info konfirmasi pembayaran yang anda submit sebagai berikut :
 <br>
@@ -14,7 +14,7 @@ Silahkan tunggu PENERIMAAN KONFIRMASI dari admin (max 1x24 jam) <br>
 
 <br> Salam hangat, 
 <br>
-Celebgramme.com
+Activfans.com
 
 
 

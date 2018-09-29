@@ -1,14 +1,14 @@
 Hi {{$user->fullname}}, <br>
 <br>
-Hari ini service Celebgramme.com akan berakhir, kecuali... <br>
+Hari ini service Activfans.com akan berakhir, kecuali... <br>
 Anda memilih untuk mempermudah hidup anda dan pastinya mempermudah pengaturan akun Instagram anda. <br>
-Ngapain repot-repot kalau bisa pakai Celebgramme <br>
+Ngapain repot-repot kalau bisa pakai Activfans <br>
 Yang SUDAH Terbukti hasilnya, lebih mudah, lebih simple, dan JELAS menghemat waktu anda. <br>
 <br>
 Anda bisa berkonsentrasi ke hal-hal yang lebih memerlukan sentuhan pribadi anda & <br>
 Gunakan waktu anda yang sangat berharga untuk keluarga tercinta, aktifitas hobby, <br>
 bersantai dengan teman-teman atau memperlebar kerajaan bisnis anda.<br>
-Dan biarkan Celebgramme membantu anda mencari followers & customers untuk anda<br>
+Dan biarkan Activfans membantu anda mencari followers & customers untuk anda<br>
 secara OTOMATIS 24 jam sehari <br>
 <br>
 Sebagai tanda apresiasi terhadap anda sebagai customer prioritas kami<br>
@@ -29,4 +29,4 @@ Ingat yah, hari ini terakhir, <br>
 <br>
 Salam sukses selalu, <br>
 <br>
-Celebgramme.com
+Activfans.com

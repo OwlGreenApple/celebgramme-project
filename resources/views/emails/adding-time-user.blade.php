@@ -1,15 +1,15 @@
 Hi , {{ucfirst(strtolower($user->fullname))}} <br>
 <br>
-Terima kasih anda sudah membeli service Celebgramme.com <br>
+Terima kasih anda sudah membeli service Activfans.com <br>
 <br>
-Anda sudah tercatat sebagai Customer Celebgramme sebelumnya,<br>
+Anda sudah tercatat sebagai Customer Activfans sebelumnya,<br>
 Kredit Waktu yang dibeli akan ditambahkan langsung ke akun anda<br>
 <br>
 Berikut ini adalah Email yang anda daftarkan : <br>
 <strong>Email :</strong> {{$user->email}}<br>
 
 <br>
-<strong>Link to login </strong><a href="https://celebgramme.com/celebgramme">-----> Click Link Login Disini <----- </a><br>
+<strong>Link to login </strong><a href="https://activfans.com/dashboard">-----> Click Link Login Disini <----- </a><br>
 <br>
 Silahkan klik Link di atas untuk Login <br>
 dan masukkan Email & Password anda seperti biasa. <br>
@@ -26,4 +26,4 @@ if ($isi_form_kaos) {
 Salam sukses selalu, <br>
 <br>
 Michael Sugiharto<br>
-Celebgramme.com
+Activfans.com

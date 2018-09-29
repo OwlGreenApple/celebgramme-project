@@ -89,11 +89,8 @@ label {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box; padding-top: 10px; padding-bottom: 20px;
-  width: calc(100% + 30px);
-}
-
-.div-logo.login{
   margin-left: -15px;
+  width: calc(100% + 30px);
 }
 
 @media only screen and (min-width : 480px) {
@@ -106,7 +103,7 @@ label {
   background-image : url("../images/logo-celebgramme-landing.png");
   background-repeat: no-repeat;
   background-size: cover;
-  width:308px; height:100%;
+  width:363px; height:100%;
   overflow:hidden;
   margin:0 auto;
 }
