@@ -179,7 +179,7 @@
                         </a>
                     </li>
                     <li id="buyMore" @if(Request::is('buy-more')) class="active" @endif>
-                        <a href="<?php if (Auth::user()->is_member_rico) { echo 'https://amelia.id/order.php'; } else { echo url('buy-more'); } ?>" data-identity="buyMore"  class="waves-light" target="_blank">
+                        <a href="<?php if (Auth::user()->is_member_rico) { echo 'https://amelia.id/order.php'; } else { echo url('buy-more'); } ?>" data-identity="buyMore"  class="waves-light">
                             <i class="navigation-icon buy-icon"></i>
                             <span>Buy More</span>
                         </a>
@@ -275,7 +275,7 @@
                         </a>
                     </li>
                     <li id="buyMore" @if(Request::is('buy-more')) class="active" @endif>
-                        <a href="<?php if (Auth::user()->is_member_rico) { echo 'https://amelia.id/order.php'; } else { echo url('buy-more'); } ?>" data-identity="buyMore"  class="waves-light" target="_blank">
+                        <a href="<?php if (Auth::user()->is_member_rico) { echo 'https://amelia.id/order.php'; } else { echo url('buy-more'); } ?>" data-identity="buyMore"  class="waves-light">
                             <i class="navigation-icon buy-icon"></i>
                             <span>Buy More</span>
                         </a>
