@@ -2040,14 +2040,14 @@ class AutoManageController extends Controller
 		if (ProxyLogin::where("is_error",0)->count() <= 2) {
 			//notif KALO proxy login uda mau abis
 			Mail::queue('emails.pool-proxy-login', $emaildata, function ($message) use ($type_message) {
-				$message->from('no-reply@activfans.com', 'Celebgramme');
+				$message->from('no-reply@activfans.com', 'Activfans');
 				$message->to(array(
 					"michaelsugih@gmail.com",
 				));
 				$message->cc(array(
 					"celebgramme.dev@gmail.com",
 				));
-				$message->subject("[Celebgramme] Pool Proxy Login mau habis");
+				$message->subject("[Activfans] Pool Proxy Login mau habis");
 			});
 		}
 		
