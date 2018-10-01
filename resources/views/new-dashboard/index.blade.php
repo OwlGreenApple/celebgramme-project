@@ -17,7 +17,7 @@
 							<h2 class="pull-left" style="font-size:15pt;">Hi, {{$user->fullname}} </h2>
 						</div>
 						<div class="col-md-6 col-sm-12 col-xs-12 padding-0">
-							<a href="{{url('dashboard')}}"><button id="btnToDashboard" class="btn btn-block waves-effect br-6"><span>Masuk ke Dashboard</span>&nbsp;&nbsp;<i class="material-icons text-white">input</i>&nbsp;</button></a>
+							<a href="{{url('account')}}"><button id="btnToDashboard" class="btn btn-block waves-effect br-6"><span>Masuk ke Account</span>&nbsp;&nbsp;<i class="material-icons text-white">input</i>&nbsp;</button></a>
 						</div>
 					</div>
 					<div class="clearfix"></div><br/>
