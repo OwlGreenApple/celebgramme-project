@@ -20,7 +20,7 @@ silahkan Klik langsung disini <br>
 <a href="{{$user->link_affiliate}}">Disini</a> <br>
 <br>
 PS: Belajar dari cerita sukses teman2 yang jualan di Instagram dilink ini <br>
-<a href="https://celebgramme.com/category/testimonial/">https://celebgramme.com/category/testimonial/</a> <br>
+<a href="https://activfans.com/category/testimonial/">https://activfans.com/category/testimonial/</a> <br>
 <br>
 salam hangat, <br>
 <br>

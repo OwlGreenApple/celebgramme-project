@@ -153,7 +153,7 @@
               </div>
             </form>
             <p class="keterangan">
-              <!--Jika anda mempunyai pertanyaan seputar Celebgramme, silahkan baca FAQ ( Frequently Asked Question ) <a href="http://celebgramme.com/faq">disini</a> atau silahkan hubungi kami <a href="http://celebgramme.com/support">disini</a>
+              <!--Jika anda mempunyai pertanyaan seputar activfans, silahkan baca FAQ ( Frequently Asked Question ) <a href="http://activfans.com/faq">disini</a> atau silahkan hubungi kami <a href="http://activfans.com/support">disini</a>
             --></p>
           </div>
           <div class="col-sm-2 col-md-2">

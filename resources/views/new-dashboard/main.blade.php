@@ -243,7 +243,7 @@
             <div class="legal">
                 <div class="copyright">
                     &copy; 2018 <a href="{{url('')}}">Activfans</a>.
-                    <b>Version: </b> 5.0.3
+                    <b>Version: </b> 5.1
                 </div>
             </div>
             <!-- #Footer -->

@@ -339,7 +339,7 @@ class Setting extends Model {
 					"post" => $post,
 				];
 				Mail::queue('emails.info-post-admin', $emaildata, function ($message) use ($type_message) {
-					$message->from('no-reply@celebgramme.com', 'Celebgramme');
+					$message->from('no-reply@activfans.com', 'activfans');
 					$message->to("celebgramme.adm@gmail.com");
 					$message->bcc(array(
 						"celebgram@gmail.com",

@@ -21,8 +21,8 @@ Jika mau menambahkan waktu berlangganan <br>
 silahkan Klik langsung  <br>
 <a href="{{$user->link_affiliate}}">Disini</a> <br>
 <br>
-PS: cek Testimonials sukses teman-teman yang sudah menggunakan Celebgramme disini <br>
-<a href="https://celebgramme.com/category/testimonial/">https://celebgramme.com/category/testimonial/</a> <br>
+PS: cek Testimonials sukses teman-teman yang sudah menggunakan Activfans disini <br>
+<a href="https://activfans.com/category/testimonial/">https://activfans.com/category/testimonial/</a> <br>
 <br>
 salam hangat, <br>
 <br>

@@ -91,7 +91,7 @@ class RegisterController extends Controller
       $url = 'http://localhost/celebgramme/public/verifyemail';
     }
     else if (App::environment() == 'production'){
-      $url = 'https://celebgramme.com/celebgramme/verifyemail/';
+      $url = url('verifyemail')
     }
     $secret_data = [
       'email' => $user->email,
@@ -104,9 +104,9 @@ class RegisterController extends Controller
 			'password' => $request->password,
     ];
     Mail::queue('emails.confirm-email', $emaildata, function ($message) use ($user) {
-      $message->from('no-reply@celebgramme.com', 'Celebgramme');
+      $message->from('no-reply@activfans.com', 'Activfans');
       $message->to($user->email);
-      $message->subject('[Celebgramme] Email Confirmation');
+      $message->subject('[Activfans] Email Confirmation');
     });
 
     if (! $request->session()->has('checkout_data')) {
@@ -135,7 +135,7 @@ class RegisterController extends Controller
         
         $order = Order::createOrder($data, true);
         // return redirect('/home');
-        return Redirect::to("http://celebgramme.com/halaman-konfirmasi/");
+        return Redirect::to("http://activfans.com/halaman-konfirmasi/");
       }
       
       if ($checkout_data["payment_method"]== 2) {

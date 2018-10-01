@@ -27,7 +27,7 @@ return [
     |
     */
 
-    'url' => 'https://celebgramme.com/celebgramme',
+    'url' => 'https://activfans.com/dashboard',
 
     /*
     |--------------------------------------------------------------------------
