@@ -172,10 +172,10 @@
                             <span>Home</span>
                         </a>
                     </li>
-                    <li id="dashboad" @if(Request::is('dashboard')) class="active" @endif>
-                        <a href="{{url('dashboard')}}" data-identity="dashboard" class="waves-light">
+                    <li id="dashboad" @if(Request::is('account')) class="active" @endif>
+                        <a href="{{url('account')}}" data-identity="dashboard" class="waves-light">
                             <i class="navigation-icon dashboard-icon"></i>
-                            <span>Dashboard</span>
+                            <span>Account</span>
                         </a>
                     </li>
                     <li id="buyMore" @if(Request::is('buy-more')) class="active" @endif>
@@ -268,10 +268,10 @@
                             <span>Home</span>
                         </a>
                     </li>
-                    <li @if(Request::is('dashboard')) class="active" @endif id="dashboad">
-                        <a href="{{url('dashboard')}}" data-identity="dashboard" class="waves-light">
+                    <li @if(Request::is('account')) class="active" @endif id="dashboad">
+                        <a href="{{url('account')}}" data-identity="dashboard" class="waves-light">
                             <i class="navigation-icon dashboard-icon"></i>
-                            <span>Dashboard</span>
+                            <span>Account</span>
                         </a>
                     </li>
                     <li id="buyMore" @if(Request::is('buy-more')) class="active" @endif>
