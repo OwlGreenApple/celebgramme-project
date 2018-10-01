@@ -17,7 +17,7 @@
       <div class="div-black">
       </div>
       <div class="container">  
-        <div class="container2 col-xs-12">  
+        <div class="container2">  
           <div class="div-logo login">
             <a href="http://activfans.com"><div class="logo"></div></a>
           </div>
