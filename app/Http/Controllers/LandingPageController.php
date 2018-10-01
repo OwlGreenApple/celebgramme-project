@@ -278,7 +278,7 @@ class LandingPageController extends Controller
 			'register_time' => Carbon::now()->toDateTimeString(),
 		];
 		$emaildata = [
-			'url' => $url.Crypt::encrypt(json_encode($secret_data)),
+			'url' => $url.'/'.Crypt::encrypt(json_encode($secret_data)),
 		];
 		Mail::queue('emails.forgot-password', $emaildata, function ($message) use ($email) {
 			$message->from('no-reply@activfans.com', 'Activfans');
