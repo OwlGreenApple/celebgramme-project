@@ -91,7 +91,7 @@ class RegisterController extends Controller
       $url = 'http://localhost/celebgramme/public/verifyemail';
     }
     else if (App::environment() == 'production'){
-      $url = url('verifyemail')
+      $url = url('verifyemail');
     }
     $secret_data = [
       'email' => $user->email,
@@ -99,7 +99,7 @@ class RegisterController extends Controller
       'verification_code' => $verificationcode,
     ];
     $emaildata = [
-      'url' => $url.Crypt::encrypt(json_encode($secret_data)),
+      'url' => $url.'/'.Crypt::encrypt(json_encode($secret_data)),
 			'user' => $user,
 			'password' => $request->password,
     ];
