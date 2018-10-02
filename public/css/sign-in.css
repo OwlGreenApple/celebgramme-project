@@ -73,6 +73,7 @@ label {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
+		position:relative;
 }
 
 @media only screen and (min-width : 480px) {
@@ -90,7 +91,8 @@ label {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; padding-top: 10px; padding-bottom: 20px;
   /* reset password rusak klo diaktifin margin-left: -15px;*/
-  width: calc(100% + 30px);
+  /* width: calc(100% + 30px);*/
+	width:100%;
 }
 
 @media only screen and (min-width : 480px) {
