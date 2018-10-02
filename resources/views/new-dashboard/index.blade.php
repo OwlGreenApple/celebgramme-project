@@ -138,18 +138,23 @@
 							</div>
 							<div class="">
 								<div style="padding:0;"class="card text-center margin-0 col-md-12 col-sm-12 col-xs-12">
-									<a href="http://celebpost.in/" target="_blank"><img src="{{asset('/images/promo-1b.jpg')}}"class="img-responsive" ></a>
+									<a href="http://celebpost.in/" target="_blank"><img src="{{asset('/images/promo-7.jpg')}}"class="img-responsive" ></a>
 								</div>
 								<?php if (!Auth::user()->is_member_rico) { ?>
+								<!--
 								<div style="padding:0;" class="card text-center margin-0 col-md-6 col-sm-6 col-xs-6">
 									<a href="http://line.me/ti/p/@vyd1834h" target="_blank"><img src="{{asset('/images/promo-2.jpg')}}"class="img-responsive" ></a>
 								</div>
 								<div style="padding:0;" class="card text-center col-md-6 col-xs-6 col-sm-6 margin-0">
 									<a href="http://m.me/celebgramme" target="_blank"><img src="{{asset('/images/promo-3.jpg')}}"class="img-responsive" ></a>
 								</div>
+								-->
+								<div style="padding:0;" class="card text-center margin-0 col-md-6 col-sm-6 col-xs-6">
+									<a href="http://line.me/ti/p/@vyd1834h" target="_blank"><img src="{{asset('/images/promo-5.png')}}"class="img-responsive" ></a>
+								</div>
 								<?php } ?> 
 								<div style="padding:0;"  class="card text-center col-md-12 col-sm-12 col-xs-12 margin-0">
-									<a href="http://digimaru.org" target="_blank"><img src="{{asset('/images/gif-promo.gif')}}"class="img-responsive" ></a>
+									<a href="http://digimaru.org" target="_blank"><img src="{{asset('/images/promo-6.jpg')}}"class="img-responsive" ></a>
 								</div>
 							</div>
 						</div>
