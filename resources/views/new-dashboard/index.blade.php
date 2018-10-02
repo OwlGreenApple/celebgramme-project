@@ -149,7 +149,7 @@
 									<a href="http://m.me/celebgramme" target="_blank"><img src="{{asset('/images/promo-3.jpg')}}"class="img-responsive" ></a>
 								</div>
 								-->
-								<div style="padding:0;" class="card text-center margin-0 col-md-6 col-sm-6 col-xs-6">
+								<div style="padding:0;" class="card text-center margin-0 col-md-12 col-sm-12 col-xs-12">
 									<a href="http://line.me/ti/p/@vyd1834h" target="_blank"><img src="{{asset('/images/promo-5.png')}}"class="img-responsive" ></a>
 								</div>
 								<?php } ?> 
