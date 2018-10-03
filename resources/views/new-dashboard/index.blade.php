@@ -33,7 +33,7 @@
   <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Zfmwp9pXO9U?rel=0&amp;showinfo=0"></iframe>
 </div>								
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="messages_animation_1" role="tabpanel" >
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DWhDVq5WB8s?rel=0&amp;showinfo=0"></iframe>
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zMWSIbd_K24?rel=0&amp;showinfo=0"></iframe>
 </div>
 
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="teknobie_1" role="tabpanel" >
@@ -90,7 +90,7 @@
 									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
 								</div>
 								<div class="content">
-									<p class="text-white">Celebpost</p>
+									<p class="text-white">Digimaru</p>
 								</div>
 							</a>
 						</div>
