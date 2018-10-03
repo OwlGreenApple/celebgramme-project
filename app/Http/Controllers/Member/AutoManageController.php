@@ -738,6 +738,7 @@ class AutoManageController extends Controller
         $setting->last_user = $user->id;
         $setting->insta_password = Request::input("password");
         $setting->error_cred = 0;
+        $setting->is_active = 1; /* fix supaya ga ada yg bisa add diatas max_account*/
         $setting->save();
 
         // $setting_temp = Setting::post_info_admin($setting->id);
