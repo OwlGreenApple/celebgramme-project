@@ -102,7 +102,7 @@
               // alert("Silahkan pilih salah satu paket. paket daily likes atau paket auto manage");
               e.preventDefault();
             }
-						fbq('track', 'Purchase', {value: total, currency: 'IDR'});
+						// fbq('track', 'Purchase', {value: total, currency: 'IDR'});
 
           });
 
