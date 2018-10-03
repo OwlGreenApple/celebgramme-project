@@ -44,7 +44,7 @@ class EmailController extends Controller
       'verification_code' => $verificationcode,
     ];
     $emaildata = [
-      'url' => $url.Crypt::encrypt(json_encode($secret_data)),
+      'url' => $url.'/'.Crypt::encrypt(json_encode($secret_data)),
 			'user' => $user,
 			'password' => "",
     ];
