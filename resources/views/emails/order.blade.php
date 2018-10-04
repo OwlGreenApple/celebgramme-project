@@ -9,7 +9,18 @@ Anda telah memesan paket
 	if ($order->type=="daily-activity") {
 ?>
 
-{{$package->package_name}} = <strong>Rp. {{number_format($order->total - $order->discount,0,'','.')}} </strong><br>
+<?php if(env('APP_PROJECT')=='Celebgramme') { ?>
+  {{$package->package_name}} = <strong>Rp. {{number_format($order->total - $order->discount,0,'','.')}} </strong><br>
+<?php } else { 
+  if($package->paket>=30){
+    $package->paket = $package->paket/30;
+    $package->paket = (string) $package->paket.' bulan';
+  } else {
+    $package->paket = (string) $package->paket.' hari';
+  }
+?>
+  {{$package->akun}} akun {{$package->paket}} = <strong>Rp. {{number_format($order->total - $order->discount,0,'','.')}} </strong><br>
+<?php } ?>
 
 <?php 		
 	}

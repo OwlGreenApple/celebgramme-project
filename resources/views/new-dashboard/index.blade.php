@@ -62,6 +62,7 @@
 						</div>
 					</div>
 					<div class="clearfix"></div><br/>
+          <?php if(env('APP_PROJECT')=='Celebgramme') { ?>
 					<div class="row" role="tablist" id="videoTabs">
 
 						<div class="col-md-4 col-sm-12 col-xs-12" role="presentation">
@@ -127,6 +128,7 @@
 						</div>
 
 					</div>
+          <?php } ?>
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-8 col-xs-8" id="wrapCntentPromotion">
@@ -136,6 +138,7 @@
 							<div class="header bg-themeDefault text-center br-t-6">
 								<h2>CS & Promotions</h2>
 							</div>
+              <?php if(env('APP_PROJECT')=='Celebgramme') { ?>
 							<div class="">
 								<div style="padding:0;"class="card text-center margin-0 col-md-12 col-sm-12 col-xs-12">
 									<a href="http://celebpost.in/" target="_blank"><img src="{{asset('/images/promo-1b.jpg')}}"class="img-responsive" ></a>
@@ -152,6 +155,7 @@
 									<a href="http://digimaru.org" target="_blank"><img src="{{asset('/images/gif-promo.gif')}}"class="img-responsive" ></a>
 								</div>
 							</div>
+              <?php } ?>
 						</div>
 					</div>
 				</div>

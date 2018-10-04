@@ -7,6 +7,7 @@ use Carbon\Carbon;
 
 use Celebgramme\Models\User;
 use Celebgramme\Models\Package;
+use Celebgramme\Models\PackageAffiliate;
 use Celebgramme\Models\OrderMeta;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -70,7 +71,14 @@ class Order extends Model {
 				OrderMeta::createMeta("logs","create order by ".$cdata["logs"],$order->id);
 
         $user = User::find($cdata["user_id"]);
-        $package = Package::find($cdata["package_manage_id"]);
+
+        if(env('APP_PROJECT')=='Celebgramme'){
+          $package = Package::find($cdata["package_manage_id"]);
+        } else {
+          $paket = explode('999', $cdata["package_manage_id"]);
+          $package = PackageAffiliate::find($paket[1]);
+        }
+        
         $shortcode = str_replace('OCLB', '', $order_number);
         //send email order
         $emaildata = [

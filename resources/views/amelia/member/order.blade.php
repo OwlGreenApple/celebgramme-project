@@ -1,10 +1,6 @@
 @extends('new-dashboard.main')
 
 @section('content')
-<?php 
-  use Celebgramme\Models\Package; 
-  use Celebgramme\Models\PackageAffiliate; 
-?>
 <script type="text/javascript">
   var $tr_delete;
 
@@ -100,48 +96,14 @@
 						?>
 						</td>
             <td> 
-  						<?php 
-                /*if(env('APP_PROJECT')=='Celebgramme'){
-                  if ($arr->type == "daily-activity") {
-                    echo $arr->package_name;
-                  }
-                  else if ($arr->type == "max-account") {
-                    echo $arr->added_account." Akun";
-                  }
-                } else {
-                  if($arr->paket){
-                    if($arr->paket>=30){
-                      $arr->paket = $arr->paket/30;
-                      $arr->paket = (string) $arr->paket.' bulan';
-                    } else {
-                      $arr->paket = (string) $arr->paket.' hari';
-                    }
-
-                    echo 'Paket '.$arr->akun.' akun '.$arr->paket;
-                  }
-                }*/
-                if(substr($arr->package_manage_id, 0,3)=='999'){
-                  $id = explode('999', $arr->package_manage_id);
-                  $package = PackageAffiliate::find($id[1]);  
-
-                  if(!is_null($package)){
-                    if($package->paket>=30){
-                      $package->paket = $package->paket/30;
-                      $package->paket = (string) $package->paket.' bulan';
-                    } else {
-                      $package->paket = (string) $package->paket.' hari';
-                    }
-
-                    echo 'Paket '.$package->akun.' akun '.$package->paket;
-                  }
-                } else {
-                  $package = Package::find($arr->package_manage_id);
-
-                  if(!is_null($package)){
-                    echo $package->package_name;
-                  }
-                }
-  						?>
+						<?php 
+						  if ($arr->type == "daily-activity") {
+								echo $arr->package_name;
+							}
+							else if ($arr->type == "max-account") {
+								echo $arr->added_account." Akun";
+							}
+						?>
 						</td>
             <td> {{"Rp. ".number_format($arr->total-$arr->discount,0,'','.')}} </td>
             <td> 

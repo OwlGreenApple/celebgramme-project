@@ -11,7 +11,11 @@ use Celebgramme\Models\RequestModel;
 use Celebgramme\Models\Order;
 use Celebgramme\Models\Invoice;
 use Celebgramme\Models\Package;
+use Celebgramme\Models\PackageAffiliate;
 use Celebgramme\Models\Coupon;
+use Celebgramme\Models\UserAffiliate;
+use Celebgramme\Models\OrderAffiliate;
+use Celebgramme\Models\OrderUserAffiliate;
 use Celebgramme\Models\VeritransModel;
 use Celebgramme\Veritrans\Veritrans;
 
@@ -31,17 +35,56 @@ class PaymentController extends Controller
 	 *
 	 * @return Redirect
 	 */
-	public function process(Request $request){
-    $user = Auth::user();
+  public function save_order_amelia($user,$total,$no_order,$paket_id,$type){
+    $useraffiliate = UserAffiliate::where('user_id_celebgramme',$user->id)
+                        ->first();
 
+    if(!is_null($useraffiliate)){
+      $owner = UserAffiliate::where('is_admin',$useraffiliate->owner_id)
+              ->first();
+
+      $order = new OrderAffiliate;
+      $order->no_order = $no_order;
+      $order->type = 'extend';
+      $order->owner_id = $owner->is_admin;
+      $order->total = $total;
+      $order->tagihan = $order->total*$owner->komisi_new/100;
+      $order->save();
+
+      $orderuser = new OrderUserAffiliate;
+      $orderuser->order_id = $order->id;
+      $orderuser->user_id = $useraffiliate->id;
+
+      if(Input::get("type") == "max-account"){
+        $orderuser->paket_id = 0;
+      } else {
+        $paket = explode('999', $paket_id);  
+        $orderuser->paket_id = $paket[1];
+      }
+      
+      $orderuser->save();
+    }
+  }
+
+	public function process(Request $request){
+    set_time_limit(0);
+    $user = Auth::user();
+    
     //hitung total
 		$total = 0;
 		
 		if (Input::get("type") == "daily-activity" ) {
-			$package = Package::find(Input::get("package-auto-manage"));
-			if (!is_null($package)) {
-				$total += $package->price;
-			}
+      if(env('APP_PROJECT')=='Amelia'){
+        $package = PackageAffiliate::find(Input::get("package-auto-manage"));  
+        if (!is_null($package)) {
+          $total += $package->harga;
+        }
+      } else {
+        $package = Package::find(Input::get("package-auto-manage"));  
+        if (!is_null($package)) {
+          $total += $package->price;
+        }
+      }
 		}
 		else if (Input::get("type") == "max-account" ) {
 			if (Input::get("maximum-account") == "3" ) {
@@ -62,23 +105,41 @@ class PaymentController extends Controller
 			if ($total<0) { $total =0; }
 		}*/
 
-    
     //transfer bank
     if (Input::get("payment-method") == 1) {
+      $paket_id = Input::get("package-auto-manage");
+      $type = 'transfer_bank';
+      $coupon_code = Input::get("coupon-code");
+
+      if(env('APP_PROJECT')=='Amelia'){
+        if(Input::get("type") == "max-account") { 
+          $paket_id = 0;
+        } else {
+          $paket_id = '999'.Input::get("package-auto-manage");
+        }
+        $type = 'rico-extend';
+        $coupon_code = 0;
+      }
+
       $data = array (
         "type" => Input::get("type"),
         "maximum_account" => Input::get("maximum-account"),
-        "order_type" => "transfer_bank",
+        "order_type" => $type,
         "order_status" => "pending",
         "user_id" => $user->id,
         "order_total" => $total,
         "package_id" => Input::get("package-daily-likes"),
-        "package_manage_id" => Input::get("package-auto-manage"),
-        "coupon_code" => Input::get("coupon-code"),
+        "package_manage_id" => $paket_id,
+        "coupon_code" => $coupon_code,
         "logs" => "EXISTING MEMBER",
       );
       
       $order = Order::createOrder($data,true);
+
+      if(env('APP_PROJECT')=='Amelia'){
+        $this->save_order_amelia($user,$order->total,$order->no_order,$paket_id,Input::get("type"));
+      }
+
       return redirect("buy-more")->with("message","Order telah dibuat, silahkan melakukan pembayaran & konfirmasi order anda");
     }
     

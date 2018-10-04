@@ -56,7 +56,7 @@
       </main>
     
       <footer class="footer">
-        © 2018 Amelia powered by Celebgramme
+        © 2018 Amelia powered by ACTIVFANS
       </footer>
     </body>
 </html>

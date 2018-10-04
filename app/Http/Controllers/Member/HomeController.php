@@ -18,8 +18,9 @@ use Celebgramme\Veritrans\Veritrans;
 use Celebgramme\Models\Setting;
 use Celebgramme\Models\LinkUserSetting;
 use Celebgramme\Models\Coupon;
+use Celebgramme\Models\PackageAffiliate;
 
-use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, Redirect;
+use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, Redirect, DB, Storage,File;
 
 class HomeController extends Controller
 {
@@ -159,10 +160,20 @@ class HomeController extends Controller
 
 	public function order(){
     $user = Auth::user();
-    $orders = Order::leftJoin("packages","packages.id","=","orders.package_manage_id")
+    /*$orders = Order::leftJoin("packages","packages.id","=","orders.package_manage_id")
                ->select("orders.*","packages.package_name")
-               ->where('orders.user_id','=',$user->id)->get();
-		return view('member.order')
+               ->where('orders.user_id','=',$user->id)->get();*/
+
+    if(env('APP_PROJECT')=='Amelia') {
+      $orders = Order::where('user_id','=',$user->id)
+                ->where('order_type','like','%rico%')
+                ->get();
+    } else {
+      $orders = Order::where('orders.user_id','=',$user->id)->get();  
+    }
+    
+
+    return view('member.order')
       ->with(array(
         'orders'=>$orders,
         'user'=>$user,
@@ -263,8 +274,14 @@ class HomeController extends Controller
     } else {
       $destinationPath = base_path().'/../public_html/general/images/confirm-payment/';
     }   
+
     $filename = $order->no_order.".".Input::file('photo')->getClientOriginalExtension();
-    Input::file('photo')->move($destinationPath, $filename);
+    if(env('APP_PROJECT')=='Amelia' && $order->order_type=='rico-extend'){
+      Storage::disk('s3')->put('confirm-payment/'.$filename,File::get(Input::file('photo')),'public');
+    } else {
+      Input::file('photo')->move($destinationPath, $filename);
+    }
+    
     $order->image = $filename;
 		$dt = Carbon::now();
     $order->confirmed_at = $dt->toDateTimeString();
@@ -285,13 +302,17 @@ class HomeController extends Controller
       'nama_bank'=>Request::input("nama_bank"),
       'keterangan'=>Request::input("keterangan"),
     ];
-    Mail::queue('emails.confirm-order', $emaildata, function ($message) use ($user) {
+    Mail::queue('emails.confirm-order', $emaildata, function ($message) use ($user,$order) {
       $message->from('no-reply@celebgramme.com', 'Celebgramme');
       $message->to($user->email);
       $message->bcc(array(
         "celebgramme.dev@gmail.com",
 				"celebgramme@gmail.com",
         ));
+
+      if(env('APP_PROJECT')=='Amelia' && $order->order_type=='rico-extend'){
+        $message->bcc('support@amelia.id');
+      }
       $message->subject('[Celebgramme] Order Confirmation');
     });
 /*
@@ -438,13 +459,29 @@ class HomeController extends Controller
 	
 	public function buy_more($id = null){
     $user = Auth::user();
-		$packages = Package::where("package_group","=","auto-manage")->where("affiliate","=",0)->orderBy('price', 'asc')->get();
-		return view('member.buy-more')->with(
-			array(
-				'user'=>$user,
-				'id'=>$id,
-				'packages'=>$packages,
-			));
+
+    if(env('APP_PROJECT')=='Celebgramme'){
+      $packages = Package::where("package_group","=","auto-manage")->where("affiliate","=",0)->orderBy('price', 'asc')->get();
+
+      return view('member.buy-more')->with(
+        array(
+          'user'=>$user,
+          'id'=>$id,
+          'packages'=>$packages,
+        ));
+    } else {
+      $packages = PackageAffiliate::where('owner_id',1)
+                    ->where('is_shown',1)
+                    ->orderBy('akun')
+                    ->orderBy('paket')
+                    ->get();
+      return view('amelia.member.buy-more')->with(
+        array(
+          'user'=>$user,
+          'id'=>$id,
+          'packages'=>$packages,
+        ));
+    }
 	}
   
   /*

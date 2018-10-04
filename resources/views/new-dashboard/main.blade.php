@@ -179,13 +179,13 @@
                         </a>
                     </li>
                     <li id="buyMore" @if(Request::is('buy-more')) class="active" @endif>
-                        <a href="<?php if (Auth::user()->is_member_rico) { echo 'https://amelia.id/order.php'; } else { echo url('buy-more'); } ?>" data-identity="buyMore"  class="waves-light" target="_blank">
+                        <a href="<?php echo url('buy-more'); ?>" data-identity="buyMore"  class="waves-light">
                             <i class="navigation-icon buy-icon"></i>
                             <span>Buy More</span>
                         </a>
                     </li>
 					<li id="confirmPayment" @if(Request::is('confirm-payment')) class="active" @endif>
-                        <a href="<?php if (Auth::user()->is_member_rico) { echo 'https://amelia.id/order.php'; } else { echo url('confirm-payment'); } ?>" data-identity="confirmPayment"  class="waves-light">
+                        <a href="<?php echo url('confirm-payment'); ?>" data-identity="confirmPayment"  class="waves-light">
                             <i class="navigation-icon confirm-icon"></i>
                             <span>Confirm Payment</span>
                         </a>
