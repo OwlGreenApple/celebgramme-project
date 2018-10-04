@@ -6,7 +6,7 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Welcome To | New CELEBGRAMME</title>
+    <title>Welcome To | New Activfans</title>
     <!-- Favicon-->
     <link rel="icon" href="{{ asset('/images/celebgramme-favicon.png') }}" type="image/x-icon">
 
@@ -172,10 +172,10 @@
                             <span>Home</span>
                         </a>
                     </li>
-                    <li id="dashboad" @if(Request::is('dashboard')) class="active" @endif>
-                        <a href="{{url('dashboard')}}" data-identity="dashboard" class="waves-light">
+                    <li id="dashboad" @if(Request::is('account')) class="active" @endif>
+                        <a href="{{url('account')}}" data-identity="dashboard" class="waves-light">
                             <i class="navigation-icon dashboard-icon"></i>
-                            <span>Dashboard</span>
+                            <span>Account</span>
                         </a>
                     </li>
                     <li id="buyMore" @if(Request::is('buy-more')) class="active" @endif>
@@ -211,14 +211,14 @@
                     </li>
 										-->
 					<li id="faq">
-                        <a href="<?php if (Auth::user()->is_member_rico) { echo 'http://bit.ly/faq-amelia-tool'; } else { echo 'https://celebgramme.com/faq'; } ?>" target="_blank" data-identity="faq" class="waves-light">
+                        <a href="<?php if (Auth::user()->is_member_rico) { echo 'http://bit.ly/faq-amelia-tool'; } else { echo 'https://activfans.com/faq'; } ?>" target="_blank" data-identity="faq" class="waves-light">
                             <i class="navigation-icon FAQ-icon"></i>
                             <span>FAQ</span>
                         </a>
                     </li>
 					<?php if (!Auth::user()->is_member_rico) { ?>
 					<li id="support">
-												<a href="https://celebgramme.com/support-contact" data-identity="support" class="waves-light">
+												<a href="https://activfans.com/support-contact" data-identity="support" class="waves-light">
                             <i class="navigation-icon support-icon"></i>
                             <span>Support</span>
 												</a>
@@ -242,8 +242,8 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2018 <a href="{{url('')}}">Celebgramme</a>.
-                    <b>Version: </b> 5.0.3
+                    &copy; 2018 <a href="{{url('')}}">Activfans</a>.
+                    <b>Version: </b> 5.1
                 </div>
             </div>
             <!-- #Footer -->
@@ -268,14 +268,14 @@
                             <span>Home</span>
                         </a>
                     </li>
-                    <li @if(Request::is('dashboard')) class="active" @endif id="dashboad">
-                        <a href="{{url('dashboard')}}" data-identity="dashboard" class="waves-light">
+                    <li @if(Request::is('account')) class="active" @endif id="dashboad">
+                        <a href="{{url('account')}}" data-identity="dashboard" class="waves-light">
                             <i class="navigation-icon dashboard-icon"></i>
-                            <span>Dashboard</span>
+                            <span>Account</span>
                         </a>
                     </li>
                     <li id="buyMore" @if(Request::is('buy-more')) class="active" @endif>
-                        <a href="<?php if (Auth::user()->is_member_rico) { echo 'https://amelia.id/order.php'; } else { echo url('buy-more'); } ?>" data-identity="buyMore"  class="waves-light" target="_blank">
+                        <a href="<?php if (Auth::user()->is_member_rico) { echo 'https://amelia.id/order.php'; } else { echo url('buy-more'); } ?>" data-identity="buyMore"  class="waves-light">
                             <i class="navigation-icon buy-icon"></i>
                             <span>Buy More</span>
                         </a>
@@ -299,14 +299,14 @@
                         </a>
                     </li>
 					<li id="faq">
-                        <a href="<?php if (Auth::user()->is_member_rico) { echo 'http://bit.ly/faq-amelia-tool'; } else { echo 'https://celebgramme.com/faq'; } ?>" target="_blank" data-identity="faq" class="waves-light">
+                        <a href="<?php if (Auth::user()->is_member_rico) { echo 'http://bit.ly/faq-amelia-tool'; } else { echo 'https://activfans.com/faq'; } ?>" target="_blank" data-identity="faq" class="waves-light">
                             <i class="navigation-icon FAQ-icon"></i>
                             <span>FAQ</span>
                         </a>
                     </li>
 					<?php if (!Auth::user()->is_member_rico) { ?>
 					<li id="support">
-												<a href="https://celebgramme.com/support-contact" data-identity="support" class="waves-light">
+												<a href="https://activfans.com/support-contact" data-identity="support" class="waves-light">
                             <i class="navigation-icon support-icon"></i>
                             <span>Support</span>
 												</a>
@@ -330,7 +330,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2018 <a href="{{url('')}}">Celebgramme</a>.
+                    &copy; 2018 <a href="{{url('')}}">Activfans</a>.
                     <b>Version: </b> 5.1
                 </div>
             </div>

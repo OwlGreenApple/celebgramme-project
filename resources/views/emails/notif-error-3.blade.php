@@ -8,7 +8,7 @@ You will need to Re-verify your new username or password. <br>
 Your Instagram registered username : {{$username}}
 <br>
 <br>
-1. Login to https://{{$appName}}.com/celebgramme <br>
+1. Login to https://{{$appName}}.com/dashboard <br>
 <br>
 2. If you changed the username <br> 
 		- Delete the old username account  <br>

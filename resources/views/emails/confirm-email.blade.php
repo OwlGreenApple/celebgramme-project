@@ -1,4 +1,4 @@
-Terimakasih anda telah melakukan registrasi di Celebgramme.com <br>
+Terimakasih anda telah melakukan registrasi di Activfans.com <br>
 <br>
 Silahkan klik LINK di bawah ini untuk mengkonfirmasi Registrasi anda <br>
 KLIK LINK ini ---> <STRONG><a href="{{$url}}"> LINK KONFIRMASI EMAIL REGISTRASI </a></STRONG> <--- <br>
@@ -13,4 +13,4 @@ Sampai jumpa di Halaman user dashboard.<br>
 <br>
 Best Regards,<br>
 <br>
-Celebgramme.com
+Activfans.com

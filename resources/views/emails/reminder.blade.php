@@ -32,14 +32,14 @@ Sugiarto Lasjim<br>
 Jangan lupa konfirmasi di dalam dashboard<br>
 setelah melakukan pembayaran <br>
 <br>
-Terima kasih sudah menjadi pelanggan Celebgramme,<br>
+Terima kasih sudah menjadi pelanggan Activfans,<br>
 <br>
 Apabila memerlukan bantuan<br>
 Silahkan hubungi kami via email<br>
 <br>
-celebgramme@gmail.com<br>
+Activfans@gmail.com<br>
 <br>
 Salam hangat,<br>
 <br>
 <br>
-Team Celebgramme
+Team Activfans

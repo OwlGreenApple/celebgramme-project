@@ -108,7 +108,8 @@ ul,.menu,dir{
 .navTitle{margin-top:13%;}
 .text-white{color:#fff !important;}
 #mainImgLogo{
-	margin-top:-20px;
+	margin-top: -8px;
+	max-width: 75%;
 }
 .navbar {
   font-family: "Gotham-Book", sans-serif !important;

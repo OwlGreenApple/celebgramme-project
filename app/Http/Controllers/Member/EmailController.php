@@ -36,7 +36,7 @@ class EmailController extends Controller
       $url = 'http://localhost/celebgramme/public/verifyemail/';
     }
     else if (App::environment() == 'production'){
-      $url = 'https://celebgramme.com/celebgramme/verifyemail/';
+      $url = url('verifyemail');
     }
     $secret_data = [
       'email' => $user->email,
@@ -44,12 +44,12 @@ class EmailController extends Controller
       'verification_code' => $verificationcode,
     ];
     $emaildata = [
-      'url' => $url.Crypt::encrypt(json_encode($secret_data)),
+      'url' => $url.'/'.Crypt::encrypt(json_encode($secret_data)),
 			'user' => $user,
 			'password' => "",
     ];
     Mail::queue('emails.confirm-email', $emaildata, function ($message) use ($user) {
-      $message->from('no-reply@celebgramme.com', 'Celebgramme');
+      $message->from('no-reply@activfans.com', 'Activfans');
       $message->to($user->email);
       $message->subject('Email Confirmation');
     });
@@ -76,7 +76,7 @@ class EmailController extends Controller
                 $user->type = 'confirmed-email';
                 $user->save();
 
-                return Redirect::to("http://celebgramme.com/thank-you-page/");
+                return Redirect::to("http://activfans.com/thank-you-page/");
                 // return redirect('/')->with('message', [
                 //   'title' => 'Aktivasi Berhasil',
                 //   'content' => 'Terima kasih telah melakukan konfirmasi email. Akun Anda telah diaktifkan.',

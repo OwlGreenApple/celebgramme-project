@@ -17,7 +17,7 @@
 							<h2 class="pull-left" style="font-size:15pt;">Hi, {{$user->fullname}} </h2>
 						</div>
 						<div class="col-md-6 col-sm-12 col-xs-12 padding-0">
-							<a href="{{url('dashboard')}}"><button id="btnToDashboard" class="btn btn-block waves-effect br-6"><span>Masuk ke Dashboard</span>&nbsp;&nbsp;<i class="material-icons text-white">input</i>&nbsp;</button></a>
+							<a href="{{url('account')}}"><button id="btnToDashboard" class="btn btn-block waves-effect br-6"><span>Masuk ke Account</span>&nbsp;&nbsp;<i class="material-icons text-white">input</i>&nbsp;</button></a>
 						</div>
 					</div>
 					<div class="clearfix"></div><br/>
@@ -27,13 +27,13 @@
 							<div class="tab-content">
 							
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX active" id="home_animation_1" role="tabpanel" >
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/QRgXvwbTo0A?rel=0&amp;showinfo=0"></iframe>
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/JZ1xpsfRKDk?rel=0&amp;showinfo=0"></iframe>
 </div>								
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="profile_animation_1" role="tabpanel" >
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/W7u-bL-Bdsk?rel=0&amp;showinfo=0"></iframe>
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Zfmwp9pXO9U?rel=0&amp;showinfo=0"></iframe>
 </div>								
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="messages_animation_1" role="tabpanel" >
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DWhDVq5WB8s?rel=0&amp;showinfo=0"></iframe>
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zMWSIbd_K24?rel=0&amp;showinfo=0"></iframe>
 </div>
 
 <div class="embed-responsive embed-responsive-16by9 tab-pane animated flipInX" id="teknobie_1" role="tabpanel" >
@@ -91,7 +91,7 @@
 									<img src="{{asset('/new-dashboard/images/filmIcon.png')}}" class="filmIcon">
 								</div>
 								<div class="content">
-									<p class="text-white">Celebpost</p>
+									<p class="text-white">Digimaru</p>
 								</div>
 							</a>
 						</div>
@@ -141,18 +141,23 @@
               <?php if(env('APP_PROJECT')=='Celebgramme') { ?>
 							<div class="">
 								<div style="padding:0;"class="card text-center margin-0 col-md-12 col-sm-12 col-xs-12">
-									<a href="http://celebpost.in/" target="_blank"><img src="{{asset('/images/promo-1b.jpg')}}"class="img-responsive" ></a>
+									<a href="http://activpost.net/" target="_blank"><img src="{{asset('/images/promo-7.jpg')}}"class="img-responsive" ></a>
 								</div>
 								<?php if (!Auth::user()->is_member_rico) { ?>
+								<!--
 								<div style="padding:0;" class="card text-center margin-0 col-md-6 col-sm-6 col-xs-6">
 									<a href="http://line.me/ti/p/@vyd1834h" target="_blank"><img src="{{asset('/images/promo-2.jpg')}}"class="img-responsive" ></a>
 								</div>
 								<div style="padding:0;" class="card text-center col-md-6 col-xs-6 col-sm-6 margin-0">
 									<a href="http://m.me/celebgramme" target="_blank"><img src="{{asset('/images/promo-3.jpg')}}"class="img-responsive" ></a>
 								</div>
+								-->
+								<div style="padding:0;" class="card text-center margin-0 col-md-12 col-sm-12 col-xs-12">
+									<a href="http://line.me/ti/p/@activfans" target="_blank"><img src="{{asset('/images/promo-5.png')}}"class="img-responsive" ></a>
+								</div>
 								<?php } ?> 
 								<div style="padding:0;"  class="card text-center col-md-12 col-sm-12 col-xs-12 margin-0">
-									<a href="http://digimaru.org" target="_blank"><img src="{{asset('/images/gif-promo.gif')}}"class="img-responsive" ></a>
+									<a href="http://digimaru.org/class-instagram/" target="_blank"><img src="{{asset('/images/promo-6.jpg')}}"class="img-responsive" ></a>
 								</div>
 							</div>
               <?php } ?>

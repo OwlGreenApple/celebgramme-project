@@ -66,7 +66,7 @@ class Invoice extends Model {
         $emaildata["order_type"] = "Veritrans";
     }
     Mail::queue('emails.success-payment', $emaildata, function ($message) use ($cdata) {
-      $message->from('no-reply@celebgramme.com', 'Celebgramme');
+      $message->from('no-reply@activfans.com', 'activfans');
       $message->to($cdata["email"]);
       $message->subject('Success Payment');
     });

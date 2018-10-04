@@ -1177,7 +1177,7 @@ f
 
 <div class="row">
   <div class="col-md-12">
-    <p align="center"> <br><br><br><br><br><br><br><br> @Copyright <a href="http://celebgramme.com/celebgramme">Celebgramme</a> versi 2 2016</p>    
+    <p align="center"> <br><br><br><br><br><br><br><br> @Copyright <a href="http://activfans.com/dashboard">activfans</a> versi 2 2016</p>    
   </div>                    
 </div>                    
 

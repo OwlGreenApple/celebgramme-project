@@ -104,14 +104,14 @@ class CronJobController extends Controller
 					/*$description = "description: source_update = cron(timeout) ~ status = stopped ~";
 
 					//send email to admin
-					$type_message="[Celebgramme] Post Auto Manage";
+					$type_message="[Activfans] Post Auto Manage";
 					$type_message .= "IG ACCOUNT(TIME OUT): ".$setting->insta_username;
 					$emaildata = [
 						"setting_temp" => $setting,
 						"description" => $description,
 					];
 					Mail::queue('emails.info-post-admin', $emaildata, function ($message) use ($type_message) {
-						$message->from('no-reply@celebgramme.com', 'Celebgramme');
+						$message->from('no-reply@activfans.com', 'Activfans');
 						$message->to(array(
 							"it.axiapro@gmail.com",
 						));
@@ -161,10 +161,10 @@ class CronJobController extends Controller
 							'user' => $user,
 					];
 					Mail::queue('emails.notif-5days', $emaildata, function ($message) use ($user) {
-						$message->from('no-reply@celebgramme.com', 'Celebgramme');
+						$message->from('no-reply@activfans.com', 'Activfans');
 						$message->to($user->email);
 						// $message->bcc("celebgramme.dev@gmail.com");
-						$message->subject('[Celebgramme] 5 hari lagi nih, nggak berasa yah');
+						$message->subject('[Activfans] 5 hari lagi nih, nggak berasa yah');
 					});
 				}
 				if ( ($user->active_auto_manage>=43200) && ($user->active_auto_manage<=129600) && (UserMeta::getMeta($user->id,"email1days")<>"yes") ) {
@@ -197,10 +197,10 @@ class CronJobController extends Controller
 						'percent_coupon' => Meta::getMeta('coupon_setting_percentage'),
 					];
 					Mail::queue('emails.notif-expired', $emaildata, function ($message) use ($user) {
-						$message->from('no-reply@celebgramme.com', 'Celebgramme');
+						$message->from('no-reply@activfans.com', 'Activfans');
 						$message->to($user->email);
 						// $message->bcc("celebgramme.dev@gmail.com");
-						$message->subject('[Celebgramme] Hari ini service Celebgramme.com berakhir');
+						$message->subject('[Activfans] Hari ini service Activfans.com berakhir');
 					});
 				}
 				if ( ($user->active_auto_manage>0) && ($user->active_auto_manage<=50000) ) {
@@ -222,10 +222,10 @@ class CronJobController extends Controller
 					'code_coupon' => $coupon->coupon_code,
 				];
 				Mail::queue('emails.notif-coupon-expired', $emaildata, function ($message) use ($user) {
-					$message->from('no-reply@celebgramme.com', 'Celebgramme');
+					$message->from('no-reply@activfans.com', 'Activfans');
 					$message->to($user->email);
 					// $message->bcc("celebgramme.dev@gmail.com");
-					$message->subject('[Celebgramme] Hari ini terakhir penggunaan coupon order anda');
+					$message->subject('[Activfans] Hari ini terakhir penggunaan coupon order anda');
 				});
 			}
 		}
@@ -239,10 +239,10 @@ class CronJobController extends Controller
 						'user' => $user,
 				];
 				Mail::queue('emails.free-trial-affiliate.awal-trial-2', $emaildata, function ($message) use ($user) {
-					$message->from('no-reply@celebgramme.com', 'Celebgramme');
+					$message->from('no-reply@activfans.com', 'Activfans');
 					$message->to($user->email);
 					// $message->bcc("celebgramme.dev@gmail.com");
-					$message->subject('[Celebgramme] Hi, sudah naik berapa followersnya ?');
+					$message->subject('[Activfans] Hi, sudah naik berapa followersnya ?');
 				});
 			}
 			
@@ -253,10 +253,10 @@ class CronJobController extends Controller
 						'user' => $user,
 				];
 				Mail::queue('emails.free-trial-affiliate.h-kurang-2', $emaildata, function ($message) use ($user) {
-					$message->from('no-reply@celebgramme.com', 'Celebgramme');
+					$message->from('no-reply@activfans.com', 'Activfans');
 					$message->to($user->email);
 					// $message->bcc("celebgramme.dev@gmail.com");
-					$message->subject('[Celebgramme] Selamat, Anda mendapatkan Bonus 7 Video Rahasia OLShop Sukses Instagram');
+					$message->subject('[Activfans] Selamat, Anda mendapatkan Bonus 7 Video Rahasia OLShop Sukses Instagram');
 				});
 			}
 			
@@ -267,10 +267,10 @@ class CronJobController extends Controller
 						'user' => $user,
 				];
 				Mail::queue('emails.free-trial-affiliate.h-kurang-1', $emaildata, function ($message) use ($user) {
-					$message->from('no-reply@celebgramme.com', 'Celebgramme');
+					$message->from('no-reply@activfans.com', 'Activfans');
 					$message->to($user->email);
 					// $message->bcc("celebgramme.dev@gmail.com");
-					$message->subject('[Celebgramme] Jualan di Instagram itu gampang yah');
+					$message->subject('[Activfans] Jualan di Instagram itu gampang yah');
 				});
 			}
 			
@@ -283,10 +283,10 @@ class CronJobController extends Controller
 						'user' => $user,
 				];
 				Mail::queue('emails.free-trial-affiliate.h', $emaildata, function ($message) use ($user) {
-					$message->from('no-reply@celebgramme.com', 'Celebgramme');
+					$message->from('no-reply@activfans.com', 'Activfans');
 					$message->to($user->email);
 					// $message->bcc("celebgramme.dev@gmail.com");
-					$message->subject('[Celebgramme] HARI ini Masa Trial Kakak HABIS');
+					$message->subject('[Activfans] HARI ini Masa Trial Kakak HABIS');
 				});
 			}
 
@@ -300,10 +300,10 @@ class CronJobController extends Controller
 						'nama_affiliate' => $nama_affiliate,
 				];
 				Mail::queue('emails.free-trial-affiliate.h-tambah-1', $emaildata, function ($message) use ($user) {
-					$message->from('no-reply@celebgramme.com', 'Celebgramme');
+					$message->from('no-reply@activfans.com', 'Activfans');
 					$message->to($user->email);
 					// $message->bcc("celebgramme.dev@gmail.com");
-					$message->subject('[Celebgramme] Kesempatan nggak datang 2 kali');
+					$message->subject('[Activfans] Kesempatan nggak datang 2 kali');
 				});
 			}
 			
@@ -716,9 +716,9 @@ class CronJobController extends Controller
 							'isi_form_kaos' => $isi_form_kaos,
 					];
 					Mail::queue('emails.create-user', $emaildata, function ($message) use ($user) {
-						$message->from('no-reply@celebgramme.com', 'Celebgramme');
+						$message->from('no-reply@activfans.com', 'Activfans');
 						$message->to($user->email);
-						$message->subject('[Celebgramme] Welcome to celebgramme.com (Info Login & Password)');
+						$message->subject('[Activfans] Welcome to Activfans.com (Info Login & Password)');
 					});
 				
 				} else {
@@ -784,9 +784,9 @@ class CronJobController extends Controller
 							'isi_form_kaos' => $isi_form_kaos,
 					];
 					Mail::queue('emails.adding-time-user', $emaildata, function ($message) use ($user) {
-						$message->from('no-reply@celebgramme.com', 'Celebgramme');
+						$message->from('no-reply@activfans.com', 'activfans');
 						$message->to($user->email);
-						$message->subject('[Celebgramme] Congratulation Pembelian Sukses, & Kredit waktu sudah ditambahkan');
+						$message->subject('[Activfans] Congratulation Pembelian Sukses, & Kredit waktu sudah ditambahkan');
 					});
 					
 				}
@@ -963,6 +963,7 @@ class CronJobController extends Controller
 			}
 		}
 		$accounts = Account::where("is_started",0)
+								->orWhereNull('is_started')
 								->get();
 		foreach($accounts as $account_celebpost){
 			$account_celebpost->proxy_id = 0;
@@ -993,9 +994,9 @@ class CronJobController extends Controller
 					'tanggal_order' => $date_order->format('d-m-Y'),
 			];
 			Mail::queue('emails.reminder', $emaildata, function ($message) use ($user,$shortcode) {
-				$message->from('no-reply@celebgramme.com', 'Celebgramme');
+				$message->from('no-reply@activfans.com', 'Activfans');
 				$message->to($user->email);
-				$message->subject('[Celebgramme] Jangan lupa ada order yang belum terbayar');
+				$message->subject('[Activfans] Jangan lupa ada order yang belum terbayar');
 			});
 			
 			$order->is_remind_email = 1;

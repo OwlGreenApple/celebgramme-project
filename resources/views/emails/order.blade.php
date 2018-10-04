@@ -1,4 +1,4 @@
-Terima kasih, anda telah melakukan pemesanan Celebgramme service.<br>
+Terima kasih, anda telah melakukan pemesanan Activfans service.<br>
 Info Order anda adalah sebagai berikut <br>
 <br>
 <strong>No Order :</strong> {{$no_order}} <br>
@@ -51,9 +51,9 @@ Anda telah memesan paket
 	
 	dan setelah selesai membayar<br>
 	silahkan KLIK <a href="{{url('confirm-payment')}}"> --> KONFIRMASI PEMBAYARAN <-- </a> disini . <br>
-	NB : No Rekening Account BCA untuk celebgramme & Celebpost berbeda, untuk mempercepat proses administrasi silahkan transfer pada rekening BCA service yang dibeli.
+	NB : No Rekening Account BCA untuk Activfans & Celebpost berbeda, untuk mempercepat proses administrasi silahkan transfer pada rekening BCA service yang dibeli.
 <?php } ?>
 
 <br> Salam hangat, 
 <br>
-Celebgramme.com
+Activfans.com

@@ -1035,7 +1035,7 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row btnGroupOO">
 															<div class="col-md-6 col-sm-4 col-xs-4">
 																<b>Settings</b>
-																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Choose Settings</div><div class='panel-content'><b>FULL AUTO</b> = Pilih kategori Target anda & Start <br><b>MANUAL</b> = Bebas atur sendiri fitur Celebgramme. <br></div>">
+																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Choose Settings</div><div class='panel-content'><b>FULL AUTO</b> = Pilih kategori Target anda & Start <br><b>MANUAL</b> = Bebas atur sendiri fitur Activfans. <br></div>">
 																	</span>																
 															</div>
 																<!--<button class="btn btn-block bg-grey btnOff">Full Auto</button>-->
@@ -1364,7 +1364,7 @@ use Celebgramme\Models\SettingHelper;
 														<div class="row status-follow" <?php if ($settings->status_follow_unfollow=="off") echo "style='display:none;'" ?>>
 															<div class="col-md-4 col-sm-4 col-xs-4">
 																<b>Max Follow</b>
-																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Max Follow</div><div class='panel-content'>Angka maximum yang akan difollow. <br>Sesudah angka ini tercapai, celebgramme akan otomatis melakukan Unfollow. <br>Pilih angka antara 1000 s/d 7000, lebih besar lebih efektif.<br></div>">
+																	<span class="glyphicon glyphicon-question-sign hint-button tooltipPlugin" title="<div class='panel-heading'>Max Follow</div><div class='panel-content'>Angka maximum yang akan difollow. <br>Sesudah angka ini tercapai, activfans akan otomatis melakukan Unfollow. <br>Pilih angka antara 1000 s/d 7000, lebih besar lebih efektif.<br></div>">
 																	</span>
 															</div>
 															<div class="col-md-3 col-sm-8 col-xs-8">
@@ -1398,7 +1398,7 @@ use Celebgramme\Models\SettingHelper;
 																	<div class="col-md-4 col-sm-5 col-xs-5">
 																		<b>Don't Follow Same User</b>
 																		<span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Dont Follow Same users</div><div class='panel-content'>
-																		Jika Dont Follow Same Users dicentang,<br> Maka proses follow tidak akan memfollow account-account IG yang pernah difollow oleh celebgramme
+																		Jika Dont Follow Same Users dicentang,<br> Maka proses follow tidak akan memfollow account-account IG yang pernah difollow oleh activfans
 																		</div>"></span>
 																	</div>
 																	<div class="col-md-8 col-sm-7 col-xs-7">
@@ -1504,7 +1504,7 @@ use Celebgramme\Models\SettingHelper;
 																	<div class="col-md-6 col-sm-12 col-xs-12">
 																		<label>Comments</label> &nbsp <span class="glyphicon glyphicon-question-sign tooltipPlugin" title="<div class='panel-heading'>Comments</div><div class='panel-content'>
 																		• <strong>Komentar akan dipilih secara acak </strong>dari daftar ini. <br>
-																		• <strong>Celebgramme hanya memberikan 1x komentar </strong>pada setiap posting <br>
+																		• <strong>Activfans hanya memberikan 1x komentar </strong>pada setiap posting <br>
 																		• <strong>Komentar jangan menggunakan Hashtags </strong><br>
 																		• <strong>Komentar jangan menggunakan URL </strong> <br>
 																		• <strong>Komentar tidak boleh </strong>terdiri dari huruf kapital semua. <br>
@@ -1541,7 +1541,7 @@ use Celebgramme\Models\SettingHelper;
 																</div>
 															<div class="row">
 																<div class="col-md-6 col-sm-12 col-xs-12">
-																	<p data-toggle="modal" data-target="#myModalCreateCommentEmoji" style="cursor:pointer;">Create Emoji</p>
+																	<button data-toggle="modal" data-target="#myModalCreateCommentEmoji" style="cursor:pointer;">Create Emoji</button>
 																</div>
 															</div>
 															<div class="row">

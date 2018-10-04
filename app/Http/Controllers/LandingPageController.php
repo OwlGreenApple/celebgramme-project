@@ -82,9 +82,9 @@ class LandingPageController extends Controller
       'nama' => $request->fullname,
     ];
     Mail::queue('emails.submit-survey', $emaildata, function ($message) use ($emaildata) {
-      $message->from('no-reply@celebgramme.com', 'Celebgramme');
+      $message->from('no-reply@activfans.com', 'activfans');
       $message->to($emaildata["email"]);
-      $message->subject('[Celebgramme] Submit Survey');
+      $message->subject('[activfans] Submit Survey');
     });
     
 		return $arr;
@@ -271,19 +271,19 @@ class LandingPageController extends Controller
 			$url = 'https://localhost/celebgramme/public/redirect-auth/';
 		}
 		else if (App::environment() == 'production'){
-			$url = 'https://celebgramme.com/celebgramme/redirect-auth/';
+			$url = url('redirect-auth');
 		}
 		$secret_data = [
 			'email' => $email,
 			'register_time' => Carbon::now()->toDateTimeString(),
 		];
 		$emaildata = [
-			'url' => $url.Crypt::encrypt(json_encode($secret_data)),
+			'url' => $url.'/'.Crypt::encrypt(json_encode($secret_data)),
 		];
 		Mail::queue('emails.forgot-password', $emaildata, function ($message) use ($email) {
-			$message->from('no-reply@celebgramme.com', 'Celebgramme');
+			$message->from('no-reply@activfans.com', 'Activfans');
 			$message->to($email);
-			$message->subject('[Celebgramme] Email Forgot & RESET Password');
+			$message->subject('[activfans] Email Forgot & RESET Password');
 		});
 		return redirect('forgot-password')->with(array('success'=>'1',));
 	}
@@ -300,10 +300,10 @@ class LandingPageController extends Controller
         return view('auth.new-password');
 				
 			} else{
-				return redirect("http://celebgramme.com/error-page/");
+				return redirect("http://activfans.com/error-page/");
 			}
 		} catch (DecryptException $e) {
-			return redirect("http://celebgramme.com/error-page/");
+			return redirect("http://activfans.com/error-page/");
 		}
 	}	
 	
@@ -398,9 +398,9 @@ class LandingPageController extends Controller
 						'isi_form_kaos' => $isi_form_kaos,
 				];
 				Mail::queue('emails.create-user', $emaildata, function ($message) use ($user) {
-					$message->from('no-reply@celebgramme.com', 'Celebgramme');
+					$message->from('no-reply@activfans.com', 'Activfans');
 					$message->to($user->email);
-					$message->subject('[Celebgramme] Welcome to celebgramme.com (Info Login & Password)');
+					$message->subject('[Activfans] Welcome to activfans.com (Info Login & Password)');
 				});
 			
 			} else {
@@ -428,9 +428,9 @@ class LandingPageController extends Controller
 						'isi_form_kaos' => $isi_form_kaos,
 				];
 				Mail::queue('emails.adding-time-user', $emaildata, function ($message) use ($user) {
-					$message->from('no-reply@celebgramme.com', 'Celebgramme');
+					$message->from('no-reply@activfans.com', 'Activfans');
 					$message->to($user->email);
-					$message->subject('[Celebgramme] Congratulation Pembelian Sukses, & Kredit waktu sudah ditambahkan');
+					$message->subject('[Activfans] Congratulation Pembelian Sukses, & Kredit waktu sudah ditambahkan');
 				});
 				
 			}
@@ -743,10 +743,10 @@ class LandingPageController extends Controller
 					'insta_username' => $setting_temp->insta_username,
 			];
 			Mail::queue('emails.error-cred', $emaildata, function ($message) use ($user) {
-				$message->from('no-reply@celebgramme.com', 'Celebgramme');
+				$message->from('no-reply@activfans.com', 'Activfans');
 				$message->to($user->email);
 				$message->bcc("celebgramme.dev@gmail.com");
-				$message->subject('[Celebgramme] Error Instagram Account Username');
+				$message->subject('[Activfans] Error Instagram Account Username');
 			});
 		}
 		

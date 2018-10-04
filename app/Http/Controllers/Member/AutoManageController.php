@@ -738,6 +738,7 @@ class AutoManageController extends Controller
         $setting->last_user = $user->id;
         $setting->insta_password = Request::input("password");
         $setting->error_cred = 0;
+        $setting->is_active = 1; /* fix supaya ga ada yg bisa add diatas max_account*/
         $setting->save();
 
         // $setting_temp = Setting::post_info_admin($setting->id);
@@ -2040,14 +2041,14 @@ class AutoManageController extends Controller
 		if (ProxyLogin::where("is_error",0)->count() <= 2) {
 			//notif KALO proxy login uda mau abis
 			Mail::queue('emails.pool-proxy-login', $emaildata, function ($message) use ($type_message) {
-				$message->from('no-reply@celebgramme.com', 'Celebgramme');
+				$message->from('no-reply@activfans.com', 'Activfans');
 				$message->to(array(
 					"michaelsugih@gmail.com",
 				));
 				$message->cc(array(
 					"celebgramme.dev@gmail.com",
 				));
-				$message->subject("[Celebgramme] Pool Proxy Login mau habis");
+				$message->subject("[Activfans] Pool Proxy Login mau habis");
 			});
 		}
 		

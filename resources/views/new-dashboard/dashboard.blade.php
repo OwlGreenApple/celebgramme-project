@@ -652,11 +652,11 @@
 								<input type="checkbox" class="checkbox-term" id="terms-add-account1"> <label for="terms-add-account1" class="control-label">UMUR akun Instagram minimal 10 hari</label>
 							</div>
 							<div class="col-sm-12 col-md-12">
-								<input type="checkbox" class="checkbox-term" id="terms-add-account2"> <label for="terms-add-account2" class="control-label">TIDAK menggunakan system automation Instagram selain Celebgramme </label>
-								<p style="font-size:11px; margin-left:20px;"> PS : Stop Celebgramme terlebih dahulu apabila akan melakukan <br>activity Instagram secara manual(Follow / Like / Comment / Unfollow / Post)</p>
+								<input type="checkbox" class="checkbox-term" id="terms-add-account2"> <label for="terms-add-account2" class="control-label">TIDAK menggunakan system automation Instagram selain Activfans </label>
+								<p style="font-size:11px; margin-left:20px;"> PS : Stop Activfans terlebih dahulu apabila akan melakukan <br>activity Instagram secara manual(Follow / Like / Comment / Unfollow / Post)</p>
 							</div>
 							<div class="col-sm-12 col-md-12">
-								<input type="checkbox" class="checkbox-term" id="terms-add-account3"> <label for="terms-add-account3" class="control-label">TIDAK membeli followers selama menggunakan Celebgramme</label>
+								<input type="checkbox" class="checkbox-term" id="terms-add-account3"> <label for="terms-add-account3" class="control-label">TIDAK membeli followers selama menggunakan Activfans</label>
 							</div>
 							<div class="col-sm-12 col-md-12">
 								<input type="checkbox" class="checkbox-term" id="terms-add-account4"> <label for="terms-add-account4" class="control-label">Email & No HP sudah terhubung dengan Account Instagram ini</label>
@@ -674,7 +674,7 @@
 								<input type="checkbox" class="checkbox-term" id="terms-add-account9"> <label for="terms-add-account9" class="control-label">Saya sudah membaca dan mempelajari <a href="https://docs.google.com/document/d/1GWfW5kU5yvchCZlqPxEksK7NrMqgQGP0saqCG2VNGlQ" target="_blank"> Tutorial Celebgramme </a> </label>
 							</div>
 							<div class="col-sm-12 col-md-12">
-								<input type="checkbox" class="checkbox-term" id="terms-add-account8"> <label for="terms-add-account8" class="control-label">Saya sudah membaca & menyetujui <a href="http://celebgramme.com/terms-conditions" target="_blank">TERMS & CONDITIONS</a> Celebgramme </label>
+								<input type="checkbox" class="checkbox-term" id="terms-add-account8"> <label for="terms-add-account8" class="control-label">Saya sudah membaca & menyetujui <a href="http://activfans.com/terms-conditions" target="_blank">TERMS & CONDITIONS</a> Celebgramme </label>
 							</div>
 							<div class="col-sm-12 col-md-12">
 								<input type="checkbox" class="checkbox-term" id="terms-add-account10"> <label for="terms-add-account10" class="control-label">Silahkan login ke <a href="https://www.instagram.com/accounts/login/?force_classic_login" target="_blank">Instagram</a> via browser, jangan logout sebelum add account </label>

@@ -4,7 +4,7 @@ Hi, {{ucfirst(strtolower($user->fullname))}} <br>
 Pernah dengar pepatah ini kak ? <br>
 "Kesempatan nggak datang 2 kali" <br>
 <br>
-Nah di Celebgramme, Kesempatan masih datang 1x lagi <br>
+Nah di activfans, Kesempatan masih datang 1x lagi <br>
 Jadi Sayang banget... Jangan dilewatkan <br>
 Followers itu Asset Digital yang bisa mendatangkan berkat <br>
 #beneran lho ^_^ <br>
@@ -23,9 +23,9 @@ Order sekarang disini <br>
 <a href="{{$user->link_affiliate}}">► Disini</a> <br>
 <br>
 PS: Nambah Followers, Nambah engagements, Nambah Omzet <br>
-<a href="https://celebgramme.com/category/testimonial/">https://celebgramme.com/category/testimonial/</a> <br>
+<a href="https://activfans.com/category/testimonial/">https://activfans.com/category/testimonial/</a> <br>
 <br>
 salam hangat, <br>
 <br>
 Michael Sugiharto <br>
-Celebgramme.com
+activfans.com

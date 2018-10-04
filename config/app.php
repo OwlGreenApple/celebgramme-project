@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name' => "Celebgramme",
+    'name' => "Activfans",
 
     /*
     |--------------------------------------------------------------------------
@@ -27,7 +27,7 @@ return [
     |
     */
 
-    'url' => 'https://celebgramme.com/celebgramme',
+    'url' => 'https://activfans.com/dashboard',
 
     /*
     |--------------------------------------------------------------------------

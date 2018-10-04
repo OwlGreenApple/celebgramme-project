@@ -1,7 +1,7 @@
   <!DOCTYPE html>
 <html>
     <head>
-      <title>Celebgramme</title>
+      <title>activfans</title>
       <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/images/celebgramme-favicon.png') }}">
       <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
       <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -12,7 +12,7 @@
       <div class="header-package row container">
         <div class="div-black">
           <div class="div-logo">
-            <a href="http://celebgramme.com"><div class="logo"></div></a>
+            <a href="http://activfans.com"><div class="logo"></div></a>
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@
 
         <a href="{{url($url)}}"><input type="button" value="Bayar dengan Share" class="button-share"></a>
 
-        <p class="keterangan">Jika anda mempunyai pertanyaan seputar Celebgramme, silahkan baca FAQ ( Frequently Asked Question ) <a href="http://celebgramme.com/faq"> disini </a> atau silahkan hubungi kami <a href="http://celebgramme.com/support">disini</a></p>
+        <p class="keterangan">Jika anda mempunyai pertanyaan seputar Celebgramme, silahkan baca FAQ ( Frequently Asked Question ) <a href="http://activfans.com/faq"> disini </a> atau silahkan hubungi kami <a href="http://activfans.com/support">disini</a></p>
       </div>
 
 

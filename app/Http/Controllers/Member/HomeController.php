@@ -37,7 +37,7 @@ class HomeController extends Controller
     $emaildata = [
     ];
     Mail::queue('emails.test', $emaildata, function ($message) {
-      $message->from('no-reply@celebgramme.com', 'Celebgramme');
+      $message->from('no-reply@activfans.com', 'activfans');
       $message->to("celebgramme.dev@gmail.com");
       $message->subject('test email');
     });
@@ -54,7 +54,7 @@ class HomeController extends Controller
 		return "b";
 		
 		
-    return Redirect::to("http://celebgramme.com/email-konfirmasi/");
+    return Redirect::to("http://activfans.com/email-konfirmasi/");
     return strval(false);
     $url = "http://play.vid-id.me/aff_c?offer_id=16&aff_id=3104";
     return view('member.pay-with-tweet')->with(array(
@@ -302,18 +302,20 @@ class HomeController extends Controller
       'nama_bank'=>Request::input("nama_bank"),
       'keterangan'=>Request::input("keterangan"),
     ];
+
     Mail::queue('emails.confirm-order', $emaildata, function ($message) use ($user,$order) {
-      $message->from('no-reply@celebgramme.com', 'Celebgramme');
+      $message->from('no-reply@activfans.com', 'activfans');
       $message->to($user->email);
       $message->bcc(array(
         "celebgramme.dev@gmail.com",
 				"celebgramme@gmail.com",
         ));
 
+
       if(env('APP_PROJECT')=='Amelia' && $order->order_type=='rico-extend'){
         $message->bcc('support@amelia.id');
       }
-      $message->subject('[Celebgramme] Order Confirmation');
+      $message->subject('[activfans] Order Confirmation');
     });
 /*
 		//send email to admin
@@ -324,7 +326,7 @@ class HomeController extends Controller
 			"status" => "konfirmasi pembayaran",
 		];
 		Mail::queue('emails.info-order-admin', $emaildata, function ($message) use ($type_message) {
-			$message->from('no-reply@celebgramme.com', 'Celebgramme');
+			$message->from('no-reply@activfans.com', 'activfans');
 			$message->to(array(
 				"celebgramme@gmail.com",
 				"celebgramme.dev@gmail.com",

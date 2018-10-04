@@ -217,8 +217,8 @@
     </div>
   </div>  
   <div class="form-group form-group-sm row">
-    <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall"></label>
-    <div class="col-sm-1 col-md-1">
+    <label class="col-xs-12 col-sm-12 col-md-3 control-label" for="formGroupInputSmall"></label>
+    <div class="col-xs-12 col-sm-12 col-md-9">
       <p>*Untuk mempermudah proses konfirmasi silahkan transfer sesuai dengan kode unik</p>
     </div>
   </div>  
