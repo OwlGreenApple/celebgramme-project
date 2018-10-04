@@ -138,7 +138,7 @@
 							</div>
 							<div class="">
 								<div style="padding:0;"class="card text-center margin-0 col-md-12 col-sm-12 col-xs-12">
-									<a href="http://celebpost.in/" target="_blank"><img src="{{asset('/images/promo-7.jpg')}}"class="img-responsive" ></a>
+									<a href="http://activpost.net/" target="_blank"><img src="{{asset('/images/promo-7.jpg')}}"class="img-responsive" ></a>
 								</div>
 								<?php if (!Auth::user()->is_member_rico) { ?>
 								<!--
@@ -150,11 +150,11 @@
 								</div>
 								-->
 								<div style="padding:0;" class="card text-center margin-0 col-md-12 col-sm-12 col-xs-12">
-									<a href="http://line.me/ti/p/@vyd1834h" target="_blank"><img src="{{asset('/images/promo-5.png')}}"class="img-responsive" ></a>
+									<a href="http://line.me/ti/p/@activfans" target="_blank"><img src="{{asset('/images/promo-5.png')}}"class="img-responsive" ></a>
 								</div>
 								<?php } ?> 
 								<div style="padding:0;"  class="card text-center col-md-12 col-sm-12 col-xs-12 margin-0">
-									<a href="http://digimaru.org" target="_blank"><img src="{{asset('/images/promo-6.jpg')}}"class="img-responsive" ></a>
+									<a href="http://digimaru.org/class-instagram/" target="_blank"><img src="{{asset('/images/promo-6.jpg')}}"class="img-responsive" ></a>
 								</div>
 							</div>
 						</div>
