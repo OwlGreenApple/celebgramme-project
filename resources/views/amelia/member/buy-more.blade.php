@@ -146,8 +146,8 @@
 		</div>  
 		<div class="col-sm-4 col-md-3">
 			<strong>Bank BCA</strong><br>
-			4800-227-122<br>
-			Sugiarto Lasjim<br><br>
+			6700382506<br>
+			Steven Anthony<br><br>
 		</div>  
 
 		<div class="col-sm-4 col-md-4">
@@ -230,7 +230,7 @@
   </div>  
   <div class="form-group form-group-sm row">
     <label class="col-xs-8 col-sm-4 col-md-3 control-label" for="formGroupInputSmall"></label>
-    <div class="col-sm-1 col-md-1">
+    <div class="col-xs-12 col-sm-12 col-md-9">
       <p>*Untuk mempermudah proses konfirmasi silahkan transfer sesuai dengan kode unik</p>
     </div>
   </div>  

@@ -18,7 +18,7 @@
       </div>
       <div class="container">  
         <div class="container2">
-          <div class="div-logo login">
+          <div class="div-logo">
             <a href="http://activfans.com"><div class="logo"></div></a>
           </div>
           {!! Form::open(array('url'=>URL::ROUTE('auth.login'),'method'=>'post','class'=>"form-signin",)) !!}

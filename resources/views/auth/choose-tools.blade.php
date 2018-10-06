@@ -44,7 +44,7 @@
                 if (App::environment('local')) {
                   $url = 'http://localhost/celebpost/login';
                 } else {
-                  $url = 'https://celebpost.in/dashboard/login';
+                  $url = 'https://activpost.net/amelia';
                 }
               ?>
               <a href="{{$url}}">
