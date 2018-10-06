@@ -38,8 +38,13 @@ Anda telah memesan paket
 	<strong>TRANSFER Melalui :</strong><br>
 	<br>
 	<strong>Bank BCA</strong><br>
-	4800-227-122<br>
-	Sugiarto Lasjim<br>
+  <?php if(env('APP_PROJECT')=='Celebgramme') { ?>
+  	4800-227-122<br>
+  	Sugiarto Lasjim<br>
+  <?php } else { ?>
+    6700382506<br>
+    Steven Anthony<br>
+  <?php } ?>
 	<br>
 	<!--
 	<strong>Bank Mandiri</strong><br>
@@ -51,7 +56,7 @@ Anda telah memesan paket
 	
 	dan setelah selesai membayar<br>
 	silahkan KLIK <a href="{{url('confirm-payment')}}"> --> KONFIRMASI PEMBAYARAN <-- </a> disini . <br>
-	NB : No Rekening Account BCA untuk Activfans & Celebpost berbeda, untuk mempercepat proses administrasi silahkan transfer pada rekening BCA service yang dibeli.
+	NB : No Rekening Account BCA untuk Activfans & Activpost berbeda, untuk mempercepat proses administrasi silahkan transfer pada rekening BCA service yang dibeli.
 <?php } ?>
 
 <br> Salam hangat, 
