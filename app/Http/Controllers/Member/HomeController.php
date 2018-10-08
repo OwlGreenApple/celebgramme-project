@@ -278,12 +278,17 @@ class HomeController extends Controller
     $filename = $order->no_order.".".Input::file('photo')->getClientOriginalExtension();
     if(env('APP_PROJECT')=='Amelia' && $order->order_type=='rico-extend'){
       //Storage::disk('s3')->put('confirm-payment/'.$filename,File::get(Input::file('photo')),'public');
-      $image = Image::make(Input::file('photo')->getRealPath())
+      try{
+        $image = Image::make(Input::file('photo')->getRealPath())
                 ->resize(600, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })                
                 ->stream();
-      Storage::disk('s3')->put('confirm-payment/'.$filename,$image->__toString(),'public');
+        Storage::disk('s3')->put('confirm-payment/'.$filename,$image->__toString(),'public');
+      } catch(Exception $e){
+        return $e->getMessage();
+      }
+      
     } else {
       Input::file('photo')->move($destinationPath, $filename);
     }
