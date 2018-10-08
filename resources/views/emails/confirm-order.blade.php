@@ -1,5 +1,11 @@
+<?php if(env('APP_PROJECT')=='Celebgramme') {
+        $service = 'Activfans';
+      } else {
+        $service = 'Amelia';
+      }
+?>
 Terima kasih,<br> 
-anda telah mensubmit KONFIRMASI PEMBAYARAN ORDER Activfans service <br>
+anda telah mensubmit KONFIRMASI PEMBAYARAN ORDER <?php echo $service ?> service <br>
 
 Info konfirmasi pembayaran yang anda submit sebagai berikut :
 <br>
@@ -14,7 +20,7 @@ Silahkan tunggu PENERIMAAN KONFIRMASI dari admin (max 1x24 jam) <br>
 
 <br> Salam hangat, 
 <br>
-Activfans.com
+<?php echo $service ?>
 
 
 

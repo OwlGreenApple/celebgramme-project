@@ -1,4 +1,11 @@
-Terima kasih, anda telah melakukan pemesanan Activfans service.<br>
+<?php if(env('APP_PROJECT')=='Celebgramme') { 
+        $service = 'Activfans';
+      } else {
+        $service = 'Amelia';
+      }
+?>
+
+Terima kasih, anda telah melakukan pemesanan <?php echo $service ?> service.<br>
 Info Order anda adalah sebagai berikut <br>
 <br>
 <strong>No Order :</strong> {{$no_order}} <br>
@@ -56,9 +63,12 @@ Anda telah memesan paket
 	
 	dan setelah selesai membayar<br>
 	silahkan KLIK <a href="{{url('confirm-payment')}}"> --> KONFIRMASI PEMBAYARAN <-- </a> disini . <br>
-	NB : No Rekening Account BCA untuk Activfans & Activpost berbeda, untuk mempercepat proses administrasi silahkan transfer pada rekening BCA service yang dibeli.
+
+  <?php if(env('APP_PROJECT')=='Celebgramme') { ?>
+	  NB : No Rekening Account BCA untuk Activfans & Activpost berbeda, untuk mempercepat proses administrasi silahkan transfer pada rekening BCA service yang dibeli.
+  <?php } ?>
 <?php } ?>
 
 <br> Salam hangat, 
 <br>
-Activfans.com
+<?php echo $service ?>

@@ -20,7 +20,7 @@ use Celebgramme\Models\LinkUserSetting;
 use Celebgramme\Models\Coupon;
 use Celebgramme\Models\PackageAffiliate;
 
-use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, Redirect, DB, Storage,File;
+use View, Input, Mail, Request, App, Hash, Validator, Carbon, Crypt, Redirect, DB, Storage,File, Image;
 
 class HomeController extends Controller
 {
@@ -277,7 +277,13 @@ class HomeController extends Controller
 
     $filename = $order->no_order.".".Input::file('photo')->getClientOriginalExtension();
     if(env('APP_PROJECT')=='Amelia' && $order->order_type=='rico-extend'){
-      Storage::disk('s3')->put('confirm-payment/'.$filename,File::get(Input::file('photo')),'public');
+      //Storage::disk('s3')->put('confirm-payment/'.$filename,File::get(Input::file('photo')),'public');
+      $image = Image::make(Input::file('photo')->getRealPath())
+                ->resize(600, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })                
+                ->stream();
+      Storage::disk('s3')->put('confirm-payment/'.$filename,$image->__toString(),'public');
     } else {
       Input::file('photo')->move($destinationPath, $filename);
     }
@@ -303,20 +309,28 @@ class HomeController extends Controller
       'keterangan'=>Request::input("keterangan"),
     ];
 
-    Mail::queue('emails.confirm-order', $emaildata, function ($message) use ($user,$order) {
+    if(env('APP_PROJECT')=='Celebgramme') {
+      Mail::queue('emails.confirm-order', $emaildata, function ($message) use ($user,$order) {
+        $message->from('no-reply@activfans.com', 'activfans');
+        $message->to($user->email);
+        $message->bcc(array(
+          "celebgramme.dev@gmail.com",
+          "celebgramme@gmail.com",
+          ));
+        $message->subject('[activfans] Order Confirmation');
+      });
+    } else {
+      Mail::queue('emails.confirm-order', $emaildata, function ($message) use ($user,$order) {
       $message->from('no-reply@activfans.com', 'activfans');
       $message->to($user->email);
       $message->bcc(array(
         "celebgramme.dev@gmail.com",
-				"celebgramme@gmail.com",
+        "celebgramme@gmail.com",
+        'support@amelia.id',
         ));
-
-
-      if(env('APP_PROJECT')=='Amelia' && $order->order_type=='rico-extend'){
-        $message->bcc('support@amelia.id');
-      }
-      $message->subject('[activfans] Order Confirmation');
+      $message->subject('[Amelia] Order Confirmation');
     });
+    }
 /*
 		//send email to admin
 		$type_message="[Celebgramme] Order Package";

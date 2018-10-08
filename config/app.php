@@ -148,7 +148,7 @@ return [
         
         Anouar\Paypalpayment\PaypalpaymentServiceProvider::class,
 				GeneaLabs\LaravelCaffeine\LaravelCaffeineServiceProvider::class,
-
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -200,6 +200,7 @@ return [
         'Form'=> Illuminate\Html\FormFacade::class, 
         'HTML'=> Illuminate\Html\HtmlFacade::class,
         'Paypalpayment'   => Anouar\Paypalpayment\Facades\PaypalPayment::class,
+        'Image' => Intervention\Image\Facades\Image::class,
         'Carbon' => 'Carbon\Carbon',
         
 

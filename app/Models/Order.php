@@ -92,28 +92,55 @@ class Order extends Model {
         } else {
             $emaildata['status'] = "Lunas";
         }
-        Mail::queue('emails.order', $emaildata, function ($message) use ($user,$shortcode) {
-          $message->from('no-reply@activfans.com', 'activfans');
-          $message->to($user->email);
-          $message->subject('[activfans] Order Nomor '.$shortcode);
-        });
 
-				
-				//send email to admin
-				$type_message="[activfans] Order Package";
-				$type_message .= "Fullname: ".$user->fullname;
-				$emaildata = [
-					"user" => $user,
-					"status" => "order",
-				];
-				Mail::queue('emails.info-order-admin', $emaildata, function ($message) use ($type_message) {
-					$message->from('no-reply@activfans.com', 'activfans');
-					$message->to(array(
-						"michaelsugih@gmail.com",
-						"celebgramme.dev@gmail.com",
-					));
-					$message->subject($type_message);
-				});
+        if(env('APP_PROJECT')=='Celebgramme') {
+          Mail::queue('emails.order', $emaildata, function ($message) use ($user,$shortcode) {
+            $message->from('no-reply@activfans.com', 'activfans');
+            $message->to($user->email);
+            $message->subject('[activfans] Order Nomor '.$shortcode);
+          });
+
+  				
+  				//send email to admin
+  				$type_message="[activfans] Order Package";
+  				$type_message .= "Fullname: ".$user->fullname;
+  				$emaildata = [
+  					"user" => $user,
+  					"status" => "order",
+  				];
+  				Mail::queue('emails.info-order-admin', $emaildata, function ($message) use ($type_message) {
+  					$message->from('no-reply@activfans.com', 'activfans');
+  					$message->to(array(
+  						"michaelsugih@gmail.com",
+  						"celebgramme.dev@gmail.com",
+  					));
+  					$message->subject($type_message);
+  				});
+        } else {
+          Mail::queue('emails.order', $emaildata, function ($message) use ($user,$shortcode) {
+            $message->from('no-reply@activfans.com', 'activfans');
+            $message->to($user->email);
+            $message->subject('[Amelia] Order Nomor '.$shortcode);
+          });
+
+          
+          //send email to admin
+          $type_message="[Amelia] Order Package";
+          $type_message .= "Fullname: ".$user->fullname;
+          $emaildata = [
+            "user" => $user,
+            "status" => "order",
+          ];
+          Mail::queue('emails.info-order-admin', $emaildata, function ($message) use ($type_message) {
+            $message->from('no-reply@activfans.com', 'activfans');
+            $message->to(array(
+              "support@amelia.id",
+              "activfans@gmail.com",
+              "celebgramme.dev@gmail.com",
+            ));
+            $message->subject($type_message);
+          });  
+        }
 				
         
         return $order;

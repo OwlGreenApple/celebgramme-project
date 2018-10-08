@@ -56,10 +56,10 @@
 			function(e) {
 				var f=this.files[0];
 				
-				if ((f.size>5000000)||(f.fileSize>5000000)){
+				if ((f.size>2000000)||(f.fileSize>2000000)){
 				// if ((f.size>300000)||(f.fileSize>300000)){
 					$(this).val('');
-					alert('Image tidak boleh lebih besar dari 5MB');
+					alert('Image tidak boleh lebih besar dari 2MB');
 				}
 		});
 		
@@ -215,7 +215,7 @@
       </div>
     </div>  
     <div class="form-group form-group-sm row">
-			<div class="col-sm-4 col-md-4" style="border-style: solid;border-width: 1px;"> 
+			<div class="col-sm-5 col-md-5" style="border-style: solid;border-width: 1px;"> 
 				Apabila terjadi masalah saat melakukan konfirmasi, <br>silahkan lakukan konfirmasi pembayaran manual<br>Kirim data2 konfirmasi pembayaran ke email <br><span style="color:#2db8dc;font-weight:bold;">
         <?php if(env('APP_PROJECT')=='Celebgramme') { echo 'celebgramme@gmail.com'; } else { echo 'support@amelia.id'; } ?> </span><br>( no order, nama bank, nama pemilik rekening,<br>no rekening, bukti transfer(photo) & keterangan<br>
 			</div>          
